@@ -25,6 +25,21 @@ class UpdateDocs extends Command
     protected $description = 'Update docs from GitHub.';
 
     /**
+     * @var Git
+     */
+    protected $git;
+
+    /**
+     * @var Filesystem
+     */
+    protected $files;
+
+    /**
+     * @var Documentation
+     */
+    protected $docs;
+
+    /**
      * Create a new command instance.
      *
      * @param \App\Documentation $docs
@@ -74,11 +89,11 @@ class UpdateDocs extends Command
     {
         $path = config('docs.path');
 
-        if (! $data = Arr::get($this->docs->getDocs(), $doc)) {
+        if (!$data = Arr::get($this->docs->getDocs(), $doc)) {
             return;
         }
 
-        if (! $this->files->exists("$path/$doc")) {
+        if (!$this->files->exists("$path/$doc")) {
             $this->git->clone($data['repository'], "$path/$doc");
         }
 
@@ -118,8 +133,6 @@ class UpdateDocs extends Command
         $versions = [];
 
         $branches = $this->git->branch(['all' => true]);
-
-        info($branches);
 
         foreach ($branches as $branch) {
             preg_match('/origin\/(.*)/', $branch['name'], $matches);
