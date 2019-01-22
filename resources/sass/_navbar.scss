@@ -1,0 +1,45 @@
+.navbar-default {
+    .navbar-brand {
+        font-weight: 400;
+    }
+
+    @media (max-width: $screen-sm-min) {
+        .navbar-header {
+            margin: 0px -25px 0 -15px;
+        }
+
+        .navbar-right {
+            margin-right: -28px;
+        }
+    }
+
+    .navbar-toggle {
+        border: none;
+
+        &:hover, &:focus {
+            background: none;
+
+            > .icon-bar {
+                opacity: 1;
+            }
+        }
+
+        .icon-bar {
+            height: 3px;
+            border-radius: 1px;
+
+            + .icon-bar {
+                opacity: .9;
+                margin-top: 3px;
+            }
+        }
+    }
+}
+
+.docs-nav-toc {
+    display: none;
+
+    @media (max-width: $screen-sm-min) {
+        display: block;
+    }
+}

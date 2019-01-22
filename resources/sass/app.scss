@@ -1,0 +1,52 @@
+@import 'variables';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'prism';
+@import 'navbar';
+@import 'sidebar';
+@import 'content';
+@import 'callouts';
+@import 'search';
+
+h1, h2, h3, h4 {
+    -webkit-font-smoothing: antialiased;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+pre {
+    border: none;
+    border-radius: 0;
+}
+
+:not(pre) > code {
+    color: #337AB7;
+    padding: 1px 4px;
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.error-page h2 {
+    text-align: center;
+
+    span {
+        color: #aaa;
+    }
+}
+
+.footer {
+    padding: 10px;
+    color: #aeaeae;
+    text-align: center;
+
+    a {
+        color: #aeaeae;
+
+        &:hover, &:focus {
+            color: #23527c;
+        }
+    }
+}

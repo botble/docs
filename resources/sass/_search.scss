@@ -1,0 +1,37 @@
+.search {
+    position: relative;
+
+    .form-control {
+        height: 38px;
+        margin-bottom: 30px;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    i {
+        z-index: 1;
+        right: 0px;
+        color: #ccc;
+        padding: 10px 12px;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+
+.algolia-autocomplete {
+    display: block !important;
+}
+
+.algolia-docsearch-suggestion--category-header {
+    background: #3097D1;
+}
+
+.algolia-docsearch-suggestion--highlight {
+    color: #337ab7;
+}
+
+.algolia-docsearch-suggestion {
+    color: #525252;
+}
