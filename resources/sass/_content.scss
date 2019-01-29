@@ -4,7 +4,7 @@
     box-sizing : border-box;
 
     h1 {
-        font-size   : 40px;
+        font-size   : 36px;
         font-weight : 200;
     }
 
@@ -16,14 +16,14 @@
     }
 
     h3 {
-        font-size : 22px;
+        font-size : 20px;
     }
 
     h1 + ul {
         margin         : 0;
         padding        : 0;
         list-style     : none;
-        font-size      : 16px;
+        font-size      : 14px;
         font-weight    : bold;
         line-height    : 1.5;
         padding-bottom : 20px;
@@ -36,13 +36,13 @@
         }
 
         ul {
-            font-size   : 15px;
+            font-size   : 13px;
             font-weight : 400;
             list-style  : none;
         }
 
         h2 {
-            font-size   : 30px;
+            font-size   : 28px;
             font-weight : 400;
 
             a {
@@ -52,7 +52,6 @@
     }
 
     img {
-        width     : 100%;
         max-width : 100%;
         width     : auto !important;
     }

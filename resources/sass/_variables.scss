@@ -1,9 +1,10 @@
 $text-color: #525252;
-$font-family-base: "Source Sans Pro", sans-serif;
+$font-family-base: 'Poppins', sans-serif;
+$line-height-base: 1.8 !default; // 20/14
 
 // Navbar
-$navbar-margin-bottom: 0px;
-$navbar-border-radius: 0px;
+$navbar-margin-bottom: 0;
+$navbar-border-radius: 0;
 $navbar-default-bg: #3097d1;
 $navbar-default-link-hover-color: #fff;
 $navbar-default-link-active-color: #fff;
@@ -16,6 +17,6 @@ $navbar-default-toggle-icon-bar-bg: #fff;
 $link-hover-decoration: none;
 
 // Icons
-$icon-font-path: "../fonts/";
+$icon-font-path: '../fonts/';
 
 $input-border-radius: 2px;
