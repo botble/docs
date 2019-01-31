@@ -1,7 +1,7 @@
 function Docs () {
     this.init();
     this.pjax();
-};
+}
 
 /**
  * Initialize.

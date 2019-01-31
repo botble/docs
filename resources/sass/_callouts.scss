@@ -13,7 +13,7 @@
         margin-bottom: 0;
     }
 
-    &+.callout {
+    & + .callout {
         margin-top: -5px;
     }
 }

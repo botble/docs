@@ -13,5 +13,5 @@ const mix = require('laravel-mix');
 
 mix
     .sass('resources/sass/app.scss', 'public/css')
-    .scripts('resources/js/app.js', 'public/js/app.js')
+    .scripts(['resources/js/vendor/prism.js', 'resources/js/app.js'], 'public/js/app.js')
     .version(['public/css/app.css', 'public/js/app.js']);
