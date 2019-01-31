@@ -12,9 +12,9 @@
         "erusev/parsedown": "^1.6",
         "fideloper/proxy": "^4.0",
         "jacobbennett/pjax": "^1.0",
-        "kzykhys/git": "dev-master",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "symfony/options-resolver": "^4.2",
         "symfony/yaml": "^4.2"
     },
     "require-dev": {
@@ -38,7 +38,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "PHPGit\\": "packages/PHPGit/src/"
         },
         "classmap": [
             "database/seeds",
@@ -63,11 +64,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/PHPGit"
-        }
-    ]
+    }
 }

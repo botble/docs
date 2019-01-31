@@ -76,6 +76,8 @@ class UpdateDocs extends Command
         }
 
         $this->info('Docs updated!');
+
+        return true;
     }
 
     /**

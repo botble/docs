@@ -2,19 +2,14 @@
 <html lang="en">
     <head>
         @include('partials.head')
-
-        @if (isset($currentDoc))
-            <title>{{ $title }} - {{ $currentDoc['name'] }} {{ $currentVersion }} - Botble</title>
-        @else
-            <title>Botble - Documents</title>
-        @endif
+        <title>@if (isset($currentDoc)){{ $title }} - {{ $currentDoc['name'] }} {{ $currentVersion }} - Botble @else Botble - Documents @endif</title>
 
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Botble Documents" />
+        <meta property="og:title" content="@if (isset($currentDoc)){{ $title }} - {{ $currentDoc['name'] }} {{ $currentVersion }} - Botble @else Botble - Documents @endif" />
         <meta property="og:description" content="Document for all Botble products" />
         <meta property="og:url" content="{{ url()->current() }}" />
-        <meta property="og:site_name" content="Sang Nguyen" />
+        <meta property="og:site_name" content="Botble Documents" />
         <meta property="article:publisher" content="https://facebook.com/botble.technologies" />
         <meta property="article:author" content="https://www.facebook.com/SangNguyen2603" />
         <meta property="article:tag" content="botble document" />
