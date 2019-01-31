@@ -34,7 +34,7 @@
 
         <div class="footer">
             Built with <a href="https://laravel.com/" target="_blank">Laravel</a>
-            and available on <a href="https://github.com/botble/docs" target="_blank">GitHub</a>.
+            and developed by <a href="https://botble.com" target="_blank">Botble Team</a>.
             © {{ date('Y') }} <a href="http://sangnguyen.info" target="_blank">Sang Nguyen</a>.
         </div>
 
