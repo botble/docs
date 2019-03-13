@@ -6,7 +6,7 @@ cms:
     support: https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182/support
     repository: https://github.com/botble/cms-docs.git
     banner: https://s3.envato.com/files/254513462/banner.png
-    version: "3.3"
+    version: "3.4"
 
 lara-mag:
     name: LaraMag
@@ -16,7 +16,7 @@ lara-mag:
     support: https://codecanyon.net/item/laramag-laravel-magazine-multilingual-system/21138718/support
     repository: https://github.com/botble/lara-mag-docs.git
     banner: https://s3.envato.com/files/254513523/banner.png
-    version: "3.3"
+    version: "3.4"
 
 avatar:
     name: Laravel Avatar
