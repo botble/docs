@@ -5,8 +5,8 @@ cms:
     purchase: https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182
     support: https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182/support
     repository: https://github.com/botble/cms-docs.git
-    banner: https://s3.envato.com/files/254513462/banner.png
-    version: "3.4"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/265508679/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=e2c663f964406664fb4f76fbb79eb937
+    version: "3.5"
 
 lara-mag:
     name: LaraMag
@@ -15,8 +15,8 @@ lara-mag:
     purchase: https://codecanyon.net/item/laramag-laravel-magazine-multilingual-system/21138718
     support: https://codecanyon.net/item/laramag-laravel-magazine-multilingual-system/21138718/support
     repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://s3.envato.com/files/254513523/banner.png
-    version: "3.4"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/265508692/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=3fa18b643d040b843e564d5cedbfe0a4
+    version: "3.5"
 
 avatar:
     name: Laravel Avatar
@@ -55,5 +55,5 @@ core:
     purchase: https://codecanyon.net/item/botble-core-powerful-starter-core-for-laravel-projects/22513740
     support: https://codecanyon.net/item/botble-core-powerful-starter-core-for-laravel-projects/22513740/support
     repository: https://github.com/botble/core-docs.git
-    banner: https://s3.envato.com/files/253925144/banner.png
-    version: "3.4"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/265520351/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=72b4d58738bacd672b509245500b41f2
+    version: "3.5"
