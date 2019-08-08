@@ -12,8 +12,7 @@
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "^4.0",
         "jacobbennett/pjax": "^2.0",
-        "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0",
+        "laravel/framework": "5.8.*",
         "symfony/options-resolver": "^4.2",
         "symfony/yaml": "^4.2"
     },
@@ -23,8 +22,9 @@
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^7.5",
+        "laravel/tinker": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,

@@ -9,7 +9,7 @@
 - `composer install`
 - `php artisan key:generate`
 - `npm install`
-- `gulp` / `gulp --production`
+- `npm run dev` / `npm run prod`
 
 ## Update Docs
 
