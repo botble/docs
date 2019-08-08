@@ -2,28 +2,28 @@ cms:
     name: Botble CMS
     long_name: Botble - Laravel CMS, CRUD generator, Modular & Theme system, Role pemissions, Multilingual blog
     demo: https://cms.botble.com/admin
-    purchase: https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182
-    support: https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182/support
+    purchase: https://botble.com/go/download-cms
+    support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/265508679/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=e2c663f964406664fb4f76fbb79eb937
-    version: "3.5"
+    version: "3.6"
 
 lara-mag:
     name: LaraMag
     long_name: LaraMag - Laravel Magazine multilingual system
     demo: https://lara-mag.botble.com
-    purchase: https://codecanyon.net/item/laramag-laravel-magazine-multilingual-system/21138718
-    support: https://codecanyon.net/item/laramag-laravel-magazine-multilingual-system/21138718/support
+    purchase: https://botble.com/go/lara-mag
+    support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/265508692/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=3fa18b643d040b843e564d5cedbfe0a4
-    version: "3.5"
+    version: "3.6"
 
 avatar:
     name: Laravel Avatar
     long_name: Laravel Avatar Management - Upload and Resize Profile Image
     demo: https://avatar.botble.com
-    purchase: https://codecanyon.net/item/laravel-avatar-management-upload-and-resize-profile-image/19468567
-    support: https://codecanyon.net/item/laravel-avatar-management-upload-and-resize-profile-image/19468567/support
+    purchase: https://1.envato.market/VKRMk
+    support: https://1.envato.market/ZzJMW
     repository: https://github.com/botble/avatar-docs.git
     banner: https://s3.envato.com/files/229098596/banner.png
     version: "1.0"
@@ -32,8 +32,8 @@ media:
     name: RvMedia
     long_name: RvMedia - Laravel Media Management
     demo: https://media.botble.com
-    purchase: https://codecanyon.net/item/rv-media-laravel-media-management/20257936
-    support: https://codecanyon.net/item/rv-media-laravel-media-management/20257936/support
+    purchase: https://1.envato.market/XRoMM
+    support: https://1.envato.market/ovPkY
     repository: https://github.com/botble/media-docs.git
     banner: https://s3.envato.com/files/229653660/screenshot.png
     version: "1.2"
@@ -42,8 +42,8 @@ payment:
     name: RvPayment
     long_name: RvPayment – Laravel payment package with Stripe & PayPal
     demo: https://payment.botble.com
-    purchase: https://codecanyon.net/item/rv-payment-laravel-payment-package-with-stripe-paypal/20500986
-    support: https://codecanyon.net/item/rv-payment-laravel-payment-package-with-stripe-paypal/20500986/support
+    purchase: https://1.envato.market/zvXo7
+    support: https://1.envato.market/WzJMn
     repository: https://github.com/botble/payment-docs.git
     banner: https://s3.envato.com/files/232028072/banner.jpg
     version: "1.0"
@@ -52,8 +52,8 @@ core:
     name: Core
     long_name: Botble Core - Powerful starter core for Laravel projects
     demo: http://core.botble.com
-    purchase: https://codecanyon.net/item/botble-core-powerful-starter-core-for-laravel-projects/22513740
-    support: https://codecanyon.net/item/botble-core-powerful-starter-core-for-laravel-projects/22513740/support
+    purchase: https://botble.com/go/botble-core
+    support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/265520351/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=72b4d58738bacd672b509245500b41f2
-    version: "3.5"
+    version: "3.6"

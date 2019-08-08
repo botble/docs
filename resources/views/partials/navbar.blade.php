@@ -46,9 +46,9 @@
                         <li><a href="{{ $currentDoc['demo'] }}" target="_blank">Demo</a></li>
                     @endif
 
-                    <li><a href="{{ $currentDoc['purchase'] }}?ref=botble" target="_blank">Purchase</a></li>
+                    <li><a href="{{ $currentDoc['purchase'] }}" target="_blank">Purchase</a></li>
 
-                    <li><a href="{{ $currentDoc['support'] ?? 'http://codecanyon.net/user/botble#contact'}}?ref=botble" target="_blank">Support</a></li>
+                    <li><a href="{{ $currentDoc['support'] ?? 'http://codecanyon.net/user/botble#contact'}}" target="_blank">Support</a></li>
 
                     <li><a href="https://botble.com" target="_blank">Botble Team</a></li>
                 </ul>
