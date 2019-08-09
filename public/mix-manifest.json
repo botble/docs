@@ -1,6 +1,6 @@
 {
-    "/docs/js/app.js": "/docs/js/app.js",
-    "/docs/css/app.css": "/docs/css/app.css",
+    "/vendor/docs/css/app.css": "/vendor/docs/css/app.css",
+    "/vendor/docs/js/app.js": "/vendor/docs/js/app.js",
     "/packages/docs/public/js/app.js": "/packages/docs/public/js/app.js",
     "/packages/docs/public/css/app.css": "/packages/docs/public/css/app.css"
 }

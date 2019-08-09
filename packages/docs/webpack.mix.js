@@ -12,14 +12,14 @@ let mix = require('laravel-mix');
  */
 
 const resourcePath = 'packages/docs';
-const publicPath = 'public/docs';
+const publicPath = 'public/vendor/docs';
 
 mix.options({
     processCssUrls: false
 });
 
 mix
-    .js(resourcePath + '/resources/assets/js/app.js', publicPath + '/js')
+    .scripts([resourcePath + '/resources/assets/js/vendor/prism.js', resourcePath + '/resources/assets/js/app.js'], publicPath + '/js/app.js')
     .copy(publicPath + '/js/app.js', resourcePath + '/public/js')
 
     .sass(resourcePath + '/resources/assets/sass/app.scss', publicPath + '/css')
