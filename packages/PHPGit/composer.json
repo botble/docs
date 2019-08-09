@@ -1,0 +1,10 @@
+{
+  "name": "botble/git",
+  "description": "PHP GIT",
+  "type": "package",
+  "autoload": {
+    "psr-4": {
+      "PHPGit\\": "src"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "botble/docs",
+    "description": "Document for Botble's products",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Botble\\Docs\\": "src"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7",
+        "jacobbennett/pjax": "^2.0",
+        "symfony/options-resolver": "^4.2",
+        "symfony/yaml": "^4.2"
+    },
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Botble\\Docs\\Providers\\DocsServiceProvider"
+            ]
+        }
+    }
+}

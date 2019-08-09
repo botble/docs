@@ -1,4 +1,6 @@
 {
-    "/css/app.css": "/css/app.css?id=7718dc82b79aac02451d",
-    "/js/app.js": "/js/app.js?id=7c78405ba922b807d4e9"
+    "/docs/js/app.js": "/docs/js/app.js",
+    "/docs/css/app.css": "/docs/css/app.css",
+    "/packages/docs/public/js/app.js": "/packages/docs/public/js/app.js",
+    "/packages/docs/public/css/app.css": "/packages/docs/public/css/app.css"
 }

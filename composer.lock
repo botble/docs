@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16c22d05d56543a06297d02217c86ee5",
+    "content-hash": "3a15c9c594340490568a0410476cde76",
     "packages": [
+        {
+            "name": "botble/docs",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/docs",
+                "reference": "83cf7ae2b4f245c3ea4d4c6bbeeee90648e6eaf2"
+            },
+            "require": {
+                "erusev/parsedown": "^1.7",
+                "jacobbennett/pjax": "^2.0",
+                "symfony/options-resolver": "^4.2",
+                "symfony/yaml": "^4.2"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Botble\\Docs\\Providers\\DocsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Botble\\Docs\\": "src"
+                }
+            },
+            "description": "Document for Botble's products"
+        },
+        {
+            "name": "botble/git",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/PHPGit",
+                "reference": "1cb602e8476eed400f6f28f9594418a68b07a9fd"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "PHPGit\\": "src"
+                }
+            },
+            "description": "PHP GIT"
+        },
         {
             "name": "doctrine/inflector",
             "version": "v1.3.0",
@@ -5512,7 +5557,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "botble/docs": 20,
+        "botble/git": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
