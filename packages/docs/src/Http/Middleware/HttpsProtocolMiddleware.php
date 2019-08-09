@@ -5,18 +5,17 @@ namespace Botble\Docs\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class HttpsProtocol
+class HttpsProtocolMiddleware
 {
 
     /**
      * @param Request $request
      * @param Closure $next
      * @return \Illuminate\Http\RedirectResponse
-     * @author Sang Nguyen
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && env('ENABLE_HTTPS_SUPPORT', false)) {
+        if (!$request->secure() && config('docs.enable_https_support')) {
             return redirect()->secure($request->getRequestUri());
         }
 

@@ -2,7 +2,7 @@
 
 namespace Botble\Docs\Providers;
 
-use Botble\Docs\Http\Middleware\HttpsProtocol;
+use Botble\Docs\Http\Middleware\HttpsProtocolMiddleware;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use JacobBennett\Pjax\PjaxMiddleware;
@@ -21,7 +21,7 @@ class DocsServiceProvider extends ServiceProvider
          */
         $router = $this->app['router'];
 
-        $router->pushMiddlewareToGroup('web', HttpsProtocol::class);
+        $router->pushMiddlewareToGroup('web', HttpsProtocolMiddleware::class);
         $router->pushMiddlewareToGroup('web', PjaxMiddleware::class);
     }
 

@@ -48,8 +48,8 @@ class Documentation
     /**
      * Get the documentation table of contents.
      *
-     * @param  string $doc
-     * @param  string $version
+     * @param string $doc
+     * @param string $version
      * @return string|null
      */
     public function getToc($doc, $version)
@@ -83,8 +83,8 @@ class Documentation
     /**
      * Get an item from the cache, or store the default value forever.
      *
-     * @param  string $key
-     * @param  \Closure $callback
+     * @param string $key
+     * @param \Closure $callback
      * @return mixed
      */
     protected function remember($key, Closure $callback)
@@ -99,7 +99,7 @@ class Documentation
     /**
      * Convert text from Markdown to HTML.
      *
-     * @param  string $text
+     * @param string $text
      * @return string
      */
     protected function parse($text, $pathPrefix = '')
@@ -120,9 +120,9 @@ class Documentation
     /**
      * Get the documentation page content.
      *
-     * @param  string $doc
-     * @param  string $version
-     * @param  string $page
+     * @param string $doc
+     * @param string $version
+     * @param string $page
      * @return string|null
      */
     public function getContent($doc, $version, $page)
@@ -140,7 +140,7 @@ class Documentation
     /**
      * Get the default documentation version.
      *
-     * @param  string $doc
+     * @param string $doc
      * @return string|null
      */
     public function getDefaultVersion($doc)
@@ -205,7 +205,7 @@ class Documentation
     /**
      * Get the documentation versions.
      *
-     * @param  string $doc
+     * @param string $doc
      * @return array
      */
     public function getVersions($doc)
@@ -226,7 +226,7 @@ class Documentation
     /**
      * Return an array of folders within the supplied path.
      *
-     * @param  string $path
+     * @param string $path
      * @return array
      */
     public function getDirectories($path)
@@ -250,8 +250,8 @@ class Documentation
     /**
      * Get the default documentation page.
      *
-     * @param  string $doc
-     * @param  string|null $default
+     * @param string $doc
+     * @param string|null $default
      * @return string|null
      */
     public function getDefaultPage($doc, $default = null)
@@ -262,8 +262,8 @@ class Documentation
     /**
      * Remove the documentation cache.
      *
-     * @param  string $doc
-     * @param  string|null $version
+     * @param string $doc
+     * @param string|null $version
      * @return void
      */
     public function clearCache($doc, $version = null)

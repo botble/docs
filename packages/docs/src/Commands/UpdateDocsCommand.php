@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
-class UpdateDocs extends Command
+class UpdateDocsCommand extends Command
 {
     /**
      * The name and signature of the console command.

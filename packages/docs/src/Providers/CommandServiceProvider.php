@@ -2,7 +2,7 @@
 
 namespace Botble\Docs\Providers;
 
-use Botble\Docs\Commands\UpdateDocs;
+use Botble\Docs\Commands\UpdateDocsCommand;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider
@@ -16,7 +16,7 @@ class CommandServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                UpdateDocs::class,
+                UpdateDocsCommand::class,
             ]);
         }
     }

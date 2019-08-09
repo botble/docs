@@ -35,9 +35,9 @@ class DocsController extends Controller
     /**
      * Show a documentation page.
      *
-     * @param  string $doc
-     * @param  string|null $version
-     * @param  string|null $page
+     * @param string $doc
+     * @param string|null $version
+     * @param string|null $page
      * @return \Illuminate\Http\Response
      */
     public function show($doc, $version = null, $page = null)
