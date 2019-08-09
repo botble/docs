@@ -1,3 +1,0 @@
-## Table
-
-### Create new table.
