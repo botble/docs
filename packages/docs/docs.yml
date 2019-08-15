@@ -47,13 +47,3 @@ payment:
     repository: https://github.com/botble/payment-docs.git
     banner: https://s3.envato.com/files/232028072/banner.jpg
     version: "1.0"
-
-core:
-    name: Core
-    long_name: Botble Core - Powerful starter core for Laravel projects
-    demo: http://core.botble.com
-    purchase: https://botble.com/go/botble-core
-    support: 1.envato.market/05XvL
-    repository: https://github.com/botble/core-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/265520351/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=72b4d58738bacd672b509245500b41f2
-    version: "3.6"
