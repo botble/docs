@@ -5,8 +5,8 @@ cms:
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/265508679/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=e2c663f964406664fb4f76fbb79eb937
-    version: "3.6"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/274633933/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=057c07f73aa3106851aefb8f14a95e26
+    version: "4.0"
 
 core:
     name: Core
@@ -25,8 +25,8 @@ lara-mag:
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/265508692/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=3fa18b643d040b843e564d5cedbfe0a4
-    version: "3.6"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/274633967/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=baeff28a00060901c80dabff80903b54
+    version: "34.0"
 
 avatar:
     name: Laravel Avatar
