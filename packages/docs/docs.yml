@@ -15,8 +15,8 @@ core:
     purchase: https://botble.com/go/botble-core
     support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/265520351/banner.png?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=72b4d58738bacd672b509245500b41f2
-    version: "3.6"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
+    version: "4.0"
 
 lara-mag:
     name: LaraMag
