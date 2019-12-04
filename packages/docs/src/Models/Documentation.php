@@ -114,6 +114,10 @@ class Documentation
         // Replace relative paths (paths that don't start with / or http://, https://, //, etc).
         $rendered = preg_replace('/href=\"(?!.*?\/\/)(.+?).md(#?.*?)\"/', "href=\"$basePath/$1$2\"", $rendered);
 
+        $imagePath = rtrim(url('docs/' . ltrim($pathPrefix, '/')), '/.');
+
+        $rendered = str_replace('src="./images/', 'src="' . $imagePath . '/images/', $rendered);
+
         return $rendered;
     }
 
