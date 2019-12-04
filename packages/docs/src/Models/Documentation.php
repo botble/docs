@@ -71,7 +71,7 @@ class Documentation
      */
     protected function getStoragePath()
     {
-        $path = storage_path('docs');
+        $path = public_path('docs');
 
         if (func_num_args() === 0) {
             return $path;
