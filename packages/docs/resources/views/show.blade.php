@@ -15,6 +15,7 @@
     			@endif
 
     			<div class="col-md-{{ $toc ? '9' : '12' }} docs-content">
+                    @include('docs::partials.search')
                     {!! $content !!}
     			</div>
     		</div>

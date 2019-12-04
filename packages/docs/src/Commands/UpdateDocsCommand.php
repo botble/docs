@@ -118,7 +118,7 @@ class UpdateDocsCommand extends Command
 
             $this->git->checkout($version);
 
-            $storagePath = storage_path("docs/$doc/$version");
+            $storagePath = public_path("docs/$doc/$version");
 
             $this->files->copyDirectory("$path/$doc", $storagePath);
 

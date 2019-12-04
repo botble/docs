@@ -11,7 +11,9 @@
         "erusev/parsedown": "^1.7",
         "jacobbennett/pjax": "^2.0",
         "symfony/options-resolver": "^4.2",
-        "symfony/yaml": "^4.2"
+        "symfony/yaml": "^4.2",
+        "erusev/parsedown-extra": "0.7.0",
+        "vinkla/algolia": "~5.0"
     },
     "extra":{
         "laravel":{

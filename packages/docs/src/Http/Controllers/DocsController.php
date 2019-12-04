@@ -25,7 +25,7 @@ class DocsController extends Controller
     /**
      * Show all docs.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -38,7 +38,7 @@ class DocsController extends Controller
      * @param string $doc
      * @param string|null $version
      * @param string|null $page
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show($doc, $version = null, $page = null)
     {
