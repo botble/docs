@@ -109,7 +109,7 @@ class Indexer
      */
     public function indexAllDocumentsForVersion($version)
     {
-        $versionPath = storage_path('docs/cms/' . $version . '/');
+        $versionPath = public_path('docs/cms/' . $version . '/');
 
         foreach ($this->files->files($versionPath) as $path) {
             if (!in_array(basename($path, '.md'), $this->noIndex)) {

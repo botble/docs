@@ -19,7 +19,13 @@ mix.options({
 });
 
 mix
-    .scripts([resourcePath + '/resources/assets/js/vendor/prism.js', resourcePath + '/resources/assets/js/app.js'], publicPath + '/js/app.js')
+    .scripts([
+        resourcePath + '/resources/assets/js/vendor/prism.js',
+        resourcePath + '/resources/assets/js/vendor/hogan.js',
+        resourcePath + '/resources/assets/js/vendor/typeahead.js',
+        resourcePath + '/resources/assets/js/vendor/algoliasearch.js',
+        resourcePath + '/resources/assets/js/app.js',
+    ], publicPath + '/js/app.js')
     .copy(publicPath + '/js/app.js', resourcePath + '/public/js')
 
     .sass(resourcePath + '/resources/assets/sass/app.scss', publicPath + '/css')

@@ -19,7 +19,7 @@ return [
     'connections' => [
 
         'main' => [
-            'id'         => '0RB7WYGGEX',
+            'id'         => env('ALGOLIA_APP_ID', ''),
             'search_key' => env('ALGOLIA_SEARCH_KEY', ''),
             'key'        => env('ALGOLIA_KEY', ''),
             'index'      => env('ALGOLIA_INDEX', ''),
