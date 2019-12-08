@@ -48,16 +48,6 @@ avatar:
     banner: https://s3.envato.com/files/229098596/banner.png
     version: "1.0"
 
-media:
-    name: RvMedia
-    long_name: RvMedia - Laravel Media Management
-    demo: https://media.botble.com
-    purchase: https://1.envato.market/XRoMM
-    support: https://1.envato.market/ovPkY
-    repository: https://github.com/botble/media-docs.git
-    banner: https://s3.envato.com/files/229653660/screenshot.png
-    version: "1.2"
-
 payment:
     name: RvPayment
     long_name: RvPayment – Laravel payment package with Stripe & PayPal
