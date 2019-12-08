@@ -16,7 +16,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/flex-home-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/276596966/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5b6be8e01c3cbb7c334b659248d206ef
-  version: "1.0"
+  version: "1.1"
 
 core:
     name: Core
