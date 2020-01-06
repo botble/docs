@@ -5,8 +5,8 @@ cms:
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/277594498/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=aac17d7e8d4545bd5ef0bca6dfae9ecd
-    version: "4.1"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/278549120/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=8470e94380aa03b72bdd098b2d5b269d
+    version: "4.2"
 
 flex-home:
   name: Flex Home
@@ -15,8 +15,8 @@ flex-home:
   purchase: https://botble.com/go/flex-home
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/flex-home-docs.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/276596966/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5b6be8e01c3cbb7c334b659248d206ef
-  version: "1.1"
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/278549265/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=cce19e2ef9c3621d3a1890b99f8830ed
+  version: "2.0"
 
 core:
     name: Core
@@ -26,7 +26,7 @@ core:
     support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-    version: "4.1"
+    version: "4.2"
 
 lara-mag:
     name: LaraMag
@@ -35,8 +35,8 @@ lara-mag:
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/277687043/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e03e039caecf8fbb89e46502e5f0d0b6
-    version: "4.1"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/278549127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=cb949007c65fca74729b8b90d0972df4
+    version: "4.2"
 
 avatar:
     name: Laravel Avatar
