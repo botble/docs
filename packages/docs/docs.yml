@@ -46,7 +46,7 @@ avatar:
     support: https://1.envato.market/ZzJMW
     repository: https://github.com/botble/avatar-docs.git
     banner: https://s3.envato.com/files/229098596/banner.png
-    version: "1.1"
+    version: "1.2"
 
 payment:
     name: RvPayment
