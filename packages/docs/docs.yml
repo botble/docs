@@ -16,7 +16,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/flex-home-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/279114399/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5f287f0233fc4bfed03d94480a9660d6
-  version: "2.2"
+  version: "2.3"
 
 core:
     name: Core
@@ -26,7 +26,7 @@ core:
     support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-    version: "4.2"
+    version: "5.0"
 
 lara-mag:
     name: LaraMag
