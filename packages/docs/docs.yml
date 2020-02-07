@@ -57,3 +57,13 @@ payment:
     repository: https://github.com/botble/payment-docs.git
     banner: https://s3.envato.com/files/232028072/banner.jpg
     version: "1.2"
+
+payment-plugin:
+  name: Payment Plugin
+  long_name: Payment plugin for Botble CMS
+  demo: https://payment-plugin.botble.com
+  purchase: https://codecanyon.net/user/botble/portfolio
+  support: https://codecanyon.net/user/botble/portfolio
+  repository: https://github.com/botble/payment-plugin-docs.git
+  banner: https://s3.envato.com/files/232028072/banner.jpg
+  version: "1.0"
