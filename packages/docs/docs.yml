@@ -6,7 +6,7 @@ cms:
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/279748786/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=be8048d8a3b810c3af2debc905c17bfe
-    version: "5.0"
+    version: "5.1"
 
 flex-home:
   name: Flex Home
@@ -16,7 +16,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/flex-home-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/279748404/2.3.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=acfbcab0ac147b45b10bcbfe8468ed58
-  version: "2.3"
+  version: "2.4"
 
 core:
     name: Core
@@ -26,17 +26,17 @@ core:
     support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-    version: "5.0"
+    version: "5.1"
 
 lara-mag:
     name: LaraMag
-    long_name: LaraMag - Laravel Magazine multilingual system
+    long_name: LaraMag - News & Magazine Script based on Botble CMS
     demo: https://lara-mag.botble.com
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/279748878/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=353386c93d51ceafd05205aeab59076e
-    version: "5.0"
+    version: "5.1"
 
 avatar:
     name: Laravel Avatar
@@ -62,8 +62,8 @@ payment-plugin:
   name: Payment Plugin
   long_name: Payment plugin for Botble CMS
   demo: https://payment-plugin.botble.com
-  purchase: https://codecanyon.net/user/botble/portfolio
-  support: https://codecanyon.net/user/botble/portfolio
+  purchase: https://1.envato.market/rKPYQ
+  support: https://1.envato.market/PQD7z
   repository: https://github.com/botble/payment-plugin-docs.git
-  banner: https://s3.envato.com/files/232028072/banner.jpg
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/280917708/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=b07cb7f33973fe254dd2836fdbb36ea2
   version: "1.0"
