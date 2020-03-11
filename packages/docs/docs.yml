@@ -5,8 +5,8 @@ cms:
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/279748786/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=be8048d8a3b810c3af2debc905c17bfe
-    version: "5.1"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210547/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=50895be68dd1778e092077ed172228fc
+    version: "5.2"
 
 flex-home:
   name: Flex Home
@@ -15,8 +15,8 @@ flex-home:
   purchase: https://botble.com/go/flex-home
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/flex-home-docs.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/279748404/2.3.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=acfbcab0ac147b45b10bcbfe8468ed58
-  version: "2.4"
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/283210421/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=494b5262b13a19b6db6dae79f8449bd5
+  version: "2.5"
 
 core:
     name: Core
@@ -26,7 +26,7 @@ core:
     support: 1.envato.market/05XvL
     repository: https://github.com/botble/core-docs.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-    version: "5.1"
+    version: "5.2"
 
 lara-mag:
     name: LaraMag
@@ -35,8 +35,8 @@ lara-mag:
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/279748878/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=353386c93d51ceafd05205aeab59076e
-    version: "5.1"
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210460/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2b7d5a48ff944d23b34b8bf1a886dc8b
+    version: "5.2"
 
 avatar:
     name: Laravel Avatar
@@ -76,4 +76,4 @@ simple-blog:
   support: https://1.envato.market/474Xr
   repository: https://github.com/botble/simple-blog-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/281308032/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=60d73cac81415c59c1ec3ec5f3027cf2
-  version: "1.0"
+  version: "1.1"
