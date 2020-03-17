@@ -8,15 +8,15 @@ cms:
     banner: https://codecanyon.img.customer.envatousercontent.com/files/283210547/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=50895be68dd1778e092077ed172228fc
     version: "5.2"
 
-flex-home:
-  name: Flex Home
-  long_name: Flex Home - Laravel Real Estate multilingual system
-  demo: https://flex-home.botble.com
-  purchase: https://botble.com/go/flex-home
-  support: https://1.envato.market/DgdWq
-  repository: https://github.com/botble/flex-home-docs.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/283210421/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=494b5262b13a19b6db6dae79f8449bd5
-  version: "2.5"
+lara-mag:
+    name: LaraMag
+    long_name: LaraMag - News & Magazine Script based on Botble CMS
+    demo: https://lara-mag.botble.com
+    purchase: https://botble.com/go/lara-mag
+    support: https://1.envato.market/GkoMB
+    repository: https://github.com/botble/lara-mag-docs.git
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210460/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2b7d5a48ff944d23b34b8bf1a886dc8b
+    version: "5.2"
 
 core:
     name: Core
@@ -28,35 +28,15 @@ core:
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
     version: "5.2"
 
-lara-mag:
-    name: LaraMag
-    long_name: LaraMag - News & Magazine Script based on Botble CMS
-    demo: https://lara-mag.botble.com
-    purchase: https://botble.com/go/lara-mag
-    support: https://1.envato.market/GkoMB
-    repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210460/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2b7d5a48ff944d23b34b8bf1a886dc8b
-    version: "5.2"
-
-avatar:
-    name: Laravel Avatar
-    long_name: Laravel Avatar Management - Upload and Resize Profile Image
-    demo: https://avatar.botble.com
-    purchase: https://1.envato.market/VKRMk
-    support: https://1.envato.market/ZzJMW
-    repository: https://github.com/botble/avatar-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/278883871/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e833b096c2d0f707632602c92f7336b5
-    version: "1.2"
-
-payment:
-    name: RvPayment
-    long_name: RvPayment – Laravel payment package with Stripe & PayPal
-    demo: https://payment.botble.com
-    purchase: https://1.envato.market/zvXo7
-    support: https://1.envato.market/WzJMn
-    repository: https://github.com/botble/payment-docs.git
-    banner: https://s3.envato.com/files/232028072/banner.jpg
-    version: "1.2"
+flex-home:
+    name: Flex Home
+    long_name: Flex Home - Laravel Real Estate multilingual system
+    demo: https://flex-home.botble.com
+    purchase: https://botble.com/go/flex-home
+    support: https://1.envato.market/DgdWq
+    repository: https://github.com/botble/flex-home-docs.git
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210421/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=494b5262b13a19b6db6dae79f8449bd5
+    version: "2.5"
 
 payment-plugin:
   name: Payment Plugin
