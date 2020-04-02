@@ -30,7 +30,7 @@
         <div class="footer">
             Built with <a href="https://laravel.com/" target="_blank">Laravel</a>
             and developed by <a href="https://botble.com" target="_blank">Botble Team</a>.
-            © {{ date('Y') }} <a href="http://sangnguyen.info" target="_blank">Sang Nguyen</a>.
+            © {{ date('Y') }} <a href="https://sangnguyen.info" target="_blank">Sang Nguyen</a>.
         </div>
 
         @include('docs::partials.scripts')

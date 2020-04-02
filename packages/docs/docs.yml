@@ -5,7 +5,7 @@ cms:
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/cms-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210547/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=50895be68dd1778e092077ed172228fc
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/284863248/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=a893df85376f17df4a4831803538c255
     version: "5.3"
 
 lara-mag:
@@ -15,7 +15,7 @@ lara-mag:
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/lara-mag-docs.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/283210460/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2b7d5a48ff944d23b34b8bf1a886dc8b
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/284863344/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6b29d5a22ae12221a1b47fe37342762b
     version: "5.3"
 
 core:
@@ -38,6 +38,16 @@ flex-home:
     banner: https://codecanyon.img.customer.envatousercontent.com/files/284729079/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=769cf530897b82f141c63ce3cf36c663
     version: "2.6"
 
+simple-blog:
+  name: Simple Blog
+  long_name: Simple Blog - Laravel Blog Script based on Botble CMS
+  demo: https://simple-blog.botble.com
+  purchase: https://1.envato.market/Rre7R
+  support: https://1.envato.market/474Xr
+  repository: https://github.com/botble/simple-blog-docs.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
+  version: "1.2"
+
 payment-plugin:
   name: Payment Plugin
   long_name: Payment plugin for Botble CMS
@@ -47,13 +57,3 @@ payment-plugin:
   repository: https://github.com/botble/payment-plugin-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/280917708/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=b07cb7f33973fe254dd2836fdbb36ea2
   version: "1.0"
-
-simple-blog:
-  name: Simple Blog
-  long_name: Simple Blog - Laravel Blog Script based on Botble CMS
-  demo: https://simple-blog.botble.com
-  purchase: https://1.envato.market/Rre7R
-  support: https://1.envato.market/474Xr
-  repository: https://github.com/botble/simple-blog-docs.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/281308032/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=60d73cac81415c59c1ec3ec5f3027cf2
-  version: "1.2"
