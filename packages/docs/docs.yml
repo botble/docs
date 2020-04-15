@@ -4,7 +4,7 @@ cms:
     demo: https://cms.botble.com/admin
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
-    repository: https://github.com/botble/cms-docs.git
+    repository: https://github.com/botble/docs-cms.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/284863248/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=a893df85376f17df4a4831803538c255
     version: "5.3"
 
@@ -14,7 +14,7 @@ lara-mag:
     demo: https://lara-mag.botble.com
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
-    repository: https://github.com/botble/lara-mag-docs.git
+    repository: https://github.com/botble/docs-lara-mag.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/284863344/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6b29d5a22ae12221a1b47fe37342762b
     version: "5.3"
 
@@ -24,7 +24,7 @@ core:
     demo: http://core.botble.com
     purchase: https://botble.com/go/botble-core
     support: 1.envato.market/05XvL
-    repository: https://github.com/botble/core-docs.git
+    repository: https://github.com/botble/docs-core.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
     version: "5.3"
 
@@ -34,7 +34,7 @@ flex-home:
     demo: https://flex-home.botble.com
     purchase: https://botble.com/go/flex-home
     support: https://1.envato.market/DgdWq
-    repository: https://github.com/botble/flex-home-docs.git
+    repository: https://github.com/botble/docs-flex-home.git
     banner: https://codecanyon.img.customer.envatousercontent.com/files/284729079/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=769cf530897b82f141c63ce3cf36c663
     version: "2.6"
 
@@ -44,7 +44,7 @@ simple-blog:
   demo: https://simple-blog.botble.com
   purchase: https://1.envato.market/Rre7R
   support: https://1.envato.market/474Xr
-  repository: https://github.com/botble/simple-blog-docs.git
+  repository: https://github.com/botble/docs-simple-blog.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
   version: "1.2"
 
@@ -54,6 +54,6 @@ payment-plugin:
   demo: https://payment-plugin.botble.com
   purchase: https://1.envato.market/rKPYQ
   support: https://1.envato.market/PQD7z
-  repository: https://github.com/botble/payment-plugin-docs.git
+  repository: https://github.com/botble/docs-plugin-payment.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/280917708/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=b07cb7f33973fe254dd2836fdbb36ea2
   version: "1.0"
