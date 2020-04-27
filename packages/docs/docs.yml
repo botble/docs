@@ -52,10 +52,10 @@ octopus:
   name: Octopus
   long_name: Octopus - Multi-purpose, Multilingual Business Website
   demo: https://octopus.botble.com
-  purchase: https://1.envato.market/Rre7R
-  support: https://1.envato.market/474Xr
+  purchase: https://1.envato.market/5r2bN
+  support: https://1.envato.market/k6Djd
   repository: https://github.com/botble/docs-octopus.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/287681192/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=281c6d1f7075ea7003f5f2b8502e71c1
   version: "1.0"
 
 payment-plugin:
