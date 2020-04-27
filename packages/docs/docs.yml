@@ -48,6 +48,16 @@ simple-blog:
   banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
   version: "1.2"
 
+octopus:
+  name: Octopus
+  long_name: Octopus - Multi-purpose, Multilingual Business Website
+  demo: https://octopus.botble.com
+  purchase: https://1.envato.market/Rre7R
+  support: https://1.envato.market/474Xr
+  repository: https://github.com/botble/docs-octopus.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
+  version: "1.0"
+
 payment-plugin:
   name: Payment Plugin
   long_name: Payment plugin for Botble CMS
