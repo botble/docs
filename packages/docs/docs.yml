@@ -5,7 +5,7 @@ cms:
     purchase: https://botble.com/go/download-cms
     support: https://1.envato.market/AQkvD
     repository: https://github.com/botble/docs-cms.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/288046122/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=515e5c289e87263de113eb4a64d7ec84
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/291522735/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5c2947b24e5cab1e095f69e5598db366
     version: "5.5"
 
 lara-mag:
@@ -15,7 +15,7 @@ lara-mag:
     purchase: https://botble.com/go/lara-mag
     support: https://1.envato.market/GkoMB
     repository: https://github.com/botble/docs-lara-mag.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/288046112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=33461cd9a8d1be47000e06864786282d
+    banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
     version: "5.5"
 
 core:
