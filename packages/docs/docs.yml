@@ -1,42 +1,52 @@
 cms:
-    name: Botble CMS
-    long_name: Botble - Laravel CMS, CRUD generator, Modular & Theme system, Role pemissions, Multilingual blog
-    demo: https://cms.botble.com/admin
-    purchase: https://botble.com/go/download-cms
-    support: https://1.envato.market/AQkvD
-    repository: https://github.com/botble/docs-cms.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/291522735/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5c2947b24e5cab1e095f69e5598db366
-    version: "5.5"
+  name: Botble CMS
+  long_name: Botble - Laravel CMS, CRUD generator, Modular & Theme system, Role pemissions, Multilingual blog
+  demo: https://cms.botble.com/admin
+  purchase: https://botble.com/go/download-cms
+  support: https://1.envato.market/AQkvD
+  repository: https://github.com/botble/docs-cms.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522735/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5c2947b24e5cab1e095f69e5598db366
+  version: "5.5"
 
-lara-mag:
-    name: LaraMag
-    long_name: LaraMag - News & Magazine Script based on Botble CMS
-    demo: https://lara-mag.botble.com
-    purchase: https://botble.com/go/lara-mag
-    support: https://1.envato.market/GkoMB
-    repository: https://github.com/botble/docs-lara-mag.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
-    version: "5.5"
-
-core:
-    name: Core
-    long_name: Botble Core - Powerful starter core for Laravel projects
-    demo: http://core.botble.com
-    purchase: https://botble.com/go/botble-core
-    support: 1.envato.market/05XvL
-    repository: https://github.com/botble/docs-core.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-    version: "5.5"
+hasa:
+  name: HASA
+  long_name: HASA - Multipurpose Laravel Fashion Shop
+  demo: http://hasa.botble.com
+  purchase: https://botble.com/go/hasa
+  support: https://botble.com/go/hasa-support
+  repository: https://github.com/botble/hasa-docs.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
+  version: "1.0"
 
 flex-home:
-    name: Flex Home
-    long_name: Flex Home - Laravel Real Estate multilingual system
-    demo: https://flex-home.botble.com
-    purchase: https://botble.com/go/flex-home
-    support: https://1.envato.market/DgdWq
-    repository: https://github.com/botble/docs-flex-home.git
-    banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-    version: "2.8"
+  name: Flex Home
+  long_name: Flex Home - Laravel Real Estate multilingual system
+  demo: https://flex-home.botble.com
+  purchase: https://botble.com/go/flex-home
+  support: https://1.envato.market/DgdWq
+  repository: https://github.com/botble/docs-flex-home.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
+  version: "2.8"
+
+lara-mag:
+  name: LaraMag
+  long_name: LaraMag - News & Magazine Script based on Botble CMS
+  demo: https://lara-mag.botble.com
+  purchase: https://botble.com/go/lara-mag
+  support: https://1.envato.market/GkoMB
+  repository: https://github.com/botble/docs-lara-mag.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
+  version: "5.5"
+
+core:
+  name: Core
+  long_name: Botble Core - Powerful starter core for Laravel projects
+  demo: http://core.botble.com
+  purchase: https://botble.com/go/botble-core
+  support: 1.envato.market/05XvL
+  repository: https://github.com/botble/docs-core.git
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
+  version: "5.5"
 
 simple-blog:
   name: Simple Blog
