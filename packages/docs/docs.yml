@@ -5,8 +5,8 @@ cms:
   purchase: https://botble.com/go/download-cms
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522735/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5c2947b24e5cab1e095f69e5598db366
-  version: "5.5"
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/296511789/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=8472556ebcddf747a4552a099ed8afae
+  version: "5.6"
 
 hasa:
   name: HASA
@@ -15,7 +15,7 @@ hasa:
   purchase: https://botble.com/go/hasa
   support: https://botble.com/go/hasa-support
   repository: https://github.com/botble/docs-hasa.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/295811588/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e24f6392a7481892d1f2c5cce8c7c8b2
   version: "1.0"
 
 flex-home:
@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.8"
+  version: "2.9"
 
 lara-mag:
   name: LaraMag
@@ -35,8 +35,8 @@ lara-mag:
   purchase: https://botble.com/go/lara-mag
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/291522612/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=6d517b21607f42b965c2e99f9bdfba5f
-  version: "5.5"
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/296512270/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=a3b2abbe927ed43dcaf2d3b32f74e57c
+  version: "5.6"
 
 core:
   name: Core
@@ -46,7 +46,7 @@ core:
   support: 1.envato.market/05XvL
   repository: https://github.com/botble/docs-core.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-  version: "5.5"
+  version: "5.6"
 
 simple-blog:
   name: Simple Blog
@@ -56,7 +56,7 @@ simple-blog:
   support: https://1.envato.market/474Xr
   repository: https://github.com/botble/docs-simple-blog.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
-  version: "1.4"
+  version: "1.5"
 
 octopus:
   name: Octopus
@@ -66,7 +66,7 @@ octopus:
   support: https://1.envato.market/k6Djd
   repository: https://github.com/botble/docs-octopus.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/287681192/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=281c6d1f7075ea7003f5f2b8502e71c1
-  version: "1.1"
+  version: "1.2"
 
 payment-plugin:
   name: Payment Plugin
