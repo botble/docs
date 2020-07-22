@@ -7,16 +7,16 @@
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="@if (isset($currentDoc)){{ $title }} - {{ $currentDoc['name'] }} {{ $currentVersion }} - Botble @else Botble - Documents @endif" />
-        <meta property="og:description" content="Document for all Botble products" />
+        <meta property="og:description" content="Document for all Botble's products" />
         <meta property="og:url" content="{{ url()->current() }}" />
         <meta property="og:site_name" content="Botble Documents" />
         <meta property="article:publisher" content="https://facebook.com/botble.technologies" />
-        <meta property="article:author" content="https://www.facebook.com/SangNguyen2603" />
+        <meta property="article:author" content="https://facebook.com/botble.technologies" />
         <meta property="article:tag" content="botble document" />
         <meta property="article:section" content="PHP" />
-        <meta property="article:published_time" content="2017-07-02T14:46:16+00:00" />
-        <meta property="article:modified_time" content="2017-07-02T14:48:37+00:00" />
-        <meta property="og:updated_time" content="2017-07-02T14:48:37+00:00" />
+        <meta property="article:published_time" content="2020-07-22T14:46:16+00:00" />
+        <meta property="article:modified_time" content="2020-07-22T14:48:37+00:00" />
+        <meta property="og:updated_time" content="2020-07-22T14:48:37+00:00" />
         <meta property="fb:app_id" content="800463043406447" />
         <meta property="og:image" content="https://codecanyon.img.customer.envatousercontent.com/files/296511789/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=8472556ebcddf747a4552a099ed8afae" />
         <meta property="og:image:width" content="590" />
@@ -32,7 +32,7 @@
         <div class="footer">
             Built with <a href="https://laravel.com/" target="_blank">Laravel</a>
             and developed by <a href="https://botble.com" target="_blank">Botble Team</a>.
-            © {{ date('Y') }} <a href="https://sangnguyen.info" target="_blank">Sang Nguyen</a>.
+            © {{ date('Y') }}.
         </div>
 
         @include('docs::partials.scripts')
