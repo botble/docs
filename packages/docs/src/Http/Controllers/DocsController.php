@@ -3,7 +3,7 @@
 namespace Botble\Docs\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Botble\Docs\Documentation;
+use Botble\Docs\Models\Documentation;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;

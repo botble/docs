@@ -2,7 +2,7 @@
 
 namespace Botble\Docs\Commands;
 
-use Botble\Docs\Documentation;
+use Botble\Docs\Models\Documentation;
 use PHPGit\Git;
 use Illuminate\Support\Arr;
 use Illuminate\Console\Command;

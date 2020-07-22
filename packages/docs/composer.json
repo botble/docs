@@ -11,12 +11,11 @@
         "erusev/parsedown": "^1.7",
         "jacobbennett/pjax": "^3.0",
         "symfony/options-resolver": "^5.1",
-        "symfony/yaml": "^5.1",
-        "erusev/parsedown-extra": "^0.8"
+        "symfony/yaml": "^5.1"
     },
-    "extra":{
-        "laravel":{
-            "providers":[
+    "extra": {
+        "laravel": {
+            "providers": [
                 "Botble\\Docs\\Providers\\DocsServiceProvider"
             ]
         }

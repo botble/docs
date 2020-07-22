@@ -1,6 +1,6 @@
 <?php
 
-namespace Botble\Docs;
+namespace Botble\Docs\Models;
 
 use Closure;
 use Parsedown;

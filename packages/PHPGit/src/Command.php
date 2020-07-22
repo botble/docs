@@ -6,8 +6,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Base class for git commands
- *
- * @author Kazuyuki Hayashi <hayashi@valnur.net>
  */
 abstract class Command
 {
@@ -34,7 +32,7 @@ abstract class Command
      */
     public function resolve(array $options = [])
     {
-        $resolver = new OptionsResolver();
+        $resolver = new OptionsResolver;
         $this->setDefaultOptions($resolver);
 
         return $resolver->resolve($options);
@@ -44,8 +42,6 @@ abstract class Command
      * Sets the default options
      *
      * @param OptionsResolver $resolver The resolver for the options
-     *
-     * @codeCoverageIgnore
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
