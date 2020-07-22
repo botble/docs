@@ -18,7 +18,7 @@
         <meta property="article:modified_time" content="2017-07-02T14:48:37+00:00" />
         <meta property="og:updated_time" content="2017-07-02T14:48:37+00:00" />
         <meta property="fb:app_id" content="800463043406447" />
-        <meta property="og:image" content="https://s3.envato.com/files/229656828/screenshot.png" />
+        <meta property="og:image" content="https://codecanyon.img.customer.envatousercontent.com/files/296511789/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=8472556ebcddf747a4552a099ed8afae" />
         <meta property="og:image:width" content="590" />
         <meta property="og:image:height" content="300" />
 
