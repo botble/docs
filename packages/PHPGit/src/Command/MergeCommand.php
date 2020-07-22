@@ -5,6 +5,7 @@ namespace PHPGit\Command;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Traversable;
 
 /**
  * Join two or more development histories together - `git merge`
@@ -32,23 +33,23 @@ class MergeCommand extends Command
      * - **strategy**            (_string_)  Use the given merge strategy
      * - **strategy-option**     (_string_)  Pass merge strategy specific option through to the merge strategy
      *
-     * @param string|array|\Traversable $commit  Commits to merge into our branch
-     * @param string                    $message [optional] Commit message to be used for the merge commit
-     * @param array                     $options [optional] An array of options {@see MergeCommand::setDefaultOptions}
+     * @param string|array|Traversable $commit Commits to merge into our branch
+     * @param string $message [optional] Commit message to be used for the merge commit
+     * @param array $options [optional] An array of options {@see MergeCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($commit, $message = null, array $options = array())
+    public function __invoke($commit, $message = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('merge');
 
-        $this->addFlags($builder, $options, array('no-ff', 'rerere-autoupdate', 'squash'));
+        $this->addFlags($builder, $options, ['no-ff', 'rerere-autoupdate', 'squash']);
 
-        if (!is_array($commit) && !($commit instanceof \Traversable)) {
-            $commit = array($commit);
+        if (!is_array($commit) && !($commit instanceof Traversable)) {
+            $commit = [$commit];
         }
         foreach ($commit as $value) {
             $builder->add($value);
@@ -72,8 +73,8 @@ class MergeCommand extends Command
      * }
      * ```
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
     public function abort()
     {
@@ -97,14 +98,14 @@ class MergeCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'no-ff'             => false,
             'rerere-autoupdate' => false,
             'squash'            => false,
 
-            'strategy'          => null,
-            'strategy-option'   => null
-        ));
+            'strategy'        => null,
+            'strategy-option' => null,
+        ]);
     }
 
-} 
+}

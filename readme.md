@@ -19,4 +19,4 @@
 
 ## Configure Docs
 
-See [docs.yml](docs.yml).
+See [docs.yml](packages/docs/docs.yml).

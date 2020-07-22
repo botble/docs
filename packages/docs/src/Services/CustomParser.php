@@ -9,8 +9,8 @@ class CustomParser extends ParsedownExtra
     /**
      * Copy of the @lines function from Parsedown with final step commented out.
      *
-     * @param  string  $markdown
-     * @param  string  $slug
+     * @param string $markdown
+     * @param string $slug
      * @return array
      */
     public function getBlocks($markdown)
@@ -56,27 +56,27 @@ class CustomParser extends ParsedownExtra
             $indent = 0;
 
             while (isset($line[$indent]) and $line[$indent] === ' ') {
-                $indent ++;
+                $indent++;
             }
 
             $text = $indent > 0 ? substr($line, $indent) : $line;
 
             # ~
 
-            $Line = array('body' => $line, 'indent' => $indent, 'text' => $text);
+            $Line = ['body' => $line, 'indent' => $indent, 'text' => $text];
 
             # ~
 
             if (isset($CurrentBlock['incomplete'])) {
-                $Block = $this->{'block'.$CurrentBlock['type'].'Continue'}($Line, $CurrentBlock);
+                $Block = $this->{'block' . $CurrentBlock['type'] . 'Continue'}($Line, $CurrentBlock);
 
                 if (isset($Block)) {
                     $CurrentBlock = $Block;
 
                     continue;
                 } else {
-                    if (method_exists($this, 'block'.$CurrentBlock['type'].'Complete')) {
-                        $CurrentBlock = $this->{'block'.$CurrentBlock['type'].'Complete'}($CurrentBlock);
+                    if (method_exists($this, 'block' . $CurrentBlock['type'] . 'Complete')) {
+                        $CurrentBlock = $this->{'block' . $CurrentBlock['type'] . 'Complete'}($CurrentBlock);
                     }
 
                     unset($CurrentBlock['incomplete']);
@@ -93,7 +93,7 @@ class CustomParser extends ParsedownExtra
 
             if (isset($this->BlockTypes[$marker])) {
                 foreach ($this->BlockTypes[$marker] as $blockType) {
-                    $blockTypes []= $blockType;
+                    $blockTypes [] = $blockType;
                 }
             }
 
@@ -101,18 +101,18 @@ class CustomParser extends ParsedownExtra
             # ~
 
             foreach ($blockTypes as $blockType) {
-                $Block = $this->{'block'.$blockType}($Line, $CurrentBlock);
+                $Block = $this->{'block' . $blockType}($Line, $CurrentBlock);
 
                 if (isset($Block)) {
                     $Block['type'] = $blockType;
 
-                    if (! isset($Block['identified'])) {
-                        $Blocks []= $CurrentBlock;
+                    if (!isset($Block['identified'])) {
+                        $Blocks [] = $CurrentBlock;
 
                         $Block['identified'] = true;
                     }
 
-                    if (method_exists($this, 'block'.$blockType.'Continue')) {
+                    if (method_exists($this, 'block' . $blockType . 'Continue')) {
                         $Block['incomplete'] = true;
                     }
 
@@ -124,10 +124,10 @@ class CustomParser extends ParsedownExtra
 
             # ~
 
-            if (isset($CurrentBlock) and ! isset($CurrentBlock['type']) and ! isset($CurrentBlock['interrupted'])) {
-                $CurrentBlock['element']['text'] .= "\n".$text;
+            if (isset($CurrentBlock) and !isset($CurrentBlock['type']) and !isset($CurrentBlock['interrupted'])) {
+                $CurrentBlock['element']['text'] .= "\n" . $text;
             } else {
-                $Blocks []= $CurrentBlock;
+                $Blocks [] = $CurrentBlock;
 
                 $CurrentBlock = $this->paragraph($Line);
 
@@ -137,13 +137,13 @@ class CustomParser extends ParsedownExtra
 
         # ~
 
-        if (isset($CurrentBlock['incomplete']) and method_exists($this, 'block'.$CurrentBlock['type'].'Complete')) {
-            $CurrentBlock = $this->{'block'.$CurrentBlock['type'].'Complete'}($CurrentBlock);
+        if (isset($CurrentBlock['incomplete']) and method_exists($this, 'block' . $CurrentBlock['type'] . 'Complete')) {
+            $CurrentBlock = $this->{'block' . $CurrentBlock['type'] . 'Complete'}($CurrentBlock);
         }
 
         # ~
 
-        $Blocks []= $CurrentBlock;
+        $Blocks [] = $CurrentBlock;
 
         unset($Blocks[0]);
 

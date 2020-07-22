@@ -2,8 +2,10 @@
 
 namespace PHPGit\Command;
 
+use InvalidArgumentException;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
+use Traversable;
 
 /**
  * Reset current HEAD to the specified state - `git reset`
@@ -22,8 +24,8 @@ class ResetCommand extends Command
      * $git->reset();
      * ```
      *
-     * @param string|array|\Traversable $paths  The paths to reset
-     * @param string                    $commit The commit
+     * @param string|array|Traversable $paths The paths to reset
+     * @param string $commit The commit
      *
      * @return bool
      */
@@ -36,8 +38,8 @@ class ResetCommand extends Command
             $builder->add($commit)->add('--');
         }
 
-        if (!is_array($paths) && !($paths instanceof \Traversable)) {
-            $paths = array($paths);
+        if (!is_array($paths) && !($paths instanceof Traversable)) {
+            $paths = [$paths];
         }
 
         foreach ($paths as $path) {
@@ -171,16 +173,16 @@ class ResetCommand extends Command
      * $git->reset->mode('hard');
      * ```
      *
-     * @param string $mode   --<mode>
+     * @param string $mode --<mode>
      * @param string $commit The commit
      *
-     * @throws \InvalidArgumentException
      * @return bool
+     * @throws InvalidArgumentException
      */
     public function mode($mode, $commit = null)
     {
-        if (!in_array($mode, array('soft', 'mixed', 'hard', 'merge', 'keep'))) {
-            throw new \InvalidArgumentException('$mode must be one of the following: soft, mixed, hard, merge, keep');
+        if (!in_array($mode, ['soft', 'mixed', 'hard', 'merge', 'keep'])) {
+            throw new InvalidArgumentException('$mode must be one of the following: soft, mixed, hard, merge, keep');
         }
 
         $builder = $this->git->getProcessBuilder()
@@ -196,4 +198,4 @@ class ResetCommand extends Command
         return true;
     }
 
-} 
+}

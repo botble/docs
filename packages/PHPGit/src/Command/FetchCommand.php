@@ -31,14 +31,14 @@ class FetchCommand extends Command
      * - **prune**  (_boolean_) After fetching, remove any remote-tracking branches which no longer exist on the remote
      *
      * @param string $repository The "remote" repository that is the source of a fetch or pull operation
-     * @param string $refspec    The format of a <refspec> parameter is an optional plus +, followed by the source ref <src>,
+     * @param string $refspec The format of a <refspec> parameter is an optional plus +, followed by the source ref <src>,
      *                            followed by a colon :, followed by the destination ref <dst>
-     * @param array  $options    [optional] An array of options {@see FetchCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see FetchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($repository, $refspec = null, array $options = array())
+    public function __invoke($repository, $refspec = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -75,10 +75,10 @@ class FetchCommand extends Command
      *
      * @param array $options [optional] An array of options {@see FetchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function all(array $options = array())
+    public function all(array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -101,12 +101,12 @@ class FetchCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'append' => false,
             //'force'  => false,
             'keep'   => false,
             'prune'  => false,
-        ));
+        ]);
     }
 
 }

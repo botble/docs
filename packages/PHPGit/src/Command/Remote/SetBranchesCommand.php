@@ -22,8 +22,8 @@ class SetBranchesCommand extends Command
      * $git->remote->branches('origin', array('master', 'develop'));
      * ```
      *
-     * @param string $name     The remote name
-     * @param array  $branches The names of the tracked branch
+     * @param string $name The remote name
+     * @param array $branches The names of the tracked branch
      *
      * @return bool
      */
@@ -42,8 +42,8 @@ class SetBranchesCommand extends Command
      * $git->remote->branches->set('origin', array('master', 'develop'));
      * ```
      *
-     * @param string $name     The remote name
-     * @param array  $branches The names of the tracked branch
+     * @param string $name The remote name
+     * @param array $branches The names of the tracked branch
      *
      * @return bool
      */
@@ -73,8 +73,8 @@ class SetBranchesCommand extends Command
      * $git->remote->branches->add('origin', array('master', 'develop'));
      * ```
      *
-     * @param string $name     The remote name
-     * @param array  $branches The names of the tracked branch
+     * @param string $name The remote name
+     * @param array $branches The names of the tracked branch
      *
      * @return bool
      */
@@ -95,4 +95,4 @@ class SetBranchesCommand extends Command
         return true;
     }
 
-} 
+}

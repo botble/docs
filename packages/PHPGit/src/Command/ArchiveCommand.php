@@ -5,6 +5,7 @@ namespace PHPGit\Command;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Traversable;
 
 /**
  * Create an archive of files from a named tree - `git archive`
@@ -28,15 +29,15 @@ class ArchiveCommand extends Command
      * - **format** (_boolean_) Format of the resulting archive: tar or zip
      * - **prefix** (_boolean_) Prepend prefix/ to each filename in the archive
      *
-     * @param string                    $file    The filename
-     * @param string                    $tree    [optional] The tree or commit to produce an archive for
-     * @param string|array|\Traversable $path    [optional] If one or more paths are specified, only these are included
-     * @param array                     $options [optional] An array of options {@see ArchiveCommand::setDefaultOptions}
+     * @param string $file The filename
+     * @param string $tree [optional] The tree or commit to produce an archive for
+     * @param string|array|Traversable $path [optional] If one or more paths are specified, only these are included
+     * @param array $options [optional] An array of options {@see ArchiveCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($file, $tree = null, $path = null, array $options = array())
+    public function __invoke($file, $tree = null, $path = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -56,8 +57,8 @@ class ArchiveCommand extends Command
             $builder->add($tree);
         }
 
-        if (!is_array($path) && !($path instanceof \Traversable)) {
-            $path = array($path);
+        if (!is_array($path) && !($path instanceof Traversable)) {
+            $path = [$path];
         }
 
         foreach ($path as $value) {
@@ -77,20 +78,20 @@ class ArchiveCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'format' => null,
-            'prefix' => null
-        ));
+            'prefix' => null,
+        ]);
 
-        $resolver->setAllowedTypes(array(
-            'format' => array('null', 'string'),
-            'prefix' => array('null', 'string')
-        ));
+        $resolver->setAllowedTypes([
+            'format' => ['null', 'string'],
+            'prefix' => ['null', 'string'],
+        ]);
 
-        $resolver->setAllowedValues(array(
-            'format' => array('tar', 'zip')
-        ));
+        $resolver->setAllowedValues([
+            'format' => ['tar', 'zip'],
+        ]);
     }
 
 
-} 
+}

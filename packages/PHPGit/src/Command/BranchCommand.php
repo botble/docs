@@ -5,6 +5,7 @@ namespace PHPGit\Command;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Process\ProcessBuilder;
 
 /**
  * List, create, or delete branches - `git branch`
@@ -39,14 +40,14 @@ class BranchCommand extends Command
      *
      * @param array $options [optional] An array of options {@see BranchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return array
+     * @throws GitException
      */
-    public function __invoke(array $options = array())
+    public function __invoke(array $options = [])
     {
-        $options  = $this->resolve($options);
-        $branches = array();
-        $builder  = $this->getProcessBuilder()
+        $options = $this->resolve($options);
+        $branches = [];
+        $builder = $this->getProcessBuilder()
             ->add('-v')->add('--abbrev=7');
 
         if ($options['remotes']) {
@@ -63,14 +64,15 @@ class BranchCommand extends Command
         $lines = preg_split('/\r?\n/', rtrim($process->getOutput()), -1, PREG_SPLIT_NO_EMPTY);
 
         foreach ($lines as $line) {
-            $branch = array();
-            preg_match('/(?<current>\*| ) (?<name>[^\s]+) +((?:->) (?<alias>[^\s]+)|(?<hash>[0-9a-z]{7}) (?<title>.*))/', $line, $matches);
+            $branch = [];
+            preg_match('/(?<current>\*| ) (?<name>[^\s]+) +((?:->) (?<alias>[^\s]+)|(?<hash>[0-9a-z]{7}) (?<title>.*))/',
+                $line, $matches);
 
             $branch['current'] = ($matches['current'] == '*');
-            $branch['name']    = $matches['name'];
+            $branch['name'] = $matches['name'];
 
             if (isset($matches['hash'])) {
-                $branch['hash']  = $matches['hash'];
+                $branch['hash'] = $matches['hash'];
                 $branch['title'] = $matches['title'];
             } else {
                 $branch['alias'] = $matches['alias'];
@@ -97,16 +99,16 @@ class BranchCommand extends Command
      *
      * - **force**   (_boolean_) Reset **$branch**  to **$startPoint** if **$branch** exists already
      *
-     * @param string $branch     The name of the branch to create
+     * @param string $branch The name of the branch to create
      * @param string $startPoint [optional] The new branch head will point to this commit.
      *                            It may be given as a branch name, a commit-id, or a tag.
      *                            If this option is omitted, the current HEAD will be used instead.
-     * @param array  $options    [optional] An array of options {@see BranchCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see BranchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function create($branch, $startPoint = null, array $options = array())
+    public function create($branch, $startPoint = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->getProcessBuilder();
@@ -139,14 +141,14 @@ class BranchCommand extends Command
      *
      * - **force**   (_boolean_) Move/rename a branch even if the new branch name already exists
      *
-     * @param string $branch    The name of an existing branch to rename
+     * @param string $branch The name of an existing branch to rename
      * @param string $newBranch The new name for an existing branch
-     * @param array  $options   [optional] An array of options {@see BranchCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see BranchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function move($branch, $newBranch, array $options = array())
+    public function move($branch, $newBranch, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->getProcessBuilder();
@@ -178,13 +180,13 @@ class BranchCommand extends Command
      *
      * - **force**   (_boolean_) Delete a branch irrespective of its merged status
      *
-     * @param string $branch  The name of the branch to delete
-     * @param array  $options [optional] An array of options {@see BranchCommand::setDefaultOptions}
+     * @param string $branch The name of the branch to delete
+     * @param array $options [optional] An array of options {@see BranchCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function delete($branch, array $options = array())
+    public function delete($branch, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->getProcessBuilder();
@@ -210,15 +212,15 @@ class BranchCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'force'   => false,
             'all'     => false,
             'remotes' => false,
-        ));
+        ]);
     }
 
     /**
-     * @return \Symfony\Component\Process\ProcessBuilder
+     * @return ProcessBuilder
      */
     protected function getProcessBuilder()
     {
@@ -226,4 +228,4 @@ class BranchCommand extends Command
             ->add('branch');
     }
 
-} 
+}

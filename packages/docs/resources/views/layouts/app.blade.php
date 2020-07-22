@@ -21,6 +21,8 @@
         <meta property="og:image" content="https://s3.envato.com/files/229656828/screenshot.png" />
         <meta property="og:image:width" content="590" />
         <meta property="og:image:height" content="300" />
+
+        <link rel="shortcut icon" href="{{ url('vendor/docs/images/logo.png') }}">
     </head>
     <body>
         <div id="pjax-container">

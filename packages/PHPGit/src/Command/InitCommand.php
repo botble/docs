@@ -28,19 +28,19 @@ class InitCommand extends Command
      * - **shared** (_boolean_) Specify that the git repository is to be shared amongst several users
      * - **bare**   (_boolean_) Create a bare repository
      *
-     * @param string $path    The directory to create an empty repository
-     * @param array  $options [optional] An array of options {@see InitCommand::setDefaultOptions}
+     * @param string $path The directory to create an empty repository
+     * @param array $options [optional] An array of options {@see InitCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($path, array $options = array())
+    public function __invoke($path, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('init');
 
-        $this->addFlags($builder, $options, array('shared', 'bare'));
+        $this->addFlags($builder, $options, ['shared', 'bare']);
 
         $process = $builder->add($path)->getProcess();
         $this->git->run($process);
@@ -56,10 +56,10 @@ class InitCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'shared' => false,
-            'bare'   => false
-        ));
+            'bare'   => false,
+        ]);
     }
 
-} 
+}

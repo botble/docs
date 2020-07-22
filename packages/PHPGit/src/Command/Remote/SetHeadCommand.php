@@ -22,7 +22,7 @@ class SetHeadCommand extends Command
      * $git->remote->head('origin');
      * ```
      *
-     * @param string $name   The remote name
+     * @param string $name The remote name
      * @param string $branch [optional] The symbolic-ref to set
      *
      * @return bool
@@ -42,7 +42,7 @@ class SetHeadCommand extends Command
      * $git->remote->head->set('origin');
      * ```
      *
-     * @param string $name   The remote name
+     * @param string $name The remote name
      * @param string $branch [optional] The symbolic-ref to set
      *
      * @return bool
@@ -117,4 +117,4 @@ class SetHeadCommand extends Command
         return true;
     }
 
-} 
+}

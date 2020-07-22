@@ -3,6 +3,7 @@
 namespace Botble\Docs\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class HttpsProtocolMiddleware
@@ -11,7 +12,7 @@ class HttpsProtocolMiddleware
     /**
      * @param Request $request
      * @param Closure $next
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function handle($request, Closure $next)
     {

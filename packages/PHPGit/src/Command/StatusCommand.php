@@ -45,15 +45,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class StatusCommand extends Command
 {
 
-    const UNMODIFIED           = ' ';
-    const MODIFIED             = 'M';
-    const ADDED                = 'A';
-    const DELETED              = 'D';
-    const RENAMED              = 'R';
-    const COPIED               = 'C';
+    const UNMODIFIED = ' ';
+    const MODIFIED = 'M';
+    const ADDED = 'A';
+    const DELETED = 'D';
+    const RENAMED = 'R';
+    const COPIED = 'C';
     const UPDATED_BUT_UNMERGED = 'U';
-    const UNTRACKED            = '?';
-    const IGNORED              = '!';
+    const UNTRACKED = '?';
+    const IGNORED = '!';
 
     /**
      * Returns the working tree status
@@ -97,7 +97,7 @@ class StatusCommand extends Command
      *
      * @return mixed
      */
-    public function __invoke(array $options = array())
+    public function __invoke(array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -107,10 +107,10 @@ class StatusCommand extends Command
         $this->addFlags($builder, $options);
 
         $process = $builder->getProcess();
-        $result  = array('branch' => null, 'changes' => array());
-        $output  = $this->git->run($process);
+        $result = ['branch' => null, 'changes' => []];
+        $output = $this->git->run($process);
 
-        list($branch, $changes) = preg_split('/(\0|\n)/', $output, 2);
+        [$branch, $changes] = preg_split('/(\0|\n)/', $output, 2);
         $lines = $this->split($changes, true);
 
         if (substr($branch, -11) == '(no branch)') {
@@ -122,11 +122,11 @@ class StatusCommand extends Command
         }
 
         foreach ($lines as $line) {
-            $result['changes'][] = array(
+            $result['changes'][] = [
                 'file'      => substr($line, 3),
                 'index'     => substr($line, 0, 1),
-                'work_tree' => substr($line, 1, 1)
-            );
+                'work_tree' => substr($line, 1, 1),
+            ];
         }
 
         return $result;
@@ -139,9 +139,9 @@ class StatusCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'ignored' => false
-        ));
+        $resolver->setDefaults([
+            'ignored' => false,
+        ]);
     }
 
 }

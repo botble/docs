@@ -33,38 +33,38 @@ class TreeCommand extends Command
      * ```
      *
      * @param string $branch The commit
-     * @param string $path   The path
+     * @param string $path The path
      *
      * @return array
      */
     public function __invoke($branch = 'master', $path = '')
     {
-        $objects = array();
+        $objects = [];
         $builder = $this->git->getProcessBuilder();
         $process = $builder->add('ls-tree')->add($branch . ':' . $path)->getProcess();
-        $output  = $this->git->run($process);
-        $lines   = $this->split($output);
+        $output = $this->git->run($process);
+        $lines = $this->split($output);
 
-        $types = array(
+        $types = [
             'submodule' => 0,
             'tree'      => 1,
-            'blob'      => 2
-        );
+            'blob'      => 2,
+        ];
 
         foreach ($lines as $line) {
-            list($meta, $file) = explode("\t", $line);
-            list($mode, $type, $hash) = explode(" ", $meta);
+            [$meta, $file] = explode("\t", $line);
+            [$mode, $type, $hash] = explode(" ", $meta);
 
-            $objects[] = array(
+            $objects[] = [
                 'sort' => sprintf('%d:%s', $types[$type], $file),
                 'mode' => $mode,
                 'type' => $type,
                 'hash' => $hash,
-                'file' => $file
-            );
+                'file' => $file,
+            ];
         }
 
         return $objects;
     }
 
-} 
+}

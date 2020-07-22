@@ -5,6 +5,7 @@ namespace PHPGit\Command;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Traversable;
 
 /**
  * Create, list, delete or verify a tag object signed with GPG - `git tag`
@@ -30,8 +31,8 @@ class TagCommand extends Command
      * ['v1.0.0', 'v1.0.1', 'v1.0.2']
      * ```
      *
-     * @throws GitException
      * @return array
+     * @throws GitException
      */
     public function __invoke()
     {
@@ -58,21 +59,21 @@ class TagCommand extends Command
      * - **sign**     (_boolean_) Make a GPG-signed tag, using the default e-mail address’s key
      * - **force**    (_boolean_) Replace an existing tag with the given name (instead of failing)
      *
-     * @param string $tag     The name of the tag to create
-     * @param string $commit  The SHA1 object name of the commit object
-     * @param array  $options [optional] An array of options {@see TagCommand::setDefaultOptions}
+     * @param string $tag The name of the tag to create
+     * @param string $commit The SHA1 object name of the commit object
+     * @param array $options [optional] An array of options {@see TagCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function create($tag, $commit = null, array $options = array())
+    public function create($tag, $commit = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('tag')
             ->add($tag);
 
-        $this->addFlags($builder, $options, array('annotate', 'sign', 'force'));
+        $this->addFlags($builder, $options, ['annotate', 'sign', 'force']);
 
         if ($commit) {
             $builder->add($commit);
@@ -86,10 +87,10 @@ class TagCommand extends Command
     /**
      * Delete existing tags with the given names
      *
-     * @param string|array|\Traversable $tag The name of the tag to create
+     * @param string|array|Traversable $tag The name of the tag to create
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
     public function delete($tag)
     {
@@ -97,8 +98,8 @@ class TagCommand extends Command
             ->add('tag')
             ->add('-d');
 
-        if (!is_array($tag) && !($tag instanceof \Traversable)) {
-            $tag = array($tag);
+        if (!is_array($tag) && !($tag instanceof Traversable)) {
+            $tag = [$tag];
         }
 
         foreach ($tag as $value) {
@@ -113,10 +114,10 @@ class TagCommand extends Command
     /**
      * Verify the gpg signature of the given tag names
      *
-     * @param string|array|\Traversable $tag The name of the tag to create
+     * @param string|array|Traversable $tag The name of the tag to create
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
     public function verify($tag)
     {
@@ -124,8 +125,8 @@ class TagCommand extends Command
             ->add('tag')
             ->add('-v');
 
-        if (!is_array($tag) && !($tag instanceof \Traversable)) {
-            $tag = array($tag);
+        if (!is_array($tag) && !($tag instanceof Traversable)) {
+            $tag = [$tag];
         }
 
         foreach ($tag as $value) {
@@ -146,11 +147,11 @@ class TagCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'annotate' => false,
-            'sign' => false,
-            'force' => false,
-        ));
+            'sign'     => false,
+            'force'    => false,
+        ]);
     }
 
-} 
+}

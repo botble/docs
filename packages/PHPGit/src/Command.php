@@ -32,7 +32,7 @@ abstract class Command
      *
      * @return array
      */
-    public function resolve(array $options = array())
+    public function resolve(array $options = [])
     {
         $resolver = new OptionsResolver();
         $this->setDefaultOptions($resolver);
@@ -54,8 +54,8 @@ abstract class Command
     /**
      * Split string by new line or null(\0)
      *
-     * @param string $input   The string to split
-     * @param bool   $useNull True to split by new line, otherwise null
+     * @param string $input The string to split
+     * @param bool $useNull True to split by new line, otherwise null
      *
      * @return array
      */
@@ -73,11 +73,11 @@ abstract class Command
     /**
      * Adds boolean options to command arguments
      *
-     * @param ProcessBuilder $builder     A ProcessBuilder object
-     * @param array          $options     An array of options
-     * @param array          $optionNames The names of options to add
+     * @param ProcessBuilder $builder A ProcessBuilder object
+     * @param array $options An array of options
+     * @param array $optionNames The names of options to add
      */
-    protected function addFlags(ProcessBuilder $builder, array $options = array(), array $optionNames = null)
+    protected function addFlags(ProcessBuilder $builder, array $options = [], array $optionNames = null)
     {
         if ($optionNames) {
             foreach ($optionNames as $name) {
@@ -97,11 +97,11 @@ abstract class Command
     /**
      * Adds options with values to command arguments
      *
-     * @param ProcessBuilder $builder     A ProcessBuilder object
-     * @param array          $options     An array of options
-     * @param array          $optionNames The names of options to add
+     * @param ProcessBuilder $builder A ProcessBuilder object
+     * @param array $options An array of options
+     * @param array $optionNames The names of options to add
      */
-    protected function addValues(ProcessBuilder $builder, array $options = array(), array $optionNames = null)
+    protected function addValues(ProcessBuilder $builder, array $options = [], array $optionNames = null)
     {
         if ($optionNames) {
             foreach ($optionNames as $name) {
@@ -118,4 +118,4 @@ abstract class Command
         }
     }
 
-} 
+}

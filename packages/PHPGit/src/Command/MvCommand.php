@@ -2,8 +2,10 @@
 
 namespace PHPGit\Command;
 
+use Iterator;
 use PHPGit\Command;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Traversable;
 
 /**
  * Move or rename a file, a directory, or a symlink - `git mv`
@@ -26,22 +28,22 @@ class MvCommand extends Command
      *
      * - **force** (_boolean_) Force renaming or moving of a file even if the target exists
      *
-     * @param string|array|\Iterator $source      The files to move
-     * @param string                 $destination The destination
-     * @param array                  $options     [optional] An array of options {@see MvCommand::setDefaultOptions}
+     * @param string|array|Iterator $source The files to move
+     * @param string $destination The destination
+     * @param array $options [optional] An array of options {@see MvCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function __invoke($source, $destination, array $options = array())
+    public function __invoke($source, $destination, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('mv');
 
-        $this->addFlags($builder, $options, array('force'));
+        $this->addFlags($builder, $options, ['force']);
 
-        if (!is_array($source) && !($source instanceof \Traversable)) {
-            $source = array($source);
+        if (!is_array($source) && !($source instanceof Traversable)) {
+            $source = [$source];
         }
 
         foreach ($source as $value) {
@@ -62,9 +64,9 @@ class MvCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'force' => false
-        ));
+        $resolver->setDefaults([
+            'force' => false,
+        ]);
     }
 
-} 
+}

@@ -6,18 +6,54 @@ use Symfony\Component\Process\Exception\InvalidArgumentException;
 use Symfony\Component\Process\Exception\LogicException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
+use Traversable;
 
 class ProcessBuilder
 {
-    private $arguments;
-    private $cwd;
-    private $env = [];
-    private $input;
-    private $timeout = 60;
-    private $options;
-    private $inheritEnv = true;
-    private $prefix = [];
-    private $outputDisabled = false;
+    /**
+     * @var string[]
+     */
+    protected $arguments;
+
+    /**
+     * @var string
+     */
+    protected $cwd;
+
+    /**
+     * @var array
+     */
+    protected $env = [];
+
+    /**
+     * @var mixed
+     */
+    protected $input;
+
+    /**
+     * @var int
+     */
+    protected $timeout = 60;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * @var bool
+     */
+    protected $inheritEnv = true;
+
+    /**
+     * @var array
+     */
+    protected $prefix = [];
+
+    /**
+     * @var bool
+     */
+    protected $outputDisabled = false;
 
     /**
      * @param string[] $arguments An array of arguments
@@ -120,7 +156,7 @@ class ProcessBuilder
      * Setting a variable overrides its previous value. Use `null` to unset a
      * defined environment variable.
      *
-     * @param string      $name  The variable name
+     * @param string $name The variable name
      * @param string|null $value The variable value
      *
      * @return $this
@@ -153,7 +189,7 @@ class ProcessBuilder
     /**
      * Sets the input of the process.
      *
-     * @param resource|string|int|float|bool|\Traversable|null $input The input content
+     * @param resource|string|int|float|bool|Traversable|null $input The input content
      *
      * @return $this
      *
@@ -185,7 +221,7 @@ class ProcessBuilder
             return $this;
         }
 
-        $timeout = (float) $timeout;
+        $timeout = (float)$timeout;
 
         if ($timeout < 0) {
             throw new InvalidArgumentException('The timeout value must be a valid positive integer or float number.');
@@ -199,7 +235,7 @@ class ProcessBuilder
     /**
      * Adds a proc_open option.
      *
-     * @param string $name  The option name
+     * @param string $name The option name
      * @param string $value The option value
      *
      * @return $this
@@ -250,13 +286,7 @@ class ProcessBuilder
 
         $arguments = array_merge($this->prefix, $this->arguments);
         $process = new Process($arguments, $this->cwd, $this->env, $this->input, $this->timeout);
-        // to preserve the BC with symfony <3.3, we convert the array structure
-        // to a string structure to avoid the prefixing with the exec command
-        $process->setCommandLine($process->getCommandLine());
 
-        if ($this->inheritEnv) {
-            $process->inheritEnvironmentVariables();
-        }
         if ($this->outputDisabled) {
             $process->disableOutput();
         }

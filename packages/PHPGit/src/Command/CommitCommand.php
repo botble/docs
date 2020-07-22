@@ -36,20 +36,20 @@ class CommitCommand extends Command
      * - **amend**         (_boolean_) Used to amend the tip of the current branch
      *
      * @param string $message Use the given <$msg> as the commit message
-     * @param array  $options [optional] An array of options {@see CloneCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see CloneCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($message, array $options = array())
+    public function __invoke($message, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('commit')
             ->add('-m')->add($message);
 
-        $this->addFlags($builder, $options, array('all', 'amend'));
-        $this->addValues($builder, $options, array('reuse-message', 'squash', 'author', 'date', 'cleanup'));
+        $this->addFlags($builder, $options, ['all', 'amend']);
+        $this->addValues($builder, $options, ['reuse-message', 'squash', 'author', 'date', 'cleanup']);
 
         $this->git->run($builder->getProcess());
 
@@ -69,19 +69,19 @@ class CommitCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'all'           => false,
             'reuse-message' => null,
             'squash'        => null,
             'author'        => null,
             'date'          => null,
             'cleanup'       => null,
-            'amend'         => false
-        ));
+            'amend'         => false,
+        ]);
 
-        $resolver->setAllowedValues(array(
-            'cleanup' => array(null, 'default', 'verbatim', 'whitespace', 'strip')
-        ));
+        $resolver->setAllowedValues([
+            'cleanup' => [null, 'default', 'verbatim', 'whitespace', 'strip'],
+        ]);
     }
 
-} 
+}

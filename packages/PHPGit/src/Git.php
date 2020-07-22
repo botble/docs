@@ -2,6 +2,7 @@
 
 namespace PHPGit;
 
+use BadMethodCallException;
 use PHPGit\Exception\GitException;
 use Symfony\Component\Process\Process;
 
@@ -63,29 +64,29 @@ use Symfony\Component\Process\Process;
  * @author  Kazuyuki Hayashi <hayashi@valnur.net>
  * @license MIT
  *
- * @method add($file, $options = array())                           Add file contents to the index
- * @method archive($file, $tree = null, $path = null, $options = array()) Create an archive of files from a named tree
- * @method branch($options = array())                               List both remote-tracking branches and local branches
- * @method checkout($branch, $options = array())                    Checkout a branch or paths to the working tree
- * @method clone($repository, $path = null, $options = array())     Clone a repository into a new directory
- * @method commit($message = '', $options = array())                Record changes to the repository
- * @method config($options = array())                               List all variables set in config file
- * @method describe($committish = null, $options = array())         Returns the most recent tag that is reachable from a commit
- * @method fetch($repository, $refspec = null, $options = array())  Fetches named heads or tags from one or more other repositories
- * @method init($path, $options = array())                          Create an empty git repository or reinitialize an existing one
- * @method log($path = null, $options = array())                    Returns the commit logs
- * @method merge($commit, $message = null, $options = array())      Incorporates changes from the named commits into the current branch
- * @method mv($source, $destination, $options = array())            Move or rename a file, a directory, or a symlink
- * @method pull($repository = null, $refspec = null, $options = array()) Fetch from and merge with another repository or a local branch
- * @method push($repository = null, $refspec = null, $options = array()) Update remote refs along with associated objects
- * @method rebase($upstream = null, $branch = null, $options = array())  Forward-port local commits to the updated upstream head
+ * @method add($file, $options = [])                           Add file contents to the index
+ * @method archive($file, $tree = null, $path = null, $options = []) Create an archive of files from a named tree
+ * @method branch($options = [])                               List both remote-tracking branches and local branches
+ * @method checkout($branch, $options = [])                    Checkout a branch or paths to the working tree
+ * @method clone ($repository, $path = null, $options = [])     Clone a repository into a new directory
+ * @method commit($message = '', $options = [])                Record changes to the repository
+ * @method config($options = [])                               List all variables set in config file
+ * @method describe($committish = null, $options = [])         Returns the most recent tag that is reachable from a commit
+ * @method fetch($repository, $refspec = null, $options = [])  Fetches named heads or tags from one or more other repositories
+ * @method init($path, $options = [])                          Create an empty git repository or reinitialize an existing one
+ * @method log($path = null, $options = [])                    Returns the commit logs
+ * @method merge($commit, $message = null, $options = [])      Incorporates changes from the named commits into the current branch
+ * @method mv($source, $destination, $options = [])            Move or rename a file, a directory, or a symlink
+ * @method pull($repository = null, $refspec = null, $options = []) Fetch from and merge with another repository or a local branch
+ * @method push($repository = null, $refspec = null, $options = []) Update remote refs along with associated objects
+ * @method rebase($upstream = null, $branch = null, $options = [])  Forward-port local commits to the updated upstream head
  * @method remote()                                                 Returns an array of existing remotes
- * @method reset($commit = null, $paths = array())                  Resets the index entries for all <paths> to their state at <commit>
- * @method rm($file, $options = array())                            Remove files from the working tree and from the index
- * @method shortlog($commits = array())                             Summarize 'git log' output
- * @method show($object, $options = array())                        Shows one or more objects (blobs, trees, tags and commits)
+ * @method reset($commit = null, $paths = [])                  Resets the index entries for all <paths> to their state at <commit>
+ * @method rm($file, $options = [])                            Remove files from the working tree and from the index
+ * @method shortlog($commits = [])                             Summarize 'git log' output
+ * @method show($object, $options = [])                        Shows one or more objects (blobs, trees, tags and commits)
  * @method stash()                                                  Save your local modifications to a new stash, and run git reset --hard to revert them
- * @method status($options = array())                               Show the working tree status
+ * @method status($options = [])                               Show the working tree status
  * @method tag()                                                    Returns an array of tags
  * @method tree($branch = 'master', $path = '')                     List the contents of a tree object
  */
@@ -173,10 +174,10 @@ class Git
     /** @var Command\TreeCommand */
     public $tree;
 
-    /** @var string  */
+    /** @var string */
     private $bin = 'git';
 
-    /** @var string  */
+    /** @var string */
     private $directory = '.';
 
     /**
@@ -184,42 +185,42 @@ class Git
      */
     public function __construct()
     {
-        $this->add      = new Command\AddCommand($this);
-        $this->archive  = new Command\ArchiveCommand($this);
-        $this->branch   = new Command\BranchCommand($this);
-        $this->cat      = new Command\CatCommand($this);
+        $this->add = new Command\AddCommand($this);
+        $this->archive = new Command\ArchiveCommand($this);
+        $this->branch = new Command\BranchCommand($this);
+        $this->cat = new Command\CatCommand($this);
         $this->checkout = new Command\CheckoutCommand($this);
-        $this->clone    = new Command\CloneCommand($this);
-        $this->commit   = new Command\CommitCommand($this);
-        $this->config   = new Command\ConfigCommand($this);
+        $this->clone = new Command\CloneCommand($this);
+        $this->commit = new Command\CommitCommand($this);
+        $this->config = new Command\ConfigCommand($this);
         $this->describe = new Command\DescribeCommand($this);
-        $this->fetch    = new Command\FetchCommand($this);
-        $this->init     = new Command\InitCommand($this);
-        $this->log      = new Command\LogCommand($this);
-        $this->merge    = new Command\MergeCommand($this);
-        $this->mv       = new Command\MvCommand($this);
-        $this->pull     = new Command\PullCommand($this);
-        $this->push     = new Command\PushCommand($this);
-        $this->rebase   = new Command\RebaseCommand($this);
-        $this->remote   = new Command\RemoteCommand($this);
-        $this->reset    = new Command\ResetCommand($this);
-        $this->rm       = new Command\RmCommand($this);
+        $this->fetch = new Command\FetchCommand($this);
+        $this->init = new Command\InitCommand($this);
+        $this->log = new Command\LogCommand($this);
+        $this->merge = new Command\MergeCommand($this);
+        $this->mv = new Command\MvCommand($this);
+        $this->pull = new Command\PullCommand($this);
+        $this->push = new Command\PushCommand($this);
+        $this->rebase = new Command\RebaseCommand($this);
+        $this->remote = new Command\RemoteCommand($this);
+        $this->reset = new Command\ResetCommand($this);
+        $this->rm = new Command\RmCommand($this);
         $this->shortlog = new Command\ShortlogCommand($this);
-        $this->show     = new Command\ShowCommand($this);
-        $this->stash    = new Command\StashCommand($this);
-        $this->status   = new Command\StatusCommand($this);
-        $this->tag      = new Command\TagCommand($this);
-        $this->tree     = new Command\TreeCommand($this);
+        $this->show = new Command\ShowCommand($this);
+        $this->stash = new Command\StashCommand($this);
+        $this->status = new Command\StatusCommand($this);
+        $this->tag = new Command\TagCommand($this);
+        $this->tree = new Command\TreeCommand($this);
     }
 
     /**
      * Calls sub-commands
      *
-     * @param string $name      The name of a property
-     * @param array  $arguments An array of arguments
+     * @param string $name The name of a property
+     * @param array $arguments An array of arguments
      *
-     * @throws \BadMethodCallException
      * @return mixed
+     * @throws BadMethodCallException
      */
     public function __call($name, $arguments)
     {
@@ -227,7 +228,7 @@ class Git
             return call_user_func_array($this->{$name}, $arguments);
         }
 
-        throw new \BadMethodCallException(sprintf('Call to undefined method PHPGit\Git::%s()', $name));
+        throw new BadMethodCallException(sprintf('Call to undefined method PHPGit\Git::%s()', $name));
     }
 
     /**
@@ -247,9 +248,9 @@ class Git
     /**
      * Sets the Git repository path
      *
+     * @return Git
      * @var string $directory
      *
-     * @return Git
      */
     public function setRepository($directory)
     {
@@ -290,8 +291,8 @@ class Git
      *
      * @param Process $process The process to run
      *
-     * @throws Exception\GitException
      * @return mixed
+     * @throws Exception\GitException
      */
     public function run(Process $process)
     {
@@ -304,4 +305,4 @@ class Git
         return $process->getOutput();
     }
 
-} 
+}

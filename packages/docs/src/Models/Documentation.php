@@ -12,17 +12,17 @@ use Illuminate\Contracts\Cache\Repository as Cache;
 class Documentation
 {
     /**
-     * @var \Illuminate\Filesystem\Filesystem
+     * @var Filesystem
      */
     protected $files;
 
     /**
-     * @var \Illuminate\Contracts\Cache\Repository
+     * @var Cache
      */
     protected $cache;
 
     /**
-     * @var \Parsedown
+     * @var Parsedown
      */
     protected $parseDown;
 
@@ -84,7 +84,7 @@ class Documentation
      * Get an item from the cache, or store the default value forever.
      *
      * @param string $key
-     * @param \Closure $callback
+     * @param Closure $callback
      * @return mixed
      */
     protected function remember($key, Closure $callback)
@@ -214,7 +214,7 @@ class Documentation
      */
     public function getVersions($doc)
     {
-        if ($versions = Arr::get($this->all(), "$doc.versions")) {
+        if ($versions = Arr::get($this->all(), $doc . '.versions')) {
             return $versions;
         }
 
@@ -297,8 +297,8 @@ class Documentation
     /**
      * Replace the version place-holder in links.
      *
-     * @param  string  $version
-     * @param  string  $content
+     * @param string $version
+     * @param string $content
      * @return string
      */
     public static function replaceLinks($version, $content)

@@ -5,6 +5,7 @@ namespace PHPGit\Command;
 use PHPGit\Command;
 use PHPGit\Exception\GitException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Traversable;
 
 /**
  * Add file contents to the index - `git add`
@@ -29,13 +30,13 @@ class AddCommand extends Command
      * - **force**          (_boolean_) Allow adding otherwise ignored files
      * - **ignore-errors**  (_boolean_) Do not abort the operation
      *
-     * @param string|array|\Traversable $file    Files to add content from
-     * @param array                     $options [optional] An array of options {@see AddCommand::setDefaultOptions}
+     * @param string|array|Traversable $file Files to add content from
+     * @param array $options [optional] An array of options {@see AddCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($file, array $options = array())
+    public function __invoke($file, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -43,8 +44,8 @@ class AddCommand extends Command
 
         $this->addFlags($builder, $options);
 
-        if (!is_array($file) && !($file instanceof \Traversable)) {
-            $file = array($file);
+        if (!is_array($file) && !($file instanceof Traversable)) {
+            $file = [$file];
         }
 
         foreach ($file as $value) {
@@ -64,12 +65,12 @@ class AddCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             //'dry-run'        => false,
-            'force'          => false,
-            'ignore-errors'  => false,
+            'force'         => false,
+            'ignore-errors' => false,
             //'ignore-missing' => false,
-        ));
+        ]);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Botble\Docs\Providers;
 
 use Botble\Docs\Http\Middleware\HttpsProtocolMiddleware;
+use Illuminate\Foundation\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use JacobBennett\Pjax\PjaxMiddleware;
@@ -10,7 +11,7 @@ use JacobBennett\Pjax\PjaxMiddleware;
 class DocsServiceProvider extends ServiceProvider
 {
     /**
-     * @var \Illuminate\Foundation\Application
+     * @var Application
      */
     protected $app;
 

@@ -37,17 +37,17 @@ class DescribeCommand extends Command
      * - **always** (_boolean_) Show uniquely abbreviated commit object as fallback
      *
      * @param string $committish [optional] Committish object names to describe.
-     * @param array  $options    [optional] An array of options {@see DescribeCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see DescribeCommand::setDefaultOptions}
      *
      * @return string
      */
-    public function __invoke($committish = null, array $options = array())
+    public function __invoke($committish = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('describe');
 
-        $this->addFlags($builder, $options, array());
+        $this->addFlags($builder, $options, []);
 
         if ($committish) {
             $builder->add($committish);
@@ -60,11 +60,11 @@ class DescribeCommand extends Command
      * Equivalent to $git->describe($committish, ['tags' => true]);
      *
      * @param string $committish [optional] Committish object names to describe.
-     * @param array  $options    [optional] An array of options {@see DescribeCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see DescribeCommand::setDefaultOptions}
      *
      * @return string
      */
-    public function tags($committish = null, array $options = array())
+    public function tags($committish = null, array $options = [])
     {
         $options['tags'] = true;
 
@@ -80,11 +80,11 @@ class DescribeCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'all'    => false,
             'tags'   => false,
             'always' => false,
-        ));
+        ]);
     }
 
-} 
+}

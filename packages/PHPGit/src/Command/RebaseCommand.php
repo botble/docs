@@ -30,12 +30,12 @@ class RebaseCommand extends Command
      * - **force-rebase**  (_boolean_) Force the rebase even if the current branch is a descendant of the commit you are rebasing onto
      *
      * @param string $upstream [optional] Upstream branch to compare against
-     * @param string $branch   [optional] Working branch; defaults to HEAD
-     * @param array  $options  [optional] An array of options {@see RebaseCommand::setDefaultOptions}
+     * @param string $branch [optional] Working branch; defaults to HEAD
+     * @param array $options [optional] An array of options {@see RebaseCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function __invoke($upstream = null, $branch = null, array $options = array())
+    public function __invoke($upstream = null, $branch = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -115,15 +115,15 @@ class RebaseCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'onto'         => null,
             'no-verify'    => false,
-            'force-rebase' => false
-        ));
+            'force-rebase' => false,
+        ]);
 
-        $resolver->setAllowedTypes(array(
-            'onto' => array('null', 'string')
-        ));
+        $resolver->setAllowedTypes([
+            'onto' => ['null', 'string'],
+        ]);
     }
 
-} 
+}

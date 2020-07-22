@@ -43,11 +43,11 @@ class StashCommand extends Command
      * ```
      *
      * @param string $message [optional] The description along with the stashed state
-     * @param array  $options [optional] An array of options {@see StashCommand::setDefaultOptions}
+     * @param array $options [optional] An array of options {@see StashCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function save($message = null, array $options = array())
+    public function save($message = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -83,22 +83,22 @@ class StashCommand extends Command
      *
      * @return array
      */
-    public function lists(array $options = array())
+    public function lists(array $options = [])
     {
         $builder = $this->git->getProcessBuilder()
             ->add('stash')
             ->add('list');
 
         $output = $this->git->run($builder->getProcess());
-        $lines  = $this->split($output);
-        $list   = array();
+        $lines = $this->split($output);
+        $list = [];
 
         foreach ($lines as $line) {
             if (preg_match('/stash@{(\d+)}:.* [Oo]n (.*): (.*)/', $line, $matches)) {
-                $list[$matches[1]] = array(
+                $list[$matches[1]] = [
                     'branch'  => $matches[2],
-                    'message' => $matches[3]
-                );
+                    'message' => $matches[3],
+                ];
             }
         }
 
@@ -173,19 +173,19 @@ class StashCommand extends Command
      * $git->stash->pop('stash@{0}');
      * ```
      *
-     * @param string $stash   The stash to pop
-     * @param array  $options [optional] An array of options {@see StashCommand::setDefaultOptions}
+     * @param string $stash The stash to pop
+     * @param array $options [optional] An array of options {@see StashCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function pop($stash = null, array $options = array())
+    public function pop($stash = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('stash')
             ->add('pop');
 
-        $this->addFlags($builder, $options, array('index'));
+        $this->addFlags($builder, $options, ['index']);
 
         if ($stash) {
             $builder->add($stash);
@@ -205,19 +205,19 @@ class StashCommand extends Command
      * $git->stash->apply('stash@{0}');
      * ```
      *
-     * @param string $stash   The stash to apply
-     * @param array  $options [optional] An array of options {@see StashCommand::setDefaultOptions}
+     * @param string $stash The stash to apply
+     * @param array $options [optional] An array of options {@see StashCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function apply($stash = null, array $options = array())
+    public function apply($stash = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('stash')
             ->add('apply');
 
-        $this->addFlags($builder, $options, array('index'));
+        $this->addFlags($builder, $options, ['index']);
 
         if ($stash) {
             $builder->add($stash);
@@ -237,7 +237,7 @@ class StashCommand extends Command
      * $git->stash->branch('hotfix', 'stash@{0}');
      * ```
      *
-     * @param string $name  The name of the branch
+     * @param string $name The name of the branch
      * @param string $stash The stash
      *
      * @return bool
@@ -305,5 +305,5 @@ class StashCommand extends Command
 
         return $this->git->run($builder->getProcess());
     }
-    
-} 
+
+}

@@ -84,8 +84,8 @@ class UpdateDocsCommand extends Command
     /**
      * Update documentation.
      *
-     * @param  string $doc
-     * @param  string $version
+     * @param string $doc
+     * @param string $version
      * @return void
      */
     protected function updateDoc($doc, $version = null)

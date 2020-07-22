@@ -24,8 +24,8 @@ class CatCommand extends Command
      *
      * @param string $object The name of the blob object to show
      *
-     * @throws GitException
      * @return string
+     * @throws GitException
      */
     public function blob($object)
     {
@@ -49,8 +49,8 @@ class CatCommand extends Command
      *
      * @param string $object The name of the object to show
      *
-     * @throws GitException
      * @return string
+     * @throws GitException
      */
     public function type($object)
     {
@@ -74,8 +74,8 @@ class CatCommand extends Command
      *
      * @param string $object The name of the object to show
      *
-     * @throws GitException
      * @return string
+     * @throws GitException
      */
     public function size($object)
     {
@@ -88,4 +88,4 @@ class CatCommand extends Command
         return trim($this->git->run($process));
     }
 
-} 
+}

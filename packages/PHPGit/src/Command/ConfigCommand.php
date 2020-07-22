@@ -25,10 +25,10 @@ class ConfigCommand extends Command
      *
      * @param array $options [optional] An array of options {@see ConfigCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return array
+     * @throws GitException
      */
-    public function __invoke(array $options = array())
+    public function __invoke(array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -36,14 +36,14 @@ class ConfigCommand extends Command
             ->add('--list')
             ->add('--null');
 
-        $this->addFlags($builder, $options, array('global', 'system'));
+        $this->addFlags($builder, $options, ['global', 'system']);
 
-        $config = array();
+        $config = [];
         $output = $this->git->run($builder->getProcess());
-        $lines  = $this->split($output, true);
+        $lines = $this->split($output, true);
 
         foreach ($lines as $line) {
-            list($name, $value) = explode("\n", $line, 2);
+            [$name, $value] = explode("\n", $line, 2);
 
             if (isset($config[$name])) {
                 $config[$name] .= "\n" . $value;
@@ -63,20 +63,20 @@ class ConfigCommand extends Command
      * - **global** (_boolean_) Read or write configuration options for the current user
      * - **system** (_boolean_) Read or write configuration options for all users on the current machine
      *
-     * @param string $name    The name of the option
-     * @param string $value   The value to set
-     * @param array  $options [optional] An array of options {@see ConfigCommand::setDefaultOptions}
+     * @param string $name The name of the option
+     * @param string $value The value to set
+     * @param array $options [optional] An array of options {@see ConfigCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function set($name, $value, array $options = array())
+    public function set($name, $value, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('config');
 
-        $this->addFlags($builder, $options, array('global', 'system'));
+        $this->addFlags($builder, $options, ['global', 'system']);
 
         $builder->add($name)->add($value);
         $process = $builder->getProcess();
@@ -93,20 +93,20 @@ class ConfigCommand extends Command
      * - **global** (_boolean_) Read or write configuration options for the current user
      * - **system** (_boolean_) Read or write configuration options for all users on the current machine
      *
-     * @param string $name    The name of the option
-     * @param string $value   The value to add
-     * @param array  $options [optional] An array of options {@see ConfigCommand::setDefaultOptions}
+     * @param string $name The name of the option
+     * @param string $value The value to add
+     * @param array $options [optional] An array of options {@see ConfigCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function add($name, $value, array $options = array())
+    public function add($name, $value, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('config');
 
-        $this->addFlags($builder, $options, array('global', 'system'));
+        $this->addFlags($builder, $options, ['global', 'system']);
 
         $builder->add('--add')->add($name)->add($value);
         $process = $builder->getProcess();
@@ -123,10 +123,10 @@ class ConfigCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'global' => false,
             'system' => false,
-        ));
+        ]);
     }
 
-} 
+}

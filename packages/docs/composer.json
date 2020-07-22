@@ -9,11 +9,10 @@
     },
     "require": {
         "erusev/parsedown": "^1.7",
-        "jacobbennett/pjax": "^2.0",
-        "symfony/options-resolver": "^4.2",
-        "symfony/yaml": "^4.2",
-        "erusev/parsedown-extra": "0.7.0",
-        "vinkla/algolia": "~5.0"
+        "jacobbennett/pjax": "^3.0",
+        "symfony/options-resolver": "^5.1",
+        "symfony/yaml": "^5.1",
+        "erusev/parsedown-extra": "^0.8"
     },
     "extra":{
         "laravel":{

@@ -4,6 +4,10 @@ namespace Botble\Docs\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Botble\Docs\Documentation;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Symfony\Component\DomCrawler\Crawler;
 
 class DocsController extends Controller
@@ -25,7 +29,7 @@ class DocsController extends Controller
     /**
      * Show all docs.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -38,7 +42,7 @@ class DocsController extends Controller
      * @param string $doc
      * @param string|null $version
      * @param string|null $page
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return Factory|RedirectResponse|Response|View
      */
     public function show($doc, $version = null, $page = null)
     {

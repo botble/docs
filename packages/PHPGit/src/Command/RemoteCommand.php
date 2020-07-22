@@ -2,6 +2,7 @@
 
 namespace PHPGit\Command;
 
+use BadMethodCallException;
 use PHPGit\Command;
 use PHPGit\Git;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @method head($name, $branch)                                     Sets the default branch for the named remote
  * @method branches($name, $branches)                               Changes the list of branches tracked by the named remote
- * @method url($name, $newUrl, $oldUrl = null, $options = array()) Sets the URL remote to $newUrl
+ * @method url($name, $newUrl, $oldUrl = null, $options = []) Sets the URL remote to $newUrl
  */
 class RemoteCommand extends Command
 {
@@ -34,19 +35,19 @@ class RemoteCommand extends Command
     {
         parent::__construct($git);
 
-        $this->head     = new Remote\SetHeadCommand($git);
+        $this->head = new Remote\SetHeadCommand($git);
         $this->branches = new Remote\SetBranchesCommand($git);
-        $this->url      = new Remote\SetUrlCommand($git);
+        $this->url = new Remote\SetUrlCommand($git);
     }
 
     /**
      * Calls sub-commands
      *
-     * @param string $name      The name of a property
-     * @param array  $arguments An array of arguments
+     * @param string $name The name of a property
+     * @param array $arguments An array of arguments
      *
-     * @throws \BadMethodCallException
      * @return mixed
+     * @throws BadMethodCallException
      */
     public function __call($name, $arguments)
     {
@@ -54,7 +55,7 @@ class RemoteCommand extends Command
             return call_user_func_array($this->{$name}, $arguments);
         }
 
-        throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
+        throw new BadMethodCallException(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
     }
 
     /**
@@ -86,14 +87,14 @@ class RemoteCommand extends Command
             ->add('remote')
             ->add('-v');
 
-        $remotes = array();
-        $output  = $this->git->run($builder->getProcess());
-        $lines   = $this->split($output);
+        $remotes = [];
+        $output = $this->git->run($builder->getProcess());
+        $lines = $this->split($output);
 
         foreach ($lines as $line) {
             if (preg_match('/^(.*)\t(.*)\s\((.*)\)$/', $line, $matches)) {
                 if (!isset($remotes[$matches[1]])) {
-                    $remotes[$matches[1]] = array();
+                    $remotes[$matches[1]] = [];
                 }
 
                 $remotes[$matches[1]][$matches[3]] = $matches[2];
@@ -118,20 +119,20 @@ class RemoteCommand extends Command
      * - **tags**    (_boolean_) With this option, `git fetch <name>` imports every tag from the remote repository
      * - **no-tags** (_boolean_) With this option, `git fetch <name>` does not import tags from the remote repository
      *
-     * @param string $name    The name of the remote
-     * @param string $url     The url of the remote
-     * @param array  $options [optional] An array of options {@see RemoteCommand::setDefaultOptions}
+     * @param string $name The name of the remote
+     * @param string $url The url of the remote
+     * @param array $options [optional] An array of options {@see RemoteCommand::setDefaultOptions}
      *
      * @return bool
      */
-    public function add($name, $url, array $options = array())
+    public function add($name, $url, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('remote')
             ->add('add');
 
-        $this->addFlags($builder, $options, array('tags', 'no-tags'));
+        $this->addFlags($builder, $options, ['tags', 'no-tags']);
 
         $builder->add($name)->add($url);
 
@@ -150,7 +151,7 @@ class RemoteCommand extends Command
      * $git->remote->rename('origin', 'upstream');
      * ```
      *
-     * @param string $name    The remote name to rename
+     * @param string $name The remote name to rename
      * @param string $newName The new remote name
      *
      * @return bool
@@ -269,10 +270,10 @@ class RemoteCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'tags'    => false,
-            'no-tags' => false
-        ));
+            'no-tags' => false,
+        ]);
     }
 
 }

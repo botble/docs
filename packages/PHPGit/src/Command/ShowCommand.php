@@ -27,18 +27,18 @@ class ShowCommand extends Command
      * - **format**        (_string_)  Pretty-print the contents of the commit logs in a given format, where <format> can be one of oneline, short, medium, full, fuller, email, raw and format:<string>
      * - **abbrev-commit** (_boolean_) Instead of showing the full 40-byte hexadecimal commit object name, show only a partial prefix
      *
-     * @param string $object  The names of objects to show
-     * @param array  $options [optional] An array of options {@see ShowCommand::setDefaultOptions}
+     * @param string $object The names of objects to show
+     * @param array $options [optional] An array of options {@see ShowCommand::setDefaultOptions}
      *
      * @return string
      */
-    public function __invoke($object, array $options = array())
+    public function __invoke($object, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
             ->add('show');
 
-        $this->addFlags($builder, $options, array('abbrev-commit'));
+        $this->addFlags($builder, $options, ['abbrev-commit']);
 
         if ($options['format']) {
             $builder->add('--format=' . $options['format']);
@@ -57,14 +57,14 @@ class ShowCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'format'        => null,
-            'abbrev-commit' => false
-        ));
+            'abbrev-commit' => false,
+        ]);
 
-        $resolver->setAllowedTypes(array(
-            'format' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes([
+            'format' => ['null', 'string'],
+        ]);
     }
 
 }

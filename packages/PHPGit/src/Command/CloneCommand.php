@@ -16,7 +16,7 @@ class CloneCommand extends Command
 
     /**
      * Clone a repository into a new directory
-     * 
+     *
      * ``` php
      * $git = new PHPGit\Git();
      * $git->clone('https://github.com/kzykhys/PHPGit.git', '/path/to/repo');
@@ -28,13 +28,13 @@ class CloneCommand extends Command
      * - **bare**   (_boolean_) Make a bare GIT repository
      *
      * @param string $repository The repository to clone from
-     * @param string $path       [optional] The name of a new directory to clone into
-     * @param array  $options    [optional] An array of options {@see CloneCommand::setDefaultOptions}
+     * @param string $path [optional] The name of a new directory to clone into
+     * @param array $options [optional] An array of options {@see CloneCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return bool
+     * @throws GitException
      */
-    public function __invoke($repository, $path = null, array $options = array())
+    public function __invoke($repository, $path = null, array $options = [])
     {
         $options = $this->resolve($options);
         $builder = $this->git->getProcessBuilder()
@@ -62,10 +62,10 @@ class CloneCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'shared' => false,
-            'bare'   => false
-        ));
+            'bare'   => false,
+        ]);
     }
 
 }

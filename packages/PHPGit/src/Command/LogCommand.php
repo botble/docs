@@ -46,15 +46,15 @@ class LogCommand extends Command
      * - **skip**  (_integer_) Skip number commits before starting to show the commit output
      *
      * @param string $revRange [optional] Show only commits in the specified revision range
-     * @param string $path     [optional] Show only commits that are enough to explain how the files that match the specified paths came to be
-     * @param array  $options  [optional] An array of options {@see LogCommand::setDefaultOptions}
+     * @param string $path [optional] Show only commits that are enough to explain how the files that match the specified paths came to be
+     * @param array $options [optional] An array of options {@see LogCommand::setDefaultOptions}
      *
-     * @throws GitException
      * @return array
+     * @throws GitException
      */
-    public function __invoke($revRange = '', $path = null, array $options = array())
+    public function __invoke($revRange = '', $path = null, array $options = [])
     {
-        $commits = array();
+        $commits = [];
         $options = $this->resolve($options);
 
         $builder = $this->git->getProcessBuilder()
@@ -72,17 +72,17 @@ class LogCommand extends Command
         }
 
         $output = $this->git->run($builder->getProcess());
-        $lines  = $this->split($output);
+        $lines = $this->split($output);
 
         foreach ($lines as $line) {
-            list($hash, $name, $email, $date, $title) = preg_split('/\|\|/', $line, -1, PREG_SPLIT_NO_EMPTY);
-            $commits[] = array(
+            [$hash, $name, $email, $date, $title] = preg_split('/\|\|/', $line, -1, PREG_SPLIT_NO_EMPTY);
+            $commits[] = [
                 'hash'  => $hash,
                 'name'  => $name,
                 'email' => $email,
                 'date'  => $date,
-                'title' => $title
-            );
+                'title' => $title,
+            ];
         }
 
         return $commits;
@@ -96,10 +96,10 @@ class LogCommand extends Command
      */
     public function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'limit' => 10,
-            'skip'  => 0
-        ));
+            'skip'  => 0,
+        ]);
     }
 
-} 
+}
