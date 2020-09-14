@@ -6,7 +6,7 @@ cms:
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/300585619/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=4176836c312bbf98df522783e9b0cfa4
-  version: "5.7"
+  version: "5.8"
 
 hasa:
   name: HASA
@@ -16,7 +16,7 @@ hasa:
   support: https://botble.com/go/hasa-support
   repository: https://github.com/botble/docs-hasa.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/295811588/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e24f6392a7481892d1f2c5cce8c7c8b2
-  version: "1.1"
+  version: "1.2"
 
 flex-home:
   name: Flex Home
@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.10"
+  version: "2.11"
 
 lara-mag:
   name: LaraMag
@@ -36,7 +36,7 @@ lara-mag:
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/300585625/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e89a1a6fc46172100a6ff7e088e138d8
-  version: "5.7"
+  version: "5.8"
 
 core:
   name: Core
@@ -46,7 +46,7 @@ core:
   support: 1.envato.market/05XvL
   repository: https://github.com/botble/docs-core.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/274737490/banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e655b383f2cece0ad8019faef06d238a
-  version: "5.7"
+  version: "5.8"
 
 simple-blog:
   name: Simple Blog
@@ -56,7 +56,7 @@ simple-blog:
   support: https://1.envato.market/474Xr
   repository: https://github.com/botble/docs-simple-blog.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
-  version: "1.6"
+  version: "1.7"
 
 octopus:
   name: Octopus
@@ -66,4 +66,4 @@ octopus:
   support: https://1.envato.market/k6Djd
   repository: https://github.com/botble/docs-octopus.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/287681192/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=281c6d1f7075ea7003f5f2b8502e71c1
-  version: "1.3"
+  version: "1.4"
