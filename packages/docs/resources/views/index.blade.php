@@ -14,7 +14,7 @@
             </div>
             <div id="docs-navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://codecanyon.net/user/botble#contact" target="_blank">Support</a></li>
+                    <li><a href="https://botble.ticksy.com" target="_blank">Support</a></li>
                     <li><a href="https://botble.com" target="_blank">Botble Team</a></li>
                 </ul>
             </div>
