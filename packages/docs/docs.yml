@@ -46,7 +46,7 @@ simple-blog:
   support: https://1.envato.market/474Xr
   repository: https://github.com/botble/docs-simple-blog.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
-  version: "1.7"
+  version: "1.8"
 
 octopus:
   name: Octopus
@@ -56,7 +56,7 @@ octopus:
   support: https://1.envato.market/k6Djd
   repository: https://github.com/botble/docs-octopus.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/287681192/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=281c6d1f7075ea7003f5f2b8502e71c1
-  version: "1.4"
+  version: "1.5"
 
 miranda:
   name: Miranda
