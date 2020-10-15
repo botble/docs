@@ -5,8 +5,8 @@ cms:
   purchase: https://botble.com/go/download-cms
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/304961687/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=1b653bfd7d039fce247a9b205132bfe2
-  version: "5.8"
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/308891112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5d1c968b617d7ef9c819f8ef38a6912b
+  version: "5.9"
 
 hasa:
   name: HASA
@@ -35,7 +35,7 @@ lara-mag:
   purchase: https://botble.com/go/lara-mag
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/304961647/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=0a24c5bcbd2603e79a779a7be4041093
+  banner: https://codecanyon.img.customer.envatousercontent.com/files/308891112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5d1c968b617d7ef9c819f8ef38a6912b
   version: "5.9"
 
 simple-blog:
