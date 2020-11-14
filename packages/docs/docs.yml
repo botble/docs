@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.13"
+  version: "2.14"
 
 lara-mag:
   name: LaraMag
@@ -37,16 +37,6 @@ lara-mag:
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/308891112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5d1c968b617d7ef9c819f8ef38a6912b
   version: "5.10"
-
-simple-blog:
-  name: Simple Blog
-  long_name: Simple Blog - Laravel Blog Script based on Botble CMS
-  demo: https://simple-blog.botble.com
-  purchase: https://1.envato.market/Rre7R
-  support: https://1.envato.market/474Xr
-  repository: https://github.com/botble/docs-simple-blog.git
-  banner: https://codecanyon.img.customer.envatousercontent.com/files/285131056/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=77983d3f431909fdb0eb73841dbf0adc
-  version: "1.8"
 
 miranda:
   name: Miranda
