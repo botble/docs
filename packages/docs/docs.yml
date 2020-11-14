@@ -6,7 +6,7 @@ cms:
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/308891112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5d1c968b617d7ef9c819f8ef38a6912b
-  version: "5.9"
+  version: "5.10"
 
 hasa:
   name: HASA
@@ -36,7 +36,7 @@ lara-mag:
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/308891112/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=5d1c968b617d7ef9c819f8ef38a6912b
-  version: "5.9"
+  version: "5.10"
 
 simple-blog:
   name: Simple Blog
@@ -56,7 +56,7 @@ miranda:
   support: https://1.envato.market/n0Kx6
   repository: https://github.com/botble/docs-miranda.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/305008377/00_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=f930bc4e572459bf494ce6299ebe7a65
-  version: "1.3"
+  version: "1.4"
 
 shopwise:
   name: Shopwise
