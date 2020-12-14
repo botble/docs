@@ -16,7 +16,7 @@ hasa:
   support: https://botble.com/go/hasa-support
   repository: https://github.com/botble/docs-hasa.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/295811588/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e24f6392a7481892d1f2c5cce8c7c8b2
-  version: "1.4"
+  version: "1.5"
 
 flex-home:
   name: Flex Home
@@ -56,4 +56,4 @@ shopwise:
   support: https://1.envato.market/gzKxB
   repository: https://github.com/botble/shopwise-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/307906329/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=1056ca776172e477587e4374d73d8808
-  version: "1.1"
+  version: "1.2"
