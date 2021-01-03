@@ -57,3 +57,13 @@ shopwise:
   repository: https://github.com/botble/shopwise-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/307906329/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=1056ca776172e477587e4374d73d8808
   version: "1.2"
+
+martfury:
+  name: Martfury
+  long_name: Martfury - Multipurpose Laravel Ecommerce System
+  demo: https://martfury.botble.com
+  purchase:
+  support:
+  repository: https://github.com/botble/martfury-docs.git
+  banner: https://botble.com/intro/martfury/images/front-theme.png
+  version: "1.0"
