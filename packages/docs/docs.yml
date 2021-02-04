@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.16"
+  version: "2.17"
 
 lara-mag:
   name: LaraMag
@@ -36,7 +36,7 @@ lara-mag:
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/312658600/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=61ec1866f6f73f957ecd670c9a79fe61
-  version: "5.12"
+  version: "5.13"
 
 miranda:
   name: Miranda
@@ -46,7 +46,7 @@ miranda:
   support: https://1.envato.market/n0Kx6
   repository: https://github.com/botble/docs-miranda.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/305008377/00_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=f930bc4e572459bf494ce6299ebe7a65
-  version: "1.5"
+  version: "1.6"
 
 shopwise:
   name: Shopwise
