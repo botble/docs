@@ -67,3 +67,13 @@ martfury:
   repository: https://github.com/botble/martfury-docs.git
   banner: https://botble.com/intro/martfury/images/front-theme.png
   version: "1.4"
+
+stories:
+  name: Stories
+  long_name: Stories - Laravel Creative Multilingual Blog
+  demo: https://stories.botble.com
+  purchase: https://botble.com/go/stories
+  support: https://botble.ticksy.com
+  repository: https://github.com/botble/stories-docs.git
+  banner: https://live.staticflickr.com/65535/50968638948_98121294e7_b.jpg
+  version: "1.0"
