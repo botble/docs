@@ -6,7 +6,7 @@ cms:
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/315475647/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=b211673dd0f4f67a94e5ae962ec7d4b5
-  version: "5.14"
+  version: "5.15"
 
 hasa:
   name: HASA
@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.20"
+  version: "2.21"
 
 lara-mag:
   name: LaraMag
@@ -36,7 +36,7 @@ lara-mag:
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/312658600/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=61ec1866f6f73f957ecd670c9a79fe61
-  version: "5.14"
+  version: "5.15"
 
 miranda:
   name: Miranda
