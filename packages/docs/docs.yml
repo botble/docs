@@ -46,7 +46,7 @@ miranda:
   support: https://1.envato.market/n0Kx6
   repository: https://github.com/botble/docs-miranda.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/305008377/00_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=f930bc4e572459bf494ce6299ebe7a65
-  version: "1.9"
+  version: "1.10"
 
 shopwise:
   name: Shopwise
