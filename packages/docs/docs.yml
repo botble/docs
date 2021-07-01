@@ -56,7 +56,7 @@ shopwise:
   support: https://1.envato.market/gzKxB
   repository: https://github.com/botble/shopwise-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/307906329/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=1056ca776172e477587e4374d73d8808
-  version: "1.9"
+  version: "1.10"
 
 martfury:
   name: Martfury
@@ -66,7 +66,7 @@ martfury:
   support: https://botble.ticksy.com
   repository: https://github.com/botble/martfury-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/317630666/preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=0f7a3569a01b497586f24ba90f87a6b2
-  version: "1.10"
+  version: "1.9"
 
 stories:
   name: Stories
