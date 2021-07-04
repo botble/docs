@@ -77,3 +77,13 @@ stories:
   repository: https://github.com/botble/stories-docs.git
   banner: https://live.staticflickr.com/65535/50968638948_98121294e7_b.jpg
   version: "1.5"
+
+wowy:
+  name: Wowy
+  long_name: Wowy - Multilingual Laravel eCommerce Script
+  demo: https://wowy.botble.com
+  purchase: https://botble.com/go/wowy
+  support: https://botble.ticksy.com
+  repository: https://github.com/botble/wowy-docs.git
+  banner: https://live.staticflickr.com/65535/50968638948_98121294e7_b.jpg
+  version: "1.0"
