@@ -16,7 +16,7 @@ hasa:
   support: https://botble.com/go/hasa-support
   repository: https://github.com/botble/docs-hasa.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/295811588/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=e24f6392a7481892d1f2c5cce8c7c8b2
-  version: "1.16"
+  version: "1.17"
 
 flex-home:
   name: Flex Home
@@ -56,7 +56,7 @@ shopwise:
   support: https://1.envato.market/gzKxB
   repository: https://github.com/botble/shopwise-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/307906329/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=1056ca776172e477587e4374d73d8808
-  version: "1.13"
+  version: "1.14"
 
 martfury:
   name: Martfury
@@ -66,7 +66,7 @@ martfury:
   support: https://botble.ticksy.com
   repository: https://github.com/botble/martfury-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/317630666/preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=0f7a3569a01b497586f24ba90f87a6b2
-  version: "1.11"
+  version: "1.13"
 
 stories:
   name: Stories
@@ -86,4 +86,4 @@ wowy:
   support: https://botble.ticksy.com
   repository: https://github.com/botble/wowy-docs.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/347852331/wowy-preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=d6bf99a3837e6209dba9e6d46f0013a8
-  version: "1.2"
+  version: "1.3"
