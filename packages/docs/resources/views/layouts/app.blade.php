@@ -27,7 +27,7 @@
         <meta property="og:image:width" content="590" />
         <meta property="og:image:height" content="300" />
 
-        <link rel="stylesheet" href="{{ asset('vendor/docs/css/app.css') }}?v=1.0">
+        <link rel="stylesheet" href="{{ asset('vendor/docs/css/app.css') }}?v=1.1">
         <link rel="shortcut icon" href="{{ url('vendor/docs/images/logo.png') }}">
     </head>
     <body>
@@ -43,7 +43,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="{{ asset('vendor/docs/js/app.js') }}?v=1.0"></script>
+        <script src="{{ asset('vendor/docs/js/app.js') }}?v=1.1"></script>
 
         @if ($id = config('docs.ga_tracking_id'))
             <script>

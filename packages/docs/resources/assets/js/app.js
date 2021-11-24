@@ -1,4 +1,4 @@
-function Docs () {
+function Docs() {
     this.init();
     this.pjax();
 }
@@ -30,14 +30,14 @@ Docs.prototype.handleClick = function (e, url) {
 
     // Reload if not the same protocol and host.
     if (location.protocol !== link.protocol || location.hostname !== link.hostname ||
-           (link.href.indexOf('#') > -1 && stripHash(link) == stripHash(location))) {
+        (link.href.indexOf('#') > -1 && stripHash(link) == stripHash(location))) {
         location.href = link.href;
     }
 
     $.pjax.click($.Event('click', {currentTarget: link}), '#pjax-container');
 }
 
-function stripHash (location) {
+function stripHash(location) {
     return location.href.replace(/#.*/, '');
 }
 
@@ -90,7 +90,7 @@ Docs.prototype.elements = function () {
     // Iframes.
     this.content.find('iframe').each(function () {
         $(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>')
-                .addClass('embed-responsive-item');
+            .addClass('embed-responsive-item');
     });
 
     // Callouts.
@@ -110,7 +110,7 @@ Docs.prototype.elements = function () {
     this.content.find('blockquote:contains({warning})').addClass('callout callout-warning');
     if (this.content.find('blockquote:contains({warning})').length > 0) {
         $.each(this.content.find('blockquote:contains({warning})'), function (index, item) {
-           $(item).html($(item).html().replace('{warning}', ''));
+            $(item).html($(item).html().replace('{warning}', ''));
         });
     }
     this.content.find('blockquote:contains({notice})').addClass('callout callout-warning');
@@ -139,10 +139,23 @@ Docs.prototype.elements = function () {
             $(item).html($(item).html().replace('{hint}', ''));
         });
     }
+
     this.content.find('blockquote:contains({tip})').addClass('callout callout-success');
     if (this.content.find('blockquote:contains({tip})').length > 0) {
         $.each(this.content.find('blockquote:contains({tip})'), function (index, item) {
             $(item).html($(item).html().replace('{tip}', ''));
+        });
+    }
+
+    this.content.find('blockquote:contains({video})').addClass('video-wrapper');
+    if (this.content.find('blockquote:contains({video})').length > 0) {
+        $.each(this.content.find('blockquote:contains({video})'), function (index, item) {
+            $(item).html($(item).html().replace('{video}', ''));
+            let mainElement = $(item).find('a');
+            mainElement.html('<img src="https://img.youtube.com/vi/' + mainElement.text().replace('https://www.youtube.com/watch?v=', '') + '/maxresdefault.jpg" class="img-responsive img-thumbnail" alt="' + mainElement.text() + '" />' +
+                '<span class="video-button"><i class="glyphicon glyphicon-play"></i></span>'
+            );
+            mainElement.prop('target', '_blank');
         });
     }
 };
@@ -151,8 +164,7 @@ Docs.prototype.elements = function () {
  * Set the active page.
  */
 Docs.prototype.activePage = function () {
-    this.toc.find('a[href$="/'+ this.toc.data('current-page') +'"]')
-            .parent().addClass('active');
+    this.toc.find('a[href$="/' + this.toc.data('current-page') + '"]').parent().addClass('active');
 };
 
 /**
@@ -164,7 +176,7 @@ Docs.prototype.anchorTags = function () {
         if ($(this).parent().get(0).tagName !== 'BLOCKQUOTE') {
             var anchor = $(this).text().toLowerCase().trim(),
                 hyphenNeedle = [/ /g],
-                emptyNeedle  = [/\[/g, /\]/g, /\(/g, /\)/g, /\:/g];
+                emptyNeedle = [/\[/g, /\]/g, /\(/g, /\)/g, /\:/g];
 
             hyphenNeedle.forEach(function (word) {
                 anchor = anchor.replace(word, '-');
@@ -200,7 +212,7 @@ Docs.prototype.navbar = function () {
             li.find('ul').addClass('dropdown-menu');
 
             header.replaceWith(
-                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'+ header.html() +
+                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' + header.html() +
                 ' <span class="caret"></span></a>'
             );
         } else {

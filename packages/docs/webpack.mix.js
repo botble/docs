@@ -23,7 +23,6 @@ mix
         resourcePath + '/resources/assets/js/vendor/prism.js',
         resourcePath + '/resources/assets/js/vendor/hogan.js',
         resourcePath + '/resources/assets/js/vendor/typeahead.js',
-        resourcePath + '/resources/assets/js/vendor/algoliasearch.js',
         resourcePath + '/resources/assets/js/app.js',
     ], publicPath + '/js/app.js')
     .copy(publicPath + '/js/app.js', resourcePath + '/public/js')
