@@ -69,7 +69,7 @@ class Documentation
      *
      * @return string
      */
-    protected function getStoragePath()
+    protected function getStoragePath(): string
     {
         $path = public_path('docs');
 

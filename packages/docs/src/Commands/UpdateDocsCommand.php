@@ -85,10 +85,10 @@ class UpdateDocsCommand extends Command
      * Update documentation.
      *
      * @param string $doc
-     * @param string $version
+     * @param string|null $version
      * @return void
      */
-    protected function updateDoc($doc, $version = null)
+    protected function updateDoc(string $doc, ?string $version = null)
     {
         $path = config('docs.path');
 
@@ -131,7 +131,7 @@ class UpdateDocsCommand extends Command
      *
      * @return array
      */
-    protected function getVersions()
+    protected function getVersions(): array
     {
         $versions = [];
 
