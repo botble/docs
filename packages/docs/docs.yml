@@ -107,3 +107,13 @@ farmart:
   repository: https://github.com/botble/farmart-docs.git
   banner: https://botble.com/storage/envato/preview.jpg
   version: "1.3"
+
+jobcy:
+  name: Jobcy
+  long_name: Jobcy - Laravel Job Board Multilingual System
+  demo: https://jobcy.botble.com
+  purchase: https://botble.com/go/jobcy
+  support: https://botble.ticksy.com  
+  repository: https://github.com/botble/jobcy-docs.git
+  banner: https://botble.com/storage/envato/jobcy-preview.jpg
+  version: "1.0"
