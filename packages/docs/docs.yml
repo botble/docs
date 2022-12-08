@@ -6,7 +6,7 @@ cms:
   support: https://1.envato.market/AQkvD
   repository: https://github.com/botble/docs-cms.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/315475647/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=b211673dd0f4f67a94e5ae962ec7d4b5
-  version: "5.30"
+  version: "6.0"
 
 hasa:
   name: HASA
@@ -26,7 +26,7 @@ flex-home:
   support: https://1.envato.market/DgdWq
   repository: https://github.com/botble/docs-flex-home.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/288046127/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=2145a4ae9abd3da3348dbd3851ba8a24
-  version: "2.37"
+  version: "2.38"
 
 lara-mag:
   name: LaraMag
@@ -36,7 +36,7 @@ lara-mag:
   support: https://1.envato.market/GkoMB
   repository: https://github.com/botble/docs-lara-mag.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/312658600/banner.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=61ec1866f6f73f957ecd670c9a79fe61
-  version: "5.30"
+  version: "6.0"
 
 miranda:
   name: Miranda
@@ -46,7 +46,7 @@ miranda:
   support: https://1.envato.market/n0Kx6
   repository: https://github.com/botble/docs-miranda.git
   banner: https://codecanyon.img.customer.envatousercontent.com/files/305008377/00_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=f930bc4e572459bf494ce6299ebe7a65
-  version: "1.25"
+  version: "1.26"
 
 shopwise:
   name: Shopwise
@@ -76,7 +76,7 @@ stories:
   support: https://botble.ticksy.com
   repository: https://github.com/botble/stories-docs.git
   banner: https://live.staticflickr.com/65535/50968638948_98121294e7_b.jpg
-  version: "1.18"
+  version: "1.19"
 
 wowy:
   name: Wowy
@@ -116,4 +116,4 @@ jobcy:
   support: https://botble.ticksy.com  
   repository: https://github.com/botble/jobcy-docs.git
   banner: https://botble.com/storage/envato/jobcy-preview.jpg 
-  version: "1.2"
+  version: "1.4"
