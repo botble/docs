@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class HttpsProtocolMiddleware
 {
-
     /**
      * @param Request $request
      * @param Closure $next
@@ -16,7 +15,7 @@ class HttpsProtocolMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && config('docs.enable_https_support')) {
+        if (! $request->secure() && config('docs.enable_https_support')) {
             return redirect()->secure($request->getRequestUri());
         }
 

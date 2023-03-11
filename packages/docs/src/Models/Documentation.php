@@ -175,7 +175,7 @@ class Documentation
      */
     public function all()
     {
-        if (!$this->docs) {
+        if (! $this->docs) {
             $this->docs = $this->remember('packages/docs/docs.yml', function () {
                 return $this->getDocs();
             });
@@ -235,7 +235,7 @@ class Documentation
      */
     public function getDirectories($path)
     {
-        if (!$this->files->exists($path)) {
+        if (! $this->files->exists($path)) {
             return [];
         }
 

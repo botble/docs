@@ -70,14 +70,14 @@ class DocsController extends Controller
         $title = count($title) ? $title->text() : null;
 
         return view('docs::show', [
-            'toc'            => $this->docs->getToc($doc, $version),
-            'title'          => $title,
-            'content'        => $content,
-            'currentDoc'     => $this->docs->all()[$doc],
+            'toc' => $this->docs->getToc($doc, $version),
+            'title' => $title,
+            'content' => $content,
+            'currentDoc' => $this->docs->all()[$doc],
             'currentVersion' => $version,
-            'docs'           => $this->docs->all(),
-            'versions'       => $this->docs->getVersions($doc),
-            'page'           => $page,
+            'docs' => $this->docs->all(),
+            'versions' => $this->docs->getVersions($doc),
+            'page' => $page,
         ]);
     }
 }

@@ -92,11 +92,11 @@ class UpdateDocsCommand extends Command
     {
         $path = config('docs.path');
 
-        if (!$data = Arr::get($this->docs->getDocs(), $doc)) {
+        if (! $data = Arr::get($this->docs->getDocs(), $doc)) {
             return;
         }
 
-        if (!$this->files->exists("$path/$doc")) {
+        if (! $this->files->exists("$path/$doc")) {
             $this->git->clone($data['repository'], "$path/$doc");
         }
 
