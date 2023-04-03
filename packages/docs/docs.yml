@@ -113,7 +113,17 @@ jobcy:
   long_name: Jobcy - Laravel Job Board Multilingual System
   demo: https://jobcy.botble.com
   purchase: https://botble.com/go/jobcy
-  support: https://botble.ticksy.com  
+  support: https://botble.ticksy.com
   repository: https://github.com/botble/jobcy-docs.git
-  banner: https://botble.com/storage/envato/jobcy-preview.jpg 
+  banner: https://botble.com/storage/envato/jobcy-preview.jpg
+  version: "1.x"
+
+jobzilla:
+  name: JobZilla
+  long_name: JobZilla - Laravel Job Board Multilingual System
+  demo: https://jobcy.botble.com
+  purchase: https://botble.com/go/jobzilla
+  support: https://botble.ticksy.com
+  repository: https://github.com/botble/jobzilla-docs.git
+  banner: https://botble.com/storage/envato/jobzilla-preview.jpg
   version: "1.x"

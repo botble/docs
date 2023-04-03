@@ -10,11 +10,6 @@ use JacobBennett\Pjax\PjaxMiddleware;
 
 class DocsServiceProvider extends ServiceProvider
 {
-    /**
-     * @var Application
-     */
-    protected $app;
-
     public function register()
     {
         /**
