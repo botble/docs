@@ -1,0 +1,9 @@
+:root {
+    --vp-c-brand: #086ad8;
+    --vp-button-brand-border: #086ad8;
+    --vp-button-brand-hover-bg: #0052a3;
+    --vp-button-brand-hover-border: #0052a3;
+    --vp-button-brand-active-border: #004182;
+    --vp-button-brand-active-bg: #004182;
+    --vp-c-brand-dark: #2196F3;
+}
