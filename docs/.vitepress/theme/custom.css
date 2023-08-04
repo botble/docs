@@ -6,3 +6,7 @@
     --vp-button-brand-active-border: #004182;
     --vp-button-brand-active-bg: #004182;
 }
+
+.VPImage.image-src {
+    border-radius: 1rem;
+}
