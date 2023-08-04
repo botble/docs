@@ -29,7 +29,7 @@ function sync_doc_files() {
           if [ "$i" = "cms" ]; then
             continue
           else
-            cp -rf ./docs/cms/"$j".md ./docs/"$i"/
+            rm -rf ./docs/"$i"/"$j".md && cp ./docs/cms/"$j".md ./docs/"$i"/"$j".md
           fi
         done
     done
