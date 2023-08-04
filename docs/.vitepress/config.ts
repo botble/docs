@@ -13,14 +13,15 @@ import martfurySidebar from '../martfury/sidebar'
 import nestSidebar from '../nest/sidebar'
 import jobzillaSidebar from '../jobzilla/sidebar'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Botble Documentation',
   description: "Documentation for all Botble's products",
+  head: [
+    ['link', { rel: 'shortcut icon', href: '/favicon.ico'}],
+  ],
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     editLink: {
       pattern: ({ relativePath }) => {
         const path = relativePath.split('/')
