@@ -2,9 +2,12 @@
 layout: home
 
 hero:
-  name: Botble CMS
-  text: A Laravel Content Management System
-  tagline: Every project done very fast and in time with high quality using our CMS.
+  name: Documentation
+  text: For scripts which based on Botble
+  tagline: Every projects done very fast and in time with high quality using our CMS.
+  image:
+    src: /logo.png
+    alt: Botble CMS
   actions:
     - theme: brand
       text: Get Started
