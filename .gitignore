@@ -4,5 +4,6 @@ docs/.vitepress/cache
 docs/.vitepress/dist
 docs/*
 !docs/.vitepress
+!docs/public
 !docs/.gitignore
 !docs/index.md
