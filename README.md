@@ -11,7 +11,7 @@ npm install
 source bin/shell_cmd.sh
 
 # Update docs
-update_all_docs
+update_all_docs && sync_doc_files
 
 # Commit & push changes (enter commit message & branch name, leave blank branch name to push current branch)
 sync_git_changes
