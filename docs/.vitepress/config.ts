@@ -12,6 +12,7 @@ import farmartSidebar from '../farmart/sidebar'
 import martfurySidebar from '../martfury/sidebar'
 import nestSidebar from '../nest/sidebar'
 import jobzillaSidebar from '../jobzilla/sidebar'
+import transpSidebar from '../transp/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -68,6 +69,7 @@ export default defineConfig({
           { text: 'Farmart', link: '/farmart/' },
           { text: 'Jobcy', link: '/jobcy/' },
           { text: 'JobZilla', link: '/jobzilla/' },
+          { text: 'Transp', link: '/transp/' },
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -92,6 +94,7 @@ export default defineConfig({
       martfury: martfurySidebar,
       nest: nestSidebar,
       jobzilla: jobzillaSidebar,
+      transp: transpSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
