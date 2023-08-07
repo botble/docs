@@ -20,7 +20,7 @@ function update_all_docs() {
 }
 
 function sync_doc_files() {
-   files_to_sync=("license" "ssl" "theme-rename" "upgrade" "usage-analytics" "usage-email" "usage-media-bunnycdn" "usage-media-s3" "usage-media-wasabi" "api" "plugin-backup" "plugin-language" "usage-social-login")
+   files_to_sync=("license" "ssl" "theme-rename" "upgrade" "usage-analytics" "usage-email" "usage-media-bunnycdn" "usage-media-s3" "usage-media-wasabi" "api" "plugin-backup" "plugin-language" "usage-social-login" "usage-custom-css-js")
 
     for i in "${projects[@]}"
     do
