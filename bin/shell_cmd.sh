@@ -8,7 +8,7 @@ function update_doc_from() {
     git pull origin HEAD
     cd ../../
   else
-    git clone https://github.com/botble/"$1"-docs.git --single-branch --branch master ./docs/"$1"
+    git clone https://github.com/dat-archielite/"$1"-docs.git --single-branch --branch master ./docs/"$1"
   fi
 }
 
@@ -46,6 +46,9 @@ function sync_git_changes() {
 
     read -rp "Enter commit message: " commit_message
     read -rp "Enter the branch name: " branch_name
+
+    commit_message=${commit_message:-"Update docs"}
+#    branch_name=${branch_name:-"update-docs-2"}
 
     for i in "${projects[@]}"
     do
