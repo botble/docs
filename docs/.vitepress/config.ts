@@ -38,6 +38,8 @@ export default defineConfig({
   ],
   lastUpdated: true,
   themeConfig: {
+    logo: 'logo.png',
+    siteTitle: false,
     editLink: {
       pattern: ({ relativePath }) => {
         const path = relativePath.split('/')
