@@ -36,7 +36,6 @@ export default defineConfig({
     ['meta', { 'name': 'msapplication-TileImage', 'content': '/favicon/ms-icon-144x144.png' }],
     ['meta', { 'name': 'theme-color', 'content': '#ffffff' }],
   ],
-  cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
     editLink: {
