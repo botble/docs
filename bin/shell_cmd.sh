@@ -69,5 +69,3 @@ function sync_git_changes() {
       git_operations push origin "$branch_name"
     done
 }
-
-sync_doc_files
