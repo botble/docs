@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "hasa" "flex-home" "lara-mag" "miranda" "shopwise" "martfury" "stories" "wowy" "nest" "farmart" "jobcy" "jobzilla" "transp")
+projects=("cms" "hasa" "flex-home" "lara-mag" "miranda" "shopwise" "martfury" "stories" "wowy" "nest" "farmart" "jobcy" "jobzilla" "transp" "ninico")
 
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
@@ -69,3 +69,5 @@ function sync_git_changes() {
       git_operations push origin "$branch_name"
     done
 }
+
+sync_doc_files
