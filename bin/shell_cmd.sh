@@ -5,6 +5,8 @@ projects=("cms" "hasa" "flex-home" "lara-mag" "miranda" "shopwise" "martfury" "s
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
     cd ./docs/"$1" || exit
+    git add --all
+    git reset --hard HEAD
     git pull origin HEAD
     cd ../../
   else
@@ -84,6 +86,27 @@ function sync_doc_files() {
       fi
     done
   done
+
+  projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico")
+
+  files_to_sync=(
+      "invoice-template.md"
+      "usage-currencies.md"
+      "usage-location.md"
+      "images/currencies.png"
+      "images/location-1.png"
+      "images/location-2.png"
+      "images/location-3.png"
+      "images/location-4.png"
+      "images/location-5.png"
+
+    )
+
+    for i in "${projects[@]}"; do
+      for j in "${files_to_sync[@]}"; do
+          rm -rf ./docs/"$i"/"$j" && cp ./docs/farmart/"$j" ./docs/"$i"/"$j"
+      done
+    done
 }
 
 function git_operations() {
