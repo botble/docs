@@ -42,6 +42,8 @@ function sync_doc_files() {
      "images/analytics-select-project.png"
      "images/analytics-service-not-enabled.png"
      "images/analytics-timezone.png"
+     "images/usage-custom-css.png"
+      "images/usage-custom-js.png"
    )
 
     for i in "${projects[@]}"
