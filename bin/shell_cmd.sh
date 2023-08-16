@@ -74,6 +74,9 @@ function sync_doc_files() {
     "images/wasabi-4.jpg"
     "images/wasabi-5.jpg"
     "images/wasabi-6.jpg"
+    "images/installation-1.png"
+    "images/installation-2.png"
+    "images/installation-3.png"
   )
 
   for i in "${projects[@]}"; do
