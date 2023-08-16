@@ -20,7 +20,29 @@ function update_all_docs() {
 }
 
 function sync_doc_files() {
-   files_to_sync=("license" "ssl" "theme-rename" "upgrade" "usage-analytics" "usage-email" "usage-media-bunnycdn" "usage-media-s3" "usage-media-wasabi" "api" "plugin-backup" "plugin-language" "usage-social-login" "usage-custom-css-js")
+   files_to_sync=(
+     "license.md"
+     "ssl.md"
+     "theme-rename.md"
+     "upgrade.md"
+     "usage-analytics.md"
+     "usage-email.md"
+     "usage-media-bunnycdn.md"
+     "usage-media-s3.md"
+     "usage-media-wasabi.md"
+     "api.md"
+     "plugin-backup.md"
+     "plugin-language.md"
+     "usage-social-login.md"
+     "usage-custom-css-js.md"
+     "images/analytics-cache.png"
+     "images/analytics-enable-api.png"
+     "images/analytics-instruction.png"
+     "images/analytics-select-api.png"
+     "images/analytics-select-project.png"
+     "images/analytics-service-not-enabled.png"
+     "images/analytics-timezone.png"
+   )
 
     for i in "${projects[@]}"
     do
@@ -29,7 +51,8 @@ function sync_doc_files() {
           if [ "$i" = "cms" ]; then
             continue
           else
-            rm -rf ./docs/"$i"/"$j".md && cp ./docs/cms/"$j".md ./docs/"$i"/"$j".md
+            mkdir -p ./docs/"$i"/images
+            rm -rf ./docs/"$i"/"$j" && cp ./docs/cms/"$j" ./docs/"$i"/"$j"
           fi
         done
     done
