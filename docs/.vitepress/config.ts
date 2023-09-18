@@ -14,6 +14,7 @@ import nestSidebar from '../nest/sidebar'
 import jobzillaSidebar from '../jobzilla/sidebar'
 import transpSidebar from '../transp/sidebar'
 import ninicoSidebar from '../ninico/sidebar'
+import gerowSidebar from '../gerow/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -73,6 +74,7 @@ export default defineConfig({
           { text: 'JobZilla', link: '/jobzilla/' },
           { text: 'Transp', link: '/transp/' },
           { text: 'Ninico', link: '/ninico/' },
+          { text: 'Gerow', link: '/gerow/' },
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -99,6 +101,7 @@ export default defineConfig({
       jobzilla: jobzillaSidebar,
       transp: transpSidebar,
       ninico: ninicoSidebar,
+      gerow: gerowSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
