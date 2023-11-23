@@ -23,6 +23,7 @@ function update_all_docs() {
 function sync_doc_files() {
   files_to_sync=(
     "license.md"
+    "installation.md"
     "ssl.md"
     "theme-rename.md"
     "upgrade.md"
