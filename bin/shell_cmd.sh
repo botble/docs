@@ -10,7 +10,7 @@ function update_doc_from() {
     git pull origin HEAD
     cd ../../
   else
-    git clone https://github.com/botble/"$1"-docs.git --single-branch --branch master ./docs/"$1"
+    git clone git@github.com:botble/"$i"-docs.git --single-branch --branch master ./docs/"$1"
   fi
 }
 
@@ -104,7 +104,6 @@ function sync_doc_files() {
       "images/location-3.png"
       "images/location-4.png"
       "images/location-5.png"
-
     )
 
     for i in "${projects[@]}"; do
