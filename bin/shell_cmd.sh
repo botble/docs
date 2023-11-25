@@ -26,6 +26,7 @@ function sync_doc_files() {
     "installation.md"
     "ssl.md"
     "theme-rename.md"
+    "cronjob.md"
     "upgrade.md"
     "usage-analytics.md"
     "usage-email.md"
@@ -122,8 +123,6 @@ function sync_git_changes() {
   repo_path=$(git rev-parse --show-toplevel)
   cd "$repo_path" || exit 1
 
-  read -rp "Enter commit message: " commit_message
-  read -rp "Enter the branch name: " branch_name
 
   for i in "${projects[@]}"; do
     cd "$repo_path"/docs/"$i" || exit 1
@@ -131,7 +130,7 @@ function sync_git_changes() {
 
     git_operations add .
 
-    git_operations commit -m "$commit_message"
+    git_operations commit -m "Update docs"
 
     if [ -z "$branch_name" ]; then
       branch_name="$current_branch"
