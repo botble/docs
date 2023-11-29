@@ -81,6 +81,11 @@ function sync_doc_files() {
     "images/installation-1.png"
     "images/installation-2.png"
     "images/installation-3.png"
+    "images/mailchimp.png"
+    "images/mailchimp-1.png"
+    "images/mailchimp-2.png"
+    "images/mailchimp-3.png"
+    "images/cronjob-setup-on-hostinger.png"
   )
 
   for i in "${projects[@]}"; do
