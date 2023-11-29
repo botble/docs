@@ -35,6 +35,7 @@ function sync_doc_files() {
     "usage-media-wasabi.md"
     "usage-multi-language.md"
     "usage-translation.md"
+    "usage-newsletter.md"
     "api.md"
     "plugin-backup.md"
     "usage-multi-language.md"
