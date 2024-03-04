@@ -45,9 +45,9 @@ export default defineConfig({
     siteTitle: false,
     editLink: {
       pattern: ({ relativePath }) => {
-        const path = relativePath.split('/')
+        const [project, fileName] = relativePath.split('/')
 
-        return `https://github.com/botble/${path[0]}-docs/edit/master/${path[1]}`
+        return `https://github.com/botble/${project}-docs/edit/master/${fileName}`
       },
     },
 
