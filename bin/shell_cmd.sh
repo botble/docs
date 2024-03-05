@@ -1,6 +1,9 @@
 #!/bin/bash
 
-projects=("cms" "hasa" "flex-home" "lara-mag" "miranda" "shopwise" "martfury" "stories" "wowy" "nest" "farmart" "jobcy" "jobzilla" "transp" "ninico" "gerow")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "jobzilla" "transp" "gerow")
+ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy")
+
+all_projects=("${projects[@]}" "${ecommerce_projects[@]}")
 
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
@@ -15,7 +18,7 @@ function update_doc_from() {
 }
 
 function update_all_docs() {
-  for i in "${projects[@]}"; do
+  for i in "${all_projects[@]}"; do
     update_doc_from "$i"
   done
 }
@@ -41,55 +44,9 @@ function sync_doc_files() {
     "usage-multi-language.md"
     "usage-social-login.md"
     "usage-custom-css-js.md"
-    "images/analytics-cache.png"
-    "images/analytics-enable-api.png"
-    "images/analytics-instruction.png"
-    "images/analytics-select-api.png"
-    "images/analytics-select-project.png"
-    "images/analytics-service-not-enabled.png"
-    "images/analytics-demo-settings.png"
-    "images/analytics-timezone.png"
-    "images/usage-custom-css.png"
-    "images/usage-custom-js.png"
-    "images/admin-page.png"
-    "images/bunny-cdn-setting.jpg"
-    "images/directory-and-database.png"
-    "images/env-example.png"
-    "images/homepage-setup.png"
-    "images/license.png"
-    "images/mail-1.jpg"
-    "images/mail-2.jpg"
-    "images/mail-3.jpg"
-    "images/mail-4.jpg"
-    "images/mail-5.jpg"
-    "images/mail-6.jpg"
-    "images/mail-7.png"
-    "images/media-s3-setting.jpg"
-    "images/media.png"
-    "images/multi-language.png"
-    "images/multi-language-1.png"
-    "images/multi-language-2.jpg"
-    "images/multi-language-3.png"
-    "images/translation-other-translations.png"
-    "images/translation-translate-theme.png"
-    "images/wasabi-1.jpg"
-    "images/wasabi-2.jpg"
-    "images/wasabi-3.jpg"
-    "images/wasabi-4.jpg"
-    "images/wasabi-5.jpg"
-    "images/wasabi-6.jpg"
-    "images/installation-1.png"
-    "images/installation-2.png"
-    "images/installation-3.png"
-    "images/mailchimp.png"
-    "images/mailchimp-1.png"
-    "images/mailchimp-2.png"
-    "images/mailchimp-3.png"
-    "images/cronjob-setup-on-hostinger.png"
-    "images/cronjob-verify.png"
   )
 
-  for i in "${projects[@]}"; do
+  for i in "${all_projects[@]}"; do
     for j in "${files_to_sync[@]}"; do
       if [ "$i" = "cms" ]; then
         continue
@@ -100,21 +57,13 @@ function sync_doc_files() {
     done
   done
 
-  projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico")
-
   files_to_sync=(
       "invoice-template.md"
       "usage-currencies.md"
       "usage-location.md"
-      "images/currencies.png"
-      "images/location-1.png"
-      "images/location-2.png"
-      "images/location-3.png"
-      "images/location-4.png"
-      "images/location-5.png"
     )
 
-    for i in "${projects[@]}"; do
+    for i in "${ecommerce_projects[@]}"; do
       for j in "${files_to_sync[@]}"; do
           rm -rf ./docs/"$i"/"$j" && cp ./docs/farmart/"$j" ./docs/"$i"/"$j"
       done
