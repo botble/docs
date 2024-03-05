@@ -1,9 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "jobzilla" "transp" "gerow")
-ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy")
-
-all_projects=("${projects[@]}" "${ecommerce_projects[@]}")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "jobzilla" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy")
 
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
@@ -18,7 +15,7 @@ function update_doc_from() {
 }
 
 function update_all_docs() {
-  for i in "${all_projects[@]}"; do
+  for i in "${projects[@]}"; do
     update_doc_from "$i"
   done
 }
@@ -46,7 +43,7 @@ function sync_doc_files() {
     "usage-custom-css-js.md"
   )
 
-  for i in "${all_projects[@]}"; do
+  for i in "${projects[@]}"; do
     for j in "${files_to_sync[@]}"; do
       if [ "$i" = "cms" ]; then
         continue
@@ -62,6 +59,8 @@ function sync_doc_files() {
       "usage-currencies.md"
       "usage-location.md"
     )
+
+    ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy")
 
     for i in "${ecommerce_projects[@]}"; do
       for j in "${files_to_sync[@]}"; do
@@ -100,4 +99,6 @@ function sync_git_changes() {
 
     git_operations push origin "$branch_name"
   done
+
+  cd ../..
 }
