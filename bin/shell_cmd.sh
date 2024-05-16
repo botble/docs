@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "jobzilla" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "jobzilla" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "cloudify")
 
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
@@ -66,6 +66,16 @@ function sync_doc_files() {
       for j in "${files_to_sync[@]}"; do
           rm -rf ./docs/"$i"/"$j" && cp ./docs/farmart/"$j" ./docs/"$i"/"$j"
       done
+    done
+
+    files_to_sync_for_cloudify=(
+      "installation.md"
+      "license.md"
+      "upgrade.md"
+    )
+
+    for j in "${files_to_sync_for_cloudify[@]}"; do
+        rm -rf ./docs/cloudify/"$j" && cp ./docs/cms/"$j" ./docs/cloudify/"$j"
     done
 }
 
