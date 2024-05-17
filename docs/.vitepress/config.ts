@@ -17,6 +17,7 @@ import ninicoSidebar from '../ninico/sidebar'
 import gerowSidebar from '../gerow/sidebar'
 import shofySidebar from '../shofy/sidebar'
 import athenaSidebar from '../athena/sidebar'
+import cloudifySidebar from '../cloudify/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -79,6 +80,7 @@ export default defineConfig({
           { text: 'Gerow', link: '/gerow/' },
           { text: 'Shofy', link: '/shofy/'},
           { text: 'Athena', link: '/athena/'},
+          { text: 'Cloudify', link: '/cloudify/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -108,6 +110,7 @@ export default defineConfig({
       gerow: gerowSidebar,
       shofy: shofySidebar,
       athena: athenaSidebar,
+      cloudify: cloudifySidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
