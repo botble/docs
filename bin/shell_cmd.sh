@@ -72,6 +72,8 @@ function sync_doc_files() {
       "installation.md"
       "license.md"
       "upgrade.md"
+      "ssl.md"
+      "cronjob.md"
     )
 
     for j in "${files_to_sync_for_cloudify[@]}"; do
