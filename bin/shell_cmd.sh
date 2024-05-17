@@ -67,18 +67,6 @@ function sync_doc_files() {
           rm -rf ./docs/"$i"/"$j" && cp ./docs/farmart/"$j" ./docs/"$i"/"$j"
       done
     done
-
-    files_to_sync_for_cloudify=(
-      "installation.md"
-      "license.md"
-      "upgrade.md"
-      "ssl.md"
-      "cronjob.md"
-    )
-
-    for j in "${files_to_sync_for_cloudify[@]}"; do
-        rm -rf ./docs/cloudify/"$j" && cp ./docs/cms/"$j" ./docs/cloudify/"$j"
-    done
 }
 
 function git_operations() {
