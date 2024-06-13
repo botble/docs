@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "jobzilla" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "cloudify")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "jobzilla" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "cloudify" "homzen")
 
 function update_doc_from() {
   if [ -d "./docs/$1" ]; then
