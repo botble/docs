@@ -5,7 +5,6 @@
 !docs/public
 .DS_Store
 .idea
-docs/*
 docs/.vitepress/cache
 docs/.vitepress/dist
 node_modules
