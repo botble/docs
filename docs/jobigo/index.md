@@ -1,8 +1,8 @@
-# JobZilla - Premium theme for Botble Job Board System
+# Jobigo - Premium theme for Botble Job Board System
 
 ## Introduction
 
-JobZilla is a theme for Jobcy script, so you need to purchase it first to use this theme.
+Jobigo is a theme for Jobcy script, so you need to purchase it first to use this theme.
 
 Purchase it [here](https://botble.com/go/jobcy).
 
@@ -18,9 +18,9 @@ quickly support. Thank you so much!
 
 ## Demo
 
-Homepage: [https://jobzilla.botble.com](https://jobzilla.botble.com)
+Homepage: [https://jobigo.botble.com](https://jobigo.botble.com)
 
-Admin Area: [https://jobzilla.botble.com/admin](https://jobzilla.botble.com/admin)
+Admin Area: [https://jobigo.botble.com/admin](https://jobigo.botble.com/admin)
 
 Username: `admin`
 
