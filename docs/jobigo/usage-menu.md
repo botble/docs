@@ -16,14 +16,6 @@ To translate menu
 
 ![Image](./images/menu-4.png)
 
-## Hotline and email
-
-![Image](./images/menu-5.png)
-
-It's in Admin -> Appearance -> Theme options.
-
-![Image](./images/menu-6.png)
-
 ## Footer menus
 
 ![Image](./images/menu-7.png)
