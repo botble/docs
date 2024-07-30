@@ -1,4 +1,4 @@
-# Jobigo - Premium theme for Botble Job Board System
+# Jobigo - Laravel Job Portal & Career Script
 
 ## Introduction
 
