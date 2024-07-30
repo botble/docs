@@ -2,11 +2,9 @@
 
 ## Introduction
 
-Jobigo is a theme for Jobcy script, so you need to purchase it first to use this theme.
+Jobigo is a premium Laravel Job portal & career script which has powerful job board features to make your job board site more professional. It is packed with a clean, modern, and responsive design, advanced job search, and filter options, beautiful job listings, and more.
 
-Purchase it [here](https://botble.com/go/jobcy).
-
-Created: `May 10, 2023`
+Created: `30 Jul, 2024`
 
 By: [Botble Technologies](https://botble.com)
 
