@@ -1,1 +1,0 @@
-# Supported SMS Service Providers
