@@ -19,6 +19,7 @@ import shofySidebar from '../shofy/sidebar'
 import athenaSidebar from '../athena/sidebar'
 import cloudifySidebar from '../cloudify/sidebar'
 import homzenSidebar from '../homzen/sidebar'
+import smsGatewaySidebar from '../sms-gateway/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -83,6 +84,7 @@ export default defineConfig({
           { text: 'Athena', link: '/athena/'},
           { text: 'Cloudify', link: '/cloudify/'},
           { text: 'Homzen', link: '/homzen/'},
+          { text: 'SMS Gateway', link: '/sms-gateway/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -114,6 +116,7 @@ export default defineConfig({
       athena: athenaSidebar,
       cloudify: cloudifySidebar,
       homzen: homzenSidebar,
+      'sms-gateway': smsGatewaySidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
