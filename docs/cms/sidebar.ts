@@ -57,7 +57,15 @@ export default [
       { text: 'Meta box', link: '/cms/meta-box' },
       { text: 'Dashboard Widgets', link: '/cms/dashboard-widgets' },
       { text: 'Dashboard Menu', link: '/cms/dashboard-menu' },
-      { text: 'Form builder', link: '/cms/form-builder' },
+      {
+        text: 'Form builder',
+        link: '/cms/form-builder',
+        items: [
+            { text: 'Get started', link: '/cms/form-builder-get-started' },
+            { text: 'Input Fields', link: '/cms/form-builder-input-fields' },
+            { text: 'On/off Field', link: '/cms/form-builder-on-off-field' },
+        ],
+      },
       { text: 'SEO helper', link: '/cms/seo-helper' },
       { text: 'Enum', link: '/cms/enum' },
       { text: 'Slug field', link: '/cms/slug-field' },
