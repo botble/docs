@@ -1,18 +1,4 @@
 
-
-### Editor field
-
-```php
-->add('field_name', 'editor', [
-    'label'=> __('Field label'),
-    'label_attr' => ['class' => 'control-label'],
-    'attr' => [
-        'with-short-code' => false, // if true, it will add a button to select shortcode
-        'without-buttons' => false, // if true, all buttons will be hidden
-    ],
-])
-```
-
 ### Select
 
 ```php
