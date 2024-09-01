@@ -1,17 +1,3 @@
-
-### Select
-
-```php
-->add('field_name', 'select', [ // Change "select" to "customSelect" for better UI
-    'label' => __('Field label'),
-    'label_attr' => ['class' => 'control-label required'], // Add class "required" if that is mandatory field
-    'choices'    => [
-        1 => __('Option 1'),
-        2 => __('Option 2'),
-    ],
-])
-```
-
 ### Radio
 
 ```php

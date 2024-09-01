@@ -1,7 +1,7 @@
 # Form Builder - Get Started
 
-We're utilizing the - kristijanhusak/laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) package for form construction. 
-For more details, please refer to the official documentation - here](https://kristijanhusak.github.io/laravel-form-builder).
+We're utilizing the - [kristijanhusak/laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) package for form construction. 
+For more details, please refer to the official documentation - [here](https://kristijanhusak.github.io/laravel-form-builder).
 
 ## Adding fields to a form
 
