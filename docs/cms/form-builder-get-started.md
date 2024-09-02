@@ -3,6 +3,16 @@
 We're utilizing the - [kristijanhusak/laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) package for form construction. 
 For more details, please refer to the official documentation - [here](https://kristijanhusak.github.io/laravel-form-builder).
 
+## Creating a form
+
+```
+php artisan cms:make:form TodoForm
+```
+
+Result:
+
+![Basic form](./images/basic-form.png)
+
 ## Adding fields to a form
 
 ```php
@@ -23,11 +33,116 @@ $this
     ->add('content', EditorField::class, EditorFieldOption::make()->required())
 ```
 
+Result:
+
+![Basic form](./images/demo-form.png)
+
 ## Displaying form
 
 ```php
 {!! \Botble\Todo\Forms\TodoForm::create()->renderForm() !!}
 ```
+
+### From controller, you can use:
+
+```php
+use Botble\Todo\Forms\TodoForm;
+
+public function create(TodoForm $form)
+{
+    return $form->renderForm();
+}
+```
+
+### Set model for form
+
+```php
+use Botble\Todo\Models\Todo;
+use Botble\Todo\Forms\TodoForm;
+
+public function edit(Todo $todo)
+{
+    return TodoForm::createFromModel($todo)->renderForm();
+}
+```
+
+### Saving form data
+
+```php
+
+use Botble\Todo\Models\Todo;
+use Botble\Todo\Forms\TodoForm;
+
+public function store(Request $request)
+{
+    TodoForm::create()->setRequest($request)->save();
+    
+    return redirect()->route('todo.index');
+}
+
+public function update(Request $request, Todo $todo)
+{
+    TodoForm::createFromModel($todo)->setRequest($request)->save();
+    
+    return redirect()->route('todo.index');
+}
+```
+
+### Form layouts
+
+- 2 columns layout
+
+```php
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\Fields\TextareaField;
+
+$this
+    ->columns() // Use 2 columns layout
+    ->add('field1', TextField::class, TextFieldOption::make()->colspan(6))
+    ->add('field2', TextField::class, TextFieldOption::make()->colspan(6));
+```
+
+![2 columns layout](./images/form-2-columns.png)
+
+- 3 columns layout
+
+```php
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\Fields\TextareaField;
+
+$this
+    ->columns(3) // Use 3 columns layout
+    ->add('field1', TextField::class, TextFieldOption::make()->colspan(4))
+    ->add('field2', TextField::class, TextFieldOption::make()->colspan(4))
+    ->add('field3', TextField::class, TextFieldOption::make()->colspan(4));
+```
+
+![3 columns layout](./images/form-3-columns.png)
+
+### Remove master layout from form
+
+```php
+use Botble\Base\Forms\Fields\TextField;
+
+$this
+    ->contentOnly() // Remove master layout from form
+    ->add('field1', TextField::class, TextFieldOption::make())
+    ->add('field2', TextField::class, TextFieldOption::make());
+```
+
+### Add tab to form
+    
+```php
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\FormTab;
+
+$this
+    ->add('title', TextField::class)
+    ->addTab(FormTab::make()->label('General')->content('General information'))
+    ->add(FormTab::make()->label('Tab 2')->content(view('your-view'))) // Can be loaded from a Blade view
+```
+
+![Tab layout](./images/form-tab.png)
 
 ## Available fields
 
