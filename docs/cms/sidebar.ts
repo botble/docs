@@ -66,6 +66,8 @@ export default [
             { text: 'Editor Field', link: '/cms/form-builder-editor-field' },
             { text: 'Select Field', link: '/cms/form-builder-select-field' },
             { text: 'On/off Field', link: '/cms/form-builder-on-off-field' },
+            { text: 'Radio Field', link: '/cms/form-builder-radio-field' },
+            { text: 'Media Image Field', link: '/cms/form-builder-media-image-field' },
         ],
       },
       { text: 'SEO helper', link: '/cms/seo-helper' },
