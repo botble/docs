@@ -67,6 +67,7 @@ export default [
             { text: 'Select Field', link: '/cms/form-builder-select-field' },
             { text: 'On/off Field', link: '/cms/form-builder-on-off-field' },
             { text: 'Radio Field', link: '/cms/form-builder-radio-field' },
+            { text: 'Repeater Field', link: '/cms/form-builder-repeater-field' },
             { text: 'Media Image Field', link: '/cms/form-builder-media-image-field' },
         ],
       },
