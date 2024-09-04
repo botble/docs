@@ -183,3 +183,69 @@ $this
 - TinyMceField.php: platform/core/base/src/Forms/Fields/TinyMceField.php
 - TreeCategoryField.php: platform/core/base/src/Forms/Fields/TreeCategoryField.php
 - UiSelectorField.php: platform/core/base/src/Forms/Fields/UiSelectorField.php
+
+
+## Add more columns into existed form
+
+Check this video tutorial: https://youtu.be/5PC6mzssZ70
+
+Add below code into `platform/themes/[your-theme]/functions/functions.php`
+
+```php
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\FieldOptions\TextFieldOption;
+
+add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
+    if ($data instanceof \Botble\Blog\Models\Post) {
+        $test = $data->getMetaData('test', true);
+    
+        $form
+            ->add(
+                'test', 
+                TextField::class, 
+                TextFieldOption::make()
+                    ->label(__('Test Field'))
+                    ->value($test)
+            );
+    }
+    
+    return $form;
+}, 120, 2);
+
+add_action([BASE_ACTION_AFTER_CREATE_CONTENT, BASE_ACTION_AFTER_UPDATE_CONTENT], function ($screen, $request, $data) {
+    if ($data instanceof \Botble\Blog\Models\Post) {
+        MetaBox::saveMetaBoxData($data, 'test', $request->input('test'));
+    }
+}, 120, 3);
+
+```
+
+Display the value of Test field in platform/themes/[your-theme]/views/post.blade.php.
+
+```php
+    $post->getMetaData('test', true);
+```
+
+## Modify form field
+
+Example: change "Description" field in PostForm.php to rich text editor.
+
+Add below code into `platform/themes/[your-theme]/functions/functions.php`
+
+```php
+use Botble\Base\Forms\Fields\EditorField;
+use Botble\Base\Forms\FieldOptions\EditorFieldOption;
+
+add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
+    if ($data instanceof \Botble\Blog\Models\Post) {
+        $form
+            ->modify(
+                'description',
+                EditorField::class, 
+                EditorFieldOption::make(),
+            true);
+    }
+
+    return $form;
+}, 120, 2);
+```
