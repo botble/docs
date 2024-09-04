@@ -64,6 +64,7 @@ export default [
             { text: 'Get started', link: '/cms/form-builder-get-started' },
             { text: 'Input Fields', link: '/cms/form-builder-input-fields' },
             { text: 'Editor Field', link: '/cms/form-builder-editor-field' },
+            { text: 'Code Editor Field', link: '/cms/form-builder-code-editor-field' },
             { text: 'Select Field', link: '/cms/form-builder-select-field' },
             { text: 'On/off Field', link: '/cms/form-builder-on-off-field' },
             { text: 'Radio Field', link: '/cms/form-builder-radio-field' },
