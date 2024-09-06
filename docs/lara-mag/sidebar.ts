@@ -13,7 +13,15 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/lara-mag/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/lara-mag/installation-requirements' },
+                    { text: 'Using web interface', link: '/lara-mag/installation-web-interface' },
+                    { text: 'Using command line', link: '/lara-mag/installation-command-line' },
+                    { text: 'Using Docker', link: '/lara-mag/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/lara-mag/ssl' },
             { text: 'License', link: '/lara-mag/license' },
         ],

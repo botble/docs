@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/transp/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/transp/installation-requirements' },
+          { text: 'Using web interface', link: '/transp/installation-web-interface' },
+          { text: 'Using command line', link: '/transp/installation-command-line' },
+          { text: 'Using Docker', link: '/transp/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/transp/ssl' },
       { text: 'License', link: '/transp/license' },
     ],

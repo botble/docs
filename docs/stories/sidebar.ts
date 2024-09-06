@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/stories/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/stories/installation-requirements' },
+          { text: 'Using web interface', link: '/stories/installation-web-interface' },
+          { text: 'Using command line', link: '/stories/installation-command-line' },
+          { text: 'Using Docker', link: '/stories/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/stories/ssl' },
       { text: 'License', link: '/stories/license' },
     ],

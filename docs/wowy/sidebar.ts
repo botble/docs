@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/wowy/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/wowy/installation-requirements' },
+          { text: 'Using web interface', link: '/wowy/installation-web-interface' },
+          { text: 'Using command line', link: '/wowy/installation-command-line' },
+          { text: 'Using Docker', link: '/wowy/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/wowy/ssl' },
       { text: 'License', link: '/wowy/license' },
     ],

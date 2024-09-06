@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/jobcy/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/jobcy/installation-requirements' },
+          { text: 'Using web interface', link: '/jobcy/installation-web-interface' },
+          { text: 'Using command line', link: '/jobcy/installation-command-line' },
+          { text: 'Using Docker', link: '/jobcy/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/jobcy/ssl' },
       { text: 'License', link: '/jobcy/license' },
     ],

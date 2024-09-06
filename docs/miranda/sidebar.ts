@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/miranda/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/miranda/installation-requirements' },
+          { text: 'Using web interface', link: '/miranda/installation-web-interface' },
+          { text: 'Using command line', link: '/miranda/installation-command-line' },
+          { text: 'Using Docker', link: '/miranda/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/miranda/ssl' },
       { text: 'License', link: '/miranda/license' },
     ],

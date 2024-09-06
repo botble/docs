@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/athena/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/athena/installation-requirements' },
+          { text: 'Using web interface', link: '/athena/installation-web-interface' },
+          { text: 'Using command line', link: '/athena/installation-command-line' },
+          { text: 'Using Docker', link: '/athena/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/athena/ssl' },
       { text: 'License', link: '/athena/license' },
     ],

@@ -12,7 +12,15 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/shofy/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/shofy/installation-requirements' },
+                    { text: 'Using web interface', link: '/shofy/installation-web-interface' },
+                    { text: 'Using command line', link: '/shofy/installation-command-line' },
+                    { text: 'Using Docker', link: '/shofy/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/shofy/ssl' },
             { text: 'License', link: '/shofy/license' },
         ],

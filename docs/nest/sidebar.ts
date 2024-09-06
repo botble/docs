@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/nest/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/nest/installation-requirements' },
+          { text: 'Using web interface', link: '/nest/installation-web-interface' },
+          { text: 'Using command line', link: '/nest/installation-command-line' },
+          { text: 'Using Docker', link: '/nest/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/nest/ssl' },
       { text: 'License', link: '/nest/license' },
     ],

@@ -12,10 +12,17 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/flex-home/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/flex-home/installation-requirements' },
+                    { text: 'Using web interface', link: '/flex-home/installation-web-interface' },
+                    { text: 'Using command line', link: '/flex-home/installation-command-line' },
+                    { text: 'Using Docker', link: '/flex-home/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/flex-home/ssl' },
             { text: 'License', link: '/flex-home/license' },
-            { text: 'API', link: '/flex-home/api' },
         ],
     },
     {

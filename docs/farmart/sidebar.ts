@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/farmart/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/farmart/installation-requirements' },
+          { text: 'Using web interface', link: '/farmart/installation-web-interface' },
+          { text: 'Using command line', link: '/farmart/installation-command-line' },
+          { text: 'Using Docker', link: '/farmart/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/farmart/ssl' },
       { text: 'License', link: '/farmart/license' },
     ],

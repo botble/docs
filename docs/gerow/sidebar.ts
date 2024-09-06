@@ -12,7 +12,15 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/gerow/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/gerow/installation-requirements' },
+                    { text: 'Using web interface', link: '/gerow/installation-web-interface' },
+                    { text: 'Using command line', link: '/gerow/installation-command-line' },
+                    { text: 'Using Docker', link: '/gerow/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/gerow/ssl' },
             { text: 'License', link: '/gerow/license' },
         ],

@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/martfury/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/martfury/installation-requirements' },
+          { text: 'Using web interface', link: '/martfury/installation-web-interface' },
+          { text: 'Using command line', link: '/martfury/installation-command-line' },
+          { text: 'Using Docker', link: '/martfury/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/martfury/ssl' },
       { text: 'License', link: '/martfury/license' },
     ],

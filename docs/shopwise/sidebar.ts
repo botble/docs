@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/shopwise/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/shopwise/installation-requirements' },
+          { text: 'Using web interface', link: '/shopwise/installation-web-interface' },
+          { text: 'Using command line', link: '/shopwise/installation-command-line' },
+          { text: 'Using Docker', link: '/shopwise/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/shopwise/ssl' },
       { text: 'License', link: '/shopwise/license' },
     ],

@@ -1,11 +1,13 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "cloudify" "homzen")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen")
 
 function sync_doc_files() {
   files_to_sync=(
-    "license.md"
-    "installation.md"
+    "installation-command-line.md"
+    "installation-requirements.md"
+    "installation-using-docker.md"
+    "installation-web-interface.md"
     "ssl.md"
     "theme-rename.md"
     "cronjob.md"

@@ -12,7 +12,15 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/hasa/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/hasa/installation-requirements' },
+                    { text: 'Using web interface', link: '/hasa/installation-web-interface' },
+                    { text: 'Using command line', link: '/hasa/installation-command-line' },
+                    { text: 'Using Docker', link: '/hasa/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/hasa/ssl' },
             { text: 'License', link: '/hasa/license' },
         ],

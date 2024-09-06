@@ -12,7 +12,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/ninico/installation' },
+      {
+        text: 'Installation',
+        items: [
+          { text: 'Requirements', link: '/ninico/installation-requirements' },
+          { text: 'Using web interface', link: '/ninico/installation-web-interface' },
+          { text: 'Using command line', link: '/ninico/installation-command-line' },
+          { text: 'Using Docker', link: '/ninico/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/ninico/ssl' },
       { text: 'License', link: '/ninico/license' },
     ],

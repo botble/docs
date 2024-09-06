@@ -12,10 +12,17 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/homzen/installation' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/homzen/installation-requirements' },
+                    { text: 'Using web interface', link: '/homzen/installation-web-interface' },
+                    { text: 'Using command line', link: '/homzen/installation-command-line' },
+                    { text: 'Using Docker', link: '/homzen/installation-using-docker' },
+                ],
+            },
             { text: 'SSL', link: '/homzen/ssl' },
             { text: 'License', link: '/homzen/license' },
-            { text: 'API', link: '/homzen/api' },
         ],
     },
     {
