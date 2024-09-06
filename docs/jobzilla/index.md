@@ -16,9 +16,9 @@ quickly support. Thank you so much!
 
 ## Demo
 
-Homepage: [https://jobigo.botble.com](https://jobigo.botble.com)
+Homepage: [https://jobzilla.botble.com](https://jobzilla.botble.com)
 
-Admin Area: [https://jobigo.botble.com/admin](https://jobigo.botble.com/admin)
+Admin Area: [https://jobzilla.botble.com/admin](https://jobzilla.botble.com/admin)
 
 Username: `admin`
 

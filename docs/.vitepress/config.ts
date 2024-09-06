@@ -11,7 +11,7 @@ import wowySidebar from '../wowy/sidebar'
 import farmartSidebar from '../farmart/sidebar'
 import martfurySidebar from '../martfury/sidebar'
 import nestSidebar from '../nest/sidebar'
-import jobigoSidebar from '../jobigo/sidebar'
+import jobzillaSidebar from '../jobzilla/sidebar'
 import transpSidebar from '../transp/sidebar'
 import ninicoSidebar from '../ninico/sidebar'
 import gerowSidebar from '../gerow/sidebar'
@@ -76,7 +76,7 @@ export default defineConfig({
           { text: 'Nest', link: '/nest/' },
           { text: 'Farmart', link: '/farmart/' },
           { text: 'Jobcy', link: '/jobcy/' },
-          { text: 'Jobigo', link: '/jobigo/' },
+          { text: 'jobzilla', link: '/jobzilla/' },
           { text: 'Transp', link: '/transp/' },
           { text: 'Ninico', link: '/ninico/' },
           { text: 'Gerow', link: '/gerow/' },
@@ -108,7 +108,7 @@ export default defineConfig({
       farmart: farmartSidebar,
       martfury: martfurySidebar,
       nest: nestSidebar,
-      jobigo: jobigoSidebar,
+      jobzilla: jobzillaSidebar,
       transp: transpSidebar,
       ninico: ninicoSidebar,
       gerow: gerowSidebar,
