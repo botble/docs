@@ -13,9 +13,15 @@ export default [
   {
     text: 'Getting Started',
     items: [
-      { text: 'Installation', link: '/cms/installation' },
-      { text: 'Installation using command line', link: '/cms/installation-command-line' },
-      { text: 'Installation using Docker', link: '/cms/installation-using-docker' },
+      {
+        text: 'Installation',
+        items: [
+            { text: 'Requirements', link: '/cms/installation-requirements' },
+            { text: 'Using web interface', link: '/cms/installation-web-interface' },
+            { text: 'Using command line', link: '/cms/installation-command-line' },
+            { text: 'Using Docker', link: '/cms/installation-using-docker' },
+        ],
+      },
       { text: 'SSL', link: '/cms/ssl' },
       { text: 'License', link: '/cms/license' },
     ],
