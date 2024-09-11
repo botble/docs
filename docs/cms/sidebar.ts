@@ -78,6 +78,7 @@ export default [
             { text: 'Media Image Field', link: '/cms/form-builder-media-image-field' },
         ],
       },
+      { text: 'Icons', link: '/cms/icons' },
       { text: 'SEO helper', link: '/cms/seo-helper' },
       { text: 'Enum', link: '/cms/enum' },
       { text: 'Slug field', link: '/cms/slug-field' },
