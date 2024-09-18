@@ -65,7 +65,7 @@ export default [
       { text: 'Dashboard Menu', link: '/cms/dashboard-menu' },
       {
         text: 'Form builder',
-        link: '/cms/form-builder',
+        link: '/cms/form-builder-get-started',
         items: [
             { text: 'Get started', link: '/cms/form-builder-get-started' },
             { text: 'Input Fields', link: '/cms/form-builder-input-fields' },
