@@ -5,9 +5,17 @@ export default [
     {
         text: 'Getting Started',
         items: [
-            { text: 'Installation', link: '/cloudify/installation' },
-            { text: 'Upgrade Guide', link: '/cloudify/upgrade' },
-            { text: 'License', link: '/cloudify/license' },
+            {
+                text: 'Installation',
+                items: [
+                    { text: 'Requirements', link: '/cloudify/installation-requirements' },
+                    { text: 'Using web interface', link: '/cloudify/installation-web-interface' },
+                    { text: 'Using command line', link: '/cloudify/installation-command-line' },
+                    { text: 'Using Docker', link: '/cloudify/installation-using-docker' },
+                ],
+            },
+            { text: 'SSL', link: '/athena/ssl' },
+            { text: 'License', link: '/athena/license' },
         ],
     },
     {
