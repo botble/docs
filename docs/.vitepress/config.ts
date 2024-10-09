@@ -20,6 +20,7 @@ import athenaSidebar from '../athena/sidebar'
 import cloudifySidebar from '../cloudify/sidebar'
 import homzenSidebar from '../homzen/sidebar'
 import smsGatewaySidebar from '../sms-gateway/sidebar'
+import zelioSidebar from '../zelio/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -118,6 +119,7 @@ export default defineConfig({
       cloudify: cloudifySidebar,
       homzen: homzenSidebar,
       'sms-gateway': smsGatewaySidebar,
+      zelio: zelioSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
