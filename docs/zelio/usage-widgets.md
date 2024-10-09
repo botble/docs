@@ -1,6 +1,6 @@
 # Widgets
 
-Athena provides five pre-made widget areas to help you customize the user interface and organize content strategically.
+Zelio provides five pre-made widget areas to help you customize the user interface and organize content strategically.
 
 These sidebars offer flexibility in placement and functionality, allowing you to tailor the user experience on different
 sections of your website.
@@ -15,15 +15,13 @@ To add a widget to a sidebar, drag and drop the widget from the left side to the
 
 ## Widget Areas
 
-### 1. Primary sidebar
+### 1. Panel sidebar
 
-![Widget primary sidebar](./images/widgets/primary-sidebar.png)
+![Widget panel sidebar](./images/widgets/panel-sidebar.png)
 
-It appears on the right side of the blog list page. You can use this area to display related posts, categories,
-follows us, below is an example of using **Blog posts** widgets.
+It appears on the left side of the page. It is suitable for displaying contact information, social links and language switcher.
 
-![Widget primary sidebar admin](./images/widgets/primary-sidebar-admin-1.png)
-![Widget primary sidebar admin](./images/widgets/primary-sidebar-admin-2.png)
+![Widget panel sidebar admin](./images/widgets/panel-sidebar-admin.png)
 
 ## Delete Widgets
 

@@ -85,6 +85,7 @@ export default defineConfig({
           { text: 'Cloudify', link: '/cloudify/'},
           { text: 'Homzen', link: '/homzen/'},
           { text: 'SMS Gateway', link: '/sms-gateway/'},
+          { text: 'Zelio', link: '/zelio/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
