@@ -15,6 +15,9 @@ please feel free to email via my user page contact form [here](https://codecanyo
 
 ## Demo
 
+- Front-end: [https://carento.botble.com](https://carento.botble.com)
+- Admin panel: [https://carento.botble.com/admin](https://carento.botble.com/admin)
+
 Username: `admin`
 
 Password: `12345678`
