@@ -5,7 +5,7 @@
 Before installing our script, ensure that your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.1 or higher
+- PHP >= 8.2 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
