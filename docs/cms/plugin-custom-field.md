@@ -97,9 +97,9 @@ foreach(get_field($page, 'foo_repeater') as $item) {
 ```php
 $this->app->booted(function () {
     if (defined('CUSTOM_FIELD_MODULE_SCREEN_NAME')) {
-        \CustomField::registerModule(Foo::class)
+        \Botble\CustomField\Facades\CustomField::registerModule(Foo::class)
             ->registerRule('basic', __('Your plugin name'), Foo::class, function () {
-                return $this->app->make(YourPluginInterface::class)->pluck('name', 'id');
+                return Foo::query()->pluck('name', 'id')->all();
             })
             ->expandRule('other', 'Model', 'model_name', function () {
                 return [
@@ -117,7 +117,7 @@ $this->app->booted(function () {
     if (defined('CUSTOM_FIELD_MODULE_SCREEN_NAME')) {
         \CustomField::registerModule(Block::class)
             ->registerRule('basic', trans('plugins/block::block.name'), Block::class, function () {
-                return $this->app->make(BlockInterface::class)->pluck('blocks.name', 'blocks.id');
+                return Block::query()->pluck('name', 'id')->all();
             })
             ->expandRule('other', trans('plugins/custom-field::rules.model_name'), 'model_name', function () {
                 return [
