@@ -11,13 +11,21 @@ The first time you have to create theme "demo" structure, using the artisan comm
 php artisan cms:theme:create demo
 ```
 
+### Troubleshoot
+
+If you get an error like this:
+
+![error](./images/theme-create-issue.png)
+
+You need to delete folder `/vendor` and run command `composer install` to reinstall it, then you will have that command.
+
 To delete an existing theme, use the command:
 
 ```bash
 php artisan cms:theme:remove demo
 ```
 
-##Configuration
+## Configuration
 
 ::: info
 The main config for theme is located in /platform/themes/[theme]/config.php

@@ -17,6 +17,14 @@ reinstall it, then you can use dev commands.
 php artisan cms:plugin:create <plugin name>
 ````
 
+### Troubleshoot
+
+If you get an error like this:
+
+![error](./images/plugin-create-issue.png)
+
+You need to delete folder `/vendor` and run command `composer install` to reinstall it, then you will have that command.
+
 ## Activate a plugin
 
 **- Open CMD or Terminal then run:**
