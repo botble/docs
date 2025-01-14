@@ -22,6 +22,7 @@ import homzenSidebar from '../homzen/sidebar'
 import smsGatewaySidebar from '../sms-gateway/sidebar'
 import zelioSidebar from '../zelio/sidebar'
 import carentoSidebar from '../carento/sidebar'
+import infiniaSidebar from '../infinia/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -89,6 +90,7 @@ export default defineConfig({
           { text: 'SMS Gateway', link: '/sms-gateway/'},
           { text: 'Zelio', link: '/zelio/'},
           { text: 'Carento', link: '/carento/'},
+          { text: 'Infinia', link: '/infinia/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -123,6 +125,7 @@ export default defineConfig({
       'sms-gateway': smsGatewaySidebar,
       zelio: zelioSidebar,
       carento: carentoSidebar,
+      infinia: infiniaSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
