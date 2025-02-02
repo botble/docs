@@ -12,7 +12,7 @@ Go to `Settings` -> `Ecommerce` -> `Invoice Template` to customize the invoice t
 
 ### Customize directly file
 
-Copy file `platform/plugins/ecommerce/resources/views/invoices/template.blade.php` to `storage/app/invoices/template.blade.php` to start customize.
+Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl` to start customizing it.
 
 ## Bangladesh font
 
@@ -21,8 +21,8 @@ To display Bangladesh text in invoice, need to use font **FreeSerif**.
 - Download `FreeSerif.tff` font
   from https://github.com/byrongibson/fonts/blob/master/backup/truetype.original/freefont/FreeSerif.ttf.
 - Upload `FreeSerif.tff` to folder `/public`.
-- Copy file `platform/plugins/ecommerce/resources/views/invoices/template.blade.php`
-  to `storage/app/invoices/template.blade.php` to start customize.
+- Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
+  to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
 - Change in CSS:
 
 ```blade
@@ -92,8 +92,8 @@ body {
 
 - Download font **kaputaunicode** from http://www.kaputa.com/slword/kaputaunicode.htm.
 - Upload `kaputaunicode.tff` to folder `/public`.
-- Copy file `platform/plugins/ecommerce/resources/views/invoices/template.blade.php`
-  to `storage/app/invoices/template.blade.php` to start customize.
+- Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
+  to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
 - Change in CSS:
 
 ```blade
