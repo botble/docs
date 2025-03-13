@@ -26,3 +26,7 @@ ENABLE_HTTPS_SUPPORT=false
 :::warning
 If it doesn't work, you have to config it in `.htaccess` or Nginx config.
 :::
+
+:::warning
+If using Cloudflare, check the SSL Mode in the SSL/TLS settings. If it is set to "Flexible," change it to Full (Strict).
+:::
