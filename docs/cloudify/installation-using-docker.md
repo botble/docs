@@ -2,40 +2,42 @@
 
 _Docker installation for development only, do not use it on production environment._
 
+Botble utilizes [Laravel Sail](https://laravel.com/docs/12.x/sail). Please refer to the official documentation for instructions on how to use Laravel Sail.
+
 - Open `.env` file and change:
   - `DB_HOST=127.0.0.1` to `DB_HOST=mysql`
   - `DB_USERNAME=` to `DB_USERNAME=botble` (or any username you want)
   - `DB_PASSWORD=` to `DB_PASSWORD=botble` (or any password you want)
-
-- Run `docker compose pull` to pull the latest images.
-- Run `docker compose up -d` to start the services.
-- Run `docker compose exec -u www app composer install` to install the dependencies (or `update` command).
-- Run `docker compose exec -u www app php artisan migrate` to create the database structure.
-- Run `docker compose exec -u www app php artisan db:seed` if you need our sample data.
-- Run `docker compose exec -u www app php artisan cms:publish:assets` to publish assets.
-- Open `http://localhost` to see the homepage (or `http://localhost:{YOUR_PORT}`).
-- Admin panel URL: `http://localhost/admin`
-- Default admin account:
-    - If you use our sample data, the default admin account is `admin` with the password `12345678`.
-    - If not, run `docker compose exec -u www app php artisan cms:user:create` to create an admin user.
-- Run `docker compose down` to stop the services.
-- Some useful commands:
-    - `docker compose exec -u www app sh` access to the container.
-    - `docker compose exec -u www app php <...>` php command.
-    - `docker compose exec -u www app php artisan <...>` artisan command.
-    - `docker compose exec -u www app composer <...>` composer command.
+- Run below command to initial Laravel Sail:
+  ```shell
+  docker run --rm --interactive --tty \
+    --volume $PWD:/app \
+    --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
+    composer install --ignore-platform-reqs
+  ```
+- Configuring A Shell AliasSetup alias for `sail`
+  ```bash
+  alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+  ```
+- Run `sail build --no-cache` to rebuild sail image.
+- Run `sail up -d` to start the services.
+- Run `sail composer install` to install the dependencies (or `update` command).
+- Run `sail artisan migrate` to create the database structure.
+- Run `sail artisan db:seed` if you need our sample data.
+- run `sail artisan cms:publish:assets` to publish assets.
+- open `http://localhost` to see the homepage (or `http://localhost:{your_port}`).
+- admin panel url: `http://localhost/admin`
+- default admin account:
+    - if you use our sample data, the default admin account is `admin` with the password `12345678`.
+    - if not, run `sail artisan cms:user:create` to create an admin user.
+- run `sail down` to stop the services.
 
 ::: tip
-If you have any issues with the `docker compose` command, try to use `docker-compose` instead.
-Somethings ports are already in use, you can change the port in the `docker-compose.yml` file or use environment variables to change the port (e.g: `APP_PORT=8080`).
+somethings ports are already in use, you can change the port in the `docker-compose.yml` file or use environment variables to change the port (e.g: `app_port=8080`).
 :::
 
-## Issues
-
-### Service is not running issue.
-
-If you encounter the "service 'app' is not running" error, try to run `docker compose down`, then open file `docker-compose.yml` and change the service `laravel.test` to `app` in the `services` section and run `docker compose up -d` again.
+## issues
 
 ### Rebuild images
 
-Run `docker-compose down --volumes` and then `sail up --build` to rebuild the images.
+Run `docker-compose down -v` and then `sail build --no-cache` to rebuild the images.
