@@ -165,6 +165,7 @@ export default [
       { text: 'Gallery', link: '/cms/plugin-gallery' },
       { text: 'Backup', link: '/cms/plugin-backup' },
       { text: 'FAQ', link: '/cms/plugin-faq' },
+      { text: 'Translation', link: '/cms/plugin-translation' },
     ],
   }
 ] satisfies DefaultTheme.SidebarItem[];
