@@ -18,7 +18,7 @@ function sync_doc_files() {
     "usage-media-s3.md"
     "usage-media-wasabi.md"
     "usage-multi-language.md"
-    "usage-translation.md"
+    "plugin-translation.md"
     "usage-newsletter.md"
     "api.md"
     "plugin-backup.md"
