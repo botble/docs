@@ -106,33 +106,218 @@ $this->addColumns([
 
 ### Available Column Types
 
-Botble CMS provides many built-in column types:
+Botble CMS provides many built-in column types that make it easy to display different types of data. Here's a comprehensive list of available column types:
+
+#### Basic Columns
+
+- `Column`: A basic column that can be customized
+- `FormattedColumn`: A customizable column that can display formatted data
+
+#### Identification Columns
 
 - `IdColumn`: Displays the ID of the record
 - `NameColumn`: Displays the name of the record (usually linked to the edit page)
-- `ImageColumn`: Displays an image
+
+#### Date and Time Columns
+
 - `CreatedAtColumn`: Displays the creation date
 - `UpdatedAtColumn`: Displays the last update date
+- `DateColumn`: Displays a date with formatting options
+- `DateTimeColumn`: Displays a date and time with formatting options
+
+#### Media Columns
+
+- `ImageColumn`: Displays an image with customizable size
+
+#### Status and State Columns
+
 - `StatusColumn`: Displays the status with appropriate styling
-- `FormattedColumn`: A customizable column that can display formatted data
+- `EnumColumn`: Displays enum values with proper formatting
+- `YesNoColumn`: Displays boolean values as Yes/No
+
+#### Link and Contact Columns
+
 - `LinkableColumn`: A column that can be linked to a route
-- `Column`: A basic column that can be customized
+- `EmailColumn`: Displays an email address with optional mailto link
+- `PhoneColumn`: Displays a phone number with optional tel link
 
-### Customizing Columns
+#### Action Columns
 
-Each column type provides methods for customization:
+- `RowActionsColumn`: Displays action buttons for each row
+- `CheckboxColumn`: Displays a checkbox for row selection
+
+### Column Usage Examples
+
+Here are examples of how to use some of the most common column types:
+
+#### IdColumn
+
+```php
+IdColumn::make()
+    ->title('Custom ID') // Optional: override default title
+    ->width(50) // Optional: set column width
+```
+
+#### NameColumn
+
+```php
+NameColumn::make()
+    ->route('your-model.edit') // Link to edit page
+    ->limit(30) // Limit text length
+```
+
+#### ImageColumn
+
+```php
+ImageColumn::make()
+    ->with(80) // Set image width
+    ->mediaSize('thumb') // Set media size (thumb, medium, etc.)
+    ->fullMediaSize() // Use full size image
+```
+
+#### DateColumn
+
+```php
+DateColumn::make('created_at')
+    ->dateFormat('Y-m-d') // Custom date format
+    ->diffForHumans() // Show as "2 days ago"
+```
+
+#### StatusColumn
+
+```php
+StatusColumn::make()
+    ->title('Status')
+```
+
+#### EmailColumn
+
+```php
+EmailColumn::make()
+    ->linkable() // Make email clickable
+```
+
+#### LinkableColumn
+
+```php
+LinkableColumn::make('website')
+    ->title('Website')
+    ->route('your-model.show') // Link to a route
+    // OR
+    ->urlUsing(fn (LinkableColumn $column) => $column->getItem()->external_url) // Custom URL
+    ->externalLink() // Open in new tab
+```
+
+#### FormattedColumn
 
 ```php
 FormattedColumn::make('categories_name')
-    ->title(trans('plugins/blog::posts.categories')) // Set column title
-    ->width(150) // Set column width
+    ->title('Categories')
+    ->getValueUsing(function (FormattedColumn $column) {
+        return $column->getItem()->categories->pluck('name')->implode(', ');
+    })
+    ->withEmptyState() // Show placeholder when empty
+```
+
+#### EnumColumn
+
+```php
+EnumColumn::make('type')
+    ->title('Type')
+```
+
+#### YesNoColumn
+
+```php
+YesNoColumn::make('is_featured')
+    ->title('Featured')
+```
+
+### Common Column Customization Methods
+
+All column types inherit from the base `Column` class and share common customization methods. Here are the most frequently used methods:
+
+#### Basic Customization
+
+```php
+$column
+    ->title('Column Title') // Set column title
+    ->name('column_name') // Set column name (database field)
+    ->content('Static Content') // Set static content
+    ->width(150) // Set column width in pixels
+    ->addClass('custom-class') // Add CSS class
+    ->visible(false) // Hide column initially (can be shown via column visibility)
+    ->hidden() // Hide column completely
+```
+
+#### Data Handling
+
+```php
+$column
     ->orderable(false) // Disable ordering
     ->searchable(false) // Disable searching
+    ->exportable(false) // Exclude from exports
+    ->printable(false) // Exclude from print view
     ->getValueUsing(function (FormattedColumn $column) {
         // Custom logic to get the value
         return $column->getItem()->some_relation->name;
     })
-    ->withEmptyState() // Show an empty state when no value is available
+    ->renderUsing(function (FormattedColumn $column, $value) {
+        // Custom rendering logic
+        return '<span class="badge bg-success">' . $value . '</span>';
+    })
+```
+
+#### Alignment and Styling
+
+```php
+$column
+    ->alignStart() // Align content to start (left in LTR)
+    ->alignCenter() // Align content to center
+    ->alignEnd() // Align content to end (right in LTR)
+    ->withColor('success') // Apply color (success, danger, warning, info, etc.)
+    ->withIcon('ti ti-check') // Add an icon
+```
+
+#### Special Features
+
+```php
+$column
+    ->withEmptyState('N/A') // Show placeholder when empty
+    ->limit(50) // Limit text length
+    ->copyable() // Make content copyable
+    ->mask('***-**-####') // Apply a mask pattern
+    ->blur() // Blur sensitive content
+```
+
+#### FormattedColumn Specific Methods
+
+The `FormattedColumn` class provides additional methods for advanced customization:
+
+```php
+FormattedColumn::make('categories_name')
+    ->title(trans('plugins/blog::posts.categories'))
+    ->getValueUsing(function (FormattedColumn $column) {
+        // Access the current row item
+        $item = $column->getItem();
+
+        // Get related data
+        $categories = $item->categories->sortBy('name')
+            ->map(function ($category) {
+                return $category->name;
+            })
+            ->all();
+
+        return implode(', ', $categories);
+    })
+    ->append(function ($column) {
+        // Add content after the column value
+        return '<span class="ms-1 badge bg-info">New</span>';
+    })
+    ->prepend(function ($column) {
+        // Add content before the column value
+        return '<i class="ti ti-tag me-1"></i>';
+    })
 ```
 
 ## Actions
@@ -187,6 +372,38 @@ $this->addBulkChanges([
         ->searchable()
         ->choices(fn () => Category::query()->pluck('name', 'id')->all()),
 ]);
+```
+
+### Available Bulk Change Types
+
+Botble CMS provides several built-in bulk change types:
+
+- `NameBulkChange`: For changing name fields
+- `StatusBulkChange`: For changing status fields
+- `CreatedAtBulkChange`: For changing creation dates
+- `UpdatedAtBulkChange`: For changing update dates
+- `SelectBulkChange`: For changing fields with predefined options
+- `TextBulkChange`: For changing text fields
+- `NumberBulkChange`: For changing numeric fields
+- `DateBulkChange`: For changing date fields
+- `EmailBulkChange`: For changing email fields
+- `IsFeaturedBulkChange`: For toggling featured status
+
+### Custom Bulk Change Handling
+
+You can customize how bulk changes are processed using the `onSavingBulkChangeItem` method:
+
+```php
+$this->onSavingBulkChangeItem(function (Model $item, string $inputKey, ?string $inputValue) {
+    if ($inputKey === 'category') {
+        // Custom handling for category changes
+        $item->categories()->sync([$inputValue]);
+
+        return $item;
+    }
+
+    return null; // Let the default handler process other fields
+});
 ```
 
 ## Query Customization

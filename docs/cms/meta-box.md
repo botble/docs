@@ -1,157 +1,74 @@
-# Meta boxes
+# Meta Boxes
 
-This concept is based on WordPress functions.
+## Introduction
 
-You can add meta box from `your-theme/functions/functions.php` or in function `boot` of your plugin service provider.
+Meta boxes in Botble CMS provide a way to add custom fields and data to models. This concept is inspired by WordPress meta boxes but has been enhanced with Laravel's powerful features. Meta boxes allow you to extend existing models with additional fields without modifying the database schema.
 
-## Add a meta box
+Meta boxes are stored in the `meta_boxes` table with the following structure:
+- `meta_key`: The key to identify the meta data
+- `meta_value`: The value of the meta data (stored as JSON)
+- `reference_id`: The ID of the model
+- `reference_type`: The class name of the model
 
-We need to add an action to hook `BASE_ACTION_META_BOXES`
+## Architecture
 
-Example:
+The meta box system consists of several components:
+
+1. **MetaBox Class**: The main class that handles adding, retrieving, and saving meta boxes
+2. **MetaBox Model**: The Eloquent model that represents the meta_boxes table
+3. **HasMetadata Trait**: A trait that can be added to models to provide meta data functionality
+4. **Form Integration**: Integration with the form builder for easy creation of meta box fields
+
+## Adding Meta Boxes
+
+### Using the Action Hook
+
+The most common way to add a meta box is by using the `BASE_ACTION_META_BOXES` action hook:
 
 ```php
-add_action(BASE_ACTION_META_BOXES, 'callback_function_to_handle_meta_box', 120, 3);
-```
+use Botble\Base\Facades\MetaBox;
 
-Create callback for above action
-
-```php
-/**
-* This is an example callback function, it will add more fields to post create/edit screen.
-*/
-function callback_function_to_handle_meta_box($screen, $context)
-{
-    if (is_plugin_active('blog') && get_class($object) === \Botble\Blog\Models\Post::class && $context == 'advanced') {
+add_action(BASE_ACTION_META_BOXES, function (string $context, $object) {
+    if (is_plugin_active('blog') && $object instanceof \Botble\Blog\Models\Post && $context == 'advanced') {
         MetaBox::addMetaBox(
             'additional_post_fields',
-            __('Addition Information'),
+            __('Additional Information'),
             'post_additional_fields',
             get_class($object),
             $context,
             'default'
         );
     }
-}
+}, 120, 2);
 ```
 
-**Reference: https://developer.wordpress.org/reference/functions/add_meta_box**.
-
-Function: Adds a meta box to one or more screens.
+### MetaBox::addMetaBox Parameters
 
 ```php
-add_meta_box(
-    string $id, 
-    string $title, 
-    callable $callback, 
-    string $class = null, 
-    string $context = 'advanced', 
-    string $priority = 'default', 
-    array $callback_args = null
+MetaBox::addMetaBox(
+    string $id,
+    string $title,
+    string|array|callable|Closure $callback,
+    ?string $reference = null,
+    string $context = 'advanced',
+    string $priority = 'default',
+    ?array $callbackArgs = null
 );
 ```
 
-`$id`:
+- **$id**: (Required) Unique identifier for the meta box
+- **$title**: (Required) Title displayed in the meta box header
+- **$callback**: (Required) Function that renders the meta box content
+- **$reference**: (Optional) The model class name where the meta box should appear
+- **$context**: (Optional) The position of the meta box ('advanced', 'side', 'normal')
+- **$priority**: (Optional) The priority within the context ('high', 'default', 'low')
+- **$callbackArgs**: (Optional) Additional arguments passed to the callback function
 
-- (string) (Required) Meta box ID (used in the 'id' attribute for the meta box).
+### Creating the Callback Function
 
-`$title`:
-
-- (string) (Required) Title of the meta box.
-
-`$callback`:
-
-- (callable) (Required) Function that fills the box with the desired content. The function should echo its output.
-
-`$screen`:
-
-- (string|array|WP_Screen) (Optional) The screen or screens on which to show the box (such as a post type, 'link', or '
-  comment'). Accepts a single screen ID, WP_Screen object, or array of screen IDs. Default is the current screen.
-- Default value: null
-
-`$context`:
-
-- (string) (Optional) The context within the screen where the boxes should display. Available contexts vary from screen
-  to screen. Post edit screen contexts include 'normal', 'side', and 'advanced'. Comments screen contexts include '
-  normal' and 'side'. Menus meta boxes (accordion sections) all use the 'side' context. Global
-- Default value: 'advanced'
-
-`$priority`:
-
-- (string) (Optional) The priority within the context where the boxes should show ('high', 'low').
-- Default value: 'default'
-
-`$callback_args`:
-
-- (array) (Optional) Data that should be set as the $args property of the box array (which is the second parameter
-  passed to your callback).
-- Default value: null
-
-Create callback function for add_meta_box function.
-
-Example:
+The callback function is responsible for rendering the meta box content:
 
 ```php
-function post_additional_fields() {
-    $videoLink = null;
-    $args = func_get_args();
-
-    if (! empty($args[0])) {
-        $videoLink = MetaBox::getMetaData($args[0], 'video_link', true);
-    }
-
-    return Theme::partial('post-fields', compact('videoLink'));
-}
-```
-
-You can see `Theme::partial('post-field')` so you need to create view for this function
-in `your-theme/partials/post-fields.blade.php`
-
-```blade
-<div class="form-group">
-    <label for="video_link">{{ __('Video') }}</label>
-    {!! Form::text('video_link', $video_link, ['class' => 'form-control', 'id' => 'video_link']) !!}
-</div>
-```
-
-::: tip
-If you don't want to put view in your current theme, you can create that view in your plugin or `resources/views` then
-chang `Theme::partial('post-field')` to `view('your-view')`
-:::
-
-## Handle save meta box fields
-
-Example:
-
-```php
-add_action(BASE_ACTION_AFTER_CREATE_CONTENT, 'save_addition_post_fields', 230, 3);
-add_action(BASE_ACTION_AFTER_UPDATE_CONTENT, 'save_addition_post_fields', 231, 3);
-
-function save_addition_post_fields($type, $request, $object) {
-    if (is_plugin_active('blog') && get_class($object) === \Botble\Blog\Models\Post::class) {
-        MetaBox::saveMetaBoxData($object, 'video_link', $request->input('video_link'));
-    }
-}
-```
-
-## Full example code.
-
-** your-theme/functions/functions.php **
-
-```php
-
-add_action(BASE_ACTION_META_BOXES, 'add_addition_fields_in_post_screen', 24, 2);
-
-function add_addition_fields_in_post_screen($context, $object)
-{
-    if (is_plugin_active('blog') && get_class($object) == \Botble\Blog\Models\Post::class && $context == 'advanced') {
-        MetaBox::addMetaBox('additional_post_fields', __('Addition Information'), 'post_additional_fields',
-            get_class($object),
-            $context,
-            'default');
-    }
-}
-
 function post_additional_fields() {
     $videoLink = null;
     $args = func_get_args();
@@ -162,22 +79,339 @@ function post_additional_fields() {
 
     return Theme::partial('post-fields', compact('videoLink'));
 }
+```
 
-add_action(BASE_ACTION_AFTER_CREATE_CONTENT, 'save_addition_post_fields', 230, 3);
-add_action(BASE_ACTION_AFTER_UPDATE_CONTENT, 'save_addition_post_fields', 231, 3);
+The callback function receives the following arguments:
+1. The model instance
+2. The reference (model class name)
+3. The meta box configuration
 
-function save_addition_post_fields($type, $request, $object) {
-    if (is_plugin_active('blog') && get_class($object) == \Botble\Blog\Models\Post::class) {
+### Creating the View
+
+Create a view file to render the meta box content:
+
+```blade
+{{-- your-theme/partials/post-fields.blade.php --}}
+<div class="form-group mb-3">
+    <label for="video-link" class="form-label">{{ __('Video URL') }}</label>
+    <input type="text" name="video_link" value="{{ $videoLink }}" class="form-control" id="video-link">
+</div>
+```
+
+::: tip
+You can place the view in your theme's partials directory or in your plugin's views directory. If using a plugin view, replace `Theme::partial('post-fields')` with `view('plugins.your-plugin.partials.post-fields')`.
+:::
+
+## Saving Meta Box Data
+
+To save meta box data, use the `BASE_ACTION_AFTER_CREATE_CONTENT` and `BASE_ACTION_AFTER_UPDATE_CONTENT` action hooks:
+
+```php
+use Botble\Base\Facades\MetaBox;
+
+add_action([BASE_ACTION_AFTER_CREATE_CONTENT, BASE_ACTION_AFTER_UPDATE_CONTENT], function ($type, $request, $object) {
+    if ($object instanceof \Botble\Blog\Models\Post) {
         MetaBox::saveMetaBoxData($object, 'video_link', $request->input('video_link'));
+    }
+}, 230, 3);
+```
+
+### MetaBox::saveMetaBoxData Parameters
+
+```php
+MetaBox::saveMetaBoxData(Model $object, string $key, $value, $options = null);
+```
+
+- **$object**: (Required) The model instance to save meta data for
+- **$key**: (Required) The meta key
+- **$value**: (Required) The meta value
+- **$options**: (Optional) Additional options for the meta data
+
+## Retrieving Meta Box Data
+
+### Getting a Single Value
+
+```php
+$videoLink = MetaBox::getMetaData($post, 'video_link', true);
+```
+
+### Getting Multiple Values
+
+```php
+$metaValues = MetaBox::getMetaData($post, 'gallery_images');
+```
+
+### MetaBox::getMetaData Parameters
+
+```php
+MetaBox::getMetaData(
+    Model $object,
+    string $key,
+    bool $single = false,
+    array $select = ['meta_value']
+);
+```
+
+- **$object**: (Required) The model instance
+- **$key**: (Required) The meta key
+- **$single**: (Optional) Whether to return a single value or an array
+- **$select**: (Optional) The columns to select from the meta_boxes table
+
+## Deleting Meta Box Data
+
+```php
+MetaBox::deleteMetaData($post, 'video_link');
+```
+
+## Advanced Usage
+
+### Using with Form Builder
+
+You can integrate meta boxes with the Form Builder by using the `BASE_FILTER_BEFORE_RENDER_FORM` filter:
+
+```php
+use Botble\Base\Facades\MetaBox;
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\FieldOptions\TextFieldOption;
+
+add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
+    if ($data instanceof \Botble\Blog\Models\Post) {
+        $metaValue = MetaBox::getMetaData($data, 'custom_field', true);
+
+        $form
+            ->add(
+                'custom_field',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(__('Custom Field'))
+                    ->value($metaValue)
+            );
+    }
+
+    return $form;
+}, 120, 2);
+
+add_action([BASE_ACTION_AFTER_CREATE_CONTENT, BASE_ACTION_AFTER_UPDATE_CONTENT], function ($screen, $request, $data) {
+    if ($data instanceof \Botble\Blog\Models\Post) {
+        MetaBox::saveMetaBoxData($data, 'custom_field', $request->input('custom_field'));
+    }
+}, 120, 3);
+```
+
+### Using with HasMetadata Trait
+
+Models can implement the `HasMetadata` trait to directly access meta data:
+
+```php
+namespace App\Models;
+
+use Botble\Base\Models\BaseModel;
+use Botble\Base\Models\Concerns\HasMetadata;
+
+class CustomModel extends BaseModel
+{
+    use HasMetadata;
+
+    // ... other model code
+}
+```
+
+Then you can access meta data directly from the model:
+
+```php
+$model = CustomModel::find(1);
+$value = $model->getMetaData('custom_field', true);
+```
+
+### Creating Complex Meta Boxes
+
+For more complex meta boxes, you can use closures as callbacks:
+
+```php
+MetaBox::addMetaBox(
+    'seo_wrap',
+    __('SEO Configuration'),
+    function () {
+        $args = func_get_args();
+        $model = $args[0];
+
+        $meta = [
+            'seo_title' => null,
+            'seo_description' => null,
+            'seo_image' => null,
+        ];
+
+        if ($model->id) {
+            $metadata = MetaBox::getMetaData($model, 'seo_meta', true);
+            if ($metadata && is_array($metadata)) {
+                $meta = array_merge($meta, $metadata);
+            }
+        }
+
+        return view('plugins.seo.meta-box', compact('meta', 'model'))->render();
+    },
+    get_class($model)
+);
+```
+
+## Real-World Examples
+
+### Gallery Meta Box
+
+The Gallery plugin uses meta boxes to store images for various models:
+
+```php
+MetaBox::addMetaBox(
+    'gallery_wrap',
+    __('Gallery'),
+    [$this, 'galleryMetaField'],
+    $object::class,
+    'advanced'
+);
+
+// Callback method
+public function galleryMetaField($object)
+{
+    $value = gallery_meta_data($object);
+
+    return view('plugins.gallery.gallery-box', compact('value', 'object'))->render();
+}
+
+// Saving the data
+add_action(BASE_ACTION_AFTER_CREATE_CONTENT, function ($type, $request, $object) {
+    if (in_array(get_class($object), Gallery::getSupportedModules()) && $request->has('gallery')) {
+        MetaBox::saveMetaBoxData($object, 'gallery', $request->input('gallery'));
+    }
+}, 230, 3);
+```
+
+### SEO Meta Box
+
+The SEO Helper package uses meta boxes to store SEO configuration:
+
+```php
+MetaBox::addMetaBox(
+    'seo_wrap',
+    __('SEO Configuration'),
+    [$this, 'seoMetaBox'],
+    $object::class,
+    'advanced',
+    'low'
+);
+
+// Callback method
+public function seoMetaBox()
+{
+    $args = func_get_args();
+    $object = $args[0];
+
+    $meta = [
+        'seo_title' => null,
+        'seo_description' => null,
+        'seo_image' => null,
+    ];
+
+    if ($object->id) {
+        $metadata = MetaBox::getMetaData($object, 'seo_meta', true);
+        if ($metadata && is_array($metadata)) {
+            $meta = array_merge($meta, $metadata);
+        }
+    }
+
+    return view('packages.seo-helper.meta-box', compact('meta', 'object'))->render();
+}
+
+// Saving the data
+public function saveMetaData($screen, $request, $object)
+{
+    if (in_array(get_class($object), config('packages.seo-helper.general.supported', []))) {
+        MetaBox::saveMetaBoxData($object, 'seo_meta', $request->input('seo_meta', []));
     }
 }
 ```
 
-**your-theme/partials/post-fields.blade.php**
+## Best Practices
+
+1. **Use Unique Keys**: Always use unique meta keys to avoid conflicts with other plugins or themes.
+
+2. **Validate Input**: Always validate user input before saving meta data.
+
+3. **Use Namespaced Keys**: Consider prefixing your meta keys with your plugin or theme name to avoid conflicts.
+
+4. **Check for Existence**: Always check if the model exists before saving meta data.
+
+5. **Use Appropriate Hooks**: Use the correct action hooks for adding and saving meta boxes.
+
+6. **Optimize Queries**: When retrieving multiple meta values, consider using a single query instead of multiple queries.
+
+7. **Clean Up**: Delete meta data when the associated model is deleted to prevent orphaned records.
+
+## Complete Example
+
+Here's a complete example of adding a meta box to the Post model:
+
+```php
+// In your-theme/functions/functions.php or plugin service provider
+
+use Botble\Base\Facades\MetaBox;
+use Botble\Blog\Models\Post;
+use Botble\Theme\Facades\Theme;
+
+// Add the meta box
+add_action(BASE_ACTION_META_BOXES, function (string $context, $object) {
+    if ($object instanceof Post && $context == 'advanced') {
+        MetaBox::addMetaBox(
+            'additional_post_fields',
+            __('Additional Information'),
+            'post_additional_fields',
+            get_class($object),
+            $context,
+            'default'
+        );
+    }
+}, 24, 2);
+
+// Callback function to render the meta box
+function post_additional_fields() {
+    $videoLink = null;
+    $downloadLink = null;
+    $args = func_get_args();
+
+    if (!empty($args[0])) {
+        $videoLink = MetaBox::getMetaData($args[0], 'video_link', true);
+        $downloadLink = MetaBox::getMetaData($args[0], 'download_link', true);
+    }
+
+    return Theme::partial('post-fields', compact('videoLink', 'downloadLink'));
+}
+
+// Save the meta box data
+add_action([BASE_ACTION_AFTER_CREATE_CONTENT, BASE_ACTION_AFTER_UPDATE_CONTENT], function ($type, $request, $object) {
+    if ($object instanceof Post) {
+        MetaBox::saveMetaBoxData($object, 'video_link', $request->input('video_link'));
+        MetaBox::saveMetaBoxData($object, 'download_link', $request->input('download_link'));
+    }
+}, 230, 3);
+```
+
+And the view file:
 
 ```blade
-<div class="form-group">
-    <label for="video-link">{{ __('Video') }}</label>
-    {!! Form::text('video_link', $videoLink, ['class' => 'form-control', 'id' => 'video-link']) !!}
+{{-- your-theme/partials/post-fields.blade.php --}}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group mb-3">
+            <label for="video-link" class="form-label">{{ __('Video URL') }}</label>
+            <input type="text" name="video_link" value="{{ $videoLink }}" class="form-control" id="video-link">
+            <small class="form-text text-muted">{{ __('YouTube or Vimeo video URL') }}</small>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group mb-3">
+            <label for="download-link" class="form-label">{{ __('Download Link') }}</label>
+            <input type="text" name="download_link" value="{{ $downloadLink }}" class="form-control" id="download-link">
+            <small class="form-text text-muted">{{ __('Link to downloadable file') }}</small>
+        </div>
+    </div>
 </div>
 ```

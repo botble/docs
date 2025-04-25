@@ -1,53 +1,19 @@
 # Screenshots
 
-## Dashboard
+Below are screenshots of the Botble CMS interface, showcasing various features and functionality.
 
-Dashboard with Google Analytics, recent posts, error logs...
+![Screenshot 1](./images/screenshot-1.png)
 
-![Dashboard](https://botble.com/storage/uploads/1/docs/screenshots/dashboard.png)
+![Screenshot 2](./images/screenshot-2.png)
 
-## CRUD
+![Screenshot 3](./images/screenshot-3.png)
 
-![Edit Page](https://botble.com/storage/uploads/1/docs/screenshots/edit-page.png)
+![Screenshot 4](./images/screenshot-4.png)
 
-## Theme
+![Screenshot 5](./images/screenshot-5.png)
 
-2 themes already now.
+![Screenshot 6](./images/screenshot-6.png)
 
-![Theme](https://botble.com/storage/uploads/1/docs/screenshots/theme.png)
+![Screenshot 7](./images/screenshot-7.png)
 
-## Menu
-
-![Menu](https://botble.com/storage/uploads/1/docs/screenshots/menu.png)
-
-## Widget
-
-This widget likes with WordPress widget.
-
-![Widget](https://botble.com/storage/uploads/1/docs/screenshots/widget.png)
-
-## Theme options
-
-![Theme options](https://botble.com/storage/uploads/1/docs/screenshots/theme-option.png)
-
-## Gallery
-
-![Gallery](https://botble.com/storage/uploads/1/docs/screenshots/gallery.png)
-
-## Media
-
-![Media](https://botble.com/storage/uploads/1/docs/screenshots/media.png)
-
-## Plugins
-
-There are many plugins for you now.
-
-![Plugins](https://botble.com/storage/uploads/1/docs/screenshots/plugin.png)
-
-## Roles & Permissions
-
-![Roles & Permissions](https://botble.com/storage/uploads/1/docs/screenshots/role-permission.png)
-
-## Other features
-
-![Features](https://botble.com/storage/uploads/1/docs/screenshots/other.png)
+![Screenshot 8](./images/screenshot-8.png)

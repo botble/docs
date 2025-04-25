@@ -1,132 +1,269 @@
 # Filters
 
-This concept is based on Wordpress hook functions.
+## Introduction
 
-## add_filter()
+Filters in Botble CMS are hooks that allow you to modify data during the execution of the application. Unlike actions, which simply execute code at specific points, filters are designed to transform data and return a modified version.
 
-** Reference: https://developer.wordpress.org/reference/functions/add_filter **
+Filters are used throughout Botble CMS to allow plugins and themes to modify content, settings, and other data without changing core files. They provide a powerful way to customize the behavior of the CMS in a modular and maintainable way.
 
-Function: Hook a function or method to a specific filter action.
+## Using Filters
+
+### Adding a Filter
+
+To hook into a filter, use the `add_filter()` function:
 
 ```php
-add_filter(string $tag, callable $function_to_add, int $priority = 10, int $accepted_args = 1)
+add_filter(string|array $tag, callable $callback, int $priority = 20, int $accepted_args = 1)
 ```
 
-### Description
+#### Parameters
 
-Botble offers filter hooks to allow plugins to modify various types of internal data at runtime.
+- **$tag**: (string|array) The name of the filter(s) to hook into. Can be a single filter name or an array of filter names.
+- **$callback**: (callable) The function or method to be called when the filter is applied.
+- **$priority**: (int) Optional. Used to specify the order in which callbacks are executed. Lower numbers = earlier execution. Default is 20.
+- **$accepted_args**: (int) Optional. The number of arguments your callback accepts. Default is 1.
 
-A plugin can modify data by binding a callback to a filter hook. When the filter is later applied, each bound callback
-is run in order of priority, and given the opportunity to modify a value by returning a new value.
-
-The following example shows how a callback function is bound to a filter hook.
-
-Note that `$example` is passed to the callback, (maybe) modified, then returned:
+#### Example
 
 ```php
-function example_callback( $example ) {
-    // Maybe modify $example in some way.
-    return $example;
+// In a service provider's boot method or theme functions.php
+add_filter('base_filter_public_single_data', function ($data, $model) {
+    if ($model instanceof \Botble\Blog\Models\Post) {
+        // Modify post data
+        $data['custom_field'] = get_meta_data($model, 'custom_field', true);
+    }
+
+    return $data;
+}, 20, 2);
+```
+
+### Applying a Filter
+
+To apply a filter (usually done in core code), use the `apply_filters()` function:
+
+```php
+$modified_value = apply_filters(string $tag, mixed $value, ...$args)
+```
+
+#### Parameters
+
+- **$tag**: (string) The name of the filter to apply.
+- **$value**: (mixed) The value to filter.
+- **$args**: (mixed) Optional. Additional arguments to pass to the callbacks hooked to the filter.
+
+#### Example
+
+```php
+// In a controller or service
+public function getData($id)
+{
+    $post = Post::findOrFail($id);
+    $data = $post->toArray();
+
+    // Apply a filter to the data
+    $data = apply_filters('blog_post_data', $data, $post);
+
+    return $data;
 }
-add_filter( 'example_filter', 'example_callback' );
 ```
 
-Bound callbacks can accept from none to the total number of arguments passed as parameters
-in the corresponding `apply_filters()` call.
+### Removing a Filter
 
-In other words, if an apply_filters() call passes four total arguments, callbacks bound to
-it can accept none (the same as 1) of the arguments or up to four. The important part is that
-the `$accepted_args` value must reflect the number of arguments the bound callback actually
-opted to accept. If no arguments were accepted by the callback that is considered to be the
-same as accepting 1 argument. For example:
+To remove a previously added filter, use the `remove_filter()` function:
 
 ```php
-// Filter call.
-$value = apply_filters( 'hook', $value, $arg2, $arg3 );
-
-// Accepting zero/one arguments.
-function example_callback() {
-    ...
-    return 'some value';
-}
-add_filter( 'hook', 'example_callback' ); // Where $priority is default 10, $accepted_args is default 1.
-
-// Accepting two arguments (three possible).
-function example_callback( $value, $arg2 ) {
-    ...
-    return $maybe_modified_value;
-}
-add_filter( 'hook', 'example_callback', 10, 2 ); // Where $priority is 10, $accepted_args is 2.
+remove_filter(string $tag)
 ```
 
-::: tip
-The function will return true whether or not the callback is valid. It is up to you to take care.
-This is done for optimization purposes, so everything is as quick as possible.
-:::
-
-### Parameters
-
-**$tag**: (string) (Required) The name of the filter to hook the $function_to_add callback to.
-
-**$function_to_add**: (callable) (Required) The callback to be run when the filter is applied.
-
-**$priority**:
-
-- (int) (Optional) Used to specify the order in which the functions associated with a particular action are executed.
-  Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in
-  which they were added to the action.
-- Default value: 10
-
-**$accepted_args**:
-
-- (int) (Optional) The number of arguments the function accepts.
-- Default value: 1
-
-## apply_filters()
-
-** Reference: https://developer.wordpress.org/reference/functions/apply_filters **
-
-Function: Call the functions added to a filter hook.
+#### Example
 
 ```php
-apply_filters(string $tag, mixed $value)
+// Remove all callbacks for a filter
+remove_filter('base_filter_public_single_data');
 ```
 
-### Description
+## Common Filter Hooks
 
-The callback functions attached to filter hook $tag are invoked by calling this function. This function can be used to
-create a new filter hook by simply calling this function with the name of the new hook specified using the $tag
-parameter.
+Botble CMS provides many filter hooks that you can use in your plugins and themes. Here are some of the most commonly used ones:
 
-The function allows for additional arguments to be added and passed to hooks.
+### Content Filters
+
+- **BASE_FILTER_PUBLIC_SINGLE_DATA**: Modify data for a single item on the front end.
+  ```php
+  add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, function ($data, $model) {
+      // Modify single item data
+      return $data;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_BEFORE_GET_SINGLE**: Modify query before getting a single item.
+  ```php
+  add_filter(BASE_FILTER_BEFORE_GET_SINGLE, function ($query, $model) {
+      // Modify query
+      return $query;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_BEFORE_GET_BY_SLUG**: Modify query before getting an item by slug.
+  ```php
+  add_filter(BASE_FILTER_BEFORE_GET_BY_SLUG, function ($query, $model, $slug) {
+      // Modify query
+      return $query;
+  }, 20, 3);
+  ```
+
+### Form Filters
+
+- **BASE_FILTER_BEFORE_RENDER_FORM**: Modify form before rendering.
+  ```php
+  add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
+      // Modify form
+      return $form;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_AFTER_FORM_CREATED**: Modify form after creation.
+  ```php
+  add_filter(BASE_FILTER_AFTER_FORM_CREATED, function ($form, $data) {
+      // Modify form
+      return $form;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_FORM_EDITOR_BUTTONS**: Modify editor buttons.
+  ```php
+  add_filter(BASE_FILTER_FORM_EDITOR_BUTTONS, function ($buttons) {
+      // Add or remove buttons
+      $buttons[] = 'myCustomButton';
+      return $buttons;
+  }, 20, 1);
+  ```
+
+### Dashboard Filters
+
+- **DASHBOARD_FILTER_ADMIN_LIST**: Modify dashboard widgets.
+  ```php
+  add_filter(DASHBOARD_FILTER_ADMIN_LIST, function ($widgets, $widgetSettings) {
+      // Add or modify dashboard widgets
+      return $widgets;
+  }, 20, 2);
+  ```
+
+- **DASHBOARD_FILTER_ADMIN_NOTIFICATIONS**: Modify dashboard notifications.
+  ```php
+  add_filter(DASHBOARD_FILTER_ADMIN_NOTIFICATIONS, function ($notifications) {
+      // Add or modify notifications
+      return $notifications . '<div class="alert alert-info">Custom notification</div>';
+  }, 20, 1);
+  ```
+
+### Table Filters
+
+- **BASE_FILTER_TABLE_HEADINGS**: Modify table headings.
+  ```php
+  add_filter(BASE_FILTER_TABLE_HEADINGS, function ($headings, $table) {
+      // Modify table headings
+      return $headings;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_TABLE_BUTTONS**: Modify table buttons.
+  ```php
+  add_filter(BASE_FILTER_TABLE_BUTTONS, function ($buttons, $table) {
+      // Add or modify table buttons
+      return $buttons;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_GET_LIST_DATA**: Modify data for tables.
+  ```php
+  add_filter(BASE_FILTER_GET_LIST_DATA, function ($data, $model) {
+      // Modify list data
+      return $data;
+  }, 20, 2);
+  ```
+
+### Menu Filters
+
+- **BASE_FILTER_DASHBOARD_MENU**: Modify dashboard menu.
+  ```php
+  add_filter(BASE_FILTER_DASHBOARD_MENU, function ($menu) {
+      // Modify dashboard menu
+      return $menu;
+  }, 20, 1);
+  ```
+
+- **BASE_FILTER_APPEND_MENU_NAME**: Append text to menu names.
+  ```php
+  add_filter(BASE_FILTER_APPEND_MENU_NAME, function ($name, $menuId) {
+      // Append text to menu name
+      if ($menuId === 'cms-plugins-blog') {
+          return $name . ' <span class="badge badge-success">New</span>';
+      }
+      return $name;
+  }, 20, 2);
+  ```
+
+### Enum Filters
+
+- **BASE_FILTER_ENUM_ARRAY**: Modify enum values.
+  ```php
+  add_filter(BASE_FILTER_ENUM_ARRAY, function ($values, $class) {
+      if ($class === \Botble\Base\Enums\BaseStatusEnum::class) {
+          $values['PENDING'] = 'pending';
+      }
+      return $values;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_ENUM_LABEL**: Modify enum labels.
+  ```php
+  add_filter(BASE_FILTER_ENUM_LABEL, function ($label, $class, $value) {
+      if ($class === \Botble\Base\Enums\BaseStatusEnum::class && $value === 'pending') {
+          return 'Waiting for approval';
+      }
+      return $label;
+  }, 20, 3);
+  ```
+
+## Best Practices
+
+1. **Always Return a Value**: Filters must always return a value, even if you don't modify it.
+
+2. **Use Appropriate Priority**: Choose a priority that makes sense for your filter. Lower numbers run earlier.
+
+3. **Accept Only Needed Arguments**: Only specify the number of arguments your callback actually needs.
+
+4. **Check Types**: Always check the type of data you're filtering to avoid errors.
+
+5. **Document Your Filters**: If you're creating new filter hooks, document them clearly for other developers.
+
+6. **Use Service Providers**: Register your filter hooks in service providers' boot methods for better organization.
+
+## Creating Custom Filter Hooks
+
+You can create your own filter hooks in your plugins or themes:
 
 ```php
-// Our filter callback function
-function example_callback( $string, $arg1, $arg2 ) {
-    // (maybe) modify $string
-    return $string;
-}
-add_filter( 'example_filter', 'example_callback', 10, 3 );
+// In your controller or service
+public function getData($id)
+{
+    $data = YourModel::findOrFail($id)->toArray();
 
-/*
- * Apply the filters by calling the 'example_callback' function we
- * "hooked" to 'example_filter' using the add_filter() function above.
- * - 'example_filter' is the filter hook $tag
- * - 'filter me' is the value being filtered
- * - $arg1 and $arg2 are the additional arguments passed to the callback.
-$value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
+    // Apply a custom filter
+    $data = apply_filters('my_plugin_get_data', $data, $id);
+
+    return $data;
+}
 ```
 
-### Parameters
+Other developers can then hook into your custom filter:
 
-**$tag**:
+```php
+add_filter('my_plugin_get_data', function ($data, $id) {
+    // Modify the data
+    $data['custom_field'] = 'Custom value';
 
-- (string) (Required) The name of the filter hook.
-
-**$value**:
-
-- (mixed) (Required) The value on which the filters hooked to $tag are applied on.
-
-**$var,...**:
-
-- (mixed) (Required) Additional variables passed to the functions hooked to $tag.
+    return $data;
+}, 20, 2);
+```
