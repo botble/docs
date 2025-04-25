@@ -63,6 +63,7 @@ export default [
       { text: 'Meta box', link: '/cms/meta-box' },
       { text: 'Dashboard Widgets', link: '/cms/dashboard-widgets' },
       { text: 'Dashboard Menu', link: '/cms/dashboard-menu' },
+      { text: 'Panel Sections', link: '/cms/panel-section' },
       {
         text: 'Form builder',
         link: '/cms/form-builder-get-started',
@@ -82,6 +83,7 @@ export default [
       { text: 'SEO helper', link: '/cms/seo-helper' },
       { text: 'Enum', link: '/cms/enum' },
       { text: 'Slug field', link: '/cms/slug-field' },
+      { text: 'Table builder', link: '/cms/table-builder' },
       { text: 'Localization', link: '/cms/localization' },
       { text: 'Sitemap', link: '/cms/sitemap' },
       { text: 'FAQ', link: '/cms/faq' },
