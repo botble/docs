@@ -19,10 +19,6 @@ $this->add(
 );
 ```
 
-Result:
-
-![On/Off Field](./images/form-on-off.png)
-
 ## OnOffCheckboxField
 
 The OnOffCheckboxField provides a checkbox styled as a toggle switch.
@@ -41,7 +37,3 @@ $this->add(
         ->value(1) // Value when checked (optional, default is 1)
 );
 ```
-
-Result:
-
-![On/Off Checkbox Field](./images/form-on-off-checkbox.png)

@@ -15,10 +15,6 @@ $this->add(
 );
 ```
 
-Result:
-
-![Color Field](./images/form-color-field.png)
-
 ## Color Selector Field
 
 The color selector field provides a dropdown with predefined color options.

@@ -114,7 +114,3 @@ $this->add(
         ->label(__('Phone Number'))
 );
 ```
-
-Result:
-
-![Phone Number Field](./images/form-phone-number.png)

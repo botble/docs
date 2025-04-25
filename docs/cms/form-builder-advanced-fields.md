@@ -21,10 +21,6 @@ $this->add(
 );
 ```
 
-Result:
-
-![Autocomplete Field](./images/form-autocomplete.png)
-
 ## Multi Check List Field
 
 The multi check list field provides a list of checkboxes for selecting multiple options.
@@ -125,7 +121,3 @@ $this->add(
         ->selectedCategories($this->model ? $this->model->categories()->pluck('category_id')->all() : [])
 );
 ```
-
-Result:
-
-![Tree Category Field](./images/form-tree-category.png)
