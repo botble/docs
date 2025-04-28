@@ -78,6 +78,18 @@ Don't try to activate it many times, your domain & IP will be added to blacklist
 - You can deactivate your license in the admin panel under Settings -> General
 - If you can't access your admin panel or deactivate your license for any reason, please contact us at contact@botble.com, and we will assist you
 
+### Resetting Your License
+
+If you need to reset your license (for example, if you've changed domains or are experiencing activation issues):
+
+1. Please log in to our customer license manager site https://license.botble.com to reset your license
+2. Once reset, you can activate your license again on your new domain
+
+This is particularly useful when:
+- You've moved your website to a new domain
+- You're experiencing issues with license activation
+- You need to reinstall your website
+
 ### Multiple Environments
 
 - You can use the same license for both your production and development environments, as long as they're not publicly accessible at the same time

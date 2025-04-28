@@ -6,6 +6,7 @@ export default [
     items: [
       { text: 'Introduction', link: '/cms/' },
       { text: 'Screenshots', link: '/cms/screenshots' },
+      { text: 'Source Code Structure', link: '/cms/source-code-structure' },
       { text: 'Release Notes', link: '/cms/releases' },
       { text: 'Upgrade Guide', link: '/cms/upgrade' },
       {
@@ -129,8 +130,12 @@ export default [
         text: 'Plugin Development',
         collapsed: false,
         items: [
-          { text: 'Getting Started', link: '/cms/plugin' },
-          { text: 'Plugin Structure', link: '/cms/plugin-structure' },
+          { text: 'Getting Started', link: '/cms/plugin-development/' },
+          { text: 'Plugin Structure', link: '/cms/plugin-development/structure' },
+          { text: 'Basic Components', link: '/cms/plugin-development/basic-components' },
+          { text: 'Advanced Components', link: '/cms/plugin-development/advanced-components' },
+          { text: 'Frontend Integration', link: '/cms/plugin-development/frontend-integration' },
+          { text: 'FAQ', link: '/cms/plugin-development/faq' },
         ],
       },
       {

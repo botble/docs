@@ -101,22 +101,22 @@ Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
 ### Controller Method
 
 ```php
-use Botble\Slug\Repositories\Interfaces\SlugInterface;
+use Botble\Slug\Models\Slug;
 use YourPlugin\Models\YourModel;
 use Botble\Theme\Facades\Theme;
 
-public function getDetail(string $slug, SlugInterface $slugRepository)
+public function getDetail(string $slug)
 {
-    $slug = $slugRepository->getFirstBy([
+    $slugObj = Slug::query()->where([
         'key' => $slug,
         'reference_type' => YourModel::class,
-    ]);
+    ])->first();
 
-    if (!$slug) {
+    if (!$slugObj) {
         abort(404);
     }
 
-    $data = YourModel::query()->findOrFail($slug->reference_id);
+    $data = YourModel::query()->findOrFail($slugObj->reference_id);
 
     do_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, YOUR_PLUGIN_MODULE_SCREEN_NAME, $data);
 
