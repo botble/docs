@@ -15,7 +15,7 @@ php artisan cms:theme:create demo
 
 If you get an error like this:
 
-![error](./images/theme-create-issue.png)
+![error](./../images/theme-create-issue.png)
 
 You need to delete folder `/vendor` and run command `composer install` to reinstall it, then you will have that command.
 
