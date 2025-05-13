@@ -24,6 +24,7 @@ import zelioSidebar from '../zelio/sidebar'
 import carentoSidebar from '../carento/sidebar'
 import infiniaSidebar from '../infinia/sidebar'
 import posProSidebar from '../pos-pro/sidebar'
+import affiliateProSidebar from '../affiliate-pro/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -93,6 +94,7 @@ export default defineConfig({
           { text: 'Carento', link: '/carento/'},
           { text: 'Infinia', link: '/infinia/'},
           { text: 'POS Pro', link: '/pos-pro/'},
+          { text: 'Affiliate Pro', link: '/affiliate-pro/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -129,6 +131,7 @@ export default defineConfig({
       carento: carentoSidebar,
       infinia: infiniaSidebar,
       'pos-pro': posProSidebar,
+      'affiliate-pro': affiliateProSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
