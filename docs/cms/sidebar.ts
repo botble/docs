@@ -45,6 +45,7 @@ export default [
           { text: 'Amazon S3', link: '/cms/usage-media-s3' },
           { text: 'Wasabi', link: '/cms/usage-media-wasabi' },
           { text: 'BunnyCDN', link: '/cms/usage-media-bunnycdn' },
+          { text: 'Cloudflare R2', link: '/cms/usage-media-cloudflare-r2' },
         ],
       },
       {
