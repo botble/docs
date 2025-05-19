@@ -18,7 +18,7 @@ In the admin panel, go to `Settings` -> `Media` to configure Cloudflare R2 for s
 | Setting | Description | Example                                          |
 |---------|-------------|--------------------------------------------------|
 | Access Key ID | Your Cloudflare R2 Access Key ID | `a56438098e18dc7444bxxxx`                        |
-| Secret Key | Your Cloudflare R2 Secret Key | `3e63ead6a418e3b78eca46ddfe82595cd12583071bxxxxx 
+| Secret Key | Your Cloudflare R2 Secret Key | `3e63ead6a418e3b78eca46ddfe82595cd12583071bxxxxx` 
 | Bucket | The name of your R2 bucket | `mybucket`                                       |
 | URL | The public URL for your bucket | `https://pub-f70218cc331a40689xxx.r2.dev`        |
 | Endpoint | The R2 API endpoint | `https://xxx.r2.cloudflarestorage.com`           |
