@@ -267,3 +267,143 @@ add_filter('my_plugin_get_data', function ($data, $id) {
     return $data;
 }, 20, 2);
 ```
+
+## Request Class Filters
+
+Botble CMS provides several filters in the `Botble\Support\Http\Requests\Request` class that allow you to modify validation rules, messages, attributes, and data before validation occurs. These filters are particularly useful for plugins that need to extend or modify form validation behavior without modifying core files.
+
+### Available Request Filters
+
+- **core_request_rules**: Modify validation rules.
+  ```php
+  add_filter('core_request_rules', function ($rules, $request) {
+      // Add or modify validation rules
+      if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+          $rules['title'] = 'required|max:255|min:10';
+          $rules['custom_field'] = 'required|string';
+      }
+      return $rules;
+  }, 20, 2);
+  ```
+
+- **core_request_messages**: Modify validation error messages.
+  ```php
+  add_filter('core_request_messages', function ($messages, $request) {
+      // Add or modify validation messages
+      if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+          $messages['title.min'] = 'The title must be at least 10 characters.';
+          $messages['custom_field.required'] = 'The custom field is required.';
+      }
+      return $messages;
+  }, 20, 2);
+  ```
+
+- **core_request_attributes**: Modify attribute names used in validation messages.
+  ```php
+  add_filter('core_request_attributes', function ($attributes, $request) {
+      // Add or modify attribute names
+      if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+          $attributes['custom_field'] = 'Custom Field';
+      }
+      return $attributes;
+  }, 20, 2);
+  ```
+
+- **core_request_validation_data**: Modify the data to be validated.
+  ```php
+  add_filter('core_request_validation_data', function ($data, $request) {
+      // Modify the data before validation
+      if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+          // Sanitize or transform input data
+          if (isset($data['title'])) {
+              $data['title'] = trim($data['title']);
+          }
+
+          // Add computed fields
+          $data['slug'] = \Str::slug($data['title']);
+      }
+      return $data;
+  }, 20, 2);
+  ```
+
+### How It Works
+
+These filters are applied in the `createDefaultValidator` method of the `Request` class:
+
+```php
+protected function createDefaultValidator(ValidationFactory $factory)
+{
+    $rules = method_exists($this, 'rules') ? $this->container->call([$this, 'rules']) : [];
+
+    $rules = apply_filters('core_request_rules', $rules, $this);
+
+    $messages = apply_filters('core_request_messages', $this->messages(), $this);
+
+    $attributes = apply_filters('core_request_attributes', $this->attributes(), $this);
+
+    $validationData = apply_filters('core_request_validation_data', $this->validationData(), $this);
+
+    // @phpstan-ignore-next-line
+    $validator = $factory->make(
+        $validationData,
+        $rules,
+        $messages,
+        $attributes
+    )->stopOnFirstFailure($this->stopOnFirstFailure);
+
+    if ($this->isPrecognitive()) {
+        $validator->setRules(
+            $this->filterPrecognitiveRules($validator->getRulesWithoutPlaceholders())
+        );
+    }
+
+    return $validator;
+}
+```
+
+### Use Cases
+
+1. **Adding Custom Validation Rules**: Add new validation rules to specific request types without modifying the original request classes.
+
+2. **Modifying Validation Messages**: Customize error messages for specific fields or rules.
+
+3. **Data Transformation**: Transform or sanitize input data before validation occurs.
+
+4. **Dynamic Validation**: Add or remove validation rules based on runtime conditions.
+
+5. **Plugin Integration**: Allow plugins to extend validation for core features.
+
+### Example: Adding Custom Validation to a Post Request
+
+```php
+// In a service provider's boot method
+public function boot()
+{
+    // Add SEO validation rules to Post requests
+    add_filter('core_request_rules', function ($rules, $request) {
+        if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+            $rules['seo_title'] = 'nullable|string|max:60';
+            $rules['seo_description'] = 'nullable|string|max:160';
+        }
+        return $rules;
+    }, 20, 2);
+
+    // Add custom validation messages
+    add_filter('core_request_messages', function ($messages, $request) {
+        if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+            $messages['seo_title.max'] = 'SEO title should not exceed 60 characters for optimal display in search results.';
+            $messages['seo_description.max'] = 'SEO description should not exceed 160 characters for optimal display in search results.';
+        }
+        return $messages;
+    }, 20, 2);
+
+    // Add custom attribute names
+    add_filter('core_request_attributes', function ($attributes, $request) {
+        if ($request instanceof \Botble\Blog\Http\Requests\PostRequest) {
+            $attributes['seo_title'] = 'SEO Title';
+            $attributes['seo_description'] = 'SEO Description';
+        }
+        return $attributes;
+    }, 20, 2);
+}
+```

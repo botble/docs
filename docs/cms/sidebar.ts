@@ -120,6 +120,7 @@ export default [
               { text: 'Advanced Fields', link: '/cms/form-builder-advanced-fields' },
             ],
           },
+          { text: 'Form Hooks', link: '/cms/form-builder-hooks' },
         ],
       },
     ],
