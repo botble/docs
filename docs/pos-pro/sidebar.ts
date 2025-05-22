@@ -7,6 +7,7 @@ export default [
         items: [
             { text: 'Installation', link: '/pos-pro/installation' },
             { text: 'Configuration', link: '/pos-pro/configuration' },
+            { text: 'Changelog', link: '/pos-pro/releases' },
             { text: 'Upgrading', link: '/pos-pro/upgrade' },
         ],
     },
