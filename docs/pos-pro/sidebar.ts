@@ -7,12 +7,14 @@ export default [
         items: [
             { text: 'Installation', link: '/pos-pro/installation' },
             { text: 'Configuration', link: '/pos-pro/configuration' },
+            { text: 'Upgrading', link: '/pos-pro/upgrade' },
         ],
     },
     {
         text: 'Usage',
         items: [
             { text: 'Using POS Pro', link: '/pos-pro/usage-guide' },
+            { text: 'Barcode Scanner', link: '/pos-pro/usage-barcode-scanner' },
             { text: 'Troubleshooting', link: '/pos-pro/troubleshooting' },
         ],
     },

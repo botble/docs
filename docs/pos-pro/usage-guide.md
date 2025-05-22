@@ -21,6 +21,7 @@ The POS interface is divided into two main sections:
 1. Products are displayed in a grid layout with images, prices, and stock information
 2. Scroll down to load more products (infinite scrolling)
 3. Use the search bar to find products by name, SKU, or barcode
+4. Use the barcode scanner feature to quickly find products by scanning their barcodes (see [Barcode Scanner](usage-barcode-scanner.md) for details)
 
 ### Adding Products to Cart
 
@@ -116,6 +117,13 @@ The receipt includes:
 - Subtotal, tax, shipping, and total amount
 
 ## Additional Features
+
+### Barcode Scanner
+
+1. Click the barcode icon next to the search bar to activate the camera scanner
+2. Scan product barcodes to quickly find and add products to the cart
+3. Both camera-based scanning and hardware barcode scanners are supported
+4. See the [Barcode Scanner](usage-barcode-scanner.md) guide for detailed instructions
 
 ### Full Screen Mode
 
