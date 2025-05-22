@@ -8,8 +8,6 @@ Botble CMS provides full source code with no encryption. The codebase is structu
 
 Botble CMS follows a modular architecture pattern in Laravel, which separates the application into distinct modules, each responsible for a specific feature or functionality.
 
-![Modular Architecture](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9S3JhMtLGnYecxP2rV-a7Q.png)
-
 You can learn more about modular architecture in Laravel from this article: [Exploring Modular Architecture in Laravel](https://moezmissaoui.medium.com/exploring-modular-architecture-in-laravel-c44a1e88eebf)
 
 ## Source Code Location
