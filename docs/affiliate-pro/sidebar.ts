@@ -10,11 +10,23 @@ export default [
         ],
     },
     {
-        text: 'Usage',
+        text: 'User Guide',
         items: [
-            { text: 'Using Affiliate Pro', link: '/affiliate-pro/usage-guide' },
-            { text: 'Troubleshooting', link: '/affiliate-pro/troubleshooting' },
+            { text: 'Complete Usage Guide', link: '/affiliate-pro/usage-guide' },
         ],
     },
-    { text: 'Frequent Questions', link: '/affiliate-pro/faq' },
+    {
+        text: 'Updates',
+        items: [
+            { text: 'Release Notes', link: '/affiliate-pro/releases' },
+            { text: 'Upgrade Guide', link: '/affiliate-pro/upgrade' },
+        ],
+    },
+    {
+        text: 'Support',
+        items: [
+            { text: 'Troubleshooting', link: '/affiliate-pro/troubleshooting' },
+            { text: 'FAQ', link: '/affiliate-pro/faq' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[];

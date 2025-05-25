@@ -5,7 +5,7 @@ This guide will walk you through the process of configuring the Affiliate Pro pl
 ## Accessing Affiliate Settings
 
 1. Log in to your admin panel
-2. Navigate to **Settings** > **Affiliate Settings**
+2. Navigate to **Settings** > **E-commerce** > **Affiliate Settings**
 3. You will see the Affiliate Pro configuration page
 
 ## Available Settings
@@ -55,6 +55,31 @@ This guide will walk you through the process of configuring the Affiliate Pro pl
   - Performance digests
 - **Email Templates**: Customize the content of notification emails sent to admins and affiliates.
 
+### Promotional Banner Settings
+
+Configure promotional banners that affiliates can use for marketing:
+
+- **Banner 1 Settings**:
+  - **Name**: Display name for the banner (e.g., "Banner 1 (468x60)")
+  - **Image**: Upload banner image file
+  - Recommended size: 468x60 pixels
+
+- **Banner 2 Settings**:
+  - **Name**: Display name for the second banner (e.g., "Banner 2 (728x90)")
+  - **Image**: Upload second banner image
+  - Recommended size: 728x90 pixels
+
+- **Banner 3 Settings**:
+  - **Name**: Display name for the third banner (e.g., "Banner 3 (300x250)")
+  - **Image**: Upload third banner image
+  - Recommended size: 300x250 pixels
+
+### Short Link Settings
+
+- **Enable Short Links**: Allow affiliates to create shortened tracking links for easier sharing
+- Short links are automatically generated and tracked
+- Useful for social media and messaging platforms
+
 ### API Integration
 
 - **API Access**: Enable/disable API access for third-party integrations.
@@ -63,35 +88,120 @@ This guide will walk you through the process of configuring the Affiliate Pro pl
 
 ## Permissions
 
-Affiliate Pro includes the following permissions that can be assigned to user roles:
+Affiliate Pro includes comprehensive permissions that can be assigned to user roles:
 
-- **Affiliate**: Access to the affiliate management system
-- **Create**: Ability to create affiliates and related data
-- **Edit**: Ability to edit affiliate information and settings
-- **Delete**: Ability to delete affiliate-related data
-- **Settings**: Access to affiliate settings
+### Core Permissions
+- **affiliate.index**: View affiliate list and basic information
+- **affiliate.create**: Create new affiliate accounts
+- **affiliate.edit**: Edit affiliate information and settings
+- **affiliate.destroy**: Delete affiliate accounts
+
+### Commission Permissions
+- **affiliate.commissions.index**: View commission records
+- **affiliate.commissions.approve**: Approve or reject commission payments
+
+### Withdrawal Permissions
+- **affiliate.withdrawals.index**: View withdrawal requests
+- **affiliate.withdrawals.approve**: Approve or reject withdrawal requests
+
+### Reporting Permissions
+- **affiliate.reports**: Access to affiliate reports and analytics
+
+### Coupon Permissions
+- **affiliate.coupons.index**: View affiliate-specific coupons
+- **affiliate.coupons.create**: Create affiliate coupons
+- **affiliate.coupons.destroy**: Delete affiliate coupons
+
+### Settings Permissions
+- **affiliate.settings**: Access to affiliate configuration settings
 
 To manage permissions:
 
 1. Go to **Users** > **Roles**
-2. Edit a role
-3. Find the Affiliate Pro section in permissions
-4. Check/uncheck permissions as needed
+2. Edit a role (e.g., "Staff", "Manager")
+3. Find the "Affiliate" section in permissions
+4. Check/uncheck permissions based on role requirements
 5. Save changes
 
-## Applying Changes
+## Product-Level Configuration
 
-After making changes to the Affiliate settings:
+### Setting Product Commission Rates
 
-1. Click the "Save Changes" button at the bottom of the settings page
-2. The changes will be applied immediately
-3. You may need to refresh the affiliate dashboard if you have it open in another tab
+1. Navigate to **Products** > **All Products**
+2. Edit a product
+3. Go to the **Affiliate** tab
+4. Configure:
+   - **Enable Affiliate**: Toggle affiliate program for this product
+   - **Commission Percentage**: Override default/category commission rate
+   - **Commission Type**: Fixed amount or percentage
 
-## Troubleshooting
+### Category Commission Configuration
 
-If you encounter issues with the Affiliate Pro configuration:
+1. Go to **Settings** > **E-commerce** > **Affiliate Settings**
+2. Enable **Commission for Each Category**
+3. Add category groups:
+   - Set commission percentage for the group
+   - Select categories to include
+   - Save configuration
 
-1. Ensure that the default commission percentage is a valid number between 0 and 100
-2. Check that the cookie lifetime is a positive integer
-3. Verify that the minimum withdrawal amount is a valid number
-4. Make sure that users have the appropriate permissions to access the affiliate system
+## Applying Configuration Changes
+
+### Saving Settings
+1. After making changes, click the **"Save Changes"** button
+2. Changes are applied immediately
+3. Clear cache if needed: `php artisan cache:clear`
+
+### Testing Configuration
+1. Test affiliate registration process
+2. Verify commission calculations
+3. Test withdrawal process
+4. Check email notifications
+5. Validate tracking functionality
+
+## Advanced Configuration
+
+### Performance Optimization
+- **Database Indexing**: Ensure proper indexing for large datasets
+- **Cache Configuration**: Configure Redis/Memcached for better performance
+- **CDN Setup**: Use CDN for promotional materials
+
+### Security Settings
+- **IP Restrictions**: Limit affiliate access by IP address
+- **Fraud Detection**: Enable automatic fraud detection
+- **Click Validation**: Validate legitimate clicks vs. bot traffic
+
+## Troubleshooting Configuration Issues
+
+### Common Issues and Solutions
+
+**Commission calculations incorrect:**
+- Verify commission percentages are set correctly (0-100)
+- Check category-specific settings
+- Ensure product-level overrides are configured properly
+
+**Tracking not working:**
+- Check cookie lifetime settings (must be positive integer)
+- Verify middleware is properly installed
+- Test with different browsers/devices
+
+**Email notifications not sending:**
+- Check email template configuration
+- Verify SMTP settings in **Settings** > **Email**
+- Test email functionality
+
+**Withdrawal issues:**
+- Check minimum withdrawal amount (must be positive number)
+- Verify payment method configuration
+- Ensure sufficient affiliate balance
+
+**Permission errors:**
+- Review role permissions carefully
+- Check user role assignments
+- Verify permission inheritance
+
+**Performance issues:**
+- Monitor database query performance
+- Check server resource usage
+- Consider caching optimization
+
+If you continue to encounter configuration issues, please refer to the Troubleshooting section or contact our support team with specific error details and system information.

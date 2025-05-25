@@ -8,9 +8,10 @@ Affiliate Pro is a comprehensive affiliate marketing system designed for e-comme
 
 ### What are the system requirements for Affiliate Pro?
 
-- Botble CMS version 7.3.0 or higher
-- PHP version 8.0 or higher
-- Active e-commerce plugin
+- Botble CMS version 7.5.0 or higher
+- PHP version 8.2 or higher
+- Active E-commerce plugin
+- MySQL 5.7+ or MariaDB 10.3+
 
 ### How does the affiliate tracking work?
 

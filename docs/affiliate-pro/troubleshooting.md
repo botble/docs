@@ -142,6 +142,44 @@ If you suspect database issues:
 2. Check if the required tables exist and have the correct structure
 3. Ensure there are no corrupted records in the database
 
+### Performance Issues
+
+If the plugin is causing performance problems:
+
+1. **Database Optimization**:
+   - Check for missing indexes on affiliate tables
+   - Clean up old click data periodically
+   - Monitor database query performance
+
+2. **Caching**:
+   - Enable Redis or Memcached for better performance
+   - Configure appropriate cache lifetimes
+   - Clear cache regularly
+
+3. **Server Resources**:
+   - Monitor CPU and memory usage
+   - Increase PHP memory limits if needed
+   - Consider upgrading server resources
+
+### Security Concerns
+
+If you notice suspicious affiliate activity:
+
+1. **Monitor Activity**:
+   - Review click patterns and sources
+   - Check for unusual conversion rates
+   - Monitor geographic distribution of traffic
+
+2. **Fraud Detection**:
+   - Set up automated alerts for suspicious activity
+   - Review affiliate registration information
+   - Implement click validation mechanisms
+
+3. **Account Investigation**:
+   - Review affiliate marketing practices
+   - Check for policy violations
+   - Suspend accounts if necessary pending investigation
+
 ## Getting Support
 
 If you're unable to resolve the issue using this troubleshooting guide, please contact our support team:

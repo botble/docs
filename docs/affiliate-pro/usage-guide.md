@@ -282,15 +282,286 @@ This guide provides detailed instructions on how to configure and use the Affili
    - Withdrawal requested/processed
 4. Test webhook delivery to ensure proper integration
 
-## Best Practices for Affiliates
+## Advanced Features
 
-1. Use short links for cleaner, more professional-looking URLs
-2. Create product-specific links for targeted promotions
-3. Offer exclusive coupons to incentivize purchases
-4. Regularly check your dashboard for performance insights
-5. Optimize your marketing based on conversion data
-6. Request withdrawals only when you've accumulated a significant amount
-7. Use the provided promotional materials for professional marketing
-8. Track which traffic sources convert best and focus your efforts there
-9. Utilize UTM parameters to better understand your audience
-10. Stay informed through email notifications about your performance
+### QR Code Generation
+
+1. Navigate to **Short Links** in your affiliate dashboard
+2. Create a short link for any product or page
+3. Click on the **QR Code** icon next to your short link
+4. Download the QR code image
+5. Use QR codes for:
+   - Print advertisements
+   - Business cards
+   - Flyers and brochures
+   - In-store displays
+   - Social media posts
+
+### UTM Parameter Tracking
+
+1. Add UTM parameters to your affiliate links for better tracking:
+   - `utm_source`: Identify the traffic source (e.g., facebook, newsletter)
+   - `utm_medium`: Identify the medium (e.g., social, email, banner)
+   - `utm_campaign`: Identify the campaign name
+   - `utm_content`: Identify specific content or ad variation
+
+2. Example: `https://store.com/product?ref=AFFILIATE123&utm_source=facebook&utm_medium=social&utm_campaign=summer_sale`
+
+3. View UTM tracking data in your affiliate reports
+
+### Bulk Link Generation
+
+1. Navigate to **Affiliate Pro > Tools > Bulk Link Generator** (Admin)
+2. Upload a CSV file with product URLs
+3. Generate affiliate links for multiple products at once
+4. Export the generated links for distribution to affiliates
+
+## Integration with Third-Party Tools
+
+### Google Analytics Integration
+
+1. Set up Google Analytics tracking for affiliate links
+2. Configure goal tracking for affiliate conversions
+3. Create custom reports for affiliate performance
+4. Use Google Analytics data to optimize affiliate campaigns
+
+### Social Media Integration
+
+1. **Facebook Pixel**: Track affiliate conversions from Facebook ads
+2. **Instagram Shopping**: Use affiliate links in Instagram posts
+3. **YouTube**: Include affiliate links in video descriptions
+4. **Pinterest**: Create affiliate pins with tracking links
+
+### Email Marketing Integration
+
+1. **Mailchimp**: Include affiliate links in email campaigns
+2. **Constant Contact**: Track affiliate performance from email marketing
+3. **AWeber**: Automate affiliate link distribution via email
+
+## Troubleshooting Common Issues
+
+### Affiliate Links Not Working
+
+**Problem**: Clicks not being tracked or commissions not credited
+
+**Solutions**:
+1. Check if cookies are enabled in the browser
+2. Verify the affiliate code is correct in the URL
+3. Ensure the tracking middleware is properly installed
+4. Test links in incognito/private browsing mode
+5. Check if JavaScript is enabled
+6. Verify the affiliate account is active and approved
+
+### Commission Calculation Issues
+
+**Problem**: Incorrect commission amounts or missing commissions
+
+**Solutions**:
+1. Verify commission rates are set correctly in settings
+2. Check if the product is eligible for affiliate commissions
+3. Ensure the order status is "completed"
+4. Verify the customer completed the purchase within the cookie lifetime
+5. Check for any commission exclusions or restrictions
+
+### Withdrawal Processing Delays
+
+**Problem**: Withdrawal requests taking too long to process
+
+**Solutions**:
+1. Check if the withdrawal amount meets the minimum threshold
+2. Verify payment method details are correct and complete
+3. Ensure sufficient balance is available
+4. Contact admin if requests are stuck in pending status
+5. Check for any account restrictions or holds
+
+### Dashboard Access Issues
+
+**Problem**: Cannot access affiliate dashboard or features
+
+**Solutions**:
+1. Verify affiliate account is approved and active
+2. Check user permissions and role assignments
+3. Clear browser cache and cookies
+4. Try accessing from a different browser or device
+5. Contact administrator for account status verification
+
+### Email Notification Problems
+
+**Problem**: Not receiving affiliate-related emails
+
+**Solutions**:
+1. Check spam/junk folders
+2. Verify email address is correct in account settings
+3. Check email notification preferences
+4. Test email functionality with administrator
+5. Add sender email to safe senders list
+
+## Best Practices
+
+### For Store Owners
+
+#### Program Setup and Management
+
+1. **Competitive Commission Structure**:
+   - Research industry standards (typically 5-20%)
+   - Consider profit margins when setting rates
+   - Offer performance-based bonuses for top affiliates
+   - Create tiered commission structures
+
+2. **Quality Control**:
+   - Review affiliate applications carefully
+   - Monitor affiliate marketing practices
+   - Set clear guidelines and terms of service
+   - Remove affiliates who violate policies
+
+3. **Marketing Support**:
+   - Provide high-quality promotional materials
+   - Create product-specific banners and graphics
+   - Offer exclusive coupon codes for affiliates
+   - Update materials regularly with new products
+
+4. **Communication and Training**:
+   - Send regular newsletters to affiliates
+   - Provide product training and knowledge base
+   - Announce new products and promotions
+   - Offer marketing tips and best practices
+
+5. **Performance Monitoring**:
+   - Track affiliate performance metrics
+   - Identify and reward top performers
+   - Analyze conversion rates and optimize
+   - Monitor for fraudulent activity
+
+#### Payment and Financial Management
+
+1. **Timely Payments**:
+   - Process withdrawals within 7-14 days
+   - Maintain transparent payment schedules
+   - Communicate any delays immediately
+   - Offer multiple payment methods
+
+2. **Financial Tracking**:
+   - Monitor commission expenses
+   - Track ROI from affiliate program
+   - Budget for affiliate payments
+   - Maintain accurate financial records
+
+### For Affiliates
+
+#### Building a Successful Affiliate Business
+
+1. **Audience Development**:
+   - Understand your target audience
+   - Build trust through valuable content
+   - Focus on quality over quantity
+   - Engage with your community regularly
+
+2. **Content Strategy**:
+   - Create honest, detailed product reviews
+   - Develop tutorials and how-to guides
+   - Share personal experiences with products
+   - Use multiple content formats (text, video, images)
+
+3. **Marketing Channels**:
+   - Blog posts and articles
+   - Social media platforms
+   - Email newsletters
+   - YouTube videos
+   - Podcast mentions
+   - Webinars and live streams
+
+4. **Performance Optimization**:
+   - Track which strategies work best
+   - Test different promotional approaches
+   - Monitor conversion rates by channel
+   - Optimize based on performance data
+   - Focus on high-converting products
+
+5. **Professional Practices**:
+   - Always disclose affiliate relationships
+   - Follow FTC guidelines and regulations
+   - Maintain ethical marketing practices
+   - Provide honest opinions and reviews
+   - Respect audience trust
+
+#### Technical Best Practices
+
+1. **Link Management**:
+   - Use short links for cleaner URLs
+   - Create product-specific links
+   - Implement proper link tracking
+   - Test links regularly for functionality
+
+2. **SEO Optimization**:
+   - Optimize content for search engines
+   - Use relevant keywords naturally
+   - Create valuable, original content
+   - Build quality backlinks
+
+3. **Analytics and Tracking**:
+   - Monitor traffic sources and conversions
+   - Use UTM parameters for campaign tracking
+   - Analyze performance data regularly
+   - Adjust strategies based on insights
+
+## Security and Compliance
+
+### Data Protection
+
+1. **GDPR Compliance**:
+   - Obtain consent for tracking cookies
+   - Provide clear privacy policies
+   - Allow users to opt-out of tracking
+   - Maintain data processing records
+
+2. **Security Measures**:
+   - Use secure HTTPS connections
+   - Implement proper authentication
+   - Regular security audits and updates
+   - Protect affiliate and customer data
+
+### Legal Compliance
+
+1. **FTC Guidelines**:
+   - Require clear affiliate disclosures
+   - Monitor affiliate marketing practices
+   - Provide disclosure guidelines to affiliates
+   - Ensure compliance with advertising laws
+
+2. **Terms and Conditions**:
+   - Create clear affiliate agreements
+   - Define commission structures and payment terms
+   - Specify prohibited marketing practices
+   - Include termination clauses
+
+## Performance Optimization
+
+### Database Optimization
+
+1. **Regular Maintenance**:
+   - Clean up old click data periodically
+   - Optimize database indexes
+   - Archive old commission records
+   - Monitor database performance
+
+2. **Caching Strategies**:
+   - Implement Redis or Memcached
+   - Cache affiliate link redirects
+   - Use CDN for promotional materials
+   - Optimize page load times
+
+### Scalability Considerations
+
+1. **High-Volume Handling**:
+   - Implement queue systems for processing
+   - Use background jobs for heavy operations
+   - Monitor server resources and scaling
+   - Optimize tracking middleware performance
+
+2. **Load Balancing**:
+   - Distribute traffic across multiple servers
+   - Implement database read replicas
+   - Use CDN for static assets
+   - Monitor and scale infrastructure as needed
+
+This comprehensive guide covers all aspects of using the Affiliate Pro plugin effectively, from basic setup to advanced optimization strategies. Regular review and implementation of these practices will help ensure a successful affiliate marketing program.
