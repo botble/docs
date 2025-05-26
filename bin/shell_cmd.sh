@@ -9,7 +9,7 @@ function sync_doc_files() {
     "installation-using-docker.md"
     "installation-web-interface.md"
     "ssl.md"
-    "theme-rename.md"
+    "theme-development/theme-rename.md"
     "cronjob.md"
     "upgrade.md"
     "usage-analytics.md"
