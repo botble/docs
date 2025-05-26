@@ -9,7 +9,6 @@ function sync_doc_files() {
     "installation-using-docker.md"
     "installation-web-interface.md"
     "ssl.md"
-    "theme-development/theme-rename.md"
     "cronjob.md"
     "upgrade.md"
     "usage-analytics.md"
@@ -38,6 +37,8 @@ function sync_doc_files() {
         rm -rf ./docs/"$i"/"$j" && cp ./docs/cms/"$j" ./docs/"$i"/"$j"
       fi
     done
+
+    rm -rf ./docs/"$i"/theme-rename.md && cp ./docs/cms/theme-development/theme-rename.md ./docs/"$i"/theme-rename.md
   done
 
   files_to_sync=(
