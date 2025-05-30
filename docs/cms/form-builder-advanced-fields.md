@@ -1,26 +1,3 @@
-# Advanced Fields
-
-## Autocomplete Field
-
-The autocomplete field provides a select dropdown with search functionality that can load options dynamically.
-
-```php
-use Botble\Base\Forms\Fields\AutocompleteField;
-use Botble\Base\Forms\FieldOptions\AutocompleteFieldOption;
-
-$this->add(
-    'user_id', 
-    AutocompleteField::class, 
-    AutocompleteFieldOption::make()
-        ->label(__('User'))
-        ->url(route('users.search'))
-        ->selected($this->model ? $this->model->user_id : null)
-        ->ajaxSearchUrl(route('users.search.ajax'))
-        ->ajaxSearchResultKey('name')
-        ->ajaxSearchValueKey('id')
-);
-```
-
 ## Multi Check List Field
 
 The multi check list field provides a list of checkboxes for selecting multiple options.

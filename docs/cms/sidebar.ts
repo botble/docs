@@ -114,6 +114,7 @@ export default [
             text: 'Advanced Fields',
             collapsed: true,
             items: [
+              { text: 'Autocomplete Field', link: '/cms/form-builder-autocomplete-field' },
               { text: 'Date & Time Fields', link: '/cms/form-builder-date-time-field' },
               { text: 'Repeater Field', link: '/cms/form-builder-repeater-field' },
               { text: 'Special Fields', link: '/cms/form-builder-special-fields' },
