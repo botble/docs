@@ -249,6 +249,22 @@ add_filter(DASHBOARD_FILTER_ADMIN_LIST, function (array $widgets) {
 }, 120, 1);
 ```
 
+### Removing a content widget
+
+```php
+app('events')->listen(\Botble\Dashboard\Events\RenderingDashboardWidgets::class, function (): void {
+    add_filter(DASHBOARD_FILTER_ADMIN_LIST, function (array $widgets) {
+        foreach ($widgets as $key => $widget) {
+            if (str_contains($widget['view'], 'id="widget_posts_recent"')) {
+                unset($widgets[$key]);
+            }
+        }
+
+        return $widgets;
+    }, 120);
+});
+```
+
 ### Removing All Widgets
 
 To remove all dashboard widgets:
