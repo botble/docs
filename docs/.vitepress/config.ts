@@ -118,6 +118,7 @@ export default defineConfig({
       stories: storiesSidebar,
       wowy: wowySidebar,
       farmart: farmartSidebar,
+      'martfury-flutter': martfuryFlutterSidebar,
       martfury: martfurySidebar,
       nest: nestSidebar,
       jobzilla: jobzillaSidebar,
@@ -134,7 +135,6 @@ export default defineConfig({
       infinia: infiniaSidebar,
       'pos-pro': posProSidebar,
       'affiliate-pro': affiliateProSidebar,
-      'martfury-flutter': martfuryFlutterSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
