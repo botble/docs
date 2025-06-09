@@ -25,6 +25,7 @@ import carentoSidebar from '../carento/sidebar'
 import infiniaSidebar from '../infinia/sidebar'
 import posProSidebar from '../pos-pro/sidebar'
 import affiliateProSidebar from '../affiliate-pro/sidebar'
+import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -76,6 +77,7 @@ export default defineConfig({
           { text: 'Miranda', link: '/miranda/' },
           { text: 'Shopwise', link: '/shopwise/' },
           { text: 'Martfury', link: '/martfury/' },
+          { text: 'Martfury Flutter', link: '/martfury-flutter/' },
           { text: 'Stories', link: '/stories/' },
           { text: 'Wowy', link: '/wowy/' },
           { text: 'Nest', link: '/nest/' },
@@ -132,6 +134,7 @@ export default defineConfig({
       infinia: infiniaSidebar,
       'pos-pro': posProSidebar,
       'affiliate-pro': affiliateProSidebar,
+      'martfury-flutter': martfuryFlutterSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
