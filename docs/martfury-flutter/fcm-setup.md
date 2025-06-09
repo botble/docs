@@ -65,7 +65,7 @@ Before setting up FCM, ensure you have:
 ### Update Android Build Files
 
 1. **Project-level build.gradle** (`android/build.gradle`):
-```gradle
+```bash
 buildscript {
     dependencies {
         // Add this line
@@ -75,7 +75,7 @@ buildscript {
 ```
 
 2. **App-level build.gradle** (`android/app/build.gradle`):
-```gradle
+```bash
 // Add at the top
 apply plugin: 'com.google.gms.google-services'
 

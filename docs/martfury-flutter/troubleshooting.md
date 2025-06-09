@@ -36,7 +36,7 @@ If the app can't load environment variables:
    - Check that all required variables are set
 
 2. **Environment Variables Format**:
-   ```env
+   ```bash
    API_BASE_URL=https://your-api-url.com
    APP_NAME=Martfury
    APP_ENV=development

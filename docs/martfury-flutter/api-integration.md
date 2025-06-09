@@ -12,7 +12,7 @@ The Martfury Flutter app communicates with the Botble E-commerce backend through
 
 Configure your API base URL in the `.env` file:
 
-```env
+```bash
 API_BASE_URL=https://your-botble-ecommerce-api.com
 ```
 

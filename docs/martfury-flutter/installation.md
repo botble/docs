@@ -72,7 +72,7 @@ cp .env.example .env
 #### Configure Environment Variables
 Edit the `.env` file with your specific configuration:
 
-```env
+```bash
 # API Configuration
 API_BASE_URL=https://your-botble-ecommerce-api.com
 APP_NAME=Martfury

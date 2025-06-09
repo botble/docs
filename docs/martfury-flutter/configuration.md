@@ -8,7 +8,7 @@ This guide will walk you through the process of configuring the Martfury Flutter
 
 The app uses environment variables for configuration. Create and configure your `.env` file:
 
-```env
+```bash
 # API Configuration
 API_BASE_URL=https://your-botble-ecommerce-api.com
 APP_NAME=Martfury
@@ -205,7 +205,7 @@ dependencies:
 
 3. **Android Configuration**:
    - Add to `android/app/build.gradle`:
-   ```gradle
+   ```bash
    dependencies {
        implementation 'com.google.android.gms:play-services-auth:20.7.0'
    }
@@ -565,7 +565,7 @@ Configure CORS in your Botble backend to allow mobile app requests:
 
 Configure test environment in `.env.test`:
 
-```env
+```bash
 API_BASE_URL=https://test-api.your-domain.com
 APP_ENV=testing
 ENABLE_LOGGING=true
