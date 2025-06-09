@@ -23,9 +23,6 @@ export default [
         items: [
             { text: 'Authentication', link: '/martfury-flutter/features/authentication' },
             { text: 'Product Browsing', link: '/martfury-flutter/features/products' },
-            { text: 'Shopping Cart', link: '/martfury-flutter/features/cart' },
-            { text: 'Payment Integration', link: '/martfury-flutter/features/payments' },
-            { text: 'Order Management', link: '/martfury-flutter/features/orders' },
         ],
     },
     {
