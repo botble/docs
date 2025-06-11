@@ -51,6 +51,7 @@ export default [
             { text: 'Ads', link: '/shofy/usage-ads' },
             { text: 'Setup cronjob', link: '/shofy/cronjob' },
             { text: 'Newsletter', link: '/shofy/usage-newsletter' },
+            { text: 'Shippo Integration', link: '/shofy/usage-shippo' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]
