@@ -34,16 +34,16 @@ Examples:
 ## ⚙️ Basic App Settings
 
 ### App Name
-Change your app's name by following: **[App Name Guide](../quick-setup/04_app_name.md)**
+Change your app's name by following: **[App Name Guide](04_app_name.md)**
 
 ### App Colors
-Customize your app's colors: **[Theme Colors Guide](../quick-setup/01_theme_colors.md)**
+Customize your app's colors: **[Theme Colors Guide](01_theme_colors.md)**
 
 ### App Logo
-Add your logo: **[App Logo Guide](../quick-setup/05_app_logo.md)**
+Add your logo: **[App Logo Guide](05_app_logo.md)**
 
 ### Languages
-Set up multiple languages: **[Translations Guide](../quick-setup/07_translations.md)**
+Set up multiple languages: **[Translations Guide](07_translations.md)**
 
 ## 🔐 Security Settings
 
@@ -110,4 +110,4 @@ For more advanced setup:
 - Check if products are published
 - Verify categories are set up
 
-For more help, check the [Troubleshooting Guide](../support/troubleshooting.md).
+For more help, check the [Troubleshooting Guide](troubleshooting.md).

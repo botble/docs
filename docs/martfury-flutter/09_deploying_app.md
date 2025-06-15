@@ -18,7 +18,7 @@
 
 3. **Update build.gradle**
    In `android/app/build.gradle`:
-   ```gradle
+   ```groovy
    def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))

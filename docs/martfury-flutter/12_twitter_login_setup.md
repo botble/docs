@@ -39,7 +39,7 @@ This guide will help you set up Twitter (X) login in your Martfury mobile app.
 
 Create or update your `.env` file with the following variables:
 
-```env
+```bash
 TWITTER_CONSUMER_KEY=your_twitter_consumer_key
 TWITTER_CONSUMER_SECRET=your_twitter_consumer_secret
 TWITTER_REDIRECT_URI=martfury://twitter-auth

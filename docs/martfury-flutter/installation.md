@@ -70,14 +70,14 @@ Simple steps to get your Martfury app running on your computer.
 ## 📱 Next Steps
 
 Once your app is running:
-1. **Customize it**: Follow the [Quick Setup Guides](../quick-setup/01_theme_colors.md)
-2. **Set up social login**: Check [Social Login Setup](../social-login/12_twitter_login_setup.md)
-3. **Deploy it**: Follow the [Deployment Guide](../quick-setup/09_deploying_app.md)
+1. **Customize it**: Follow the [Quick Setup Guides](01_theme_colors.md)
+2. **Set up social login**: Check [Social Login Setup](12_twitter_login_setup.md)
+3. **Deploy it**: Follow the [Deployment Guide](09_deploying_app.md)
 
 ## 🆘 Need Help?
 
-- Check the [FAQ](../support/faq.md) for common questions
-- Read the [Troubleshooting Guide](../support/troubleshooting.md)
+- Check the [FAQ](faq.md) for common questions
+- Read the [Troubleshooting Guide](troubleshooting.md)
 - Contact support if you're still stuck
 
 **Remember**: Don't worry if this seems complicated at first. Most people get it working within an hour, and we're here to help!

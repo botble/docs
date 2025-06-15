@@ -21,7 +21,7 @@ This guide will help you set up Apple Sign In in your Martfury mobile app.
 
 Create or update your `.env` file with the following variables:
 
-```env
+```bash
 APPLE_SERVICE_ID=your_apple_service_id
 APPLE_TEAM_ID=your_apple_team_id
 APPLE_KEY_ID=your_apple_key_id

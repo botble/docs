@@ -30,7 +30,7 @@ Note:
 
 Create or update your `.env` file with the following variables:
 
-```env
+```bash
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_SERVER_CLIENT_ID=your_google_server_client_id
 ```
@@ -65,7 +65,7 @@ For Android, you need to add the following to your `AndroidManifest.xml`:
 
 And in your app's `build.gradle`:
 
-```gradle
+```groovy
 defaultConfig {
     // ...
     manifestPlaceholders += [

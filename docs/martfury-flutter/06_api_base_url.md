@@ -4,7 +4,7 @@ The API base URL is used to connect your app to the backend server. To configure
 
 1. Open `.env` file in the root directory
 2. Update the `API_BASE_URL` variable:
-   ```env
+   ```bash
    API_BASE_URL=https://your-domain.com
    ```
 

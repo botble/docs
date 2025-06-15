@@ -21,7 +21,7 @@ This guide will help you set up Facebook Login in your Martfury mobile app.
 
 Create or update your `.env` file with the following variables:
 
-```env
+```bash
 FACEBOOK_APP_ID=your_facebook_app_id
 FACEBOOK_CLIENT_TOKEN=your_facebook_client_token
 ```
@@ -72,7 +72,7 @@ For Android, you need to add the following to your `AndroidManifest.xml`:
 
 And in your app's `build.gradle`:
 
-```gradle
+```groovy
 defaultConfig {
     // ...
     manifestPlaceholders += [
