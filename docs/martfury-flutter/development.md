@@ -1,576 +1,216 @@
 # Development Guide
 
-This guide provides information for developers who want to customize and extend the Martfury Flutter app.
+This guide helps you customize the Martfury Flutter app. No advanced Flutter knowledge required!
 
-## Project Architecture
+## Understanding the App Structure
 
-### Clean Architecture
-
-The app follows clean architecture principles with clear separation of concerns:
+Think of the app like a house with different rooms:
 
 ```
 lib/
-├── core/                  # Core functionality and configuration
-│   ├── app_config.dart   # App configuration
-│   ├── constants/        # App constants
-│   └── utils/           # Utility functions
-├── main.dart             # Application entry point
+├── core/                  # 🏠 Main settings (like your house's electrical panel)
+│   └── app_config.dart   # App settings (colors, URLs, etc.)
+├── main.dart             # 🚪 Front door (app starts here)
 └── src/
-    ├── controller/       # Business logic (GetX controllers)
-    ├── model/           # Data models and entities
-    ├── service/         # API services and data providers
-    ├── theme/           # App theme and styling
-    └── view/            # UI components
-        ├── screen/      # App screens
-        └── widget/      # Reusable widgets
+    ├── controller/       # 🧠 Smart controls (handles app logic)
+    ├── model/           # 📋 Data templates (user info, product info)
+    ├── service/         # 🌐 Internet connections (talks to your website)
+    ├── theme/           # 🎨 Design settings (colors, fonts)
+    └── view/            # 👀 What users see
+        ├── screen/      # 📱 App pages (login, home, etc.)
+        └── widget/      # 🧩 Reusable parts (buttons, cards)
 ```
 
-### State Management
+## Quick Start
 
-The app uses GetX for state management, providing:
+### Before You Begin
 
-- **Reactive State Management**: Using `Rx` variables
-- **Dependency Injection**: With `Get.put()` and `Get.find()`
-- **Navigation**: Using `Get.to()` and related methods
-- **Internationalization**: Built-in localization support
+✅ **What You Need:**
+1. Flutter installed on your computer
+2. A code editor (VS Code is easiest)
+3. The app source code
+4. 30 minutes of your time
 
-## Getting Started with Development
+### First Steps
 
-### Setting Up Development Environment
+1. **Open Terminal/Command Prompt**
+2. **Go to your app folder**
+3. **Install dependencies:**
+   ```bash
+   flutter pub get
+   ```
+4. **Run the app:**
+   ```bash
+   flutter run
+   ```
 
-1. **Install Flutter SDK** (3.7.2 or higher)
-2. **Install IDE** (Android Studio, VS Code, or IntelliJ)
-3. **Clone the project** and run `flutter pub get`
-4. **Configure environment** variables in `.env`
-5. **Run the app** with `flutter run`
+That's it! Your app should start running.
 
-### Development Workflow
+## Common Customizations
 
-1. **Create Feature Branch**: `git checkout -b feature/new-feature`
-2. **Implement Changes**: Follow the architecture patterns
-3. **Test Changes**: Run tests and manual testing
-4. **Code Review**: Submit pull request for review
-5. **Merge**: Merge to main branch after approval
+### 🎨 Changing Colors and Fonts
 
-## Adding New Features
-
-### Creating a New Screen
-
-1. **Create Model** (if needed):
-```dart
-// lib/src/model/new_model.dart
-class NewModel {
-  final int id;
-  final String name;
-  
-  NewModel({required this.id, required this.name});
-  
-  factory NewModel.fromJson(Map<String, dynamic> json) {
-    return NewModel(
-      id: json['id'],
-      name: json['name'],
-    );
-  }
-}
-```
-
-2. **Create Service**:
-```dart
-// lib/src/service/new_service.dart
-class NewService {
-  static Future<List<NewModel>> getData() async {
-    // API call implementation
-  }
-}
-```
-
-3. **Create Controller**:
-```dart
-// lib/src/controller/new_controller.dart
-class NewController extends GetxController {
-  final RxList<NewModel> items = <NewModel>[].obs;
-  final RxBool isLoading = false.obs;
-  
-  @override
-  void onInit() {
-    super.onInit();
-    loadData();
-  }
-  
-  Future<void> loadData() async {
-    isLoading.value = true;
-    try {
-      items.value = await NewService.getData();
-    } catch (e) {
-      Get.snackbar('Error', 'Failed to load data');
-    } finally {
-      isLoading.value = false;
-    }
-  }
-}
-```
-
-4. **Create Screen**:
-```dart
-// lib/src/view/screen/new_screen.dart
-class NewScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<NewController>(
-      init: NewController(),
-      builder: (controller) {
-        return Scaffold(
-          appBar: AppBar(title: Text('New Screen')),
-          body: Obx(() {
-            if (controller.isLoading.value) {
-              return Center(child: CircularProgressIndicator());
-            }
-            return ListView.builder(
-              itemCount: controller.items.length,
-              itemBuilder: (context, index) {
-                final item = controller.items[index];
-                return ListTile(title: Text(item.name));
-              },
-            );
-          }),
-        );
-      },
-    );
-  }
-}
-```
-
-### Adding New API Endpoints
-
-1. **Define API Service**:
-```dart
-class ApiEndpoints {
-  static const String newEndpoint = '/api/new-endpoint';
-}
-
-class NewApiService {
-  static final Dio _dio = ApiService.createDio();
-
-  static Future<ApiResponse<List<NewModel>>> getNewData() async {
-    try {
-      final response = await _dio.get(ApiEndpoints.newEndpoint);
-      // Handle response
-    } catch (e) {
-      throw ApiException('Failed to fetch data');
-    }
-  }
-}
-```
-
-2. **Update Models** to match API response structure
-3. **Implement Error Handling** for network and API errors
-4. **Add Loading States** and user feedback
-
-### Implementing Social Login
-
-#### Adding Google Sign-In
-
-1. **Add Dependencies**:
-```yaml
-dependencies:
-  google_sign_in: ^6.1.5
-  firebase_auth: ^4.7.2
-```
-
-2. **Create Google Auth Service**:
-```dart
-class GoogleAuthService {
-  static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['email', 'profile'],
-  );
-
-  static Future<GoogleSignInAccount?> signIn() async {
-    try {
-      return await _googleSignIn.signIn();
-    } catch (error) {
-      print('Google Sign-In Error: $error');
-      return null;
-    }
-  }
-
-  static Future<void> signOut() async {
-    await _googleSignIn.signOut();
-  }
-}
-```
-
-3. **Integrate with Authentication Controller**:
-```dart
-class AuthController extends GetxController {
-  Future<void> signInWithGoogle() async {
-    try {
-      isLoading.value = true;
-      final googleUser = await GoogleAuthService.signIn();
-
-      if (googleUser != null) {
-        final googleAuth = await googleUser.authentication;
-
-        final result = await AuthApiService.socialLogin('google', {
-          'access_token': googleAuth.accessToken,
-          'id_token': googleAuth.idToken,
-        });
-
-        if (result.success) {
-          await _handleSuccessfulLogin(result.data);
-        }
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'Google Sign-In failed');
-    } finally {
-      isLoading.value = false;
-    }
-  }
-}
-```
-
-#### Adding Facebook Login
-
-1. **Add Dependencies**:
-```yaml
-dependencies:
-  flutter_facebook_auth: ^6.0.2
-```
-
-2. **Create Facebook Auth Service**:
-```dart
-class FacebookAuthService {
-  static Future<LoginResult> signIn() async {
-    return await FacebookAuth.instance.login(
-      permissions: ['email', 'public_profile'],
-    );
-  }
-
-  static Future<void> signOut() async {
-    await FacebookAuth.instance.logOut();
-  }
-}
-```
-
-#### Adding Apple Sign-In
-
-1. **Add Dependencies**:
-```yaml
-dependencies:
-  sign_in_with_apple: ^5.0.0
-```
-
-2. **Create Apple Auth Service**:
-```dart
-class AppleAuthService {
-  static Future<AuthorizationCredentialAppleID> signIn() async {
-    return await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-    );
-  }
-}
-```
-
-## Customization Guide
-
-### Theming and Styling
-
-#### Updating App Colors
-
-Edit `lib/src/theme/app_theme.dart`:
+**Want different colors?**
+1. Open `lib/src/theme/app_theme.dart`
+2. Find the color you want to change
+3. Replace with your color code
 
 ```dart
-class AppTheme {
-  static const Color primaryColor = Color(0xFF2196F3);
-  static const Color secondaryColor = Color(0xFF03DAC6);
-  static const Color backgroundColor = Color(0xFFFAFAFA);
-  
-  static ThemeData get lightTheme => ThemeData(
-    primarySwatch: Colors.blue,
-    primaryColor: primaryColor,
-    backgroundColor: backgroundColor,
-  );
-}
+// Example: Change primary color to red
+static const Color primaryColor = Color(0xFFFF0000); // Red color
 ```
 
-#### Custom Widgets
-
-Create reusable widgets in `lib/src/view/widget/`:
+**Want different fonts?**
+1. Open `lib/src/theme/app_fonts.dart`
+2. Change the font name
 
 ```dart
-class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  
-  const CustomButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-  
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppTheme.primaryColor,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      ),
-      child: Text(text),
-    );
-  }
-}
+// Example: Change to Roboto font
+const kAppTextStyle = GoogleFonts.roboto;
 ```
 
-### Adding New Languages
+### 📝 Adding New Text
 
-1. **Create Translation File**:
+**To add new text that can be translated:**
+
+1. Open `assets/translations/en.json`
+2. Add your text:
 ```json
-// assets/translations/es.json
 {
-  "app": {
-    "name": "Martfury",
-    "welcome": "Bienvenido a Martfury"
+  "my_new_text": "Hello World"
+}
+```
+3. Use it in your app:
+```dart
+Text('my_new_text'.tr())
+```
+
+### 🔗 Adding New API Connections
+
+**Need to connect to a new API?**
+
+1. **Add the URL** in `lib/core/app_config.dart`:
+```dart
+static const String myNewApiUrl = 'https://api.example.com/data';
+```
+
+2. **Create a simple service** in `lib/src/service/`:
+```dart
+class MyNewService {
+  static Future<List<dynamic>> getData() async {
+    // This gets data from your API
+    final response = await http.get(Uri.parse(AppConfig.myNewApiUrl));
+    return json.decode(response.body);
+  }
+}
+```
+
+3. **Use it in your screen**:
+```dart
+// In your screen file
+FutureBuilder(
+  future: MyNewService.getData(),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      return Text('Data loaded!');
+    }
+    return CircularProgressIndicator();
   },
-  "auth": {
-    "login": "Iniciar Sesión",
-    "register": "Registrarse"
-  }
-}
+)
 ```
 
-2. **Update Supported Locales**:
-```dart
-// lib/main.dart
-supportedLocales: [
-  Locale('en', 'US'),
-  Locale('vi', 'VN'),
-  Locale('es', 'ES'), // Add new locale
-],
-```
+## Testing Your Changes
 
-3. **Use Translations**:
-```dart
-Text('auth.login'.tr())
-```
+### 🧪 Simple Testing
 
-## Testing
+**Before releasing your app:**
 
-### Unit Testing
+1. **Test on different devices:**
+   - Android phone
+   - iPhone (if possible)
+   - Different screen sizes
 
-Create tests in `test/` directory:
+2. **Test basic functions:**
+   - Login/logout
+   - Browse products
+   - Add to cart
+   - Search
 
-```dart
-// test/controller/new_controller_test.dart
-void main() {
-  group('NewController', () {
-    late NewController controller;
-    
-    setUp(() {
-      controller = NewController();
-    });
-    
-    test('should load data on init', () async {
-      await controller.loadData();
-      expect(controller.items.isNotEmpty, true);
-    });
-  });
-}
-```
+3. **Test your changes:**
+   - Did your color changes work?
+   - Do new texts show correctly?
+   - Are new features working?
 
-### Widget Testing
+### 🔧 Quick Fixes
 
-```dart
-// test/widget/custom_button_test.dart
-void main() {
-  testWidgets('CustomButton should display text', (tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: CustomButton(
-          text: 'Test Button',
-          onPressed: () {},
-        ),
-      ),
-    );
-    
-    expect(find.text('Test Button'), findsOneWidget);
-  });
-}
-```
-
-### Integration Testing
-
-```dart
-// integration_test/app_test.dart
-void main() {
-  group('App Integration Tests', () {
-    testWidgets('should navigate through main flow', (tester) async {
-      app.main();
-      await tester.pumpAndSettle();
-      
-      // Test navigation and user flows
-    });
-  });
-}
-```
-
-## Performance Optimization
-
-### Image Optimization
-
-```dart
-class OptimizedImage extends StatelessWidget {
-  final String imageUrl;
-  
-  @override
-  Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
-      placeholder: (context, url) => ShimmerWidget(),
-      errorWidget: (context, url, error) => Icon(Icons.error),
-      memCacheWidth: 300, // Optimize memory usage
-    );
-  }
-}
-```
-
-### List Performance
-
-```dart
-class OptimizedList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: items.length,
-      cacheExtent: 1000, // Cache items outside viewport
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(items[index].name),
-        );
-      },
-    );
-  }
-}
-```
-
-## Debugging
-
-### Debug Tools
-
-1. **Flutter Inspector**: Analyze widget tree
-2. **Network Inspector**: Monitor API calls
-3. **Performance Overlay**: Check rendering performance
-4. **Memory Profiler**: Detect memory leaks
-
-### Logging
-
-```dart
-class Logger {
-  static void debug(String message) {
-    if (kDebugMode) {
-      print('[DEBUG] $message');
-    }
-  }
-  
-  static void error(String message, [dynamic error]) {
-    if (kDebugMode) {
-      print('[ERROR] $message: $error');
-    }
-  }
-}
-```
-
-## Building for Production
-
-### Android Release
-
+**App not starting?**
 ```bash
-flutter build apk --release
-# or
+flutter clean
+flutter pub get
+flutter run
+```
+
+**Colors not changing?**
+- Make sure you saved the file
+- Restart the app (hot reload might not work for theme changes)
+
+**New text not showing?**
+- Check spelling in translation files
+- Make sure you're using `.tr()` at the end
+
+## Building Your App
+
+### 📱 For Testing
+
+**Android:**
+```bash
+flutter build apk --debug
+```
+
+**iPhone:**
+```bash
+flutter build ios --debug
+```
+
+### 🚀 For App Store Release
+
+**Android (Google Play):**
+```bash
 flutter build appbundle --release
 ```
 
-### iOS Release
-
+**iPhone (App Store):**
 ```bash
 flutter build ios --release
 ```
 
-### Environment Configuration
+## Getting Help
 
-Create separate environment files:
-- `.env.development`
-- `.env.staging`
-- `.env.production`
+### 📚 Useful Resources
 
-## Code Quality
+- **Flutter Documentation**: [flutter.dev](https://flutter.dev)
+- **Quick Setup Guides**: Check files 01-15 in this documentation
+- **Social Login Setup**: Check files 12-15 for Facebook, Google, Apple, Twitter
 
-### Linting
+### 🆘 Common Problems
 
-Configure `analysis_options.yaml`:
+**Problem: "Flutter not found"**
+- Solution: Install Flutter SDK first
 
-```yaml
-include: package:flutter_lints/flutter.yaml
+**Problem: "No devices found"**
+- Solution: Connect your phone or start an emulator
 
-linter:
-  rules:
-    prefer_const_constructors: true
-    prefer_const_literals_to_create_immutables: true
-    avoid_print: true
-```
+**Problem: "Build failed"**
+- Solution: Run `flutter clean` then `flutter pub get`
 
-### Code Formatting
+**Problem: "App crashes"**
+- Solution: Check the error message in terminal/console
 
-```bash
-dart format lib/
-```
+### 💡 Tips for Success
 
-### Static Analysis
+1. **Start Small**: Make one change at a time
+2. **Test Often**: Run the app after each change
+3. **Keep Backups**: Use git to save your work
+4. **Ask for Help**: Don't hesitate to contact support
 
-```bash
-flutter analyze
-```
-
-## Deployment
-
-### App Store Deployment
-
-1. **Configure App Store Connect**
-2. **Update version numbers**
-3. **Build release version**
-4. **Upload to App Store Connect**
-5. **Submit for review**
-
-### Google Play Deployment
-
-1. **Configure Google Play Console**
-2. **Generate signed APK/AAB**
-3. **Upload to Google Play Console**
-4. **Submit for review**
-
-## Best Practices
-
-### Code Organization
-
-- Follow consistent naming conventions
-- Use meaningful variable and function names
-- Keep functions small and focused
-- Comment complex logic
-
-### Error Handling
-
-- Always handle potential errors
-- Provide meaningful error messages
-- Implement retry mechanisms where appropriate
-- Log errors for debugging
-
-### Security
-
-- Never store sensitive data in plain text
-- Use secure storage for tokens
-- Validate all user inputs
-- Implement proper authentication
-
-For more development resources, check the [Flutter documentation](https://flutter.dev/docs) and [GetX documentation](https://pub.dev/packages/get).
+Remember: You don't need to be a Flutter expert to customize this app! Start with simple changes like colors and text, then gradually try more advanced features.

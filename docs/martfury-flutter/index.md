@@ -6,6 +6,42 @@ Martfury is a feature-rich Flutter mobile application designed to work seamlessl
 
 The app offers a comprehensive mobile shopping experience with intuitive navigation, secure authentication, advanced product browsing, smart shopping cart management, and complete order tracking capabilities.
 
+## 🚀 Getting Started
+
+**New to the app? Start here:**
+
+1. **[App Overview](overview.md)** - What is Martfury and how it works (5 min read)
+2. **[Installation](installation.md)** - Set up your development environment (30 min)
+3. **[Configuration](configuration.md)** - Connect your app to your website (15 min)
+4. **[Development Guide](development.md)** - Learn to customize your app
+
+## 🎨 Quick Setup Guides (5-15 minutes each)
+
+**Customize your app appearance:**
+1. **[Theme Colors](01_theme_colors.md)** - Change your app's colors
+2. **[App Font](02_app_font.md)** - Choose different fonts
+3. **[App Name](04_app_name.md)** - Change the app name
+4. **[App Logo](05_app_logo.md)** - Add your logo and icons
+
+**Basic configuration:**
+5. **[API Base URL](06_api_base_url.md)** - Connect to your website
+6. **[Translations](07_translations.md)** - Set up multiple languages
+7. **[Ad Keys](03_ad_keys.md)** - Configure advertisements
+8. **[Profile Links](11_profile_links.md)** - Set up help and support links
+
+**Build and deploy:**
+9. **[Running App](08_running_app.md)** - Test your app
+10. **[Deploying App](09_deploying_app.md)** - Publish to app stores
+11. **[Version Management](10_version_management.md)** - Manage app versions
+
+## 🔐 Social Login Setup (30-60 minutes each)
+
+**Allow customers to login with social accounts:**
+12. **[Google Login](14_google_login_setup.md)** - Most popular, easiest setup
+13. **[Apple Sign-In](13_apple_login_setup.md)** - Required for iOS apps
+14. **[Facebook Login](15_facebook_login_setup.md)** - Popular social option
+15. **[Twitter/X Login](12_twitter_login_setup.md)** - Optional social login
+
 ## Key Features
 
 ### 1. **User Authentication & Profile Management**
@@ -120,22 +156,35 @@ The app integrates with the Botble E-commerce API, documented at [https://ecomme
 - Wishlist management
 - Address and profile management
 
-## Getting Started
+## 🆘 Help & Support
 
-To get started with the Martfury Flutter app:
+**Get help when you need it:**
+- **[Support & Contact](support.md)** - All contact information and support options
+- **[FAQ](faq.md)** - Common questions and quick answers
+- **[Troubleshooting](troubleshooting.md)** - Fix common problems
+- **[Upgrade Guide](upgrade.md)** - Update to newer versions safely
 
-1. **[Installation Guide](installation.md)** - Set up the development environment and install dependencies
-2. **[Configuration Guide](configuration.md)** - Configure API endpoints and app settings
-3. **[FCM Setup Guide](fcm-setup.md)** - Complete Firebase Cloud Messaging setup for push notifications
-4. **[Usage Guide](usage-guide.md)** - Learn how to use all app features
-5. **[Development Guide](development.md)** - Customize and extend the app
+## 🔧 Advanced Documentation
 
-## Support & Resources
+**For developers and technical users:**
+- **[API Integration](api-integration.md)** - Detailed API integration guide
+- **[Development Guide](development.md)** - Customize and extend the app
+- **[Release Notes](releases.md)** - Version history and updates
 
-- **API Documentation**: [https://ecommerce-api.botble.com/docs](https://ecommerce-api.botble.com/docs)
-- **Backend System**: [Martfury Laravel E-commerce](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223)
-- **Support Center**: [https://botble.ticksy.com](https://botble.ticksy.com)
-- **Botble Website**: [https://botble.com](https://botble.com)
+
+
+## 📞 Contact & Resources
+
+### **Contact Information:**
+- **📧 Email**: contact@botble.com
+- **🌐 Website**: https://botble.com
+- **🎫 Support Center**: https://botble.ticksy.com
+- **📖 Online Documentation**: https://docs.botble.com/martfury-flutter
+
+### **Resources:**
+- **🎮 Backend Demo**: https://martfury.botble.com
+- **📋 API Documentation**: https://ecommerce-api.botble.com/docs
+- **🛒 Backend System**: [Martfury Laravel E-commerce](https://codecanyon.net/item/martfury-multipurpose-laravel-ecommerce-system/29925223)
 
 ## Botble Team
 
