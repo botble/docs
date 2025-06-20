@@ -41,7 +41,7 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 13. **[Apple Sign-In](13_apple_login_setup.md)** - Required for iOS apps
 14. **[Facebook Login](15_facebook_login_setup.md)** - Popular social option
 15. **[Twitter/X Login](12_twitter_login_setup.md)** - Optional social login
-16. **[Social Login Configuration](social_login_configuration.md)** - Enable/disable specific providers
+16. **[Social Login Configuration](16_social_login_configuration.md)** - Enable/disable specific providers
 
 ## Key Features
 

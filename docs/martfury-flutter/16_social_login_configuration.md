@@ -18,7 +18,7 @@ You can enable or disable each provider individually through environment variabl
 
 Add the following variables to your `.env` file to control which social login providers are available:
 
-```env
+```bash
 # Social Login Configuration
 # Set to 'true' to enable, 'false' to disable each provider
 ENABLE_APPLE_SIGN_IN=true
@@ -39,7 +39,7 @@ If these variables are not set in your `.env` file, all providers are enabled by
 
 ### Enable Only Google and Apple Sign In
 
-```env
+```bash
 ENABLE_APPLE_SIGN_IN=true
 ENABLE_GOOGLE_SIGN_IN=true
 ENABLE_FACEBOOK_SIGN_IN=false
@@ -48,7 +48,7 @@ ENABLE_TWITTER_SIGN_IN=false
 
 ### Disable All Social Login
 
-```env
+```bash
 ENABLE_APPLE_SIGN_IN=false
 ENABLE_GOOGLE_SIGN_IN=false
 ENABLE_FACEBOOK_SIGN_IN=false
@@ -57,7 +57,7 @@ ENABLE_TWITTER_SIGN_IN=false
 
 ### Enable Only Email/Password Login
 
-```env
+```bash
 ENABLE_APPLE_SIGN_IN=false
 ENABLE_GOOGLE_SIGN_IN=false
 ENABLE_FACEBOOK_SIGN_IN=false
