@@ -1,6 +1,6 @@
 # Installation Guide
 
-Simple steps to get your Martfury app running on your computer.
+Simple steps to get your MartFury app running on your computer.
 
 ## 🚀 Quick Start
 
@@ -16,7 +16,7 @@ Simple steps to get your Martfury app running on your computer.
 4. This will take about 15-20 minutes
 
 ### Step 2: Get the App Code
-1. Download your Martfury app files
+1. Download your MartFury app files
 2. Extract them to a folder on your computer
 3. Remember where you put this folder!
 

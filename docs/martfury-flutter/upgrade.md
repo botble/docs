@@ -1,6 +1,6 @@
 # Upgrading Your App
 
-Simple guide to update your Martfury app to the latest version.
+Simple guide to update your MartFury app to the latest version.
 
 ## 🚨 Before You Start
 

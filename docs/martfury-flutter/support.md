@@ -1,6 +1,6 @@
 # Support & Contact Information
 
-Need help with your Martfury Flutter app? We're here to support you every step of the way!
+Need help with your MartFury Flutter app? We're here to support you every step of the way!
 
 ## 🆘 Quick Help
 
@@ -110,7 +110,7 @@ Need help with your Martfury Flutter app? We're here to support you every step o
 
 ## 🌟 Success Stories
 
-Many users have successfully launched their mobile apps using Martfury Flutter. Here are some tips from successful users:
+Many users have successfully launched their mobile apps using MartFury Flutter. Here are some tips from successful users:
 
 ### "Start Simple"
 - Get the basic app working first

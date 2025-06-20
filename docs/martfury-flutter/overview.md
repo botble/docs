@@ -1,8 +1,8 @@
-# Martfury Flutter App Overview
+# MartFury Flutter App Overview
 
-## What is Martfury Flutter App?
+## What is MartFury Flutter App?
 
-Martfury is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.
+MartFury is a complete mobile e-commerce application built with Flutter that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.
 
 ## 📱 Key Features
 

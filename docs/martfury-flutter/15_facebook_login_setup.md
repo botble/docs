@@ -1,6 +1,6 @@
 # Facebook Login Setup Guide for Mobile App
 
-This guide will help you set up Facebook Login in your Martfury mobile app.
+This guide will help you set up Facebook Login in your MartFury mobile app.
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ The Facebook Login configuration is already set up in your `Info.plist`. Make su
 <key>FacebookClientToken</key>
 <string>YOUR_CLIENT_TOKEN</string>
 <key>FacebookDisplayName</key>
-<string>Martfury</string>
+<string>MartFury</string>
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>fbapi</string>

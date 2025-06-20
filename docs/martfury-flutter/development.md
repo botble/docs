@@ -1,6 +1,6 @@
 # Development Guide
 
-This guide helps you customize the Martfury Flutter app. No advanced Flutter knowledge required!
+This guide helps you customize the MartFury Flutter app. No advanced Flutter knowledge required!
 
 ## Understanding the App Structure
 

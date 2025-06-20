@@ -1,6 +1,6 @@
 # Google Sign In Setup Guide for Mobile App
 
-This guide will help you set up Google Sign In in your Martfury mobile app.
+This guide will help you set up Google Sign In in your MartFury mobile app.
 
 ## Prerequisites
 

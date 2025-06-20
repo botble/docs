@@ -1,6 +1,6 @@
 # Twitter (X) Login Setup Guide for Mobile App
 
-This guide will help you set up Twitter (X) login in your Martfury mobile app.
+This guide will help you set up Twitter (X) login in your MartFury mobile app.
 
 ## Prerequisites
 
