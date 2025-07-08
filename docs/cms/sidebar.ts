@@ -66,6 +66,7 @@ export default [
       { text: 'Commands', link: '/cms/commands' },
       { text: 'Roles & Permissions', link: '/cms/role-permission' },
       { text: 'API', link: '/cms/api' },
+      { text: 'Email Templates', link: '/cms/email-templates' },
       { text: 'Filters', link: '/cms/filters' },
       { text: 'Actions', link: '/cms/actions' },
       { text: 'Shortcode', link: '/cms/shortcode' },
