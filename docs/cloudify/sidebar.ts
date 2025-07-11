@@ -14,8 +14,8 @@ export default [
                     { text: 'Using Docker', link: '/cloudify/installation-using-docker' },
                 ],
             },
-            { text: 'SSL', link: '/athena/ssl' },
-            { text: 'License', link: '/athena/license' },
+            { text: 'SSL', link: '/cloudify/ssl' },
+            { text: 'License', link: '/cloudify/license' },
         ],
     },
     {
