@@ -1,154 +1,121 @@
-# Native Push Notifications Setup Guide
+# Push Notifications Setup Guide
 
-This guide will help you set up native push notifications for your MartFury Flutter app that supports iOS 12.0+ and Android.
+This guide will help you set up push notifications for your MartFury Flutter app. Follow these simple steps to enable notifications for both Android and iOS.
 
-## 🚀 Quick Overview
+## 📱 What You'll Need
 
-The native push notification implementation automatically:
-- Registers device tokens when users log in
-- Unregisters tokens when users log out
-- Handles token refresh automatically
-- Sends device information to your API endpoint `/api/v1/device-tokens`
-- Supports both guest and authenticated users
+Before starting, make sure you have:
+- A Google account (for Firebase)
+- Access to your app's source code
+- For iOS: An Apple Developer account ($99/year)
 
-## 📋 Prerequisites
+## 🔥 Step 1: Create a Firebase Project
 
-1. Your Botble backend with the device tokens API endpoint
-2. Android and/or iOS development setup
-3. For iOS: Apple Developer account for push notification certificates (production only)
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Click **"Create a project"** or **"Add project"**
+3. Enter your project name (e.g., "MartFury App")
+4. Follow the setup wizard (you can disable Google Analytics if not needed)
+5. Click **"Create project"** and wait for it to complete
 
-## 🔧 Platform Setup
+## 🤖 Step 2: Get Android Configuration File
 
-### iOS Setup (Supports iOS 12.0+)
-1. **Enable Push Notifications in Xcode:**
+Follow these steps to get your `google-services.json` file:
+
+1. **In Firebase Console:**
+   - Click the Android icon or **"Add app"** → **"Android"**
+   - Enter your Android package name (e.g., `com.yourcompany.martfury`)
+   - Register the app
+
+2. **Download the configuration file:**
+   - Click **"Download google-services.json"**
+   - Save this file to your computer
+
+3. **Add the file to your app:**
+   - Open your app's folder
+   - Navigate to `android/app/`
+   - Copy the `google-services.json` file here
+
+For detailed instructions with screenshots, visit: [Firebase Android Setup Guide](https://firebase.google.com/docs/android/setup)
+
+## 🍎 Step 3: Get iOS Configuration File
+
+Follow these steps to get your `GoogleService-Info.plist` file:
+
+1. **In Firebase Console:**
+   - Click **"Add app"** → **"iOS"**
+   - Enter your iOS bundle ID (e.g., `com.yourcompany.martfury`)
+   - Register the app
+
+2. **Download the configuration file:**
+   - Click **"Download GoogleService-Info.plist"**
+   - Save this file to your computer
+
+3. **Add the file to your app:**
+   - Open your app's folder
+   - Navigate to `ios/Runner/`
+   - Copy the `GoogleService-Info.plist` file here
+
+4. **Enable Push Notifications in Xcode:**
    - Open `ios/Runner.xcworkspace` in Xcode
-   - Select your target → Signing & Capabilities
-   - Click "+ Capability" and add "Push Notifications"
+   - Select your project in the left sidebar
+   - Click on the **"Signing & Capabilities"** tab
+   - Click **"+ Capability"**
+   - Add **"Push Notifications"**
 
-2. **For Production (App Store):**
-   - Create APNs certificates in Apple Developer Console
-   - Configure your backend to send push notifications via APNs
+For detailed instructions with screenshots, visit: [Firebase iOS Setup Guide](https://firebase.google.com/docs/ios/setup)
 
-### Android Setup
-1. **Permissions are already configured** in AndroidManifest.xml
-2. **For Production:**
-   - Configure your backend to send notifications via Android's notification system
-   - Or integrate with FCM for more advanced features
+## ✅ Step 4: Configure iOS Push Notifications (iOS Only)
 
-## 📱 Platform Configuration
+For iOS to receive push notifications, you need to set up APNs certificates:
 
-### Android Setup
-The Android configuration is already complete! The following has been set up:
-- ✅ Google Services plugin added
-- ✅ FCM permissions in AndroidManifest.xml
-- ✅ Notification icon and color resources
-- ✅ Default notification channel configuration
+1. **In Firebase Console:**
+   - Go to **Project Settings** (gear icon)
+   - Click **"Cloud Messaging"** tab
+   - Scroll to **"Apple app configuration"**
 
-**You only need to:**
-1. Add your `google-services.json` file to `android/app/`
-2. Update the package name if different from `com.example.martfury`
+2. **Upload APNs Certificate:**
+   - Click **"Upload"** under APNs certificates
+   - You'll need to create this certificate in your Apple Developer account
+   - Follow Firebase's guide for creating APNs certificates
 
-### iOS Setup
-The iOS configuration is already complete! The following has been set up:
-- ✅ Background modes for remote notifications
-- ✅ Firebase configuration in Info.plist
-- ✅ Push notification capabilities
+## 🧪 Step 5: Test Your Setup
 
-**You only need to:**
-1. Add your `GoogleService-Info.plist` file to `ios/Runner/`
-2. Enable Push Notifications capability in Xcode
-3. Configure APNs certificates in Firebase Console
+After adding both configuration files:
 
-## 🔑 API Integration
+1. **Build and run your app:**
+   - Connect a real device (not simulator)
+   - Run the app
 
-The app automatically sends device tokens to your API with this data structure:
+2. **Test notifications:**
+   - Go to Firebase Console
+   - Navigate to **"Cloud Messaging"**
+   - Click **"Send your first message"**
+   - Enter a test message and send
 
-```json
-{
-  "token": "fcm_device_token_here",
-  "platform": "android|ios",
-  "app_version": "1.0.0",
-  "device_id": "unique_device_identifier",
-  "user_type": "guest|customer",
-  "user_id": 123
-}
-```
+3. **Check if it works:**
+   - You should receive the notification on your device
+   - If not, check the Troubleshooting section below
 
-### API Endpoints Used
-- `POST /api/v1/device-tokens` - Register new token
-- `PUT /api/v1/device-tokens` - Update existing token
-- `DELETE /api/v1/device-tokens` - Remove token on logout
+## ❓ Troubleshooting
 
-## 🎯 How It Works
+### Nothing happens when I send a test notification
+- Make sure you're using a real device (not simulator/emulator)
+- Check that you copied the files to the correct folders
+- For iOS: Ensure you enabled Push Notifications in Xcode
+- Try restarting the app
 
-### Automatic Registration
-- **App Launch**: Token registered as guest user
-- **User Login**: Token updated with user information
-- **User Logout**: Token unregistered
-- **Token Refresh**: Automatically updated in background
+### Where do I find my package name/bundle ID?
+- **Android package name:** Look in `android/app/build.gradle` for `applicationId`
+- **iOS bundle ID:** Look in Xcode under your target's General tab
 
-### User States
-- **Guest User**: `user_type: "guest"`, `user_id: null`
-- **Logged In**: `user_type: "customer"`, `user_id: actual_user_id`
+### I don't have an Apple Developer account
+- You need one for iOS push notifications in production ($99/year)
+- For testing only, you might be able to use development certificates
 
-## 🧪 Testing
+## 📞 Need More Help?
 
-### Test Notifications
-1. Get device token from app logs (debug mode)
-2. Use Firebase Console → Cloud Messaging → Send test message
-3. Or use your backend to send notifications via FCM API
-
-### Debug Information
-The app logs FCM events in debug mode:
-- Token registration/updates
-- Notification received (foreground/background)
-- Token refresh events
-
-## 🔧 Customization
-
-### Notification Handling
-Edit `lib/src/service/notification_service.dart` to customize:
-- Foreground notification display
-- Notification tap handling
-- Custom navigation logic
-
-### Device Information
-The service automatically collects:
-- Platform (Android/iOS)
-- App version from pubspec.yaml
-- Device ID (Android ID / iOS identifierForVendor)
-- User information when logged in
-
-## 🚨 Important Notes
-
-1. **iOS 12.0+ Support**: This implementation supports iOS 12.0+ (unlike Firebase which requires iOS 13.0+)
-2. **APNs Setup**: iOS requires proper APNs certificate configuration for production
-3. **Testing**: Use physical devices for testing - simulators have limitations
-4. **Permissions**: iOS will prompt users for notification permissions
-5. **Native Implementation**: Uses native iOS/Android push notifications instead of Firebase
-
-## 📚 Next Steps
-
-1. Add your Firebase configuration files
-2. Test on physical devices
-3. Configure your backend to send notifications
-4. Customize notification handling as needed
-
-## 🆘 Troubleshooting
-
-### Common Issues
-- **No token received**: Check Firebase configuration files
-- **iOS notifications not working**: Verify APNs setup and certificates
-- **Android build errors**: Ensure Google Services plugin is properly configured
-
-### Debug Commands
-```bash
-# Check if FCM is working
-flutter run --debug
-# Look for FCM logs in console
-
-# Clean and rebuild
-flutter clean
-flutter pub get
-flutter run
-```
+If you're stuck:
+1. Double-check you followed all steps above
+2. Make sure file names are exactly `google-services.json` and `GoogleService-Info.plist`
+3. Verify files are in the correct folders
+4. Contact your developer for assistance with technical issues

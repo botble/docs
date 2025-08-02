@@ -28,15 +28,16 @@ export default [
             { text: '11. Profile Links', link: '/martfury-flutter/11_profile_links' },
             { text: '12. Splash Screen', link: '/martfury-flutter/17_splash_screen' },
             { text: '13. Loading Screen', link: '/martfury-flutter/18_loading_screen' },
+            { text: '14. Push Notifications', link: '/martfury-flutter/fcm_setup' },
         ],
     },
     {
         text: 'Social Login (30-60 min each)',
         items: [
-            { text: '14. Twitter/X Login', link: '/martfury-flutter/12_twitter_login_setup' },
-            { text: '15. Apple Sign-In', link: '/martfury-flutter/13_apple_login_setup' },
-            { text: '16. Google Login', link: '/martfury-flutter/14_google_login_setup' },
-            { text: '17. Facebook Login', link: '/martfury-flutter/15_facebook_login_setup' },
+            { text: '15. Twitter/X Login', link: '/martfury-flutter/12_twitter_login_setup' },
+            { text: '16. Apple Sign-In', link: '/martfury-flutter/13_apple_login_setup' },
+            { text: '17. Google Login', link: '/martfury-flutter/14_google_login_setup' },
+            { text: '18. Facebook Login', link: '/martfury-flutter/15_facebook_login_setup' },
         ],
     },
 
