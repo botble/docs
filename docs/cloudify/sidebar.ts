@@ -30,8 +30,6 @@ export default [
     {
         text: 'Usage',
         items: [
-            { text: 'Multi Language', link: '/cloudify/usage-multi-language' },
-            { text: 'Translation', link: '/cloudify/usage-translation' },
             { text: 'API Integration', link: '/cloudify/usage-api' },
         ],
     },
