@@ -33,6 +33,7 @@ export default [
           { text: 'Custom CSS/JS', link: '/cms/usage-custom-css-js' },
           { text: 'Setup email', link: '/cms/usage-email' },
           { text: 'Setup cronjob', link: '/cms/cronjob' },
+          { text: 'Security Settings', link: '/cms/security-cookies' },
           { text: 'Setup CDN', link: '/cms/usage-setup-cdn' },
           { text: 'Reset admin password', link: '/cms/usage-reset-admin-password' },
         ],
