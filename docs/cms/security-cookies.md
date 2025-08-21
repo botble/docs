@@ -4,38 +4,46 @@
 
 This guide helps you secure your Botble CMS website by configuring proper security settings.
 
-### Step 1: Open Your Configuration File
+### Using the Admin Panel (Recommended)
+
+1. **Navigate to Security Settings**
+   - Log in to your Admin Panel
+   - Go to **Settings → Platform Administration → Security Settings**
+   - Or directly visit: `/admin/system/security`
+
+2. **Check Your Security Status**
+   - The page will show if your security settings are properly configured
+   - If you see warnings, follow the instructions on the page
+
+### Manual Configuration (Alternative Method)
+
+If you prefer to configure manually or the admin panel is not accessible:
+
+#### Step 1: Open Your Configuration File
 
 1. Locate the `.env` file in your website's root directory
 2. Open it with any text editor (Notepad, TextEdit, etc.)
 
-### Step 2: Add Security Settings
+#### Step 2: Add Security Settings
 
 Copy and paste these lines into your `.env` file:
 
 ```env
 # Cookie Security Settings (REQUIRED)
 SESSION_HTTP_ONLY=true
-SESSION_SECURE_COOKIE=false
-SESSION_SAME_SITE=lax
 
 # Additional Security Headers (RECOMMENDED)
 ENABLE_HTTP_SECURITY_HEADERS=true
+
+# For HTTPS websites only
+SESSION_SECURE_COOKIE=false  # Change to true if using HTTPS
 ```
 
-### Step 3: For Live Websites Using HTTPS
-
-If your website uses HTTPS (the URL starts with `https://`), change this setting:
-
-```env
-SESSION_SECURE_COOKIE=true
-```
-
-### Step 4: Save and Apply Changes
+#### Step 3: Save and Apply Changes
 
 1. Save the `.env` file
-2. Clear your website cache (if you have access to the admin panel)
-3. Or ask your developer to run: `php artisan config:clear`
+2. Go to **Admin Panel → Platform Administration → Cache Management**
+3. Click "Clear all caches"
 
 ## What These Settings Do
 
@@ -44,6 +52,7 @@ SESSION_SECURE_COOKIE=true
 - **SESSION_HTTP_ONLY=true** - Protects your website from certain hacking attempts (XSS attacks)
 - **SESSION_SECURE_COOKIE=true** - Use this only if your website has HTTPS/SSL certificate
 - **ENABLE_HTTP_SECURITY_HEADERS=true** - Adds extra protection against common web attacks
+- **SESSION_SAME_SITE=lax** - Already set by default in Laravel, prevents CSRF attacks
 
 ## Testing Your Configuration
 
@@ -80,7 +89,6 @@ SESSION_SECURE_COOKIE=true
 # For live websites with HTTPS
 SESSION_HTTP_ONLY=true
 SESSION_SECURE_COOKIE=true
-SESSION_SAME_SITE=lax
 ENABLE_HTTP_SECURITY_HEADERS=true
 FORCE_SCHEMA=https
 ```
@@ -93,6 +101,8 @@ SESSION_HTTP_ONLY=true
 ENABLE_HTTP_SECURITY_HEADERS=true
 ```
 
+Note: `SESSION_SAME_SITE=lax` is already the default in Laravel and doesn't need to be explicitly set unless you want a different value.
+
 ## Technical Details (For Developers)
 
 ### What This Configuration Fixes:
@@ -102,8 +112,10 @@ This resolves the security vulnerability: "The remote HTTP web server / applicat
 ### Implementation Details:
 
 - **HttpSecurityHeaders Middleware**: Located at `platform/core/base/src/Http/Middleware/HttpSecurityHeaders.php`
+- **SecuritySettingController**: Located at `platform/core/base/src/Http/Controllers/SecuritySettingController.php`
 - **Registration**: Automatically loaded via `EventServiceProvider`
 - **Configuration**: Controlled by `config('core.base.general.enable_http_security_headers')`
+- **Admin Interface**: Available at `/admin/system/security`
 
 ### Security Headers Added:
 
@@ -115,6 +127,7 @@ This resolves the security vulnerability: "The remote HTTP web server / applicat
 ### Note About Cookie Types:
 
 - **Session/Auth Cookies**: Protected with HttpOnly flag ✅
+- **XSRF-TOKEN**: Disabled by default in Botble CMS (uses meta tag CSRF tokens instead) ✅
 - **Cookie Consent Plugin**: Cannot use HttpOnly (needs JavaScript access) - This is normal and safe
 
 ## Support
