@@ -26,6 +26,7 @@ import infiniaSidebar from '../infinia/sidebar'
 import posProSidebar from '../pos-pro/sidebar'
 import affiliateProSidebar from '../affiliate-pro/sidebar'
 import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
+import restoriaSidebar from '../restoria/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -97,6 +98,7 @@ export default defineConfig({
           { text: 'Infinia', link: '/infinia/'},
           { text: 'POS Pro', link: '/pos-pro/'},
           { text: 'Affiliate Pro', link: '/affiliate-pro/'},
+          { text: 'Restoria', link: '/restoria/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
