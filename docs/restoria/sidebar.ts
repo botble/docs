@@ -7,6 +7,7 @@ export default [
     items: [
       { text: 'Release Notes', link: '/restoria/releases' },
       { text: 'Upgrade Guide', link: '/restoria/upgrade' },
+      { text: 'FAQ', link: '/restoria/faq' },
     ]
   },
   {
