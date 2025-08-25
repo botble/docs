@@ -1,322 +1,151 @@
 # License
 
-## License Agreement
+## Understanding Your License
 
-Restoria is a premium WordPress theme sold exclusively on ThemeForest/CodeCanyon marketplace. By purchasing and using Restoria, you agree to the following license terms.
+Botble CMS is distributed under the Envato Standard License or Extended License. It's important to understand what each license allows you to do.
 
-## License Types
+### License Types
 
-### Regular License ($59)
+#### Regular License vs. Extended License
 
-**Allowed Usage:**
-- ✅ One single end product (one restaurant website)
-- ✅ Personal or client project
-- ✅ End product is free for end users
-- ✅ Modify and customize the theme
-- ✅ Use for your own restaurant business
+The license type is based on your site's charging model:
 
-**Not Allowed:**
-- ❌ Resell or redistribute the theme
-- ❌ Use in multiple websites
-- ❌ Include in paid products
-- ❌ Charge end users to access the website
-- ❌ Create SaaS applications
+- **Regular License**: Suitable if your website does not charge end users for access or services.
+- **Extended License**: Required if you have paying users who you charge for accessing or using your service (monthly or yearly subscription, commission fee on each sale as SaaS, etc.).
 
-### Extended License ($2,950)
+You can start with a regular license and upgrade to an extended license once you have paying users.
 
-**Allowed Usage:**
-- ✅ Everything in Regular License
-- ✅ End product where end users are charged
-- ✅ Create SaaS applications for restaurants
-- ✅ Sell website as part of restaurant franchise
-- ✅ Include in products for sale
+::: tip
+Please read the official license rules here: [Envato Standard License](https://codecanyon.net/licenses/standard)
+:::
 
-**Still Not Allowed:**
-- ❌ Resell the theme itself
-- ❌ Redistribute source code
-- ❌ Use in multiple end products
-- ❌ Stock distribution
+### One License, One Website
 
-## Purchase & Activation
+As per Envato's licensing rules, one license can only be used for one website. This includes:
 
-### 1. Purchase Restoria
+- One domain
+- One subdomain
+- One subfolder
+- One IP address
 
-1. Visit [Restoria on CodeCanyon](https://codecanyon.net/item/restoria)
-2. Click **Buy Now**
-3. Choose license type (Regular or Extended)
-4. Complete purchase through Envato
-5. Download from your Downloads page
+If you want to use Botble CMS for multiple sites or clients, you need to purchase multiple licenses.
 
-### 2. Get Purchase Code
+### Development Environments
 
-1. Log into your Envato account
-2. Go to **Downloads** page
-3. Find Restoria in your purchases
-4. Click **Download** → **License Certificate & Purchase Code**
-5. Save the text file containing your purchase code
+You can use Botble CMS without activating a license on development, staging, or UAT environments for development purposes without violating license terms. All features will work fine except:
 
-### 3. Activate License
+- System updater
+- Installing new plugins from [Botble Marketplace](https://marketplace.botble.com/products)
 
-#### Method 1: During Installation
+This allows you to develop and test your site before deploying to production.
 
-When installing Restoria, you'll be prompted to enter your purchase code:
+## Activate License
 
-1. Enter your purchase code in the installation wizard
-2. Click **Verify**
-3. Continue with installation
+In admin panel, go to `Settings` -> `General` to activate your license.
 
-#### Method 2: Admin Panel
+![Activate license](../cms/images/license.png)
 
-If you skip activation during installation:
+If you don't know how to get purchase code, check this
+article [Where Is My Purchase Code?](https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code)
 
-1. Go to **Admin** → **Settings** → **License**
-2. Enter your purchase code
-3. Click **Activate**
-4. License is now active
+::: warning
+If you can't activate your license, please create a ticket on https://botble.ticksy.com, our dev team will support you.
+Don't try to activate it many times, your domain & IP will be added to blacklist.
+:::
 
-![License Activation](./images/license-activation.png)
+## License Usage Guidelines
 
-### 4. License Verification
+### Activation Limits
 
-The system verifies:
-- Purchase code validity
-- License type (Regular/Extended)
-- Domain registration
-- Support expiration date
+- Regular License can only be activated on 1 domain.
+- Each license is tied to a specific domain and cannot be used on multiple websites simultaneously.
 
-## License Benefits
+### Moving Your Website
 
-### With Active License
+- If you want to reinstall or move your website to a new server, you need to either:
+  - Back up your license file in `/storage/.license`, or
+  - Deactivate your license before moving, then reactivate it on the new server
 
-- ✅ **Automatic Updates**: Get latest features and security updates
-- ✅ **Premium Support**: Access to ticket support system
-- ✅ **Plugin Updates**: All bundled plugins stay updated
-- ✅ **New Features**: Access to new features as released
-- ✅ **Security Patches**: Critical security updates
-- ✅ **Documentation Access**: Full documentation and tutorials
+### Domain Changes
 
-### Without License
+- If you change your website configuration, please deactivate your license first:
+  - Switching between www and non-www (e.g., example.com to www.example.com)
+  - Changing from HTTP to HTTPS or vice versa
+  - Moving to a different domain name
 
-- ❌ No automatic updates
-- ❌ No support access
-- ❌ Security vulnerabilities
-- ❌ Missing new features
-- ❌ No plugin updates
+### License Deactivation
 
-## Support Period
+- You can deactivate your license in the admin panel under Settings -> General
+- If you can't access your admin panel or deactivate your license for any reason, please contact us at contact@botble.com, and we will assist you
 
-### Initial Support
+### Resetting Your License
 
-- **6 months** included with purchase
-- Access to ticket support system
-- Response within 24-48 hours
-- Help with bugs and issues
-- Basic customization guidance
+If you need to reset your license (for example, if you've changed domains or are experiencing activation issues):
 
-### Extended Support
+1. Please log in to our customer license manager site https://license.botble.com to reset your license
+2. Once reset, you can activate your license again on your new domain
 
-- Available for additional **6 months** ($17.63)
-- Can be purchased during checkout
-- Or extended later from CodeCanyon
-- Same benefits as initial support
+This is particularly useful when:
+- You've moved your website to a new domain
+- You're experiencing issues with license activation
+- You need to reinstall your website
 
-### After Support Expires
+### Multiple Environments
 
-- Theme continues to work
-- Can still receive updates
-- No access to support tickets
-- Community forum available
-- Can renew support anytime
+- You can use the same license for both your production and development environments, as long as they're not publicly accessible at the same time
+- For agencies developing sites for clients, you should purchase a separate license for each client's website
 
-## Domain Management
+### License Verification
 
-### Single Domain Use
+- Our system periodically verifies license activation
+- Using the same license on multiple production websites simultaneously violates the license terms and may result in all sites being deactivated
 
-Each license is valid for one domain:
-
-**Allowed:**
-- example.com ✅
-- restaurant.example.com ✅
-- staging.example.com (for testing) ✅
-
-**Requires Additional License:**
-- restaurant1.com + restaurant2.com ❌
-- Multiple restaurant locations with different domains ❌
-- Franchise websites on different domains ❌
-
-### Changing Domains
-
-If you need to change domains:
-
-1. **Deactivate** on old domain
-2. **Activate** on new domain
-3. Contact support if issues arise
-
-### Development & Staging
-
-You can use the same license for:
-- Development environment
-- Staging server
-- Local development
-- Testing server
-
-As long as only one production site is live.
-
-## License Compliance
-
-### Permitted Modifications
-
-You may:
-- ✅ Customize design and layout
-- ✅ Modify code for your needs
-- ✅ Add new features
-- ✅ Remove unwanted features
-- ✅ Translate to other languages
-- ✅ White-label for clients (Regular License)
-
-### Prohibited Actions
-
-You may NOT:
-- ❌ Remove copyright notices from code
-- ❌ Claim authorship of the theme
-- ❌ Resell or redistribute theme
-- ❌ Share license with others
-- ❌ Use in competing products
-- ❌ Create derivative themes for sale
-
-## Bundled Plugins
-
-Restoria includes several premium plugins:
-
-### Included Plugin Licenses
-
-- **Revolution Slider**: $29 value
-- **WPBakery Page Builder**: $64 value
-- **Restaurant Reservations Pro**: $89 value
-- **Menu Builder Pro**: $39 value
-
-**Important:** These plugins are licensed only for use with Restoria. You cannot use them separately or in other projects.
-
-### Plugin Updates
-
-- Updates provided through Restoria
-- No separate licenses needed
-- Cannot register plugins separately
-- Support through Restoria only
-
-## Refund Policy
-
-As per Envato Market Terms:
-
-### Eligible for Refund
-
-- Item not as described
-- Item doesn't work as advertised
-- Extended License purchased by mistake
-- Duplicate purchase
-
-### Not Eligible for Refund
-
-- Changed your mind
-- Found cheaper alternative
-- Don't have required skills
-- Hosting doesn't meet requirements
-- No longer need item
-
-### Refund Process
-
-1. Contact author first (24-48 hours)
-2. If unresolved, open Envato dispute
-3. Provide detailed explanation
-4. Include proof if applicable
-
-## Legal Terms
-
-### Copyright
-
-- © 2023-2024 Botble Technologies
-- All rights reserved
-- Protected by international copyright laws
-
-### Warranty Disclaimer
-
-- Provided "as is" without warranty
-- No guarantee of specific results
-- Not responsible for third-party services
-- Use at your own risk
-
-### Limitation of Liability
-
-- Not liable for any damages
-- Including lost profits or data
-- Maximum liability equals purchase price
-
-### Governing Law
-
-- Governed by laws of Singapore
-- Disputes resolved in Singapore courts
-- English language prevails
-
-## Frequently Asked Questions
-
-### Can I use one license for multiple restaurants?
-
-No, each restaurant website requires its own license. For restaurant chains, consider the Extended License or multiple Regular Licenses.
-
-### Can I transfer the license to my client?
-
-Yes, you can build a website for a client and transfer the license. The client becomes the license holder.
-
-### Do I need to keep the footer credits?
-
-You can remove visible footer credits but must keep copyright notices in the source code.
-
-### Can I get a refund if my hosting doesn't support Restoria?
-
-No, it's your responsibility to verify hosting requirements before purchase. Check requirements [here](./installation-requirements.md).
-
-### What happens when support expires?
-
-The theme continues working, and you can still download updates. You just won't have access to support tickets.
-
-### Can I modify and resell Restoria?
-
-No, you cannot resell Restoria or create derivative themes for sale, even with extensive modifications.
-
-## Getting Help
-
-### License Issues
-
-For license-related problems:
-
-1. Check purchase code is correct
-2. Verify domain is correct
-3. Clear cache after activation
-4. Contact support with:
-   - Purchase code
-   - Domain name
-   - Error messages
-
-### Support Channels
-
-- **Documentation**: Full guide available
-- **Support Tickets**: https://botble.ticksy.com
-- **Pre-sale Questions**: Comments on CodeCanyon
-- **Email**: contact@botble.com
-
-### Providing Information
-
-When contacting support, include:
-- Purchase code
-- Website URL
-- Issue description
-- Screenshots if applicable
-- Steps to reproduce
-
-::: warning Important
-Keep your purchase code secure. Never share it publicly or in forums. Only provide it to official support channels.
+::: warning
+Attempting to bypass license verification or using nulled versions of Botble CMS puts your website at risk of security vulnerabilities and malware. Always use properly licensed software.
 :::
 
 ::: tip
-Save your license certificate PDF and purchase code in a secure location. You'll need them for support and future updates.
+Contact us via email at contact@botble.com if you have any questions about licensing. We're here to help!
 :::
+
+## License Upgrades and Transfers
+
+### Upgrading from Regular to Extended License
+
+If your business model changes and you start charging users, you'll need to upgrade from a Regular License to an Extended License:
+
+1. Purchase an Extended License from [CodeCanyon](https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182)
+2. Contact us at contact@botble.com with both your Regular and Extended License purchase codes
+3. We'll help you transition to the Extended License
+
+### License Transfers
+
+Envato allows a license to be transferred to another person or company:
+
+1. The original buyer must initiate the transfer through their Envato account
+2. Once transferred, the new owner will receive the purchase code and can activate the license
+3. The previous owner must deactivate and stop using the product
+
+For more information on license transfers, please refer to [Envato's License FAQ](https://help.market.envato.com/hc/en-us/articles/202501064-License-FAQ).
+
+## Frequently Asked Questions
+
+### Can I use one license for multiple domains?
+
+No, each domain requires its own license. This includes subdomains and test/staging environments that are publicly accessible.
+
+### Do I need a license for my development environment?
+
+No, you can use Botble CMS on development/staging environments without activating a license, but certain features like system updates and marketplace access will be limited.
+
+### What happens if I don't activate my license?
+
+The system will work normally except for automatic updates and marketplace access. We recommend activating your license to receive security updates and new features.
+
+### Can I use Botble CMS for a client's website?
+
+Yes, but you need to purchase a separate license for each client's website. Alternatively, your client can purchase their own license.
+
+### How do I know if I need an Extended License?
+
+If your website charges users for access or services (subscription model, SaaS, etc.), you need an Extended License. If you're unsure, start with a Regular License and upgrade when necessary.

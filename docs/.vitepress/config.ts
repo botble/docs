@@ -137,6 +137,7 @@ export default defineConfig({
       infinia: infiniaSidebar,
       'pos-pro': posProSidebar,
       'affiliate-pro': affiliateProSidebar,
+       restoria: restoriaSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

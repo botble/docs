@@ -37,11 +37,15 @@ After creating the homepage, you need to set it as the homepage of your website.
 In admin panel, go to `Appearance` -> `Theme Options` -> `Page`, and select the homepage you want to use in
 the `Your homepage displays` field.
 
+![Setup homepage](./images/pages/setup-homepage.png)
+
 ::: tip
 If you are using the sample data of **Restoria**, the homepage is already created and set up for you.
 :::
 
 ## Customize Homepage
+
+Please go to Admin -> Pages -> Homepage, and edit the homepage content.
 
 The homepage can be customized using UI Blocks specifically designed for restaurants:
 
@@ -58,12 +62,3 @@ The homepage can be customized using UI Blocks specifically designed for restaur
 - **Contact Information** - Display location, hours, and contact details
 
 A complete list of available shortcodes can be found in [UI Block](./usage-ui-block.md#available-shortcodes).
-
-## Homepage Best Practices for Restaurants
-
-1. **High-Quality Imagery** - Use professional photos of your dishes and restaurant
-2. **Clear Call-to-Actions** - Make reservations and menu viewing easy
-3. **Opening Hours** - Display prominently
-4. **Location Information** - Include map and directions
-5. **Mobile Optimization** - Ensure perfect display on all devices
-6. **Fast Loading** - Optimize images for quick page loads
