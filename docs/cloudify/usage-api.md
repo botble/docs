@@ -1,19 +1,50 @@
 # API Integration
 
+## Quick Start
+
+The Cloudify API provides endpoints to manage media files and folders programmatically. For complete endpoint documentation, see the [API Reference](./api-reference.md).
+
+## Important: Folder Navigation
+
+When working with folders through the API:
+
+- **Root folders only**: `GET /api/v1/media/folders` returns only root-level folders
+- **Get subfolders**: Add `folder_id` parameter: `GET /api/v1/media/folders?folder_id={parent_id}`
+- **Upload to folder**: Include `folder_id` in your upload request
+
+### Example: Navigating Folder Structure
+
+```bash
+# Get root folders
+curl -X GET "https://your-domain.com/api/v1/media/folders" \
+  -H "X-API-KEY: your-token"
+
+# Get subfolders of folder ID 5
+curl -X GET "https://your-domain.com/api/v1/media/folders?folder_id=5" \
+  -H "X-API-KEY: your-token"
+
+# Upload file to folder ID 5
+curl -X POST "https://your-domain.com/api/v1/media/files" \
+  -H "X-API-KEY: your-token" \
+  -F "file=@document.pdf" \
+  -F "folder_id=5"
+```
+
 ## Available Endpoints
 
-- List Media Folders
-- Create Media Folder
-- Edit Media Folder
-- Trash Media Folder
-- Delete Media Folder
-- List Media Files
-- Create Media File
-- Edit Media File
-- Trash Media File
-- Delete Media File
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/media/folders` | GET | List folders (use `folder_id` param for subfolders) |
+| `/media/folders` | POST | Create new folder |
+| `/media/folders/{id}` | GET | Get folder details with files |
+| `/media/folders/{id}/trash` | PATCH | Move folder to trash |
+| `/media/folders/{id}` | DELETE | Delete folder permanently |
+| `/media/files` | GET | List files in folder |
+| `/media/files` | POST | Upload new file |
+| `/media/files/{id}/trash` | PATCH | Move file to trash |
+| `/media/files/{id}` | DELETE | Delete file permanently |
 
-For more details, you can see more on [Postman](https://documenter.getpostman.com/view/11116730/2sA3JQ3ejZ).
+For complete API documentation including all parameters and responses, see the [API Reference](./api-reference.md) or view the [Postman Collection](https://documenter.getpostman.com/view/11116730/2sA3JQ3ejZ).
 
 ## Create API Token
 
