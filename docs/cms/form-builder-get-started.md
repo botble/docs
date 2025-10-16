@@ -111,7 +111,7 @@ use Botble\Base\Forms\Fields\TextField;
 use Botble\Base\Forms\Fields\TextareaField;
 
 $this
-    ->columns(3) // Use 3 columns layout
+    ->columns(12) // Use 12 columns layout
     ->add('field1', TextField::class, TextFieldOption::make()->colspan(4))
     ->add('field2', TextField::class, TextFieldOption::make()->colspan(4))
     ->add('field3', TextField::class, TextFieldOption::make()->colspan(4));
