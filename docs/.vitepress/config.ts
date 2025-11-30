@@ -25,6 +25,7 @@ import carentoSidebar from '../carento/sidebar'
 import infiniaSidebar from '../infinia/sidebar'
 import posProSidebar from '../pos-pro/sidebar'
 import affiliateProSidebar from '../affiliate-pro/sidebar'
+import formBuilderProSidebar from '../form-builder-pro/sidebar'
 import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 import restoriaSidebar from '../restoria/sidebar'
 
@@ -98,6 +99,7 @@ export default defineConfig({
           { text: 'Infinia', link: '/infinia/'},
           { text: 'POS Pro', link: '/pos-pro/'},
           { text: 'Affiliate Pro', link: '/affiliate-pro/'},
+          { text: 'Form Builder Pro', link: '/form-builder-pro/'},
           { text: 'Restoria', link: '/restoria/'},
         ],
       },
@@ -137,6 +139,7 @@ export default defineConfig({
       infinia: infiniaSidebar,
       'pos-pro': posProSidebar,
       'affiliate-pro': affiliateProSidebar,
+      'form-builder-pro': formBuilderProSidebar,
        restoria: restoriaSidebar,
     },
 
