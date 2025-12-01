@@ -1,10 +1,10 @@
-# Installing Form Builder Pro
+# Installing BB Form Builder
 
-This guide will walk you through the process of installing the Form Builder Pro plugin for your Botble CMS website.
+This guide will walk you through the process of installing the BB Form Builder plugin for your Botble CMS website.
 
 ## Requirements
 
-Before installing Form Builder Pro, ensure your system meets the following requirements:
+Before installing BB Form Builder, ensure your system meets the following requirements:
 
 - Botble CMS version 7.5.0 or higher (or any script based on Botble CMS from our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio))
 - PHP version 8.2 or higher
@@ -15,29 +15,29 @@ Before installing Form Builder Pro, ensure your system meets the following requi
 
 1. Download the plugin from [CodeCanyon downloads page](https://codecanyon.net/downloads)
 2. Extract the downloaded zip file
-3. Upload the extracted folder to `platform/plugins/form-builder-pro` directory
-4. Go to **Admin** > **Plugins** and activate the Form Builder Pro plugin
+3. Upload the extracted folder to `platform/plugins/bb-form-builder` directory
+4. Go to **Admin** > **Plugins** and activate the BB Form Builder plugin
 5. Refresh your website
 
 ## Post-Installation Setup
 
-After installing and activating the Form Builder Pro plugin:
+After installing and activating the BB Form Builder plugin:
 
 ### 1. Activate Your License
 
-- Navigate to **Form Builder Pro** > **License Activation**
+- Navigate to **BB Form Builder** > **License Activation**
 - Enter your purchase code from CodeCanyon
 - Accept the license terms
 - Click "Activate license"
 
 ### 2. Access Admin Interface
 
-- The **Form Builder Pro** menu item will appear in your admin panel's main navigation
-- Click on **Form Builder Pro** to access the form management system
+- The **BB Form Builder** menu item will appear in your admin panel's main navigation
+- Click on **BB Form Builder** to access the form management system
 
 ### 3. Configure Basic Settings
 
-- Navigate to **Settings** > **Form Builder Pro**
+- Navigate to **Settings** > **BB Form Builder**
 - Set up allowed file types for uploads
 - Configure maximum file size
 - Customize appearance settings (colors, border radius, etc.)
@@ -45,7 +45,7 @@ After installing and activating the Form Builder Pro plugin:
 
 ### 4. Create Your First Form
 
-- Go to **Form Builder Pro** > **Forms**
+- Go to **BB Form Builder** > **Forms**
 - Click **Create** to create a new form
 - Use the drag-and-drop builder to add fields
 - Configure form actions (email notifications, database storage)
@@ -53,13 +53,13 @@ After installing and activating the Form Builder Pro plugin:
 
 ## Verifying Installation
 
-To verify that the Form Builder Pro plugin has been installed correctly:
+To verify that the BB Form Builder plugin has been installed correctly:
 
 1. Log in to your admin panel
-2. Verify the **Form Builder Pro** menu item appears in the main navigation
-3. Click on **Form Builder Pro** to access the management interface
+2. Verify the **BB Form Builder** menu item appears in the main navigation
+3. Click on **BB Form Builder** to access the management interface
 4. Check that all sub-menus are accessible (Forms, Submissions, Reports, License Activation)
-5. Go to **Settings** > **Form Builder Pro** and verify settings are accessible
+5. Go to **Settings** > **BB Form Builder** and verify settings are accessible
 
 ## Need Help?
 

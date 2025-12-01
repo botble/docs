@@ -52,7 +52,7 @@ Send data to external services:
 
 Add subscribers to Mailchimp lists:
 
-1. Ensure Mailchimp API key is configured in **Settings** > **Form Builder Pro**
+1. Ensure Mailchimp API key is configured in **Settings** > **BB Form Builder**
 2. Click **Add Action** > **Mailchimp**
 3. Configure:
    - **Audience List**: Select your list
@@ -63,7 +63,7 @@ Add subscribers to Mailchimp lists:
 
 Add contacts to GetResponse campaigns:
 
-1. Ensure GetResponse API key is configured in **Settings** > **Form Builder Pro**
+1. Ensure GetResponse API key is configured in **Settings** > **BB Form Builder**
 2. Click **Add Action** > **GetResponse**
 3. Configure:
    - **Campaign**: Select your campaign

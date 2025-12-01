@@ -1,6 +1,6 @@
-# Upgrading Form Builder Pro
+# Upgrading BB Form Builder
 
-This guide explains how to upgrade your Form Builder Pro plugin to the latest version.
+This guide explains how to upgrade your BB Form Builder plugin to the latest version.
 
 ## Before You Begin
 
@@ -11,7 +11,7 @@ This guide explains how to upgrade your Form Builder Pro plugin to the latest ve
 If your license is already activated:
 
 1. Go to **Admin** > **Plugins** > **Installed plugins**
-2. Find Form Builder Pro in the list
+2. Find BB Form Builder in the list
 3. Click the **Update** button to download and install the latest version
 4. Go to **Admin** > **Platform Administration** > **Cache management**
 5. Click "Clear all CMS cache"
@@ -30,7 +30,7 @@ Verify everything works correctly:
 If you encounter any issues after upgrading:
 
 1. Clear your browser cache and try again
-2. Check the [Troubleshooting guide](/form-builder-pro/troubleshooting)
+2. Check the [Troubleshooting guide](/bb-form-builder/troubleshooting)
 3. Contact our support team with details about the issue
 
 **When contacting support, please include:**

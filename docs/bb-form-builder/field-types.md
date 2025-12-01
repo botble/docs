@@ -1,6 +1,6 @@
 # Field Types Reference
 
-Form Builder Pro includes a variety of field types to collect different kinds of data from your users.
+BB Form Builder includes a variety of field types to collect different kinds of data from your users.
 
 ## Text Input Fields
 

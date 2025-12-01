@@ -4,7 +4,7 @@ Track your form performance with built-in analytics and reports.
 
 ## Accessing Reports
 
-Navigate to **Form Builder Pro** > **Reports** to view:
+Navigate to **BB Form Builder** > **Reports** to view:
 
 ### Overview Statistics
 

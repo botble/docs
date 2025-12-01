@@ -1,12 +1,12 @@
-# Configuring Form Builder Pro
+# Configuring BB Form Builder
 
-This guide will walk you through the process of configuring the Form Builder Pro plugin for your Botble CMS website.
+This guide will walk you through the process of configuring the BB Form Builder plugin for your Botble CMS website.
 
 ## Accessing Form Builder Settings
 
 1. Log in to your admin panel
-2. Navigate to **Settings** > **Form Builder Pro**
-3. You will see the Form Builder Pro configuration page
+2. Navigate to **Settings** > **BB Form Builder**
+3. You will see the BB Form Builder configuration page
 
 ## Available Settings
 
@@ -126,30 +126,30 @@ Configure actions that execute when form is submitted:
 
 ## Permissions
 
-Form Builder Pro includes permissions that can be assigned to user roles:
+BB Form Builder includes permissions that can be assigned to user roles:
 
 ### Form Permissions
-- **form-builder-pro.forms.index**: View form list
-- **form-builder-pro.forms.create**: Create new forms
-- **form-builder-pro.forms.edit**: Edit existing forms
-- **form-builder-pro.forms.destroy**: Delete forms
+- **bb-form-builder.forms.index**: View form list
+- **bb-form-builder.forms.create**: Create new forms
+- **bb-form-builder.forms.edit**: Edit existing forms
+- **bb-form-builder.forms.destroy**: Delete forms
 
 ### Submission Permissions
-- **form-builder-pro.submissions.index**: View form submissions
-- **form-builder-pro.submissions.destroy**: Delete submissions
-- **form-builder-pro.submissions.export**: Export submissions
+- **bb-form-builder.submissions.index**: View form submissions
+- **bb-form-builder.submissions.destroy**: Delete submissions
+- **bb-form-builder.submissions.export**: Export submissions
 
 ### Report Permissions
-- **form-builder-pro.reports.index**: Access to reports dashboard
+- **bb-form-builder.reports.index**: Access to reports dashboard
 
 ### Settings Permissions
-- **form-builder-pro.settings**: Access to plugin settings
+- **bb-form-builder.settings**: Access to plugin settings
 
 To manage permissions:
 
 1. Go to **Admin** > **Users** > **Roles**
 2. Edit a role
-3. Find the "Form Builder Pro" section in permissions
+3. Find the "BB Form Builder" section in permissions
 4. Check/uncheck permissions based on role requirements
 5. Save changes
 

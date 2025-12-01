@@ -2,30 +2,30 @@
 
 ## General Questions
 
-### What is Form Builder Pro?
+### What is BB Form Builder?
 
-Form Builder Pro is an advanced form builder plugin for websites built with Botble CMS. It provides a drag-and-drop interface to create beautiful, responsive forms without any coding knowledge. From simple contact forms to complex multi-step wizards, Form Builder Pro handles all your form needs.
+BB Form Builder is an advanced form builder plugin for websites built with Botble CMS. It provides a drag-and-drop interface to create beautiful, responsive forms without any coding knowledge. From simple contact forms to complex multi-step wizards, BB Form Builder handles all your form needs.
 
-### What are the system requirements for Form Builder Pro?
+### What are the system requirements for BB Form Builder?
 
 - Botble CMS version 7.5.0 or higher (or any script based on Botble CMS)
 - PHP version 8.2 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 
-### Is Form Builder Pro compatible with other Botble products?
+### Is BB Form Builder compatible with other Botble products?
 
-Yes! Form Builder Pro is fully compatible with all scripts based on Botble CMS, including all products available on our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio) such as Farmart, Martfury, Shofy, JobBox, and more.
+Yes! BB Form Builder is fully compatible with all scripts based on Botble CMS, including all products available on our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio) such as Farmart, Martfury, Shofy, JobBox, and more.
 
 ### How do I activate my license?
 
-1. Go to **Form Builder Pro** > **License Activation** in your admin panel
+1. Go to **BB Form Builder** > **License Activation** in your admin panel
 2. Enter your purchase code from CodeCanyon
 3. Accept the license terms
 4. Click "Activate license"
 
 Your license allows installation on one domain. To use on another domain, deactivate first.
 
-### Can I use Form Builder Pro on multiple websites?
+### Can I use BB Form Builder on multiple websites?
 
 Each license allows installation on one website. For multiple websites, you need to purchase additional licenses or deactivate from one site before activating on another.
 
@@ -33,15 +33,15 @@ Each license allows installation on one website. For multiple websites, you need
 
 ### How many forms can I create?
 
-There is no limit to the number of forms you can create with Form Builder Pro. Create as many forms as your website needs.
+There is no limit to the number of forms you can create with BB Form Builder. Create as many forms as your website needs.
 
 ### Can I create multi-step forms?
 
-Yes! Form Builder Pro supports multi-step wizard forms. Simply click "Add Step" in the form builder to create multiple steps. You can choose between horizontal or vertical step layouts.
+Yes! BB Form Builder supports multi-step wizard forms. Simply click "Add Step" in the form builder to create multiple steps. You can choose between horizontal or vertical step layouts.
 
 ### What field types are available?
 
-Form Builder Pro includes:
+BB Form Builder includes:
 - Text inputs (text, number, email, phone)
 - Textarea (multi-line input)
 - Autocomplete
@@ -55,7 +55,7 @@ Form Builder Pro includes:
 
 ### Can I customize the form appearance?
 
-Yes! Form Builder Pro offers extensive customization:
+Yes! BB Form Builder offers extensive customization:
 - Five pre-built styles (Default, Modern, Minimal, Bold, Glassmorphism)
 - Custom colors for all elements
 - Adjustable border radius and shadows
@@ -64,7 +64,7 @@ Yes! Form Builder Pro offers extensive customization:
 
 ### How do I add conditional logic to forms?
 
-Currently, Form Builder Pro focuses on straightforward form building. For complex conditional logic, consider using the multi-step wizard feature to logically group related fields.
+Currently, BB Form Builder focuses on straightforward form building. For complex conditional logic, consider using the multi-step wizard feature to logically group related fields.
 
 ## Embedding Questions
 
@@ -72,7 +72,7 @@ Currently, Form Builder Pro focuses on straightforward form building. For comple
 
 Use the shortcode:
 ```
-[form-builder-pro code="your-form-code"][/form-builder-pro]
+[bb-form-builder code="your-form-code"][/bb-form-builder]
 ```
 
 Replace "your-form-code" with your actual form code.
@@ -96,7 +96,7 @@ Yes! Set the form's "Display Mode" to "Popup" and configure the trigger:
 
 Yes, use the style attribute:
 ```
-[form-builder-pro code="your-form-code" style="modern"][/form-builder-pro]
+[bb-form-builder code="your-form-code" style="modern"][/bb-form-builder]
 ```
 
 Available styles: `default`, `modern`, `minimal`, `bold`, `glass`
@@ -105,7 +105,7 @@ Available styles: `default`, `modern`, `minimal`, `bold`, `glass`
 
 ### Where are form submissions stored?
 
-Submissions are stored in your website's database. You can view them in **Form Builder Pro** > **Submissions**.
+Submissions are stored in your website's database. You can view them in **BB Form Builder** > **Submissions**.
 
 ### Can I export form submissions?
 
@@ -127,7 +127,7 @@ Yes, add an "Email Notification" action to your form. Configure recipients, subj
 
 ### What email marketing services are supported?
 
-Form Builder Pro integrates with:
+BB Form Builder integrates with:
 - Mailchimp
 - GetResponse
 
@@ -136,7 +136,7 @@ More integrations may be added in future updates.
 ### How do I connect to Mailchimp?
 
 1. Get your API key from Mailchimp Account → Extras → API keys
-2. Add the key in **Settings** > **Form Builder Pro** > **Integrations**
+2. Add the key in **Settings** > **BB Form Builder** > **Integrations**
 3. Add a Mailchimp action to your form
 4. Select your audience list and map fields
 
@@ -150,16 +150,16 @@ Currently, integrations support email and name field mapping. Additional custom 
 
 ## Security Questions
 
-### How does Form Builder Pro protect against spam?
+### How does BB Form Builder protect against spam?
 
-Form Builder Pro offers:
+BB Form Builder offers:
 - Google reCAPTCHA integration
 - Math CAPTCHA option
 - CSRF protection on all submissions
 
 ### Are file uploads secure?
 
-Yes, Form Builder Pro includes:
+Yes, BB Form Builder includes:
 - File type validation
 - File extension checking
 - MIME type verification
@@ -172,31 +172,31 @@ Form data is stored in your database. For sensitive forms, ensure your database 
 
 ## Technical Questions
 
-### How do I update Form Builder Pro?
+### How do I update BB Form Builder?
 
 If your license is already activated:
 
 1. Go to **Admin** > **Plugins** > **Installed plugins**
-2. Find Form Builder Pro and click the **Update** button
+2. Find BB Form Builder and click the **Update** button
 3. Clear cache in **Admin** > **Platform Administration** > **Cache management**
 
-See the [Upgrade Guide](/form-builder-pro/upgrade) for detailed instructions.
+See the [Upgrade Guide](/bb-form-builder/upgrade) for detailed instructions.
 
 ### Can I customize the form templates?
 
-Yes, you can modify view files in `platform/plugins/form-builder-pro/resources/views`. Always backup customizations before updating.
+Yes, you can modify view files in `platform/plugins/bb-form-builder/resources/views`. Always backup customizations before updating.
 
-### Is Form Builder Pro compatible with other Botble plugins?
+### Is BB Form Builder compatible with other Botble plugins?
 
-Yes, Form Builder Pro is designed to work seamlessly with other Botble plugins and themes.
+Yes, BB Form Builder is designed to work seamlessly with other Botble plugins and themes.
 
-### Does Form Builder Pro affect site performance?
+### Does BB Form Builder affect site performance?
 
-Form Builder Pro is optimized for performance. Forms load asynchronously and assets are only loaded when forms are present on a page.
+BB Form Builder is optimized for performance. Forms load asynchronously and assets are only loaded when forms are present on a page.
 
-### Can I translate Form Builder Pro?
+### Can I translate BB Form Builder?
 
-Yes, Form Builder Pro supports full translation. Language files are located in `platform/plugins/form-builder-pro/resources/lang/`.
+Yes, BB Form Builder supports full translation. Language files are located in `platform/plugins/bb-form-builder/resources/lang/`.
 
 ## Troubleshooting Questions
 
@@ -221,4 +221,4 @@ Yes, Form Builder Pro supports full translation. Language files are located in `
 - Test email functionality separately
 - Check spam folders
 
-For more troubleshooting help, see the [Troubleshooting Guide](/form-builder-pro/troubleshooting).
+For more troubleshooting help, see the [Troubleshooting Guide](/bb-form-builder/troubleshooting).

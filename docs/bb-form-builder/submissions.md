@@ -4,7 +4,7 @@ View, export, and manage all form submissions from your admin panel.
 
 ## Viewing Submissions
 
-1. Navigate to **Form Builder Pro** > **Submissions**
+1. Navigate to **BB Form Builder** > **Submissions**
 2. View all submissions across all forms
 3. Filter by form using the dropdown
 4. Search submissions by content

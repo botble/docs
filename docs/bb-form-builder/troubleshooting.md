@@ -1,6 +1,6 @@
-# Troubleshooting Form Builder Pro
+# Troubleshooting BB Form Builder
 
-This guide will help you resolve common issues that may arise when using the Form Builder Pro plugin.
+This guide will help you resolve common issues that may arise when using the BB Form Builder plugin.
 
 ## Common Issues
 
@@ -33,7 +33,7 @@ If the drag-and-drop form builder interface is not loading:
 If forms are not appearing on your website:
 
 1. **Check Shortcode**:
-   - Verify the shortcode format: `[form-builder-pro code="your-code"][/form-builder-pro]`
+   - Verify the shortcode format: `[bb-form-builder code="your-code"][/bb-form-builder]`
    - Ensure the form code is correct
    - Check that shortcodes are enabled for the content area
 
@@ -214,7 +214,7 @@ php artisan view:clear
 Check the Laravel logs for any errors:
 
 1. Look in `storage/logs/laravel.log`
-2. Check for any errors related to Form Builder Pro
+2. Check for any errors related to BB Form Builder
 3. Pay attention to timestamps to identify recent issues
 
 ### Database Issues
@@ -303,7 +303,7 @@ For development troubleshooting:
 
 If you're unable to resolve the issue using this troubleshooting guide, please contact our support team:
 
-- **Documentation**: [https://docs.botble.com/form-builder-pro](https://docs.botble.com/form-builder-pro)
+- **Documentation**: [https://docs.botble.com/bb-form-builder](https://docs.botble.com/bb-form-builder)
 - **Support Email**: [contact@botble.com](mailto:contact@botble.com)
 - **Support Forum**: [https://botble.com/forum](https://botble.com/forum)
 

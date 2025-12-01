@@ -7,13 +7,13 @@ Learn how to embed forms on your website pages and external websites.
 The primary method for embedding forms in pages:
 
 ```
-[form-builder-pro code="your-form-code"][/form-builder-pro]
+[bb-form-builder code="your-form-code"][/bb-form-builder]
 ```
 
 ### With Style Override
 
 ```
-[form-builder-pro code="your-form-code" style="modern"][/form-builder-pro]
+[bb-form-builder code="your-form-code" style="modern"][/bb-form-builder]
 ```
 
 Available styles: `default`, `modern`, `minimal`, `bold`, `glass`
@@ -49,8 +49,8 @@ https://yoursite.com/form/{code}
 ### Using JavaScript Embed
 
 ```html
-<script src="https://yoursite.com/vendor/core/plugins/form-builder-pro/js/embed.js"></script>
-<div data-form-builder-pro="your-form-code"></div>
+<script src="https://yoursite.com/vendor/core/plugins/bb-form-builder/js/embed.js"></script>
+<div data-bb-form-builder="your-form-code"></div>
 ```
 
 ## Embed Options in Admin

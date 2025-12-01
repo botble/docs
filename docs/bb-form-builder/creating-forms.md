@@ -1,10 +1,10 @@
 # Creating Forms
 
-This guide explains how to create and configure forms using the Form Builder Pro plugin.
+This guide explains how to create and configure forms using the BB Form Builder plugin.
 
 ## Creating a New Form
 
-1. Navigate to **Form Builder Pro** > **Forms**
+1. Navigate to **BB Form Builder** > **Forms**
 2. Click the **Create** button
 3. Enter a form name (internal use only)
 4. Optionally enter a custom code (used in shortcodes)

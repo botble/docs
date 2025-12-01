@@ -1,12 +1,12 @@
-# Form Builder Pro - Advanced Form Builder for Botble CMS
+# BB Form Builder - Advanced Form Builder for Botble CMS
 
 ## Introduction
 
-Form Builder Pro is a powerful, feature-rich form builder plugin designed for websites built with Botble CMS. It enables website owners to create beautiful, responsive forms with an intuitive drag-and-drop interface. From simple contact forms to complex multi-step wizards, Form Builder Pro provides all the tools you need to collect data from your visitors effectively.
+BB Form Builder is a powerful, feature-rich form builder plugin designed for websites built with Botble CMS. It enables website owners to create beautiful, responsive forms with an intuitive drag-and-drop interface. From simple contact forms to complex multi-step wizards, BB Form Builder provides all the tools you need to collect data from your visitors effectively.
 
 ## Compatibility
 
-Form Builder Pro is fully compatible with all scripts based on Botble CMS, including all products available on our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio). This includes but is not limited to:
+BB Form Builder is fully compatible with all scripts based on Botble CMS, including all products available on our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio). This includes but is not limited to:
 
 - Farmart - Laravel Ecommerce
 - Martfury - Laravel Ecommerce
@@ -81,7 +81,7 @@ Form Builder Pro is fully compatible with all scripts based on Botble CMS, inclu
    - CSRF protection
 
 9. **Embedding Options**
-   - Shortcode embedding `[form-builder-pro code="..."][/form-builder-pro]`
+   - Shortcode embedding `[bb-form-builder code="..."][/bb-form-builder]`
    - Direct URL embedding
    - JavaScript embed for external sites
    - iframe support
