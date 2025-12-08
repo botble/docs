@@ -28,6 +28,7 @@ import affiliateProSidebar from '../affiliate-pro/sidebar'
 import bbFormBuilderSidebar from '../bb-form-builder/sidebar'
 import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 import restoriaSidebar from '../restoria/sidebar'
+import loyaltyPointsSidebar from '../loyalty-points/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -101,6 +102,7 @@ export default defineConfig({
           { text: 'Affiliate Pro', link: '/affiliate-pro/'},
           { text: 'BB Form Builder', link: '/bb-form-builder/'},
           { text: 'Restoria', link: '/restoria/'},
+          { text: 'Loyalty Points', link: '/loyalty-points/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -141,6 +143,7 @@ export default defineConfig({
       'affiliate-pro': affiliateProSidebar,
       'bb-form-builder': bbFormBuilderSidebar,
        restoria: restoriaSidebar,
+      'loyalty-points': loyaltyPointsSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
