@@ -854,7 +854,9 @@ class ItemRepository extends RepositoriesAbstract implements ItemInterface
 
 The service provider is the main entry point of your plugin. It registers routes, views, translations, and other resources. A plugin must have this file.
 
-Example:
+#### Modern Service Provider Pattern (Recommended)
+
+The current Botble CMS v7.6.0 uses a streamlined pattern with the `LoadAndPublishDataTrait`:
 
 ```php
 <?php
@@ -874,42 +876,37 @@ class FooServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        // Register bindings for repositories
+        // Register bindings for repositories and services
         $this->app->bind(ItemInterface::class, function () {
             return new ItemRepository(new Item());
         });
-
-        // Load helpers
-        $this->app->make('files')->requireOnce(__DIR__ . '/../../helpers/constants.php');
-        $this->app->make('files')->requireOnce(__DIR__ . '/../../helpers/helpers.php');
     }
 
     public function boot(): void
     {
         $this
-            ->setNamespace('plugins/foo') // Set namespace for views, translations, etc.
-            ->loadHelpers() // Load all helpers in the helpers folder
-            ->loadAndPublishConfigurations(['permissions']) // Load and publish config files
-            ->loadMigrations() // Load migrations
-            ->loadAndPublishTranslations() // Load and publish translations
-            ->loadAndPublishViews() // Load and publish views
-            ->loadRoutes(['web']); // Load routes with web middleware
+            ->setNamespace('plugins/foo')
+            ->loadAndPublishConfigurations(['permissions'])
+            ->loadMigrations()
+            ->loadAndPublishTranslations()
+            ->loadAndPublishViews()
+            ->loadRoutes(['web']);
 
-        // Register menu items in the admin dashboard
+        // Register menu items
         DashboardMenu::default()->beforeRetrieving(function (): void {
             DashboardMenu::make()
                 ->registerItem([
-                    'id' => 'cms-plugins-foo', // Unique ID for the menu item
-                    'priority' => 5, // Position in the menu
-                    'parent_id' => null, // Parent ID for submenu items
-                    'name' => 'plugins/foo::foo.name', // Translation key for the menu name
-                    'icon' => 'ti ti-box', // Icon for the menu item
-                    'url' => route('foo.index'), // URL for the menu item
-                    'permissions' => ['foo.index'], // Required permissions to see this menu
+                    'id' => 'cms-plugins-foo',
+                    'priority' => 5,
+                    'parent_id' => null,
+                    'name' => 'plugins/foo::foo.name',
+                    'icon' => 'ti ti-box',
+                    'url' => route('foo.index'),
+                    'permissions' => ['foo.index'],
                 ]);
         });
 
-        // Add additional hooks, filters, or actions here
+        // Additional hooks or initialization
         $this->app->booted(function () {
             // Code to run after the application is fully booted
         });
@@ -917,21 +914,286 @@ class FooServiceProvider extends ServiceProvider
 }
 ```
 
-The service provider has two main methods:
+#### Service Provider Methods
 
-- `register()`: Used to bind implementations to the service container. This is where you register repositories, services, and load helpers.
+The service provider has two main lifecycle methods:
 
-- `boot()`: Called after all other service providers have been registered. This is where you load and publish assets, register routes, and add menu items.
+**`register()` Method**
+- Called first when the application boots
+- Used to bind implementations to the service container
+- Register repositories, services, and dependencies here
+- Avoid registering routes, views, or running queries in register()
 
-The `LoadAndPublishDataTrait` provides several helpful methods:
+```php
+public function register(): void
+{
+    // Bind interfaces to implementations
+    $this->app->bind(ItemInterface::class, ItemRepository::class);
 
-- `setNamespace()`: Sets the namespace for views, translations, and other assets
-- `loadHelpers()`: Loads all PHP files from the helpers directory
-- `loadAndPublishConfigurations()`: Loads and publishes configuration files
-- `loadMigrations()`: Loads database migrations
-- `loadAndPublishTranslations()`: Loads and publishes translation files
-- `loadAndPublishViews()`: Loads and publishes view files
-- `loadRoutes()`: Loads route files
+    // Bind singletons for shared instances
+    $this->app->singleton('my-service', MyService::class);
+
+    // Register event/action listeners
+    $this->listen();
+}
+```
+
+**`boot()` Method**
+- Called after all service providers have been registered
+- Safe place to access other services and perform setup
+- Register routes, views, translations, and assets here
+- Hook into application events here
+
+```php
+public function boot(): void
+{
+    // Load and publish plugin data
+    $this
+        ->setNamespace('plugins/foo')
+        ->loadHelpers()
+        ->loadAndPublishConfigurations(['permissions', 'settings'])
+        ->loadAndPublishTranslations()
+        ->loadAndPublishViews()
+        ->loadMigrations()
+        ->loadRoutes(['web', 'api']);
+
+    // Register event listeners
+    $this->registerEventListeners();
+
+    // Register hooks/actions/filters
+    $this->registerHooks();
+}
+```
+
+#### LoadAndPublishDataTrait Methods
+
+The `LoadAndPublishDataTrait` simplifies plugin setup with these helper methods:
+
+```php
+use Botble\Base\Traits\LoadAndPublishDataTrait;
+
+class FooServiceProvider extends ServiceProvider
+{
+    use LoadAndPublishDataTrait;
+
+    public function boot(): void
+    {
+        $this
+            // Set the namespace for all plugin assets
+            ->setNamespace('plugins/foo')
+
+            // Load helper functions from helpers/ directory
+            ->loadHelpers()
+
+            // Load and publish configuration files
+            ->loadAndPublishConfigurations(['permissions', 'settings'])
+
+            // Load and publish migration files
+            ->loadMigrations()
+
+            // Load and publish language/translation files
+            ->loadAndPublishTranslations()
+
+            // Load and publish view files
+            ->loadAndPublishViews()
+
+            // Load route files (specify middleware groups)
+            ->loadRoutes(['web'])
+
+            // Publish additional files
+            ->publishAssets();
+    }
+}
+```
+
+#### Multiple Service Providers (Advanced Pattern)
+
+For larger plugins, you can split functionality into multiple service providers:
+
+**Main Service Provider** (`FooServiceProvider.php`):
+```php
+public function boot(): void
+{
+    $this
+        ->setNamespace('plugins/foo')
+        ->loadAndPublishConfigurations(['permissions'])
+        ->loadMigrations()
+        ->loadAndPublishTranslations()
+        ->loadAndPublishViews()
+        ->loadRoutes(['web']);
+
+    // Register other service providers
+    $this->app->register(EventServiceProvider::class);
+    $this->app->register(HookServiceProvider::class);
+}
+```
+
+**Event Service Provider** (`EventServiceProvider.php`):
+```php
+namespace Botble\Foo\Providers;
+
+use Botble\Foo\Events\ItemCreated;
+use Botble\Foo\Listeners\SendItemNotification;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
+class EventServiceProvider extends ServiceProvider
+{
+    protected $listen = [
+        ItemCreated::class => [
+            SendItemNotification::class,
+        ],
+    ];
+}
+```
+
+**Hook Service Provider** (`HookServiceProvider.php`):
+```php
+namespace Botble\Foo\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class HookServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        // Register action hooks
+        add_action('BASE_ACTION_ENQUEUE_SCRIPTS', function () {
+            // Register plugin scripts
+        });
+
+        // Register filter hooks
+        add_filter('BASE_FILTER_DASHBOARD_MENU', function ($menu) {
+            // Modify dashboard menu
+            return $menu;
+        });
+    }
+}
+```
+
+#### Complete Service Provider Example with All Features
+
+```php
+<?php
+
+namespace Botble\Foo\Providers;
+
+use Botble\Base\Facades\BaseHelper;
+use Botble\Base\Facades\DashboardMenu;
+use Botble\Base\Traits\LoadAndPublishDataTrait;
+use Botble\Foo\Models\Item;
+use Botble\Foo\Repositories\Interfaces\ItemInterface;
+use Botble\Foo\Repositories\Eloquent\ItemRepository;
+use Botble\Foo\Http\Middleware\CheckFooPermission;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
+
+class FooServiceProvider extends ServiceProvider
+{
+    use LoadAndPublishDataTrait;
+
+    public function register(): void
+    {
+        // Register repository bindings
+        $this->app->bind(ItemInterface::class, function () {
+            return new ItemRepository(new Item());
+        });
+
+        // Register singleton services
+        $this->app->singleton('foo-service', FooService::class);
+    }
+
+    public function boot(): void
+    {
+        // Load and publish plugin resources
+        $this
+            ->setNamespace('plugins/foo')
+            ->loadHelpers()
+            ->loadAndPublishConfigurations(['permissions', 'settings'])
+            ->loadMigrations()
+            ->loadAndPublishTranslations()
+            ->loadAndPublishViews()
+            ->loadRoutes(['web', 'api']);
+
+        // Register middleware
+        $this->registerMiddleware();
+
+        // Register dashboard menu items
+        $this->registerDashboardMenu();
+
+        // Register hooks and filters
+        $this->registerHooks();
+
+        // Register event listeners
+        if (class_exists(EventServiceProvider::class)) {
+            $this->app->register(EventServiceProvider::class);
+        }
+    }
+
+    protected function registerMiddleware(): void
+    {
+        $router = $this->app['router'];
+        $router->aliasMiddleware('foo.permission', CheckFooPermission::class);
+    }
+
+    protected function registerDashboardMenu(): void
+    {
+        DashboardMenu::default()->beforeRetrieving(function (): void {
+            DashboardMenu::make()
+                ->registerItem([
+                    'id' => 'cms-plugins-foo',
+                    'priority' => 5,
+                    'parent_id' => null,
+                    'name' => 'plugins/foo::foo.name',
+                    'icon' => 'ti ti-box',
+                    'url' => route('foo.index'),
+                    'permissions' => ['foo.index'],
+                ]);
+        });
+    }
+
+    protected function registerHooks(): void
+    {
+        // Register action hooks
+        add_action(BASE_ACTION_ENQUEUE_SCRIPTS, function () {
+            Assets::addScriptsDirectly([
+                'vendor/core/plugins/foo/js/foo.js',
+            ])->addStylesDirectly([
+                'vendor/core/plugins/foo/css/foo.css',
+            ]);
+        });
+
+        // Register filter hooks
+        add_filter(BASE_FILTER_DASHBOARD_MENU, function ($menu) {
+            // Customize dashboard menu
+            return $menu;
+        });
+    }
+}
+```
+
+#### Best Practices for Service Providers
+
+1. **Register Early, Boot Late**: Only register bindings in `register()`, do everything else in `boot()`
+2. **Use Traits**: Leverage `LoadAndPublishDataTrait` to reduce boilerplate
+3. **Organize with Multiple Providers**: Split large providers into focused, single-responsibility providers
+4. **Defer Loading**: For optional features, load providers conditionally based on plugin settings
+5. **Document Dependencies**: Check that required plugins/packages are installed before registering features
+
+Example of conditional provider loading:
+
+```php
+public function boot(): void
+{
+    // Only register features if plugin is active
+    if (!is_plugin_active('my-dependency')) {
+        return;
+    }
+
+    $this
+        ->setNamespace('plugins/foo')
+        ->loadRoutes(['web']);
+}
+```
 
 ## Best Practices
 

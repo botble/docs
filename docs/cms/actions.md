@@ -186,6 +186,34 @@ Botble CMS provides many action hooks that you can use in your plugins and theme
   }, 20, 0);
   ```
 
+### System Initialization Actions
+
+- **BASE_ACTION_INIT**: Fired when the application is initializing.
+  ```php
+  add_action(BASE_ACTION_INIT, function () {
+      // Initialize plugin functionality
+  }, 20, 0);
+  ```
+
+### Form Notification Actions
+
+- **BASE_ACTION_TOP_FORM_CONTENT_NOTIFICATION**: Fired to display notifications at the top of forms.
+  ```php
+  add_action(BASE_ACTION_TOP_FORM_CONTENT_NOTIFICATION, function ($request, $data) {
+      // Display form notifications
+      echo '<div class="alert alert-info">Important notice</div>';
+  }, 20, 2);
+  ```
+
+### Site Error Actions
+
+- **BASE_ACTION_SITE_ERROR**: Fired when a site error occurs.
+  ```php
+  add_action(BASE_ACTION_SITE_ERROR, function ($exception) {
+      // Handle site error, log, notify, etc.
+  }, 20, 1);
+  ```
+
 ## Best Practices
 
 1. **Use Appropriate Priority**: Choose a priority that makes sense for your action. Lower numbers run earlier.

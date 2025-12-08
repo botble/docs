@@ -194,7 +194,16 @@ StatusColumn::make()
 
 ```php
 EmailColumn::make()
-    ->linkable() // Make email clickable
+    ->title('Email Address')
+    ->linkable() // Make email clickable as mailto link
+```
+
+#### PhoneColumn
+
+```php
+PhoneColumn::make()
+    ->title('Phone Number')
+    ->linkable() // Make phone clickable as tel link
 ```
 
 #### LinkableColumn
@@ -320,6 +329,47 @@ FormattedColumn::make('categories_name')
     })
 ```
 
+### Column Traits and Features
+
+Columns can be enhanced with additional traits that provide special functionality:
+
+#### Copyable Trait
+Makes column content copyable to clipboard with a single click.
+
+```php
+FormattedColumn::make('api_key')
+    ->title('API Key')
+    ->copyable() // Enable copy functionality
+```
+
+#### Maskable Trait
+Apply a mask/pattern to column content to hide sensitive information.
+
+```php
+EmailColumn::make()
+    ->title('Email')
+    ->mask('***-**-####') // Mask pattern
+```
+
+#### Blurrable Trait
+Blur sensitive content with a toggle to show/hide.
+
+```php
+FormattedColumn::make('phone')
+    ->title('Phone Number')
+    ->blur() // Content will be blurred by default
+```
+
+These traits can be combined for enhanced column functionality:
+
+```php
+FormattedColumn::make('sensitive_field')
+    ->title('Sensitive Data')
+    ->copyable()
+    ->blur()
+    ->withEmptyState('N/A')
+```
+
 ## Actions
 
 Actions allow users to interact with the data in your table. There are three types of actions:
@@ -378,16 +428,44 @@ $this->addBulkChanges([
 
 Botble CMS provides several built-in bulk change types:
 
-- `NameBulkChange`: For changing name fields
+- `NameBulkChange`: For changing name/title fields
 - `StatusBulkChange`: For changing status fields
 - `CreatedAtBulkChange`: For changing creation dates
-- `UpdatedAtBulkChange`: For changing update dates
+- `DateBulkChange`: For changing any date fields
 - `SelectBulkChange`: For changing fields with predefined options
 - `TextBulkChange`: For changing text fields
 - `NumberBulkChange`: For changing numeric fields
-- `DateBulkChange`: For changing date fields
 - `EmailBulkChange`: For changing email fields
-- `IsFeaturedBulkChange`: For toggling featured status
+- `PhoneBulkChange`: For changing phone number fields
+- `IsFeaturedBulkChange`: For toggling featured/highlighted status
+
+#### Bulk Change Examples
+
+```php
+// Name change
+NameBulkChange::make()
+    ->title(trans('core/base::tables.name'))
+
+// Status change
+StatusBulkChange::make()
+    ->title(trans('core/base::tables.status'))
+
+// Custom select change
+SelectBulkChange::make()
+    ->name('category')
+    ->title(trans('plugins/blog::posts.category'))
+    ->searchable()
+    ->choices(fn () => Category::query()->pluck('name', 'id')->all())
+
+// Date change
+DateBulkChange::make()
+    ->name('published_date')
+    ->title(trans('plugins/blog::posts.published_date'))
+
+// Featured toggle
+IsFeaturedBulkChange::make()
+    ->title(trans('core/base::tables.is_featured'))
+```
 
 ### Custom Bulk Change Handling
 

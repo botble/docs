@@ -226,6 +226,132 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   }, 20, 3);
   ```
 
+### Form Builder Filters
+
+- **BASE_FILTER_EXTENDED_FORM**: Extend form with additional fields or functionality.
+  ```php
+  add_filter(BASE_FILTER_EXTENDED_FORM, function ($form, $model) {
+      // Add or modify form fields
+      return $form;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_BEFORE_RENDER_FORM**: Modify form before rendering.
+  ```php
+  add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
+      // Customize form appearance or fields
+      return $form;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_AFTER_RENDER_FORM**: Modify rendered form HTML.
+  ```php
+  add_filter(BASE_FILTER_AFTER_RENDER_FORM, function ($html, $form) {
+      // Modify form HTML after rendering
+      return $html;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_BEFORE_SAVE_FORM**: Modify data before saving form.
+  ```php
+  add_filter(BASE_FILTER_BEFORE_SAVE_FORM, function ($data, $form) {
+      // Transform or validate data before save
+      return $data;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_AFTER_SAVE_FORM**: Process data after form is saved.
+  ```php
+  add_filter(BASE_FILTER_AFTER_SAVE_FORM, function ($data, $form) {
+      // Do post-save operations
+      return $data;
+  }, 20, 2);
+  ```
+
+### Table Query Filters
+
+- **BASE_FILTER_TABLE_QUERY**: Customize the query used to fetch table data.
+  ```php
+  add_filter(BASE_FILTER_TABLE_QUERY, function ($query, $table) {
+      // Modify the Eloquent query
+      return $query->where('status', 'active');
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_TABLE_BEFORE_RENDER**: Modify table before rendering.
+  ```php
+  add_filter(BASE_FILTER_TABLE_BEFORE_RENDER, function ($html, $table) {
+      // Modify table HTML before display
+      return $html;
+  }, 20, 2);
+  ```
+
+- **BASE_FILTER_TABLE_AFTER_RENDER**: Modify table after rendering.
+  ```php
+  add_filter(BASE_FILTER_TABLE_AFTER_RENDER, function ($html, $table) {
+      // Modify rendered table HTML
+      return $html;
+  }, 20, 2);
+  ```
+
+### Layout and Display Filters
+
+- **BASE_FILTER_TOP_HEADER_LAYOUT**: Customize the top header layout.
+  ```php
+  add_filter(BASE_FILTER_TOP_HEADER_LAYOUT, function ($html) {
+      // Modify header HTML
+      return $html;
+  }, 20, 1);
+  ```
+
+- **BASE_FILTER_FOOTER_LAYOUT_TEMPLATE**: Customize the footer layout.
+  ```php
+  add_filter(BASE_FILTER_FOOTER_LAYOUT_TEMPLATE, function ($html) {
+      // Modify footer HTML
+      return $html;
+  }, 20, 1);
+  ```
+
+### Header and Head Layout Filters
+
+- **BASE_FILTER_HEAD_LAYOUT_TEMPLATE**: Customize the head section layout.
+  ```php
+  add_filter(BASE_FILTER_HEAD_LAYOUT_TEMPLATE, function ($html) {
+      // Add custom meta tags or styles to head
+      return $html . '<meta name="custom" content="value">';
+  }, 20, 1);
+  ```
+
+- **BASE_FILTER_HEADER_LAYOUT_TEMPLATE**: Customize the header layout template.
+  ```php
+  add_filter(BASE_FILTER_HEADER_LAYOUT_TEMPLATE, function ($html) {
+      // Modify header template HTML
+      return $html;
+  }, 20, 1);
+  ```
+
+### Menu Filters
+
+- **BASE_FILTER_MENU_ITEMS_COUNT**: Add badge counts to menu items.
+  ```php
+  add_filter(BASE_FILTER_MENU_ITEMS_COUNT, function ($counts) {
+      // Add count badge to a menu item
+      $counts['my-plugin'] = MyModel::query()->where('status', 'pending')->count();
+      return $counts;
+  }, 20, 1);
+  ```
+
+### Editor Filters
+
+- **BASE_FILTER_AVAILABLE_EDITORS**: Customize available WYSIWYG editors.
+  ```php
+  add_filter(BASE_FILTER_AVAILABLE_EDITORS, function ($editors) {
+      // Add or modify available editors
+      $editors['my-editor'] = 'My Custom Editor';
+      return $editors;
+  }, 20, 1);
+  ```
+
 ## Best Practices
 
 1. **Always Return a Value**: Filters must always return a value, even if you don't modify it.
