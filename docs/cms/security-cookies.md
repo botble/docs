@@ -28,7 +28,7 @@ If you prefer to configure manually or the admin panel is not accessible:
 
 Copy and paste these lines into your `.env` file:
 
-```env
+```ini
 # Cookie Security Settings (REQUIRED)
 SESSION_HTTP_ONLY=true
 
@@ -85,7 +85,7 @@ SESSION_SECURE_COOKIE=false  # Change to true if using HTTPS
 
 ### Recommended Production Settings:
 
-```env
+```ini
 # For live websites with HTTPS
 SESSION_HTTP_ONLY=true
 SESSION_SECURE_COOKIE=true
@@ -95,7 +95,7 @@ FORCE_SCHEMA=https
 
 ### Minimum Required Settings:
 
-```env
+```ini
 # Absolute minimum for security
 SESSION_HTTP_ONLY=true
 ENABLE_HTTP_SECURITY_HEADERS=true
