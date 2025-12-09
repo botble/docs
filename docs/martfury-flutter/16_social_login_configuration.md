@@ -29,11 +29,16 @@ ENABLE_TWITTER_SIGN_IN=true
 
 ### Default Values
 
-If these variables are not set in your `.env` file, all providers are enabled by default:
-- `ENABLE_APPLE_SIGN_IN` - defaults to `true`
-- `ENABLE_GOOGLE_SIGN_IN` - defaults to `true`
-- `ENABLE_FACEBOOK_SIGN_IN` - defaults to `true`
-- `ENABLE_TWITTER_SIGN_IN` - defaults to `true`
+If these variables are not set in your `.env` file, the following defaults apply:
+
+| Provider | Default | Notes |
+|----------|---------|-------|
+| `ENABLE_APPLE_SIGN_IN` | `false` | Requires Apple Developer account |
+| `ENABLE_GOOGLE_SIGN_IN` | `true` | Enabled by default |
+| `ENABLE_FACEBOOK_SIGN_IN` | `false` | Requires Facebook App |
+| `ENABLE_TWITTER_SIGN_IN` | `false` | Requires Twitter Developer account |
+
+**Important:** Even if a provider is enabled, it will only appear on the login screen if the required credentials are also configured (see Provider-Specific Configuration below).
 
 ## Configuration Examples
 
@@ -107,6 +112,17 @@ To test different configurations:
 ## Troubleshooting
 
 - If no social login buttons appear, check that at least one provider is enabled
-- If a specific provider button doesn't appear, verify that its enable flag is set to `true`
+- If a specific provider button doesn't appear:
+  1. Verify that its enable flag is set to `true`
+  2. Verify that all required credentials are configured
+  3. For Apple Sign-In on Android, it may not appear (iOS only by default)
 - Make sure your `.env` file is properly formatted (no spaces around the `=` sign)
-- Restart the app after making changes to the `.env` file 
+- **Stop the app completely** and run `flutter run` again (hot reload does not apply `.env` changes)
+
+## Configuration Priority
+
+The app checks configuration in this order:
+1. `.env` file variables (highest priority)
+2. `assets/config/social_sign_in.json` (fallback)
+
+If you set `ENABLE_GOOGLE_SIGN_IN=false` in `.env`, it will override any setting in `social_sign_in.json`.

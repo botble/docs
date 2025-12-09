@@ -73,13 +73,20 @@ flutter run
 ## 🔧 Setup Problems
 
 ### Colors Not Changing
-**Problem**: Changed colors but app still looks the same
+**Problem**: Changed colors in `.env` but app still looks the same
 
 **Solution**:
-1. Make sure you saved the file
-2. Stop the app completely
-3. Run: `flutter clean`
-4. Start the app again
+1. Make sure you saved the `.env` file
+2. **Stop the app completely** (Ctrl+C or stop button)
+3. Run: `flutter run` again
+4. **Important**: Hot reload (`r`) and hot restart (`R`) do NOT reload `.env` changes - you must fully restart
+
+If colors still don't change:
+1. Run: `flutter clean`
+2. Run: `flutter pub get`
+3. Run: `flutter run`
+
+See **[Theme Colors Guide](01_theme_colors.md)** for correct color format.
 
 ### App Name Not Changing
 **Problem**: Changed app name but it's still "MartFury"

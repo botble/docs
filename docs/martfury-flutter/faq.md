@@ -51,9 +51,15 @@ English, Vietnamese, Spanish, French, Arabic, Hindi, Bengali, Indonesian. You ca
 3. Save and test the app
 
 ### How do I change the app colors?
-1. Open `lib/src/theme/app_theme.dart`
-2. Change the color codes
-3. Save and restart the app
+1. Open your `.env` file
+2. Add color settings (hex values without #):
+   ```env
+   PRIMARY_COLOR=FF0000
+   PRIMARY_DARK_COLOR=CC0000
+   ```
+3. **Stop the app completely** and run `flutter run` again
+
+See **[Theme Colors Guide](01_theme_colors.md)** for all available color options.
 
 ### How do I change the app name?
 Follow guide **[04_app_name.md](04_app_name.md)** - it's very simple!

@@ -31,13 +31,25 @@ Simple steps to get your MartFury app running on your computer.
    flutter pub get
    ```
 
-### Step 4: Connect Your Website
-1. Open the `.env` file in your app folder
-2. Change this line to your website:
+### Step 4: Configure Your App
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
    ```
+2. Open the `.env` file and update your settings:
+   ```env
+   # Your website URL
    API_BASE_URL=https://your-website.com
+
+   # Your app name
+   APP_NAME=YourAppName
+
+   # Brand colors (optional - hex values without #)
+   PRIMARY_COLOR=FFB800
    ```
 3. Save the file
+
+See **[Theme Colors Guide](01_theme_colors.md)** for all color customization options.
 
 ### Step 5: Test the App
 1. Connect your phone or start an emulator

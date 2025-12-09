@@ -48,17 +48,36 @@ That's it! Your app should start running.
 
 ## Common Customizations
 
-### 🎨 Changing Colors and Fonts
+### 🎨 Changing Colors
 
-**Want different colors?**
-1. Open `lib/src/theme/app_theme.dart`
-2. Find the color you want to change
-3. Replace with your color code
+**Brand colors are configured via the `.env` file - no code changes needed!**
 
-```dart
-// Example: Change primary color to red
-static const Color primaryColor = Color(0xFFFF0000); // Red color
+1. Open your `.env` file
+2. Add or modify color settings:
+
+```env
+# Primary brand color (hex without #)
+PRIMARY_COLOR=FF0000
+
+# Darker shade for pressed states
+PRIMARY_DARK_COLOR=CC0000
+
+# Text/icons on primary backgrounds
+ON_PRIMARY_COLOR=FFFFFF
+
+# App bar icons and text
+APP_BAR_FOREGROUND_COLOR=FFFFFF
+
+# Accent sections (banners, search button)
+ACCENT_BACKGROUND_COLOR=212121
+ACCENT_FOREGROUND_COLOR=FFFFFF
 ```
+
+3. **Restart the app completely** (hot reload won't work for `.env` changes)
+
+For detailed color customization, see **[Theme Colors Guide](01_theme_colors.md)**.
+
+### 🔤 Changing Fonts
 
 **Want different fonts?**
 1. Open `lib/src/theme/app_fonts.dart`
@@ -150,9 +169,11 @@ flutter pub get
 flutter run
 ```
 
-**Colors not changing?**
-- Make sure you saved the file
-- Restart the app (hot reload might not work for theme changes)
+**Colors not changing after editing `.env`?**
+- Make sure you saved the `.env` file
+- **Stop the app completely** (Ctrl+C or stop button)
+- Run `flutter run` again
+- Hot reload (`r`) and hot restart (`R`) do NOT reload `.env` changes
 
 **New text not showing?**
 - Check spelling in translation files
