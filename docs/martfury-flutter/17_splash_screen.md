@@ -41,25 +41,24 @@ Image.asset('assets/images/logo.png', width: 200) // Change 200 to your desired 
 
 ### 2. Changing Background Color
 
-#### Option A: Use Theme Colors
-The splash screen currently uses `AppColors.primary`. To change this:
+#### Option A: Use Environment Configuration (Recommended)
+The splash screen uses `AppColors.primary` which is configurable via `.env`:
 
-1. **Update the primary color** in `lib/src/theme/app_colors.dart`:
-   ```dart
-   static const Color primary = Color(0xFFFFB800); // Change this color
+1. **Update your `.env` file**:
+   ```env
+   # Primary Color - used for splash screen background
+   PRIMARY_COLOR=FFB800
    ```
 
-2. **Or use a different theme color** in `lib/src/view/screen/splash_screen.dart`:
-   ```dart
-   // Line 75: Change AppColors.primary to your desired color
-   backgroundColor: AppColors.primary, // Change this line
-   ```
+2. **Restart the app completely** (hot reload won't apply `.env` changes)
 
-#### Option B: Use Custom Color
-Replace the background color with a custom color:
+See **[Theme Colors Guide](01_theme_colors.md)** for all color options.
+
+#### Option B: Use Custom Color in Code
+If you need a different color specifically for the splash screen:
 
 ```dart
-// In lib/src/view/screen/splash_screen.dart, line 75
+// In lib/src/view/screen/splash_screen.dart
 backgroundColor: const Color(0xFFYOUR_COLOR), // Replace with your hex color
 ```
 
