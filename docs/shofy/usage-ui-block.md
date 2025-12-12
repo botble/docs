@@ -94,6 +94,16 @@ Use the following shortcode to display a list of blog posts:
 
 The above shortcode will display the latest 3 blog posts.
 
+### Coming Soon
+
+Display a coming soon page with a countdown timer and newsletter subscription form.
+
+```html
+[coming-soon title="Coming Soon" subtitle="Our website is under construction" date="2025-12-31" image="path_to_media_image"][/coming-soon]
+```
+
+This shortcode is useful for launching a coming soon page while your website is still being developed.
+
 ### Contact Form
 
 Display a contact form on a page.
@@ -103,6 +113,16 @@ Display a contact form on a page.
 ```
 
 ![Contact Form](./images/shortcode-contact-form.png)
+
+### Ecommerce Brands
+
+Display a list of product brands.
+
+```html
+[ecommerce-brands brand_ids="1,2,3,4,5"][/ecommerce-brands]
+```
+
+This shortcode displays brand logos or names that link to their respective product listing pages.
 
 ### Ecommerce Categories
 
@@ -131,6 +151,16 @@ Display a list of specific available coupons.
 ```
 
 ![Ecommerce Coupons](./images/shortcode-ecommerce-coupons.png)
+
+### Ecommerce Collections
+
+Display a list of product collections. Collections are groups of products that you define in the admin panel.
+
+```html
+[ecommerce-collections collection_ids="1,2,3"][/ecommerce-collections]
+```
+
+This shortcode displays products from specific collections, useful for curated product groups like "Best Sellers", "New Arrivals", or "Staff Picks".
 
 ### Ecommerce Flash Sale
 
@@ -202,6 +232,26 @@ You also can control the left side of product list to display the category detai
 
 ![Ecommerce Products Simple](./images/shortcode-ecommerce-products-3.png)
 
+### FAQ
+
+Display frequently asked questions in a collapsible format. There are 2 different styles available.
+
+```html
+[faqs style="group" category_ids="1,2,3"][/faqs]
+```
+
+::: tip
+Activate the **FAQ** plugin to use this shortcode.
+:::
+
+#### Group style
+
+Display FAQs grouped by category.
+
+#### List style
+
+Display FAQs as a simple list.
+
 ### Gallery Images
 
 Display a list of images in a gallery. There are 2 different styles available.
@@ -218,18 +268,39 @@ Display a list of images in a gallery. There are 2 different styles available.
 Activate the **Gallery** plugin to use this shortcode.
 :::
 
+### Google Maps
+
+Display an embedded Google Map on your page.
+
+```html
+[google-map]New York, USA[/google-map]
+```
+
+This will display an interactive Google Map with the specified location.
+
 ### Image Slider
 
-It used to display a list of images in a slider. Usually for brands, logos, or sponsors.
+Display a list of images in a slider. Usually used for brands, logos, or sponsors.
 
 ![Image Slider](./images/shortcode-image-slider.png)
+
+### Newsletter
+
+Display a newsletter subscription form to collect email addresses from visitors.
+
+```html
+[newsletter][/newsletter]
+```
+
+::: tip
+Activate the **Newsletter** plugin to use this shortcode.
+:::
 
 ### Simple Slider
 
 Usually used to display a list of images in a slider on the hero section of the website.
 
-First, you need to create a slider in the admin panel. Go to `Simple Slider` on the admin menu dashboard to create a
-slider.
+First, you need to create a slider in the admin panel. Go to `Simple Slider` on the admin menu dashboard to create a slider.
 
 There are 5 styles for different purposes:
 
