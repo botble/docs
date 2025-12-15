@@ -52,13 +52,15 @@ so much!
 
 ## Theme Variants
 
-Isak comes with 3 beautiful color variants:
+Isak comes with 3 beautiful color variants, configurable per-page:
 
 | Variant | Light Mode | Dark Mode |
 |---------|------------|-----------|
 | V1 | Silver Dawn | Midnight Fade |
 | V2 | Lavender Stone | Charcoal Mist |
 | V3 | Ocean Breeze | Forest Shadow |
+
+Theme variants are set individually for each page using page meta boxes, allowing different pages to use different variants.
 
 ## Sections Overview
 

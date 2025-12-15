@@ -15,6 +15,8 @@ Then you can configure the block settings.
 
 You can modify it as needed by clicking on that block in the editor and clicking on the pencil icon to edit.
 
+![Modify UI Block](./images/modify-ui-block-item.png)
+
 ## Available Shortcodes
 
 Isak provides 8 main shortcodes for building your portfolio:
@@ -22,6 +24,8 @@ Isak provides 8 main shortcodes for building your portfolio:
 ### 1. Hero Intro
 
 The main hero section featuring animated text, counters, and client logos.
+
+![Hero Intro Section](./images/hero-intro-section.png)
 
 **Styles Available:**
 - Style 1 (Default)
@@ -49,6 +53,8 @@ The main hero section featuring animated text, counters, and client logos.
 
 Showcase your awards and achievements with an interactive gallery.
 
+![About Section](./images/about-section.png)
+
 **Styles Available:**
 - Style 1 (Award List)
 - Style 2 (Hover Gallery)
@@ -68,6 +74,8 @@ Showcase your awards and achievements with an interactive gallery.
 
 Display your background in a beautiful timeline layout.
 
+![Education Section](./images/education-section.png)
+
 **Configuration Options:**
 
 | Field | Description |
@@ -80,6 +88,8 @@ Display your background in a beautiful timeline layout.
 ### 4. Work Highlights
 
 Showcase your portfolio projects with a sticky scroll animation effect.
+
+![Work Section](./images/work-section.png)
 
 **Configuration Options:**
 
@@ -98,6 +108,8 @@ Projects are loaded from the Portfolio plugin. Make sure to add projects in Admi
 
 Display your services in an elegant accordion layout.
 
+![Service Section](./images/service-section.png)
+
 **Configuration Options:**
 
 | Field | Description |
@@ -115,6 +127,8 @@ Services are loaded from the Portfolio plugin. Add services in Admin -> Portfoli
 
 Show your technical skills with animated progress bars.
 
+![Tech Stack Section](./images/tech-stack-section.png)
+
 **Configuration Options:**
 
 | Field | Description |
@@ -127,6 +141,8 @@ Show your technical skills with animated progress bars.
 ### 7. Testimonials
 
 Display client testimonials in a carousel with optional counters.
+
+![Testimonial Section](./images/testimonial-section.png)
 
 **Configuration Options:**
 
@@ -146,6 +162,8 @@ Testimonials are loaded from the Testimonial plugin. Add testimonials in Admin -
 ### 8. Contact
 
 Contact form section with customizable fields.
+
+![Contact Section](./images/contact-section.png)
 
 **Configuration Options:**
 

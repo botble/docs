@@ -1,6 +1,6 @@
 # Theme Variants
 
-Isak comes with 3 beautiful color variants, each with distinct light and dark mode styles. This gives you 6 unique visual combinations to match your personal brand.
+Isak comes with 3 beautiful color variants, each with distinct light and dark mode styles. Theme variants are configured per-page using page meta boxes, giving you flexibility to use different variants across your site.
 
 ## Available Variants
 
@@ -52,18 +52,43 @@ A nature-inspired variant with ocean blues in light mode and forest greens in da
 
 ![Variant 3](./images/theme-options/variant-3.jpg)
 
-## Setting Theme Variant
+## Page Theme Settings
 
-To change the theme variant:
+Theme variants and background settings are configured individually for each page using meta boxes.
 
-1. Go to `Appearance` -> `Theme Options`
-2. Navigate to the **Theme Styles** section
-3. Select your preferred variant from the **Default Theme Variant** dropdown
-4. Click **Save Changes**
+![Theme Variants Settings](./images/theme-variants-settings.png)
+
+### Setting Theme Variant
+
+1. Go to `Pages` and edit the desired page
+2. In the page editor, find the **Theme Settings** meta box
+3. Select your preferred variant (V1, V2, or V3)
+4. Save the page
+
+This allows you to use different variants for different pages on your site.
+
+### Background Settings
+
+Each page can have its own background configuration:
+
+| Option | Description |
+|--------|-------------|
+| Background Type | Choose between `Video` or `Image` background |
+| Video Variant | Select video variant (V1 or V2) when using video background |
+| Background Image | Upload custom background image when using image background |
+
+**Video Background (Default)**
+- Two built-in video variants with animated overlay effects
+- Automatically plays, loops, and is muted for performance
+
+**Image Background**
+- Upload any image as a static background
+- Useful for pages where video may be distracting
+- Maintains the same overlay styling as video backgrounds
 
 ## How Variants Work
 
-Each variant affects the following elements throughout the site:
+Each variant affects the following elements throughout the page:
 
 - **Background colors**: Main page backgrounds and section backgrounds
 - **Text colors**: Headings, body text, and links
@@ -71,25 +96,13 @@ Each variant affects the following elements throughout the site:
 - **Border colors**: Dividers, cards, and form fields
 - **Animation colors**: GSAP animation effects and transitions
 
-## Customizing Variant Colors
-
-If you want to further customize the colors within a variant:
-
-1. Go to `Appearance` -> `Theme Options` -> `Theme Styles`
-2. Use the **Primary Color** picker to override the accent color
-3. Save your changes
-
-::: tip
-The primary color override works with all variants, allowing you to mix and match colors while keeping the variant's overall aesthetic.
-:::
-
 ## Preview Variants
 
-Before committing to a variant, you can preview it using the theme settings panel:
+You can preview variants using the theme settings panel in the sidebar:
 
 1. Click the settings gear icon in the sidebar
 2. Select a different variant
 3. The page will update immediately
 4. Note: This only affects your current session for preview purposes
 
-To make the variant permanent, set it in Theme Options as described above.
+To make the variant permanent for a page, set it in the page meta boxes as described above.
