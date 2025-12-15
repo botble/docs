@@ -29,6 +29,7 @@ import bbFormBuilderSidebar from '../bb-form-builder/sidebar'
 import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 import restoriaSidebar from '../restoria/sidebar'
 import loyaltyPointsSidebar from '../loyalty-points/sidebar'
+import isakSidebar from '../isak/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -103,6 +104,7 @@ export default defineConfig({
           { text: 'BB Form Builder', link: '/bb-form-builder/'},
           { text: 'Restoria', link: '/restoria/'},
           { text: 'Loyalty Points', link: '/loyalty-points/'},
+          { text: 'Isak', link: '/isak/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -144,6 +146,7 @@ export default defineConfig({
       'bb-form-builder': bbFormBuilderSidebar,
        restoria: restoriaSidebar,
       'loyalty-points': loyaltyPointsSidebar,
+      isak: isakSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
