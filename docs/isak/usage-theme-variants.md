@@ -18,7 +18,7 @@ The default variant with elegant silver tones in light mode and deep midnight co
 - Smooth gradient transitions
 - Eye-friendly for extended viewing
 
-![Variant 1](./images/theme-options/variant-1.png)
+![Variant 1](./images/theme-options/variant-1.jpg)
 
 ### Variant 2 (V2) - Lavender Stone / Charcoal Mist
 
@@ -34,7 +34,7 @@ A sophisticated variant with soft lavender accents in light mode and charcoal to
 - Misty, atmospheric feel
 - Balanced contrast
 
-![Variant 2](./images/theme-options/variant-2.png)
+![Variant 2](./images/theme-options/variant-2.jpg)
 
 ### Variant 3 (V3) - Ocean Breeze / Forest Shadow
 
@@ -50,7 +50,7 @@ A nature-inspired variant with ocean blues in light mode and forest greens in da
 - Earthy, grounded appearance
 - Unique alternative to pure black
 
-![Variant 3](./images/theme-options/variant-3.png)
+![Variant 3](./images/theme-options/variant-3.jpg)
 
 ## Setting Theme Variant
 
@@ -60,8 +60,6 @@ To change the theme variant:
 2. Navigate to the **Theme Styles** section
 3. Select your preferred variant from the **Default Theme Variant** dropdown
 4. Click **Save Changes**
-
-![Select Variant](./images/theme-options/select-variant.png)
 
 ## How Variants Work
 

@@ -9,11 +9,7 @@ To use a shortcode, simply add the shortcode to the content of a page or post.
 
 For example, to add a Hero Intro section to the homepage, use the following button:
 
-![Shortcode](./images/ui-blocks/shortcode-button.png)
-
 Search for the shortcode you want and click on the **use** button.
-
-![Shortcode](./images/ui-blocks/shortcode-add-block.png)
 
 Then you can configure the block settings.
 
@@ -49,8 +45,6 @@ The main hero section featuring animated text, counters, and client logos.
 | Navigation Icon | Sidebar icon (default: `icon-home`) |
 | Navigation Label | Sidebar text (default: "Home") |
 
-![Hero Intro](./images/ui-blocks/hero-intro.png)
-
 ### 2. About
 
 Showcase your awards and achievements with an interactive gallery.
@@ -70,8 +64,6 @@ Showcase your awards and achievements with an interactive gallery.
 | Navigation Icon | Sidebar icon (default: `icon-user-circle`) |
 | Navigation Label | Sidebar text (default: "About") |
 
-![About](./images/ui-blocks/about.png)
-
 ### 3. Education & Experience
 
 Display your background in a beautiful timeline layout.
@@ -84,8 +76,6 @@ Display your background in a beautiful timeline layout.
 | Timeline Items | Repeatable entries with: date_range, role, description, icon |
 | Navigation Icon | Sidebar icon (default: `icon-edu`) |
 | Navigation Label | Sidebar text (default: "Education") |
-
-![Education](./images/ui-blocks/education.png)
 
 ### 4. Work Highlights
 
@@ -104,8 +94,6 @@ Showcase your portfolio projects with a sticky scroll animation effect.
 Projects are loaded from the Portfolio plugin. Make sure to add projects in Admin -> Portfolio -> Projects.
 :::
 
-![Work Highlights](./images/ui-blocks/work-highlights.png)
-
 ### 5. Services
 
 Display your services in an elegant accordion layout.
@@ -123,8 +111,6 @@ Display your services in an elegant accordion layout.
 Services are loaded from the Portfolio plugin. Add services in Admin -> Portfolio -> Services.
 :::
 
-![Services](./images/ui-blocks/services.png)
-
 ### 6. Tech Stack
 
 Show your technical skills with animated progress bars.
@@ -137,8 +123,6 @@ Show your technical skills with animated progress bars.
 | Skills | Repeatable items with: name, description, percentage, icon, icon_dark |
 | Navigation Icon | Sidebar icon (default: `icon-tech-stack`) |
 | Navigation Label | Sidebar text (default: "Tech") |
-
-![Tech Stack](./images/ui-blocks/tech-stack.png)
 
 ### 7. Testimonials
 
@@ -159,8 +143,6 @@ Display client testimonials in a carousel with optional counters.
 Testimonials are loaded from the Testimonial plugin. Add testimonials in Admin -> Testimonial.
 :::
 
-![Testimonials](./images/ui-blocks/testimonials.png)
-
 ### 8. Contact
 
 Contact form section with customizable fields.
@@ -174,8 +156,6 @@ Contact form section with customizable fields.
 | Button Text | Submit button text |
 | Navigation Icon | Sidebar icon (default: `icon-send`) |
 | Navigation Label | Sidebar text (default: "Contact") |
-
-![Contact](./images/ui-blocks/contact.png)
 
 ## Navigation Icons
 

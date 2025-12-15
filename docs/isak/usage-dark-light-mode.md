@@ -11,8 +11,6 @@ Users can switch between dark and light modes using:
 1. **Settings Panel**: Click the gear icon in the sidebar to access the settings panel with a mode toggle
 2. **Keyboard Shortcut**: Some browsers support system-level dark mode preferences
 
-![Dark Light Toggle](./images/theme-options/dark-light-toggle.png)
-
 ### Automatic Persistence
 
 When a user selects a mode:
@@ -28,8 +26,6 @@ To set the default mode for new visitors:
 2. Navigate to **Theme Styles** section
 3. Set **Default Theme Mode** to either Dark or Light
 4. Save changes
-
-![Default Mode](./images/theme-options/default-mode.png)
 
 ## Image Switching
 

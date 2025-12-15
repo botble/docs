@@ -8,7 +8,7 @@ Isak features smooth scroll navigation, GSAP animations, dark/light mode switchi
 
 It is built on top of Botble CMS, which is a Laravel-based CMS. It offers remarkable flexibility for various use cases.
 
-![Overview](./images/overview.png)
+![Overview](./images/overview.jpg)
 
 Released Date: **Dec 2024**
 

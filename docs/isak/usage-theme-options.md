@@ -4,8 +4,6 @@ Theme options allow you to customize your Isak theme without touching any code. 
 
 To access the theme options, go to `Appearance` -> `Theme Options` in your admin panel.
 
-![Theme Options](./images/theme-options/theme-option-overview.png)
-
 ## User Profile
 
 Configure your personal information displayed in the sidebar.
@@ -19,8 +17,6 @@ Configure your personal information displayed in the sidebar.
 | Available for Work | Toggle to show "Available for Work" badge |
 | CV File (PDF) | URL or path to downloadable CV/Resume PDF |
 | Contact Email | Email address for contact |
-
-![User Profile](./images/theme-options/user-profile.png)
 
 ## Theme Styles
 
@@ -47,8 +43,6 @@ Isak comes with 3 beautiful color variants:
 **Variant 3 (V3)**
 - Light: Ocean Breeze
 - Dark: Forest Shadow
-
-![Theme Variants](./images/theme-options/theme-variants.png)
 
 ## General Settings
 

@@ -4,24 +4,16 @@ Menus are a crucial element for website navigation. In Isak, menus are primarily
 
 You can manage your menus from the `Appearance` -> `Menus` in the admin panel.
 
-![Menu](images/menus/menu-manage.png)
-
 ## Adding a New Menu
 
 To add a new menu, click on `Create` button. Enter a name for the menu and click on `Save` button.
-
-![Add Menu](images/menus/menu-create.png)
 
 ### Adding Menu Items
 
 In the menu edit page, you can add menu items by clicking on the items on the left side and then clicking
 on `Add to menu` button.
 
-![Edit Menu Items](images/menus/menu-edit.png)
-
 You can drag and drop the menu items to change their order or create nested menus (level 2, 3, etc).
-
-![Drag and Drop Menu Items](images/menus/menu-drag-and-drop.png)
 
 ### Available Menu Items
 
@@ -36,11 +28,7 @@ Here are the available menu items that you can add to the menu:
 
 ## Setting a Menu Location
 
-![Main Menu](images/menus/menu-main-menu.png)
-
 To set a menu as the primary menu, enable the `Main Navigation` checkbox in the **Display location** section.
-
-![Set Menu Location](images/menus/menu-display-location.png)
 
 ## Menu Locations
 

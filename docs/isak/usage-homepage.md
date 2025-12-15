@@ -2,7 +2,7 @@
 
 Homepage is the first page that users see when they visit your website. Isak is designed as a single-page portfolio with 8 animated sections.
 
-![Overview](./images/pages/homepage.png)
+![Overview](./images/pages/homepage.jpg)
 
 ## Create Homepage
 

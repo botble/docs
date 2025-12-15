@@ -26,8 +26,6 @@ The Portfolio plugin provides:
 | Image | Featured project image |
 | Category | Project category |
 
-![Create Project](./images/portfolio/create-project.png)
-
 ### Extended Project Fields
 
 Isak adds custom fields specifically for portfolio display:
@@ -38,8 +36,6 @@ Isak adds custom fields specifically for portfolio display:
 | Year | Project completion year | "2024" |
 
 These fields appear after the Description field in the project form and are displayed in the Work Highlights shortcode.
-
-![Project Extended Fields](./images/portfolio/project-extended-fields.png)
 
 ### Project Display
 
@@ -68,8 +64,6 @@ Projects are displayed in the **Work Highlights** shortcode with:
 | Icon | Service icon (optional) |
 | Order | Display order (lower = first) |
 
-![Create Service](./images/portfolio/create-service.png)
-
 ### Extended Service Fields
 
 Isak adds custom image fields for services that appear after the Icon field:
@@ -80,8 +74,6 @@ Isak adds custom image fields for services that appear after the Icon field:
 | Service Image 2 | Second showcase image |
 
 These images appear in the accordion expansion when a service is selected in the Services shortcode.
-
-![Service Extended Fields](./images/portfolio/service-extended-fields.png)
 
 ### Service Display
 
