@@ -130,6 +130,85 @@ This resolves the security vulnerability: "The remote HTTP web server / applicat
 - **XSRF-TOKEN**: Disabled by default in Botble CMS (uses meta tag CSRF tokens instead) ✅
 - **Cookie Consent Plugin**: Cannot use HttpOnly (needs JavaScript access) - This is normal and safe
 
+## Allowing External Iframes in Editor
+
+By default, Botble CMS restricts which external sites can be embedded via iframe in the editor content for security reasons. Only trusted sources like YouTube, Vimeo, Google Maps, Facebook, and TikTok are allowed.
+
+### Adding Custom Allowed Iframe URLs
+
+If you need to embed content from other sites (e.g., form builders, widgets), you can whitelist them using the `CMS_IFRAME_ALLOWED_URLS` environment variable.
+
+#### Step 1: Configure in `.env` File
+
+Add the following line to your `.env` file:
+
+```ini
+# Allow single domain
+CMS_IFRAME_ALLOWED_URLS=bb-form-builder.botble.com
+
+# Allow multiple domains (separated by |)
+CMS_IFRAME_ALLOWED_URLS=bb-form-builder.botble.com|forms.example.com|widgets.myservice.com
+```
+
+::: tip
+You can include or omit the protocol (`http://`, `https://`) and `www.` prefix - they will be automatically stripped. All of the following formats will work:
+- `bb-form-builder.botble.com`
+- `https://bb-form-builder.botble.com`
+- `http://www.bb-form-builder.botble.com`
+:::
+
+#### Step 2: Clear Cache
+
+After updating the `.env` file:
+
+1. Go to **Admin Panel → Platform Administration → Cache Management**
+2. Click "Clear all caches"
+
+Or run via command line:
+
+```bash
+php artisan config:clear
+```
+
+### Default Allowed Iframe Sources
+
+The following sources are allowed by default:
+
+- `youtube.com/embed`
+- `player.vimeo.com`
+- `maps.google.com`
+- `www.google.com/maps`
+- `drive.google.com`
+- `www.facebook.com/plugins`
+- `tiktok.com/embed`
+- Your application's own domain
+
+### Using Custom Regex Pattern (Advanced)
+
+For advanced users who need more control, you can define a custom regex pattern:
+
+```ini
+CMS_IFRAME_FILTER_URL_REGEX=%^(https?:)?//(www\.)?(youtube\.com|vimeo\.com|example\.com)%
+```
+
+::: warning
+When using `CMS_IFRAME_FILTER_URL_REGEX`, it completely overrides the default allowed URLs. Make sure to include all sources you want to allow.
+:::
+
+### Programmatic Configuration (For Developers)
+
+You can also add allowed iframe URLs programmatically using the `core_allowed_iframe_urls` filter:
+
+```php
+add_filter('core_allowed_iframe_urls', function (array $urls): array {
+    return [
+        ...$urls,
+        'bb-form-builder.botble.com',
+        'forms.example.com',
+    ];
+}, 20);
+```
+
 ## Support
 
 If you need help with these settings, please:
