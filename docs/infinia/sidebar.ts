@@ -34,7 +34,7 @@ export default [
       { text: 'Setup theme options',  link: '/infinia/usage-theme-options' },
       { text: 'Widgets', link: '/infinia/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/infinia/usage-custom-css-js' },
-      { text: 'Translation', link: '/infinia/usage-translation' },
+      { text: 'Translation', link: '/infinia/plugin-translation' },
       { text: 'Google Analytics', link: '/infinia/usage-analytics' },
       { text: 'Multi-language', link: '/infinia/usage-multi-language' },
       { text: 'Media - Setup Amazon S3', link: '/infinia/usage-media-s3' },

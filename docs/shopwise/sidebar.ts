@@ -29,7 +29,7 @@ export default [
     text: 'Usage',
     items: [
       { text: 'Custom CSS/JS', link: '/shopwise/usage-custom-css-js' },
-      { text: 'Translation', link: '/shopwise/usage-translation' },
+      { text: 'Translation', link: '/shopwise/plugin-translation' },
       { text: 'Multi-language', link: '/shopwise/usage-multi-language' },
       { text: 'Google Analytics', link: '/shopwise/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/shopwise/usage-media-s3' },

@@ -29,7 +29,7 @@ export default [
     text: 'Usage',
     items: [
       { text: 'Custom CSS/JS', link: '/martfury/usage-custom-css-js' },
-      { text: 'Translation', link: '/martfury/usage-translation' },
+      { text: 'Translation', link: '/martfury/plugin-translation' },
       { text: 'Multi-language', link: '/martfury/usage-multi-language' },
       { text: 'Google Analytics', link: '/martfury/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/martfury/usage-media-s3' },

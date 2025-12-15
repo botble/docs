@@ -37,7 +37,7 @@ export default [
             { text: 'Widgets', link: '/shofy/usage-widgets' },
             { text: 'Custom CSS/JS', link: '/shofy/usage-custom-css-js' },
             { text: 'Multi-language', link: '/shofy/usage-multi-language' },
-            { text: 'Translation', link: '/shofy/usage-translation' },
+            { text: 'Translation', link: '/shofy/plugin-translation' },
             { text: 'Google Tag Manager', link: '/shofy/usage-google-tag-manager' },
             { text: 'Google Analytics', link: '/shofy/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/shofy/usage-media-s3' },

@@ -34,7 +34,7 @@ export default [
       { text: 'Theme options', link: '/jobcy/usage-theme-options' },
       { text: 'Widgets', link: '/jobcy/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/jobcy/usage-custom-css-js' },
-      { text: 'Translation', link: '/jobcy/usage-translation' },
+      { text: 'Translation', link: '/jobcy/plugin-translation' },
       { text: 'Multi-language', link: '/jobcy/usage-multi-language' },
       { text: 'Currencies', link: '/jobcy/usage-currencies' },
       { text: 'Google Analytics', link: '/jobcy/usage-analytics' },

@@ -34,7 +34,7 @@ export default [
       { text: 'Setup theme options',  link: '/athena/usage-theme-options' },
       { text: 'Widgets', link: '/athena/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/athena/usage-custom-css-js' },
-      { text: 'Translation', link: '/athena/usage-translation' },
+      { text: 'Translation', link: '/athena/plugin-translation' },
       { text: 'Google Analytics', link: '/athena/usage-analytics' },
       { text: 'Multi-language', link: '/athena/usage-multi-language' },
       { text: 'Media - Setup Amazon S3', link: '/athena/usage-media-s3' },

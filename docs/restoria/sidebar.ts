@@ -35,7 +35,7 @@ export default [
       { text: 'Setup theme options',  link: '/restoria/usage-theme-options' },
       { text: 'Widgets', link: '/restoria/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/restoria/usage-custom-css-js' },
-      { text: 'Translation', link: '/restoria/usage-translation' },
+      { text: 'Translation', link: '/restoria/plugin-translation' },
       { text: 'Google Analytics', link: '/restoria/usage-analytics' },
       { text: 'Multi-language', link: '/restoria/usage-multi-language' },
       { text: 'Media - Setup Amazon S3', link: '/restoria/usage-media-s3' },

@@ -34,7 +34,7 @@ export default [
       { text: 'Theme options', link: '/jobzilla/usage-theme-options' },
       { text: 'Widgets', link: '/jobzilla/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/jobzilla/usage-custom-css-js' },
-      { text: 'Translation', link: '/jobzilla/usage-translation' },
+      { text: 'Translation', link: '/jobzilla/plugin-translation' },
       { text: 'Multi-language', link: '/jobzilla/usage-multi-language' },
       { text: 'Google Analytics', link: '/jobzilla/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/jobzilla/usage-media-s3' },

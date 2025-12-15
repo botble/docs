@@ -29,7 +29,7 @@ export default [
         text: 'Usage',
         items: [
             { text: 'Custom CSS/JS', link: '/hasa/usage-custom-css-js' },
-            { text: 'Translation', link: '/hasa/usage-translation' },
+            { text: 'Translation', link: '/hasa/plugin-translation' },
             { text: 'Multi-language', link: '/hasa/usage-multi-language' },
             { text: 'Currencies', link: '/hasa/usage-currencies' },
             { text: 'Google Analytics', link: '/hasa/usage-analytics' },

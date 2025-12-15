@@ -34,7 +34,7 @@ export default [
       { text: 'Setup theme options',  link: '/zelio/usage-theme-options' },
       { text: 'Widgets', link: '/zelio/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/zelio/usage-custom-css-js' },
-      { text: 'Translation', link: '/zelio/usage-translation' },
+      { text: 'Translation', link: '/zelio/plugin-translation' },
       { text: 'Google Analytics', link: '/zelio/usage-analytics' },
       { text: 'Multi-language', link: '/zelio/usage-multi-language' },
       { text: 'Media - Setup Amazon S3', link: '/zelio/usage-media-s3' },

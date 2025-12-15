@@ -33,7 +33,7 @@ export default [
       { text: 'Theme options', link: '/farmart/usage-theme-options' },
       { text: 'Widgets', link: '/farmart/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/farmart/usage-custom-css-js' },
-      { text: 'Translation', link: '/farmart/usage-translation' },
+      { text: 'Translation', link: '/farmart/plugin-translation' },
       { text: 'Multi-language', link: '/farmart/usage-multi-language' },
       { text: 'Google Analytics', link: '/farmart/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/farmart/usage-media-s3' },

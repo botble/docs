@@ -29,7 +29,7 @@ export default [
         text: 'Usage',
         items: [
             { text: 'Custom CSS/JS', link: '/flex-home/usage-custom-css-js' },
-            { text: 'Translation', link: '/flex-home/usage-translation' },
+            { text: 'Translation', link: '/flex-home/plugin-translation' },
             { text: 'Multi-language', link: '/flex-home/usage-multi-language' },
             { text: 'Real Estate', link: '/flex-home/real-estate' },
             { text: 'Google Analytics', link: '/flex-home/usage-analytics' },

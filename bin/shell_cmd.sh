@@ -26,7 +26,6 @@ function sync_doc_files() {
     "usage-custom-css-js.md"
     "license.md"
     "releases.md"
-    "usage-translation.md"
   )
 
   for i in "${projects[@]}"; do

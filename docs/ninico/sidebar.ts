@@ -33,7 +33,7 @@ export default [
       { text: 'Theme options', link: '/ninico/usage-theme-options' },
       { text: 'Widgets', link: '/ninico/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/ninico/usage-custom-css-js' },
-      { text: 'Translation', link: '/ninico/usage-translation' },
+      { text: 'Translation', link: '/ninico/plugin-translation' },
       { text: 'Multi-language', link: '/ninico/usage-multi-language' },
       { text: 'Google Analytics', link: '/ninico/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/ninico/usage-media-s3' },

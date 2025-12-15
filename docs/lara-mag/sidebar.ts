@@ -30,7 +30,7 @@ export default [
         text: 'Usage',
         items: [
             { text: 'Custom CSS/JS', link: '/lara-mag/usage-custom-css-js' },
-            { text: 'Translation', link: '/lara-mag/usage-translation' },
+            { text: 'Translation', link: '/lara-mag/plugin-translation' },
             { text: 'Multi-language', link: '/lara-mag/usage-multi-language' },
             { text: 'Google Analytics', link: '/lara-mag/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/lara-mag/usage-media-s3' },

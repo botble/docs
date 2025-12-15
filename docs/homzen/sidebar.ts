@@ -33,7 +33,7 @@ export default [
             { text: 'Menu', link: '/homzen/usage-menu' },
             { text: 'Widgets', link: '/homzen/usage-widgets' },
             { text: 'Custom CSS/JS', link: '/homzen/usage-custom-css-js' },
-            { text: 'Translation', link: '/homzen/usage-translation' },
+            { text: 'Translation', link: '/homzen/plugin-translation' },
             { text: 'Multi-language', link: '/homzen/usage-multi-language' },
             { text: 'Real Estate', link: '/homzen/real-estate' },
             { text: 'Google Analytics', link: '/homzen/usage-analytics' },

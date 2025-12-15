@@ -33,7 +33,7 @@ export default [
       { text: 'Theme options', link: '/wowy/usage-theme-options' },
       { text: 'Widgets', link: '/wowy/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/wowy/usage-custom-css-js' },
-      { text: 'Translation', link: '/wowy/usage-translation' },
+      { text: 'Translation', link: '/wowy/plugin-translation' },
       { text: 'Multi-language', link: '/wowy/usage-multi-language' },
       { text: 'Google Analytics', link: '/wowy/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/wowy/usage-media-s3' },

@@ -37,7 +37,7 @@ export default [
       { text: 'Widgets', link: '/isak/usage-widgets' },
       { text: 'Portfolio integration', link: '/isak/usage-portfolio' },
       { text: 'Custom CSS/JS', link: '/isak/usage-custom-css-js' },
-      { text: 'Translation', link: '/isak/usage-translation' },
+      { text: 'Translation', link: '/isak/plugin-translation' },
       { text: 'Google Analytics', link: '/isak/usage-analytics' },
       { text: 'Multi-language', link: '/isak/usage-multi-language' },
       { text: 'Media - Setup Amazon S3', link: '/isak/usage-media-s3' },

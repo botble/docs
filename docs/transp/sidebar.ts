@@ -33,7 +33,7 @@ export default [
       { text: 'Setup theme options',  link: '/transp/usage-theme-options' },
       { text: 'Widgets', link: '/transp/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/transp/usage-custom-css-js' },
-      { text: 'Translation', link: '/transp/usage-translation' },
+      { text: 'Translation', link: '/transp/plugin-translation' },
       { text: 'Multi-language', link: '/transp/usage-multi-language' },
       { text: 'Google Analytics', link: '/transp/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/transp/usage-media-s3' },

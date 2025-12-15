@@ -33,7 +33,7 @@ export default [
       { text: 'Theme options', link: '/nest/usage-theme-options' },
       { text: 'Widgets', link: '/nest/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/nest/usage-custom-css-js' },
-      { text: 'Translation', link: '/nest/usage-translation' },
+      { text: 'Translation', link: '/nest/plugin-translation' },
       { text: 'Multi-language', link: '/nest/usage-multi-language' },
       { text: 'Google Analytics', link: '/nest/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/nest/usage-media-s3' },

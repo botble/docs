@@ -29,7 +29,7 @@ export default [
     text: 'Usage',
     items: [
       { text: 'Custom CSS/JS', link: '/stories/usage-custom-css-js' },
-      { text: 'Translation', link: '/stories/usage-translation' },
+      { text: 'Translation', link: '/stories/plugin-translation' },
       { text: 'Multi-language', link: '/stories/usage-multi-language' },
       { text: 'Google Analytics', link: '/stories/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/stories/usage-media-s3' },

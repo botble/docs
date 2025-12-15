@@ -34,7 +34,7 @@ export default [
             { text: 'Setup theme options',  link: '/carento/usage-theme-options' },
             { text: 'Widgets', link: '/carento/usage-widgets' },
             { text: 'Custom CSS/JS', link: '/carento/usage-custom-css-js' },
-            { text: 'Translation', link: '/carento/usage-translation' },
+            { text: 'Translation', link: '/carento/plugin-translation' },
             { text: 'Multi-language', link: '/carento/usage-multi-language' },
             { text: 'Google Analytics', link: '/carento/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/carento/usage-media-s3' },

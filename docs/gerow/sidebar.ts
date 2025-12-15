@@ -33,7 +33,7 @@ export default [
             { text: 'Setup theme options',  link: '/gerow/usage-theme-options' },
             { text: 'Widgets', link: '/gerow/usage-widgets' },
             { text: 'Custom CSS/JS', link: '/gerow/usage-custom-css-js' },
-            { text: 'Translation', link: '/gerow/usage-translation' },
+            { text: 'Translation', link: '/gerow/plugin-translation' },
             { text: 'Multi-language', link: '/gerow/usage-multi-language' },
             { text: 'Google Analytics', link: '/gerow/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/gerow/usage-media-s3' },
