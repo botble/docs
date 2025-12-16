@@ -1,4 +1,4 @@
-# Isak - Single Page Portfolio Laravel Script
+# Isak - Resume & Personal Portfolio Laravel Script
 
 ## Introduction
 
