@@ -23,6 +23,12 @@ export default [
         ],
     },
     {
+        text: 'Integration',
+        items: [
+            { text: 'Botble CMS Sites', link: '/bb-form-builder/integration' },
+        ],
+    },
+    {
         text: 'Updates',
         items: [
             { text: 'Release Notes', link: '/bb-form-builder/releases' },
