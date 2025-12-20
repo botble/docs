@@ -8,7 +8,7 @@ This guide will help you configure email sending for your website. Email is esse
 2. Go to **Settings** → **Email**
 3. Or visit directly: `your-domain.com/admin/settings/email`
 
-![Email Settings](./images/email-settings.png)
+![Email Settings](../cms/images/email-settings.png)
 
 ## Choosing the Right Mailer
 
@@ -59,7 +59,7 @@ SMTP is the most common method and works with most email providers.
 
 ### Using Gmail
 
-![SMTP Settings Example](./images/smtp-example.png)
+![SMTP Settings Example](../cms/images/smtp-example.png)
 
 **Configuration:**
 - **Mailer**: SMTP
@@ -99,7 +99,7 @@ For more details: [Google App Passwords Help](https://support.google.com/mail/an
 
 ### Using Yandex
 
-![Yandex SMTP Settings](./images/yandex-example.png)
+![Yandex SMTP Settings](../cms/images/yandex-example.png)
 
 - **Host**: `smtp.yandex.com`
 - **Port**: `465`
@@ -111,7 +111,7 @@ For more details: [Google App Passwords Help](https://support.google.com/mail/an
 
 Mailgun is a professional email service with excellent deliverability. They offer a free tier for low-volume sending.
 
-![Mailgun Settings](./images/mailgun-example.png)
+![Mailgun Settings](../cms/images/mailgun-example.png)
 
 **Steps:**
 
@@ -130,7 +130,7 @@ Mailgun is a professional email service with excellent deliverability. They offe
 
 SendGrid is another popular email service with good analytics features.
 
-![SendGrid Settings](./images/sendgrid-example.png)
+![SendGrid Settings](../cms/images/sendgrid-example.png)
 
 **Configuration:**
 - **Mailer**: SMTP
@@ -218,7 +218,7 @@ Make sure that your hosting provider doesn't block SMTP ports. If SMTP port is b
 We cannot control whether emails go to the main inbox or spam/junk folder. This depends on many factors including your IP address, hosting provider, sender reputation, and recipient's email settings.
 :::
 
-![Prevent Emails Going to Spam](./images/prevent-email-goes-to-spam.png)
+![Prevent Emails Going to Spam](../cms/images/prevent-email-goes-to-spam.png)
 
 **Why emails go to spam:**
 - Poor sender reputation (IP address blacklisted)
@@ -268,7 +268,7 @@ For more tips on improving email deliverability, see: [Mailgun - How to Stop Ema
 
 **Cause:** WHM has SMTP Restrictions enabled that block outgoing SMTP authentication from your account.
 
-![WHM SMTP Restriction](./images/whm-smtp-restriction.png)
+![WHM SMTP Restriction](../cms/images/whm-smtp-restriction.png)
 
 **Solution:**
 
@@ -315,13 +315,13 @@ You can customize the content and appearance of system emails.
 2. Scroll down to see available email templates
 3. Click on a template to edit it
 
-![Select Email Template](./images/select-email-template-to-edit.png)
+![Select Email Template](../cms/images/select-email-template-to-edit.png)
 
 ### Using Variables
 
 Templates support dynamic variables that are replaced with actual data when emails are sent.
 
-![Edit Email Template with Variables](./images/edit-email-template-with-variables-and-functions.png)
+![Edit Email Template with Variables](../cms/images/edit-email-template-with-variables-and-functions.png)
 
 Click the **Variables** dropdown to see available placeholders for each template. Common variables include:
 - `{{ site_title }}` - Your website name
