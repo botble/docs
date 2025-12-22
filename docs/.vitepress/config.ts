@@ -29,6 +29,7 @@ import bbFormBuilderSidebar from '../bb-form-builder/sidebar'
 import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 import restoriaSidebar from '../restoria/sidebar'
 import loyaltyPointsSidebar from '../loyalty-points/sidebar'
+import eWalletSidebar from '../e-wallet/sidebar'
 import isakSidebar from '../isak/sidebar'
 
 export default defineConfig({
@@ -104,6 +105,7 @@ export default defineConfig({
           { text: 'BB Form Builder', link: '/bb-form-builder/'},
           { text: 'Restoria', link: '/restoria/'},
           { text: 'Loyalty Points', link: '/loyalty-points/'},
+          { text: 'E-Wallet', link: '/e-wallet/'},
           { text: 'Isak', link: '/isak/'},
         ],
       },
@@ -146,6 +148,7 @@ export default defineConfig({
       'bb-form-builder': bbFormBuilderSidebar,
        restoria: restoriaSidebar,
       'loyalty-points': loyaltyPointsSidebar,
+      'e-wallet': eWalletSidebar,
       isak: isakSidebar,
     },
 
