@@ -32,6 +32,7 @@ export default [
             { text: 'Translation', link: '/flex-home/plugin-translation' },
             { text: 'Multi-language', link: '/flex-home/usage-multi-language' },
             { text: 'Real Estate', link: '/flex-home/real-estate' },
+            { text: 'Mortgage Calculator', link: '/flex-home/mortgage-calculator' },
             { text: 'Google Analytics', link: '/flex-home/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/flex-home/usage-media-s3' },
             { text: 'Media - Setup BunnyCDN', link: '/flex-home/usage-media-bunnycdn' },

@@ -36,6 +36,7 @@ export default [
             { text: 'Translation', link: '/homzen/plugin-translation' },
             { text: 'Multi-language', link: '/homzen/usage-multi-language' },
             { text: 'Real Estate', link: '/homzen/real-estate' },
+            { text: 'Mortgage Calculator', link: '/homzen/mortgage-calculator' },
             { text: 'Google Analytics', link: '/homzen/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/homzen/usage-media-s3' },
             { text: 'Media - Setup BunnyCDN', link: '/homzen/usage-media-bunnycdn' },
