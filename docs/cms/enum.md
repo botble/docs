@@ -43,6 +43,21 @@ The `@method` docblocks are important as they provide IDE autocompletion for you
 
 ## Using Enums
 
+::: danger IMPORTANT: Accessing Enum Values
+Botble uses a **custom Enum class**, NOT PHP 8.1 native enums. The `$value` property is **protected** and cannot be accessed directly.
+
+```php
+// ❌ BAD - Will throw: "Cannot access protected property"
+$type = $model->status->value;
+
+// ✅ GOOD - Use getValue() method
+$type = $model->status->getValue();
+
+// ✅ GOOD - Use (string) cast (calls __toString internally)
+$type = (string) $model->status;
+```
+:::
+
 ### Basic Usage
 
 ```php
@@ -263,16 +278,70 @@ BaseStatusEnum::PENDING; // 'pending'
 - `ContactStatusEnum`: For contact form submissions (read, unread)
 - `NewsletterStatusEnum`: For newsletter subscriptions (subscribed, unsubscribed)
 
+## API Reference
+
+### Instance Methods
+
+| Method | Return Type | Description |
+|--------|-------------|-------------|
+| `getValue()` | `mixed` | Get the raw enum value |
+| `label()` | `?string` | Get the translated label |
+| `getKey()` | `bool\|int\|string` | Get the constant name (e.g., `'PUBLISHED'`) |
+| `equals($enum)` | `bool` | Compare with another enum instance |
+| `toHtml()` | `HtmlString` | Get HTML representation (badge, etc.) |
+| `jsonSerialize()` | `array` | Returns `['value' => ..., 'label' => ...]` |
+
+### Static Methods
+
+| Method | Return Type | Description |
+|--------|-------------|-------------|
+| `toArray()` | `array` | Get all values as `['KEY' => 'value']` |
+| `keys()` | `array` | Get all constant names |
+| `values()` | `array` | Get all enum instances |
+| `labels()` | `array` | Get all labels as `['value' => 'Label']` |
+| `isValid($value)` | `bool` | Check if a value is valid |
+| `getLabel($value)` | `?string` | Get translated label for a value |
+| `search($value)` | `bool\|int\|string` | Find constant name for a value |
+
+### Usage Examples
+
+```php
+$status = $post->status; // BaseStatusEnum instance
+
+// Instance methods
+$status->getValue();     // 'published'
+$status->label();        // 'Published'
+$status->getKey();       // 'PUBLISHED'
+$status->equals(BaseStatusEnum::PUBLISHED()); // true
+(string) $status;        // 'published'
+
+// Static methods
+BaseStatusEnum::PUBLISHED;           // 'published' (constant value)
+BaseStatusEnum::PUBLISHED();         // BaseStatusEnum instance
+BaseStatusEnum::toArray();           // ['PUBLISHED' => 'published', 'DRAFT' => 'draft', ...]
+BaseStatusEnum::labels();            // ['published' => 'Published', 'draft' => 'Draft', ...]
+BaseStatusEnum::isValid('published'); // true
+```
+
 ## Best Practices
 
-1. **Use Constants**: Always define enum values as constants for better type safety and refactoring support.
+1. **Use `getValue()` Method**: Never access the `$value` property directly as it's protected. Always use `getValue()` or cast to string.
 
-2. **Add Method Annotations**: Include `@method` annotations for IDE autocompletion.
+2. **Use Constants for Comparisons**: When comparing raw values, use the constant directly:
+   ```php
+   // ✅ GOOD
+   if ($status->getValue() === BaseStatusEnum::PUBLISHED) { }
 
-3. **Use Translation Keys**: Set up a proper `$langPath` and use translation files for labels.
+   // ✅ ALSO GOOD - using equals()
+   if ($status->equals(BaseStatusEnum::PUBLISHED())) { }
+   ```
 
-4. **Override toHtml()**: Customize the HTML rendering for consistent UI representation.
+3. **Add Method Annotations**: Include `@method` annotations for IDE autocompletion.
 
-5. **Use Type Hints**: Use proper type hints in method signatures to leverage IDE support.
+4. **Use Translation Keys**: Set up a proper `$langPath` and use translation files for labels.
 
-6. **Use with Models**: Take advantage of Eloquent casting for seamless integration with models.
+5. **Override toHtml()**: Customize the HTML rendering for consistent UI representation.
+
+6. **Use Type Hints**: Use proper type hints in method signatures to leverage IDE support.
+
+7. **Use with Models**: Take advantage of Eloquent casting for seamless integration with models.

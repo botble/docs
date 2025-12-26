@@ -5,6 +5,7 @@ export default [
     text: 'Getting Started',
     items: [
       { text: 'Introduction', link: '/cms/' },
+      { text: 'AI Assistant Guide', link: '/cms/ai-assistant-guide' },
       { text: 'Screenshots', link: '/cms/screenshots' },
       { text: 'Source Code Structure', link: '/cms/source-code-structure' },
       { text: 'Release Notes', link: '/cms/releases' },
