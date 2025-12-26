@@ -16,7 +16,7 @@ Botble CMS is a modular Laravel CMS with the following structure:
 
 ### Tech Stack
 
-- **Backend**: Laravel 11+, PHP 8.2+
+- **Backend**: Laravel 12+, PHP 8.2+
 - **Frontend**: Vue.js 3, Bootstrap 5, jQuery
 - **Build**: Laravel Mix, npm workspaces
 - **Database**: MySQL (SQLite for tests)
@@ -263,7 +263,18 @@ var data = @json($variable);
 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 ```
 
-## Plugin Structure
+## Plugin Development
+
+### Learning Resources
+
+::: tip Study Existing Plugins
+Before creating new plugins, study example plugins from the community:
+- **FriendsOfBotble**: https://github.com/orgs/FriendsOfBotble/repositories
+- Contains well-structured plugins demonstrating best practices
+- Examples: fob-comment, fob-wishlist, fob-compare, fob-faq, etc.
+:::
+
+### Plugin Structure
 
 ```
 /platform/plugins/my-plugin/
@@ -289,6 +300,202 @@ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 │   ├── Tables/
 │   └── Plugin.php
 └── plugin.json
+```
+
+### Creating a Plugin
+
+```bash
+# Create new plugin scaffold
+php artisan cms:plugin:create my-plugin
+
+# Activate plugin
+php artisan cms:plugin:activate my-plugin
+
+# Deactivate plugin
+php artisan cms:plugin:deactivate my-plugin
+```
+
+### Plugin.php Lifecycle
+
+```php
+class Plugin extends PluginOperationAbstract
+{
+    public static function activate(): void
+    {
+        // Run when plugin is activated
+        // Create tables, seed data, register permissions
+    }
+
+    public static function deactivate(): void
+    {
+        // Run when plugin is deactivated
+        // Clean up if needed
+    }
+
+    public static function remove(): void
+    {
+        // Run when plugin is removed
+        // Drop tables, clean up data
+    }
+}
+```
+
+### plugin.json Configuration
+
+```json
+{
+    "id": "vendor/my-plugin",
+    "name": "My Plugin",
+    "namespace": "Vendor\\MyPlugin\\",
+    "provider": "Vendor\\MyPlugin\\Providers\\MyPluginServiceProvider",
+    "author": "Your Name",
+    "url": "https://yoursite.com",
+    "version": "1.0.0",
+    "description": "Plugin description",
+    "required_plugins": ["ecommerce"]
+}
+```
+
+### Service Provider Pattern
+
+```php
+class MyPluginServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        // Load routes
+        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+
+        // Load views
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'my-plugin');
+
+        // Load translations
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'plugins/my-plugin');
+
+        // Register dashboard menu
+        DashboardMenu::default()->beforeRetrieving(function (): void {
+            DashboardMenu::make()
+                ->registerItem([
+                    'id' => 'cms-plugins-my-plugin',
+                    'priority' => 5,
+                    'name' => 'My Plugin',
+                    'icon' => 'ti ti-box',
+                    'url' => route('my-plugin.index'),
+                    'permissions' => ['my-plugin.index'],
+                ]);
+        });
+    }
+}
+```
+
+## Theme Development
+
+### Theme Structure
+
+```
+/platform/themes/my-theme/
+├── assets/               # Source assets (sass, js)
+├── config.php            # Theme configuration
+├── functions/            # Theme helper functions
+├── layouts/              # Layout templates
+├── partials/             # Reusable partial views
+├── views/                # Page views
+├── widgets/              # Theme widgets
+├── public/               # Compiled public assets
+├── screenshot.png        # Theme preview (1200x900px)
+├── theme.json            # Theme metadata
+└── webpack.mix.js        # Asset compilation
+```
+
+### theme.json Configuration
+
+```json
+{
+    "id": "vendor/my-theme",
+    "name": "My Theme",
+    "namespace": "Theme\\MyTheme\\",
+    "author": "Your Name",
+    "url": "https://yoursite.com",
+    "version": "1.0.0",
+    "description": "Theme description",
+    "required_plugins": ["ecommerce"]
+}
+```
+
+### config.php Events
+
+```php
+return [
+    'inherit' => null,  // Parent theme name for child themes
+
+    'events' => [
+        'beforeRenderTheme' => function (Theme $theme): void {
+            // Register CSS
+            $theme->asset()->usePath()->add('theme', 'css/theme.css');
+
+            // Register JS (in footer)
+            $theme->asset()->container('footer')->usePath()->add(
+                'theme',
+                'js/theme.js',
+                attributes: ['defer']
+            );
+        },
+    ],
+];
+```
+
+### Child Theme Development
+
+Create child themes by setting `'inherit' => 'parent-theme'` in config.php:
+
+```php
+// platform/themes/my-child-theme/config.php
+return [
+    'inherit' => 'shofy',  // Parent theme folder name
+
+    'events' => [
+        'beforeRenderTheme' => function (Theme $theme): void {
+            // Add child theme specific assets
+            $theme->asset()->usePath()->add('child-styles', 'css/custom.css');
+        },
+    ],
+];
+```
+
+Child themes only need files you want to override. Views are looked up in child theme first, then parent.
+
+### Theme Commands
+
+```bash
+# Create new theme
+php artisan cms:theme:create my-theme
+
+# Activate theme
+php artisan cms:theme:activate my-theme
+
+# Remove theme
+php artisan cms:theme:remove my-theme
+
+# Publish theme assets
+php artisan cms:theme:assets:publish
+```
+
+### Using Theme Facade
+
+```php
+use Botble\Theme\Facades\Theme;
+
+// Render a view
+Theme::scope('page', $data)->render();
+
+// Load a partial
+Theme::partial('header');
+
+// Get theme option
+theme_option('logo');
+
+// Add breadcrumb
+Theme::breadcrumb()->add('Home', '/')->add('Page', '/page');
 ```
 
 ## Development Commands

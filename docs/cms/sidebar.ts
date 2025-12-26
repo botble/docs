@@ -149,6 +149,7 @@ export default [
         collapsed: false,
         items: [
           { text: 'Overview', link: '/cms/theme-development/theme' },
+          { text: 'Child Theme Development', link: '/cms/child-theme-development' },
           { text: 'Theme Structure', collapsed: true, items: [
             { text: 'MVC Pattern', link: '/cms/theme-development/theme-mvc-pattern' },
             { text: 'Routes', link: '/cms/theme-development/theme-routes' },
