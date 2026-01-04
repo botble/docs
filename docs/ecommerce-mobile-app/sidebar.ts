@@ -25,6 +25,7 @@ export default [
             { text: '8. Deploying App', link: '/ecommerce-mobile-app/08_deploying_app' },
             { text: '9. Version Management', link: '/ecommerce-mobile-app/09_version_management' },
             { text: '10. Help Center', link: '/ecommerce-mobile-app/10_help_center' },
+            { text: '11. Social Login', link: '/ecommerce-mobile-app/11_social_login_setup' },
         ],
     },
     {

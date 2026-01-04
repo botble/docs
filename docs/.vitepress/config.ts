@@ -31,6 +31,7 @@ import restoriaSidebar from '../restoria/sidebar'
 import loyaltyPointsSidebar from '../loyalty-points/sidebar'
 import eWalletSidebar from '../e-wallet/sidebar'
 import isakSidebar from '../isak/sidebar'
+import ecommerceMobileAppSidebar from '../ecommerce-mobile-app/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -107,6 +108,7 @@ export default defineConfig({
           { text: 'Loyalty Points', link: '/loyalty-points/'},
           { text: 'E-Wallet', link: '/e-wallet/'},
           { text: 'Isak', link: '/isak/'},
+          { text: 'Ecommerce Mobile App', link: '/ecommerce-mobile-app/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -150,6 +152,7 @@ export default defineConfig({
       'loyalty-points': loyaltyPointsSidebar,
       'e-wallet': eWalletSidebar,
       isak: isakSidebar,
+      'ecommerce-mobile-app': ecommerceMobileAppSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
