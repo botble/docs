@@ -4,6 +4,11 @@
 
 Botble Ecommerce Mobile App is a complete mobile e-commerce application built with React Native (Expo) that connects to your Botble e-commerce website. It provides your customers with a native mobile shopping experience on both Android and iOS devices.
 
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/app-home-light-mode.png" alt="Home Screen - Light Mode" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/app-home-dark-mode.png" alt="Home Screen - Dark Mode" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
+
 ## Key Features
 
 ### For Your Customers:
@@ -14,6 +19,12 @@ Botble Ecommerce Mobile App is a complete mobile e-commerce application built wi
 - **Wishlist**: Save favorite products for later with server sync
 - **Multiple Languages**: Shop in their preferred language (8 languages including EN, VI, ZH, ES, FR, DE, JA, AR)
 - **Dark Mode**: Comfortable viewing in any lighting
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/products listing.png" alt="Products Listing" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/cart.png" alt="Shopping Cart" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/wishlist.png" alt="Wishlist" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
 
 ### For Your Business:
 - **Native Mobile App**: Professional iOS and Android apps

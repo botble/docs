@@ -4,6 +4,8 @@
 
 The Help Center provides FAQ and customer service information. FAQ data is stored in a JSON file for easy editing.
 
+![Help Center](./images/help-center.png)
+
 ## FAQ Data
 
 ### Location

@@ -30,6 +30,13 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 8. **[Deploying App](08_deploying_app.md)** - Publish to app stores
 9. **[Version Management](09_version_management.md)** - Manage app versions
 
+## App Screenshots
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/app-home-light-mode.png" alt="Home Screen - Light Mode" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/app-home-dark-mode.png" alt="Home Screen - Dark Mode" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
+
 ## Key Features
 
 ### 1. **User Authentication & Profile Management**
@@ -39,6 +46,8 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
    - Personal information editing
    - Address book management
    - Account settings and preferences
+
+![Login Screen](./images/login.png)
 
 ### 2. **Advanced Product Browsing**
    - Browse products by categories and brands
@@ -50,12 +59,21 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
    - Recently viewed products tracking
    - Product comparison feature for side-by-side analysis
 
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/categories.png" alt="Categories" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/products listing.png" alt="Products Listing" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/product-detail.png" alt="Product Detail" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/flash-sale.png" alt="Flash Sale" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
+
 ### 3. **Smart Shopping Cart & Checkout**
    - Add products to cart with quantity management
    - Apply coupon codes and discounts
    - WebView-based secure checkout
    - Multiple payment gateway integration
    - Order confirmation and tracking
+
+![Shopping Cart](./images/cart.png)
 
 ### 4. **Wishlist & Product Comparison**
    - Save favorite products for later
@@ -64,6 +82,11 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
    - Compare products side-by-side
    - Detailed comparison tables with specifications
 
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/wishlist.png" alt="Wishlist" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/compare.png" alt="Product Comparison" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
+
 ### 5. **Order Management & Tracking**
    - Complete order history
    - Real-time order status tracking
@@ -71,11 +94,21 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
    - Order cancellation and returns
    - Delivery status monitoring
 
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/orders-list.png" alt="Orders List" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/order-tracking.png" alt="Order Tracking" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
+
 ### 6. **Multi-language Support**
    - Support for multiple languages (English, Spanish, French, Arabic)
    - RTL (Right-to-Left) support for Arabic
    - Localized content and interface
    - Easy language switching
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/languages.png" alt="Language Selection" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/currencies.png" alt="Currency Selection" style="width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
 
 ### 7. **Modern UI/UX Design**
    - Clean and intuitive interface
@@ -84,12 +117,23 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
    - Smooth animations and transitions
    - Native platform conventions
 
+![Dark/Light Mode Switcher](./images/dark-light-switcher.png)
+
 ### 8. **API Integration**
    - Seamless integration with Botble E-commerce API
    - Real-time data synchronization
    - Secure authentication tokens
    - React Query for efficient caching
    - Error handling and offline support
+
+### More Features
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
+  <img src="./images/product-by-category-section.png" alt="Products by Category" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/reviews-list.png" alt="Product Reviews" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/address-management.png" alt="Address Management" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+  <img src="./images/blog.png" alt="Blog" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+</div>
 
 ## Technical Specifications
 

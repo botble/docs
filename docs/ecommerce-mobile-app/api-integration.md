@@ -2,6 +2,8 @@
 
 This guide explains how the app communicates with the Botble E-commerce backend API.
 
+![API Integration](./images/api-integration.png)
+
 ## API Overview
 
 The app uses the Botble E-commerce REST API for all data operations. The API documentation is available at [https://ecommerce-api.botble.com/docs](https://ecommerce-api.botble.com/docs).

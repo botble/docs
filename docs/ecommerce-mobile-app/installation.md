@@ -133,6 +133,8 @@ Your app should start!
 
 After installation, you'll have this structure:
 
+![Source Code Structure](./images/source-code.png)
+
 ```
 ecommerce-mobile-app/
 ├── app/                    # Screen components (Expo Router)

@@ -4,6 +4,8 @@
 
 We're here to help you succeed with your Botble Ecommerce Mobile App!
 
+![Contact Support](./images/contact.png)
+
 ## Support Options
 
 ### Documentation

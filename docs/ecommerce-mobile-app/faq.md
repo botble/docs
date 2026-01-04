@@ -75,6 +75,8 @@ The app uses WebView checkout, so the checkout page comes from your Botble websi
 
 Push notifications can be added using Expo Notifications. This requires additional setup with Firebase/APNs.
 
+![Push Notifications](./images/push-notifications.jpg)
+
 ### Does the app support social login?
 
 Currently, the app supports email/password authentication. Social login can be added following Botble's API documentation.
