@@ -100,7 +100,7 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 </div>
 
 ### 6. **Multi-language Support**
-   - Support for multiple languages (English, Spanish, French, Arabic)
+   - Support for 15+ languages (English, Vietnamese, Spanish, French, German, Arabic, Japanese, Korean, Hindi, Thai, Russian, Portuguese, Turkish, Indonesian, Chinese)
    - RTL (Right-to-Left) support for Arabic
    - Localized content and interface
    - Easy language switching
@@ -204,7 +204,7 @@ The app integrates with the Botble E-commerce API, documented at [https://ecomme
 - **Online Documentation**: https://docs.botble.com/ecommerce-mobile-app
 
 ### **Resources:**
-- **Backend Demo**: https://martfury.botble.com
+- **Backend Demo**: https://ecommerce-mobile-app.botble.com
 - **API Documentation**: https://ecommerce-api.botble.com/docs
 - **Backend System**: [Botble Laravel E-commerce](https://codecanyon.net/user/botble/portfolio)
 
