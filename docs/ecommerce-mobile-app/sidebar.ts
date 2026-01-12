@@ -7,6 +7,7 @@ export default [
         text: 'Getting Started',
         items: [
             { text: 'Installation', link: '/ecommerce-mobile-app/installation' },
+            { text: 'License Activation', link: '/ecommerce-mobile-app/13_license_activation' },
             { text: 'Configuration', link: '/ecommerce-mobile-app/configuration' },
             { text: 'Development Guide', link: '/ecommerce-mobile-app/development' },
             { text: 'API Integration', link: '/ecommerce-mobile-app/api-integration' },
@@ -26,6 +27,7 @@ export default [
             { text: '9. Version Management', link: '/ecommerce-mobile-app/09_version_management' },
             { text: '10. Help Center', link: '/ecommerce-mobile-app/10_help_center' },
             { text: '11. Social Login', link: '/ecommerce-mobile-app/11_social_login_setup' },
+            { text: '12. Onboarding', link: '/ecommerce-mobile-app/12_onboarding' },
         ],
     },
     {

@@ -16,11 +16,13 @@ Examples:
 1. Open the `.env` file in your app folder
 2. Update these settings:
    ```env
-   APP_API_URL=https://your-website.com/api/v1
-   APP_SITE_URL=https://your-website.com
+   API_BASE_URL=https://your-website.com
+   API_KEY=your-api-key
    APP_NAME=Your Store Name
    ```
 3. Save the file
+
+**Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls.
 
 ### Step 3: Test the Connection
 
@@ -37,8 +39,8 @@ Create or update your `.env` file with these settings:
 
 ```env
 # API Configuration
-APP_API_URL=https://your-website.com/api/v1
-APP_SITE_URL=https://your-website.com
+API_BASE_URL=https://your-website.com
+API_KEY=your-api-key
 
 # App Configuration
 APP_NAME=Your Store Name
@@ -62,8 +64,8 @@ The app reads configuration from environment variables through `app.config.ts`. 
 |----------|-------------|---------|
 | APP_NAME | Display name | My Store |
 | APP_VERSION | App version | 1.0.0 |
-| APP_API_URL | API endpoint | https://mystore.com/api/v1 |
-| APP_SITE_URL | Website URL | https://mystore.com |
+| API_BASE_URL | Website URL (without /api/v1) | https://mystore.com |
+| API_KEY | API authentication key | your-api-key |
 
 For bundle identifiers and other platform-specific settings, modify `app.config.ts` directly.
 

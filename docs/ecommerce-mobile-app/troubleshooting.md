@@ -282,8 +282,8 @@ Hot reload does NOT apply .env changes!
 **Solution**:
 Use EAS secrets or environment-specific builds:
 ```bash
-eas secret:create --name APP_API_URL --value "https://production-url.com/api/v1"
-eas secret:create --name APP_SITE_URL --value "https://production-url.com"
+eas secret:create --name API_BASE_URL --value "https://production-url.com"
+eas secret:create --name API_KEY --value "your-api-key"
 ```
 
 ## Getting Help

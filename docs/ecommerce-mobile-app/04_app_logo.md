@@ -152,15 +152,25 @@ iOS 18+ supports dark mode icons:
 
 After updating assets:
 
-1. Clear cache:
+1. **Expo Go** (icon won't show on home screen):
    ```bash
    npm start -- --clear
    ```
 
-2. For production:
+2. **Development Build** (to see icon on simulator home screen):
+   ```bash
+   npx expo prebuild --clean
+   npx expo run:ios
+   # or
+   npx expo run:android
+   ```
+
+3. **Production builds:**
    ```bash
    eas build --platform all
    ```
+
+**Note:** In Expo Go, custom icons won't appear on the simulator home screen - only in development/production builds.
 
 ## Troubleshooting
 

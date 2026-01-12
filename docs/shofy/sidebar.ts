@@ -53,6 +53,7 @@ export default [
             { text: 'Newsletter', link: '/shofy/usage-newsletter' },
             { text: 'Abandoned Carts', link: '/shofy/usage-abandoned-carts' },
             { text: 'Shippo Integration', link: '/shofy/usage-shippo' },
+            { text: 'Add to Cart via URL', link: '/shofy/usage-add-to-cart-url' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

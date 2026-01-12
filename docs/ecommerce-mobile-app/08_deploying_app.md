@@ -206,8 +206,8 @@ Update in `app.json`:
 ### Using EAS Secrets
 
 ```bash
-eas secret:create --name APP_API_URL --value "https://mystore.com/api/v1"
-eas secret:create --name APP_SITE_URL --value "https://mystore.com"
+eas secret:create --name API_BASE_URL --value "https://mystore.com"
+eas secret:create --name API_KEY --value "your-api-key"
 eas secret:create --name APP_NAME --value "Your Store Name"
 ```
 
@@ -218,8 +218,8 @@ eas secret:create --name APP_NAME --value "Your Store Name"
   "build": {
     "production": {
       "env": {
-        "APP_API_URL": "https://mystore.com/api/v1",
-        "APP_SITE_URL": "https://mystore.com",
+        "API_BASE_URL": "https://mystore.com",
+        "API_KEY": "your-api-key",
         "APP_NAME": "Your Store Name"
       }
     }

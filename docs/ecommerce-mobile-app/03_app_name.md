@@ -97,12 +97,20 @@ android: { package: "com.marketplace.pro" }
 After updating:
 
 ```bash
-# Development
+# Development (Expo Go)
 npm start -- --clear
+
+# Development Build (to see name on simulator home screen)
+npx expo prebuild --clean
+npx expo run:ios
+# or
+npx expo run:android
 
 # Production builds
 eas build --platform all
 ```
+
+**Note:** In Expo Go, you won't see the app name on the simulator home screen - only in development/production builds created with `expo run:ios` or `eas build`.
 
 ## Changing Name After Publishing
 

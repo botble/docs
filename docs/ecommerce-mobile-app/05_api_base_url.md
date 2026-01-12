@@ -11,57 +11,55 @@ The API base URL connects your mobile app to your Botble e-commerce backend. Thi
 Open `.env` file and update:
 
 ```env
-APP_API_URL=https://your-website.com/api/v1
-APP_SITE_URL=https://your-website.com
+API_BASE_URL=https://your-website.com
+API_KEY=your-api-key
 ```
 
 Replace `your-website.com` with your actual Botble website domain.
+
+**Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls, and uses `API_BASE_URL` directly for checkout (WebView).
 
 ## Examples
 
 ### Production Website
 ```env
-APP_API_URL=https://mystore.com/api/v1
-APP_SITE_URL=https://mystore.com
+API_BASE_URL=https://mystore.com
+API_KEY=your-api-key
 ```
 
 ### Subdomain Setup
 ```env
-APP_API_URL=https://shop.mycompany.com/api/v1
-APP_SITE_URL=https://shop.mycompany.com
+API_BASE_URL=https://shop.mycompany.com
+API_KEY=your-api-key
 ```
 
 ### Demo/Staging
 ```env
-APP_API_URL=https://staging.mystore.com/api/v1
-APP_SITE_URL=https://staging.mystore.com
+API_BASE_URL=https://staging.mystore.com
+API_KEY=your-api-key
 ```
 
 ### Local Development
 ```env
 # For iOS Simulator
-APP_API_URL=http://localhost:8000/api/v1
-APP_SITE_URL=http://localhost:8000
+API_BASE_URL=http://localhost:8000
 
 # For Android Emulator (use your computer's IP)
-APP_API_URL=http://10.0.2.2:8000/api/v1
-APP_SITE_URL=http://10.0.2.2:8000
+API_BASE_URL=http://10.0.2.2:8000
 
 # For physical device (use your computer's local IP)
-APP_API_URL=http://192.168.1.100:8000/api/v1
-APP_SITE_URL=http://192.168.1.100:8000
+API_BASE_URL=http://192.168.1.100:8000
 ```
 
 ## Finding Your API URL
 
 1. Go to your Botble admin panel
 2. Navigate to Settings → General
-3. Find the Site URL
-4. Append `/api/v1` to it
+3. Find the Site URL - this is your `API_BASE_URL`
 
 Example:
 - Site URL: `https://mystore.com`
-- API URL: `https://mystore.com/api/v1`
+- Set `API_BASE_URL=https://mystore.com`
 
 ## Testing the Connection
 
@@ -114,10 +112,10 @@ Create separate environment files:
 Load specific environment:
 ```bash
 # Development
-APP_API_URL=http://localhost:8000/api/v1 npm start
+API_BASE_URL=http://localhost:8000 npm start
 
 # Production
-APP_API_URL=https://mystore.com/api/v1 npm start
+API_BASE_URL=https://mystore.com npm start
 ```
 
 ## Troubleshooting

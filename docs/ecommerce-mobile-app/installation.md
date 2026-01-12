@@ -50,8 +50,8 @@ npm install -g expo-cli
 1. Open the `.env` file and update your settings:
    ```env
    # Your website URL
-   APP_API_URL=https://your-website.com/api/v1
-   APP_SITE_URL=https://your-website.com
+   API_BASE_URL=https://your-website.com
+   API_KEY=your-api-key
    APP_NAME=Your Store Name
    ```
 

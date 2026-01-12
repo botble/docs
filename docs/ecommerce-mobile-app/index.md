@@ -30,6 +30,11 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 8. **[Deploying App](08_deploying_app.md)** - Publish to app stores
 9. **[Version Management](09_version_management.md)** - Manage app versions
 
+**Advanced customization:**
+10. **[Help Center](10_help_center.md)** - Configure FAQ and support
+11. **[Social Login](11_social_login_setup.md)** - Set up OAuth providers
+12. **[Onboarding](12_onboarding.md)** - Customize onboarding screens
+
 ## App Screenshots
 
 <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">

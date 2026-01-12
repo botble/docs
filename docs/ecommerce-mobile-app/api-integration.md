@@ -15,9 +15,11 @@ The app uses the Botble E-commerce REST API for all data operations. The API doc
 Set your API base URL in the `.env` file:
 
 ```env
-APP_API_URL=https://your-website.com/api/v1
-APP_SITE_URL=https://your-website.com
+API_BASE_URL=https://your-website.com
+API_KEY=your-api-key
 ```
+
+**Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls.
 
 ### API Client
 

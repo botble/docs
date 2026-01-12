@@ -22,6 +22,7 @@ export default [
       },
       { text: 'SSL', link: '/cms/ssl' },
       { text: 'License', link: '/cms/license' },
+      { text: 'Domain Migration', link: '/cms/domain-migration' },
     ],
   },
   {
