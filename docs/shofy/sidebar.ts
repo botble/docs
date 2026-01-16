@@ -52,6 +52,7 @@ export default [
             { text: 'Setup cronjob', link: '/shofy/cronjob' },
             { text: 'Newsletter', link: '/shofy/usage-newsletter' },
             { text: 'Abandoned Carts', link: '/shofy/usage-abandoned-carts' },
+            { text: 'Cart Persistence', link: '/shofy/usage-cart-persistence' },
             { text: 'Shippo Integration', link: '/shofy/usage-shippo' },
             { text: 'Add to Cart via URL', link: '/shofy/usage-add-to-cart-url' },
         ],

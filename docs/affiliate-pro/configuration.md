@@ -125,15 +125,35 @@ To manage permissions:
 
 ## Product-Level Configuration
 
-### Setting Product Commission Rates
+### Setting Product Commission Rates (Admin)
 
 1. Navigate to **Products** > **All Products**
 2. Edit a product
-3. Go to the **Affiliate** tab
+3. Go to the **Affiliate Settings** section
 4. Configure:
    - **Enable Affiliate**: Toggle affiliate program for this product
+   - **Use Custom Commission**: Enable to set a custom commission rate
    - **Commission Percentage**: Override default/category commission rate
-   - **Commission Type**: Fixed amount or percentage
+
+### Vendor Product Configuration (Marketplace)
+
+When using the Marketplace plugin, vendors can also configure affiliate settings:
+
+1. Log in to **Vendor Dashboard**
+2. Navigate to **Products**
+3. Edit a product
+4. Find the **Affiliate Settings** section
+5. Configure:
+   - **Enable Affiliate**: Toggle affiliate program for this product
+   - **Use Custom Commission**: Enable to set a custom commission rate
+   - **Commission Percentage**: Set a product-specific commission rate
+
+::: tip Vendor Control
+Vendors have full control over affiliate settings for their products. This allows them to:
+- Disable affiliate for low-margin products
+- Set higher commissions for products they want to promote
+- Balance profitability with affiliate marketing benefits
+:::
 
 ### Category Commission Configuration
 
@@ -205,3 +225,43 @@ To manage permissions:
 - Consider caching optimization
 
 If you continue to encounter configuration issues, please refer to the Troubleshooting section or contact our support team with specific error details and system information.
+
+## Marketplace Configuration
+
+When using Affiliate Pro with the Marketplace plugin, additional configuration options are available.
+
+### Commission Deduction from Vendor Revenue
+
+Affiliate commissions are automatically deducted from vendor revenue when orders are completed. The calculation is:
+
+```
+Vendor Revenue = Order Amount - Shipping - Tax - Payment Fee - Marketplace Fee - Affiliate Commission
+```
+
+This is handled automatically - no additional configuration is required.
+
+### Revenue Tracking
+
+The `mp_customer_revenues` table includes an `affiliate_commission` field that tracks the commission deducted from each vendor revenue record.
+
+### Database Migration
+
+If upgrading from an older version, run the migration to add the affiliate commission field:
+
+```bash
+php artisan migrate
+```
+
+### Hook for Custom Integration
+
+Developers can customize the affiliate commission calculation using the filter:
+
+```php
+add_filter('marketplace_calculate_vendor_revenue', function (array $data, Order $order) {
+    // $data contains: sub_amount, fee, affiliate_commission, amount
+    // Modify as needed
+    return $data;
+}, 10, 2);
+```
+
+For detailed information on marketplace integration, see the [Marketplace Integration Guide](/affiliate-pro/marketplace-integration).

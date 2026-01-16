@@ -13,6 +13,7 @@ export default [
         text: 'User Guide',
         items: [
             { text: 'Complete Usage Guide', link: '/affiliate-pro/usage-guide' },
+            { text: 'Marketplace Integration', link: '/affiliate-pro/marketplace-integration' },
         ],
     },
     {

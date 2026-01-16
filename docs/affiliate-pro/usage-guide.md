@@ -11,6 +11,7 @@ This guide provides detailed instructions on how to configure and use the Affili
 5. [Marketing Tools](#marketing-tools)
 6. [Reports and Analytics](#reports-and-analytics)
 7. [Affiliate Dashboard Usage](#affiliate-dashboard-usage)
+8. [Marketplace Integration](#marketplace-integration)
 
 ## Admin Configuration
 
@@ -563,5 +564,53 @@ This guide provides detailed instructions on how to configure and use the Affili
    - Implement database read replicas
    - Use CDN for static assets
    - Monitor and scale infrastructure as needed
+
+## Marketplace Integration
+
+When using Affiliate Pro with the Marketplace plugin, additional features are available for multivendor environments.
+
+### Vendor Affiliate Control
+
+Vendors can control affiliate settings for their products directly from the vendor dashboard:
+
+1. Navigate to **Vendor Dashboard** > **Products**
+2. Edit a product
+3. Find the **Affiliate Settings** section
+4. Configure:
+   - **Enable Affiliate**: Toggle to enable/disable affiliate for this product
+   - **Custom Commission**: Set a product-specific commission rate
+
+### Commission Structure in Marketplace
+
+In a multivendor setup, affiliate commissions are deducted from vendor revenue:
+
+| Component | Example |
+|-----------|---------|
+| Product Price | $100.00 |
+| Marketplace Fee (10%) | -$10.00 |
+| Affiliate Commission (5%) | -$5.00 |
+| **Vendor Revenue** | **$85.00** |
+
+This ensures:
+- Vendors pay for affiliate marketing that drives sales to their products
+- Marketplace receives their standard commission
+- Affiliates are compensated for referred sales
+
+### Vendor Revenue Tracking
+
+Vendors can view affiliate commission deductions in their revenue reports:
+
+1. Go to **Vendor Dashboard** > **Revenues**
+2. View individual revenue records
+3. The affiliate commission field shows the amount deducted per order
+
+### Best Practices for Vendors
+
+1. **Review product margins** before enabling affiliate
+2. **Use custom commission rates** for products with specific margin requirements
+3. **Monitor affiliate-driven sales** to measure ROI
+4. **Disable affiliate** for low-margin products where it doesn't make sense
+
+For detailed information, see the [Marketplace Integration Guide](/affiliate-pro/marketplace-integration).
 
 This comprehensive guide covers all aspects of using the Affiliate Pro plugin effectively, from basic setup to advanced optimization strategies. Regular review and implementation of these practices will help ensure a successful affiliate marketing program.
