@@ -30,6 +30,45 @@ Both versions offer similar features. Choose based on your development team's ex
 
 See the [Installation Guide](installation.md) for detailed steps.
 
+### Why do I see "Development Build" screen on my phone?
+
+You installed a development build, which requires a running development server. To test on your phone without a server:
+
+1. Create free Expo account at [expo.dev](https://expo.dev)
+2. Run `npm install -g eas-cli && eas login`
+3. Run `eas build --platform android --profile preview` for APK
+
+See [Troubleshooting Guide](troubleshooting.md#development-build-screen-on-device) for details.
+
+### What are EAS login credentials?
+
+EAS (Expo Application Services) login requires an **Expo account** - NOT your CodeCanyon credentials.
+
+1. Create account at [expo.dev/signup](https://expo.dev/signup) (free)
+2. Use that email and password when running `eas login`
+
+### What's the difference between development build and production APK?
+
+| Development Build | Production APK |
+|------------------|----------------|
+| Needs dev server running | Standalone app |
+| For developers only | For end users |
+| Hot reload enabled | No hot reload |
+| Can't distribute | Can share/publish |
+
+### How do I build an APK without Android Studio?
+
+Use EAS Build (cloud-based, no local SDK needed):
+
+```bash
+npm install -g eas-cli
+eas login
+eas build:configure
+eas build --platform android --profile preview
+```
+
+Download APK from expo.dev when build completes.
+
 ### Why won't the app connect to my website?
 
 Check these common issues:

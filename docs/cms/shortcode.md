@@ -373,3 +373,115 @@ And here's an example of the view file (`views/theme/shortcodes/featured-posts.b
     </div>
 </div>
 ```
+
+## Capturing Shortcode Preview Screenshots
+
+The CMS includes a Puppeteer-based script to automatically capture screenshots of shortcode sections for use as preview images in the admin panel. This is a general-purpose tool that works with any theme.
+
+### How It Works
+
+The script automatically finds shortcode sections using the `data-shortcode-name` attribute on your HTML elements. It waits for lazy-loaded shortcodes to have the `.shortcode-lazy-loading-loaded` class before capturing.
+
+### Prerequisites
+
+1. Install Puppeteer in your project:
+
+```bash
+npm install puppeteer --save-dev
+```
+
+2. Add the npm script to your `package.json`:
+
+```json
+{
+    "scripts": {
+        "screenshot": "node platform/core/base/resources/js/screenshot.js"
+    }
+}
+```
+
+3. Add `data-shortcode-name` attribute to your shortcode Blade templates:
+
+```blade
+<section data-shortcode-name="{{ $shortcode->getName() }}">
+    {{-- Your shortcode content --}}
+</section>
+```
+
+### Basic Usage
+
+::: warning
+Use `--` after `npm run screenshot` to pass arguments to the script. This prevents npm from interpreting your options.
+:::
+
+```bash
+# Capture a shortcode from homepage
+npm run screenshot -- hero-banner --site=http://localhost
+
+# Capture from a specific page
+npm run screenshot -- contact-form --site=https://example.com --url=/contact
+
+# Capture full page instead of element
+npm run screenshot -- coming-soon --site=http://localhost --url=/coming-soon --full
+
+# Use custom selector (overrides data-shortcode-name detection)
+npm run screenshot -- hero-banner --site=https://example.com --selector=".hero-area"
+
+# Show help
+npm run screenshot -- --help
+```
+
+### Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--site=<url>` | Base URL of the website | `http://localhost` or `APP_URL` env |
+| `--theme=<name>` | Theme name for output path | Auto-detected from project |
+| `--output=<dir>` | Output directory for screenshots | `platform/themes/{theme}/public/images/ui-blocks` |
+| `--url=<path>` | Page URL path to capture from | `/` |
+| `--selector=<css>` | Custom CSS selector (overrides automatic detection) | `[data-shortcode-name="..."]` |
+| `--full` | Capture full page instead of element | `false` |
+| `--wait=<ms>` | Wait time in ms before capture | `1000` |
+| `--help` | Show help message | - |
+
+### Examples
+
+```bash
+# Capture hero section from local development site
+npm run screenshot -- hero-banner --site=http://localhost:8000
+
+# Capture from production site with custom output
+npm run screenshot -- testimonials --site=https://example.com --url=/about --output=~/Downloads
+
+# Capture contact form from contact page
+npm run screenshot -- contact-form --site=http://localhost --url=/contact
+
+# Capture with longer wait time for slow-loading content
+npm run screenshot -- gallery --site=http://localhost --url=/gallery --wait=3000
+
+# Capture full page for coming soon page
+npm run screenshot -- coming-soon --site=http://localhost --url=/coming-soon --full
+
+# Specify theme for output path
+npm run screenshot -- faqs --theme=starter --site=http://localhost --url=/faqs
+
+# Override selector for shortcodes without data-shortcode-name
+npm run screenshot -- hero-banner --site=https://example.com --selector=".banner-area"
+```
+
+### Output
+
+Screenshots are saved as PNG files in the theme's `public/images/ui-blocks/` directory with the shortcode name as the filename (e.g., `hero-banner.png`).
+
+After capturing, register the preview image in your shortcode configuration:
+
+```php
+use Botble\Shortcode\Facades\Shortcode;
+use Botble\Theme\Facades\Theme;
+
+Shortcode::setPreviewImage('my-shortcode', Theme::asset()->url('images/ui-blocks/my-shortcode.png'));
+```
+
+::: tip
+For shortcodes with dynamic content (sliders, iframes, maps), automated screenshots may not capture correctly. In these cases, take manual screenshots and save them to the output directory.
+:::

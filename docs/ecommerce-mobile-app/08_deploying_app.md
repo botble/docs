@@ -4,32 +4,195 @@
 
 This guide covers deploying your app to the Apple App Store and Google Play Store using Expo Application Services (EAS).
 
+::: tip Understanding Build Types
+When you run `npx expo start`, you're running a **Development Build** that requires a local server connection. To test on your physical device without a computer, you need to build a **Production APK** (Android) or **IPA** (iOS). See the [Development Build vs Production Build](#development-build-vs-production-build) section below.
+:::
+
+## Development Build vs Production Build
+
+### What is a "Development Build"?
+
+When you see this screen on your device:
+
+![Development Build Screen](./images/development-build-screen.png)
+
+This means you installed a **development build**. Development builds:
+- Require a local development server running (`npx expo start`)
+- Need your computer and phone on the same network
+- Are for developers to test code changes with hot reload
+- Cannot work standalone - they always need the dev server
+
+### What You Need: Production Build (APK/IPA)
+
+To use the app without a development server (like a regular app), you need a **production build**:
+- **Android**: APK file - can be installed directly on any Android device
+- **iOS**: IPA file - requires TestFlight or App Store distribution
+
+### Quick Comparison
+
+| Feature | Development Build | Production Build (APK/IPA) |
+|---------|-------------------|----------------------------|
+| Needs dev server | Yes | No |
+| Hot reload | Yes | No |
+| Standalone use | No | Yes |
+| For end users | No | Yes |
+| Build location | Local machine | EAS cloud or local |
+
 ## Prerequisites
 
 ### Required Accounts
 
-1. **Apple Developer Account** ($99/year)
+1. **Apple Developer Account** ($99/year) - *Optional for APK testing*
    - [developer.apple.com](https://developer.apple.com)
-   - Required for iOS App Store
+   - Required only for iOS App Store publishing
 
-2. **Google Play Developer Account** ($25 one-time)
+2. **Google Play Developer Account** ($25 one-time) - *Optional for APK testing*
    - [play.google.com/console](https://play.google.com/console)
-   - Required for Google Play Store
+   - Required only for Google Play Store publishing
 
-3. **Expo Account** (free)
+3. **Expo Account** (free) - **Required for all builds**
    - [expo.dev](https://expo.dev)
-   - Create at: `npx expo register`
+   - Required to use EAS Build
 
-### Install EAS CLI
+## Setting Up EAS (Expo Application Services)
+
+### Step 1: Create an Expo Account
+
+1. Go to [expo.dev/signup](https://expo.dev/signup)
+2. Choose one of these options:
+   - **Sign up with Email**: Enter your email and create a password
+   - **Sign up with GitHub**: Click "Continue with GitHub"
+   - **Sign up with Google**: Click "Continue with Google"
+3. Verify your email if required
+4. Complete your profile
+
+### Step 2: Install EAS CLI
+
+Open your terminal and run:
 
 ```bash
 npm install -g eas-cli
 ```
 
-### Login to Expo
+### Step 3: Login to EAS
 
 ```bash
 eas login
+```
+
+You'll see a prompt like this:
+```
+Log in to EAS with email or username (exit and run eas login --help to see other login options)
+? Email or username ›
+```
+
+**Enter your Expo account credentials:**
+- Type your email or username and press Enter
+- Type your password and press Enter
+
+**Alternative login methods:**
+
+```bash
+# Login with SSO (Google/GitHub)
+eas login --sso
+
+# Check if you're already logged in
+eas whoami
+```
+
+### Step 4: Verify Login
+
+```bash
+eas whoami
+```
+
+This should display your username if logged in successfully.
+
+## Building APK for Android Testing
+
+::: tip Quick Start for Android Testing
+If you just want to test your app on an Android device without a development server, follow this section. No Google Play account needed!
+:::
+
+### Step 1: Configure EAS Build
+
+Run this command in your project folder:
+
+```bash
+eas build:configure
+```
+
+This creates an `eas.json` file in your project.
+
+### Step 2: Update eas.json for APK Build
+
+Open `eas.json` and update it to include APK output:
+
+```json
+{
+  "cli": {
+    "version": ">= 5.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
+```
+
+### Step 3: Build the APK
+
+```bash
+eas build --platform android --profile preview
+```
+
+**What happens:**
+1. EAS uploads your project to cloud servers
+2. Build runs on Expo's servers (no local Android SDK needed!)
+3. You'll see a progress bar and build URL
+4. When complete, download link appears
+
+### Step 4: Download and Install APK
+
+1. Wait for build to complete (usually 10-15 minutes for first build)
+2. Download the APK from the link in terminal or from [expo.dev](https://expo.dev) → Your Project → Builds
+3. Transfer APK to your Android device (email, cloud drive, USB)
+4. On Android device:
+   - Open the APK file
+   - Allow installation from unknown sources if prompted
+   - Install and open the app
+
+::: warning First Time Build
+The first build takes longer as EAS sets up credentials. Subsequent builds are faster.
+:::
+
+### Troubleshooting APK Build
+
+**"Not logged in" error:**
+```bash
+eas login
+```
+
+**"No project found" error:**
+```bash
+eas build:configure
+```
+
+**Build fails with credential error:**
+```bash
+eas credentials --platform android
 ```
 
 ## Initial Setup

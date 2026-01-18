@@ -1,5 +1,96 @@
 # Troubleshooting Guide
 
+## "Development Build" Screen on Device
+
+### Problem
+
+When opening the app on your phone, you see this screen:
+
+![Development Build Screen](./images/development-build-screen.png)
+
+The app shows "Development Build" with options like:
+- "Start a local development server with: npx expo start"
+- "Fetch development servers"
+- "Scan QR Code"
+
+**Why this happens**: You installed a **development build** which requires a running development server on your computer. Development builds are meant for developers, not end users.
+
+### Solution: Build a Production APK
+
+To use the app standalone (without a dev server), you need to build a **production APK**:
+
+**Quick Steps:**
+
+1. **Create Expo Account** (free): Go to [expo.dev/signup](https://expo.dev/signup)
+
+2. **Install EAS CLI**:
+   ```bash
+   npm install -g eas-cli
+   ```
+
+3. **Login to EAS**:
+   ```bash
+   eas login
+   ```
+   Enter your Expo account email and password when prompted.
+
+4. **Configure EAS** (first time only):
+   ```bash
+   eas build:configure
+   ```
+
+5. **Build APK**:
+   ```bash
+   eas build --platform android --profile preview
+   ```
+
+6. **Download & Install**: Get the APK link from terminal or [expo.dev](https://expo.dev), install on your Android device.
+
+See [Deploying App Guide](08_deploying_app.md) for detailed instructions.
+
+### Alternative: Use Development Server
+
+If you want to use the development build (for testing during development):
+
+1. On your computer, run:
+   ```bash
+   npx expo start
+   ```
+
+2. Make sure your phone and computer are on the same WiFi network
+
+3. On your phone, tap "Fetch development servers" or scan the QR code
+
+---
+
+## EAS Login Issues
+
+### "Email or username" prompt - What credentials?
+
+**Problem**: Running `eas login` asks for "Email or username" but you don't know what to enter.
+
+**Solution**: These are your **Expo account** credentials, NOT your CodeCanyon or any other account.
+
+1. If you don't have an Expo account, create one at [expo.dev/signup](https://expo.dev/signup) (free)
+2. Use the email and password you created for Expo
+
+### Login fails with wrong password
+
+```bash
+# Try SSO login if you signed up with Google/GitHub
+eas login --sso
+
+# Or reset password at expo.dev
+```
+
+### Check if already logged in
+
+```bash
+eas whoami
+```
+
+---
+
 ## Installation Issues
 
 ### "npm not found" or "node not found"
