@@ -122,7 +122,37 @@ Run this command in your project folder:
 eas build:configure
 ```
 
-This creates an `eas.json` file in your project.
+This creates an `eas.json` file in your project and updates `app.json` with the project ID.
+
+::: warning Verify projectId Location
+After running `eas build:configure`, verify that the `projectId` is in the correct location in your `app.json`:
+
+**Correct** - inside `expo.extra.eas`:
+```json
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
+  }
+}
+```
+
+**Incorrect** - directly under `expo.eas`:
+```json
+{
+  "expo": {
+    "eas": {
+      "projectId": "your-project-id"
+    }
+  }
+}
+```
+
+If the `projectId` is in the wrong location, you'll get `Cannot read properties of undefined (reading 'projectId')` error. See [Troubleshooting](troubleshooting.md#cannot-read-properties-of-undefined-reading-projectid) for details.
+:::
 
 ### Step 2: Update eas.json for APK Build
 

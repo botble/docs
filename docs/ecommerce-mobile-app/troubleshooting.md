@@ -91,6 +91,70 @@ eas whoami
 
 ---
 
+## EAS Configuration Issues
+
+### "Cannot read properties of undefined (reading 'projectId')"
+
+**Problem**: Running `eas init` fails with error:
+
+```
+Cannot read properties of undefined (reading 'projectId')
+Error: project:init command failed.
+```
+
+**Cause**: The `projectId` is placed at wrong location in `app.json`. It's under `expo.eas` instead of `expo.extra.eas`.
+
+**Wrong structure**:
+```json
+{
+  "expo": {
+    "extra": {
+      "appConfig": { ... }
+    },
+    "eas": {
+      "projectId": "6a00fcd0-890a-4c97-b82e-00aed812ec59"
+    }
+  }
+}
+```
+
+**Correct structure**:
+```json
+{
+  "expo": {
+    "extra": {
+      "appConfig": { ... },
+      "eas": {
+        "projectId": "6a00fcd0-890a-4c97-b82e-00aed812ec59"
+      }
+    }
+  }
+}
+```
+
+**Solution**:
+1. Open `app.json`
+2. Move `"eas": { "projectId": "..." }` block **inside** the `"extra"` object
+3. Remove the standalone `"eas"` block from directly under `"expo"`
+4. Save and run `eas init` again
+
+### "Existing project found" but link fails
+
+**Problem**: EAS detects existing project but fails to link:
+
+```
+Existing project found: @username/project-name (ID: xxx). Link this project? ... yes
+Cannot read properties of undefined (reading 'projectId')
+```
+
+**Solution**: Same as above - fix the `projectId` location in `app.json`, then run:
+
+```bash
+eas init
+```
+
+---
+
 ## Installation Issues
 
 ### "npm not found" or "node not found"
