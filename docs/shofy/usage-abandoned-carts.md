@@ -62,11 +62,11 @@ Each template supports these variables:
 
 | Variable | Description |
 |----------|-------------|
-| `{{ customer_name }}` | Customer's name or "Guest" |
-| `{{ product_list }}` | HTML table of cart items |
-| `{{ cart_total }}` | Formatted total amount |
-| `{{ cart_recover_url }}` | Link to restore the cart |
-| `{{ unsubscribe_url }}` | Opt-out link |
+| `customer_name` | Customer's name or "Guest" |
+| `product_list` | HTML table of cart items |
+| `cart_total` | Formatted total amount |
+| `cart_recover_url` | Link to restore the cart |
+| `unsubscribe_url` | Opt-out link |
 
 ## Cart Recovery Flow
 
@@ -139,6 +139,47 @@ php artisan cms:check-abandoned-carts --cleanup --cleanup-days=60
 - Links expire after 30 days
 - Already-recovered carts won't restore again
 - Products must still be in stock
+
+## Frequently Asked Questions
+
+### Does just adding to cart trigger tracking, or is checkout required?
+
+**Just adding to cart is enough.** The system tracks cart activity immediately when customers:
+- Add items to cart
+- Update cart quantities
+- View the cart page
+
+Customers do **not** need to start checkout for their cart to be tracked.
+
+### Why aren't customers receiving reminder emails?
+
+The most common reason: **the system doesn't have the customer's email address.**
+
+| Customer Type | How Email is Captured |
+|---------------|----------------------|
+| Logged-in customers | Email captured automatically from their account |
+| Guest visitors | Email captured only when they enter it in a form (e.g., checkout) |
+
+**If a guest adds items to cart but leaves before entering their email, no reminder can be sent** - this is expected behavior, not a bug.
+
+**To test if the feature works:**
+
+1. Log into a customer account on your store
+2. Add some items to cart
+3. Leave the site without buying
+4. Wait for the configured delay (default: 1 hour)
+5. Check your email (including spam/junk folder)
+
+If you receive the reminder when logged in, the feature is working correctly.
+
+### What if cronjob shows "email sent" but nothing is received?
+
+Check these in order:
+
+1. **Email templates enabled?** - Go to `Settings` → `Email` → Ecommerce section → Enable "Abandoned Cart Reminder" templates
+2. **Test email working?** - Use "Send test email" button in email settings
+3. **Email address captured?** - Guest carts without email addresses cannot receive reminders
+4. **Spam folder?** - Ask customers to check spam/junk and whitelist your store email
 
 ## Best Practices
 
