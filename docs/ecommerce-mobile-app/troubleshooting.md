@@ -63,6 +63,63 @@ If you want to use the development build (for testing during development):
 
 ---
 
+## Black Screen After Installing APK/AAB
+
+### Problem
+
+After building and installing the production APK or AAB, the app opens to a **black screen** or crashes immediately.
+
+### Cause
+
+Your `.env` file is **gitignored** and not included in EAS builds. EAS Build runs in the cloud and only has access to your Git repository and EAS Secrets. Without environment variables, the app has no API configuration and fails to start.
+
+### Solution
+
+You must set environment variables using EAS Secrets **before building**:
+
+**Step 1: Set required variables:**
+```bash
+eas secret:create --name API_BASE_URL --value "https://your-website.com"
+eas secret:create --name API_KEY --value "your-api-key"
+```
+
+**Step 2: (Optional) Set additional variables:**
+```bash
+eas secret:create --name APP_NAME --value "Your App Name"
+```
+
+**Step 3: Verify secrets are set:**
+```bash
+eas secret:list
+```
+
+**Step 4: Rebuild the app:**
+```bash
+eas build --platform android --profile production
+```
+
+**Step 5: Uninstall old app and install new APK**
+
+::: tip Bulk Import
+If you have many variables, import them all at once:
+```bash
+cat .env | xargs -L 1 eas secret:create
+```
+:::
+
+### Why This Happens
+
+| Source | Local Dev | EAS Build |
+|--------|-----------|-----------|
+| `.env` file | Yes | No |
+| EAS Secrets | No | Yes |
+
+The `.env` file is gitignored for security reasons. EAS cannot read local files - it only sees what's in your Git repository plus EAS Secrets.
+
+See [Environment Variables section](08_deploying_app.md#environment-variables-critical) in the Deploying Guide for complete details.
+
+---
+
 ## EAS Login Issues
 
 ### "Email or username" prompt - What credentials?

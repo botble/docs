@@ -69,6 +69,29 @@ eas build --platform android --profile preview
 
 Download APK from expo.dev when build completes.
 
+### Why does my app show a black screen after installing APK?
+
+Your `.env` file is gitignored and **not included in EAS builds**. You must set environment variables using EAS Secrets before building:
+
+```bash
+eas secret:create --name API_BASE_URL --value "https://your-website.com"
+eas secret:create --name API_KEY --value "your-api-key"
+```
+
+Then rebuild: `eas build --platform android --profile production`
+
+See [Environment Variables section](08_deploying_app.md#environment-variables-critical) in Deploying Guide for complete details.
+
+### What's the difference between .env file and EAS Secrets?
+
+| Source | Local Dev | EAS Build |
+|--------|-----------|-----------|
+| `.env` file | Yes | No |
+| EAS Secrets | No | Yes |
+
+- **`.env` file**: Used for local development only. Gitignored for security.
+- **EAS Secrets**: Required for production builds. Set via `eas secret:create` command.
+
 ### Why won't the app connect to my website?
 
 Check these common issues:

@@ -137,6 +137,19 @@ API_BASE_URL=https://mystore.com npm start
 - Ensure valid SSL certificate
 - Don't use self-signed certs in production
 
+## For Production Builds (EAS)
+
+::: warning Important
+The `.env` file is only for **local development**. When building with EAS for production, you must use **EAS Secrets** instead:
+
+```bash
+eas secret:create --name API_BASE_URL --value "https://your-website.com"
+eas secret:create --name API_KEY --value "your-api-key"
+```
+
+See [Environment Variables section](08_deploying_app.md#environment-variables-critical) in the Deploying Guide for complete details.
+:::
+
 ## Need Help?
 
 - Check the [API Integration Guide](api-integration.md)

@@ -108,6 +108,123 @@ eas whoami
 
 This should display your username if logged in successfully.
 
+## Environment Variables (Critical)
+
+::: danger Important - Read Before Building
+Your `.env` file is gitignored and **will NOT be included in EAS builds**. You must configure environment variables using EAS Secrets before building. Skipping this step will result in a **black screen** when you open the app.
+:::
+
+### Why .env Doesn't Work with EAS
+
+| Source | Local Dev | EAS Build |
+|--------|-----------|-----------|
+| `.env` file | Yes | No |
+| EAS Secrets | No | Yes |
+| `eas.json` env | No | Yes |
+
+EAS Build runs in the cloud and only has access to:
+- Your Git repository
+- EAS Secrets
+
+Since `.env` is gitignored (for security), EAS cannot read it.
+
+### Step 1: Set Environment Variables with EAS Secrets
+
+**Required variables:**
+```bash
+eas secret:create --name API_BASE_URL --value "https://your-website.com"
+eas secret:create --name API_KEY --value "your-api-key"
+```
+
+**Optional but recommended:**
+```bash
+eas secret:create --name APP_NAME --value "Your App Name"
+eas secret:create --name APP_ENV --value "production"
+```
+
+**Bulk import from .env (recommended for many variables):**
+```bash
+cat .env | xargs -L 1 eas secret:create
+```
+
+This creates one secret per variable automatically.
+
+### Step 2: Verify Secrets
+
+```bash
+eas secret:list
+```
+
+You should see your variables listed.
+
+### Managing Secrets
+
+```bash
+# List all secrets
+eas secret:list
+
+# Delete a secret
+eas secret:delete API_BASE_URL
+
+# Update a secret (delete and recreate)
+eas secret:delete API_BASE_URL
+eas secret:create --name API_BASE_URL --value "https://new-url.com"
+```
+
+### Environment Variables Reference
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `API_BASE_URL` | Yes | Your website URL (without /api/v1) |
+| `API_KEY` | Yes | API key from backend API settings |
+| `APP_NAME` | No | App display name |
+| `APP_ENV` | No | production, staging, or development |
+| `APP_VERSION` | No | App version (default: 1.0.0) |
+| `PRIMARY_COLOR` | No | Brand color hex without # (default: 2d5481) |
+| `DEFAULT_LANGUAGE` | No | Language code: en, ar, vi, es, fr |
+
+### Alternative: Configure in eas.json
+
+You can also set env variables directly in `eas.json`:
+
+```json
+{
+  "build": {
+    "production": {
+      "env": {
+        "API_BASE_URL": "https://your-website.com",
+        "API_KEY": "your-api-key",
+        "APP_NAME": "Your App Name",
+        "APP_ENV": "production"
+      }
+    }
+  }
+}
+```
+
+::: tip EAS Secrets vs eas.json
+- **EAS Secrets**: More secure, not committed to Git, managed via CLI
+- **eas.json env**: Simpler, but committed to Git (visible in repository)
+
+For API keys and sensitive data, use EAS Secrets.
+:::
+
+### Best Practices Summary
+
+| Purpose | Method |
+|---------|--------|
+| Local development | `.env` file |
+| Production builds | EAS Secrets |
+| Non-secret values | `eas.json` env or `EXPO_PUBLIC_*` |
+
+### Common Mistakes
+
+| Mistake | Result |
+|---------|--------|
+| Not setting EAS Secrets before build | Black screen on app launch |
+| Expecting EAS to read `.env` | App has no API configuration |
+| Committing `.env` to Git | Security risk |
+
 ## Building APK for Android Testing
 
 ::: tip Quick Start for Android Testing
