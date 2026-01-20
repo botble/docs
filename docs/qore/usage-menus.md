@@ -4,8 +4,6 @@ Menus are a crucial element for website navigation. In Qore, menus are used for 
 
 You can manage your menus from the `Appearance` -> `Menus` in the admin panel.
 
-![Menu Management](./images/menu.png)
-
 ## Adding a New Menu
 
 To add a new menu, click on `Create` button. Enter a name for the menu and click on `Save` button.

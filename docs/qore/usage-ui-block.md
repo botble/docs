@@ -15,8 +15,6 @@ Then you can configure the block settings.
 
 You can modify it as needed by clicking on that block in the editor and clicking on the pencil icon to edit.
 
-![Modify UI Block](./images/modify-ui-block-item.png)
-
 ## Available Shortcodes
 
 Qore provides 15+ shortcodes for building your landing pages:
@@ -24,8 +22,6 @@ Qore provides 15+ shortcodes for building your landing pages:
 ### 1. Hero
 
 The main hero section featuring animated title with rotating text, AI prompt input, and brand logos.
-
-![Hero Section](./images/shortcodes/hero.png)
 
 **Configuration Options:**
 
@@ -46,8 +42,6 @@ The main hero section featuring animated title with rotating text, AI prompt inp
 
 Tabbed features showcase with images and descriptions.
 
-![Features Section](./images/shortcodes/features.png)
-
 **Configuration Options:**
 
 | Field | Description |
@@ -62,8 +56,6 @@ Tabbed features showcase with images and descriptions.
 ### 3. Benefits
 
 Benefits cards grid with visual object decoration.
-
-![Benefits Section](./images/shortcodes/benefits.png)
 
 **Configuration Options:**
 
@@ -80,8 +72,6 @@ Benefits cards grid with visual object decoration.
 ### 4. How-To
 
 Step-by-step guide with tabbed images showing how to use your product.
-
-![How-To Section](./images/shortcodes/how-to.png)
 
 **Configuration Options:**
 
@@ -112,8 +102,6 @@ Use cases demo section displaying product capabilities.
 
 Pricing tiers section with feature lists and CTAs.
 
-![Pricing Section](./images/shortcodes/pricing.png)
-
 **Configuration Options:**
 
 | Field | Description |
@@ -136,8 +124,6 @@ Pricing tiers section with feature lists and CTAs.
 
 Client testimonials carousel with social-style cards.
 
-![Testimonials Section](./images/shortcodes/testimonials.png)
-
 **Configuration Options:**
 
 | Field | Description |
@@ -151,8 +137,6 @@ Client testimonials carousel with social-style cards.
 ### 8. FAQ
 
 Accordion-style FAQ section with collapsible answers.
-
-![FAQ Section](./images/shortcodes/faq.png)
 
 **Configuration Options:**
 
@@ -169,8 +153,6 @@ Accordion-style FAQ section with collapsible answers.
 ### 9. CTA (Call-to-Action)
 
 Call-to-action section with optional newsletter form.
-
-![CTA Section](./images/shortcodes/cta.png)
 
 **Configuration Options:**
 

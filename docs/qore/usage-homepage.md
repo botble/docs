@@ -2,8 +2,6 @@
 
 Homepage is the first page that users see when they visit your website. Qore is designed as a modern AI SaaS landing page with multiple animated sections.
 
-![Overview](./images/pages/homepage.jpg)
-
 ## Create Homepage
 
 If you are using the sample data of **Qore**, the homepage is already created for you.
