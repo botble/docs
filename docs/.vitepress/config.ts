@@ -32,6 +32,7 @@ import loyaltyPointsSidebar from '../loyalty-points/sidebar'
 import eWalletSidebar from '../e-wallet/sidebar'
 import isakSidebar from '../isak/sidebar'
 import ecommerceMobileAppSidebar from '../ecommerce-mobile-app/sidebar'
+import qoreSidebar from '../qore/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -109,6 +110,7 @@ export default defineConfig({
           { text: 'E-Wallet', link: '/e-wallet/'},
           { text: 'Isak', link: '/isak/'},
           { text: 'Ecommerce Mobile App', link: '/ecommerce-mobile-app/'},
+          { text: 'Qore', link: '/qore/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -153,6 +155,7 @@ export default defineConfig({
       'e-wallet': eWalletSidebar,
       isak: isakSidebar,
       'ecommerce-mobile-app': ecommerceMobileAppSidebar,
+      qore: qoreSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

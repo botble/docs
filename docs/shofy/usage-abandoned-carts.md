@@ -18,7 +18,7 @@ Navigate to `Ecommerce` -> `Settings` -> `Abandoned Carts` in the admin panel.
 Toggle **Enable abandoned cart tracking** to activate the feature.
 
 ::: warning
-This feature requires a properly configured cronjob to work. Ensure your cronjob is set up before enabling. See [Setup Cronjob](./cronjob.md) for instructions.
+This feature requires a properly configured cronjob to work. Ensure your cronjob is set up before enabling. See [Setup Cronjob](https://docs.botble.com/shofy/cronjob.html) for instructions.
 :::
 
 ## Configuration Options
