@@ -57,14 +57,37 @@ The license is tied to your Envato purchase. You can use it on any device or tea
 
 ## Troubleshooting
 
-### "License Required" Alert
+### "License Required" Alert in Development
 
-If you see a license alert:
+If you see a license alert during development:
 
 1. Verify your purchase code is correct in `.env`
 2. Make sure there are no extra spaces in the code
 3. Restart the development server
 4. Check your internet connection (required for first verification)
+
+### "License Required" Alert in Production/Release APK
+
+If you see the license dialog in your release APK or production build:
+
+1. Open `eas.json` in your project
+2. Add `APP_ENV=production` to the production build profile:
+
+```json
+{
+  "build": {
+    "production": {
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  }
+}
+```
+
+3. Rebuild your app with `eas build --platform android --profile production`
+
+The license check only runs when `APP_ENV=development` (the default). Setting it to `production` disables the check entirely.
 
 ### Still Not Working?
 
@@ -75,7 +98,25 @@ If you see a license alert:
 
 ### Is the license required for production?
 
-No. License validation only runs in development mode. Production builds skip the license check entirely.
+No. License validation only runs in development mode (`APP_ENV=development`). Production builds skip the license check entirely.
+
+::: danger Important for Production Builds
+To disable the license dialog in release builds, you **must** set `APP_ENV=production` in your `eas.json`:
+
+```json
+{
+  "build": {
+    "production": {
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  }
+}
+```
+
+If you forget this, your production app will show a "License Required" dialog on startup because `APP_ENV` defaults to `development`.
+:::
 
 ### Can I use the same license on multiple computers?
 

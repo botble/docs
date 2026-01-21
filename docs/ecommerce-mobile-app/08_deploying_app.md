@@ -336,8 +336,11 @@ android {
 }
 ```
 
-### Step 6: Build the APK
+### Step 6: Build the App
 
+Choose the appropriate build command based on your needs:
+
+**For Testing (APK):**
 ```bash
 cd android
 ./gradlew assembleRelease
@@ -348,8 +351,27 @@ The APK will be generated at:
 android/app/build/outputs/apk/release/app-release.apk
 ```
 
-### Step 7: Verify APK Signature (Optional)
+**For Google Play Store (AAB):**
+```bash
+cd android
+./gradlew bundleRelease
+```
 
+The AAB will be generated at:
+```
+android/app/build/outputs/bundle/release/app-release.aab
+```
+
+::: tip APK vs AAB
+| Format | Use Case |
+|--------|----------|
+| APK | Direct device installation, testing, distribution outside Play Store |
+| AAB | Google Play Store submission (required since August 2021) |
+:::
+
+### Step 7: Verify Signature (Optional)
+
+**For APK:**
 ```bash
 # Using jarsigner
 jarsigner -verify android/app/build/outputs/apk/release/app-release.apk
@@ -358,7 +380,14 @@ jarsigner -verify android/app/build/outputs/apk/release/app-release.apk
 apksigner verify --print-certs android/app/build/outputs/apk/release/app-release.apk
 ```
 
-### Step 8: Install on Device
+**For AAB:**
+```bash
+jarsigner -verify android/app/build/outputs/bundle/release/app-release.aab
+```
+
+### Step 8: Distribution
+
+**For Testing (APK):**
 
 Transfer the APK to your Android device and install it:
 - Email it to yourself
@@ -368,6 +397,15 @@ Transfer the APK to your Android device and install it:
 ```bash
 adb install android/app/build/outputs/apk/release/app-release.apk
 ```
+
+**For Google Play Store (AAB):**
+
+1. Go to [Google Play Console](https://play.google.com/console)
+2. Select your app (or create a new one)
+3. Go to **Release** → **Production** (or Testing track)
+4. Click **Create new release**
+5. Upload the `app-release.aab` file
+6. Complete the release notes and submit for review
 
 ### Troubleshooting Local Build
 
@@ -458,13 +496,21 @@ Open `eas.json` and update it to include APK output:
         "buildType": "apk"
       }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
   },
   "submit": {
     "production": {}
   }
 }
 ```
+
+::: warning Important: Set APP_ENV for Production
+Always set `APP_ENV=production` in your production build profile. This disables the license validation dialog that only appears in development mode. Without this setting, users may see a "License Required" alert on app startup.
+:::
 
 ### Step 3: Build the APK
 
@@ -532,13 +578,21 @@ This creates `eas.json` in your project:
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
   },
   "submit": {
     "production": {}
   }
 }
 ```
+
+::: tip
+The `APP_ENV=production` setting is critical - it disables the development-only license check dialog.
+:::
 
 ### Step 2: Update app.json
 
@@ -695,6 +749,7 @@ eas secret:create --name APP_NAME --value "Your Store Name"
   "build": {
     "production": {
       "env": {
+        "APP_ENV": "production",
         "API_BASE_URL": "https://mystore.com",
         "API_KEY": "your-api-key",
         "APP_NAME": "Your Store Name"
@@ -703,6 +758,10 @@ eas secret:create --name APP_NAME --value "Your Store Name"
   }
 }
 ```
+
+::: danger Required: APP_ENV=production
+Always include `APP_ENV=production` in your production build. This is essential to disable the license validation dialog. Forgetting this will cause a "License Required" popup to appear when users open your app.
+:::
 
 ## Over-the-Air Updates
 
