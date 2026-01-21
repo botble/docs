@@ -231,6 +231,173 @@ For API keys and sensitive data, use EAS Secrets.
 If you just want to test your app on an Android device without a development server, follow this section. No Google Play account needed!
 :::
 
+There are two ways to build an APK:
+1. **Local Build** (Recommended) - Build directly on your machine using Gradle
+2. **EAS Cloud Build** - Build on Expo's servers
+
+## Option 1: Local APK Build (Recommended)
+
+This method builds the APK locally on your machine without requiring an Expo account or EAS subscription.
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **Java JDK** (v17 recommended)
+- **Android SDK** (via Android Studio or standalone)
+
+::: tip Verify Java Installation
+```bash
+java -version
+# Should show java 17.x.x or higher
+```
+:::
+
+### Step 1: Install Dependencies
+
+```bash
+npm install --legacy-peer-deps
+```
+
+### Step 2: Configure Environment
+
+Edit `.env` file with your configuration:
+
+```
+API_BASE_URL=https://your-website.com
+API_KEY=your-api-key
+APP_NAME=Your App Name
+```
+
+### Step 3: Generate Native Android Project
+
+```bash
+npx expo prebuild --platform android --clean
+```
+
+This creates the `android/` folder with native Android project files.
+
+### Step 4: Generate Release Keystore
+
+Create a keystore for signing the APK:
+
+```bash
+keytool -genkeypair \
+    -v \
+    -storetype PKCS12 \
+    -keystore android/app/release.keystore \
+    -alias release \
+    -keyalg RSA \
+    -keysize 2048 \
+    -validity 10000 \
+    -storepass your_password_here \
+    -keypass your_password_here \
+    -dname "CN=Your Name, OU=Mobile, O=Your Company, L=City, ST=State, C=US"
+```
+
+::: warning Keep Your Keystore Safe
+Store your keystore file and passwords securely. You'll need the same keystore to update your app in the future. If you lose it, you won't be able to publish updates to the same app on the Play Store.
+:::
+
+### Step 5: Configure Signing
+
+Add signing configuration to `android/gradle.properties`:
+
+```properties
+# Release signing configuration
+MYAPP_UPLOAD_STORE_FILE=release.keystore
+MYAPP_UPLOAD_KEY_ALIAS=release
+MYAPP_UPLOAD_STORE_PASSWORD=your_password_here
+MYAPP_UPLOAD_KEY_PASSWORD=your_password_here
+```
+
+Add signing config to `android/app/build.gradle`. Find the `android {` block and add:
+
+```gradle
+android {
+    // ... existing config ...
+
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            // ... existing release config ...
+        }
+    }
+}
+```
+
+### Step 6: Build the APK
+
+```bash
+cd android
+./gradlew assembleRelease
+```
+
+The APK will be generated at:
+```
+android/app/build/outputs/apk/release/app-release.apk
+```
+
+### Step 7: Verify APK Signature (Optional)
+
+```bash
+# Using jarsigner
+jarsigner -verify android/app/build/outputs/apk/release/app-release.apk
+
+# Or using apksigner (if Android SDK build-tools is in PATH)
+apksigner verify --print-certs android/app/build/outputs/apk/release/app-release.apk
+```
+
+### Step 8: Install on Device
+
+Transfer the APK to your Android device and install it:
+- Email it to yourself
+- Upload to cloud storage (Google Drive, Dropbox)
+- Use `adb install` if device is connected via USB:
+
+```bash
+adb install android/app/build/outputs/apk/release/app-release.apk
+```
+
+### Troubleshooting Local Build
+
+**"SDK location not found" error:**
+
+Create `android/local.properties` with your Android SDK path:
+```properties
+sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
+```
+
+**"JAVA_HOME is not set" error:**
+
+Set JAVA_HOME environment variable:
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+```
+
+**Build fails with memory error:**
+
+Increase Gradle memory in `android/gradle.properties`:
+```properties
+org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m
+```
+
+---
+
+## Option 2: EAS Cloud Build
+
+Build on Expo's cloud servers without local Android SDK setup.
+
 ### Step 1: Configure EAS Build
 
 Run this command in your project folder:
@@ -325,7 +492,7 @@ eas build --platform android --profile preview
 The first build takes longer as EAS sets up credentials. Subsequent builds are faster.
 :::
 
-### Troubleshooting APK Build
+### Troubleshooting EAS Build
 
 **"Not logged in" error:**
 ```bash
