@@ -151,7 +151,7 @@ ecommerce-mobile-app/
 │   └── lib/               # Utilities
 ├── assets/                # Images, fonts
 ├── .env                   # Environment configuration
-├── app.config.ts         # Expo configuration
+├── app.config.js         # Expo configuration
 ├── package.json          # Dependencies
 └── tailwind.config.js    # Styling configuration
 ```

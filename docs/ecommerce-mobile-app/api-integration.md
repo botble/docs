@@ -23,7 +23,7 @@ API_KEY=your-api-key
 
 ### API Client
 
-The app uses a centralized API client located at `src/services/apiClient.ts`. Configuration is loaded from `src/config/app.ts` which reads environment variables through `app.config.ts`:
+The app uses a centralized API client located at `src/services/apiClient.ts`. Configuration is loaded from `src/config/app.ts` which reads environment variables through `app.config.js`:
 
 ```typescript
 import { appConfig } from '@/config/app';

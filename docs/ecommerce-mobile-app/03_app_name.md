@@ -19,12 +19,12 @@ Then restart the app:
 npm start -- --clear
 ```
 
-### Option 2: Edit app.config.ts Directly
+### Option 2: Edit app.config.js Directly
 
-Open `app.config.ts` and update the name:
+Open `app.config.js` and update the name:
 
-```typescript
-export default ({ config }: ConfigContext): ExpoConfig => ({
+```javascript
+module.exports = ({ config }) => ({
   ...config,
   name: process.env.APP_NAME || "Your Store Name",
   // ...
@@ -33,7 +33,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 
 ## Platform-Specific Settings
 
-Update `app.config.ts` for bundle identifiers:
+Update `app.config.js` for bundle identifiers:
 
 ```typescript
 ios: {

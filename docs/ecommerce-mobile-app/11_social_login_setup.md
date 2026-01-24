@@ -34,7 +34,7 @@ Social login requires **development builds** created via EAS. It does **not** wo
 1. Sign in to the [Apple Developer Portal](https://developer.apple.com).
 2. Under **Certificates, Identifiers & Profiles**, select your App ID.
 3. Enable **Sign in with Apple** capability.
-4. Note: No additional configuration needed for managed Expo workflow - just enable in `app.config.ts`.
+4. Note: No additional configuration needed for managed Expo workflow - just enable in `app.config.js`.
 
 ### Facebook
 
@@ -75,22 +75,22 @@ GOOGLE_SERVICES_FILE=./google-services.json
 ```
 
 ::: tip
-Apple Sign-In doesn't require additional environment variables - it's automatically enabled for iOS when the capability is set in `app.config.ts`.
+Apple Sign-In doesn't require additional environment variables - it's automatically enabled for iOS when the capability is set in `app.config.js`.
 :::
 
 ## Step 3: Configuration Files
 
-### app.config.ts
+### app.config.js
 
 The social auth plugins are **conditionally loaded** based on environment variables. If credentials are not set, the plugin is not loaded (preventing build errors).
 
-```typescript
+```javascript
 // Plugins are added conditionally:
 // - Google: Added if GOOGLE_WEB_CLIENT_ID is set
 // - Apple: Always added (no external config needed)
 // - Facebook: Added if FACEBOOK_APP_ID is set
 
-export default ({ config }: ConfigContext): ExpoConfig => ({
+module.exports = ({ config }) => ({
   // ...
   ios: {
     usesAppleSignIn: true,  // Enables Apple Sign-In capability
@@ -188,7 +188,7 @@ Download and install the development build on your device/simulator.
 ### Apple Sign-In not working
 
 - Only works on iOS (hidden on Android automatically)
-- Verify `usesAppleSignIn: true` in `app.config.ts`
+- Verify `usesAppleSignIn: true` in `app.config.js`
 - Rebuild the development build after enabling
 
 ### Facebook Login errors

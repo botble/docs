@@ -30,6 +30,7 @@ import martfuryFlutterSidebar from '../martfury-flutter/sidebar'
 import restoriaSidebar from '../restoria/sidebar'
 import loyaltyPointsSidebar from '../loyalty-points/sidebar'
 import eWalletSidebar from '../e-wallet/sidebar'
+import productGiftsSidebar from '../product-gifts/sidebar'
 import isakSidebar from '../isak/sidebar'
 import ecommerceMobileAppSidebar from '../ecommerce-mobile-app/sidebar'
 import qoreSidebar from '../qore/sidebar'
@@ -108,6 +109,7 @@ export default defineConfig({
           { text: 'Restoria', link: '/restoria/'},
           { text: 'Loyalty Points', link: '/loyalty-points/'},
           { text: 'E-Wallet', link: '/e-wallet/'},
+          { text: 'Product Gifts', link: '/product-gifts/'},
           { text: 'Isak', link: '/isak/'},
           { text: 'Ecommerce Mobile App', link: '/ecommerce-mobile-app/'},
           { text: 'Qore', link: '/qore/'},
@@ -153,6 +155,7 @@ export default defineConfig({
        restoria: restoriaSidebar,
       'loyalty-points': loyaltyPointsSidebar,
       'e-wallet': eWalletSidebar,
+      'product-gifts': productGiftsSidebar,
       isak: isakSidebar,
       'ecommerce-mobile-app': ecommerceMobileAppSidebar,
       qore: qoreSidebar,

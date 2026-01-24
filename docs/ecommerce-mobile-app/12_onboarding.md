@@ -41,11 +41,11 @@ Onboarding text is fully translated in all 15 supported languages.
 Replace default icons with custom images via configuration.
 
 ### Location
-`app.config.ts`
+`app.config.js`
 
 ### Configuration
 
-```typescript
+```javascript
 extra: {
   appConfig: {
     onboarding: {
@@ -83,7 +83,7 @@ When `useImages` is `false`, these icons are displayed:
 
 You can change icons without using images:
 
-```typescript
+```javascript
 extra: {
   appConfig: {
     onboarding: {
@@ -111,7 +111,7 @@ For best results with custom images:
 
 - [ ] Update slide titles in translation files
 - [ ] Update slide descriptions in translation files
-- [ ] (Optional) Configure custom images in `app.config.ts`
+- [ ] (Optional) Configure custom images in `app.config.js`
 - [ ] (Optional) Customize icon colors
 - [ ] Test on both iOS and Android
 - [ ] Test all supported languages

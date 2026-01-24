@@ -56,9 +56,9 @@ APP_SOCIAL_X=https://x.com/yourstore
 APP_SOCIAL_INSTAGRAM=https://instagram.com/yourstore
 ```
 
-## App Configuration (app.config.ts)
+## App Configuration (app.config.js)
 
-The app reads configuration from environment variables through `app.config.ts`. Update your `.env` file for app store settings:
+The app reads configuration from environment variables through `app.config.js`. Update your `.env` file for app store settings:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
@@ -67,7 +67,7 @@ The app reads configuration from environment variables through `app.config.ts`. 
 | API_BASE_URL | Website URL (without /api/v1) | https://mystore.com |
 | API_KEY | API authentication key | your-api-key |
 
-For bundle identifiers and other platform-specific settings, modify `app.config.ts` directly.
+For bundle identifiers and other platform-specific settings, modify `app.config.js` directly.
 
 ## Basic App Settings
 
