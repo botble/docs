@@ -413,6 +413,68 @@ try {
 }
 ```
 
+### Social Login not working
+
+**General checklist**:
+1. [ ] Are you using a development build (not Expo Go)?
+2. [ ] Are credentials set in `.env`?
+3. [ ] Did you restart the dev server after changing `.env`?
+4. [ ] Is the backend configured for social auth?
+
+See [Social Login Setup Guide](11_social_login_setup.md) for detailed configuration.
+
+### Twitter Login Error 302
+
+**Problem**: Twitter login shows redirect error or "302".
+
+**Cause**: Incorrect Twitter Developer Portal settings.
+
+**Solution**: Go to [Twitter Developer Portal](https://developer.twitter.com) → Your App → User authentication settings → Edit:
+
+| Setting | Must Be |
+|---------|---------|
+| Type of App | **Native App** (NOT "Web App") |
+| Client type | **Public client** (NOT "Confidential client") |
+| OAuth 2.0 | **Enabled** |
+| Callback URL | `botble://twitter-auth` |
+
+After fixing, restart your development server and try again.
+
+### Google Sign-In Fails
+
+**Problem**: Google Sign-In shows error or doesn't work.
+
+**Common causes**:
+1. Wrong Client ID type (must be **Web application**, not Android/iOS)
+2. SHA-1 fingerprint not registered for Android
+3. Google Play Services not available on device
+
+**Solution**:
+1. Use the **Web application** Client ID from Google Cloud Console
+2. Add SHA-1 fingerprints for both debug and release builds
+3. Test on a device with Google Play Services
+
+### Apple Sign-In Button Missing
+
+**Problem**: Apple Sign-In button doesn't appear.
+
+**Solution**:
+1. Apple Sign-In only appears on iOS (hidden on Android by design)
+2. Verify `usesAppleSignIn: true` in `app.config.js`
+3. Rebuild development build after enabling: `eas build --profile development --platform ios`
+
+### Facebook "Invalid Key Hash"
+
+**Problem**: Facebook login shows key hash error on Android.
+
+**Solution**:
+1. Generate key hash:
+   ```bash
+   keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+   ```
+2. Add to Facebook app → Settings → Android → Key Hashes
+3. Add both debug AND release key hashes
+
 ## Performance Issues
 
 ### App is slow

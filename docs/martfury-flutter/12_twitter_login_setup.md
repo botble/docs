@@ -24,14 +24,34 @@ This guide will help you set up Twitter (X) login in your MartFury mobile app.
 
 ## Step 3: Configure Twitter App Settings
 
+:::warning Critical Configuration
+The MartFury app uses **OAuth 1.0a** (not OAuth 2.0). Incorrect settings will cause login failures with error code 302.
+:::
+
 1. Go to your app's settings in the Twitter Developer Portal
-2. Navigate to "User authentication settings"
-3. Enable "OAuth 2.0"
-4. Add the following callback URL:
+2. Navigate to **"User authentication settings"** and click **"Edit"**
+3. Configure the following settings **exactly**:
+
+   | Setting | Required Value |
+   |---------|----------------|
+   | **App permissions** | Read and write |
+   | **Type of App** | **Native App** |
+   | **App info > Client type** | **Public client** |
+
+4. Under **"App info"**, add the callback URL:
    ```
    martfury://twitter-auth
    ```
-5. Save your changes
+
+5. Make sure **OAuth 1.0a** is enabled (check under "Keys and tokens" tab)
+6. Save your changes
+
+:::danger Common Mistakes That Cause Error 302
+- Setting "Type of App" to "Web App, Automated App or Bot" instead of **"Native App"**
+- Setting "Client type" to "Confidential client" instead of **"Public client"**
+- Using OAuth 2.0 only without enabling OAuth 1.0a
+- Callback URL mismatch (must be exactly `martfury://twitter-auth`)
+:::
 
 ## Step 4: Configure Your Mobile App
 
@@ -49,15 +69,16 @@ Replace `your_twitter_consumer_key` and `your_twitter_consumer_secret` with your
 
 ### iOS Configuration
 
-The Twitter URL scheme is already configured in your `Info.plist`. Make sure it contains:
+The Twitter URL scheme is already configured in your `Info.plist`. Verify it contains the `martfury` scheme:
 
 ```xml
 <key>CFBundleURLTypes</key>
 <array>
     <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>twitterkit-YOUR_TWITTER_API_KEY</string>
             <string>martfury</string>
         </array>
     </dict>
@@ -66,22 +87,16 @@ The Twitter URL scheme is already configured in your `Info.plist`. Make sure it 
 
 ### Android Configuration
 
-The Twitter configuration is already set up in your `AndroidManifest.xml`. Make sure it contains:
+The Twitter configuration is already set up in your `AndroidManifest.xml`. Verify it contains:
 
+1. **The OAuthActivity** (for handling Twitter's OAuth flow):
 ```xml
 <activity
     android:name="com.twitter.sdk.android.core.identity.OAuthActivity"
     android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-<meta-data
-    android:name="com.twitter.sdk.android.CONSUMER_KEY"
-    android:value="@string/twitter_consumer_key" />
-<meta-data
-    android:name="com.twitter.sdk.android.CONSUMER_SECRET"
-    android:value="@string/twitter_consumer_secret" />
 ```
 
-And in your app's main activity:
-
+2. **The intent-filter** in your MainActivity (for handling the callback):
 ```xml
 <intent-filter>
     <action android:name="android.intent.action.VIEW" />
@@ -90,6 +105,10 @@ And in your app's main activity:
     <data android:scheme="martfury" />
 </intent-filter>
 ```
+
+:::note
+The app reads Twitter credentials from the `.env` file, **not** from AndroidManifest meta-data tags. You do NOT need to add `CONSUMER_KEY` or `CONSUMER_SECRET` meta-data to AndroidManifest.
+:::
 
 ## Step 5: Testing the Integration
 
@@ -103,14 +122,37 @@ And in your app's main activity:
 
 ### Common Issues
 
-1. **Login fails with "Invalid callback URL"**
-   - Verify that the callback URL in Twitter Developer Portal matches exactly: `martfury://twitter-auth`
-   - Check that the URL scheme is properly configured in both iOS and Android
+#### 1. Error 302 - "An error occurred (302)"
 
-2. **App crashes on Twitter login**
-   - Verify that your Twitter API credentials are correct
-   - Check that all required configurations are in place
-   - Ensure you have an active internet connection
+This is the most common error and is caused by **incorrect Twitter Developer Portal settings**.
+
+**Solution**: Go to Twitter Developer Portal → Your App → User authentication settings → Edit, and verify:
+
+| Setting | Must Be |
+|---------|---------|
+| Type of App | **Native App** (NOT "Web App, Automated App or Bot") |
+| Client type | **Public client** (NOT "Confidential client") |
+| OAuth 1.0a | **Enabled** |
+| Callback URL | `martfury://twitter-auth` |
+
+#### 2. Login fails with "Invalid callback URL"
+
+- Verify that the callback URL in Twitter Developer Portal matches **exactly**: `martfury://twitter-auth`
+- Check that the URL scheme `martfury` is properly configured in both iOS (`Info.plist`) and Android (`AndroidManifest.xml`)
+- Make sure your `.env` file has: `TWITTER_REDIRECT_URI=martfury://twitter-auth`
+
+#### 3. App crashes on Twitter login
+
+- Verify that your Twitter API credentials are correct in `.env`
+- Check that `ENABLE_TWITTER_SIGN_IN=true` in your `.env` file
+- Ensure you have an active internet connection
+- Check that OAuth 1.0a is enabled in Twitter Developer Portal
+
+#### 4. Twitter button not appearing
+
+- Verify `ENABLE_TWITTER_SIGN_IN=true` in your `.env` file
+- Verify `TWITTER_CONSUMER_KEY` and `TWITTER_CONSUMER_SECRET` are set
+- Restart the app completely (hot reload does not reload `.env` changes)
 
 ### Getting Help
 
@@ -129,5 +171,5 @@ If you encounter any issues:
 ## Additional Resources
 
 - [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
-- [Twitter OAuth 2.0 Documentation](https://developer.twitter.com/en/docs/authentication/oauth-2-0)
+- [Twitter OAuth 1.0a Documentation](https://developer.twitter.com/en/docs/authentication/oauth-1-0a)
 - [twitter_login Package](https://pub.dev/packages/twitter_login)

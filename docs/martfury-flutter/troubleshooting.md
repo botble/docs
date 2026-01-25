@@ -59,16 +59,70 @@ flutter run
 - Contact your website developer
 
 ### Social Login Not Working
-**Problem**: Google/Facebook/Apple login fails
+**Problem**: Google/Facebook/Apple/Twitter login fails
 
 **Quick Fix**:
 1. Check the setup guides:
    - **[Google Login](14_google_login_setup.md)**
    - **[Facebook Login](15_facebook_login_setup.md)**
    - **[Apple Login](13_apple_login_setup.md)**
+   - **[Twitter Login](12_twitter_login_setup.md)**
 
 2. Make sure you followed all steps exactly
 3. Test regular email login first
+4. Restart app completely after changing `.env` (hot reload doesn't work)
+
+### Twitter Login Error 302
+**Problem**: Twitter login shows "An error occurred (302)"
+
+**This is the most common Twitter issue!** It means your Twitter Developer Portal settings are wrong.
+
+**Solution**:
+1. Go to [Twitter Developer Portal](https://developer.twitter.com)
+2. Open your app → **User authentication settings** → **Edit**
+3. Change these settings:
+   - **Type of App**: Must be **"Native App"** (NOT "Web App")
+   - **Client type**: Must be **"Public client"** (NOT "Confidential client")
+4. Make sure **OAuth 1.0a** is enabled
+5. Callback URL must be exactly: `martfury://twitter-auth`
+6. Save and try again
+
+See **[Twitter Login Setup](12_twitter_login_setup.md)** for complete guide.
+
+### Google Sign In "DEVELOPER_ERROR"
+**Problem**: Google Sign In shows error code 10 or DEVELOPER_ERROR
+
+**Solution**:
+1. Verify SHA-1 fingerprint in Google Cloud Console matches your keystore
+2. Check package name matches between app and OAuth client
+3. Ensure `google-services.json` is in `android/app/` folder
+4. For release builds, add release keystore SHA-1 fingerprint
+
+See **[Google Login Setup](14_google_login_setup.md)** for details.
+
+### Facebook "Invalid Key Hash"
+**Problem**: Facebook login shows "Invalid key hash" error on Android
+
+**Solution**:
+1. Generate your key hash:
+   ```bash
+   keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+   ```
+2. Add it to Facebook app settings → Android → Key Hashes
+3. Add both debug AND release key hashes
+
+See **[Facebook Login Setup](15_facebook_login_setup.md)** for details.
+
+### Apple Sign In Button Missing
+**Problem**: Apple Sign In button doesn't appear
+
+**Solution**:
+1. Verify `ENABLE_APPLE_SIGN_IN=true` in `.env`
+2. Check `APPLE_SERVICE_ID` and `APPLE_TEAM_ID` are set
+3. On Android, Apple button may be hidden by design
+4. Restart app completely
+
+See **[Apple Login Setup](13_apple_login_setup.md)** for details.
 
 ## 🔧 Setup Problems
 

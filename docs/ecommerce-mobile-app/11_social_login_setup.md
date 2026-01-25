@@ -49,10 +49,35 @@ Social login requires **development builds** created via EAS. It does **not** wo
 
 ### Twitter (X)
 
+::: tip OAuth Version
+This React Native app uses **OAuth 2.0 with PKCE** (not OAuth 1.0a). Make sure you configure Twitter Developer Portal accordingly.
+:::
+
 1. In the [Twitter Developer Portal](https://developer.twitter.com), create a project/app.
-2. Enable OAuth 2.0 (with PKCE) in User Authentication Settings.
-3. Set callback URLs: `botble://twitter-auth`
-4. Copy the **Client ID** (API Key) and **Client Secret** (API Secret Key).
+2. Navigate to **User Authentication Settings** and click **Set up** or **Edit**.
+3. Configure the following settings:
+
+   | Setting | Required Value |
+   |---------|----------------|
+   | **App permissions** | Read |
+   | **Type of App** | **Native App** |
+   | **App info > Client type** | **Public client** |
+
+4. Under **App info**, add the callback URL:
+   ```
+   botble://twitter-auth
+   ```
+
+5. Ensure **OAuth 2.0** is enabled (check under "Keys and tokens" tab).
+6. Copy the **Client ID** (API Key) and **Client Secret** (API Secret Key).
+7. Save your changes.
+
+::: danger Common Mistakes
+- Setting "Type of App" to "Web App" instead of **"Native App"**
+- Setting "Client type" to "Confidential client" instead of **"Public client"**
+- Not enabling OAuth 2.0
+- Callback URL mismatch (must be exactly `botble://twitter-auth`)
+:::
 
 ## Step 2: Configure Environment Variables
 
@@ -197,11 +222,22 @@ Download and install the development build on your device/simulator.
 - Verify bundle ID/package name matches Facebook app settings
 - For iOS: Ensure `useFrameworks: "static"` is set in expo-build-properties
 
-### Twitter OAuth redirect issues
+### Twitter OAuth redirect issues / Error 302
 
-- Verify callback URL `botble://twitter-auth` is registered
-- Ensure OAuth 2.0 with PKCE is enabled in Twitter settings
-- Check API Key and Secret are from the correct app
+This error usually means incorrect Twitter Developer Portal settings.
+
+**Solution**: Go to Twitter Developer Portal → Your App → User authentication settings → Edit, and verify:
+
+| Setting | Must Be |
+|---------|---------|
+| Type of App | **Native App** (NOT "Web App, Automated App or Bot") |
+| Client type | **Public client** (NOT "Confidential client") |
+| OAuth 2.0 | **Enabled** |
+| Callback URL | `botble://twitter-auth` (exact match required) |
+
+Other checks:
+- Ensure API Key and Secret are from the correct app
+- Restart the app after changing environment variables
 
 ### "Network Error" or API failures
 
