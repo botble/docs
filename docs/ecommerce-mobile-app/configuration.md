@@ -114,6 +114,63 @@ Make sure your website allows the app to connect:
 4. Check browser console for errors
 5. Contact support with details
 
+## Homepage Configuration
+
+Customize the homepage layout and content through environment variables.
+
+### Ads/Banners
+
+Control which ads/banners display on the homepage:
+
+```env
+# Display specific ads only (comma-separated keys)
+AD_KEYS=banner-home-1,banner-home-2
+
+# Or leave empty to fetch all ads from your website
+AD_KEYS=
+```
+
+**How it works:**
+- The ad keys correspond to the ad keys configured in your Botble admin panel
+- When specified, only ads with matching keys are displayed
+- When empty, all ads are fetched and displayed
+- This is useful for showing different banners on mobile vs. web
+
+**To find your ad keys:**
+1. Go to your Botble admin panel
+2. Navigate to **Ads** > **Ads**
+3. Note the "Key" column for each ad you want to display
+
+### Product Section Layout
+
+Configure how products are displayed in category sections:
+
+```env
+# Horizontal slider (default)
+PRODUCT_SECTION_LAYOUT=slider
+
+# 2-column grid layout
+PRODUCT_SECTION_LAYOUT=grid
+```
+
+### Products Per Section
+
+Control how many products appear in each category section:
+
+```env
+# Default is 6
+PRODUCT_SECTION_NUMBER_OF_PRODUCTS=6
+```
+
+### Product Image Size
+
+Set the thumbnail size for product images:
+
+```env
+# Options: small, medium, large, thumb
+PRODUCT_IMAGE_THUMBNAIL_SIZE=small
+```
+
 ## Advanced Configuration
 
 For more advanced setup:
