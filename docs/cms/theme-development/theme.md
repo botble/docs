@@ -5,6 +5,58 @@ Dev tools are removed in the download package, you need to delete folder `/vendo
 reinstall it, then you can use dev commands.
 :::
 
+## Theme Directory Structure
+
+::: tip IMPORTANT
+When developing a theme, you only need to create files in `platform/themes/{theme-name}/`. The `public/themes/{theme-name}/` directory is **automatically generated** when you activate the theme or publish assets.
+:::
+
+Botble CMS uses two directories for themes:
+
+| Directory | Purpose |
+|-----------|---------|
+| `platform/themes/{name}/` | **Source files** - Where you develop your theme. Contains views, functions, widgets, and a `public/` subfolder for assets. |
+| `public/themes/{name}/` | **Published assets** - Auto-generated from `platform/themes/{name}/public/`. Do NOT edit files here directly. |
+
+### How It Works
+
+1. **You create/edit** files in `platform/themes/{theme-name}/`
+2. **The CMS automatically copies** contents of `platform/themes/{theme-name}/public/` to `public/themes/{theme-name}/` when:
+   - You activate the theme
+   - You run `php artisan cms:theme:assets:publish`
+   - You save theme options
+
+### Theme Source Structure
+
+```
+platform/themes/your-theme/
+├── assets/              # Source files (SCSS, JS before compilation) - optional
+│   ├── sass/
+│   └── js/
+├── functions/           # Theme functions (shortcodes, theme options, etc.)
+├── lang/                # Translation files
+├── layouts/             # Layout files
+├── partials/            # Partial views
+├── public/              # PUBLIC ASSETS - these get published to public/themes/your-theme/
+│   ├── css/             # Compiled CSS
+│   ├── js/              # Compiled/final JS
+│   ├── images/          # Images
+│   └── fonts/           # Fonts
+├── routes/              # Theme routes
+├── views/               # Theme views
+├── widgets/             # Theme widgets
+├── config.php           # Theme configuration
+├── screenshot.png       # Theme preview image
+├── theme.json           # Theme metadata
+└── webpack.mix.js       # Asset compilation config (optional)
+```
+
+::: warning
+When you install a theme package, you only need to extract it to `platform/themes/`. The `public/themes/` directory will be created automatically when the theme is activated.
+:::
+
+## Creating a Theme
+
 The first time you have to create theme "demo" structure, using the artisan command:
 
 ```bash
@@ -270,16 +322,22 @@ public function getIndex()
 
 ## Rename the theme to the new name
 
-### Using command line:
+### Using command line (Recommended):
 
 ```bash
 php artisan cms:theme:rename [current-name] [new-name]
 ```
 
+This command handles all the renaming automatically, including database entries.
+
 ### Manually
 
-- Rename folder `platform/themes/[current-theme-name]` to `platform/themes/[new-name]`.
-- Rename folder `public/themes/[current-theme-name]` `to public/themes/[new-name]`.
-- Open table `settings` and replace all key `theme-[current-theme-name]` to `theme-[new-name]`, change setting theme
-  to `[new-name]`.
-- Open table `widgets` and replace all values in `theme` column to the new name `[new-name]`.
+1. Rename folder `platform/themes/[current-theme-name]` to `platform/themes/[new-name]`.
+2. Delete folder `public/themes/[current-theme-name]` (it will be regenerated).
+3. Open table `settings` and replace all keys `theme-[current-theme-name]` to `theme-[new-name]`, change setting `theme` to `[new-name]`.
+4. Open table `widgets` and replace all values in `theme` column to the new name `[new-name]`.
+5. Run `php artisan cms:theme:assets:publish [new-name]` to regenerate `public/themes/[new-name]`.
+
+::: tip
+You don't need to manually copy/rename `public/themes/`. Just delete the old one and the CMS will regenerate it when you activate the theme or publish assets.
+:::

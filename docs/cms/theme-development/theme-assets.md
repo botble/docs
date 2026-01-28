@@ -211,19 +211,19 @@ return [
 
 ## Publishing Theme Assets
 
-After creating or updating assets in your theme, you need to publish them to make them accessible in the public directory.
+After creating or updating assets in `platform/themes/your-theme/public/`, you need to publish them to make them accessible via the web.
 
 ### Using Artisan Command
 
 ```bash
+# Publish assets for all themes
 php artisan cms:theme:assets:publish
-```
 
-To publish assets for a specific theme:
-
-```bash
+# Publish assets for a specific theme
 php artisan cms:theme:assets:publish theme-name
 ```
+
+This command copies files from `platform/themes/{name}/public/` to `public/themes/{name}/`.
 
 ### Automatic Publishing
 
@@ -231,34 +231,77 @@ Theme assets are automatically published when:
 
 1. Activating a theme
 2. Saving theme options
-3. When certain theme-related events are triggered
+3. Running `php artisan cms:publish:assets`
+
+### Building Assets (Optional)
+
+If your theme uses a build process (SCSS, TypeScript, etc.), run:
+
+```bash
+# Navigate to theme directory
+cd platform/themes/your-theme
+
+# Build assets (compiles assets/ → public/)
+npm run prod
+# or for development with watch mode
+npm run watch
+```
+
+Then publish the compiled assets:
+
+```bash
+php artisan cms:theme:assets:publish your-theme
+```
 
 ## Asset Structure
+
+::: tip IMPORTANT
+Only files in the `public/` subfolder of your theme get published to `public/themes/`. The `assets/` folder (if used) is for source files like SCSS that need compilation.
+:::
 
 The recommended structure for theme assets is:
 
 ```
 platform/themes/your-theme/
-├── assets/
+├── assets/                    # Source files (optional) - NOT published
+│   ├── sass/                  # SCSS source files
+│   │   └── style.scss
+│   └── js/                    # JS source files before compilation
+│       └── app.js
+├── public/                    # PUBLISHED ASSETS - gets copied to public/themes/
 │   ├── css/
-│   │   ├── style.css
-│   │   └── ...
+│   │   └── style.css          # Compiled CSS
 │   ├── js/
-│   │   ├── app.js
-│   │   └── ...
+│   │   └── app.js             # Final JS
 │   ├── images/
-│   │   └── ...
-│   └── fonts/
-│       └── ...
+│   │   └── logo.png
+│   ├── fonts/
+│   │   └── font.woff
+│   └── plugins/               # Third-party libraries
+│       └── bootstrap/
+├── webpack.mix.js             # Compiles assets/ → public/
 └── ...
 ```
 
-When published, these assets will be available at:
+### How Assets Get Published
+
+When you activate a theme or run `php artisan cms:theme:assets:publish`, the CMS:
+
+1. Copies **all contents** from `platform/themes/your-theme/public/` to `public/themes/your-theme/`
+2. Also copies `screenshot.png` to `public/themes/your-theme/`
+
+The published assets will be available at:
 
 ```
 public/themes/your-theme/
 ├── css/
 ├── js/
 ├── images/
-└── fonts/
+├── fonts/
+├── plugins/
+└── screenshot.png
 ```
+
+::: warning
+Never edit files directly in `public/themes/`. Your changes will be overwritten when assets are republished. Always edit in `platform/themes/your-theme/public/`.
+:::
