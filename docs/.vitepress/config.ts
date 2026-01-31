@@ -34,6 +34,7 @@ import productGiftsSidebar from '../product-gifts/sidebar'
 import isakSidebar from '../isak/sidebar'
 import ecommerceMobileAppSidebar from '../ecommerce-mobile-app/sidebar'
 import qoreSidebar from '../qore/sidebar'
+import wholesaleSidebar from '../wholesale/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -113,6 +114,7 @@ export default defineConfig({
           { text: 'Isak', link: '/isak/'},
           { text: 'Ecommerce Mobile App', link: '/ecommerce-mobile-app/'},
           { text: 'Qore', link: '/qore/'},
+          { text: 'Wholesale', link: '/wholesale/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -159,6 +161,7 @@ export default defineConfig({
       isak: isakSidebar,
       'ecommerce-mobile-app': ecommerceMobileAppSidebar,
       qore: qoreSidebar,
+      wholesale: wholesaleSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
