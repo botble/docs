@@ -69,6 +69,10 @@ android: {
 }
 ```
 
+## App Bar Greeting
+
+The home screen app bar displays a greeting with the app name (e.g., "Good Evening, Your Store Name") for unauthenticated users. This name is automatically read from `APP_NAME` in `.env` via `appConfig.name`. When the user is logged in, their profile name is shown instead.
+
 ## Important Notes
 
 1. **Bundle/Package IDs are permanent**: Once published to app stores, these cannot be changed

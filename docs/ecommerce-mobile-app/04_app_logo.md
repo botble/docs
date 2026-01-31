@@ -103,6 +103,10 @@ iOS automatically generates all required sizes from your main icon.
 }
 ```
 
+## App Bar Logo
+
+The home screen header displays `assets/icon.png` in the avatar area for unauthenticated users. Authenticated users see their profile avatar or name initials instead.
+
 ## Web Favicon
 
 For Expo web builds:

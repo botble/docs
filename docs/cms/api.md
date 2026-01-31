@@ -284,3 +284,94 @@ That's it! You now have comprehensive API documentation for your application.
 ## API Versioning
 
 Botble CMS supports API versioning through URL prefixes. The default version is `v1` and is accessible at `/api/v1/`. If you need to create a new version of the API, you can create a new set of controllers and routes with a different version prefix (e.g., `/api/v2/`).
+
+## API Settings (Admin Panel)
+
+Navigate to **Admin > Settings > API** (`/admin/settings/api`) to configure the API system.
+
+### Enabling/Disabling the API
+
+Toggle the REST API on or off. When disabled, all API endpoints will be inaccessible and return `403` responses.
+
+### API Key Protection
+
+API Key Protection adds an extra security layer on top of Sanctum token authentication.
+
+When enabled:
+- All API requests **must** include the `X-API-KEY` header with the configured API key.
+- Requests without a valid API key are rejected before reaching any controller logic.
+
+**How to use it:**
+
+1. Go to **Admin > Settings > API**.
+2. Enable **API Key Protection**.
+3. Copy the generated API key (or click **Generate** to create a new one).
+4. Include the key in every API request:
+
+```bash
+curl -X GET http://your-domain.com/api/v1/posts \
+  -H "Authorization: Bearer your-sanctum-token" \
+  -H "X-API-KEY: your-api-key" \
+  -H "Content-Type: application/json"
+```
+
+**Use cases for ecommerce:**
+- Secure communication between your mobile app and the backend.
+- Protect API access from unauthorized third-party tools or scripts.
+- Rate-limit or revoke access by rotating the API key without affecting user tokens.
+
+::: tip
+The API key protects the **entire API surface**. Individual user authentication is still handled by Sanctum tokens. Think of the API key as a "gate key" for your app, and the Sanctum token as user identity.
+:::
+
+### Push Notifications (FCM v1 API)
+
+Botble CMS supports Firebase Cloud Messaging (FCM) for sending push notifications to mobile app users.
+
+#### Setup
+
+1. **Create a Firebase project** at [Firebase Console](https://console.firebase.google.com).
+2. Go to **Project Settings > Service Accounts** and click **Generate new private key** to download a JSON file.
+3. Upload the JSON file in **Admin > Settings > API > Push Notifications** (or place it manually in `storage/app/firebase/`).
+4. Enter your **Firebase Project ID**.
+5. Enable **Push Notifications**.
+
+#### Device Tokens
+
+Device tokens are registered automatically when users open your mobile app. Each token represents a unique device that can receive push notifications.
+
+**"No active device tokens found"** means no mobile app has registered with your backend yet. This is expected if:
+- Your mobile app has not been built or deployed yet.
+- No users have opened the app after FCM integration was added.
+- The app is not sending the device token to your API.
+
+Your mobile app must call the device token registration endpoint after obtaining an FCM token from Firebase:
+
+```bash
+POST /api/v1/device-tokens
+Authorization: Bearer your-sanctum-token
+Content-Type: application/json
+
+{
+  "token": "firebase-device-token",
+  "platform": "android"  // or "ios"
+}
+```
+
+Once devices are registered, you can send notifications from the admin panel.
+
+#### Sending Notifications
+
+In **Admin > Settings > API**, use the **Send Custom Notification** form to push messages to devices:
+
+| Field | Description |
+|---|---|
+| **Title** (required) | Notification title shown on the device |
+| **Message** (required) | Notification body text (max 500 characters) |
+| **Target Devices** | All Devices, Android only, iOS only, or Customers only |
+| **Action URL** (optional) | URL to open when the notification is tapped |
+| **Image URL** (optional) | Image to display in the notification |
+
+::: warning
+Notifications will only be delivered to devices with active, valid tokens. If you see "No active device tokens found", ensure your mobile app is registering tokens via the API.
+:::
