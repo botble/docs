@@ -2,102 +2,255 @@
 
 ## Overview
 
-Botble CMS provides a powerful API system that allows you to interact with your application data programmatically. The API package is located in `/vendor/botble/api` (it's installed from https://github.com/botble/api) and uses Laravel Sanctum for authentication. You can learn more about Laravel Sanctum here: https://laravel.com/docs/12.x/sanctum.
+Botble CMS includes a REST API package that lets you interact with your application data from mobile apps, third-party services, or any HTTP client. It uses [Laravel Sanctum](https://laravel.com/docs/12.x/sanctum) for token-based authentication and supports optional API key protection, push notifications via Firebase Cloud Messaging (FCM), and user settings management.
 
-## Authentication
+The API is managed at **Admin > Settings > API** (`/admin/settings/api`).
 
-The API uses token-based authentication with Laravel Sanctum. Here's how to authenticate:
+## API Settings
 
-### Obtaining an API Token
+### Enabling the API
 
-To get an API token, make a POST request to the `/api/v1/auth/login` endpoint with your credentials:
+Go to **Admin > Settings > API** and toggle **Enable API**. When disabled, all `/api/v1/*` endpoints return `503 Service Unavailable`.
+
+### API Key Protection
+
+API key protection adds a second layer of security on top of Sanctum tokens. When enabled, every request must include an `X-API-KEY` header.
+
+1. In **Admin > Settings > API**, enable **API Key Protection**.
+2. Copy the generated key (or click **Generate** to create a new one).
+3. Add the header to all requests:
 
 ```bash
-curl -X POST http://your-domain.com/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"your-email@example.com","password":"your-password"}'
+curl -X GET https://your-domain.com/api/v1/posts \
+  -H "Authorization: Bearer your-sanctum-token" \
+  -H "X-API-KEY: your-api-key" \
+  -H "Content-Type: application/json"
 ```
 
-The response will include an access token:
+Without a valid key, the API returns `401 Unauthorized`:
 
 ```json
 {
-  "data": {
-    "token": "your-api-token",
-    "user": {
-      "id": 1,
-      "name": "Your Name",
-      "email": "your-email@example.com",
-      ...
-    }
-  }
+  "message": "Invalid or missing API key. Please provide a valid X-API-KEY header.",
+  "error": "Unauthorized"
 }
 ```
 
-### Using the API Token
+::: tip
+Think of the API key as a gate key for your entire app, while the Sanctum token identifies individual users. The API key prevents unauthorized clients from accessing the API at all; the Sanctum token controls what each user can do.
+:::
 
-Include the token in the `Authorization` header for all subsequent requests:
+**Common use cases:**
+
+- Restrict API access to only your official mobile app
+- Revoke all access instantly by rotating the key, without invalidating user sessions
+- Add a layer of protection against scrapers or unauthorized integrations
+
+### Sanctum Token Management
+
+Admins can create and manage server-side API tokens at **Admin > Settings > API > API Tokens**. These tokens are useful for server-to-server integration (e.g., syncing data from an ERP).
+
+- Click **Create** to generate a named token. The plain-text token is shown **only once** — copy it immediately.
+- Tokens can be deleted individually from the table.
+
+## Authentication
+
+### Login
 
 ```bash
-curl -X GET http://your-domain.com/api/v1/me \
-  -H "Authorization: Bearer your-api-token" \
+POST /api/v1/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "your-password"
+}
+```
+
+**Response:**
+
+```json
+{
+  "error": false,
+  "data": {
+    "token": "1|abc123...",
+    "user": {
+      "id": 1,
+      "name": "John Doe",
+      "email": "user@example.com"
+    }
+  },
+  "message": null
+}
+```
+
+### Register
+
+```bash
+POST /api/v1/register
+Content-Type: application/json
+
+{
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "user@example.com",
+  "password": "secret123",
+  "password_confirmation": "secret123",
+  "phone": "+1234567890"
+}
+```
+
+### Using the Token
+
+Include the token in the `Authorization` header for all authenticated requests:
+
+```bash
+curl -X GET https://your-domain.com/api/v1/me \
+  -H "Authorization: Bearer 1|abc123..." \
   -H "Content-Type: application/json"
+```
+
+### Logout
+
+```bash
+GET /api/v1/logout
+Authorization: Bearer your-token
+```
+
+This revokes all tokens for the authenticated user.
+
+### Password Reset
+
+```bash
+# Request reset link
+POST /api/v1/password/forgot
+{ "email": "user@example.com" }
+
+# Reset password (using token from email)
+POST /api/v1/password/reset
+{ "email": "user@example.com", "token": "reset-token", "password": "new-password", "password_confirmation": "new-password" }
+```
+
+### Email Verification
+
+If email verification is enabled in the API config, unverified users can request a new verification email:
+
+```bash
+POST /api/v1/resend-verify-account-email
+{ "email": "user@example.com" }
 ```
 
 ## Available Endpoints
 
-The API provides endpoints for various resources in your application. Here are some of the common endpoints:
+### Authentication (Public)
 
-### User Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/v1/register` | Register new user |
+| POST | `/api/v1/login` | Login and get token |
+| POST | `/api/v1/email/check` | Check if email exists |
+| POST | `/api/v1/password/forgot` | Send password reset link |
+| POST | `/api/v1/resend-verify-account-email` | Resend verification email |
+| POST | `/api/v1/device-tokens` | Register device token |
 
-- `GET /api/v1/me` - Get the authenticated user's information
-- `PUT /api/v1/me` - Update the authenticated user's information
-- `POST /api/v1/auth/login` - Login and get an API token
-- `POST /api/v1/auth/register` - Register a new user
-- `POST /api/v1/auth/logout` - Logout and invalidate the API token
-- `POST /api/v1/auth/forgot-password` - Send a password reset link
-- `POST /api/v1/auth/reset-password` - Reset password using a token
+### Profile (Authenticated)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/me` | Get user profile |
+| PUT | `/api/v1/me` | Update profile (name, email, phone, DOB, gender) |
+| POST | `/api/v1/update/avatar` | Upload user avatar |
+| PUT | `/api/v1/update/password` | Change password (requires current password) |
+| GET | `/api/v1/logout` | Logout and revoke tokens |
+
+### User Settings (Authenticated)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/settings` | Get user settings |
+| PUT | `/api/v1/settings` | Update user settings |
+
+**Available settings:**
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `biometric_enabled` | boolean | `false` | Enable biometric authentication |
+| `notification_enabled` | boolean | `true` | Enable push notifications |
+| `language` | string | `en` | Preferred language |
+| `currency` | string | `USD` | Preferred currency |
+| `theme` | string | `light` | Theme preference (`light`, `dark`, `auto`) |
+| `timezone` | string | `UTC` | User timezone |
+
+### Device Tokens (Authenticated)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/v1/device-tokens` | Register or update a device token |
+| GET | `/api/v1/device-tokens` | List user's active device tokens |
+| PUT | `/api/v1/device-tokens/{id}` | Update device token metadata |
+| DELETE | `/api/v1/device-tokens/{id}` | Delete device token |
+| DELETE | `/api/v1/device-tokens/by-token` | Delete by token value |
+| POST | `/api/v1/device-tokens/{id}/deactivate` | Deactivate without deleting |
+
+### Notifications (Authenticated)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/notifications` | List notifications (paginated) |
+| GET | `/api/v1/notifications/stats` | Get notification statistics |
+| POST | `/api/v1/notifications/mark-all-read` | Mark all as read |
+| POST | `/api/v1/notifications/{id}/read` | Mark one as read |
+| POST | `/api/v1/notifications/{id}/clicked` | Mark as clicked |
+| DELETE | `/api/v1/notifications/{id}` | Delete notification |
+
+**Query parameters for listing:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `page` | Page number |
+| `per_page` | Items per page (max 50) |
+| `unread_only` | Only return unread notifications |
+| `type` | Filter by type (`general`, `order`, `promotion`, `system`) |
 
 ### Blog Endpoints
 
-- `GET /api/v1/posts` - Get a list of blog posts
-- `GET /api/v1/posts/{id}` - Get a specific blog post
-- `GET /api/v1/categories` - Get a list of blog categories
-- `GET /api/v1/categories/{id}` - Get a specific blog category
-- `GET /api/v1/tags` - Get a list of blog tags
-- `GET /api/v1/tags/{id}` - Get a specific blog tag
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/posts` | List blog posts |
+| GET | `/api/v1/posts/{id}` | Get a blog post |
+| GET | `/api/v1/categories` | List blog categories |
+| GET | `/api/v1/categories/{id}` | Get a blog category |
+| GET | `/api/v1/tags` | List blog tags |
+| GET | `/api/v1/tags/{id}` | Get a blog tag |
 
 ### Page Endpoints
 
-- `GET /api/v1/pages` - Get a list of pages
-- `GET /api/v1/pages/{id}` - Get a specific page
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/pages` | List pages |
+| GET | `/api/v1/pages/{id}` | Get a page |
 
-### Other Endpoints
+### Plugin Endpoints
 
-Depending on the plugins you have installed, additional endpoints may be available for resources like:
+Depending on installed plugins, additional endpoints may be available for:
 
-- E-commerce (products, orders, customers)
+- E-commerce (products, orders, customers, carts, wishlists)
 - Galleries
 - Contact forms
-- Custom fields
 - And more
 
 ## Request Parameters
 
-Many API endpoints support various request parameters for filtering, sorting, and pagination:
-
 ### Pagination
-
-- `page` - The page number (default: 1)
-- `per_page` - Number of items per page (default: 10, max: 100)
 
 ```
 GET /api/v1/posts?page=2&per_page=15
 ```
 
-### Filtering
+- `page` — Page number (default: 1)
+- `per_page` — Items per page (default: 10, max: 100)
 
-You can filter results using query parameters:
+### Filtering
 
 ```
 GET /api/v1/posts?status=published&category_id=5
@@ -105,15 +258,11 @@ GET /api/v1/posts?status=published&category_id=5
 
 ### Sorting
 
-Sort results using the `sort_by` and `order` parameters:
-
 ```
 GET /api/v1/posts?sort_by=created_at&order=desc
 ```
 
 ### Including Relations
-
-Some endpoints support eager loading of related data using the `include` parameter:
 
 ```
 GET /api/v1/posts?include=categories,tags,author
@@ -121,12 +270,25 @@ GET /api/v1/posts?include=categories,tags,author
 
 ## Response Format
 
-API responses follow a consistent format:
+### Success (single resource)
 
 ```json
 {
-  "data": [...],  // The requested data
-  "meta": {      // Metadata (for paginated responses)
+  "error": false,
+  "data": {
+    "id": 1,
+    "name": "Example"
+  },
+  "message": null
+}
+```
+
+### Success (paginated)
+
+```json
+{
+  "data": [...],
+  "meta": {
     "current_page": 1,
     "from": 1,
     "last_page": 5,
@@ -134,49 +296,129 @@ API responses follow a consistent format:
     "to": 10,
     "total": 50
   },
-  "links": {     // Pagination links (for paginated responses)
-    "first": "http://your-domain.com/api/v1/posts?page=1",
-    "last": "http://your-domain.com/api/v1/posts?page=5",
+  "links": {
+    "first": "https://your-domain.com/api/v1/posts?page=1",
+    "last": "https://your-domain.com/api/v1/posts?page=5",
     "prev": null,
-    "next": "http://your-domain.com/api/v1/posts?page=2"
+    "next": "https://your-domain.com/api/v1/posts?page=2"
   }
 }
 ```
 
-For single resource requests, the response will just include the `data` object:
+### Error
 
 ```json
 {
-  "data": {
-    "id": 1,
-    "name": "Example Post",
-    ...
-  }
+  "error": true,
+  "data": null,
+  "message": "Error description"
 }
 ```
 
-## Error Handling
-
-When an error occurs, the API returns an appropriate HTTP status code and a JSON response with error details:
+### Validation Error (422)
 
 ```json
 {
-  "error": {
-    "message": "The error message",
-    "code": 404,          // HTTP status code
-    "details": [...],     // Optional additional details
-    "validation_errors": {...} // Validation errors (for 422 responses)
+  "message": "The given data was invalid.",
+  "errors": {
+    "email": ["The email field is required."]
   }
 }
 ```
+
+## Push Notifications (FCM)
+
+Botble CMS integrates with Firebase Cloud Messaging (FCM v1 API) to send push notifications to mobile app users.
+
+### Firebase Setup
+
+1. Create a project at [Firebase Console](https://console.firebase.google.com).
+2. Go to **Project Settings > Service Accounts**.
+3. Click **Generate new private key** to download the service account JSON file.
+4. In **Admin > Settings > API**, under **Push Notifications**:
+   - Enable **Push Notifications**
+   - Enter your **Firebase Project ID**
+   - Upload the service account JSON file
+
+The file is stored in `storage/app/firebase/` and validated for required fields (`project_id`, `private_key`, `client_email`).
+
+### Device Token Registration
+
+Your mobile app must register its FCM token with the API after obtaining it from Firebase SDK:
+
+```bash
+POST /api/v1/device-tokens
+Content-Type: application/json
+
+{
+  "token": "fcm-device-token-from-firebase-sdk",
+  "platform": "android",
+  "device_id": "unique-device-identifier",
+  "app_version": "1.0.0"
+}
+```
+
+- `token` (required) — The FCM registration token
+- `platform` — `android` or `ios`
+- `device_id` — Unique device identifier (for deduplication)
+- `app_version` — Your app version
+
+If the token already exists, it updates the existing record instead of creating a duplicate.
+
+### "No active device tokens found"
+
+This message in the admin panel means no mobile app has registered a device token yet. This is normal if:
+
+- The mobile app hasn't been built or released yet
+- No users have opened the app since FCM integration was added
+- The app isn't calling the `/api/v1/device-tokens` endpoint
+
+Device tokens appear automatically once users open the mobile app and the app registers its FCM token.
+
+### Sending Notifications from Admin
+
+Use the **Send Custom Notification** form at **Admin > Settings > API**:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| Title | Yes | Notification title (max 100 characters) |
+| Message | Yes | Notification body (max 500 characters) |
+| Target Devices | — | All Devices, Android only, iOS only, or Customers only |
+| Action URL | No | URL to open when notification is tapped |
+| Image URL | No | Image to display in the notification |
+
+### Sending Notifications via Command Line
+
+```bash
+php artisan api:send-notification --title="Sale!" --message="50% off all items today"
+```
+
+### Notification Tracking
+
+Each notification tracks:
+
+- **Sent count** — How many devices received the message
+- **Failed count** — How many deliveries failed
+- **Delivered count** — Confirmed deliveries
+- **Read count** — How many users read the notification
+
+Users can retrieve their notifications via the `/api/v1/notifications` endpoints and mark them as read or clicked.
+
+### Scheduled Notifications
+
+Notifications can be scheduled for future delivery. A command processes due notifications:
+
+```bash
+php artisan schedule:run
+```
+
+Ensure your [cronjob](/cms/cronjob) is configured for scheduled notifications to work.
 
 ## Custom API Endpoints
 
-You can create custom API endpoints by adding routes to the `/platform/packages/api/routes/api.php` file or by creating a new API controller in your plugin.
+You can add custom endpoints in your plugin:
 
-### Example: Adding a Custom API Endpoint in a Plugin
-
-1. Create an API controller in your plugin:
+### 1. Create an API Controller
 
 ```php
 <?php
@@ -198,7 +440,7 @@ class YourModelController extends ApiController
         return $this->respondWithData(YourModelResource::collection($data));
     }
 
-    public function show($id)
+    public function show(int|string $id)
     {
         $item = YourModel::query()->findOrFail($id);
 
@@ -207,7 +449,7 @@ class YourModelController extends ApiController
 }
 ```
 
-2. Create a resource class to transform your model data:
+### 2. Create a Resource
 
 ```php
 <?php
@@ -218,7 +460,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class YourModelResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -231,7 +473,7 @@ class YourModelResource extends JsonResource
 }
 ```
 
-3. Register your API routes in your plugin's service provider:
+### 3. Register Routes
 
 ```php
 <?php
@@ -239,13 +481,12 @@ class YourModelResource extends JsonResource
 namespace Botble\YourPlugin\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Route;
+use Illuminate\Support\Facades\Route;
 
 class YourPluginServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        // Register API routes
         Route::group([
             'prefix' => 'api/v1',
             'namespace' => 'Botble\YourPlugin\Http\Controllers\API',
@@ -257,121 +498,17 @@ class YourPluginServiceProvider extends ServiceProvider
 }
 ```
 
-## Generate API Documentation
+## API Documentation Generation
 
-To generate API documentation for your Botble CMS application, follow these simple steps:
-
-1. Install the Scribe package:
+Generate browsable API documentation using [Scribe](https://scribe.knuckles.wtf/):
 
 ```bash
 composer require knuckleswtf/scribe
-```
-
-2. Generate the API documentation:
-
-```bash
 php artisan scribe:generate
 ```
 
-3. Access your API documentation at:
-
-```
-http://your-domain.com/docs
-```
-
-That's it! You now have comprehensive API documentation for your application.
+Access documentation at `https://your-domain.com/docs`.
 
 ## API Versioning
 
-Botble CMS supports API versioning through URL prefixes. The default version is `v1` and is accessible at `/api/v1/`. If you need to create a new version of the API, you can create a new set of controllers and routes with a different version prefix (e.g., `/api/v2/`).
-
-## API Settings (Admin Panel)
-
-Navigate to **Admin > Settings > API** (`/admin/settings/api`) to configure the API system.
-
-### Enabling/Disabling the API
-
-Toggle the REST API on or off. When disabled, all API endpoints will be inaccessible and return `403` responses.
-
-### API Key Protection
-
-API Key Protection adds an extra security layer on top of Sanctum token authentication.
-
-When enabled:
-- All API requests **must** include the `X-API-KEY` header with the configured API key.
-- Requests without a valid API key are rejected before reaching any controller logic.
-
-**How to use it:**
-
-1. Go to **Admin > Settings > API**.
-2. Enable **API Key Protection**.
-3. Copy the generated API key (or click **Generate** to create a new one).
-4. Include the key in every API request:
-
-```bash
-curl -X GET http://your-domain.com/api/v1/posts \
-  -H "Authorization: Bearer your-sanctum-token" \
-  -H "X-API-KEY: your-api-key" \
-  -H "Content-Type: application/json"
-```
-
-**Use cases for ecommerce:**
-- Secure communication between your mobile app and the backend.
-- Protect API access from unauthorized third-party tools or scripts.
-- Rate-limit or revoke access by rotating the API key without affecting user tokens.
-
-::: tip
-The API key protects the **entire API surface**. Individual user authentication is still handled by Sanctum tokens. Think of the API key as a "gate key" for your app, and the Sanctum token as user identity.
-:::
-
-### Push Notifications (FCM v1 API)
-
-Botble CMS supports Firebase Cloud Messaging (FCM) for sending push notifications to mobile app users.
-
-#### Setup
-
-1. **Create a Firebase project** at [Firebase Console](https://console.firebase.google.com).
-2. Go to **Project Settings > Service Accounts** and click **Generate new private key** to download a JSON file.
-3. Upload the JSON file in **Admin > Settings > API > Push Notifications** (or place it manually in `storage/app/firebase/`).
-4. Enter your **Firebase Project ID**.
-5. Enable **Push Notifications**.
-
-#### Device Tokens
-
-Device tokens are registered automatically when users open your mobile app. Each token represents a unique device that can receive push notifications.
-
-**"No active device tokens found"** means no mobile app has registered with your backend yet. This is expected if:
-- Your mobile app has not been built or deployed yet.
-- No users have opened the app after FCM integration was added.
-- The app is not sending the device token to your API.
-
-Your mobile app must call the device token registration endpoint after obtaining an FCM token from Firebase:
-
-```bash
-POST /api/v1/device-tokens
-Authorization: Bearer your-sanctum-token
-Content-Type: application/json
-
-{
-  "token": "firebase-device-token",
-  "platform": "android"  // or "ios"
-}
-```
-
-Once devices are registered, you can send notifications from the admin panel.
-
-#### Sending Notifications
-
-In **Admin > Settings > API**, use the **Send Custom Notification** form to push messages to devices:
-
-| Field | Description |
-|---|---|
-| **Title** (required) | Notification title shown on the device |
-| **Message** (required) | Notification body text (max 500 characters) |
-| **Target Devices** | All Devices, Android only, iOS only, or Customers only |
-| **Action URL** (optional) | URL to open when the notification is tapped |
-| **Image URL** (optional) | Image to display in the notification |
-
-::: warning
-Notifications will only be delivered to devices with active, valid tokens. If you see "No active device tokens found", ensure your mobile app is registering tokens via the API.
-:::
+All endpoints use the `/api/v1/` prefix. To create a new API version, add a separate set of controllers and routes with a `/api/v2/` prefix.
