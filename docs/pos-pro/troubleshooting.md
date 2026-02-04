@@ -55,14 +55,26 @@ If you're unable to complete the checkout process:
 
 If you're having issues with receipt printing:
 
-1. **Browser Settings**:
+1. **Browser Printing Issues**:
    - Make sure your browser allows popup windows for the site
    - Check if the print dialog appears but doesn't print
-   - Try using a different browser
+   - Try using a different browser (Chrome or Firefox recommended)
+   - Set margins to "None" in the print dialog for thermal printers
+   - Ensure the receipt width setting matches your paper size (58mm, 80mm, or A4)
 
-2. **Printer Configuration**:
+2. **USB Printer Issues**:
    - Ensure your printer is properly connected and set as the default
-   - Check printer settings for paper size and orientation
+   - Check printer drivers are installed and up to date
+   - Verify paper size settings match the receipt width configuration
+
+3. **Network/IP Printer Issues**:
+   - Verify the printer IP address is correct and reachable (`ping {ip}`)
+   - Check that the print server application is running
+   - Ensure the printer is on the same local network
+   - Only private IP addresses are supported (192.168.x.x, 10.x.x.x, etc.)
+   - Test the connection with: `php artisan pos:test-local-device {user_id} {order_id}`
+
+For detailed printer setup instructions, see the [Printer Setup](usage-printer-setup.md) guide.
 
 ### Language Issues
 

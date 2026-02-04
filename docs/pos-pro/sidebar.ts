@@ -16,6 +16,7 @@ export default [
         items: [
             { text: 'Using POS Pro', link: '/pos-pro/usage-guide' },
             { text: 'Barcode Scanner', link: '/pos-pro/usage-barcode-scanner' },
+            { text: 'Printer Setup', link: '/pos-pro/usage-printer-setup' },
             { text: 'Troubleshooting', link: '/pos-pro/troubleshooting' },
         ],
     },

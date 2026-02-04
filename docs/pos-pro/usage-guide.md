@@ -116,6 +116,8 @@ The receipt includes:
 - Payment information
 - Subtotal, tax, shipping, and total amount
 
+For detailed printer configuration including USB and network thermal printers, see the [Printer Setup](usage-printer-setup.md) guide.
+
 ## Additional Features
 
 ### Barcode Scanner

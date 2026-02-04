@@ -39,6 +39,11 @@ This guide will walk you through the process of configuring the POS Pro plugin f
 ### Receipt Settings
 
 - **Print Receipt After Checkout**: When enabled, the print dialog will automatically open after successful checkout, allowing for immediate printing of receipts.
+- **Receipt Width**: Choose the paper size for thermal printers (58mm, 80mm) or standard printers (A4).
+- **Auto Print**: Automatically trigger the print dialog when the receipt page loads.
+- **Show Logo/Store Info/VAT/Cashier/Customer**: Toggle what information appears on receipts.
+
+For detailed printer setup instructions including USB and network thermal printers, see the [Printer Setup](usage-printer-setup.md) guide.
 
 ## Permissions
 
