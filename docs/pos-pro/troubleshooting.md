@@ -1,99 +1,314 @@
 # Troubleshooting POS Pro
 
-This guide will help you resolve common issues that may arise when using the POS Pro plugin.
+This guide helps you resolve common issues that may arise when using POS Pro.
 
-## Common Issues
+## Interface Issues
 
-### Products Not Showing Up
+### POS Interface Not Loading
 
-If products are not appearing in the POS interface:
+If the POS interface doesn't load properly:
 
-1. **Check Product Status**:
-   - Ensure products are published and not in draft status
-   - Verify that products have stock available (if stock management is enabled)
-   - Check if products are assigned to the correct categories
+1. **Clear Browser Cache**
+   - Press Ctrl+Shift+Delete (Windows) or Cmd+Shift+Delete (Mac)
+   - Clear cached images and files
+   - Refresh the page
 
-2. **Search Functionality**:
-   - Try searching for products by name, SKU, or barcode
-   - If search is not working, check if the product data is correctly entered
+2. **Check JavaScript**
+   - Ensure JavaScript is enabled in your browser
+   - Check browser console for errors (F12 > Console)
+   - Look for any blocked scripts
 
-3. **Refresh the Page**:
-   - Sometimes a simple page refresh can resolve display issues
-   - Clear your browser cache if necessary
+3. **Verify Assets**
+   - Run `php artisan cms:publish:assets`
+   - Clear application cache: `php artisan cache:clear`
+   - Rebuild assets if needed: `npm run build`
+
+4. **Browser Compatibility**
+   - Use Chrome, Firefox, or Edge (latest versions)
+   - Safari may have limited features
+   - Avoid Internet Explorer
+
+### Products Not Showing
+
+If products don't appear in the POS interface:
+
+1. **Check Product Status**
+   - Ensure products are published (not draft)
+   - Verify stock is available (if stock management is enabled)
+   - Check products have prices set
+
+2. **Search Issues**
+   - Try searching by SKU or barcode
+   - Check if product data is correctly entered
+   - Verify search index is updated
+
+3. **Permissions**
+   - Ensure user has POS access permission
+   - Check if products are restricted to certain users
+
+### Slow Performance
+
+If POS is running slowly:
+
+1. **Browser**
+   - Close unnecessary tabs
+   - Clear browser cache
+   - Disable browser extensions temporarily
+
+2. **Server**
+   - Check server resources (CPU, memory)
+   - Optimize database queries
+   - Enable application caching
+
+3. **Network**
+   - Check internet connection speed
+   - Reduce image sizes for products
+   - Use CDN for assets
+
+## Payment Issues
 
 ### Payment Methods Not Available
 
-If payment methods are not appearing in the checkout:
+If payment methods don't appear:
 
-1. **Check POS Settings**:
-   - Go to **Settings** > **E-commerce** > **POS Settings**
-   - Ensure at least one payment method is enabled under "Active Payment Methods"
-   - Verify that the default payment method is included in the active methods
+1. **Check Settings**
+   - Go to **POS** > **Settings**
+   - Ensure payment methods are enabled
+   - Verify default payment method is set
 
-2. **Permissions**:
-   - Check if the current user has the necessary permissions to access payment features
+2. **Plugin Dependencies**
+   - For card payments, Stripe plugin must be active
+   - For bank transfer QR, SePay/PayFS must be configured
 
 ### Cannot Complete Checkout
 
-If you're unable to complete the checkout process:
+If checkout fails:
 
-1. **Required Fields**:
-   - Ensure all required fields are filled out
-   - Check if a customer is selected or created
-   - Verify that a payment method is selected
+1. **Required Fields**
+   - Ensure all required fields are filled
+   - Select a customer or create one
+   - Choose a payment method
 
-2. **Stock Issues**:
+2. **Stock Issues**
    - Check if products are in stock
-   - If a product is out of stock, remove it from the cart or adjust the quantity
+   - Remove out-of-stock items from cart
+   - Verify stock levels are accurate
 
-3. **Server Errors**:
-   - Check the browser console for any JavaScript errors
-   - Look at the server logs for PHP errors
-   - Ensure your server meets the minimum requirements
+3. **Register Required**
+   - If register is required, open one first
+   - Check register status in POS
 
-### Receipt Printing Problems
+4. **Server Errors**
+   - Check browser console for errors
+   - Review Laravel logs: `storage/logs/laravel.log`
+   - Verify database connection
 
-If you're having issues with receipt printing:
+### Card Payment Failed
 
-1. **Browser Printing Issues**:
-   - Make sure your browser allows popup windows for the site
-   - Check if the print dialog appears but doesn't print
-   - Try using a different browser (Chrome or Firefox recommended)
-   - Set margins to "None" in the print dialog for thermal printers
-   - Ensure the receipt width setting matches your paper size (58mm, 80mm, or A4)
+If Stripe Terminal payment fails:
 
-2. **USB Printer Issues**:
-   - Ensure your printer is properly connected and set as the default
-   - Check printer drivers are installed and up to date
-   - Verify paper size settings match the receipt width configuration
+1. **Reader Connection**
+   - Check reader is online
+   - Sync readers: click **Sync Readers**
+   - Restart the reader
 
-3. **Network/IP Printer Issues**:
-   - Verify the printer IP address is correct and reachable (`ping {ip}`)
-   - Check that the print server application is running
-   - Ensure the printer is on the same local network
-   - Only private IP addresses are supported (192.168.x.x, 10.x.x.x, etc.)
-   - Test the connection with: `php artisan pos:test-local-device {user_id} {order_id}`
+2. **Network**
+   - Verify reader has internet access
+   - Check firewall settings
+   - Test network connectivity
 
-For detailed printer setup instructions, see the [Printer Setup](usage-printer-setup.md) guide.
+3. **Card Issues**
+   - Try a different card
+   - Check card isn't expired
+   - Verify sufficient funds
 
-### Language Issues
+4. **Stripe Configuration**
+   - Verify API keys are correct
+   - Check Stripe Dashboard for errors
+   - Ensure Terminal is enabled in Stripe
 
-If the POS interface is not displaying in the correct language:
+## Cash Register Issues
 
-1. **Language Settings**:
-   - Verify that the language is installed and active in your Botble CMS
-   - Try switching languages using the language switcher in the POS interface
-   - Check if translations are available for the selected language
+### Cannot Open Register
 
-2. **Missing Translations**:
-   - Some strings might not be translated in certain languages
-   - You can add missing translations in the language files
+If you can't open a register:
+
+1. **Existing Open Register**
+   - Check if a register is already open
+   - Close the existing register first
+   - Only one register per user at a time
+
+2. **Permissions**
+   - Verify user has Registers permission
+   - Check role settings
+
+### Register Variance
+
+If cash doesn't match expected:
+
+1. **Recount Cash**
+   - Count again carefully
+   - Separate and count each denomination
+
+2. **Review Transactions**
+   - Check all transactions for the shift
+   - Look for voided or cancelled orders
+   - Verify cash refunds issued
+
+3. **Unrecorded Transactions**
+   - Check for cash sales outside POS
+   - Verify all payouts were recorded
+
+### Cannot Close Register
+
+If close register fails:
+
+1. **Permissions**
+   - Ensure user has Registers permission
+
+2. **Pending Transactions**
+   - Complete or cancel pending orders
+   - Clear any stuck transactions
+
+## Receipt Printing Issues
+
+### Receipt Not Printing
+
+If receipts don't print:
+
+1. **Browser Settings**
+   - Allow popup windows for the site
+   - Check print dialog appears
+   - Try a different browser
+
+2. **Printer Setup**
+   - Verify printer is connected
+   - Set printer as default
+   - Check printer has paper
+
+3. **Receipt Settings**
+   - Enable **Print Receipt After Checkout** in settings
+   - Check receipt width matches paper size
+
+For detailed printer setup, see [Printer Setup](usage-printer-setup.md).
+
+### Receipt Formatting Issues
+
+If receipts look wrong:
+
+1. **Paper Size**
+   - Match receipt width setting to actual paper (58mm, 80mm, A4)
+   - Set margins to "None" in print dialog
+
+2. **Content Missing**
+   - Check receipt settings for enabled content
+   - Verify logo is uploaded
+   - Check store info is configured
+
+### Network Printer Not Working
+
+If IP printer doesn't receive orders:
+
+1. **IP Address**
+   - Verify IP is correct
+   - Ping the printer from your computer
+   - Ensure it's a private IP (192.168.x.x, etc.)
+
+2. **Print Server**
+   - Verify print server is running
+   - Check it's listening on `/api` endpoint
+
+3. **Network**
+   - Printer must be on same network
+   - Check firewall isn't blocking
+
+## Refund Issues
+
+### Cannot Process Refund
+
+If refunds fail:
+
+1. **Refunds Disabled**
+   - Enable refunds in POS Settings
+
+2. **Outside Refund Window**
+   - Order is older than allowed days
+   - Adjust refund window setting or process through admin
+
+3. **Already Refunded**
+   - Check if items were already refunded
+   - View refund history on the order
+
+### Approval Required
+
+If refund requires approval:
+
+1. **Above Threshold**
+   - Amount exceeds approval threshold
+   - Get manager to approve
+   - Or user with approval permission can process
+
+### Cash Refund Failed
+
+If cash refund fails:
+
+1. **Register Not Open**
+   - Open a register first
+   - Cash refunds require open register
+
+2. **Insufficient Cash**
+   - Register may not have enough cash
+   - Add cash or use different refund method
+
+## Barcode Scanner Issues
+
+### Camera Scanner Not Working
+
+1. **Permissions**
+   - Allow camera access in browser
+   - Check browser settings for site permissions
+
+2. **Browser Support**
+   - Use Chrome, Edge, or Firefox
+   - Safari may have limited support
+
+3. **Camera Issues**
+   - Check camera isn't in use by another app
+   - Try selecting a different camera
+
+### Hardware Scanner Not Detecting
+
+1. **Connection**
+   - Verify USB scanner is connected
+   - Try different USB port
+
+2. **Focus**
+   - Ensure cursor is in search box
+   - Click the search field before scanning
+
+3. **Configuration**
+   - Scanner should send Enter key after scan
+   - Check scanner manual for configuration
+
+For detailed scanner help, see [Barcode Scanner](usage-barcode-scanner.md).
+
+## Multi-language Issues
+
+### Wrong Language Displayed
+
+1. **Language Selection**
+   - Use language switcher in POS
+   - Check user's language preference
+
+2. **Missing Translations**
+   - Some strings may not be translated
+   - Add missing translations to language files
 
 ## Advanced Troubleshooting
 
 ### Clearing Cache
 
-Clearing the application cache can resolve many issues:
+Clear all application caches:
 
 ```bash
 php artisan cache:clear
@@ -104,33 +319,59 @@ php artisan view:clear
 
 ### Checking Logs
 
-Check the Laravel logs for any errors:
+Review logs for errors:
 
-1. Look in `storage/logs/laravel.log`
-2. Check for any errors related to the POS Pro plugin
-3. Pay attention to timestamps to identify recent issues
+1. **Laravel Logs**: `storage/logs/laravel.log`
+2. **Browser Console**: F12 > Console tab
+3. **Network Tab**: F12 > Network tab for failed requests
 
 ### Database Issues
 
-If you suspect database issues:
+If database problems occur:
 
-1. Verify that all migrations have run successfully
-2. Check if the required tables exist and have the correct structure
-3. Ensure there are no corrupted records in the database
+1. **Run Migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+2. **Check Tables**
+   - Verify POS tables exist
+   - Check for corrupted records
+
+### Rebuilding Assets
+
+If assets are outdated:
+
+```bash
+npm run build
+php artisan cms:publish:assets
+```
 
 ## Getting Support
 
-If you're unable to resolve the issue using this troubleshooting guide, please contact our support team:
+If you can't resolve the issue:
 
-- **Documentation**: [https://docs.botble.com/pos-pro](https://docs.botble.com/pos-pro)
-- **Support Email**: [support@botble.com](mailto:support@botble.com)
-- **Support Forum**: [https://botble.com/forum](https://botble.com/forum)
+1. **Documentation**: Review relevant docs sections
+2. **Gather Information**:
+   - Detailed issue description
+   - Steps to reproduce
+   - Screenshots if applicable
+   - Botble CMS version
+   - PHP version
+   - Error messages
 
-When contacting support, please provide:
+3. **Contact Support**:
+   - Email: [support@botble.com](mailto:support@botble.com)
+   - Forum: [https://botble.com/forum](https://botble.com/forum)
 
-1. A detailed description of the issue
-2. Steps to reproduce the problem
-3. Screenshots if applicable
-4. Your Botble CMS version
-5. Your PHP version
-6. Any error messages you're seeing
+## Quick Reference
+
+| Issue | First Steps |
+|-------|-------------|
+| Interface not loading | Clear cache, check console |
+| Products not showing | Check status, stock, permissions |
+| Payment failed | Check settings, logs, Stripe |
+| Register won't open | Check existing register, permissions |
+| Receipt not printing | Check printer, browser popups |
+| Refund failed | Check settings, window, threshold |
+| Scanner not working | Check permissions, connection |
