@@ -70,7 +70,7 @@ Before migrating:
    - Blacklist entries
 
 3. **Install License Manager**
-   - Follow the [Installation Guide](installation.md)
+   - Follow the [Installation Guide](installation-requirements.md)
 
 ## Database Migration
 
