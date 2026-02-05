@@ -34,6 +34,7 @@ The app offers a comprehensive mobile shopping experience with intuitive navigat
 10. **[Help Center](10_help_center.md)** - Configure FAQ and support
 11. **[Social Login](11_social_login_setup.md)** - Set up OAuth providers
 12. **[Onboarding](12_onboarding.md)** - Customize onboarding screens
+13. **[Push Notifications](14_push_notifications.md)** - Enable FCM push notifications
 
 ## App Screenshots
 

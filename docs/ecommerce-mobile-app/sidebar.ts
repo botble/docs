@@ -28,6 +28,7 @@ export default [
             { text: '10. Help Center', link: '/ecommerce-mobile-app/10_help_center' },
             { text: '11. Social Login', link: '/ecommerce-mobile-app/11_social_login_setup' },
             { text: '12. Onboarding', link: '/ecommerce-mobile-app/12_onboarding' },
+            { text: '13. Push Notifications', link: '/ecommerce-mobile-app/14_push_notifications' },
         ],
     },
     {

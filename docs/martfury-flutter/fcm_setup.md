@@ -73,26 +73,67 @@ For iOS to receive push notifications, you need to set up APNs certificates:
    - Click **"Cloud Messaging"** tab
    - Scroll to **"Apple app configuration"**
 
-2. **Upload APNs Certificate:**
+2. **Upload APNs Authentication Key (Recommended):**
+   - Go to [Apple Developer Portal](https://developer.apple.com/)
+   - Navigate to **Keys** and create a new key
+   - Enable **Apple Push Notifications service (APNs)**
+   - Download the `.p8` key file
+   - In Firebase Console, click **"Upload"** under APNs Authentication Key
+   - Upload your `.p8` file and enter your Key ID and Team ID
+
+3. **Or Upload APNs Certificate (Alternative):**
    - Click **"Upload"** under APNs certificates
    - You'll need to create this certificate in your Apple Developer account
    - Follow Firebase's guide for creating APNs certificates
 
-## 🧪 Step 5: Test Your Setup
+## 🔧 Step 5: Configure Botble Backend
+
+Your Botble website needs to be configured to send push notifications via FCM v1 API.
+
+### 5.1 Generate Service Account Key
+
+1. In Firebase Console, go to **Project Settings** (gear icon)
+2. Click **"Service accounts"** tab
+3. Click **"Generate new private key"**
+4. Download the JSON file (keep this secure!)
+
+### 5.2 Configure Botble Admin Panel
+
+1. Log in to your Botble admin panel
+2. Go to **Settings** → **API Settings**
+3. Scroll to **Push Notifications (FCM v1 API)** section
+4. Enable **Push Notifications**
+5. Enter your **Firebase Project ID** (found in Firebase Console → Project Settings → General)
+6. Upload the **Service Account JSON file** you downloaded
+
+### 5.3 Send Test Notification
+
+1. In Botble admin, scroll to **Send Custom Notification** section
+2. Enter a test title and message
+3. Select target devices (All Devices, Android Only, iOS Only, or Customers Only)
+4. Click **Send Notification**
+
+## 🧪 Step 6: Test Your Setup
 
 After adding both configuration files:
 
 1. **Build and run your app:**
    - Connect a real device (not simulator)
-   - Run the app
+   - Run the app and log in (this registers the device token)
 
-2. **Test notifications:**
+2. **Test notifications from Botble admin:**
+   - Go to your Botble admin panel
+   - Navigate to **Settings** → **API Settings**
+   - Scroll to **Send Custom Notification**
+   - Enter a test message and send
+
+3. **Alternative: Test from Firebase Console:**
    - Go to Firebase Console
    - Navigate to **"Cloud Messaging"**
    - Click **"Send your first message"**
    - Enter a test message and send
 
-3. **Check if it works:**
+4. **Check if it works:**
    - You should receive the notification on your device
    - If not, check the Troubleshooting section below
 
@@ -111,6 +152,23 @@ After adding both configuration files:
 ### I don't have an Apple Developer account
 - You need one for iOS push notifications in production ($99/year)
 - For testing only, you might be able to use development certificates
+
+### No device tokens in Botble admin
+- Make sure the app is connecting to your Botble API correctly
+- Check that users are logged in (device tokens are registered on login)
+- Verify API is enabled in Botble settings
+
+## 🔒 Security Notes
+
+- **Never commit** your `google-services.json` or `GoogleService-Info.plist` to public repositories
+- **Keep your service account JSON file secure** - it has full access to send notifications
+- Add Firebase config files to `.gitignore` if your repository is public:
+
+```gitignore
+# Firebase config files
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+```
 
 ## 📞 Need More Help?
 
