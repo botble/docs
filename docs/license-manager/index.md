@@ -2,7 +2,7 @@
 
 ## Demo
 
-Homepage: https://license.botble.com
+Homepage: https://license-manager.botble.com
 
 Username: `admin`
 

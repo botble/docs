@@ -124,6 +124,38 @@ Portal login at `/customer/login`:
 2. Optional: CAPTCHA verification
 3. Redirect to dashboard
 
+### Social Login
+
+The customer portal supports social login for streamlined authentication. Customers can sign in using their existing social accounts instead of creating new credentials.
+
+![Social Login with Envato](./images/social-login-envato.png)
+
+**Supported Providers:**
+
+| Provider | Description |
+|----------|-------------|
+| Envato | Sign in with Envato account (ideal for Envato marketplace products) |
+| Google | Google OAuth authentication |
+| Facebook | Facebook login integration |
+| GitHub | GitHub OAuth for developer-focused products |
+
+**Benefits:**
+- Faster onboarding - no password to remember
+- Automatic account linking via email
+- Reduced support tickets for password resets
+- Seamless experience for Envato customers
+
+**Envato Social Login:**
+
+For products sold on Envato marketplace, Envato social login is highly recommended:
+- Customers can sign in with the same account used to purchase
+- Automatic verification of purchase ownership
+- Streamlined license management
+
+::: tip
+If a customer hasn't registered yet, they can sign in using a social account to automatically create their portal account.
+:::
+
 ### Password Reset
 
 1. Click "Forgot Password" at login
