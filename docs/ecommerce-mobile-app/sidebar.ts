@@ -3,6 +3,7 @@ import {DefaultTheme} from 'vitepress';
 export default [
     { text: 'Overview', link: '/ecommerce-mobile-app/' },
     { text: 'App Overview', link: '/ecommerce-mobile-app/overview' },
+    { text: '⭐ Complete Setup & Publishing Guide', link: '/ecommerce-mobile-app/complete-setup-and-publishing-guide' },
     {
         text: 'Getting Started',
         items: [
