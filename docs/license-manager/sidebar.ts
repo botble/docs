@@ -31,6 +31,7 @@ export default [
             { text: 'Licenses', link: '/license-manager/licenses' },
             { text: 'Activations', link: '/license-manager/activations' },
             { text: 'Customers', link: '/license-manager/customers' },
+            { text: 'Integration Guide', link: '/license-manager/integration' },
             { text: 'API Reference', link: '/license-manager/api' },
         ],
     },

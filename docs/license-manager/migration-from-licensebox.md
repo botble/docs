@@ -16,9 +16,88 @@ License Manager is a modern, standalone replacement for LicenseBox with:
 With the **licensebox-legacy-api** plugin, your existing client applications continue working **without any code changes**. The legacy plugin provides full backward compatibility with original LicenseBox API endpoints, headers, and response formats.
 :::
 
-## Quick Start
+## Migration Options
 
-The migration process:
+License Manager provides two ways to migrate from LicenseBox:
+
+| Method | Best For |
+|--------|----------|
+| **Settings Page Migration** | GUI-based, step-by-step, progress tracking |
+| **Command Line Migration** | Automated via plugin activation |
+
+## Option 1: Settings Page Migration (Recommended)
+
+The Settings Page provides a visual interface for migration with progress tracking.
+
+### Steps
+
+1. **Import LicenseBox tables** into your database:
+   ```bash
+   mysqldump -u user -p licensebox_db > licensebox_backup.sql
+   mysql -u user -p your_cms_db < licensebox_backup.sql
+   ```
+
+2. **Copy version files** to the new location:
+   ```bash
+   cp -r /old/licensebox/version-files/* /new/storage/app/version-files/
+   ```
+
+3. **Navigate to migration settings:**
+   - Go to **Admin Panel → Settings → License Manager → Legacy Migration**
+
+4. **Configure Legacy Encryption Key:**
+   - Enter your old LicenseBox encryption key
+   - Click **Save**
+
+5. **Review detected tables:**
+   - The page shows all detected LicenseBox tables with record counts
+   - Verify the tables are correctly detected
+
+6. **Start migration:**
+   - Click **Start Migration**
+   - Watch progress as each step completes (100 records per batch)
+
+7. **Delete legacy tables:**
+   - After successful migration, click **Delete Legacy Tables**
+   - This removes all old LicenseBox tables
+
+### What Gets Migrated
+
+| Step | Source Table | Target | Description |
+|------|--------------|--------|-------------|
+| Products | `product_details` | `lm_products` | Product definitions |
+| Customers | `product_licenses` | `lm_customers` | Customers with valid emails only |
+| Licenses | `product_licenses` | `lm_licenses` | License records |
+| Activations | `product_activations` | `lm_activations` | License activations |
+| Versions | `product_versions` | `lm_product_versions` | Product versions |
+| Activity Logs | `activity_logs` | `lm_activity_logs` | Activity history |
+| Update Downloads | `update_downloads` | `lm_update_downloads` | Download records |
+| API Keys | `api_keys` | `lm_api_keys` | API key configurations |
+| Settings | `app_settings` | `settings` | Blacklists, rate limits, etc. |
+
+### Legacy Tables Detected
+
+The migration detects and can delete these tables:
+- `product_details`, `product_licenses`, `product_activations`, `product_versions`
+- `activity_logs`, `update_downloads`
+- `api_keys`, `app_settings`, `api_limits`, `api_logs`
+- `auth_users`, `cron_mails`
+
+### Migration Features
+
+- **Batched processing**: 100 records per request to prevent timeouts
+- **Re-runnable**: Skips existing records, only adds new ones
+- **Progress tracking**: Shows records processed per step
+- **Error handling**: Displays detailed error messages if issues occur
+- **Deadlock retry**: Automatically retries on database deadlocks
+
+::: tip CUSTOMER MIGRATION
+Only customers with valid email addresses are migrated. Customers without emails are skipped since they couldn't log in to the old LicenseBox anyway.
+:::
+
+## Option 2: Command Line Migration
+
+The migration process via plugin activation:
 
 ```bash
 # 1. Backup your current database
@@ -37,7 +116,7 @@ php artisan cms:plugin:activate license-manager
 php artisan cms:plugin:activate licensebox-legacy-api
 
 # 6. Configure Legacy Encryption Key (IMPORTANT!)
-# Go to: Settings → License Manager → API Settings
+# Go to: Settings → License Manager → Legacy Migration
 # Enter your old LicenseBox encryption key in "Legacy Encryption Key" field
 
 # 7. Done! Data migrated and legacy API endpoints available
@@ -238,8 +317,8 @@ Without configuring the Legacy Encryption Key, existing license files cannot be 
    - `config.php` → Look for `LB_ENCRYPTION_KEY` or `ENCRYPTION_KEY`
    - Database `options` or `settings` table → Look for `license_key` or `encryption_key`
 
-2. **Navigate to License Manager settings:**
-   - Go to **Admin Panel → Settings → License Manager → API**
+2. **Navigate to Legacy Migration settings:**
+   - Go to **Admin Panel → Settings → License Manager → Legacy Migration**
 
 3. **Enter the Legacy Encryption Key:**
    - Paste your old LicenseBox encryption key in the **"Legacy Encryption Key (LicenseBox)"** field
@@ -417,11 +496,17 @@ class LicenseClient
 
 ### Version Files
 
+::: warning IMPORTANT
+Copy version files **before** running the migration. The Legacy Migration settings page reminds you that version files should be placed in `storage/app/version-files/` before migrating.
+:::
+
 Move version files to new location:
 
 ```bash
 # Old location
 /licensebox/uploads/versions/{product_id}/
+# OR
+/licensebox/version-files/{product_id}/
 
 # New location
 /storage/app/version-files/{reference_id}/
@@ -429,8 +514,8 @@ Move version files to new location:
 
 Migration script:
 ```bash
-# Copy files
-cp -r /old/licensebox/uploads/versions/* /new/storage/app/version-files/
+# Copy files (adjust source path based on your LicenseBox setup)
+cp -r /old/licensebox/version-files/* /new/storage/app/version-files/
 
 # Update permissions
 chmod -R 755 storage/app/version-files
@@ -555,16 +640,20 @@ php artisan cms:plugin:deactivate license-manager
 
 ## Post-Migration Checklist
 
+- [ ] Version files copied to `storage/app/version-files/`
+- [ ] Legacy Encryption Key configured
 - [ ] All products migrated
 - [ ] All licenses migrated
 - [ ] All activations migrated
-- [ ] Encryption keys configured
-- [ ] API keys created
+- [ ] Activity logs migrated
+- [ ] Update downloads migrated
+- [ ] API keys migrated
+- [ ] Settings migrated (blacklists, rate limits)
+- [ ] Legacy tables deleted (via Settings page)
 - [ ] Webhook endpoints updated
-- [ ] Client applications updated
-- [ ] Version files moved
+- [ ] Client applications updated (if not using legacy API)
 - [ ] Cron jobs configured
-- [ ] Legacy API tested (if using)
+- [ ] Legacy API tested (if using `licensebox-legacy-api`)
 - [ ] New API tested
 - [ ] Customer portal accessible
 - [ ] Admin panel functional
