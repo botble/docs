@@ -3,6 +3,7 @@ import {DefaultTheme} from 'vitepress';
 export default [
     { text: 'Overview', link: '/martfury-flutter/' },
     { text: 'App Overview', link: '/martfury-flutter/overview' },
+    { text: '⭐ Complete Setup & Publishing Guide', link: '/martfury-flutter/complete-setup-and-publishing-guide' },
     {
         text: 'Getting Started',
         items: [
