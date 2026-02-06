@@ -79,7 +79,21 @@ cd path/to/martfury-flutter
 flutter pub get
 ```
 
-### Step 4: Configure Environment
+### Step 4: Enable API on Your Website
+
+Before configuring the app, you must enable the API on your Botble website:
+
+1. Log in to your **Botble admin panel** (e.g., `https://yourstore.com/admin`)
+2. Navigate to **Settings** → **API Settings**
+3. **Enable the API** — make sure the API toggle/checkbox is turned **ON**
+4. Find or generate your **API Key**
+5. Copy it — you'll need it in the next step
+
+::: warning Important
+The API is **disabled by default** in Botble. You **must** enable it in **Admin → Settings → API Settings** before the mobile app can connect to your website. Without this, all API requests will fail.
+:::
+
+### Step 5: Configure Environment
 
 Copy the example env file and update it with your settings:
 
@@ -109,7 +123,7 @@ LICENSE_CODE=your-envato-purchase-code
 - The `LICENSE_CODE` is only needed during development — production builds skip license validation. See the [Installation Guide](installation.md) for details.
 :::
 
-### Step 5: Test the Connection
+### Step 6: Test the Connection
 
 Before running the app, verify your API works:
 
@@ -123,7 +137,7 @@ You should see JSON data with your products. If you see an error, check:
 - Is the URL correct?
 - Is the API enabled on your Botble website?
 
-### Step 6: Run the App
+### Step 7: Run the App
 
 ```bash
 # Run on connected device or emulator
@@ -145,7 +159,7 @@ Or target a specific platform:
 3. The app will automatically install and launch on the emulator
 :::
 
-### Step 7: Verify Everything Works
+### Step 8: Verify Everything Works
 
 Test these features to make sure your app is connected properly:
 

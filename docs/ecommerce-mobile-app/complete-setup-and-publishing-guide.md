@@ -96,12 +96,17 @@ npm install --legacy-peer-deps
 ```
 :::
 
-### Step 5: Get Your API Key
+### Step 5: Enable API & Get Your API Key
 
 1. Log in to your **Botble admin panel** (e.g., `https://yourstore.com/admin`)
-2. Navigate to **Settings** → **General** or **API Settings**
-3. Find or generate your **API Key**
-4. Copy it — you'll need it in the next step
+2. Navigate to **Settings** → **API Settings**
+3. **Enable the API** — make sure the API toggle/checkbox is turned **ON**
+4. Find or generate your **API Key**
+5. Copy it — you'll need it in the next step
+
+::: warning Important
+The API is **disabled by default** in Botble. You **must** enable it in **Admin → Settings → API Settings** before the mobile app can connect to your website. Without this, all API requests will fail.
+:::
 
 ### Step 6: Configure the App
 
