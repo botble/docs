@@ -3,37 +3,39 @@ import {DefaultTheme} from 'vitepress';
 export default [
     { text: 'Overview', link: '/license-manager/' },
     {
-        text: 'Getting Started',
+        text: 'For Developers',
         items: [
-            {
-                text: 'Installation',
-                items: [
-                    { text: 'Requirements', link: '/license-manager/installation-requirements' },
-                    { text: 'Using web interface', link: '/license-manager/installation-web-interface' },
-                    { text: 'Using command line', link: '/license-manager/installation-command-line' },
-                ],
-            },
-            { text: 'Migration from LicenseBox', link: '/license-manager/migration-from-licensebox' },
-        ],
-    },
-    {
-        text: 'Configuration',
-        items: [
-            { text: 'Cronjob', link: '/license-manager/cronjob' },
-            { text: 'Commands', link: '/license-manager/commands' },
+            { text: 'Quick Start (5 min)', link: '/license-manager/quick-start' },
+            { text: 'Integration Guide', link: '/license-manager/integration' },
+            { text: 'API Reference', link: '/license-manager/api' },
+            { text: 'Demo Playground', link: '/license-manager/demo-playground' },
             { text: 'Webhooks', link: '/license-manager/webhooks' },
         ],
     },
     {
-        text: 'Usage',
+        text: 'Server Setup',
+        items: [
+            { text: 'Requirements', link: '/license-manager/installation-requirements' },
+            { text: 'Install via Web', link: '/license-manager/installation-web-interface' },
+            { text: 'Install via CLI', link: '/license-manager/installation-command-line' },
+            { text: 'Cronjob', link: '/license-manager/cronjob' },
+            { text: 'Commands', link: '/license-manager/commands' },
+        ],
+    },
+    {
+        text: 'Admin Guide',
         items: [
             { text: 'Products', link: '/license-manager/products' },
             { text: 'Licenses', link: '/license-manager/licenses' },
             { text: 'Activations', link: '/license-manager/activations' },
             { text: 'Customers', link: '/license-manager/customers' },
-            { text: 'Integration Guide', link: '/license-manager/integration' },
-            { text: 'API Reference', link: '/license-manager/api' },
         ],
     },
-    { text: 'Troubleshooting', link: '/license-manager/troubleshooting' },
+    {
+        text: 'More',
+        items: [
+            { text: 'Migration from LicenseBox', link: '/license-manager/migration-from-licensebox' },
+            { text: 'Troubleshooting', link: '/license-manager/troubleshooting' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[];

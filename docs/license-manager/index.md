@@ -1,29 +1,90 @@
 # License Manager
 
-## Demo
+A self-hosted license management system for software products. Protect your software with license activation, verification, and update delivery.
 
-Homepage: https://license-manager.botble.com
+## Live Demo
 
-Username: `admin`
+- **Admin Panel:** [https://license-manager.botble.com](https://license-manager.botble.com)
+- **API Playground:** [https://license-app-demo.botble.com](https://license-app-demo.botble.com)
+- **Credentials:** `admin` / `12345678`
 
-Password: `12345678`
+## For Developers
+
+Integrate license protection into your software:
+
+| Guide | Description |
+|-------|-------------|
+| [Quick Start](quick-start.md) | Add licensing to your app in 5 minutes |
+| [Integration Guide](integration.md) | Detailed implementation patterns and examples |
+| [API Reference](api.md) | All API endpoints with request/response examples |
+| [Demo Playground](demo-playground.md) | Test API calls interactively |
+| [Webhooks](webhooks.md) | Get notified of license events |
+
+### How It Works
+
+```
+┌─────────────────┐                    ┌──────────────────┐
+│   Your App      │                    │  License Manager │
+│                 │   1. activate()    │     Server       │
+│  User enters    │ ──────────────────►│                  │
+│  license code   │ ◄────────────────── │  Returns token   │
+│                 │   encrypted token   │                  │
+│  Store token    │                    │                  │
+│  locally        │   2. verify()      │                  │
+│                 │ ──────────────────►│  Checks:         │
+│  On every       │ ◄────────────────── │  - domain/IP     │
+│  app start      │   valid/invalid    │  - expiration    │
+│                 │                    │  - blocked       │
+│  If invalid:    │   3. deactivate()  │                  │
+│  block access   │ ──────────────────►│  Frees slot      │
+└─────────────────┘                    └──────────────────┘
+```
+
+### Quick Example (PHP)
+
+```php
+// Initialize
+$client = new LicenseClient($apiKey, $serverUrl, $productId);
+
+// Activate (user does this once)
+$result = $client->activate($licenseCode);
+file_put_contents('license.dat', $result['lic_response']);
+
+// Verify (on every app start)
+$result = $client->verify(file_get_contents('license.dat'));
+if (!$result['is_active']) {
+    die('License invalid. Please activate.');
+}
+```
+
+[Get started →](quick-start.md)
+
+## For Server Admins
+
+Set up your own License Manager server:
+
+| Guide | Description |
+|-------|-------------|
+| [Requirements](installation-requirements.md) | Server requirements |
+| [Install via Web](installation-web-interface.md) | Browser-based installation |
+| [Install via CLI](installation-command-line.md) | Command line installation |
+| [Cronjob](cronjob.md) | Scheduled tasks setup |
+| [Commands](commands.md) | Artisan commands |
 
 ## Features
 
-- **Easy Installation** – Install License Manager easily with no coding knowledge in a few minutes with our easy-to-use installer and documentation.
-- **High Performance** – License Manager is lightweight and has lighting fast performance out of the box.
-- **Product Management** – Define software products with unique reference IDs, version management with changelogs and file uploads.
-- **License Management** – Generate and manage license codes with multiple types (perpetual, subscription, trial).
-- **Activation System** – Track license activations per domain and IP with multi-activation support.
-- **Customer Portal** – Self-service customer accounts to view licenses, activations, and manage passwords.
-- **Update Delivery** – Serve software updates to licensed products with download tracking.
-- **Security** – Domain normalization, IP validation, auto-blacklisting, and AES encryption support.
-- **API Integration** – REST API for external clients and webhook notifications for license events.
-- **Envato Integration** – Verify Envato purchase codes directly.
-- **Permissions and Roles** – Use fully featured permission and role system to allow (or disallow) users to perform specific actions.
-- **Settings** – Admin panel has many settings that allow you to fine-tune the plugin to your needs.
-- **Source Code** – You will receive full, unencrypted source code upon purchase, allowing easy custom modifications.
+- **License Types** - Perpetual, subscription, and trial licenses
+- **Multi-Activation** - Allow licenses on multiple domains/IPs
+- **Domain & IP Validation** - Secure activation verification
+- **Update Delivery** - Serve software updates to licensed users
+- **Customer Portal** - Self-service license management
+- **Envato Integration** - Verify Envato purchase codes
+- **Webhooks** - Real-time event notifications
+- **REST API** - Full programmatic access
+- **Migration Support** - Import from LicenseBox
 
-## Botble Team
+## Support
 
-Visit us at [botble.com](https://botble.com).
+- **Documentation:** You're reading it!
+- **Demo:** [license-manager.botble.com](https://license-manager.botble.com)
+- **Botble Team:** [botble.com](https://botble.com)
