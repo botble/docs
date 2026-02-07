@@ -1,480 +1,161 @@
-# Admin Dashboard
+# Admin Tasks
 
-This guide covers the administrative interface for managing wholesale operations in your Botble e-commerce store.
+This page covers the admin tasks that aren't covered in the [Customer Groups](/wholesale/usage/customer-groups) and [Pricing Rules](/wholesale/usage/pricing-rules) guides: reviewing applications, setting product visibility, configuring MOQ, and managing the wholesale products list.
 
-## Accessing the Wholesale Admin
+## The Wholesale Admin Menu
 
-Navigate to **Ecommerce** > **Wholesale** in the admin sidebar to access wholesale management.
+After activating the plugin, you'll see a **Wholesale** section in the admin sidebar with these items:
 
-![Wholesale Menu](../images/wholesale-menu.png)
+| Menu Item | What it does | Admin URL |
+|-----------|-------------|-----------|
+| **Customer Groups** | Create and manage groups with discounts | `/admin/wholesale/customer-groups` |
+| **Pricing Rules** | Manage quantity-based pricing tiers | `/admin/wholesale/pricing-rules` |
+| **Wholesale Products** | View products that have wholesale settings | `/admin/wholesale/products` |
+| **Applications** | Review and approve/reject wholesale applications | `/admin/wholesale/applications` |
+| **Settings** | Configure wholesale system settings | `/admin/wholesale/settings` |
 
-## Main Menu Options
-
-| Menu Item | Description |
-|-----------|-------------|
-| **Customer Groups** | Manage wholesale customer groups and discounts |
-| **Pricing Rules** | Create quantity-based tiered pricing |
-| **Applications** | Review and approve wholesale account requests |
-| **MOQ Settings** | Configure minimum order quantities per product |
-| **Settings** | Configure system-wide wholesale settings |
-
-## Customer Groups Management
-
-### Customer Groups List
-
-View and manage all customer groups:
-
-![Customer Groups List](../images/customer-groups-list.png)
-
-**List Features:**
-- **Search** - Find groups by name
-- **Filter** - By status (Published/Draft)
-- **Sort** - By name, priority, or date
-- **Bulk Actions** - Delete or change status of multiple groups
-
-**Group Information Displayed:**
-- Group name
-- Discount type and value
-- Priority level
-- Status badge
-- Number of assigned customers
-- Action buttons (Edit, Delete)
-
-### Creating Customer Groups
-
-Click **Create** to add a new group:
-
-**Required Information:**
-- Group name (e.g., "Gold Resellers")
-- Discount type (Percentage or Fixed)
-- Discount value
-- Status (Published or Draft)
-
-**Optional Settings:**
-- Description (internal notes)
-- Priority (for conflict resolution)
-- Minimum order quantity
-- Minimum order value
-
-See [Customer Groups Guide](/wholesale/usage/customer-groups) for detailed instructions.
-
-### Editing Customer Groups
-
-1. Click **Edit** button on any group
-2. Make changes to settings
-3. Click **Save**
-
-::: warning
-Changes to discount values take effect immediately for all customers in that group.
+::: tip
+The **Applications** menu item only appears when **Require Approval** is enabled in [Settings](/wholesale/configuration#require-approval-for-wholesale-registration). It also shows a badge with the count of pending applications.
 :::
 
-## Pricing Rules Management
+## Reviewing Wholesale Applications
 
-### Pricing Rules List
-
-View and manage all pricing rules:
-
-![Pricing Rules List](../images/pricing-rules-list.png)
-
-**List Features:**
-- **Search** - Find rules by product name
-- **Filter** - By customer group, status
-- **Sort** - By product, group, or date
-- **Bulk Actions** - Delete multiple rules
-
-**Rule Information Displayed:**
-- Product name with image
-- Customer group
-- Quantity range (e.g., "50-99", "100+")
-- Discount type and value
-- Final price preview
-- Status badge
-- Action buttons
-
-### Creating Pricing Rules
-
-Click **Create** to add a new rule:
-
-**Required Information:**
-1. Select product
-2. Select customer group
-3. Define quantity tier (min and max)
-4. Choose discount type
-5. Enter discount value
-6. Set status
-
-See [Pricing Rules Guide](/wholesale/usage/pricing-rules) for detailed instructions.
-
-### Managing Multiple Rules
-
-**For Single Product:**
-- Create multiple rules for different quantity ranges
-- Create separate rules for different customer groups
-- Each group can have different tier structures
-
-**Viewing Product Rules:**
-- Filter by product name
-- See all tiers at once
-- Verify no gaps in quantity ranges
-
-## Applications Management
-
-### Applications List
-
-Review wholesale account applications:
+When customers submit applications at `/wholesale/register` on your site, they appear at **Wholesale > Applications**.
 
 ![Applications List](../images/applications-list.png)
 
-**List Features:**
-- **Filter** - By status (Pending, Approved, Rejected)
-- **Search** - By company name or customer name
-- **Sort** - By date submitted
-- **Quick Actions** - Approve or reject
+### Viewing an application
 
-**Application Information:**
-- Company name
-- Applicant name and email
-- Application date
-- Status badge
-- Business details summary
-- Action buttons
+Click the application to see the full details:
 
-### Reviewing Applications
+- **Name** and **Email** - The applicant's contact info
+- **Company Name** - Their business name
+- **Tax ID** - Business tax identification (if provided)
+- **Phone** - Contact number (if provided)
+- **Business Type** - e.g., "Retailer", "Distributor" (if provided)
+- **Expected Order Volume** - What they estimate they'll order (if provided)
+- **Notes** - Any additional info they provided
+- **Status** - Pending, Approved, or Rejected
 
-#### Viewing Application Details
+### Approving an application
 
-Click on an application to see full details:
+1. Go to **Wholesale > Applications**
+2. Click on a pending application
+3. In the **Approve** section, select a **Customer Group** from the dropdown
+4. Click **Approve**
 
-**Customer Information:**
-- Full name
-- Email address
-- Phone number
-- Existing account status
+What happens:
+- The application status changes to **Approved**
+- The customer account is assigned to the selected group
+- The customer can now log in and see wholesale prices
 
-**Business Information:**
-- Company name
-- Tax ID/Business number
-- Business address
-- Business type
-- Website URL
-- Additional notes
+### Rejecting an application
 
-#### Approving Applications
+1. Go to **Wholesale > Applications**
+2. Click on a pending application
+3. In the **Reject** section, enter a **Rejection Reason**
+4. Click **Reject**
 
-1. Click **Approve** button
-2. Select customer group to assign
-3. Optionally set expiration date
-4. Add approval notes (optional)
-5. Click **Confirm**
+What happens:
+- The application status changes to **Rejected**
+- The customer sees the rejection reason on their dashboard
+- The customer can reapply later (via `/customer/wholesale/reapply`)
 
-**What Happens:**
-- Customer account assigned to selected group
-- Customer receives approval email
-- Can immediately log in and see wholesale prices
-- Application status changes to "Approved"
+### Filtering applications
 
-#### Rejecting Applications
+Use the status filter at the top of the applications list to show only Pending, Approved, or Rejected applications.
 
-1. Click **Reject** button
-2. Optionally add rejection reason
-3. Click **Confirm**
+## Product Visibility and MOQ
 
-**What Happens:**
-- Customer receives rejection email
-- Application status changes to "Rejected"
-- Customer can reapply after addressing issues
+You control wholesale-specific product settings from each product's edit page.
 
-#### Pending Applications
+### Setting up product visibility
 
-Applications remain pending until admin reviews them. Configure automatic approval in settings if you want to skip manual review.
+1. Go to **Ecommerce > Products**, edit a product
+2. Scroll to the **Wholesale** section
+3. Find the **Visibility Type** dropdown:
 
-## Customer Management
+| Option | Who can see the product |
+|--------|------------------------|
+| **Public (Everyone)** | All customers, wholesale and retail |
+| **Wholesale Only** | Only customers assigned to a wholesale group |
+| **Specific Groups** | Only customers in the groups you select |
 
-### Viewing Customer's Wholesale Status
+4. If you chose **Specific Groups**, an **Allowed Customer Groups** multi-select appears. Select which groups can see this product.
+5. Click **Save**
 
-From **Customers** list:
+**Use cases:**
+- **Wholesale Only** - For bulk-only products not sold to retail customers
+- **Specific Groups** - For exclusive products available only to your top-tier customers
 
-1. Edit any customer
-2. Scroll to "Wholesale Information" section
+### Setting minimum order quantity (MOQ)
 
-**Wholesale Information Shows:**
-- Assigned customer groups
-- Assignment dates
-- Expiration dates
-- Wholesale status (Active/Expired)
+MOQ forces wholesale customers to order at least a certain quantity of a product.
 
-### Manual Customer Assignment
+1. Go to **Ecommerce > Products**, edit a product
+2. Scroll to the **Wholesale** section
+3. Configure:
 
-To manually assign a customer to a group:
+| Field | What it does | Example |
+|-------|-------------|---------|
+| **Minimum Quantity** | Smallest quantity a customer can order | `12` - customer must order at least 12 |
+| **Quantity Increment** | Orders must be multiples of this number | `6` - valid: 12, 18, 24. Invalid: 13, 15, 20 |
 
-1. Edit customer account
-2. Find "Customer Groups" field
-3. Select one or more groups
-4. Optionally set expiration date
-5. Save customer
+4. Click **Save**
 
-**Use Cases:**
-- VIP customers
-- Special agreements
-- Migrating existing customers
-- Temporary access
+**Example:** Minimum Quantity = 12, Increment = 6
 
-### Removing Wholesale Access
+Valid orders: 12, 18, 24, 30, 36...
 
-To remove wholesale access:
+Invalid: 5, 10, 13, 15, 20 (system auto-adjusts to the nearest valid quantity)
 
-1. Edit customer account
-2. Remove all group assignments
-3. Save customer
+![Product MOQ Settings](../images/product-moq.png)
 
-Customer reverts to retail pricing immediately.
+## Wholesale Products List
 
-## Product Management
+Go to **Wholesale > Wholesale Products** to see all products that have wholesale settings (pricing rules, MOQ, or visibility restrictions).
 
-### Setting Product MOQ
+This is a read-only overview. To edit a product's wholesale settings, click through to the product edit page.
 
-In product edit page:
+If you have the Marketplace plugin active, you can filter by tabs: **All**, **In-house**, or **Seller** products.
 
-1. Open any product for editing
-2. Go to "Wholesale Settings" tab
-3. Configure MOQ settings:
+## Assigning Wholesale Groups to Customers
 
-**MOQ Fields:**
-- Customer group (or All Wholesale)
-- Minimum quantity
-- Quantity increment
-- Status (Active/Inactive)
+Besides approving applications, you can manually assign any customer to a wholesale group:
 
-**Example:**
-- Min Quantity: 24
-- Increment: 12
-- Valid orders: 24, 36, 48, 60...
+1. Go to **Ecommerce > Customers**
+2. Edit the customer
+3. Find the **Wholesale Groups** field
+4. Select one or more groups
+5. Click **Save**
 
-### Setting Product Visibility
+The customer sees wholesale prices immediately on their next visit.
 
-In product edit page, "Wholesale Settings" tab:
+To remove wholesale access, clear the group selection and save.
 
-**Visibility Options:**
-- **Public** - Everyone can see
-- **Wholesale Only** - Only wholesale customers
-- **Hidden** - Direct link only
+## Daily Admin Workflow
 
-**Product Group Access:**
-- Leave empty = all wholesale customers
-- Select groups = only those groups can see
-- Only applies if visibility is "Wholesale Only"
+Here's a typical daily workflow for managing wholesale:
 
-### Bulk Product Updates
+1. **Check for new applications** at **Wholesale > Applications** (look for the badge count on the menu)
+2. **Review and approve/reject** pending applications
+3. **Monitor orders** - wholesale orders appear in the regular **Ecommerce > Orders** list
+4. **Handle support requests** - check if customers are in the right group, verify pricing is correct
 
-For updating many products at once:
+## Troubleshooting
 
-1. Export products
-2. Update wholesale settings in spreadsheet
-3. Import products back
-4. Or use database queries
+### Can't access the Wholesale menu
 
-## Reports & Analytics
+1. Check your admin role has wholesale permissions: **Admin > Users > Roles**
+2. Check the plugin is activated: **Admin > Plugins**
+3. Clear cache: **Admin > Platform Administration > Cache management**
 
-### Wholesale Sales Overview
+### Applications menu not showing
 
-View wholesale performance:
+The Applications menu only appears when **Require Approval** is enabled in **Wholesale > Settings**. If you don't need approval, applications are auto-approved and this menu isn't needed.
 
-**Available Metrics:**
-- Total wholesale orders
-- Wholesale revenue
-- Average order value by group
-- Top wholesale customers
-- Most purchased products
-- Discount amounts given
+### Changes to a product's wholesale settings aren't working
 
-### Customer Group Performance
-
-Analyze which groups are most profitable:
-
-**Metrics per Group:**
-- Number of customers
-- Total orders
-- Average order value
-- Total revenue
-- Average discount given
-- Customer lifetime value
-
-### Pricing Rule Effectiveness
-
-Track which pricing tiers are used most:
-
-**Metrics per Rule:**
-- Number of times used
-- Quantities purchased at each tier
-- Revenue generated
-- Average discount at each tier
-
-## Settings Management
-
-Access via **Settings** > **Ecommerce** > **Wholesale**:
-
-### General Settings
-
-| Setting | Description |
-|---------|-------------|
-| **Enable Wholesale** | Turn system on/off |
-| **Require Approval** | Manual or automatic approval |
-| **Show Prices to Guests** | Price visibility for non-logged-in users |
-| **Allow Multiple Groups** | Can customer be in multiple groups |
-| **Discount Resolution** | How to handle multiple group conflicts |
-
-### Display Settings
-
-| Setting | Description |
-|---------|-------------|
-| **Visual Style** | Modern, Minimal, Classic, Elegant |
-| **Display Mode** | Full or Compact |
-| **Show Savings** | Display savings amounts |
-| **Section Title** | Custom title for pricing tables |
-
-### Email Notifications
-
-Configure email templates:
-
-- Application received confirmation
-- Admin new application notification
-- Application approved
-- Application rejected
-- Group assignment notification
-- Expiration warning
-
-## Permissions Management
-
-### Available Permissions
-
-Assign to user roles in **Users** > **Roles**:
-
-**Customer Groups:**
-- `wholesale.customer-groups.index` - View groups
-- `wholesale.customer-groups.create` - Create groups
-- `wholesale.customer-groups.edit` - Edit groups
-- `wholesale.customer-groups.destroy` - Delete groups
-
-**Pricing Rules:**
-- `wholesale.pricing-rules.index` - View rules
-- `wholesale.pricing-rules.create` - Create rules
-- `wholesale.pricing-rules.edit` - Edit rules
-- `wholesale.pricing-rules.destroy` - Delete rules
-
-**Applications:**
-- `wholesale.applications.index` - View applications
-- `wholesale.applications.approve` - Approve/reject
-- `wholesale.applications.view` - View details
-
-**Settings:**
-- `wholesale.settings` - Access settings page
-
-### Recommended Permission Sets
-
-**Store Manager (Full Access):**
-- All wholesale permissions
-
-**Sales Manager (Limited):**
-- View groups and rules
-- View and approve applications
-- Cannot modify settings
-
-**Customer Service (View Only):**
-- View groups
-- View customer assignments
-- Cannot approve applications
-
-## Workflow Best Practices
-
-### Daily Tasks
-
-1. **Review New Applications**
-   - Check for new submissions
-   - Verify business information
-   - Approve or request more info
-   - Respond within 24-48 hours
-
-2. **Monitor Orders**
-   - Review wholesale orders
-   - Check for MOQ issues
-   - Verify pricing applied correctly
-   - Address customer questions
-
-### Weekly Tasks
-
-1. **Performance Review**
-   - Check sales by group
-   - Review top customers
-   - Analyze pricing tier usage
-   - Identify trends
-
-2. **Customer Management**
-   - Check for expired assignments
-   - Review inactive customers
-   - Send re-engagement emails
-   - Update group assignments
-
-### Monthly Tasks
-
-1. **Strategy Review**
-   - Analyze group performance
-   - Adjust discount levels if needed
-   - Review pricing rule effectiveness
-   - Update MOQ settings
-
-2. **Cleanup**
-   - Archive old applications
-   - Remove inactive rules
-   - Update customer groups
-   - Optimize settings
-
-### Quarterly Tasks
-
-1. **Deep Analysis**
-   - Compare to retail performance
-   - Calculate profitability by group
-   - Review customer lifecycle
-   - Plan strategic changes
-
-2. **System Maintenance**
-   - Update documentation
-   - Train new staff
-   - Review permissions
-   - Test all features
-
-## Troubleshooting Admin Issues
-
-### Can't access wholesale menu
-
-1. Check user role permissions
-2. Verify plugin is activated
-3. Clear cache
-4. Check admin prefix in URL
-
-### Changes not saving
-
-1. Check file permissions
-2. Verify database connection
-3. Clear config cache
-4. Check error logs
-
-### Applications not appearing
-
-1. Check email configuration
-2. Verify application form works
-3. Check database for records
-4. Review permissions
-
-### Bulk actions not working
-
-1. Check selected items
-2. Verify permissions
-3. Clear cache
-4. Check for JavaScript errors
-
-## Related Documentation
-
-- [Customer Groups](/wholesale/usage/customer-groups) - Detailed group management
-- [Pricing Rules](/wholesale/usage/pricing-rules) - Advanced pricing setup
-- [Configuration](/wholesale/configuration) - System settings
-- [Troubleshooting](/wholesale/troubleshooting) - Fix common issues
+1. Make sure you clicked **Save** on the product after making changes
+2. Clear cache: **Admin > Platform Administration > Cache management**
+3. Test in an incognito browser window to rule out browser cache

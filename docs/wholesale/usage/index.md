@@ -1,151 +1,62 @@
-# How to Use Wholesale
+# Usage Overview
 
-Welcome to the Wholesale user guide! This section will help you understand how to use the B2B pricing and customer management system in your online store.
+This section covers everything you need to manage wholesale on your site. Pick the guide that matches what you want to do.
 
-## What is Wholesale?
+## Admin Guides
 
-Wholesale is a B2B system that allows store owners to offer different prices to different types of customers based on their customer group, order quantities, and business relationships. Think of it as a way to reward bulk buyers and business customers with better pricing.
+### [Customer Groups](/wholesale/usage/customer-groups)
 
-Customers can:
+Create and manage groups like "Gold", "Silver", "Bronze" that give automatic discounts to assigned customers.
 
-- **Apply for wholesale accounts** with business information
-- **Receive special pricing** based on their customer group
-- **See quantity-based discounts** with tiered pricing
-- **Purchase products at volume** with enforced MOQs
-- **Access exclusive products** restricted to wholesale customers
+**Go to:** Wholesale > Customer Groups
 
-## Who is This Guide For?
+### [Pricing Rules](/wholesale/usage/pricing-rules)
 
-### For Store Owners & Admins
+Set up quantity-based pricing tiers on individual products (e.g., 10% off for 50+ units, 20% off for 100+ units).
 
-Learn how to manage your wholesale operations:
+**Go to:** Wholesale > Pricing Rules, or edit them directly on each product page
 
-- [Admin Dashboard](/wholesale/usage/admin-dashboard) - Managing customer groups and pricing rules
-- [Customer Groups](/wholesale/usage/customer-groups) - Creating and managing customer groups
-- [Pricing Rules](/wholesale/usage/pricing-rules) - Setting up tiered pricing
+### [Admin Dashboard](/wholesale/usage/admin-dashboard)
 
-### For Wholesale Customers
+Review wholesale applications, manage product visibility and MOQ, and assign customers to groups.
 
-Learn how to take advantage of wholesale pricing:
+**Go to:** Wholesale > Applications, Ecommerce > Customers
 
-- [Customer Guide](/wholesale/usage/customer-guide) - How to apply and shop with wholesale prices
+### [Customer Guide](/wholesale/usage/customer-guide)
 
-## Quick Start
+How your customers apply for wholesale accounts, see wholesale pricing, and shop on your site.
 
-### For Admins
-
-1. Go to your admin panel
-2. Navigate to **Ecommerce** > **Wholesale**
-3. Create customer groups with discount settings
-4. Create pricing rules for tiered discounts
-5. Set MOQ on products as needed
-6. Review and approve wholesale applications
-
-### For Customers
-
-1. Visit the wholesale registration page
-2. Fill out business information
-3. Submit application
-4. Wait for admin approval
-5. Log in to see wholesale prices
-6. Shop with special pricing!
-
-## Key Benefits
-
-| Benefit | Description |
-|---------|-------------|
-| **Flexible Pricing** | Different prices for different customer groups |
-| **Tiered Discounts** | Better prices for larger quantities |
-| **MOQ Control** | Enforce minimum order quantities |
-| **Product Access** | Control which customers see which products |
-| **Easy Management** | Simple admin interface for all settings |
-
-## How Wholesale Works
+## How Everything Fits Together
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Customer Journey                      │
-├─────────────────────────────────────────────────────────┤
-│  1. Customer applies for wholesale account              │
-│                         ↓                               │
-│  2. Admin reviews and approves application              │
-│                         ↓                               │
-│  3. Customer assigned to appropriate group              │
-│                         ↓                               │
-│  4. Customer logs in and sees special prices            │
-│                         ↓                               │
-│  5. Customer adds products (meeting MOQ)                │
-│                         ↓                               │
-│  6. Cart shows discounted wholesale prices              │
-│                         ↓                               │
-│  7. Customer completes checkout at wholesale rates      │
-└─────────────────────────────────────────────────────────┘
+1. You create customer groups with discounts
+                    ↓
+2. You optionally create pricing rules for specific products
+                    ↓
+3. A customer applies at /wholesale/register
+                    ↓
+4. You approve the application and assign them to a group
+                    ↓
+5. Customer logs in → sees discounted prices → shops → checks out
 ```
 
-## Pricing Structure Example
+### What controls the price a customer sees?
 
-You can create sophisticated pricing structures:
+There are two layers of discounting:
 
-### Customer Groups
+**Layer 1: Group Discount** - Every customer group has a base discount (e.g., Gold = 20% off). This applies to ALL products for customers in that group.
 
-| Group | Discount | Min Order Qty | Min Order Value |
-|-------|----------|---------------|-----------------|
-| Platinum | 25% | 200 | $2,000 |
-| Gold | 20% | 100 | $1,000 |
-| Silver | 15% | 50 | $500 |
-| Bronze | 10% | 25 | $250 |
+**Layer 2: Pricing Rules** - You can create additional quantity-based tiers for specific products. These can give bigger discounts for larger quantities.
 
-### Tiered Pricing (Example Product: $100 retail)
+When both apply, the system picks the price that gives the customer the **best deal** (unless you've configured the [discount resolution strategy](/wholesale/configuration#discount-resolution-strategy) differently).
 
-**For Gold Members:**
+### Example
 
-| Quantity | Price | Total for Tier |
-|----------|-------|----------------|
-| 1-49 | $80 (20% off) | - |
-| 50-99 | $75 (25% off) | $3,750+ |
-| 100-249 | $70 (30% off) | $7,000+ |
-| 250+ | $65 (35% off) | $16,250+ |
+Product: Widget, retail price $100
 
-Customer ordering 150 units pays $70 each = $10,500 total (saves $4,500!)
+**Gold group** has 20% base discount, so Gold customers see $80.
 
-## Product MOQ Examples
+You also create a **pricing rule** for this product: 50+ units at 25% off = $75.
 
-### Example 1: Case Packs
-- Product ships in cases of 12
-- Min Quantity: 12
-- Increment: 12
-- Valid orders: 12, 24, 36, 48...
-
-### Example 2: Bulk Only
-- Product only sold in bulk
-- Min Quantity: 100
-- Increment: 1
-- Valid orders: 100, 101, 102...
-
-### Example 3: Pallet Quantities
-- Product ships on pallets
-- Min Quantity: 500
-- Increment: 500
-- Valid orders: 500, 1000, 1500...
-
-## Product Visibility Strategy
-
-### Public Products
-- Visible to everyone
-- Retail and wholesale customers
-- Standard catalog items
-
-### Wholesale Only Products
-- Only visible to approved wholesale customers
-- B2B-specific items
-- Bulk-only products
-
-### Group-Restricted Products
-- Only specific customer groups can see
-- Premium items for top-tier customers
-- Special order products
-
-## Need Help?
-
-- Having issues? Check our [Troubleshooting Guide](/wholesale/troubleshooting)
-- Got questions? See our [FAQ](/wholesale/faq)
+- Gold customer buying 10 units → $80 each (group discount)
+- Gold customer buying 50 units → $75 each (pricing rule, better deal)

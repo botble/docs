@@ -15,7 +15,7 @@ export default [
             { text: 'Usage Overview', link: '/wholesale/usage/' },
             { text: 'Customer Groups', link: '/wholesale/usage/customer-groups' },
             { text: 'Pricing Rules', link: '/wholesale/usage/pricing-rules' },
-            { text: 'Admin Dashboard', link: '/wholesale/usage/admin-dashboard' },
+            { text: 'Admin Tasks', link: '/wholesale/usage/admin-dashboard' },
             { text: 'Customer Guide', link: '/wholesale/usage/customer-guide' },
         ],
     },

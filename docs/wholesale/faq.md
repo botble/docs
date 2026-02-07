@@ -1,249 +1,127 @@
-# Frequently Asked Questions
+# FAQ
 
-## General Questions
+## Setup
 
-### What is the Wholesale plugin?
+### How do I get wholesale pricing working?
 
-Wholesale is a premium B2B plugin for Botble CMS that allows you to offer different prices to different customer groups, enforce minimum order quantities, control product visibility, and manage wholesale customer applications. It's perfect for businesses selling to both retail and wholesale customers.
+The minimum setup is:
 
-### Is this plugin compatible with my theme?
+1. Activate the plugin at **Admin > Plugins**
+2. Create a customer group at **Wholesale > Customer Groups > Create** (set a name and discount percentage)
+3. Assign a customer to the group at **Ecommerce > Customers > Edit customer > Wholesale Groups**
+4. That customer now sees discounted prices when logged in
 
-Yes! Wholesale works with all Botble e-commerce themes available on CodeCanyon including Farmart, Martfury, Shofy, Ninico, Nest, and others. The pricing display automatically integrates with your theme's product and cart pages.
+### Do I need to set prices on every product?
 
-### What are the requirements?
+No. When you create a customer group with a 20% discount, that discount applies to **all products** automatically for customers in that group.
 
-- Botble CMS version 7.6.0 or higher
-- PHP version 8.2 or higher
-- Active E-commerce plugin (required dependency)
+Pricing rules (quantity-based tiers) are optional and only needed if you want different prices at different quantities for specific products.
+
+### Is the plugin compatible with my theme?
+
+Yes. Wholesale works with all Botble e-commerce themes including Farmart, Martfury, Shofy, Ninico, Nest, and others.
+
+### What are the system requirements?
+
+- Botble CMS 7.6.0+
+- PHP 8.2+
+- Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 
-## Features
+## Customer Groups
 
-### Can I create multiple customer groups?
+### Can a customer be in multiple groups?
 
-Yes! You can create unlimited customer groups with different discount rates, minimum order requirements, and priorities. Customers can belong to one or multiple groups depending on your configuration.
+Yes, if you enable it in **Wholesale > Settings > Allow Customers in Multiple Groups**. When enabled, the [discount resolution strategy](/wholesale/configuration#discount-resolution-strategy) determines which discount applies.
 
-### Can I set different prices for different quantity ranges?
+### What's the difference between Percentage and Fixed Amount discounts?
 
-Absolutely! The tiered pricing system allows you to create multiple price breaks based on quantity. For example:
-- 1-49 units: Regular price
-- 50-99 units: 10% off
-- 100-499 units: 15% off
-- 500+ units: 20% off
+- **Percentage** (e.g., 20%) - Scales with product price. 20% off a $100 product = $80. 20% off a $50 product = $40.
+- **Fixed Amount** (e.g., $10 off) - Same dollar amount off every product. $10 off a $100 product = $90. $10 off a $50 product = $40.
 
-### Can I enforce minimum order quantities?
+### What does the Priority field do?
 
-Yes, the MOQ (Minimum Order Quantity) feature allows you to set:
-- Minimum quantity per product
-- Quantity increments (e.g., must order in multiples of 12)
-- Different MOQs for different customer groups
+Priority is only used when **Discount Resolution Strategy** is set to "Priority" and a customer is in multiple groups. Lower priority number = higher importance. A group with priority 1 takes precedence over priority 2.
 
-### Can I hide products from retail customers?
+## Pricing Rules
 
-Yes! The product visibility feature allows you to:
-- Show products only to wholesale customers
-- Restrict specific products to specific customer groups
-- Keep wholesale catalog separate from retail
+### What's the difference between group discounts and pricing rules?
 
-### Can I require approval for wholesale accounts?
+- **Group discounts** apply the same percentage/amount to ALL products for everyone in the group.
+- **Pricing rules** are product-specific and quantity-based - different discounts for different quantities of a specific product.
 
-Yes, you can enable approval requirements where wholesale applications go to "pending" status until an admin reviews and approves them. You can also disable approval for instant access.
+Both can work together. The system gives the customer the best price.
 
-## Pricing & Discounts
+### Can I have pricing rules without customer groups?
 
-### How are discounts calculated?
+Pricing rules can target "All Groups" (any wholesale customer) or a specific group. But the customer must be in at least one wholesale group to see wholesale pricing.
 
-Discounts can be configured in three ways:
+### What happens if quantity ranges overlap?
 
-1. **Percentage Discount** - Reduces price by a percentage (e.g., 20% off)
-2. **Fixed Amount Discount** - Reduces price by fixed dollar amount (e.g., $10 off)
-3. **Fixed Price** - Sets absolute price regardless of original (e.g., always $40)
+Avoid overlapping ranges. If you create two rules for the same product with overlapping quantity ranges, the behavior is unpredictable. Use distinct ranges like 10-49, 50-99, 100+.
 
-### What happens if a customer belongs to multiple groups?
+## Products
 
-You can configure the conflict resolution strategy:
-- **Highest Discount** - Customer gets the best deal
-- **Lowest Discount** - Customer gets the smallest discount
-- **Priority** - Group with highest priority number wins
+### Can the same product have retail and wholesale prices?
 
-### Can I have group-level discounts AND tiered pricing?
+Yes. The same product shows its regular price to retail customers and the wholesale price to wholesale customers. You don't need separate products.
 
-Yes! Group-level discounts apply store-wide, while tiered pricing rules provide additional quantity-based discounts for specific products. Both can work together.
+### What does "Wholesale Only" visibility do?
 
-### Do discounts apply automatically?
+Products with "Wholesale Only" visibility are completely hidden from retail customers and guests. Only logged-in customers who are assigned to a wholesale group can see them in the catalog and search results.
 
-Yes, once a customer is assigned to a group and logs in, all applicable discounts are calculated and displayed automatically on product pages, in cart, and at checkout.
+### How does MOQ (Minimum Order Quantity) work?
 
-## Product Management
+When you set a minimum quantity (e.g., 12) and increment (e.g., 6) on a product, wholesale customers must order at least 12 units and in multiples of 6 (12, 18, 24, etc.). If they try to order an invalid quantity, it's automatically adjusted.
 
-### Can I set different MOQs for different customer groups?
+## Applications
 
-Yes! When setting MOQ on a product, you can specify which customer group it applies to, or apply it to all wholesale customers.
+### How do customers apply?
 
-### What happens if a customer tries to order less than the MOQ?
+Customers visit `/wholesale/register` on your site, fill out a form with their business details, and submit. You review applications at **Wholesale > Applications**.
 
-The system will automatically adjust the quantity to the minimum allowed. For example, if MOQ is 12 and the customer tries to order 5, it will be adjusted to 12.
+### Can I skip the approval process?
 
-### Can I have retail and wholesale versions of the same product?
+Yes. Disable **Require Approval** in **Wholesale > Settings**. Applications will be auto-approved, and customers get wholesale access immediately.
 
-You don't need separate products. The same product can have regular retail pricing for normal customers and wholesale pricing for wholesale customers based on their group assignment.
+### Can customers reapply after rejection?
 
-### How do I bulk-update MOQ settings?
+Yes. Rejected customers can reapply at `/customer/wholesale/reapply`. They can submit one reapplication per day.
 
-Currently, MOQ must be set per product in the product edit page. For bulk updates, consider using database queries or contact support for assistance.
+## Display
 
-## Customer Management
+### How do I show the pricing table on product pages?
 
-### How do customers apply for wholesale accounts?
+Enable it at **Wholesale > Settings > Display Options > Show Pricing Table**. The table shows automatically on products that have pricing rules.
 
-Customers visit the wholesale registration page, fill out an application form with their business details, and submit. Admins receive a notification and can approve or reject the application.
+### Can I change how the pricing table looks?
 
-### Can I manually create wholesale customers?
-
-Yes! In the admin, edit any customer account, assign them to a customer group, and they instantly become a wholesale customer.
-
-### Can I set expiration dates for wholesale access?
-
-Yes, when assigning customers to groups, you can set an optional expiration date. After that date, the customer loses wholesale access.
-
-### What information do I collect in applications?
-
-The application form collects:
-- Company name
-- Tax ID (optional)
-- Business address
-- Phone number
-- Business type (optional)
-- Website (optional)
-
-## Display & Customization
-
-### How are wholesale prices displayed?
-
-Wholesale customers see:
-- Pricing table on product pages showing all tiers
-- Discounted prices in product listings
-- Special pricing in cart and checkout
-- Regular price with discount applied
-
-### Can I customize the pricing table appearance?
-
-Yes! Settings allow you to:
-- Choose from multiple visual styles (Modern, Minimal, Classic, Elegant)
-- Set display mode (Full or Compact)
-- Show/hide savings amounts
-- Customize section title
+Yes. Go to **Wholesale > Settings** to choose the visual style (Modern, Minimal, Classic, Elegant), colors, display mode, and whether to show savings amounts.
 
 ### Can guests see wholesale prices?
 
-This is configurable. You can:
-- Show pricing tables to everyone (guests see the rates available)
-- Hide wholesale prices from guests (only logged-in wholesale customers see them)
+By default, no. Enable **Show Wholesale Prices to Guests** in **Wholesale > Settings** to let non-logged-in visitors see the pricing table.
 
-Default is to hide from guests for privacy.
-
-### Does it work on mobile devices?
-
-Yes! All pricing tables, cart integration, and checkout features are fully responsive and work perfectly on mobile devices.
-
-## Orders & Integration
-
-### How do wholesale orders appear in admin?
-
-Wholesale orders appear just like regular orders, but you can identify them by:
-- Customer's group membership
-- Applied discount amounts
-- Special wholesale pricing in line items
-
-### Does it affect inventory?
-
-Yes, wholesale orders reduce inventory just like retail orders. Stock management works identically for both order types.
-
-### Can I export wholesale orders separately?
-
-The standard order export includes all orders. You can filter by customer group or use date ranges to export wholesale orders specifically.
-
-### Does it integrate with existing plugins?
-
-Wholesale is designed to work alongside other Botble e-commerce plugins. It integrates seamlessly with:
-- Standard checkout
-- Payment gateways
-- Shipping methods
-- Tax calculations
-
-## Technical Questions
+## Technical
 
 ### Will this slow down my site?
 
-No. The plugin is optimized for performance:
-- Efficient database queries
-- Caching support
-- Minimal JavaScript
-- No impact on retail customers
+No. The plugin uses efficient database queries and supports caching. It has no performance impact on retail customers who aren't in wholesale groups.
 
-### Can I use this with multi-store?
+### Does it work with multi-store?
 
-Yes! Wholesale supports Botble's multi-store functionality. You can set different pricing rules per store.
+Yes. You can create different pricing rules per store if using Botble's multi-store feature.
 
-### Does it support multiple currencies?
+### Does it work with multiple currencies?
 
-Yes, wholesale pricing works with Botble's multi-currency system. Discounts are calculated in the customer's selected currency.
+Yes. Discounts are calculated in the customer's selected currency.
 
-### Is the code customizable?
-
-Yes! As with all Botble plugins, you can customize templates, styling, and functionality. The codebase follows Laravel best practices.
-
-## Purchase & Support
-
-### Do I get free updates?
-
-Yes! Your purchase includes lifetime free updates. We regularly release updates with new features, improvements, and compatibility updates for the latest Botble CMS versions.
+## Support
 
 ### How do I get support?
 
-For support, please visit our [Support Center](https://botble.ticksy.com). You can submit a ticket and our team will assist you.
+Visit [botble.ticksy.com](https://botble.ticksy.com) to submit a support ticket.
 
-### Can I use this on multiple sites?
+### Are updates free?
 
-Each license is valid for one domain. If you need to use the plugin on multiple sites, you'll need to purchase additional licenses.
-
-### Is there a refund policy?
-
-Please refer to CodeCanyon's refund policy. Generally, refunds are available if the plugin doesn't work as described and we cannot resolve the issue.
-
-## Troubleshooting
-
-### Why aren't wholesale prices showing?
-
-Check the following:
-1. Customer is assigned to an active customer group
-2. Customer is logged in
-3. Group status is "Published"
-4. Pricing rule status is "Published" (if using tiered pricing)
-5. Clear all caches (admin and browser)
-
-### Why is MOQ not being enforced?
-
-Ensure:
-1. MOQ is set on the product in admin
-2. Customer group matches the MOQ setting
-3. JavaScript is enabled in browser
-4. Clear cart and try again
-5. Check browser console for errors
-
-### Pricing tiers not working correctly
-
-Verify:
-1. Pricing rules are "Published"
-2. Quantity ranges don't overlap
-3. Customer is in the correct group
-4. Rules apply to correct product
-5. Clear all caches
-
-### Application form not working
-
-Check:
-1. Wholesale registration is enabled in settings
-2. Email settings are configured correctly
-3. Application appears in admin area
-4. User has permission to approve applications
+Yes. Your purchase includes lifetime free updates.

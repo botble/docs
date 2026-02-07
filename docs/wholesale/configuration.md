@@ -1,404 +1,185 @@
-# Configuring Wholesale
+# Configuration
 
-This guide will walk you through the process of configuring the Wholesale plugin for your Botble E-commerce store.
-
-## Accessing Wholesale Settings
-
-1. Log in to your admin panel
-2. Navigate to **Settings** > **Ecommerce** > **Wholesale**
-3. You will see the Wholesale configuration page
+All wholesale settings are in one place: **Wholesale > Settings** in your admin panel.
 
 ![Wholesale Settings](./images/settings.png)
 
-## General Settings
+## Core Settings
 
-### Enable Wholesale System
+### Enable Wholesale
 
-Toggle to enable or disable the entire wholesale system without deactivating the plugin.
+Turns the entire wholesale system on or off without deactivating the plugin. When disabled, all customers see regular retail prices.
 
 **Default:** Enabled
-
-::: tip Usage Scenario
-Disable temporarily during maintenance or when transitioning between retail and wholesale operations.
-:::
 
 ### Require Approval for Wholesale Registration
 
-Control whether wholesale applications require admin approval.
+Controls what happens when someone submits a wholesale application at `/wholesale/register`:
 
-**Options:**
-- **Enabled** - Applications go to pending status, admin must approve
-- **Disabled** - Applications are auto-approved, customers get immediate access
+- **Enabled** (default) - Applications go to "Pending" status. You must approve them manually at **Wholesale > Applications**.
+- **Disabled** - Applications are auto-approved. Customers get wholesale access immediately.
+
+### Enable Wholesale Registration
+
+Controls whether the "Wholesale Account" menu item appears in the customer dashboard. When disabled, customers cannot apply for wholesale access through the frontend. You can still assign customers to groups manually in admin.
 
 **Default:** Enabled
 
-### Show Prices to Guest Users
+### Show Wholesale Prices to Guests
 
-Control whether non-logged-in users can see wholesale prices.
+Controls what non-logged-in visitors see on product pages:
 
-**Options:**
-- **Enabled** - Guest users see pricing tables on product pages
-- **Disabled** - Only logged-in wholesale customers see special prices
+- **Disabled** (default) - Guests see a "Login to see price" message instead of wholesale prices.
+- **Enabled** - Guests can see the pricing tier table on product pages.
 
-**Default:** Disabled
-
-::: warning Security Consideration
-Disabling this is recommended to keep wholesale pricing confidential.
+::: warning
+Keep this disabled if your wholesale pricing is confidential.
 :::
 
-### Allow Multiple Customer Groups
+### Allow Customers in Multiple Groups
 
-Control whether a customer can be assigned to multiple groups simultaneously.
+- **Disabled** (default) - Each customer can belong to only one group at a time.
+- **Enabled** - A customer can belong to multiple groups. When groups give different discounts, the [discount resolution strategy](#discount-resolution-strategy) decides which applies.
 
-**Options:**
-- **Enabled** - Customer can belong to multiple groups (uses priority for conflict resolution)
-- **Disabled** - Customer can only belong to one group at a time
+### Enable Wholesale Pricing for Guests
 
-**Default:** Enabled
+- **Disabled** (default) - Only logged-in wholesale customers get wholesale prices.
+- **Enabled** - Wholesale pricing rules apply to everyone, including guests. Uses the [default customer group](#default-customer-group) for pricing.
+
+### Default Customer Group
+
+Select which customer group is used for:
+- Auto-approved wholesale registrations (when approval is disabled)
+- Guest wholesale pricing (when enabled for guests)
+
+Only published customer groups appear in this dropdown. You need to [create at least one group](/wholesale/usage/customer-groups) first.
 
 ### Discount Resolution Strategy
 
-When a customer belongs to multiple groups, choose how to resolve conflicting discounts:
+When a customer belongs to multiple groups with different discounts, this setting determines which discount applies:
 
-| Strategy | Description |
+| Strategy | What happens |
 |----------|-------------|
-| **Highest** | Apply the group with highest discount value |
-| **Lowest** | Apply the group with lowest discount value |
-| **Priority** | Use the group with highest priority number |
+| **Highest** | Customer gets the largest discount. If they're in Gold (20% off) and Silver (15% off), they get 20%. |
+| **Lowest** | Customer gets the smallest discount. Same example, they get 15%. |
+| **Priority** | The group with the lowest priority number wins. Set priority when [creating groups](/wholesale/usage/customer-groups). |
 
 **Default:** Highest
 
-## Registration Settings
+::: tip
+This setting only matters when **Allow Customers in Multiple Groups** is enabled.
+:::
 
-### Registration Form Fields
+### Enable Wholesale in Vendor Dashboard
 
-Configure which fields are required in the wholesale application form:
+Only appears if the Marketplace plugin is active. When enabled, vendors can manage wholesale pricing from their dashboard.
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| **Company Name** | Yes | Business name |
-| **Tax ID** | Optional | Business tax identification |
-| **Business Address** | Yes | Physical business location |
-| **Phone Number** | Yes | Contact number |
-| **Business Type** | Optional | Industry category |
-| **Website** | Optional | Company website URL |
+**Default:** Disabled
 
-### Application Email Notifications
+## Appearance Settings
 
-Configure email notifications for wholesale applications:
-
-- **Customer Confirmation** - Sent when application is submitted
-- **Admin Notification** - Alert admin of new applications
-- **Approval Email** - Sent when application is approved
-- **Rejection Email** - Sent when application is rejected
-
-## Display Settings
+These control how the wholesale pricing table looks on product pages.
 
 ### Visual Style
 
-Choose how pricing tables are displayed on product pages:
+Choose from four styles for the pricing tier table:
 
 | Style | Description |
 |-------|-------------|
-| **Modern** | Contemporary design with gradient effects |
-| **Minimal** | Clean, simple table layout |
+| **Modern** | Contemporary design with gradient accents |
+| **Minimal** | Clean, simple layout |
 | **Classic** | Traditional table styling |
-| **Elegant** | Refined presentation with subtle borders |
+| **Elegant** | Refined look with subtle borders |
+
+### Colors
+
+Customize the pricing table colors to match your theme:
+
+| Setting | What it controls | Default |
+|---------|-----------------|---------|
+| **Primary Color** | Highlights, active tier indicator, accents | `#206bc4` |
+| **Header Text Color** | Pricing table header text | `#1e293b` |
+| **Price Color** | Discounted price per unit | `#059669` |
+| **Discount Badge Color** | Discount percentage badges | `#dc2626` |
+| **Border Color** | Table borders | `#e5e7eb` |
+
+## Display Options
+
+### Show Pricing Table
+
+When enabled, product detail pages show a pricing tier table to wholesale customers. This table lists all quantity tiers and their prices.
+
+**Default:** Disabled
+
+When you enable this, additional options appear:
 
 ### Display Mode
 
-Choose how much information to display in pricing tables:
+- **Full** - Shows all columns including savings
+- **Compact** - Hides the savings column for a simpler view
 
-| Mode | Description |
-|------|-------------|
-| **Full** | Shows all pricing tiers with savings calculations |
-| **Compact** | Condensed view with essential information only |
+### Show Icon
 
-### Show Savings Amount
+Adds an icon to the pricing table header. Choose from: receipt, package, store, tag, discount, cart, delivery, or chart.
 
-Toggle to display the amount saved for each pricing tier.
+### Show Original Price
 
-**Example with savings shown:**
-> 100+ units: $45.00 **Save $5.00 (10%)**
+When enabled, shows the original retail price with a strikethrough next to the discounted wholesale price.
 
-**Example without savings:**
-> 100+ units: $45.00
+### Show Savings Column
 
-### Section Title
+When enabled, adds a "You Save" column to the pricing table showing how much the customer saves at each tier.
 
-Set a custom title for the wholesale pricing section. If left empty, the default translation will be used.
+## Setting Up Your Site: Recommended Configuration
 
-**Default:** "Wholesale Pricing"
+### For a standard B2B store
 
-**Examples:**
-- "Volume Discounts"
-- "Bulk Pricing"
-- "B2B Pricing Tiers"
+1. **Enable Wholesale** - On
+2. **Require Approval** - On (you want to verify business customers)
+3. **Show Prices to Guests** - Off (keep pricing confidential)
+4. **Multiple Groups** - Off (start simple with one group per customer)
+5. **Show Pricing Table** - On
+6. **Display Mode** - Full
+7. **Show Savings** - On
 
-## Customer Groups Configuration
+### For a hybrid B2B/B2C store
 
-### Creating Customer Groups
+1. **Enable Wholesale** - On
+2. **Require Approval** - On
+3. **Show Prices to Guests** - Off
+4. **Multiple Groups** - On (customers can be in a "Seasonal Promo" group AND their base group)
+5. **Resolution Strategy** - Highest (let customers get the best deal)
 
-When creating a customer group, configure:
+### For open wholesale (no approval)
 
-| Field | Description |
-|-------|-------------|
-| **Name** | Group identifier (e.g., "Gold Resellers", "Silver Partners") |
-| **Description** | Internal notes about the group |
-| **Status** | Published (active) or Draft (inactive) |
-| **Priority** | Numeric priority for conflict resolution (higher = higher priority) |
-| **Discount Type** | Percentage or Fixed Amount |
-| **Discount Value** | Amount or percentage discount |
-| **Min Order Quantity** | Minimum items per order |
-| **Min Order Value** | Minimum order subtotal |
-
-### Group Priority System
-
-Priority determines which group's settings apply when a customer belongs to multiple groups:
-
-**Example Priority Structure:**
-
-| Group | Priority | Discount |
-|-------|----------|----------|
-| Platinum | 100 | 25% |
-| Gold | 75 | 20% |
-| Silver | 50 | 15% |
-| Bronze | 25 | 10% |
-
-If a customer is in both Gold and Silver groups:
-- With "Priority" strategy → Gold applies (higher priority number)
-- With "Highest" strategy → Gold applies (higher discount)
-
-## Product Configuration
-
-### Setting Product MOQ
-
-For individual products, you can set:
-
-| Setting | Description |
-|---------|-------------|
-| **Minimum Quantity** | Smallest order quantity allowed |
-| **Quantity Increment** | Must order in multiples of this number |
-| **Customer Group** | Apply to specific group or all wholesale customers |
-
-**Example:**
-- Min Quantity: 12
-- Increment: 6
-- Valid orders: 12, 18, 24, 30...
-- Invalid orders: 13, 15, 20...
-
-### Product Visibility
-
-Control product visibility in the admin product edit page:
-
-| Visibility | Description |
-|------------|-------------|
-| **Public** | Visible to all customers |
-| **Wholesale Only** | Only visible to approved wholesale customers |
-| **Hidden** | Not visible in catalog (direct link only) |
-
-### Product Group Access
-
-Restrict products to specific customer groups:
-
-1. Edit a product in admin
-2. Go to "Wholesale Settings" section
-3. Select customer groups that can access this product
-4. Empty selection = all wholesale customers can access
-
-::: warning Important
-- Product must have "Wholesale Only" visibility for group restrictions to apply
-- Public products ignore group access restrictions
-:::
-
-## Pricing Rules Configuration
-
-### Creating Tiered Pricing
-
-For advanced quantity-based pricing, create pricing rules:
-
-| Field | Description |
-|-------|-------------|
-| **Product** | Which product this rule applies to |
-| **Customer Group** | Which group gets this pricing |
-| **Min Quantity** | Starting quantity for this tier |
-| **Max Quantity** | Ending quantity (optional, leave empty for unlimited) |
-| **Discount Type** | Percentage, Fixed Amount, or Fixed Price |
-| **Discount Value** | Discount amount or final price |
-| **Status** | Published or Draft |
-
-### Discount Types Explained
-
-**1. Percentage Discount**
-- Reduces price by a percentage
-- Example: 10% off $50 = $45
-
-**2. Fixed Amount Discount**
-- Reduces price by fixed dollar amount
-- Example: $5 off $50 = $45
-
-**3. Fixed Price**
-- Sets absolute price regardless of original
-- Example: Fixed at $40 (even if original was $50 or $60)
-
-### Example Pricing Structure
-
-Product: Widget (Original Price: $50)
-
-| Quantity | Discount Type | Discount Value | Final Price |
-|----------|---------------|----------------|-------------|
-| 1-49 | None | - | $50.00 |
-| 50-99 | Percentage | 10% | $45.00 |
-| 100-499 | Percentage | 15% | $42.50 |
-| 500+ | Fixed Price | $38 | $38.00 |
-
-## Testing Your Configuration
-
-After configuring the plugin, test the following:
-
-### 1. Customer Group Test
-
-1. Create a test customer group with 10% discount
-2. Create a test customer account
-3. Assign customer to the group in admin
-4. Log in as that customer
-5. Verify discounted prices appear on products
-
-### 2. Pricing Rules Test
-
-1. Create a product with tiered pricing
-2. Add pricing rules for different quantities
-3. View product page as wholesale customer
-4. Verify pricing table displays correctly
-5. Add different quantities to cart and verify prices
-
-### 3. MOQ Test
-
-1. Set MOQ on a product (e.g., min 10, increment 5)
-2. Try adding invalid quantities (e.g., 7, 12)
-3. System should adjust to valid quantity (10, 15)
-4. Verify validation messages appear
-
-### 4. Visibility Test
-
-1. Set product to "Wholesale Only" visibility
-2. Log out (or use incognito)
-3. Verify product doesn't appear in catalog
-4. Log in as wholesale customer
-5. Verify product now appears
+1. **Enable Wholesale** - On
+2. **Require Approval** - Off
+3. **Default Customer Group** - Select your base wholesale group
+4. **Show Prices to Guests** - On (entice visitors to register)
 
 ## Permissions
 
-Wholesale includes these permissions that can be assigned to user roles:
+Wholesale adds these permissions that you can assign to admin roles at **Admin > Users > Roles**:
 
-| Permission | Description |
-|------------|-------------|
-| `wholesale.customer-groups.index` | Access to Customer Groups menu |
+| Permission | What it allows |
+|------------|---------------|
+| `wholesale.customer-groups.index` | View customer groups list |
 | `wholesale.customer-groups.create` | Create new customer groups |
 | `wholesale.customer-groups.edit` | Edit existing customer groups |
 | `wholesale.customer-groups.destroy` | Delete customer groups |
-| `wholesale.pricing-rules.index` | Access to Pricing Rules menu |
+| `wholesale.pricing-rules.index` | View pricing rules list |
 | `wholesale.pricing-rules.create` | Create new pricing rules |
 | `wholesale.pricing-rules.edit` | Edit existing pricing rules |
 | `wholesale.pricing-rules.destroy` | Delete pricing rules |
+| `wholesale.products.index` | View wholesale products list |
 | `wholesale.applications.index` | View wholesale applications |
-| `wholesale.applications.approve` | Approve/reject applications |
-| `wholesale.settings` | Access to settings page |
+| `wholesale.applications.approve` | Approve or reject applications |
+| `wholesale.settings` | Access wholesale settings page |
 
-### Managing Permissions
+### Suggested role setups
 
-1. Go to **Users** > **Roles**
-2. Edit a role (e.g., "Staff", "Manager")
-3. Find the "Wholesale" section in permissions
-4. Check/uncheck permissions based on role requirements
-5. Save changes
+**Store Manager** - All wholesale permissions
 
-## Troubleshooting Configuration Issues
+**Sales Staff** - View groups, view rules, view and approve applications. No settings access.
 
-### Settings Not Saving
-
-- Verify file permissions on `storage/` directory
-- Clear cache: `php artisan cache:clear`
-- Check database connection
-- Review error logs
-
-### Prices Not Updating
-
-- Clear all caches (admin + browser)
-- Verify customer group status is "Published"
-- Check pricing rule status is "Published"
-- Ensure customer is assigned to group
-
-### MOQ Not Enforcing
-
-- Verify MOQ is set on the product
-- Check customer group assignment
-- Clear cart and try again
-- Check for JavaScript errors in console
-
-### Visibility Not Working
-
-- Verify product visibility setting
-- Check customer wholesale status
-- Clear browser cache
-- Test in incognito mode
-
-## Configuration Best Practices
-
-### 1. Start Simple
-
-- Begin with one or two customer groups
-- Add basic percentage discounts
-- Test thoroughly before adding complexity
-- Gradually add tiered pricing and MOQ
-
-### 2. Clear Group Names
-
-- Use descriptive names: "Gold Resellers - 20% Off"
-- Document each group's purpose
-- Make priority numbers logical (10, 20, 30...)
-
-### 3. Reasonable MOQs
-
-- Set MOQs based on your packaging
-- Use increments that make business sense
-- Don't set MOQs too high initially
-- Monitor customer feedback
-
-### 4. Test Thoroughly
-
-- Test all discount combinations
-- Verify email notifications work
-- Check mobile responsiveness
-- Test with real customer accounts
-
-### 5. Monitor Performance
-
-- Track wholesale vs retail conversion
-- Monitor average order values by group
-- Review pricing rule effectiveness
-- Adjust based on data
-
-## Configuration Checklist
-
-Use this checklist when setting up the plugin:
-
-- [ ] Enable wholesale system
-- [ ] Configure approval requirements
-- [ ] Set price visibility rules
-- [ ] Configure multiple groups setting
-- [ ] Set discount resolution strategy
-- [ ] Create customer groups
-- [ ] Set group priorities
-- [ ] Configure MOQ settings
-- [ ] Set product visibility rules
-- [ ] Create pricing rules
-- [ ] Configure email notifications
-- [ ] Set display style
-- [ ] Configure admin permissions
-- [ ] Test customer registration
-- [ ] Test pricing calculations
-- [ ] Test MOQ enforcement
-- [ ] Verify email notifications
-
-If you continue to encounter configuration issues, please refer to the [Troubleshooting](/wholesale/troubleshooting) section or contact our support team.
+**Customer Service** - View groups, view applications. Cannot approve or change settings.
