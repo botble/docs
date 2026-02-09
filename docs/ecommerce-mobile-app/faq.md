@@ -19,6 +19,18 @@ Both versions offer similar features. Choose based on your development team's ex
 - **React Native (this app)**: JavaScript/TypeScript, Expo ecosystem
 - **Flutter**: Dart language, single codebase compilation
 
+### Where is the eCommerce website that connects to this app?
+
+This app is a mobile frontend for the [Botble Ecommerce](https://codecanyon.net/collections/10433615-laravel-ecommerce) script — a Laravel-based eCommerce platform sold separately on CodeCanyon. Botble Ecommerce provides the website, admin panel, and API. This React Native app connects to it via REST API, sharing the same database. You configure your Botble URL in the `.env` file (`API_BASE_URL`).
+
+### Can I use this app standalone without the eCommerce website?
+
+No. This app is a customer-facing mobile client only — it has no built-in backend, database, or admin panel. You need the [Botble Ecommerce](https://codecanyon.net/collections/10433615-laravel-ecommerce) script running on a server. All admin work (adding products, managing orders, etc.) is done through Botble's web-based admin dashboard at `yourdomain.com/admin`. The mobile app is for your customers to browse and shop.
+
+### Does this app have SaaS or multi-tenant features?
+
+No. The app supports **multi-vendor marketplace** (multiple sellers within one app via Botble's Marketplace plugin), but it is not a multi-tenant SaaS platform. There is no subscription billing, tenant isolation, or per-customer admin panel. To serve multiple businesses, you would need to deploy separate Botble Ecommerce instances and white-label (clone & rebrand) this app for each one.
+
 ## Setup & Installation
 
 ### How do I install the app?

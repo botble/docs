@@ -231,6 +231,7 @@ Your software now requires a valid license to run.
 
 ## Next Steps
 
+- [Integration Examples](examples.md) - Ready-to-use code for PHP, Laravel & WordPress ([GitHub](https://github.com/botble/license-manager-examples))
 - [Integration Guide](integration.md) - Detailed implementation patterns
 - [API Reference](api.md) - All API endpoints
 - [Demo Playground](demo-playground.md) - Test your setup interactively

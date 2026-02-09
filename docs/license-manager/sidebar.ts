@@ -6,6 +6,7 @@ export default [
         text: 'For Developers',
         items: [
             { text: 'Quick Start (5 min)', link: '/license-manager/quick-start' },
+            { text: 'Integration Examples', link: '/license-manager/examples' },
             { text: 'Integration Guide', link: '/license-manager/integration' },
             { text: 'API Reference', link: '/license-manager/api' },
             { text: 'Demo Playground', link: '/license-manager/demo-playground' },

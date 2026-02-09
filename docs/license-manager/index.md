@@ -15,6 +15,7 @@ Integrate license protection into your software:
 | Guide | Description |
 |-------|-------------|
 | [Quick Start](quick-start.md) | Add licensing to your app in 5 minutes |
+| [Integration Examples](examples.md) | Ready-to-use code for PHP, Laravel & WordPress |
 | [Integration Guide](integration.md) | Detailed implementation patterns and examples |
 | [API Reference](api.md) | All API endpoints with request/response examples |
 | [Demo Playground](demo-playground.md) | Test API calls interactively |

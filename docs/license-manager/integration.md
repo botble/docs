@@ -36,9 +36,21 @@ Before integrating, ensure you have:
 3. **Product** — created in **License Manager → Products** with a reference ID (e.g., `PROD-001`)
 4. **License** — created in **License Manager → Licenses** with a license code
 
+## Example Integrations
+
+We provide ready-to-use example code for popular platforms:
+
+- **PHP** - Standalone PHP scripts using cURL
+- **Laravel** - Laravel package with service provider, middleware & Artisan commands
+- **WordPress** - WordPress plugin with admin UI, auto-updates & WP-Cron
+
+::: tip
+Browse the full examples at [github.com/botble/license-manager-examples](https://github.com/botble/license-manager-examples) or see the [Integration Examples](examples.md) page for details.
+:::
+
 ## Step 1: Add the API Client
 
-Add the API client class to your software. You can use the SDK examples from the [API Reference](api.md#sdk-examples) or use the code below.
+Add the API client class to your software. You can use the SDK examples from the [API Reference](api.md#sdk-examples), the [example integrations](https://github.com/botble/license-manager-examples), or use the code below.
 
 ### PHP
 
