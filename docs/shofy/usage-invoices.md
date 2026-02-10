@@ -377,15 +377,15 @@ Include invoice in order confirmation:
 1. Navigate to `Settings` -> `Email`
 2. Find **Order Confirmation** template
 3. Edit template
-4. Add invoice link using `{{ invoice_url }}` variable
-5. Or attach PDF using `{{ invoice_pdf }}` attachment
+4. Add invoice link using the `invoice_url` variable
+5. Or attach PDF using the `invoice_pdf` attachment
 
 ### Invoice Email Template
 
 Create dedicated invoice email:
 
 1. Create new email template
-2. Subject: "Invoice for Order #{{ order.code }}"
+2. Subject: "Invoice for Order #`order.code`"
 3. Body: Invoice details and download link
 4. Attach PDF invoice
 5. Send manually or via automation
