@@ -1,5 +1,7 @@
 # Setup social login
 
+![Social login settings](./images/social-login-settings.png)
+
 ## Facebook login
 
 Enable Facebook login in Admin -> Settings -> Social login

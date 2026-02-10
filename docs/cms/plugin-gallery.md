@@ -16,6 +16,8 @@ Key features of the Gallery plugin include:
 
 ### Creating Galleries
 
+![Gallery list](./images/gallery-list.png)
+
 1. Go to **Gallery** in the admin menu
 2. Click **Create** to create a new gallery
 3. Enter a name and description for the gallery

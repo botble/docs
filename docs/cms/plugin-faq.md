@@ -16,6 +16,8 @@ Key features of the FAQ plugin include:
 
 ### Creating FAQ Categories
 
+![FAQ list](./images/faq-list.png)
+
 1. Go to **Admin Panel** → **FAQs** → **Categories**
 2. Click **Create** to add a new category
 3. Fill in the following information:

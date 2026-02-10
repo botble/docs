@@ -4,6 +4,8 @@
 
 The Custom Fields plugin for Botble CMS allows you to add custom fields to any supported content type in your website. This powerful tool gives you complete control over your edit screens and custom field data, enabling you to extend your content with additional information beyond the standard fields.
 
+![Custom fields list](./images/custom-fields-list.png)
+
 With the Custom Fields plugin, you can:
 
 - Add custom fields to pages, posts, categories, and other content types

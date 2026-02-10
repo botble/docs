@@ -4,6 +4,8 @@
 
 The Contact Form plugin for Botble CMS provides a flexible and customizable contact form that you can easily add to your website. It includes features like email notifications, custom fields, and spam protection.
 
+![Contact submissions](./images/contact-list.png)
+
 ## Basic Usage
 
 ### Using the Shortcode

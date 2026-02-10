@@ -19,6 +19,8 @@ Key features of the Backup plugin include:
 
 To access the Backup Manager, go to **Admin Panel** → **System Administration** → **Backups**.
 
+![Backup management](./images/backup-list.png)
+
 From this interface, you can:
 
 1. Create new backups
