@@ -13,6 +13,8 @@ The Marketplace plugin enables:
 5. **Commission tracking** - Platform earns commission on vendor sales
 6. **Vendor dashboard** - Separate vendor panel for store management
 
+![Marketplace stores](./images/marketplace-stores.png)
+
 ## Activating the Plugin
 
 Navigate to `Plugins` in the admin panel and activate the **Marketplace** plugin.

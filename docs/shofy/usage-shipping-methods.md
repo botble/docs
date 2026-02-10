@@ -17,6 +17,8 @@ Shofy's shipping system includes:
 
 Navigate to `Ecommerce` -> `Settings` -> `Shipping` in the admin panel.
 
+![Shipping settings](./images/shipping-settings.png)
+
 ## Default Shipping Setup
 
 When you first set up the store, a default shipping region is created for "All locations" with a basic delivery rule.

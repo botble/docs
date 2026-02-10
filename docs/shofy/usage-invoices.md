@@ -19,6 +19,8 @@ Shofy's invoice system includes:
 
 Navigate to `Ecommerce` -> `Invoices` in the admin panel.
 
+![Invoices list](./images/invoices-list.png)
+
 The invoices table displays:
 - Invoice code
 - Customer name
@@ -170,6 +172,8 @@ Every invoice includes:
 ## Invoice Configuration
 
 Navigate to `Ecommerce` -> `Settings` -> `Invoice` to configure:
+
+![Invoice settings](./images/invoice-settings.png)
 
 ### Basic Settings
 

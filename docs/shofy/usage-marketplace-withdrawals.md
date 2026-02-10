@@ -14,6 +14,8 @@ Withdrawal workflow:
 6. **Payout is processed** via selected payment method
 7. **Admin marks withdrawal as completed**
 
+![Marketplace withdrawals](./images/marketplace-withdrawals.png)
+
 ## Withdrawal Settings
 
 Navigate to `Marketplace` -> `Settings`

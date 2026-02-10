@@ -12,6 +12,8 @@ When enabled, the review system:
 4. **Enables replies** - Store admins and vendors can respond to customer reviews
 5. **Displays ratings** - Star ratings and review counts appear on product pages
 
+![Reviews list](./images/reviews-list.png)
+
 ## Enable Product Reviews
 
 Navigate to `Ecommerce` -> `Settings` -> `Product Reviews` in the admin panel.

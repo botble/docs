@@ -16,6 +16,8 @@ Digital product features:
 
 Navigate to `Ecommerce` -> `Settings` -> `Digital Products`.
 
+![Digital products settings](./images/digital-products-settings.png)
+
 ### Configuration Options
 
 | Setting | Description | Default |

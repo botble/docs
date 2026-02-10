@@ -11,6 +11,8 @@ The variation system consists of:
 3. **Variations** - Specific combinations (e.g., "Red T-Shirt - Small")
 4. **Per-Variation Data** - Each variation has unique pricing, inventory, and images
 
+![Products list](./images/products-list.png)
+
 ## Creating Attribute Sets
 
 Before adding variations, create reusable attribute sets.

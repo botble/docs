@@ -16,6 +16,8 @@ When a customer purchases from a vendor:
 
 Navigate to `Marketplace` -> `Settings` to configure commission rates.
 
+![Ecommerce settings](./images/ecommerce-settings.png)
+
 ### Default Commission Fee
 
 | Setting | Description |

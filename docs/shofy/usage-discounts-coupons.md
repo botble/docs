@@ -4,6 +4,8 @@ Discounts and coupons are powerful tools to incentivize purchases and reward cus
 
 ## Overview
 
+![Discounts list](./images/discounts-list.png)
+
 The discount system provides two main types:
 
 - **Coupons** - Require customers to enter a code at checkout
@@ -28,6 +30,8 @@ Both types support:
 | Best for | Targeted campaigns, email marketing | Store-wide sales, automatic discounts |
 
 ## Creating a Discount
+
+![Create discount](./images/discounts-create.png)
 
 Navigate to `Ecommerce` -> `Discounts` -> `Create` in admin panel.
 

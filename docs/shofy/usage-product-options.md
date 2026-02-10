@@ -13,6 +13,8 @@ Product options allow customers to customize products beyond variations. While v
 | Price Impact | Base price changes | Adds/subtracts from base |
 | Examples | Size, Color, Material | Engraving, Gift wrap, Warranties |
 
+![Global options](./images/global-options.png)
+
 ## Option Types
 
 | Type | Description | Use Case |

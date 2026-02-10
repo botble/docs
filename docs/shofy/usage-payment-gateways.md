@@ -4,6 +4,8 @@ Payment gateways enable customers to complete purchases using various payment me
 
 ## Overview
 
+![Payment methods](./images/payment-methods.png)
+
 ### Available Payment Gateways
 
 **Online Payment Processors:**

@@ -4,6 +4,8 @@ The tax system provides flexible location-based tax calculation with support for
 
 ## Overview
 
+![Tax list](./images/tax-list.png)
+
 Tax features include:
 
 - **Tax classes** - Group products by tax category (standard, reduced, zero-rated)
@@ -16,6 +18,8 @@ Tax features include:
 ## Enable Tax System
 
 Navigate to `Ecommerce` -> `Settings` -> `Tax`.
+
+![Tax settings](./images/tax-settings.png)
 
 Toggle **Enable tax** to activate tax calculation.
 

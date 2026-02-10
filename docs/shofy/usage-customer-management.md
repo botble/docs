@@ -13,6 +13,8 @@ Customer management features include:
 5. **Account deletion requests** - Handle GDPR-compliant customer data deletion
 6. **Registration settings** - Configure customer registration requirements
 
+![Customers list](./images/customers-list.png)
+
 ## Customer Listing
 
 Navigate to `Ecommerce` -> `Customers` to view all customer accounts.

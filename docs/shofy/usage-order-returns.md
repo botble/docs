@@ -4,6 +4,8 @@ The order return management system (also known as RMA - Return Merchandise Autho
 
 ## Overview
 
+![Order returns list](./images/order-returns-list.png)
+
 The return system includes:
 
 - **Customer-initiated returns** - Customers can request returns from their account
@@ -16,6 +18,8 @@ The return system includes:
 ## Enabling Returns
 
 Navigate to `Ecommerce` -> `Settings` -> `Return Settings`.
+
+![Order return settings](./images/order-return-settings.png)
 
 Toggle **Enable order returns** to activate the feature.
 

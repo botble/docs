@@ -15,6 +15,8 @@ Available import/export operations:
 | **Specifications** | Product specifications |
 | **License Codes** | Digital product license codes |
 
+![Import products](./images/import-products.png)
+
 ## Exporting Products
 
 Navigate to `Ecommerce` -> `Products` -> `Export`.

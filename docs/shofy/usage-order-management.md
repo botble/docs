@@ -4,6 +4,8 @@ The order management system provides complete control over order processing, tra
 
 ## Overview
 
+![Orders list](./images/orders-list.png)
+
 Shofy's order management includes:
 
 - **Order listing & search** - View all orders with filtering and search capabilities
@@ -87,6 +89,8 @@ Filter by:
 | **Canceled** | Payment canceled |
 
 ## Order Details View
+
+![Order detail](./images/order-detail.png)
 
 ### Information Sections
 

@@ -10,6 +10,8 @@ The specification system has three components:
 2. **Specification Attributes** - Individual specs within groups (e.g., "Screen Size", "RAM")
 3. **Specification Tables** - Collections of groups applied to products
 
+![Specification groups](./images/specification-groups.png)
+
 ## Creating Specification Groups
 
 Groups organize related specifications together.

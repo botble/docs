@@ -4,6 +4,8 @@ Flash sales create urgency and drive sales by offering limited-time discounts on
 
 ## Overview
 
+![Flash sales list](./images/flash-sales-list.png)
+
 Flash sale features:
 
 - **Time-limited offers** - Set end date for automatic expiration
@@ -16,6 +18,8 @@ Flash sale features:
 ## Enable Flash Sales
 
 Navigate to `Ecommerce` -> `Settings` -> `Flash Sales`.
+
+![Flash sales settings](./images/flash-sales-settings.png)
 
 Toggle **Enable flash sales** to activate the feature.
 
