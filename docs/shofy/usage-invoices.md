@@ -572,4 +572,4 @@ Invoices are kept indefinitely unless manually deleted. They remain as long as t
 - [Invoice Template Customization](/shofy/invoice-template) - Detailed guide on customizing invoice templates
 - [Order Management](/shofy/usage-order-management) - Managing orders that generate invoices
 - [Tax Configuration](/shofy/usage-tax) - Setting up tax rates shown on invoices
-- [Payment Methods](/shofy/usage-payment-methods) - Payment methods displayed on invoices
+- [Payment Gateways](/shofy/usage-payment-gateways) - Payment methods displayed on invoices
