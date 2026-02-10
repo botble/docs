@@ -8,21 +8,25 @@ You can configure shipping fees based on the customer's location (country, state
 
 ## Setup Steps
 
-### Step 1: Enable Location-based Shipping
+### Step 1: Enable Location Plugin
 
-Go to **Admin → Settings → Checkout** and enable the option to use location data for shipping.
-
-![Enable location-based shipping](https://ticksy_attachments.s3.amazonaws.com/4451514316.png)
+Make sure the **Location** plugin is activated. Go to **Admin** -> **Plugins** and verify "Location" is enabled.
 
 ### Step 2: Import Location Data
 
-Navigate to **Admin → Locations → Location Importer** and import the country data for the regions you want to support.
+Navigate to **Admin** -> **Locations** -> **Bulk Import** and import the country data for the regions you want to support.
 
 This will populate the countries, states, and cities used for shipping zone configuration.
 
-### Step 3: Configure Shipping Fees
+### Step 3: Enable Location-Based Shipping
 
-Go to **Admin → Settings → Shipping** to set up shipping fees by location.
+Go to **Admin** -> **Settings** -> **Ecommerce** -> **General** and enable **Load countries, states, and cities from the Location plugin**.
+
+This tells the checkout to use the Location plugin's data (with dropdowns for country/state/city) instead of free text fields.
+
+### Step 4: Configure Shipping Fees
+
+Go to **Admin** -> **Ecommerce** -> **Shipping** to set up shipping fees by location.
 
 Here you can:
 
@@ -30,4 +34,6 @@ Here you can:
 - Set flat rates or weight-based rates per location.
 - Configure free shipping thresholds for specific regions.
 
-![Shipping settings](https://ticksy_attachments.s3.amazonaws.com/1428025632.png)
+::: tip
+You can create multiple shipping rules for different regions. The system will automatically match the customer's location to the correct rule during checkout.
+:::

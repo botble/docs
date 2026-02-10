@@ -119,6 +119,34 @@ Or with custom retention days:
 php artisan cms:check-abandoned-carts --cleanup --cleanup-days=60
 ```
 
+### Cart Persistence Cleanup
+
+A separate command handles expired persistent carts (guest and customer saved carts):
+
+```bash
+php artisan cms:cleanup-expired-carts
+```
+
+Options:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--guest-days=30` | 30 | Days to keep guest carts |
+| `--customer-days=90` | 90 | Days to keep customer carts |
+| `--stats` | - | Show cart statistics without deleting |
+
+Example with custom retention:
+
+```bash
+php artisan cms:cleanup-expired-carts --guest-days=14 --customer-days=60
+```
+
+To view cart statistics only:
+
+```bash
+php artisan cms:cleanup-expired-carts --stats
+```
+
 ## Troubleshooting
 
 ### Emails not being sent

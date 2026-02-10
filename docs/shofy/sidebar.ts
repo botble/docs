@@ -38,6 +38,7 @@ export default [
             { text: 'Custom CSS/JS', link: '/shofy/usage-custom-css-js' },
             { text: 'Multi-language', link: '/shofy/usage-multi-language' },
             { text: 'Translation', link: '/shofy/plugin-translation' },
+            { text: 'Facebook Pixel', link: '/shofy/usage-facebook-pixel' },
             { text: 'Google Tag Manager', link: '/shofy/usage-google-tag-manager' },
             { text: 'Google Analytics', link: '/shofy/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/shofy/usage-media-s3' },
@@ -56,6 +57,45 @@ export default [
             { text: 'Shipping by Location', link: '/shofy/usage-shipping-by-location' },
             { text: 'Shippo Integration', link: '/shofy/usage-shippo' },
             { text: 'Add to Cart via URL', link: '/shofy/usage-add-to-cart-url' },
+        ],
+    },
+    {
+        text: 'Ecommerce',
+        items: [
+            { text: 'Discounts & Coupons', link: '/shofy/usage-discounts-coupons' },
+            { text: 'Tax', link: '/shofy/usage-tax' },
+            { text: 'Flash Sales', link: '/shofy/usage-flash-sales' },
+            { text: 'Payment Gateways', link: '/shofy/usage-payment-gateways' },
+            { text: 'Order Management', link: '/shofy/usage-order-management' },
+            { text: 'Order Returns', link: '/shofy/usage-order-returns' },
+            { text: 'Shipping Methods', link: '/shofy/usage-shipping-methods' },
+            { text: 'Invoices', link: '/shofy/usage-invoices' },
+        ],
+    },
+    {
+        text: 'Products',
+        items: [
+            { text: 'Product Variations', link: '/shofy/usage-product-variations' },
+            { text: 'Product Specifications', link: '/shofy/usage-product-specifications' },
+            { text: 'Product Options', link: '/shofy/usage-product-options' },
+            { text: 'Product Import/Export', link: '/shofy/usage-product-import-export' },
+            { text: 'Digital Products', link: '/shofy/usage-digital-products' },
+        ],
+    },
+    {
+        text: 'Customers',
+        items: [
+            { text: 'Reviews', link: '/shofy/usage-reviews' },
+            { text: 'Wishlist & Compare', link: '/shofy/usage-wishlist-compare' },
+            { text: 'Customer Management', link: '/shofy/usage-customer-management' },
+        ],
+    },
+    {
+        text: 'Marketplace',
+        items: [
+            { text: 'Marketplace Setup', link: '/shofy/usage-marketplace-setup' },
+            { text: 'Commissions', link: '/shofy/usage-marketplace-commissions' },
+            { text: 'Vendor Withdrawals', link: '/shofy/usage-marketplace-withdrawals' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]
