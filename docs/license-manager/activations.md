@@ -294,7 +294,18 @@ Customers can manage their activations via the Customer Portal:
 1. Login at `/customer/login`
 2. Navigate to **Activations**
 3. View all active installations
-4. Deactivate unwanted installations
+4. Deactivate unwanted installations (if permitted)
+
+### Restricting Customer Access
+
+Admins can control customer access to activations via **Settings → General**:
+
+| Setting | Default | Effect |
+|---------|---------|--------|
+| Enable Activations page | On | Hides the Activations page entirely when disabled |
+| Allow customers to deactivate activations | On | Removes the deactivation button when disabled |
+
+When "Allow customers to deactivate activations" is disabled, the deactivation button is hidden from the table and the endpoint returns a 403 error if called directly.
 
 ## Activity Logging
 

@@ -82,6 +82,19 @@ The customer portal allows self-service management at `/customer`.
 | Settings | `/customer/settings` | Account settings |
 | Logout | `/customer/logout` | End session |
 
+### Portal Settings
+
+These settings in **Settings → General** control what customers see and can do in the portal:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| Enable Licenses page | On | Show or hide the Licenses page in the customer portal |
+| Enable Activations page | On | Show or hide the Activations page in the customer portal |
+| Allow customers to deactivate activations | On | When disabled, only admins can deactivate activations |
+| Get More Licenses URL | Empty | URL for the "Get More Licenses" button on the Licenses page. Leave empty to hide the button |
+
+When a page is disabled, its sidebar link is hidden and direct URL access returns a 404 page.
+
 ### Dashboard
 
 Shows:
@@ -98,13 +111,21 @@ Customers can:
 - Check activation count
 - Download license files
 
+::: tip
+Set the **Get More Licenses URL** in Settings → General to display a "Get More Licenses" button on this page, linking customers to your storefront or pricing page.
+:::
+
 ### Managing Activations
 
 Customers can:
 - View all active installations
 - See domain and IP details
-- Deactivate installations
+- Deactivate installations (if permitted by admin)
 - Free up parallel use slots
+
+::: tip
+To prevent customers from deactivating their own activations, disable **Allow customers to deactivate activations** in Settings → General. The deactivation button will be hidden and the endpoint will reject requests.
+:::
 
 ### Account Settings
 
