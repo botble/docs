@@ -18,7 +18,7 @@ The system supports multiple email services. Here's a guide to help you choose:
 |--------|----------|------------|------|
 | **SMTP** | Most users, shared hosting | Easy | Depends on provider |
 | **Mailgun** | High volume, better deliverability | Medium | Free tier available |
-| **SendGrid** | Transactional emails, analytics | Medium | Free tier available |
+| **SendGrid** | Transactional emails, analytics | Easy | Free tier available |
 | **Amazon SES** | Large scale, AWS users | Advanced | Pay per use |
 | **Postmark** | Fast delivery, developers | Medium | Paid |
 | **Resend** | Modern alternative, developers | Medium | Free tier available |
@@ -128,23 +128,31 @@ Mailgun is a professional email service with excellent deliverability. They offe
 
 ## Setting Up SendGrid
 
-SendGrid is another popular email service with good analytics features.
+SendGrid is a popular email service with excellent deliverability and analytics features.
 
-![SendGrid Settings](../cms/images/sendgrid-example.png)
+### Using SendGrid API (Recommended)
 
-**Configuration:**
+The system natively supports the SendGrid Web API, which is faster and more reliable than SMTP.
+
+1. Select **SendGrid** as the Mailer
+2. Enter your **API Key**
+   - Get it from the [SendGrid Dashboard](https://app.sendgrid.com/settings/api_keys)
+   - Create a key with **Mail Send** permissions
+3. Set your **Sender Name** and **Sender Email**
+4. Click **Save Settings**
+
+**Note:** Your sender email must be from a verified domain or single sender in SendGrid. See [SendGrid Sender Verification](https://docs.sendgrid.com/ui/sending-email/sender-verification).
+
+### Using SendGrid via SMTP (Alternative)
+
+If you prefer SMTP over the API:
+
 - **Mailer**: SMTP
 - **Host**: `smtp.sendgrid.net`
 - **Port**: `587`
 - **Encryption**: TLS
 - **Username**: Must be exactly `apikey`
 - **Password**: Your SendGrid API Key
-
-**Getting your API Key:**
-1. Log in to [SendGrid](https://sendgrid.com/)
-2. Go to **Settings** → **API Keys**
-3. Create a new API key with "Mail Send" permissions
-4. Copy and save the key (it won't be shown again)
 
 ## Setting Up Amazon SES
 
