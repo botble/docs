@@ -60,6 +60,13 @@ export default [
         ],
     },
     {
+        text: 'API',
+        items: [
+            { text: 'General API', link: '/shofy/api' },
+            { text: 'Ecommerce API', link: '/shofy/usage-ecommerce-api' },
+        ],
+    },
+    {
         text: 'Ecommerce',
         items: [
             { text: 'Discounts & Coupons', link: '/shofy/usage-discounts-coupons' },
