@@ -28,13 +28,26 @@ function sync_doc_files() {
     "releases.md"
   )
 
+  # Images referenced by synced docs that need to be copied along
+  images_to_sync=(
+    "backup-list.png"
+    "social-login-settings.png"
+  )
+
   for i in "${projects[@]}"; do
+    if [ "$i" = "cms" ]; then
+      continue
+    fi
+
+    mkdir -p ./docs/"$i"/images
+
     for j in "${files_to_sync[@]}"; do
-      if [ "$i" = "cms" ]; then
-        continue
-      else
-        mkdir -p ./docs/"$i"/images
-        rm -rf ./docs/"$i"/"$j" && cp ./docs/cms/"$j" ./docs/"$i"/"$j"
+      rm -rf ./docs/"$i"/"$j" && cp ./docs/cms/"$j" ./docs/"$i"/"$j"
+    done
+
+    for img in "${images_to_sync[@]}"; do
+      if [ -f ./docs/cms/images/"$img" ]; then
+        cp ./docs/cms/images/"$img" ./docs/"$i"/images/"$img"
       fi
     done
 
