@@ -1,406 +1,258 @@
 # Domain Migration
 
-This guide covers everything you need to know when migrating your Botble CMS installation to a new domain, subdomain, or server.
+This guide helps you move your Botble CMS website to a new domain, subdomain, or server. It is written for **all users**, including those without technical experience. Most steps use your **hosting control panel** (cPanel, DirectAdmin, Plesk, etc.) — no command line required.
 
-## Overview
-
-Domain migration involves moving your website from one domain (e.g., `example.com`) to another (e.g., `new-example.com` or `subdomain.example.com`). This process requires careful handling of:
-
-- License management
-- Database configuration
-- Media files and assets
-- URL references in content
-- SSL certificates
-
-## Migration Methods
-
-There are two approaches to domain migration:
-
-| Method | Best For | Complexity |
-|--------|----------|------------|
-| **Full Migration** | Preserving all content, settings, and configurations | Medium |
-| **Fresh Install + Content Migration** | Starting clean with selective content transfer | Simple |
-
-## Pre-Migration Checklist
-
-Before starting the migration, complete these steps:
-
-### 1. License Management
+## Before You Start
 
 ::: warning Important
-Your license is tied to your domain. You must handle it properly before migration.
+Your license is tied to your domain. You **must** deactivate it before migrating.
 :::
 
-**Option A: Deactivate Before Migration (Recommended)**
+### 1. Deactivate Your License
 
-1. Go to **Admin Panel** → **Settings** → **General**
-2. Click **Deactivate License**
-3. Proceed with migration
-4. Activate license on the new domain after migration
+1. Log in to your **Admin Panel**
+2. Go to **Settings** → **General**
+3. Click **Deactivate License**
+4. You will reactivate it on the new domain later
 
-**Option B: Backup License File**
+If you forget this step, you can reset your license at [https://license.botble.com](https://license.botble.com).
 
-1. Download `/storage/.license` file from your current installation
-2. After migration, upload this file to the new server
-3. If activation issues occur, reset your license at https://license.botble.com
+### 2. Create a Full Backup
 
-### 2. Create Full Backup
+**Using the Admin Panel (recommended):**
 
-Create a complete backup before any migration:
-
-```bash
-php artisan cms:backup:create "pre-migration-backup" --description="Full backup before domain migration"
-```
-
-Or through the admin panel:
 1. Go to **Admin Panel** → **System Administration** → **Backups**
 2. Click **Create**
-3. Select both database and uploaded files
-4. Download the backup to your local machine
+3. **Download** the backup file to your computer — do not skip this step
 
-### 3. Document Current Configuration
+**Using your hosting panel:**
 
-Note down your current settings:
+Most hosting panels (cPanel, DirectAdmin, Plesk) have a **Backup** or **Backup Wizard** tool. Use it to create a **full backup** that includes both files and database. Download it to your computer for safekeeping.
 
-- Active theme name
-- Installed and activated plugins
-- Custom configurations in `.env`
-- Third-party integrations (payment gateways, email services, etc.)
-- Custom code modifications (if any)
+### 3. Write Down Your Current Settings
 
-## Method 1: Full Migration (Recommended)
+Before migrating, take note of:
 
-This method preserves all your content, settings, and configurations.
+- Your active theme name
+- Which plugins are activated
+- Any third-party integrations (payment gateways, email services, analytics, etc.)
 
-### Step 1: Prepare the New Server
+## Migration Guide (Step by Step)
 
-1. Set up your new server/hosting with the required environment:
-   - PHP 8.2+
-   - MySQL 8.0+ or MariaDB 10.3+
-   - Required PHP extensions
+### Step 1: Set Up Hosting for the New Domain
 
-2. Point your new domain to the server
+1. Purchase or set up hosting for your new domain
+2. Make sure the hosting meets these requirements:
+    - **PHP 8.2** or higher
+    - **MySQL 8.0+** or **MariaDB 10.3+**
+3. Point your new domain's DNS to the new hosting server (your hosting provider can help with this)
 
-### Step 2: Transfer Files
+### Step 2: Upload Your Website Files
 
-Transfer all files to the new server:
+**Option A: Using hosting panel File Manager**
 
-```bash
-# Using rsync (recommended)
-rsync -avz --progress /path/to/old-site/ user@new-server:/path/to/new-site/
+1. On your **old hosting**, go to **File Manager**
+2. Select **all files** in your website's root folder (usually `public_html`)
+3. **Compress** them into a ZIP file
+4. **Download** the ZIP file to your computer
+5. On your **new hosting**, go to **File Manager**
+6. Navigate to the website root folder (usually `public_html`)
+7. **Upload** the ZIP file
+8. **Extract** it
 
-# Or using SCP
-scp -r /path/to/old-site/* user@new-server:/path/to/new-site/
+**Option B: Using hosting panel Backup & Restore**
+
+Some hosting panels let you restore a full backup directly. If your new hosting uses the same panel (e.g., both use cPanel), you may be able to restore your full backup from Step 2 directly.
+
+### Step 3: Move Your Database
+
+**Export from old hosting:**
+
+1. On your **old hosting**, open **phpMyAdmin** (found in your hosting panel)
+2. Select your website's database from the left sidebar
+3. Click the **Export** tab
+4. Keep the default settings (Quick export, SQL format)
+5. Click **Go** — a `.sql` file will download to your computer
+
+**Import to new hosting:**
+
+1. On your **new hosting**, create a **new database** and a **database user** (use the **MySQL Databases** tool in your hosting panel)
+2. Open **phpMyAdmin** on the new hosting
+3. Select the new empty database from the left sidebar
+4. Click the **Import** tab
+5. Choose the `.sql` file you downloaded
+6. Click **Go**
+
+::: tip
+If your database file is too large for phpMyAdmin, ask your hosting provider for help or use the **Import** feature in your hosting panel's backup tool.
+:::
+
+### Step 4: Update the `.env` Configuration File
+
+The `.env` file is in your website's root folder. Edit it using **File Manager** in your hosting panel:
+
+1. Open **File Manager** → navigate to your website root
+2. Find the `.env` file and click **Edit**
+3. Update these lines:
+
 ```
-
-### Step 3: Export and Import Database
-
-**On the old server:**
-
-```bash
-mysqldump -u username -p database_name > database_backup.sql
-```
-
-**On the new server:**
-
-```bash
-mysql -u username -p new_database_name < database_backup.sql
-```
-
-### Step 4: Update Configuration
-
-Edit the `.env` file on the new server:
-
-```bash
 APP_URL=https://your-new-domain.com
 
-# Database credentials (update if changed)
-DB_HOST=localhost
-DB_DATABASE=your_new_database
-DB_USERNAME=your_new_username
-DB_PASSWORD=your_new_password
+DB_DATABASE=your_new_database_name
+DB_USERNAME=your_new_database_user
+DB_PASSWORD=your_new_database_password
 ```
 
-### Step 5: Update URLs in Database
+4. **Save** the file
 
-Run the following command to update old domain references in the database:
+### Step 5: Update Old Domain URLs in the Database
 
-```bash
-php artisan cms:domain:change old-domain.com new-domain.com
-```
+Your database may still contain references to your old domain (in page content, settings, etc.). You need to replace them.
 
-If this command is not available, you can manually update URLs using SQL:
+**Using phpMyAdmin:**
+
+1. Open **phpMyAdmin** on your new hosting
+2. Select your database
+3. Click the **SQL** tab
+4. Run these queries **one at a time** (replace `old-domain.com` and `new-domain.com` with your actual domains):
 
 ```sql
--- Update site settings
 UPDATE settings SET value = REPLACE(value, 'old-domain.com', 'new-domain.com')
 WHERE value LIKE '%old-domain.com%';
+```
 
--- Update media URLs (if using full URLs)
+```sql
 UPDATE media_files SET url = REPLACE(url, 'old-domain.com', 'new-domain.com')
 WHERE url LIKE '%old-domain.com%';
+```
 
--- Update page content
+```sql
 UPDATE pages SET content = REPLACE(content, 'old-domain.com', 'new-domain.com')
 WHERE content LIKE '%old-domain.com%';
+```
 
--- Update post content
+```sql
 UPDATE posts SET content = REPLACE(content, 'old-domain.com', 'new-domain.com')
 WHERE content LIKE '%old-domain.com%';
 ```
 
-### Step 6: Clear Cache and Optimize
+5. Click **Go** after each query
 
-```bash
-php artisan cache:clear
-php artisan config:clear
-php artisan view:clear
-php artisan route:clear
-php artisan optimize
+::: tip
+If your old site used `http://` and your new site uses `https://`, also replace `http://old-domain.com` with `https://new-domain.com`.
+:::
+
+### Step 6: Enable SSL (HTTPS)
+
+Most hosting panels offer free SSL certificates:
+
+1. In your hosting panel, look for **SSL/TLS**, **Let's Encrypt**, or **Security** section
+2. Enable or install a free SSL certificate for your new domain
+3. Make sure `APP_URL` in your `.env` file starts with `https://`
+4. Also add this line to `.env` if not already present:
+
+```
+ENABLE_HTTPS_SUPPORT=true
 ```
 
-### Step 7: Set Permissions
+### Step 7: Clear the Cache
 
-```bash
-chmod -R 755 storage bootstrap/cache
-chown -R www-data:www-data storage bootstrap/cache
-```
+After migration, you need to clear cached data:
 
-### Step 8: Activate License
+1. Visit `https://your-new-domain.com/admin`
+2. Go to **System Administration** → **Cache Management** (if available)
+3. Click **Clear All Cache**
+
+If the admin panel doesn't load, try deleting the cache files manually:
+
+1. Open **File Manager** in your hosting panel
+2. Navigate to `bootstrap/cache/`
+3. Delete all files **inside** this folder (do **not** delete the folder itself)
+4. Navigate to `storage/framework/cache/`
+5. Delete all files inside this folder too
+
+### Step 8: Activate Your License
 
 1. Go to **Admin Panel** → **Settings** → **General**
 2. Enter your purchase code
 3. Click **Activate**
 
 If activation fails:
-1. Visit https://license.botble.com
+1. Go to [https://license.botble.com](https://license.botble.com)
 2. Reset your license
 3. Try activating again
 
-## Method 2: Fresh Install + Content Migration
+## After Migration: Verify Everything Works
 
-This method is simpler and recommended when:
-- You want to start with a clean installation
-- Your current site has issues or bloat
-- You're upgrading to a significantly newer version
-
-### Step 1: Fresh Installation
-
-1. Install Botble CMS on your new domain following the [installation guide](installation-web-interface.md)
-2. Activate your license on the new domain
-3. Install the same plugins you had on the old site
-
-### Step 2: Export Content from Old Site
-
-**Database Export:**
-```bash
-# Export specific tables
-mysqldump -u username -p database_name \
-  posts post_translations post_categories post_tags \
-  pages page_translations \
-  categories category_translations \
-  tags tag_translations \
-  menus menu_nodes menu_locations \
-  widgets widget_areas \
-  > content_export.sql
-```
-
-**Media Files:**
-```bash
-# Archive the uploads folder
-tar -czvf media_backup.tar.gz storage/app/public/
-```
-
-### Step 3: Import to New Site
-
-**Import Content:**
-```bash
-mysql -u username -p new_database < content_export.sql
-```
-
-**Import Media:**
-```bash
-tar -xzvf media_backup.tar.gz -C /path/to/new-site/storage/app/
-php artisan storage:link
-```
-
-### Step 4: Reconfigure Settings
-
-Manually reconfigure:
-- Theme settings
-- Widget positions
-- Menu structures
-- Site settings
-- Plugin configurations
-
-## Post-Migration Tasks
-
-### 1. Verify Site Functionality
+Check the following on your new site:
 
 - [ ] Homepage loads correctly
-- [ ] All pages accessible
-- [ ] Admin panel works
-- [ ] Media files display properly
-- [ ] Forms submit successfully
-- [ ] Email notifications work
+- [ ] Admin panel is accessible
+- [ ] All pages and posts display properly
+- [ ] Images and media files show up
+- [ ] Forms work (contact form, login, etc.)
+- [ ] Email notifications are sent
 
-### 2. Update External Services
+### Update External Services
 
-Update your domain in:
-- Google Analytics
-- Google Search Console
-- Social media integrations
-- Payment gateways
-- Email service providers
-- CDN configurations
+If you use any of these, update your domain in their settings:
 
-### 3. Set Up Redirects
+- Google Analytics / Google Search Console
+- Social media accounts (Facebook, Twitter, etc.)
+- Payment gateways (PayPal, Stripe, etc.)
+- Email services (Mailchimp, SendGrid, etc.)
 
-Configure 301 redirects from old domain to new domain:
+## Alternative: Fresh Install Method
 
-**Apache (.htaccess on old server):**
-```apache
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^(www\.)?old-domain\.com$ [NC]
-RewriteRule ^(.*)$ https://new-domain.com/$1 [R=301,L]
-```
+If you prefer to start clean instead of moving your old site:
 
-**Nginx (on old server):**
-```nginx
-server {
-    server_name old-domain.com www.old-domain.com;
-    return 301 https://new-domain.com$request_uri;
-}
-```
+1. Install Botble CMS on your new domain using the [installation guide](installation-web-interface.md)
+2. Activate your license
+3. Install the same plugins
+4. Manually recreate your content, or export/import your pages and posts through the admin panel
 
-### 4. Update DNS Records
-
-If keeping the same domain but changing servers:
-1. Lower TTL values 24-48 hours before migration
-2. Update A records to point to new server IP
-3. Update any other relevant records (MX, CNAME, etc.)
-
-### 5. SSL Configuration
-
-Set up SSL on the new domain:
-
-```bash
-# Using Let's Encrypt with Certbot
-certbot --nginx -d new-domain.com -d www.new-domain.com
-```
-
-Update `.env`:
-```bash
-APP_URL=https://new-domain.com
-ENABLE_HTTPS_SUPPORT=true
-```
-
-## Subdomain Migration
-
-When migrating to a subdomain (e.g., `site.example.com` to `app.example.com`):
-
-1. Follow the same steps as domain migration
-2. Ensure subdomain DNS is properly configured
-3. Update `APP_URL` in `.env` to include the full subdomain
-
-Example:
-```bash
-# Old
-APP_URL=https://site.example.com
-
-# New
-APP_URL=https://app.example.com
-```
+This method is simpler but requires you to reconfigure all settings, menus, widgets, and theme options.
 
 ## Troubleshooting
 
-### License Activation Failed
+### Images Not Showing
 
-1. Ensure old domain license is deactivated
-2. Reset license at https://license.botble.com
-3. Clear browser cache and try again
-4. Contact support at contact@botble.com if issues persist
-
-### Images Not Displaying
-
-1. Run `php artisan storage:link`
-2. Check file permissions on `storage/app/public`
-3. Verify symlink exists: `ls -la public/storage`
-4. If using CDN, update CDN origin settings
+- Check that the `storage/app/public` folder was uploaded correctly
+- In **File Manager**, check if `public/storage` exists and points to `storage/app/public`. If not, ask your hosting provider to create a **symbolic link** (symlink).
 
 ### 500 Internal Server Error
 
-1. Check Laravel logs: `storage/logs/laravel.log`
-2. Verify `.env` configuration
-3. Run `php artisan config:clear`
-4. Ensure all required PHP extensions are installed
+- Check that `.env` has correct database credentials
+- Make sure `storage/` and `bootstrap/cache/` folders have write permissions (set to `755` or `775` via File Manager → Permissions)
+- Open `storage/logs/laravel.log` in File Manager to see the error details
 
-### Mixed Content Warnings
+### Mixed Content Warnings (HTTP/HTTPS)
 
-If seeing HTTPS/HTTP mixed content warnings:
+- Make sure `APP_URL` in `.env` uses `https://`
+- Add `ENABLE_HTTPS_SUPPORT=true` to `.env`
+- Run the URL replacement queries from [Step 5](#step-5-update-old-domain-urls-in-the-database)
 
-1. Ensure `APP_URL` uses `https://`
-2. Add `ENABLE_HTTPS_SUPPORT=true` to `.env`
-3. Run database URL replacement queries
-4. Clear all caches
+### License Activation Failed
 
-### Database Connection Errors
+1. Deactivate the license on the old domain (if still accessible)
+2. Reset your license at [https://license.botble.com](https://license.botble.com)
+3. Clear your browser cache
+4. Try again
 
-1. Verify database credentials in `.env`
-2. Ensure database server is running
-3. Check if database user has proper permissions
-4. Test connection: `php artisan db:show`
+### Database Connection Error
 
-## Rollback Plan
+- Double-check `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` in `.env`
+- Make sure the database user has **all privileges** on the database (check in your hosting panel under **MySQL Databases**)
 
-If migration fails, you can restore from backup:
+## If Something Goes Wrong
 
-1. Restore files from your backup archive
-2. Restore database:
-   ```bash
-   mysql -u username -p database_name < backup.sql
-   ```
-3. Update `.env` with old domain settings
-4. Activate license on old domain
+Don't panic! You have your backup from [Step 2](#2-create-a-full-backup).
 
-## Best Practices
-
-1. **Test First**: Set up a staging environment to test the migration process
-2. **Schedule Wisely**: Migrate during low-traffic periods
-3. **Communicate**: Notify users of planned downtime
-4. **Keep Backups**: Maintain backups of both old and new installations for at least 30 days
-5. **Monitor**: Watch error logs and analytics after migration
-
-## Quick Reference: Migration from `site-a.com` to `subdomain.site-b.com`
-
-Example scenario: Moving from `jombitcoin.com` to `unwind.jomplan.com`
-
-```bash
-# 1. Deactivate license on jombitcoin.com (Admin → Settings → General)
-
-# 2. Create backup
-php artisan cms:backup:create "pre-migration"
-
-# 3. Transfer files to new server
-
-# 4. Update .env on new server
-APP_URL=https://unwind.jomplan.com
-
-# 5. Import database and update URLs
-mysql -u user -p database < backup.sql
-
-# Run URL replacement if needed
-UPDATE settings SET value = REPLACE(value, 'jombitcoin.com', 'unwind.jomplan.com');
-
-# 6. Clear caches
-php artisan optimize:clear
-
-# 7. Set permissions
-chmod -R 755 storage bootstrap/cache
-
-# 8. Activate license on unwind.jomplan.com
-```
+1. Restore files from your backup using your hosting panel's **Backup** tool or **File Manager**
+2. Restore the database using **phpMyAdmin** (import your backup `.sql` file)
+3. Update `.env` back to your old domain settings
+4. Reactivate the license on your old domain
 
 ::: tip
-For assistance with domain migration, contact our support team at contact@botble.com or create a ticket at https://botble.ticksy.com
+For help with domain migration, contact our support team at contact@botble.com or create a ticket at [https://botble.ticksy.com](https://botble.ticksy.com).
 :::

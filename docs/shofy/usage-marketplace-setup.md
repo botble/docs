@@ -49,6 +49,7 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 | **Allow vendor digital products** | Vendors can sell digital/downloadable products (requires Digital Products enabled in Ecommerce) |
 | **Max upload filesize** | Maximum file size vendors can upload (MB) |
 | **Max product images upload by vendor** | Maximum number of images per product |
+| **Low stock threshold** | When product quantity drops to or below this number, vendor receives a low stock email notification (default: 5) |
 | **Media file types can be uploaded by vendor** | Allowed MIME types for vendor uploads |
 
 ### Vendor Capabilities
@@ -258,6 +259,41 @@ MARKETPLACE_VENDOR_PANEL_DIR=seller
 ```
 
 This changes the URL to `/seller/dashboard`
+
+## Low Stock Notifications
+
+Vendors automatically receive email notifications when their product inventory drops below the configured threshold after an order is placed.
+
+### How It Works
+
+1. A customer places an order that reduces a vendor's product quantity
+2. The system checks if the product's quantity is at or below the **low stock threshold** (configured in Marketplace Settings)
+3. If the product uses storehouse management and belongs to a store, an email is sent to the vendor's store email
+4. A 24-hour cooldown prevents duplicate notifications for the same product
+
+### Configuration
+
+Navigate to `Marketplace` -> `Settings` and set the **Low stock threshold** value. The default is `5`.
+
+This threshold also controls the vendor dashboard's inventory status widget, which categorizes products as "In Stock", "Low Stock", or "Out of Stock".
+
+### Email Template
+
+The low stock notification email template can be customized at `Settings` -> `Email` -> `Marketplace` -> **Low stock notification**.
+
+Available template variables:
+
+| Variable | Description |
+|----------|-------------|
+| `{{ store_name }}` | Vendor's store name |
+| `{{ product_name }}` | Product name |
+| `{{ product_url }}` | Link to the product |
+| `{{ product_quantity }}` | Current remaining quantity |
+| `{{ low_stock_threshold }}` | The configured threshold value |
+
+::: tip
+The notification can be disabled per email template. Navigate to `Settings` -> `Email` -> `Marketplace` and toggle off the "Low stock notification" template.
+:::
 
 ## Troubleshooting
 
