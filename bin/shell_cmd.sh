@@ -47,7 +47,7 @@ function sync_doc_files() {
 
     for img in "${images_to_sync[@]}"; do
       if [ -f ./docs/cms/images/"$img" ]; then
-        cp ./docs/cms/images/"$img" ./docs/"$i"/images/"$img"
+        cp -f ./docs/cms/images/"$img" ./docs/"$i"/images/"$img"
       fi
     done
 
