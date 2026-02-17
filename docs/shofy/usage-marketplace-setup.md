@@ -61,10 +61,11 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 | **Allow vendor manage product currency** | Vendors can set product prices in different currencies |
 | **Allow vendor delete their orders** | Vendors can delete their own orders (not recommended for production) |
 
-### Display Settings
+### Store Pages & Display Settings
 
 | Setting | Description |
 |---------|-------------|
+| **Enable stores listing page** | Show the stores listing page (e.g. `/stores`). When disabled, the page redirects to the homepage and is excluded from the sitemap |
 | **Hide store phone number** | Don't display vendor phone on store pages |
 | **Hide store email** | Don't display vendor email on store pages |
 | **Hide store address** | Don't display vendor address on store pages |
@@ -72,6 +73,10 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 | **Enable vendor categories filter** | Show category filter on vendors listing page |
 | **Show vendor info at checkout** | Display vendor information during checkout |
 | **Display order total info for each store** | Show subtotals per vendor in cart/checkout |
+
+::: tip
+Disabling the stores listing page does **not** disable individual store pages. Customers can still visit a specific store via its direct URL (e.g. `/stores/my-shop`).
+:::
 
 ### Checkout Options
 
@@ -237,9 +242,18 @@ Enable "Single vendor checkout" in settings:
 
 ## Store Pages
 
-### Frontend Store URL
+### Stores Listing Page
 
-Stores are accessible at: `https://your-site.com/stores/{store-slug}`
+The stores listing page is accessible at: `https://your-site.com/stores`
+
+This page shows all published stores with search functionality. You can disable it entirely in `Marketplace` -> `Settings` by turning off **Enable stores listing page**. When disabled:
+- The `/stores` URL redirects to the homepage
+- The stores URL is removed from the sitemap
+- The "Stores" breadcrumb link is removed from individual store pages
+
+### Individual Store Pages
+
+Individual stores are accessible at: `https://your-site.com/stores/{store-slug}`
 
 The store page displays:
 - Store logo and cover image
@@ -247,6 +261,10 @@ The store page displays:
 - Store products
 - Store reviews (from product reviews)
 - Social links (if not hidden)
+
+::: tip
+Individual store pages remain accessible even when the stores listing page is disabled.
+:::
 
 ### Vendor Dashboard
 

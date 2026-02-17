@@ -469,6 +469,53 @@ All locations (excluding specific countries)
 Based on price: $0 to - -> $25.00
 ```
 
+## Restricting Delivery to Specific Zones
+
+You can restrict delivery to only certain areas (cities, states, or zip code ranges) so that customers outside those zones cannot place orders.
+
+### Using Location-Based Rules
+
+1. Go to `Ecommerce` -> `Shipping`
+2. Create or select a **country-specific shipping region** (e.g., "Sri Lanka")
+3. Add a shipping rule with type **"Based on Location"**
+4. Set the base shipping price
+5. Add **rule items** for each state/city you want to deliver to:
+   - Select the **state** and optionally a **city**
+   - Set an **adjustment price** (e.g., +$5 for remote areas, or $0 for no adjustment)
+   - Toggle items **enabled/disabled** individually
+
+::: warning Requirements
+- The **Location** plugin must be active
+- **Load countries, states, and cities from the Location plugin** must be enabled in `Ecommerce` -> `Settings` -> `General`
+- Countries, states, and cities must be imported via `Locations` -> `Bulk Import`
+:::
+
+### Using Zip Code-Based Rules
+
+1. Enable zip codes in `Ecommerce` -> `Settings` -> `General`
+2. Create a shipping rule with type **"Based on Zip Code"** or **"Based on Zip Code and Weight"**
+3. Add rule items with **zip code ranges** (`zip_code_from` to `zip_code_to`) for deliverable areas
+
+### Blocking Delivery Outside Your Zones
+
+::: tip Key Concept
+If you **only** define shipping rules for specific locations/zones and **do not** set a catch-all "All locations" rule, customers outside those zones will see **no shipping options** at checkout — effectively blocking delivery to unlisted areas.
+:::
+
+**Example setup to deliver only within Colombo and Kandy:**
+
+```
+Region: Sri Lanka
+Rule: Based on Location - "Local Delivery" - $5.00
+
+Rule items:
+  Western Province, Colombo -> +$0.00 (Total: $5.00)
+  Central Province, Kandy   -> +$2.00 (Total: $7.00)
+  (no other locations added)
+```
+
+Customers in Galle or Jaffna will not see any shipping options at checkout and cannot complete their order.
+
 ## Troubleshooting
 
 ### No Shipping Options at Checkout
@@ -549,6 +596,10 @@ Checkout will show an error. Always ensure rules cover all possible order scenar
 ### Can I charge handling fees?
 
 Yes. Add handling fees to your shipping rates, or create separate line items in order processing.
+
+### Can I limit delivery to specific cities or zones?
+
+Yes. Use "Based on Location" or "Based on Zip Code" rules and only add items for the areas you deliver to. Do not create a catch-all "All locations" rule — customers outside your listed zones will not see any shipping options. See [Restricting Delivery to Specific Zones](#restricting-delivery-to-specific-zones) above.
 
 ### How do I test shipping calculations?
 
