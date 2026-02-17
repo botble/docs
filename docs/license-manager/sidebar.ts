@@ -19,6 +19,7 @@ export default [
             { text: 'Requirements', link: '/license-manager/installation-requirements' },
             { text: 'Install via Web', link: '/license-manager/installation-web-interface' },
             { text: 'Install via CLI', link: '/license-manager/installation-command-line' },
+            { text: 'Install via Docker', link: '/license-manager/installation-using-docker' },
             { text: 'Cronjob', link: '/license-manager/cronjob' },
             { text: 'Commands', link: '/license-manager/commands' },
         ],
