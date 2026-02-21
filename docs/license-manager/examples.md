@@ -15,7 +15,8 @@ Ready-to-use example code for integrating License Manager into your applications
 | [WordPress](#wordpress) | WordPress plugin with admin UI, auto-updates & WP-Cron | WordPress plugins/themes |
 | [.NET / C#](#net-c) | Console app, ASP.NET Core API & Blazor Server dashboard | Desktop apps, cloud APIs, Blazor |
 | [Java](#java) | Maven project with HttpClient and interactive CLI | Desktop apps, Spring Boot |
-| [Python](#python) | Client using `requests` library with CLI demo | Django, Flask, FastAPI, scripts |
+| [Python](#python) | Client using `requests` library with CLI demo | Flask, FastAPI, scripts |
+| [Django](#django) | Django app with client, middleware, commands & views | Django applications |
 | [Node.js](#node-js) | Zero-dependency client, CLI demo & Express.js server | Express, Fastify, Electron |
 | [Ruby on Rails](#ruby-on-rails) | Client, Rails controller & Rack middleware | Rails applications |
 
@@ -241,6 +242,95 @@ path = client.download_update(update["update_id"], "./updates")
 ```
 
 [View Python example on GitHub](https://github.com/botble/license-manager-examples/tree/main/python)
+
+## Django
+
+A drop-in Django app with API client, middleware, management commands, and JSON API views.
+
+**Features:**
+- Reusable Django app (`license_manager/`)
+- `VerifyLicenseMiddleware` for global license enforcement
+- `@license_required` decorator for per-view protection
+- Management commands: `license_activate`, `license_verify`, `license_deactivate`, `license_status`
+- JSON API views for activate/verify/deactivate/update-check
+- Django cache framework integration for verification caching
+
+**Installation:**
+
+1. Copy the `license_manager/` directory into your Django project
+2. Add to `INSTALLED_APPS` in `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    # ...
+    'license_manager',
+]
+```
+
+3. Configure in `settings.py`:
+
+```python
+LICENSE_MANAGER = {
+    "SERVER_URL": os.environ.get("LICENSE_MANAGER_SERVER_URL", "https://license.example.com"),
+    "API_KEY": os.environ.get("LICENSE_MANAGER_API_KEY", ""),
+    "PRODUCT_ID": os.environ.get("LICENSE_MANAGER_PRODUCT_ID", ""),
+    "APP_URL": os.environ.get("LICENSE_MANAGER_APP_URL", "https://your-app.com"),
+}
+```
+
+**Management commands:**
+
+```bash
+./manage.py license_activate XXXX-XXXX-XXXX-XXXX "John Doe"
+./manage.py license_verify
+./manage.py license_status
+./manage.py license_deactivate
+```
+
+**Middleware (protect all routes):**
+
+```python
+MIDDLEWARE = [
+    # ...
+    'license_manager.middleware.VerifyLicenseMiddleware',
+]
+```
+
+**Decorator (protect individual views):**
+
+```python
+from license_manager.middleware import license_required
+
+@license_required
+def premium_feature(request):
+    return JsonResponse({"message": "Premium content"})
+```
+
+**Quick usage:**
+
+```python
+from license_manager.client import LicenseManagerClient
+
+client = LicenseManagerClient()
+
+# Activate
+result = client.activate_license("XXXX-XXXX-XXXX", "John Doe")
+
+# Verify (uses cached result when available)
+result = client.verify_license()
+
+# Quick boolean check
+if client.is_licensed():
+    print("License is valid")
+
+# Check for updates
+update = client.check_for_update("1.0.0")
+
+# Download update
+path = client.download_update(update["update_id"], "./updates")
+```
+
+[View Django example on GitHub](https://github.com/botble/license-manager-examples/tree/main/django)
 
 ## Node.js
 

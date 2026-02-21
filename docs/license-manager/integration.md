@@ -43,6 +43,7 @@ We provide ready-to-use example code for popular platforms:
 - **PHP** - Standalone PHP scripts using cURL
 - **Laravel** - Laravel package with service provider, middleware & Artisan commands
 - **WordPress** - WordPress plugin with admin UI, auto-updates & WP-Cron
+- **Django** - Django app with middleware, management commands & decorator
 
 ::: tip
 Browse the full examples at [github.com/botble/license-manager-examples](https://github.com/botble/license-manager-examples) or see the [Integration Examples](examples.md) page for details.
