@@ -13,6 +13,11 @@ Ready-to-use example code for integrating License Manager into your applications
 | [PHP](#php) | Standalone PHP scripts using cURL | Any PHP application |
 | [Laravel](#laravel) | Laravel package with service provider, middleware & Artisan commands | Laravel applications |
 | [WordPress](#wordpress) | WordPress plugin with admin UI, auto-updates & WP-Cron | WordPress plugins/themes |
+| [.NET / C#](#net-c) | Console app, ASP.NET Core API & Blazor Server dashboard | Desktop apps, cloud APIs, Blazor |
+| [Java](#java) | Maven project with HttpClient and interactive CLI | Desktop apps, Spring Boot |
+| [Python](#python) | Client using `requests` library with CLI demo | Django, Flask, FastAPI, scripts |
+| [Node.js](#node-js) | Zero-dependency client, CLI demo & Express.js server | Express, Fastify, Electron |
+| [Ruby on Rails](#ruby-on-rails) | Client, Rails controller & Rack middleware | Rails applications |
 
 ## PHP
 
@@ -125,6 +130,196 @@ if (function_exists('is_license_active') && is_license_active()) {
 ```
 
 [View WordPress example on GitHub](https://github.com/botble/license-manager-examples/tree/main/wordpress)
+
+## .NET / C#
+
+A shared `LicenseManagerClient` class with three example projects targeting .NET 8.0.
+
+**Examples included:**
+- **Console App** - Interactive CLI, suitable for WPF, WinForms or MAUI desktop apps
+- **ASP.NET Core API** - Minimal API endpoints wrapping the license client
+- **Blazor Server** - Interactive web dashboard with Bootstrap UI
+
+**Quick usage:**
+
+```csharp
+using LicenseManager;
+
+var options = new LicenseManagerOptions
+{
+    ServerUrl = "https://license.yoursite.com",
+    ApiKey = "your-api-key",
+    ApplicationUrl = "https://your-app.com",
+};
+
+using var client = new LicenseManagerClient(options);
+
+// Activate
+var result = await client.ActivateLicenseAsync("PRODUCT_ID", "LICENSE-CODE", "Client Name");
+
+// Verify
+var verify = await client.VerifyLicenseAsync("PRODUCT_ID");
+
+// Check for updates
+var update = await client.CheckForUpdateAsync("PRODUCT_ID", "1.0.0");
+
+// Download update
+var path = await client.DownloadUpdateAsync(update.UpdateId, "./updates");
+```
+
+[View .NET example on GitHub](https://github.com/botble/license-manager-examples/tree/main/dotnet)
+
+## Java
+
+A Maven project using Java's built-in `HttpClient` (Java 11+) and Jackson for JSON parsing.
+
+**Features:**
+- Reusable `LicenseManagerClient` class
+- Interactive CLI sample application
+- Works with any Java app: desktop (Swing/JavaFX), Spring Boot, Android
+
+**Quick usage:**
+
+```java
+import com.licensemanager.LicenseManagerClient;
+import com.licensemanager.LicenseManagerClient.Config;
+
+var config = new Config(
+    "https://license.yoursite.com",
+    "your-api-key",
+    "https://your-app.com"
+);
+
+try (var client = new LicenseManagerClient(config)) {
+    // Activate
+    var result = client.activateLicense("PRODUCT_ID", "LICENSE-CODE", "Client Name");
+
+    // Verify
+    var verify = client.verifyLicense("PRODUCT_ID");
+
+    // Check for updates
+    var update = client.checkForUpdate("PRODUCT_ID", "1.0.0");
+
+    // Download update
+    var path = client.downloadUpdate(update.updateId, "./updates", "main");
+}
+```
+
+[View Java example on GitHub](https://github.com/botble/license-manager-examples/tree/main/java)
+
+## Python
+
+A client using the `requests` library with an interactive CLI demo.
+
+**Features:**
+- Single-file client (`license_manager_client.py`)
+- Interactive CLI sample application
+- Works with Django, Flask, FastAPI, or standalone scripts
+
+**Quick usage:**
+
+```python
+from license_manager_client import LicenseManagerClient
+
+client = LicenseManagerClient(
+    server_url="https://license.yoursite.com",
+    api_key="your-api-key",
+    application_url="https://your-app.com",
+)
+
+# Activate
+result = client.activate_license("PRODUCT_ID", "LICENSE-CODE", "Client Name")
+
+# Verify
+result = client.verify_license("PRODUCT_ID")
+
+# Check for updates
+update = client.check_for_update("PRODUCT_ID", "1.0.0")
+
+# Download update
+path = client.download_update(update["update_id"], "./updates")
+```
+
+[View Python example on GitHub](https://github.com/botble/license-manager-examples/tree/main/python)
+
+## Node.js
+
+A zero-dependency client using built-in `fetch` (Node 18+) with CLI demo and Express.js server.
+
+**Features:**
+- Zero external dependencies (uses built-in `fetch`)
+- Interactive CLI sample application
+- Express.js API server example with optional license-gating middleware
+
+**Quick usage:**
+
+```javascript
+const { LicenseManagerClient } = require('./license-manager-client');
+
+const client = new LicenseManagerClient({
+  serverUrl: 'https://license.yoursite.com',
+  apiKey: 'your-api-key',
+  applicationUrl: 'https://your-app.com',
+});
+
+// Activate
+const result = await client.activateLicense('PRODUCT_ID', 'LICENSE-CODE', 'Client Name');
+
+// Verify
+const verify = await client.verifyLicense('PRODUCT_ID');
+
+// Check for updates
+const update = await client.checkForUpdate('PRODUCT_ID', '1.0.0');
+
+// Download update
+const path = await client.downloadUpdate(update.update_id, './updates');
+```
+
+[View Node.js example on GitHub](https://github.com/botble/license-manager-examples/tree/main/nodejs)
+
+## Ruby on Rails
+
+A standalone client using Ruby's `Net::HTTP` (zero dependencies), Rails controller, and Rack middleware.
+
+**Features:**
+- Zero-dependency client (`license_manager_client.rb`)
+- Rails controller with activate/verify/deactivate/update endpoints
+- Rack middleware for license-gating with TTL-based caching
+
+**Quick usage:**
+
+```ruby
+require_relative "lib/license_manager_client"
+
+client = LicenseManagerClient.new(
+  server_url: "https://license.yoursite.com",
+  api_key: "your-api-key",
+  application_url: "https://your-app.com"
+)
+
+# Activate
+result = client.activate_license("PRODUCT_ID", "LICENSE-CODE", "Client Name")
+
+# Verify
+result = client.verify_license("PRODUCT_ID")
+
+# Check for updates
+update = client.check_for_update("PRODUCT_ID", "1.0.0")
+
+# Download update
+path = client.download_update(update["update_id"], "./updates")
+```
+
+**Rack middleware (optional license gating):**
+
+```ruby
+# config/application.rb
+config.middleware.use LicenseMiddleware,
+  product_id: ENV.fetch("LM_PRODUCT_ID"),
+  cache_ttl: 300
+```
+
+[View Rails example on GitHub](https://github.com/botble/license-manager-examples/tree/main/rails)
 
 ## Customizing the Examples
 
