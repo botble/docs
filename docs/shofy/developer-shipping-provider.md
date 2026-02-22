@@ -20,22 +20,25 @@ Browse all available shipping plugins at [marketplace.botble.com/products?q=ship
 
 ## Reference Examples in the Codebase
 
-If you need to develop a custom plugin, the best way to learn the structure is by studying the existing Shippo shipping plugin included in your project:
+If you need to develop a custom plugin, the best way to learn the structure is by studying the existing Shippo shipping plugin included in your project at `platform/plugins/shippo`. It's a full-featured multi-carrier integration (USPS, FedEx, UPS, DHL, etc.) with rate calculation, label generation, tracking, and webhooks.
 
-- **`platform/plugins/shippo`** — A full-featured multi-carrier shipping integration (USPS, FedEx, UPS, DHL, etc.) with rate calculation, label generation, tracking, and webhooks
+You will need to make the same structure and handle events during checkout to implement a new shipping option. The key files to study are:
 
-This plugin follows the standard structure and hooks into all the checkout events you need. You can copy it as a starting point and modify it to work with your provider's API.
+- **`src/Providers/HookServiceProvider.php`** — The main integration file. This is where the plugin hooks into the checkout rate calculation (`handle_shipping_fee` filter), registers the shipping method enum, and adds the settings UI. Start here to understand how everything connects.
 
-The key files to study are:
+- **`resources/views/settings.blade.php`** — The admin settings form displayed under **Ecommerce → Settings → Shipping**. Shows how to build the configuration UI for API keys, sandbox mode, etc.
 
-| File | Purpose |
-|------|---------|
-| `helpers/constants.php` | Defines the shipping method constant |
-| `src/Providers/ShippoServiceProvider.php` | Main service provider — loads helpers, views, routes |
-| `src/Providers/HookServiceProvider.php` | Registers hooks for rate calculation, settings, and enum |
-| `src/Shippo.php` | Core service — API calls, rate calculation, label generation |
-| `routes/web.php` | Admin routes, webhook routes |
-| `src/Plugin.php` | Cleanup on uninstall |
+- **`resources/views/rate.blade.php`** — The shipping option displayed at the checkout page. Shows how individual rates are rendered for the customer to select.
+
+- **`src/Shippo.php`** — The core service class that calls the Shippo API to get rates, create labels, and track shipments. Replace this with your provider's API logic.
+
+- **`helpers/constants.php`** — Defines the `SHIPPO_SHIPPING_METHOD_NAME` constant used throughout the plugin.
+
+- **`routes/web.php`** — Admin routes for managing shipments and webhook routes for tracking updates.
+
+- **`src/Plugin.php`** — Cleanup logic that removes all settings when the plugin is uninstalled.
+
+You can copy the entire `platform/plugins/shippo` folder, rename it, and modify it to work with your provider's API.
 
 ## Overview
 
