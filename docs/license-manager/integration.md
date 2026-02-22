@@ -404,6 +404,24 @@ if (file_exists($licenseFile)) {
 <?php endif; ?>
 ```
 
+## Protecting Your Client-Side Code
+
+License Manager handles all validation logic server-side. However, your client-side code (the API client and verification logic above) could be reverse-engineered to bypass the license check — especially with the advancement of AI tools.
+
+**Your responsibility** is to protect the client-side code that calls the License Manager API. Here are recommended tools based on your tech stack:
+
+| Tech Stack | Recommended Tools |
+|------------|-------------------|
+| PHP | [ionCube](https://www.ioncube.com/), [SourceGuardian](https://www.sourceguardian.com/) |
+| Java | [ProGuard](https://www.guardsquare.com/proguard), [DexGuard](https://www.guardsquare.com/dexguard) |
+| WordPress | [ionCube](https://www.ioncube.com/) for the license check file |
+| Node.js | Compile to binary with [pkg](https://github.com/vercel/pkg) or [nexe](https://github.com/nexe/nexe) |
+| .NET | [Dotfuscator](https://www.preemptive.com/products/dotfuscator/), [ConfuserEx](https://github.com/mkaring/ConfuserEx) |
+
+::: tip Key Point
+Regardless of the encoder you choose, the most important protection is already in place — License Manager validates everything server-side. Your client code just needs to be hard enough to tamper with so casual users won't bother. Encoding makes reverse-engineering impractical for most people.
+:::
+
 ## Checklist
 
 Use this checklist to ensure your integration is complete:
