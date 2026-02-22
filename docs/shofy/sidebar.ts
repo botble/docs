@@ -110,6 +110,7 @@ export default [
         text: 'Developer',
         items: [
             { text: 'Payment Gateway Integration', link: '/shofy/developer-payment-gateway' },
+            { text: 'Shipping Provider Integration', link: '/shofy/developer-shipping-provider' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]
