@@ -106,4 +106,10 @@ export default [
             { text: 'Vendor Withdrawals', link: '/shofy/usage-marketplace-withdrawals' },
         ],
     },
+    {
+        text: 'Developer',
+        items: [
+            { text: 'Payment Gateway Integration', link: '/shofy/developer-payment-gateway' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[]
