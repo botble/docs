@@ -300,6 +300,14 @@ When creating your widget's admin configuration form using the `settingForm()` m
 
 For more field types and options, refer to the Form Builder documentation.
 
+## Multi-language Widget Fallback
+
+When the [Language plugin](/cms/usage-multi-language) is active, widgets are stored per language using a theme name suffix (e.g., `shofy` for the default language, `shofy-fr` for French).
+
+If no widgets have been configured for a non-default language, the system automatically falls back to the default language's widgets. An informational banner is shown in the admin panel when this inheritance is active, letting editors know they are viewing the default language's widgets.
+
+This fallback applies to both the admin widget management page and the frontend rendering.
+
 ## Video Tutorials
 
 - Widget Overview: https://www.youtube.com/watch?v=FXQwT_95jdA

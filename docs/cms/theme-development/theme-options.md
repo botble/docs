@@ -520,3 +520,111 @@ UiSelectorField::make()
     ])
     ->defaultValue('layout-1')
 ```
+
+## Shared Fields (Multi-language)
+
+When using the [Language plugin](/cms/usage-multi-language), theme options are stored per language by default. This means every field gets a locale-specific key (e.g., `theme-shofy-fr-logo` for French). However, visual/design properties like colors, logos, and layout styles typically don't need per-language values.
+
+You can mark fields or entire sections as **shared** so they are stored once and used across all languages.
+
+### Marking Individual Fields as Shared
+
+#### Object-Oriented Approach
+
+```php
+use Botble\Theme\ThemeOption\Fields\ColorField;
+
+ColorField::make()
+    ->name('primary_color')
+    ->label(__('Primary Color'))
+    ->defaultValue('#AF0F26')
+    ->shared()
+```
+
+#### Array-Based Approach
+
+```php
+->setField([
+    'id' => 'primary_color',
+    'section_id' => 'opt-text-subsection-colors',
+    'type' => 'customColor',
+    'label' => __('Primary Color'),
+    'shared' => true,
+    'attributes' => [
+        'name' => 'primary_color',
+        'value' => '#AF0F26',
+    ],
+])
+```
+
+### Marking an Entire Section as Shared
+
+All fields in a shared section inherit the shared behavior automatically.
+
+#### Object-Oriented Approach
+
+```php
+ThemeOption::setSection(
+    ThemeOptionSection::make('opt-text-subsection-colors')
+        ->title(__('Colors'))
+        ->icon('ti ti-palette')
+        ->shared()
+        ->fields([
+            ColorField::make()
+                ->name('primary_color')
+                ->label(__('Primary Color'))
+                ->defaultValue('#AF0F26'),
+            ColorField::make()
+                ->name('secondary_color')
+                ->label(__('Secondary Color'))
+                ->defaultValue('#0989FF'),
+        ])
+);
+```
+
+#### Array-Based Approach
+
+```php
+->setSection([
+    'title' => __('Colors'),
+    'id' => 'opt-text-subsection-colors',
+    'icon' => 'ti ti-palette',
+    'shared' => true,
+    'fields' => [
+        // All fields here are shared automatically
+    ],
+])
+```
+
+### Admin UI Behavior
+
+When a field is marked as shared:
+
+- An **"All languages"** badge appears next to the field label.
+- When editing a non-default language, shared fields are visually disabled with a notice indicating they can only be changed from the default language.
+- Shared fields always store their value at the default key (e.g., `theme-shofy-primary_color`) regardless of which language is currently being edited.
+
+### Filter Hook
+
+You can override the shared status of any field using the `theme_option_field_is_shared` filter:
+
+```php
+add_filter('theme_option_field_is_shared', function (bool $isShared, string $key): bool {
+    // Force a specific field to be shared
+    if ($key === 'my_field') {
+        return true;
+    }
+
+    return $isShared;
+}, 20, 2);
+```
+
+### Cleanup Command
+
+If you previously had locale-specific copies of fields that are now shared, you can clean up the duplicate settings entries:
+
+```bash
+php artisan cms:theme-option:cleanup-shared
+```
+
+This command removes locale-specific keys for fields that are marked as shared, keeping only the default-language value.

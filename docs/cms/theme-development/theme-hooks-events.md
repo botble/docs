@@ -87,24 +87,142 @@ app()->booted(function (): void {
 do_action('theme_custom_event', 'parameter');
 ```
 
-## Using Event Listeners
+## Laravel Event Classes
 
-You can also use Laravel's event system to listen for theme events:
+Botble CMS dispatches Laravel event classes at key points in the theme lifecycle. You can listen to these in your theme's `functions/functions.php` or in a plugin's service provider.
+
+### RenderingThemeOptionSettings
+
+Fired when the theme options settings page is rendered in admin. This is where you register theme option fields.
 
 ```php
-// In your theme's functions/functions.php
-use Botble\Theme\Events\RenderingTheme;
-use Illuminate\Support\Facades\Event;
+use Botble\Theme\Events\RenderingThemeOptionSettings;
 
-app()->booted(function (): void {
-    Event::listen(RenderingTheme::class, function (RenderingTheme $event) {
-        // Access the theme instance
-        $theme = $event->theme;
-
-        // Add assets or modify the theme
-        $theme->asset()->usePath()->add('custom-css', 'css/custom.css');
-    });
+app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
+    theme_option()
+        ->setField([
+            'id' => 'my_option',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'text',
+            'label' => __('My Option'),
+            'attributes' => [
+                'name' => 'my_option',
+                'value' => null,
+            ],
+        ]);
 });
+```
+
+### RenderingTheme
+
+Fired during global asset rendering (via `fireEventGlobalAssets()`). Use this to add assets that should be loaded on every page.
+
+```php
+use Botble\Theme\Events\RenderingTheme;
+
+app('events')->listen(RenderingTheme::class, function (): void {
+    Theme::asset()->usePath()->add('custom-css', 'css/custom.css');
+});
+```
+
+### RenderingHomePageEvent
+
+Fired when the homepage is being rendered. Use this to load homepage-specific data or assets.
+
+```php
+use Botble\Theme\Events\RenderingHomePageEvent;
+
+app('events')->listen(RenderingHomePageEvent::class, function (): void {
+    // Load homepage-specific data
+});
+```
+
+### RenderingSingleEvent
+
+Fired when a single content page is rendered (post, page, etc.). The event carries the `Slug` model.
+
+```php
+use Botble\Theme\Events\RenderingSingleEvent;
+
+app('events')->listen(RenderingSingleEvent::class, function (RenderingSingleEvent $event): void {
+    $slug = $event->slug;
+    // Customize rendering for this specific content
+});
+```
+
+### RenderingSiteMapEvent
+
+Fired when generating the sitemap. Optionally carries a key to identify the sitemap section.
+
+```php
+use Botble\Theme\Events\RenderingSiteMapEvent;
+
+app('events')->listen(RenderingSiteMapEvent::class, function (RenderingSiteMapEvent $event): void {
+    $key = $event->key; // null for main sitemap, or a specific section key
+    // Add custom URLs to sitemap
+});
+```
+
+### RenderingAdminBar
+
+Fired when the frontend admin bar is being rendered. Use this to add custom links.
+
+```php
+use Botble\Theme\Events\RenderingAdminBar;
+
+app('events')->listen(RenderingAdminBar::class, function (): void {
+    admin_bar()
+        ->registerLink('Custom Link', route('my.route'), 'add-new', 'my.permission');
+});
+```
+
+### ThemeRoutingBeforeEvent / ThemeRoutingAfterEvent
+
+Fired before and after theme routes are registered. The event carries the `Router` instance.
+
+```php
+use Botble\Theme\Events\ThemeRoutingBeforeEvent;
+use Botble\Theme\Events\ThemeRoutingAfterEvent;
+
+app('events')->listen(ThemeRoutingBeforeEvent::class, function (ThemeRoutingBeforeEvent $event): void {
+    $router = $event->router;
+    // Modify routing before theme routes load
+});
+
+app('events')->listen(ThemeRoutingAfterEvent::class, function (ThemeRoutingAfterEvent $event): void {
+    $router = $event->router;
+    // Add routes after theme routes are loaded
+});
+```
+
+### ThemeRemoveEvent
+
+Fired when a theme is removed via the `cms:theme:remove` command. Carries the theme name.
+
+```php
+use Botble\Theme\Events\ThemeRemoveEvent;
+
+app('events')->listen(ThemeRemoveEvent::class, function (ThemeRemoveEvent $event): void {
+    $themeName = $event->theme;
+    // Clean up theme-specific data
+});
+```
+
+### Event Lifecycle Order
+
+The following shows the order events fire during a typical page request:
+
+```
+1. ThemeRoutingBeforeEvent    → Before routes are registered
+2. ThemeRoutingAfterEvent     → After routes are registered
+3. before (config.php)        → Theme setup begins
+4. beforeRenderTheme          → Before theme renders (add assets here)
+5. RenderingTheme             → Global asset event
+6. beforeRenderLayout         → Before specific layout renders
+7. RenderingHomePageEvent     → (Homepage only)
+8. RenderingSingleEvent       → (Single content pages only)
+9. after (config.php)         → Final adjustments
+10. RenderingAdminBar         → Admin bar renders (logged-in admins)
 ```
 
 ## Theme Filters

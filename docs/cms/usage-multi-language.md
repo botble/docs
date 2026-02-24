@@ -22,6 +22,24 @@ language.
 
 ![Setting the Default Language](../cms/images/multi-language-3.png)
 
+## Shared vs Translatable Fields
+
+When multiple languages are configured, most settings are stored per language. However, visual/design properties (colors, logos, layout styles) typically don't change between languages.
+
+Botble CMS supports marking fields as **shared** so they are configured once and apply to all languages. Only text content fields need per-language translation.
+
+### Theme Options
+
+Theme option fields and sections can be marked as shared using `->shared()`. See the [Theme Options documentation](/cms/theme-development/theme-options#shared-fields-multi-language) for details.
+
+**Examples of shared fields:** primary color, logo image, layout style, social media URLs.
+
+**Examples of translatable fields:** site title, copyright text, banner heading.
+
+### Widgets
+
+Widgets fall back to the default language's configuration when no locale-specific widgets are set. See the [Widget documentation](/cms/theme-development/theme-widget#multi-language-widget-fallback) for details.
+
 ## Disabling Multi-language
 
 Navigate to `Plugins` -> `Installed Plugins` and type **language** in the search bar. Find the **Language**

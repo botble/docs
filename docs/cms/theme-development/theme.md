@@ -320,6 +320,82 @@ public function getIndex()
 }
 ```
 
+## Site Information Helpers
+
+The Theme facade provides helper methods to retrieve common site information configured through theme options.
+
+### Logo and Favicon
+
+```php
+// Get logo URL
+$logoUrl = Theme::getLogo();
+
+// Get logo for a specific key (e.g., 'logo_light', 'logo_dark')
+$darkLogo = Theme::getLogo('logo_dark');
+
+// Get logo as an HTML <img> tag with attributes
+$logoHtml = Theme::getLogoImage(
+    attributes: ['class' => 'site-logo', 'alt' => 'My Site'],
+    logoKey: 'logo',
+    maxHeight: 50
+);
+
+// Get favicon URL
+$faviconUrl = Theme::getFavicon();
+
+// Get site title
+$siteTitle = Theme::getSiteTitle();
+```
+
+### Date Formatting
+
+```php
+// Format a date using the theme's configured date format
+echo Theme::formatDate($post->created_at);
+
+// Format with a custom format
+echo Theme::formatDate($post->created_at, 'M d, Y');
+```
+
+### Social Sharing
+
+```php
+// Render social sharing buttons HTML
+echo Theme::renderSocialSharing(
+    url: $post->url,
+    title: $post->name,
+    thumbnail: RvMedia::getImageUrl($post->image)
+);
+```
+
+### Other Helpers
+
+```php
+// Get site copyright text (supports %Y and :year placeholders for current year)
+echo Theme::getSiteCopyright();
+
+// Get terms and privacy policy URL
+$privacyUrl = Theme::termAndPrivacyPolicyUrl();
+```
+
+### Using in Blade Templates
+
+```blade
+{{-- Logo --}}
+<a href="{{ route('public.index') }}">
+    {!! Theme::getLogoImage(['class' => 'logo', 'alt' => Theme::getSiteTitle()]) !!}
+</a>
+
+{{-- Favicon --}}
+<link rel="icon" href="{{ Theme::getFavicon() }}">
+
+{{-- Copyright --}}
+<p>{!! Theme::getSiteCopyright() !!}</p>
+
+{{-- Social sharing --}}
+{!! Theme::renderSocialSharing($post->url, $post->name) !!}
+```
+
 ## Rename the theme to the new name
 
 ### Using command line (Recommended):

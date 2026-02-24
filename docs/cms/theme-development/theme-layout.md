@@ -20,11 +20,11 @@ A basic layout file includes:
 
 ```blade
 <!DOCTYPE html>
-<html>
+<html {!! Theme::htmlAttributes() !!}>
 <head>
     {!! Theme::header() !!}
 </head>
-<body>
+<body {!! Theme::bodyAttributes() !!}>
     {!! Theme::partial('header') !!}
 
     {!! Theme::content() !!}
@@ -43,6 +43,8 @@ Key components:
 - `Theme::partial('header')`: Includes the header partial
 - `Theme::partial('footer')`: Includes the footer partial
 - `Theme::footer()`: Renders JavaScript at the end of the body
+- `Theme::htmlAttributes()`: Renders custom attributes on the `<html>` tag
+- `Theme::bodyAttributes()`: Renders custom attributes on the `<body>` tag
 
 ## Creating Custom Layouts
 
@@ -169,6 +171,98 @@ return [
     ],
 ];
 ```
+
+## HTML and Body Attributes
+
+You can dynamically add attributes to the `<html>` and `<body>` tags. This is useful for setting language direction, page-specific classes, or data attributes.
+
+### Adding Body Attributes
+
+```php
+// In your theme's functions/functions.php or config.php
+Theme::addBodyAttributes(['class' => 'has-sidebar', 'data-page' => 'blog']);
+```
+
+In your layout, render them:
+
+```blade
+<body {!! Theme::bodyAttributes() !!}>
+```
+
+Output: `<body class="has-sidebar" data-page="blog">`
+
+### Adding HTML Attributes
+
+```php
+Theme::addHtmlAttributes(['lang' => 'en', 'dir' => 'ltr']);
+```
+
+In your layout:
+
+```blade
+<html {!! Theme::htmlAttributes() !!}>
+```
+
+Output: `<html lang="en" dir="ltr">`
+
+### Reading Specific Attributes
+
+```php
+// Get a specific attribute value
+$pageClass = Theme::getBodyAttribute('class');
+$lang = Theme::getHtmlAttribute('lang');
+
+// Get all attributes as an array
+$allBodyAttrs = Theme::getBodyAttributes();
+$allHtmlAttrs = Theme::getHtmlAttributes();
+```
+
+## Page Templates
+
+Page templates let admins select different layouts when editing a page in the admin panel.
+
+### Registering Templates
+
+Register templates in your theme's `functions/functions.php`:
+
+```php
+register_page_template([
+    'no-sidebar' => __('No sidebar'),
+    'full-width' => __('Full width'),
+    'landing'    => __('Landing page'),
+]);
+```
+
+::: tip
+Use the `core.page::registering-templates` event to register templates more cleanly:
+
+```php
+$events->listen('core.page::registering-templates', function (): void {
+    register_page_template([
+        'no-sidebar' => __('No sidebar'),
+    ]);
+});
+```
+:::
+
+### How Templates Map to Layouts
+
+When a page uses a template, the CMS looks for a matching layout file:
+
+| Template Key | Layout File |
+|-------------|-------------|
+| `default` | `layouts/default.blade.php` |
+| `no-sidebar` | `layouts/no-sidebar.blade.php` |
+| `full-width` | `layouts/full-width.blade.php` |
+
+### Template Selection in Admin
+
+Once registered, templates appear in the **Template** dropdown when creating or editing a page:
+
+1. Go to **Admin Panel → Pages**
+2. Create or edit a page
+3. Select the template from the **Template** dropdown on the right sidebar
+4. Save the page
 
 ## Layout Best Practices
 
