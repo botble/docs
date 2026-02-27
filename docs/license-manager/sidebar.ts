@@ -21,6 +21,7 @@ export default [
             { text: 'Install via CLI', link: '/license-manager/installation-command-line' },
             { text: 'Install via Docker', link: '/license-manager/installation-using-docker' },
             { text: 'SSL', link: '/license-manager/ssl' },
+            { text: 'Upgrade Guide', link: '/license-manager/upgrade' },
             { text: 'Cronjob', link: '/license-manager/cronjob' },
             { text: 'Commands', link: '/license-manager/commands' },
         ],
