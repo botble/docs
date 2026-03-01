@@ -33,6 +33,7 @@ export default [
             { text: 'Licenses', link: '/license-manager/licenses' },
             { text: 'Activations', link: '/license-manager/activations' },
             { text: 'Customers', link: '/license-manager/customers' },
+            { text: 'PHP Obfuscator', link: '/license-manager/php-obfuscator' },
         ],
     },
     {
