@@ -138,6 +138,43 @@ FutureBuilder(
 )
 ```
 
+## Testing
+
+The project includes a comprehensive test suite with 633+ tests covering services, models, controllers, widgets, and security.
+
+### Running Tests
+
+```bash
+# Run all tests
+flutter test
+
+# Run with coverage
+flutter test --coverage
+
+# Run a specific test file
+flutter test test/service/cart_service_test.dart
+```
+
+### Test Structure
+
+```
+test/
+├── helpers/          # Test utilities and mocks
+├── model/            # Data model serialization tests
+├── service/          # API service tests
+├── controller/       # GetX controller tests
+├── widget/           # Widget rendering tests
+├── security/         # Security regression tests
+├── utils/            # Utility function tests
+└── *.dart            # Feature/integration tests
+```
+
+### CI/CD
+
+The project includes a GitHub Actions workflow (`.github/workflows/test.yml`) that runs on every push and pull request:
+- `flutter analyze` — Static analysis
+- `flutter test --coverage` — Full test suite with coverage reporting
+
 ## Testing Your Changes
 
 ### 🧪 Simple Testing

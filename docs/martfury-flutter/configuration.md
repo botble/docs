@@ -79,6 +79,29 @@ For more advanced setup:
 - **[API Integration](api-integration.md)** - Technical details
 - **[Development Guide](development.md)** - Customization options
 
+## ⚙️ Additional `.env` Keys
+
+These optional keys let you fine-tune app behavior beyond the basic setup:
+
+| Key | Values | Default | Description |
+|-----|--------|---------|-------------|
+| `USE_LOCAL_HELP` | `true` / `false` | `false` | Use local help center content instead of loading it in a WebView |
+| `PRODUCT_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `medium` | Size of product image thumbnails throughout the app |
+| `HOMEPAGE_PRODUCTS_PER_CATEGORY` | number | `10` | Number of products displayed per category on the homepage |
+| `ENABLE_ORDER_UPLOAD_PROOF` | `true` / `false` | `true` | Allow customers to upload payment proof images for orders |
+| `ENABLE_GUEST_CHECKOUT` | `true` / `false` | `false` | Allow customers to check out without creating an account |
+| `LICENSE_CODE` | string | — | License code used for development mode validation |
+
+**Example `.env` additions:**
+```env
+USE_LOCAL_HELP=false
+PRODUCT_IMAGE_THUMBNAIL_SIZE=medium
+HOMEPAGE_PRODUCTS_PER_CATEGORY=10
+ENABLE_ORDER_UPLOAD_PROOF=true
+ENABLE_GUEST_CHECKOUT=false
+LICENSE_CODE=your-license-code-here
+```
+
 ## 💡 Tips for Success
 
 ### Before Going Live:

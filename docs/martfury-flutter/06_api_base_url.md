@@ -19,3 +19,17 @@ The default API base URL is `https://ecommerce-api.botble.com` if not specified.
 - The URL should not end with a trailing slash (/)
 - The URL should be accessible from your app's target devices
 - For local development, you can use `http://localhost:8000` or your local IP address
+
+## HTTPS Validation
+
+The app enforces HTTPS for `API_BASE_URL` in production and staging environments. This validation runs automatically when the app starts.
+
+**Allowed in development mode only:**
+- `http://localhost`
+- `http://127.0.0.1`
+- `http://192.168.x.x` (local network)
+- `http://10.x.x.x` (local network)
+
+**All other environments** require `https://` — the app will throw a `StateError` if HTTP is used with a public domain.
+
+> **Note:** The `.env` file is optional. If missing, the app uses safe defaults (production mode, HTTPS required).

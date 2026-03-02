@@ -121,8 +121,46 @@ To test different configurations:
 
 ## Configuration Priority
 
-The app checks configuration in this order:
+The app supports two configuration sources and checks them in this order:
 1. `.env` file variables (highest priority)
 2. `assets/config/social_sign_in.json` (fallback)
 
-If you set `ENABLE_GOOGLE_SIGN_IN=false` in `.env`, it will override any setting in `social_sign_in.json`.
+`.env` variables always win. If you set `ENABLE_GOOGLE_SIGN_IN=false` in `.env`, it overrides any setting in `social_sign_in.json`.
+
+### JSON Configuration File
+
+The `assets/config/social_sign_in.json` file provides an alternative way to configure all social login providers in a single structured file. This is useful when you prefer not to manage individual `.env` keys or want to ship a pre-configured build.
+
+**File location:** `assets/config/social_sign_in.json`
+
+**Example structure:**
+
+```json
+{
+  "google": {
+    "enabled": true,
+    "clientId": "your-client-id",
+    "serverClientId": "your-server-client-id"
+  },
+  "facebook": {
+    "enabled": true,
+    "appId": "your-app-id",
+    "clientToken": "your-client-token"
+  },
+  "apple": {
+    "enabled": false,
+    "serviceId": "",
+    "teamId": ""
+  },
+  "twitter": {
+    "enabled": false,
+    "consumerKey": "",
+    "consumerSecret": ""
+  }
+}
+```
+
+**Notes:**
+- Set `"enabled": true` for each provider you want to activate.
+- Credentials in this file are used only if the corresponding `.env` keys are not set.
+- If you define both sources, `.env` values take precedence for every key they cover.

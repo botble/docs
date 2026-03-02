@@ -33,7 +33,7 @@ Yes, if your website uses Botble E-commerce system. The app connects to your web
 - Save addresses
 
 ### What languages does it support?
-English, Vietnamese, Spanish, French, Arabic, Hindi, Bengali, Indonesian. You can add more languages easily.
+The app ships with 29 languages already included and registered — no setup needed on your part. The full list covers English, Vietnamese, Arabic, French, Spanish, Hindi, Bengali, Indonesian, and 21 more. Simply select the language your customers need; everything is already in place.
 
 ### What payment methods work?
 - Credit/debit cards (Stripe)

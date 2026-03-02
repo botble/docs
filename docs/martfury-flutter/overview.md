@@ -12,7 +12,7 @@ MartFury is a complete mobile e-commerce application built with Flutter that con
 - **Shopping Cart**: Add items, apply coupons, and checkout securely
 - **Order Tracking**: Track orders and view purchase history
 - **Wishlist**: Save favorite products for later
-- **Multiple Languages**: Shop in their preferred language
+- **Multiple Languages**: Shop in their preferred language — 29 languages included out of the box
 
 ### For Your Business:
 - **Native Mobile App**: Professional iOS and Android apps

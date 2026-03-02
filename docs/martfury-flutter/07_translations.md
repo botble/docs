@@ -16,28 +16,39 @@ DEFAULT_LANGUAGE_DIRECTION=ltr
 
 ## Supported Languages
 
-The app officially supports these 8 languages:
+The app supports 29 languages, all registered in `main.dart`:
 
 | Language | Code | Direction |
 |----------|------|-----------|
-| English | `en` | LTR |
-| Vietnamese | `vi` | LTR |
 | Arabic | `ar` | RTL |
 | Bengali | `bn` | LTR |
+| Czech | `cs` | LTR |
+| German | `de` | LTR |
+| Greek | `el` | LTR |
+| English | `en` | LTR |
 | Spanish | `es` | LTR |
+| Persian | `fa` | RTL |
+| Finnish | `fi` | LTR |
 | French | `fr` | LTR |
+| Hebrew | `he` | RTL |
 | Hindi | `hi` | LTR |
 | Indonesian | `id` | LTR |
-
-## Available Translation Files
-
-The `assets/translations/` directory contains 28 translation files. Additional languages beyond the 8 officially supported ones are available but not registered in the app by default:
-
-- Czech (cs), German (de), Greek (el), Finnish (fi)
-- Hebrew (he), Italian (it), Japanese (ja), Korean (ko)
-- Malay (ms), Dutch (nl), Polish (pl), Portuguese (pt, pt_BR)
-- Russian (ru), Swedish (sv), Thai (th), Turkish (tr)
-- Ukrainian (uk), Chinese (zh, zh_CN)
+| Italian | `it` | LTR |
+| Japanese | `ja` | LTR |
+| Korean | `ko` | LTR |
+| Malay | `ms` | LTR |
+| Dutch | `nl` | LTR |
+| Polish | `pl` | LTR |
+| Portuguese | `pt` | LTR |
+| Brazilian Portuguese | `pt_BR` | LTR |
+| Russian | `ru` | LTR |
+| Swedish | `sv` | LTR |
+| Thai | `th` | LTR |
+| Turkish | `tr` | LTR |
+| Ukrainian | `uk` | LTR |
+| Vietnamese | `vi` | LTR |
+| Chinese Traditional | `zh` | LTR |
+| Chinese Simplified | `zh_CN` | LTR |
 
 ## Adding/Modifying Translations
 
