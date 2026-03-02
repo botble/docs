@@ -226,6 +226,42 @@ google-services.json
 GoogleService-Info.plist
 ```
 
+## Expo Go Limitations
+
+Push notifications are **not supported** in Expo Go on Android (SDK 53+). The app handles this gracefully:
+
+- The `expo-notifications` module is dynamically imported at runtime
+- On Android in Expo Go, the module import is skipped entirely
+- All notification functions return safe defaults (`null`, `false`, `0`) when unavailable
+- Use `isNotificationsSupportedSync()` to check support before showing notification UI
+
+For full push notification testing, use a **development build** (`npx expo run:android` or `npx expo run:ios`).
+
+## Notification Data Structure
+
+Notifications from the backend include these data fields:
+
+```typescript
+interface NotificationData {
+  type?: string;       // e.g., "order_status", "product", "promotion"
+  orderId?: string;    // Links to order detail screen
+  productId?: string;  // Links to product detail screen
+  url?: string;        // Custom URL (internal or external)
+  action_url?: string; // URL from API notification (validated against SITE_URL domain)
+  icon?: string;       // Image URL for notification
+}
+```
+
+The `action_url` field is validated against `SITE_URL` domain for security — external URLs from untrusted domains are rejected.
+
+## Device Token Lifecycle
+
+1. **Permission request** — User grants notification permission
+2. **Token generation** — Expo push token obtained via `getExpoPushTokenAsync()`
+3. **Server registration** — Token sent to backend via `POST /api/v1/device-tokens`
+4. **On logout** — Token unregistered from backend via `DELETE /api/v1/device-tokens/{token}`
+5. **Token refresh** — Re-registered on each app launch when user is authenticated
+
 ## Need More Help?
 
 If you're stuck:

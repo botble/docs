@@ -23,37 +23,25 @@ API_KEY=your-api-key
 
 ### API Client
 
-The app uses a centralized API client located at `src/services/apiClient.ts`. Configuration is loaded from `src/config/app.ts` which reads environment variables through `app.config.js`:
+The app uses a centralized API client at `src/services/apiClient.ts` with these features:
+
+- **Automatic headers** — `X-LANGUAGE`, `X-CURRENCY`, `X-API-KEY`, and `Authorization` headers are injected automatically
+- **In-memory cache** — Language, currency, and auth token are cached in memory (synced from AsyncStorage on startup)
+- **30-second timeout** — All requests abort after 30s via `AbortController`
+- **Error extraction** — Parses API error responses to extract validation messages (e.g., `{errors: {qty: ["Max qty is 2"]}}`)
+- **App status monitoring** — 503 responses trigger maintenance mode UI; 500/502/504 trigger server error state
 
 ```typescript
-import { appConfig } from '@/config/app';
-const API_URL = appConfig.api.baseUrl;
+import { api } from '@/services/apiClient';
 
-export const apiClient = {
-  get: async (endpoint: string, token?: string) => {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }),
-      },
-    });
-    return response.json();
-  },
+// GET request (auth token auto-injected if user is logged in)
+const products = await api.get('/ecommerce/products');
 
-  post: async (endpoint: string, data: any, token?: string) => {
-    const response = await fetch(`${API_URL}${endpoint}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }),
-      },
-      body: JSON.stringify(data),
-    });
-    return response.json();
-  },
-};
+// POST request
+const result = await api.post('/ecommerce/cart/add', { product_id: 123, quantity: 1 });
+
+// With explicit token override
+const data = await api.get('/ecommerce/profile', customToken);
 ```
 
 ## Authentication
@@ -209,14 +197,24 @@ POST /api/v1/ecommerce/coupon/apply
 Request:
 ```json
 {
-  "coupon_code": "DISCOUNT10"
+  "coupon_code": "DISCOUNT10",
+  "cart_id": "abc123"
 }
 ```
+
+**Note**: The `cart_id` is always required when applying or removing coupons — both for guest and authenticated users.
 
 ### Remove Coupon
 
 ```
 POST /api/v1/ecommerce/coupon/remove
+```
+
+Request:
+```json
+{
+  "cart_id": "abc123"
+}
 ```
 
 ## Wishlist
@@ -341,30 +339,40 @@ This opens the website's checkout page with the user's cart and authentication.
 
 ### Error Codes
 
-| Code | Meaning |
-|------|---------|
-| 400 | Bad Request - Invalid data |
-| 401 | Unauthorized - Invalid/expired token |
-| 403 | Forbidden - Access denied |
-| 404 | Not Found - Resource doesn't exist |
-| 422 | Validation Error |
-| 500 | Server Error |
+| Code | Meaning | App Behavior |
+|------|---------|--------------|
+| 400 | Bad Request - Invalid data | Shows error message |
+| 401 | Unauthorized - Invalid/expired token | Redirects to login |
+| 403 | Forbidden - Access denied | Shows error message |
+| 404 | Not Found - Resource doesn't exist | Shows error message |
+| 422 | Validation Error | Extracts first validation message |
+| 500 | Server Error | Triggers server_error app status |
+| 503 | Service Unavailable | Triggers maintenance mode UI |
+
+### Error Message Extraction
+
+The API client automatically extracts user-friendly messages from error responses. It checks in order:
+
+1. `errors` object → first validation message (e.g., `{errors: {qty: ["Max qty is 2"]}}` → `"Max qty is 2"`)
+2. `message` field → generic API message
+3. Fallback → `"API request failed: {status} {statusText}"`
 
 ### Handling Errors in Code
 
 ```typescript
+import { ApiError } from '@/services/apiClient';
+
 try {
-  const data = await fetchProducts();
+  const data = await api.get('/ecommerce/products');
 } catch (error) {
-  if (error.status === 401) {
-    // Token expired, redirect to login
-    logout();
-  } else if (error.status === 422) {
-    // Show validation errors
-    showValidationErrors(error.errors);
-  } else {
-    // Show generic error
-    showToast('Something went wrong');
+  if (error instanceof ApiError) {
+    // error.message contains the extracted user-friendly message
+    // error.status contains the HTTP status code
+    if (error.status === 401) {
+      logout();
+    } else {
+      showToast(error.message);
+    }
   }
 }
 ```

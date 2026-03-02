@@ -316,17 +316,48 @@ const resources = {
 
 ## Testing
 
+The app includes a comprehensive test suite with 248+ tests across 39 test suites using Jest and React Native Testing Library.
+
 ### Running Tests
 
 ```bash
-npm test              # Run unit tests
+npm test              # Run all tests
 npm run test:watch    # Watch mode
+npm run test:coverage # Run with coverage report
+npm run test:ci       # CI mode (coverage + no cache)
 ```
+
+### Test Structure
+
+```
+src/
+├── __tests__/
+│   ├── integration/          # Cross-module integration tests
+│   └── setup.ts              # Jest setup (mocks for native modules)
+├── components/
+│   └── cart/
+│       └── CartItem.test.tsx  # Co-located component tests
+├── hooks/
+│   └── __tests__/            # Hook tests
+├── lib/
+│   └── __tests__/            # Utility function tests
+└── services/
+    └── __tests__/            # API service tests
+```
+
+### Coverage Thresholds
+
+| Metric | Threshold |
+|--------|-----------|
+| Statements | 20% |
+| Branches | 15% |
+| Functions | 20% |
+| Lines | 20% |
 
 ### Type Checking
 
 ```bash
-npm run typecheck     # Check TypeScript types
+npm run typecheck     # Check TypeScript types (tsc --noEmit)
 ```
 
 ## Best Practices

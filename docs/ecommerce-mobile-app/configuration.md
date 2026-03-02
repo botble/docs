@@ -24,6 +24,32 @@ Examples:
 
 **Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls.
 
+### Configuration Flow
+
+Environment variables flow through a dual configuration system:
+
+```
+.env → app.config.js (extra.appConfig) → expo-constants → src/config/app.ts
+```
+
+`src/config/app.ts` reads from `Constants.expoConfig.extra.appConfig` with built-in defaults for every field, so the app works even with missing env vars.
+
+### API URLs
+
+| Variable | Purpose |
+|----------|---------|
+| `API_BASE_URL` | Backend API endpoint (e.g., `https://your-site.com/api/v1`) — used for all API calls |
+| `SITE_URL` | Frontend website URL (e.g., `https://your-site.com`) — used for WebView checkout, external links, notification URL validation |
+
+### Feature Toggles
+
+```env
+ENABLE_ORDER_UPLOAD_PROOF=true    # Allow uploading proof of payment for orders
+ENABLE_GUEST_CHECKOUT=true         # Allow checkout without login
+```
+
+These map to `appConfig.features.orderUploadProof` and `appConfig.features.guestCheckout` in the code.
+
 ### Step 3: Test the Connection
 
 1. Run your app:

@@ -272,6 +272,17 @@ Request body format:
 }
 ```
 
+## Automatic Button Visibility
+
+Social login buttons are **automatically hidden** when no providers are configured. The `useSocialAuth` hook exposes:
+
+- `hasAnySocialLoginEnabled` — `true` if any provider is enabled
+- `isGoogleEnabled`, `isAppleEnabled`, `isFacebookEnabled`, `isTwitterEnabled` — per-provider flags
+
+Both the **Login** and **Register** screens use these flags to conditionally render the social login section (divider + buttons). If all providers are disabled in `app.config.js`, the social login UI is completely hidden — no code changes needed.
+
+Apple Sign-In is automatically disabled on Android regardless of configuration (`Platform.OS === "ios"` check in `src/config/app.ts`).
+
 ## Reference Links
 
 - **Google**: [Cloud Console](https://console.cloud.google.com) · [Sign-In Docs](https://developers.google.com/identity/sign-in/android/start-integrating)

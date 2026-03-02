@@ -133,21 +133,30 @@ To convert hex colors to RGB format:
 }
 ```
 
+## Dual Color Systems
+
+The app uses two parallel color systems:
+
+1. **CSS variables in `global.css`** — Used by NativeWind/Tailwind classes (`className="bg-primary"`)
+2. **`themeColors` from `useSettings()` context** — Used in inline styles and third-party components that don't support className
+
+Both systems read from the same CSS variables, so they stay in sync. Use Tailwind classes when possible; use `themeColors` for dynamic styles, icons, and native components.
+
 ## Using Theme Colors in Components
 
-### With Tailwind Classes
+### With Tailwind Classes (Preferred)
 
 ```typescript
 <View className="bg-background">
   <Text className="text-foreground">Primary text</Text>
   <Text className="text-muted">Secondary text</Text>
-  <Button className="bg-primary text-primary-foreground">
-    Click Me
-  </Button>
+  <Pressable className="bg-primary rounded-xl h-14 items-center justify-center">
+    <Text className="text-primary-foreground font-semibold">Click Me</Text>
+  </Pressable>
 </View>
 ```
 
-### With Theme Context
+### With Theme Context (for icons, dynamic styles)
 
 ```typescript
 import { useSettings } from '@/context/SettingsContext';

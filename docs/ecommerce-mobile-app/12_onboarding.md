@@ -116,6 +116,10 @@ For best results with custom images:
 - [ ] Test on both iOS and Android
 - [ ] Test all supported languages
 
+## How It Works
+
+Onboarding completion is tracked via a boolean flag in AsyncStorage (`@onboarding_completed`). The root layout checks this flag on startup — if not completed, the user is redirected to `/onboarding`. After completing onboarding, the flag is set and the user is never shown onboarding again.
+
 ## Tips
 
 1. **Keep text short** - Mobile screens have limited space
