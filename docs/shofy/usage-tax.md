@@ -181,18 +181,62 @@ Rules:
 - Country: USA, State: Colorado, City: Denver, Percentage: 8.81%
 - Country: USA, State: Colorado, Percentage: 2.9% (state base rate)
 
-## Assigning Tax to Products
+## Product Tax Classes
 
-When creating or editing a product:
+Products can be assigned a tax classification that determines how tax is applied:
+
+| Tax Class | Description |
+|-----------|-------------|
+| **Standard** | Default rate applies (most products) |
+| **Reduced** | Lower tax rate (food, books, essentials) |
+| **Zero Rated** | 0% tax but still in the tax system (exports) |
+| **Exempt** | Excluded from tax calculation entirely |
+
+### Assigning Tax Class to Products
 
 Navigate to `Products` -> `Create` or `Edit` -> **Pricing** section.
 
-Select **Tax class** from dropdown.
+1. Select **Tax class** from dropdown (Standard, Reduced, Zero Rated, Exempt)
+2. Select applicable **Taxes** via checkboxes (e.g., VAT 10%, Import Tax 15%)
+3. Check **Price includes tax** if the entered price already has tax included
 
 If no tax class is selected, the default tax rate applies.
 
 ::: tip
 Use bulk actions to assign tax classes to multiple products at once from the products table.
+:::
+
+### Price Includes Tax (Per Product)
+
+Each product has a **Price includes tax** checkbox:
+
+**When checked:**
+- The entered price already includes tax
+- System back-calculates the base price
+- Example: Price $110 with 10% tax → Base price $100, tax $10
+
+**When unchecked:**
+- The entered price is the base price
+- Tax is added on top at checkout
+- Example: Price $100 with 10% tax → Total $110
+
+## Customer Tax Classes
+
+Customers can be classified for different tax treatment:
+
+| Customer Class | Description |
+|----------------|-------------|
+| **Regular** | Standard tax rates apply (default for all customers) |
+| **Business** | May qualify for different rates or reverse charge |
+| **Tax Exempt** | No tax charged (e.g., government, non-profit) |
+| **Reseller** | Tax exemption for resale purchases |
+
+Configure customer tax class at `Customers` -> `Edit Customer` -> **Tax Class** dropdown.
+
+Customers can also enter their **Tax ID** (VAT/GST number) which is stored encrypted for compliance.
+
+::: tip
+The system checks customer tax class during checkout. Tax-exempt customers see zero tax automatically.
 :::
 
 ## How Tax is Calculated
@@ -338,6 +382,39 @@ Setup:
 2. Assign to all products
 3. Or don't enable tax system at all
 
+## Tax in the Marketplace (Vendor Panel)
+
+Vendors in the marketplace can manage their tax information through the vendor dashboard.
+
+### Vendor Tax Information
+
+Vendors can update their tax details at: `Vendor Dashboard` -> `Settings` -> `Tax Information`
+
+| Field | Description |
+|-------|-------------|
+| **Business Name** | Legal business name for tax purposes |
+| **Tax ID** | VAT/GST/Tax ID number |
+| **Tax Address** | Business address for tax registration |
+
+### How Tax Works for Vendors
+
+1. **Tax rules are set by the admin** - Vendors cannot create or modify tax rates
+2. **Products inherit tax settings** - When vendors create products, they assign the tax classes configured by admin
+3. **Tax calculated at checkout** - The system uses the customer's location and product tax class to determine the rate
+4. **Vendor tax location** - Admin can set the vendor's tax country and state in the store settings, which may affect tax calculations (e.g., for seller-based tax jurisdictions)
+
+### Admin Configuration for Vendor Tax
+
+Navigate to `Marketplace` -> `Stores` -> `Edit Store`:
+
+- **Tax ID** - Vendor's tax registration number
+- **Tax Country** - Country of vendor's tax registration
+- **Tax State** - State of vendor's tax registration
+
+::: tip
+Vendor tax location data is used by the tax engine when calculating taxes for seller-based jurisdictions (e.g., US origin-based sales tax states).
+:::
+
 ## Tax Reports
 
 To view tax collected:
@@ -443,3 +520,18 @@ Use `Ecommerce` -> `Reports` -> `Tax` and export to CSV.
 ### Can I set tax based on customer's country but not state?
 
 Yes, create rules with Country set but State = "All". This applies to all states in that country.
+
+### Can vendors set their own tax rates?
+
+No. Tax classes and tax rules are managed by the admin only. Vendors can assign tax classes to their products but cannot create new tax rates. This ensures tax compliance across the entire marketplace.
+
+### What is the difference between product tax class and tax checkboxes?
+
+- **Tax class** (Standard, Reduced, Zero Rated, Exempt) - Controls how the product is treated in the tax system
+- **Tax checkboxes** (e.g., VAT 10%, Import Tax 15%) - Assigns specific tax rates to the product
+
+Both work together: the tax class determines eligibility, and the selected taxes define the applicable rates.
+
+### How does "Price includes tax" work?
+
+When enabled on a product, the system treats the entered price as tax-inclusive. At checkout, it back-calculates the base price and shows the tax breakdown. This is common for EU stores where prices must display with VAT included.

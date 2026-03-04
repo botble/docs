@@ -370,6 +370,112 @@ Benefits:
 - Multi-warehouse inventory management
 - Regional shipping optimization
 
+## Shipping Tax
+
+You can apply tax to shipping fees in addition to product taxes.
+
+### Enabling Shipping Tax
+
+Navigate to `Ecommerce` -> `Settings` -> `Tax`.
+
+Toggle **Tax on shipping fee** to ON.
+
+When enabled:
+- Shipping costs are taxed using the same tax rules as products
+- Tax amount on shipping appears separately in the order summary
+- Both product tax and shipping tax are tracked individually
+
+::: tip
+Shipping tax is calculated based on the customer's location, using the same tax rules configured for product taxes.
+:::
+
+## Shipment Tracking
+
+After an order is placed, you can manage shipment details and tracking information.
+
+### Shipment Fields
+
+| Field | Description |
+|-------|-------------|
+| **Shipping Company Name** | Carrier name (e.g., FedEx, DHL, UPS, local courier) |
+| **Tracking ID** | Tracking number from the carrier |
+| **Tracking Link** | URL for customers to track their shipment |
+| **Estimate Date Shipped** | Expected shipping date |
+| **Date Shipped** | Actual shipping date |
+| **Note** | Internal notes for the shipment |
+
+### Shipment Status Workflow
+
+Shipments follow a defined status workflow:
+
+```
+Not Approved → Approved → Pending
+  → Arrange Shipment → Ready to be Shipped Out
+    → Picking → Picked → Delivering → Delivered
+```
+
+Special statuses: `Delay Picking`, `Not Picked`, `Not Delivered`, `Audited`, `Canceled`
+
+### COD (Cash On Delivery)
+
+For COD orders, track payment collection:
+
+- **Pending** - COD payment not yet collected
+- **Completed** - COD payment collected from customer
+
+## Marketplace Shipping (Vendor Panel)
+
+The marketplace plugin provides shipping management options for vendors.
+
+### Admin Shipping Settings for Marketplace
+
+Navigate to `Marketplace` -> `Settings`:
+
+| Setting | Description |
+|---------|-------------|
+| **Allow vendor manage shipping** | Vendors can update shipment status from their dashboard |
+| **Charge shipping per vendor** | Calculate and charge shipping separately for each vendor in the cart |
+
+### How Per-Vendor Shipping Works
+
+When **Charge shipping per vendor** is enabled:
+
+1. Each vendor's products are grouped separately in the cart
+2. Shipping is calculated independently per vendor
+3. Customer sees shipping options/costs for each vendor
+4. Total shipping = sum of all vendor shipping costs
+
+**Example:**
+```
+Vendor A (2 items) - Standard Delivery: $5.00
+Vendor B (1 item) - Express Shipping: $12.00
+Total Shipping: $17.00
+```
+
+### Vendor Shipment Management
+
+Vendors access shipments at: `Vendor Dashboard` -> `Shipments`
+
+**When "Allow vendor manage shipping" is ON:**
+- Vendors can update any shipment status
+- Manage COD payment status
+- Add tracking information (tracking ID, carrier name, tracking link)
+- Update shipping dates
+
+**When "Allow vendor manage shipping" is OFF (default):**
+- Vendors can only set status to:
+  - `Arrange Shipment`
+  - `Ready to be Shipped Out`
+- Full shipment management remains with admin
+
+::: tip
+For most marketplaces, keep vendor shipping management OFF and handle fulfillment centrally. Enable it only when vendors ship their own products.
+:::
+
+### Vendor Shipping Rules
+
+When **Allow vendor manage shipping** is enabled, vendors can also create their own shipping rules from their vendor dashboard, following the same rule types (price-based, weight-based, etc.) as the admin.
+
 ## Advanced Shipping Methods
 
 For more advanced shipping needs, Shofy supports:
@@ -604,3 +710,19 @@ Yes. Use "Based on Location" or "Based on Zip Code" rules and only add items for
 ### How do I test shipping calculations?
 
 Place test orders with different amounts/weights, use different addresses, check calculated rates.
+
+### Can vendors create their own shipping rules?
+
+Only if "Allow vendor manage shipping" is enabled in `Marketplace` -> `Settings`. When enabled, vendors can create shipping rules from their vendor dashboard.
+
+### Is shipping charged separately for each vendor?
+
+Yes, if "Charge shipping per vendor" is enabled. Each vendor's products calculate shipping independently. When disabled, shipping is calculated once for the entire order.
+
+### Can I add tax to shipping fees?
+
+Yes. Enable "Tax on shipping fee" in `Ecommerce` -> `Settings` -> `Tax`. The shipping fee will be taxed using the same location-based tax rules as products.
+
+### How do zip code ranges work for shipping?
+
+When using "Based on Zip Code" rules, you can define zip code ranges (e.g., 10000-19999) in rule items. The system matches the customer's zip code against these ranges to determine shipping cost. This allows zone-based pricing without creating rules for every individual zip code.

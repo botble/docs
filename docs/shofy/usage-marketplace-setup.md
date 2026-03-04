@@ -278,6 +278,114 @@ MARKETPLACE_VENDOR_PANEL_DIR=seller
 
 This changes the URL to `/seller/dashboard`
 
+## Vendor Tax Management
+
+Vendors can manage their tax information from the vendor dashboard.
+
+### Vendor Tax Information Tab
+
+Navigate to: `Vendor Dashboard` -> `Settings` -> `Tax Information`
+
+Vendors can configure:
+
+| Field | Description |
+|-------|-------------|
+| **Business Name** | Legal business name for tax/invoicing |
+| **Tax ID** | VAT/GST/Tax ID number |
+| **Tax Address** | Registered business address for tax purposes |
+
+This information appears on invoices and is used for tax compliance.
+
+### Admin Tax Configuration for Vendors
+
+Navigate to `Marketplace` -> `Stores` -> `Edit Store`:
+
+| Field | Description |
+|-------|-------------|
+| **Tax ID** | Vendor's tax registration number |
+| **Tax Country** | Country of tax registration |
+| **Tax State** | State of tax registration |
+
+::: tip
+Vendor tax location is used by the tax engine for seller-based tax jurisdictions (e.g., US origin-based sales tax).
+:::
+
+### How Tax Works in the Marketplace
+
+- **Admin controls all tax rates** - Tax classes and rules are set globally by admin
+- **Vendors assign tax classes** - When creating products, vendors select from admin-configured tax classes
+- **Automatic calculation** - Tax is calculated at checkout based on customer location and product tax settings
+- **Per-product tax** - Each product can have different tax classes (Standard, Reduced, Zero Rated, Exempt)
+
+For full tax configuration details, see: [Tax Configuration](usage-tax.md)
+
+## Vendor Shipping Management
+
+### Shipping Settings
+
+Navigate to `Marketplace` -> `Settings`:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| **Allow vendor manage shipping** | OFF | Let vendors update shipment status and tracking |
+| **Charge shipping per vendor** | ON | Calculate shipping separately per vendor in cart |
+
+### Per-Vendor Shipping
+
+When **Charge shipping per vendor** is enabled:
+
+1. Cart groups items by vendor
+2. Shipping calculated independently per vendor
+3. Customer sees shipping options for each vendor
+4. Total shipping = sum of all vendor shipping fees
+
+**Example checkout:**
+```
+Store A - Standard Delivery: $5.00
+Store B - Express Shipping: $12.00
+─────────────────────────────────
+Total Shipping: $17.00
+```
+
+### Vendor Shipment Dashboard
+
+Vendors manage shipments at: `Vendor Dashboard` -> `Shipments`
+
+**Full access** (when "Allow vendor manage shipping" = ON):
+- Update any shipment status (Pending → Delivering → Delivered)
+- Add tracking information (tracking ID, carrier name, tracking link)
+- Manage COD (Cash On Delivery) payment status
+- Set shipping and estimated delivery dates
+
+**Limited access** (when "Allow vendor manage shipping" = OFF):
+- Can only set status to `Arrange Shipment` or `Ready to be Shipped Out`
+- Admin handles full shipment lifecycle
+
+### Adding Tracking Information
+
+Vendors can add carrier tracking details per shipment:
+
+| Field | Example |
+|-------|---------|
+| **Shipping Company Name** | FedEx, DHL, UPS, Vietnam Post |
+| **Tracking ID** | 1Z999AA10123456784 |
+| **Tracking Link** | https://www.fedex.com/track?id=... |
+| **Estimate Date Shipped** | 2026-03-10 |
+
+Customers see tracking info in their order details on the frontend.
+
+### Vendor Shipping Rules
+
+When **Allow vendor manage shipping** is enabled, vendors can create their own shipping rules from their dashboard, following the same rule types as admin:
+
+- **Based on Price** - Shipping cost by order subtotal
+- **Based on Weight** - Shipping cost by total weight
+- **Based on Location** - City/state-specific rates
+- **Based on Zip Code** - Zip code range pricing
+- **Based on Zip Code and Weight** - Combined calculation
+
+For full shipping configuration details, see: [Shipping Methods](usage-shipping-methods.md)
+
 ## Low Stock Notifications
 
 Vendors automatically receive email notifications when their product inventory drops below the configured threshold after an order is placed.
