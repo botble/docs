@@ -122,25 +122,35 @@ The weight unit is configured at `Ecommerce` -> `Settings` -> `Standard & Format
 
 #### 3. Based on Zipcode
 
-Calculate shipping based on customer's postal code.
+Calculate shipping based on customer's postal code. Supports both single zip codes and zip code **ranges**.
 
 **Configuration:**
 - **Base rate**: Default shipping cost
-- **Zipcode adjustments**: Add/subtract amounts for specific zipcodes
+- **Rule items**: Define zip code ranges with adjustment prices
+  - **Name** (optional): A descriptive label for the rule item (e.g., "Downtown Area", "South Region")
+  - **Zip code from**: Start of the zip code range
+  - **Zip code to**: End of the zip code range (leave empty for exact match)
+  - **Adjustment price**: Amount to add/subtract from the base rate
 
 **Example:**
 ```
 Base rate: $5.00
 
-Zipcode adjustments:
-90001 -> +$2.00 (Remote area surcharge)
-10001 -> -$1.00 (Urban discount)
+Rule items:
+Name: "Metro Area"      | 10000 - 19999 -> -$1.00 (Urban discount)
+Name: "Remote West"     | 90000 - 92000 -> +$2.00 (Surcharge)
+Name: "Exact Location"  | 30301         -> +$0.50
 ```
 
 **Use cases:**
 - Rural area surcharges
 - Metropolitan area discounts
 - Zone-based pricing
+- Regional delivery zones (e.g., Brazilian CEP ranges)
+
+::: tip Zip Code Formatting
+Zip codes are automatically normalized to numeric-only format when saved. Hyphens, dots, and spaces are stripped (e.g., "14403-860" becomes "14403860"). This ensures correct numeric range matching regardless of input format.
+:::
 
 ::: warning Requirements
 - Only available for specific country regions (not "All locations")
@@ -178,22 +188,22 @@ Chicago -> +$0.50
 
 #### 5. Based on Zipcode and Weight
 
-Combines zipcode and weight-based calculations.
+Combines zipcode range matching and weight-based calculations.
 
 **Configuration:**
 - **From weight**: Minimum weight
 - **To weight**: Maximum weight
 - **Base rate**: Default shipping cost for this weight range
-- **Zipcode adjustments**: Additional amounts for specific zipcodes
+- **Rule items**: Zip code ranges with adjustment prices (same as "Based on Zipcode")
 
 **Example:**
 ```
 Weight: 0-500g
 Base rate: $5.00
 
-Zipcode adjustments:
-90001 -> +$2.00 (Heavy package to remote area)
-10001 -> -$1.00 (Light package to urban area)
+Rule items:
+Name: "Remote West" | 90000 - 92000 -> +$2.00
+Name: "Urban East"  | 10000 - 19999 -> -$1.00
 ```
 
 **Use cases:**
@@ -600,7 +610,8 @@ You can restrict delivery to only certain areas (cities, states, or zip code ran
 
 1. Enable zip codes in `Ecommerce` -> `Settings` -> `General`
 2. Create a shipping rule with type **"Based on Zip Code"** or **"Based on Zip Code and Weight"**
-3. Add rule items with **zip code ranges** (`zip_code_from` to `zip_code_to`) for deliverable areas
+3. Add rule items with **zip code ranges** (`Zip code from` to `Zip code to`) for deliverable areas
+4. Optionally give each rule item a **Name** for easy identification (e.g., "Sao Paulo Metro Area")
 
 ### Blocking Delivery Outside Your Zones
 
@@ -725,4 +736,10 @@ Yes. Enable "Tax on shipping fee" in `Ecommerce` -> `Settings` -> `Tax`. The shi
 
 ### How do zip code ranges work for shipping?
 
-When using "Based on Zip Code" rules, you can define zip code ranges (e.g., 10000-19999) in rule items. The system matches the customer's zip code against these ranges to determine shipping cost. This allows zone-based pricing without creating rules for every individual zip code.
+When using "Based on Zip Code" rules, you can define zip code ranges (e.g., 10000-19999) in rule items. The system matches the customer's zip code against these ranges using **numeric comparison** to determine shipping cost. This allows zone-based pricing without creating rules for every individual zip code.
+
+Each rule item can have an optional **Name** field to help identify the zone (e.g., "Downtown Area", "South Region"). If no name is set, the system auto-generates a display name from the zip code range.
+
+::: tip
+Zip codes with formatting (hyphens, dots, spaces) are automatically normalized. For example, Brazilian CEP "14403-860" is stored and matched as "14403860".
+:::
