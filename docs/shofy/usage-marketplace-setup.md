@@ -183,11 +183,21 @@ Vendors can update:
 
 ## Store Verification
 
-### Manual Verification
+Admin can verify or unverify stores from the store detail page. Navigate to `Marketplace` -> `Stores` -> click a store name to view its detail page.
 
-Navigate to `Marketplace` -> `Stores`, find the store, click "Verify"
+The **Store Verification** card on the left sidebar shows the current status:
 
-Optionally add a verification note that is sent to the vendor.
+- **Not Verified** — Displays a warning indicator with a "Verify Store" button
+- **Verified** — Displays a success indicator with verified-by name, date, optional note, and an "Unverify Store" button
+
+### Verifying a Store
+
+1. Navigate to the store detail page (`Marketplace` -> `Stores` -> view store)
+2. In the **Store Verification** card, click **Verify Store**
+3. A confirmation modal appears — optionally add a verification note
+4. Click confirm to verify
+
+The store is marked as verified with a timestamp and the admin's name. An email notification is sent to the store owner.
 
 ::: tip
 Verification badges appear next to verified store names on the frontend.
@@ -195,8 +205,12 @@ Verification badges appear next to verified store names on the frontend.
 
 ### Unverifying a Store
 
-Click "Unverify" on a verified store. The vendor receives an email notification with:
-- Unverification reason (from verification note field)
+1. On the store detail page, click **Unverify Store** in the verification card
+2. A confirmation modal appears — optionally add a reason note
+3. Click confirm to unverify
+
+The vendor receives an email notification with:
+- Unverification reason (from the note field)
 - Contact URL to reach support
 
 ## Admin Store Management
