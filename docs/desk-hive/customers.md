@@ -1,6 +1,6 @@
 # Customers
 
-Customers are the end users who submit support tickets. Desk Hive provides both admin management and a self-service customer portal.
+Customers are the end users who submit support tickets. DeskHive provides both admin management and a self-service customer portal.
 
 ## Customer Accounts
 

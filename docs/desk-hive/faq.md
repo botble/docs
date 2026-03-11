@@ -2,9 +2,9 @@
 
 ## General
 
-### Does Desk Hive require the Envato marketplace?
+### Does DeskHive require the Envato marketplace?
 
-No. Envato integration is entirely optional. You can run Desk Hive without any Envato account. Purchase code verification is only active if you enable it in **Settings → Envato** and assign an Envato ID to a product.
+No. Envato integration is entirely optional. You can run DeskHive without any Envato account. Purchase code verification is only active if you enable it in **Settings → Envato** and assign an Envato ID to a product.
 
 ### Can customers submit tickets without logging in?
 
@@ -72,7 +72,7 @@ Go to [build.envato.com](https://build.envato.com) and create a personal token w
 
 ### What is the License Manager integration?
 
-Desk Hive can connect to the [Botble License Manager](https://license-manager.botble.com) plugin to verify license codes before ticket submission. When enabled and a product has a License Manager Product ID set, customers must enter a valid, active license code to submit a ticket for that product.
+DeskHive can connect to the [Botble License Manager](https://license-manager.botble.com) plugin to verify license codes before ticket submission. When enabled and a product has a License Manager Product ID set, customers must enter a valid, active license code to submit a ticket for that product.
 
 ### Can I use both Envato and License Manager verification?
 

@@ -1,6 +1,6 @@
 # Theme Customization
 
-Desk Hive ships with the **Support** theme, a clean help-desk frontend. All visual options are managed through the Theme Options panel and a set of shortcodes for page content.
+DeskHive ships with the **Support** theme, a clean help-desk frontend. All visual options are managed through the Theme Options panel and a set of shortcodes for page content.
 
 ## Theme Options
 

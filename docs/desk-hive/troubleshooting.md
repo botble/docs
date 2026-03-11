@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues and solutions for Desk Hive.
+Common issues and solutions for DeskHive.
 
 ## Installation Issues
 

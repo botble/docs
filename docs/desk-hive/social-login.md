@@ -1,6 +1,6 @@
 # Social Login
 
-Desk Hive supports social login for the customer portal through the Botble Social Login plugin. Customers can sign in with their existing social accounts instead of creating a password-based account.
+DeskHive supports social login for the customer portal through the Botble Social Login plugin. Customers can sign in with their existing social accounts instead of creating a password-based account.
 
 ## Supported Providers
 
@@ -105,7 +105,7 @@ For products sold on the Envato marketplace, Envato social login is highly recom
 When a customer clicks a social login button:
 
 1. They are redirected to the provider's authorisation page
-2. After approving access, they are redirected back to Desk Hive
+2. After approving access, they are redirected back to DeskHive
 3. If an account with the same email already exists, they are logged in to that account
 4. If no account exists, a new customer account is created automatically
 

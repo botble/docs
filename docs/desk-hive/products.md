@@ -42,7 +42,7 @@ Imported products have their **Envato ID** pre-filled and the verification provi
 
 ## Purchase Verification
 
-When a customer submits a ticket for a product, Desk Hive can require them to verify ownership before the ticket is accepted.
+When a customer submits a ticket for a product, DeskHive can require them to verify ownership before the ticket is accepted.
 
 ### Envato Verification
 
@@ -55,7 +55,7 @@ Requires a valid Envato purchase code for the selected product.
 4. Optionally enable **Require purchase code** — customers must enter a purchase code when submitting a ticket for an Envato product
 5. Optionally enable **Block expired support** — tickets are rejected if the customer's support period has expired
 
-When a purchase code is submitted, Desk Hive calls the Envato API to verify it belongs to the correct item and records the verification data on the ticket.
+When a purchase code is submitted, DeskHive calls the Envato API to verify it belongs to the correct item and records the verification data on the ticket.
 
 ### License Manager Verification
 
@@ -68,7 +68,7 @@ Requires a valid license code verified against the [Botble License Manager](http
 4. Enter the **API Key** (an internal API key from your License Manager)
 5. Optionally enable **Require license code** — customers must enter a license code when submitting a ticket for a License Manager product
 
-When a license code is submitted, Desk Hive calls the License Manager API to verify it is valid and active, then records the license data on the ticket.
+When a license code is submitted, DeskHive calls the License Manager API to verify it is valid and active, then records the license data on the ticket.
 
 ## Assigning Agents to Products
 

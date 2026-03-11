@@ -1,4 +1,4 @@
-# Desk Hive
+# DeskHive – Laravel Support Ticket & Knowledge Base System
 
 A self-hosted help desk and support ticket system built on Botble CMS. Manage customer support with tickets, a knowledge base, dedicated agent and customer portals, and Envato purchase code verification.
 

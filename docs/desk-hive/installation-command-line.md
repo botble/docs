@@ -134,5 +134,5 @@ Default credentials:
 Then navigate to **Admin → Support Desk → Tickets** to confirm the plugin is active.
 
 ::: tip
-After installation, configure Desk Hive at **Admin → Support Desk → Settings**.
+After installation, configure DeskHive at **Admin → Support Desk → Settings**.
 :::

@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Desk Hive is a **Botble CMS plugin**. Before installing, ensure your server meets the following requirements:
+DeskHive is a **Botble CMS plugin**. Before installing, ensure your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
 - PHP >= 8.2 or higher
@@ -39,5 +39,5 @@ If you are using cPanel, you can follow [this article](https://chemicloud.com/kb
 - Botble CMS v7.3.0+
 
 ::: tip
-Desk Hive is built on Laravel 12.x. Please go to the [Laravel documentation page](https://laravel.com/docs/12.x) for more information.
+DeskHive is built on Laravel 12.x. Please go to the [Laravel documentation page](https://laravel.com/docs/12.x) for more information.
 :::

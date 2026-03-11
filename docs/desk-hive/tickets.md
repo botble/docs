@@ -1,6 +1,6 @@
 # Tickets
 
-Tickets are the core of Desk Hive. Customers submit tickets through the customer portal; agents respond through the agent portal; admins manage everything from the admin panel.
+Tickets are the core of DeskHive. Customers submit tickets through the customer portal; agents respond through the agent portal; admins manage everything from the admin panel.
 
 ## Ticket Fields
 

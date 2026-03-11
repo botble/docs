@@ -1,6 +1,6 @@
 # Installation via Web Interface
 
-Desk Hive includes a web-based installer for easy setup.
+DeskHive includes a web-based installer for easy setup.
 
 ## Step 1: Upload Files
 
@@ -40,7 +40,7 @@ The plugin creates all required database tables on activation.
 
 ## Step 4: Initial Configuration
 
-After activation, configure Desk Hive at **Admin → Support Desk → Settings**:
+After activation, configure DeskHive at **Admin → Support Desk → Settings**:
 
 ### General Settings
 
