@@ -28,19 +28,9 @@ The installer will guide you through:
 3. **Admin Account Setup** - Create your administrator account
 4. **Installation Complete** - Database tables created and configured
 
-## Step 3: Activate the Plugin
+## Step 3: Initial Configuration
 
-After installation, activate the Support Desk plugin:
-
-1. Navigate to **Admin → Plugins**
-2. Find **Support Desk** in the list
-3. Click **Activate**
-
-The plugin creates all required database tables on activation.
-
-## Step 4: Initial Configuration
-
-After activation, configure DeskHive at **Admin → Support Desk → Settings**:
+After installation, configure DeskHive at **Admin → Support Desk → Settings**:
 
 ### General Settings
 
@@ -71,9 +61,13 @@ After activation, configure DeskHive at **Admin → Support Desk → Settings**:
 | Notify customer on status change | On | Email customer when ticket status changes |
 | Notification email | Empty | Override email address for outgoing notifications |
 
-## Step 5: Setup Cron Job
+## Step 4: Setup Cron Job
 
-Follow the [Botble CMS Cronjob Setup Guide](https://docs.botble.com/cms/cronjob.html) to configure scheduled tasks for auto-closing inactive tickets.
+Add the following cron entry to configure scheduled tasks for auto-closing inactive tickets:
+
+```bash
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
 
 ## Permissions
 

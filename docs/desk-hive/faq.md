@@ -16,7 +16,7 @@ Yes. Go to **Admin → Support Desk → Settings → Customer Portal** and turn 
 
 ### What is the difference between agents and admin users?
 
-Admin users access the full Botble CMS admin panel (`/admin`) and have access to all management features. Agents access only the dedicated agent portal (`/support/agent`) with a focused ticket-handling interface. Agents cannot access the admin panel.
+Admin users access the full admin panel (`/admin`) and have access to all management features. Agents access only the dedicated agent portal (`/support/agent`) with a focused ticket-handling interface. Agents cannot access the admin panel.
 
 ### Can an agent also be an admin user?
 
@@ -72,7 +72,7 @@ Go to [build.envato.com](https://build.envato.com) and create a personal token w
 
 ### What is the License Manager integration?
 
-DeskHive can connect to the [Botble License Manager](https://license-manager.botble.com) plugin to verify license codes before ticket submission. When enabled and a product has a License Manager Product ID set, customers must enter a valid, active license code to submit a ticket for that product.
+DeskHive can connect to the [Botble License Manager](https://license-manager.botble.com) to verify license codes before ticket submission. When enabled and a product has a License Manager Product ID set, customers must enter a valid, active license code to submit a ticket for that product.
 
 ### Can I use both Envato and License Manager verification?
 

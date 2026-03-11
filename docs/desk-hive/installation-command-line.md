@@ -65,13 +65,7 @@ php artisan cms:user:create
 php artisan storage:link
 ```
 
-## Step 8: Activate the Plugin
-
-```bash
-php artisan cms:plugin:activate support-desk
-```
-
-## Step 9: Web Server Configuration
+## Step 8: Web Server Configuration
 
 ### Nginx
 
@@ -115,9 +109,13 @@ Ensure `mod_rewrite` is enabled. The `.htaccess` file is included in the package
 </VirtualHost>
 ```
 
-## Step 10: Setup Cron Job
+## Step 9: Setup Cron Job
 
-Follow the [Botble CMS Cronjob Setup Guide](https://docs.botble.com/cms/cronjob.html) to configure scheduled tasks for auto-closing inactive tickets.
+Add the following cron entry to configure scheduled tasks for auto-closing inactive tickets:
+
+```bash
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
 
 ## Verify Installation
 
@@ -131,7 +129,7 @@ Default credentials:
 - Email: `admin@botble.com`
 - Password: `12345678`
 
-Then navigate to **Admin → Support Desk → Tickets** to confirm the plugin is active.
+Then navigate to **Admin → Support Desk → Tickets** to confirm everything is working.
 
 ::: tip
 After installation, configure DeskHive at **Admin → Support Desk → Settings**.

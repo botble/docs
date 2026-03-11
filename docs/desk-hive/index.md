@@ -1,6 +1,6 @@
 # DeskHive – Laravel Support Ticket & Knowledge Base System
 
-A self-hosted help desk and support ticket system built on Botble CMS. Manage customer support with tickets, a knowledge base, dedicated agent and customer portals, and Envato purchase code verification.
+A standalone self-hosted help desk and support ticket system built with Laravel. Manage customer support with tickets, a knowledge base, dedicated agent and customer portals, and Envato purchase code verification. No additional products required.
 
 ## Live Demo
 
@@ -24,7 +24,7 @@ A self-hosted help desk and support ticket system built on Botble CMS. Manage cu
 - **Email Notifications** - Alerts on ticket creation, reply, status change, and assignment
 - **Social Login** - Google, Facebook, GitHub, LinkedIn, X, and Envato login for customers
 - **Envato Integration** - Require and verify Envato purchase codes before ticket submission
-- **License Manager Integration** - Verify license codes via the Botble License Manager plugin
+- **License Manager Integration** - Verify license codes via the Botble License Manager
 - **Dashboard Widgets** - At-a-glance counts for open, today's, and unassigned tickets
 - **Theme Customization** - Colors, typography, logo, auth page backgrounds, and footer content
 

@@ -12,7 +12,7 @@ Products represent the software items your customers purchase and request suppor
 | Site URL | Link to the product's website or marketplace listing |
 | Price | Product price (display only) |
 | Envato ID | Envato marketplace item ID (for Envato integration) |
-| License Manager Product ID | Product ID from the Botble License Manager plugin |
+| License Manager Product ID | Product ID from the Botble License Manager |
 | Verification Provider | Source used to verify purchases (`envato` or `license_manager`) |
 | Status | Published or Draft |
 | Agents | Agents assigned to handle support for this product |
@@ -59,7 +59,7 @@ When a purchase code is submitted, DeskHive calls the Envato API to verify it be
 
 ### License Manager Verification
 
-Requires a valid license code verified against the [Botble License Manager](https://license-manager.botble.com) plugin.
+Requires a valid license code verified against the [Botble License Manager](https://license-manager.botble.com).
 
 **Setup:**
 1. Navigate to **Admin → Support Desk → Settings → License Manager**

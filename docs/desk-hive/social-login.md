@@ -1,6 +1,6 @@
 # Social Login
 
-DeskHive supports social login for the customer portal through the Botble Social Login plugin. Customers can sign in with their existing social accounts instead of creating a password-based account.
+DeskHive supports social login for the customer portal. Customers can sign in with their existing social accounts instead of creating a password-based account.
 
 ## Supported Providers
 
@@ -13,19 +13,9 @@ DeskHive supports social login for the customer portal through the Botble Social
 | X (Twitter) | Twitter OAuth 2.0 |
 | Envato | Envato OAuth — ideal for Envato marketplace products |
 
-## Prerequisites
-
-1. The **Social Login** plugin must be installed and activated (`platform/plugins/social-login`)
-2. The Support Desk plugin registers the customer guard automatically with the Social Login plugin
-
 ## Setup
 
-### Step 1: Enable the Social Login Plugin
-
-1. Navigate to **Admin → Plugins**
-2. Activate **Social Login**
-
-### Step 2: Configure Providers
+### Step 1: Configure Providers
 
 Navigate to **Admin → Settings → Social Login** and enable the providers you want to offer.
 

@@ -4,9 +4,9 @@ Common issues and solutions for DeskHive.
 
 ## Installation Issues
 
-### Plugin Not Appearing
+### Admin Panel Not Loading
 
-**Problem**: The Support Desk plugin does not appear in the admin panel after upload.
+**Problem**: The admin panel does not load after installation.
 
 **Solutions**:
 1. Clear application cache:
@@ -16,14 +16,14 @@ Common issues and solutions for DeskHive.
    ```
 2. Check file permissions:
    ```bash
-   chmod -R 755 platform/plugins/support-desk
+   chmod -R 755 storage bootstrap/cache
    ```
-3. Verify `plugin.json` exists and is valid JSON
+3. Verify `.env` database configuration is correct
 4. Check Laravel logs: `storage/logs/laravel.log`
 
 ### Migration Errors
 
-**Problem**: Database migration fails on plugin activation.
+**Problem**: Database migration fails during installation.
 
 **Solutions**:
 1. Check database connection in `.env`
@@ -39,8 +39,7 @@ Common issues and solutions for DeskHive.
 **Problem**: Tables do not exist after activation.
 
 **Solutions**:
-1. Deactivate and reactivate the plugin from **Admin → Plugins**
-2. Run migrations manually:
+1. Run migrations manually:
    ```bash
    php artisan migrate
    ```
@@ -56,8 +55,7 @@ Common issues and solutions for DeskHive.
 **Problem**: Accessing `/login` or `/support` returns a 404.
 
 **Solutions**:
-1. Confirm the Support Desk plugin is activated
-2. Clear the route cache:
+1. Clear the route cache:
    ```bash
    php artisan route:clear
    php artisan cache:clear
@@ -239,6 +237,5 @@ If an issue persists:
 
 Include in your support request:
 - PHP version (`php -v`)
-- Botble CMS version
-- Plugin version (from `platform/plugins/support-desk/plugin.json`)
+- DeskHive version
 - Error message and steps to reproduce
