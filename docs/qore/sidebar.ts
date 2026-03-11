@@ -29,7 +29,7 @@ export default [
     text: 'Usage',
     items: [
       { text: 'Setup Homepage', link: '/qore/usage-homepage' },
-      { text: 'UI Block', link: '/qore/usage-ui-block' },
+      { text: 'UI Block (Shortcodes)', link: '/qore/usage-ui-block' },
       { text: 'Setup Menus', link: '/qore/usage-menus' },
       { text: 'Theme Options', link: '/qore/usage-theme-options' },
       { text: 'Widgets', link: '/qore/usage-widgets' },

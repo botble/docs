@@ -1,6 +1,6 @@
 # Widgets
 
-Qore provides widget areas to help you customize content in the footer section of your website.
+Qore provides multiple widget areas to help you customize content across your website.
 
 ## Manage Widgets
 
@@ -10,18 +10,33 @@ To add a widget to a sidebar, drag and drop the widget from the left side to the
 
 ## Widget Areas
 
-### Footer Sidebar
+Qore registers the following widget areas:
 
-The footer sidebar is the main widget area in Qore. It appears in the footer section of the website.
+| Widget Area | Description |
+|-------------|-------------|
+| Footer Sidebar | Main footer widget area |
+| Blog Sidebar | Sidebar for blog pages |
+| Header Controls | Header control widgets (search, theme toggle, language) |
+| Footer Column 1 | First footer column widgets |
+| Footer Column 2 | Second footer column widgets |
+| Footer Column 3 | Third footer column widgets |
+| Footer Bottom | Footer bottom area for copyright and credits |
 
-This sidebar is suitable for displaying:
+### Footer Columns
 
-- Site information
-- Social links
-- Navigation menus
-- Copyright text
-- Newsletter signup
-- Custom HTML content
+The footer is organized into 3 columns. Each column has its own widget area, allowing you to arrange content across the footer layout:
+
+- **Footer Column 1**: Typically used for site information or logo
+- **Footer Column 2**: Typically used for navigation menus
+- **Footer Column 3**: Typically used for contact info or newsletter
+
+### Footer Bottom
+
+The footer bottom area appears below the columns, suitable for copyright text and credits.
+
+### Blog Sidebar
+
+The blog sidebar appears on blog listing and single post pages. You can add widgets like recent posts, categories, or search.
 
 ## Available Widgets
 
@@ -30,6 +45,10 @@ Qore supports the following widgets:
 | Widget | Description |
 |--------|-------------|
 | Site Information | Display site logo, name, and description |
+| Site Logo | Display the site logo |
+| Site Copyright | Display copyright text |
+| Blog Posts | Display recent blog posts |
+| Contact Form | Display a contact form |
 | Custom Menu | Display a navigation menu |
 | Social Links | Social media profile links |
 | Custom HTML | Custom HTML content |
@@ -59,14 +78,3 @@ If the Newsletter plugin is installed:
 
 If you don't want to use the widgets, you can remove them by collapsing the widget and clicking the
 **Delete** button.
-
-## Custom Footer Content
-
-For more control over footer content, you can use the Custom HTML widget to add:
-
-- Custom copyright text
-- Additional links
-- Contact information
-- Any HTML content
-
-This gives you flexibility to design your footer exactly as needed.

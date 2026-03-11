@@ -26,7 +26,7 @@ Here are the available menu items that you can add to the menu:
 
 ## Setting a Menu Location
 
-To set a menu as the main navigation, enable the `Main Navigation` checkbox in the **Display location** section.
+To assign a menu to a location, enable the corresponding checkbox in the **Display location** section when editing the menu.
 
 ## Menu Locations
 
@@ -35,6 +35,7 @@ Qore supports the following menu locations:
 | Location | Description |
 |----------|-------------|
 | Main Navigation | Primary navigation menu in header |
+| Footer Menu | Navigation menu in the footer area |
 
 ## Anchor Links
 
@@ -64,7 +65,8 @@ The header navigation in Qore features:
 
 - Transparent background that becomes solid on scroll
 - Logo on the left
-- Navigation links on the right
+- Navigation links in the center
+- CTA action button and language switcher on the right (configurable in Theme Options)
 - Mobile hamburger menu for smaller screens
 - Smooth scroll to sections when using anchor links
 
@@ -79,9 +81,14 @@ On mobile devices, the navigation transforms into a hamburger menu:
 
 ## Footer Menu
 
-You can also add menus to the footer through widgets:
+Qore has a dedicated **Footer Menu** location. To set it up:
 
 1. Create a new menu for footer links
-2. Go to `Appearance` -> `Widgets`
-3. Add a menu widget to the footer sidebar
-4. Select your footer menu
+2. In the **Display location** section, enable `Footer Menu`
+3. Save the menu
+
+Alternatively, you can add menus to footer columns through widgets:
+
+1. Go to `Appearance` -> `Widgets`
+2. Add a **Custom Menu** widget to a footer column widget area
+3. Select your menu
