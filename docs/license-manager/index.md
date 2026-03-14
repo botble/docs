@@ -82,7 +82,6 @@ Set up your own License Manager server:
 - **Envato Integration** - Verify Envato purchase codes
 - **Webhooks** - Real-time event notifications
 - **REST API** - Full programmatic access
-- **Migration Support** - Import from LicenseBox
 
 ## Support
 

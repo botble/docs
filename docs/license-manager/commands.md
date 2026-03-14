@@ -144,18 +144,6 @@ $schedule->command('cms:license-manager:download-log:clear')
     ->quarterly();
 ```
 
-## LicenseBox Setting Sync
-
-Sync settings with LicenseBox service.
-
-```bash
-php artisan cms:lb:setting:sync
-```
-
-### What it does
-
-Synchronizes local settings with external LicenseBox service (if integrated).
-
 ## Running Commands
 
 ### Via Terminal

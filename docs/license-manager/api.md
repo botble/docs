@@ -34,7 +34,7 @@ Accept: application/json
 
 ### Legacy Header Support
 
-For backward compatibility with LicenseBox, these legacy headers are also supported:
+For backward compatibility, these legacy headers are also supported:
 
 | Modern Header | Legacy Header |
 |---------------|---------------|
