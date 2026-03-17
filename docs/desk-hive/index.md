@@ -43,6 +43,9 @@ A standalone self-hosted help desk and support ticket system built with Laravel.
 | [Canned Responses](canned-responses.md) | Pre-written reply templates |
 | [Custom Fields](custom-fields.md) | Custom ticket form fields |
 | [Products](products.md) | Product and purchase verification |
+| [API Overview](api-overview.md) | REST API authentication and basics |
+| [Internal API](api-internal.md) | Admin-level CRUD endpoints |
+| [External API](api-external.md) | Agent-facing API endpoints |
 | [Theme Customization](theme-customization.md) | Shortcodes and theme options |
 | [Social Login](social-login.md) | OAuth provider setup |
 | [FAQ](faq.md) | Common questions |

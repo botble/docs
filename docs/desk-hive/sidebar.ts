@@ -24,6 +24,14 @@ export default [
         ],
     },
     {
+        text: 'API Reference',
+        items: [
+            { text: 'Overview', link: '/desk-hive/api-overview' },
+            { text: 'Internal API', link: '/desk-hive/api-internal' },
+            { text: 'External API', link: '/desk-hive/api-external' },
+        ],
+    },
+    {
         text: 'Customization',
         items: [
             { text: 'Theme Customization', link: '/desk-hive/theme-customization' },
