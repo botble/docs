@@ -4,7 +4,7 @@ License Manager includes a web-based installer for easy setup.
 
 ## Step 1: Upload Files
 
-1. Download the package from CodeCanyon
+1. Download the package from [Gumroad](https://botble.gumroad.com/l/license-manager)
 2. Extract and upload all files to your server
 3. Set directory permissions:
 

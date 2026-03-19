@@ -4,7 +4,7 @@ For developers who prefer command-line installation over the web installer.
 
 ## Step 1: Download and Extract
 
-1. Download the package from CodeCanyon
+1. Download the package from [Gumroad](https://botble.gumroad.com/l/license-manager)
 2. Extract to your server's web directory (e.g., `/var/www/license-manager`)
 
 ## Step 2: Set Permissions

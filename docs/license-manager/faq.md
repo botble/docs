@@ -2,7 +2,7 @@
 
 ## General
 
-### Does the License Manager only work with Envato/CodeCanyon?
+### Does the License Manager only work with Envato?
 
 No. The License Manager is a **fully standalone license system**. Envato integration is just one optional feature. You can generate and manage your own license codes (UUID, ULID, or custom patterns) completely independently — no Envato account required.
 

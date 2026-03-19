@@ -17,7 +17,7 @@ To update your product automatically, follow these steps:
 
 This way is a bit more complex, but it gives you more control over the upgrade process. Here are the steps:
 
-1. Download the latest version of the product from CodeCanyon.
+1. Download the latest version of the product from [Gumroad](https://botble.gumroad.com/l/license-manager).
 2. Extract the downloaded file.
 3. Upload the extracted files to your server, overwrite the following directories and files:
    * `app`
