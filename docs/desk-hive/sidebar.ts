@@ -39,6 +39,12 @@ export default [
         ],
     },
     {
+        text: 'Automation',
+        items: [
+            { text: 'Email-to-Ticket', link: '/desk-hive/email-to-ticket' },
+        ],
+    },
+    {
         text: 'More',
         items: [
             { text: 'FAQ', link: '/desk-hive/faq' },

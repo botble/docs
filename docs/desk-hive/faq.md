@@ -78,6 +78,28 @@ DeskHive can connect to the [Botble License Manager](https://license-manager.bot
 
 Each product uses one verification provider — either `envato` or `license_manager`. You can have different products using different providers in the same installation.
 
+## Email-to-Ticket
+
+### Does Email-to-Ticket require the PHP imap extension?
+
+No. DeskHive bundles the `webklex/php-imap` library, so the native PHP `ext-imap` extension is not required on your server.
+
+### Is Email-to-Ticket enabled by default?
+
+No. The feature is off by default. Enable it in **Admin → Support Desk → Settings → Email Piping** after configuring your IMAP credentials.
+
+### Can I use Gmail with Email-to-Ticket?
+
+Yes. Use an **App Password** rather than your regular Google account password. Enable IMAP in Gmail settings, then generate an App Password under **Google Account → Security → App passwords**. See [Email-to-Ticket Setup](email-to-ticket.md#gmail-setup-app-password) for step-by-step instructions.
+
+### What happens if an email sender is not a registered customer?
+
+If **Auto-create Customer** is enabled, DeskHive creates a new customer account from the sender's name and email, then links the ticket to that account. If the setting is disabled, the email is skipped entirely.
+
+### Will the same email be processed twice?
+
+No. DeskHive records each processed message by its Message-ID in the `sd_processed_emails` table. Duplicate processing is prevented even if the scheduler runs while a previous run is still in progress.
+
 ## Email Notifications
 
 ### Which events trigger email notifications?

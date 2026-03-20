@@ -27,10 +27,13 @@ A standalone self-hosted help desk and support ticket system built with Laravel.
 - **License Manager Integration** - Verify license codes via the Botble License Manager
 - **Dashboard Widgets** - At-a-glance counts for open, today's, and unassigned tickets
 - **Reply Reactions** - Like individual replies in ticket threads for feedback
+- **Email-to-Ticket** - Automatically create tickets from inbound emails; thread replies back via subject tag
 - **REST API** - Internal (admin) and external (agent) API with scope-based authentication
-- **39 Languages** - Built-in translations for 39 languages including RTL support
+- **39 Languages** - Built-in translations for 39 languages
+- **RTL Support** - Full right-to-left layout for Arabic, Hebrew, Persian, and other RTL languages with automatic detection
 - **Preferred Language** - Customers and agents can set their preferred interface language
 - **Agent Password Reset** - Agents can reset forgotten passwords via email
+- **Dark Mode** - Full dark mode support across customer and agent portals
 - **Theme Customization** - Colors, typography, logo, auth page backgrounds, and footer content
 
 ## Quick Links
@@ -53,6 +56,7 @@ A standalone self-hosted help desk and support ticket system built with Laravel.
 | [External API](api-external.md) | Agent-facing API endpoints |
 | [Theme Customization](theme-customization.md) | Shortcodes and theme options |
 | [Social Login](social-login.md) | OAuth provider setup |
+| [Email-to-Ticket](email-to-ticket.md) | Inbound email processing and ticket creation |
 | [FAQ](faq.md) | Common questions |
 | [Troubleshooting](troubleshooting.md) | Common issues and fixes |
 

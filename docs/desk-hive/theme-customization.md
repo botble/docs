@@ -11,6 +11,7 @@ Navigate to **Admin → Appearance → Theme Options** to configure the Support 
 | Option | Description |
 |--------|-------------|
 | Site title | Title shown in the browser tab and portal header |
+| Dark mode | Enable dark mode for customer and agent portals |
 | Hero background image | Background image for the homepage hero section |
 
 ### Logo & Favicon
@@ -70,6 +71,20 @@ Customize the decorative panel shown on the left side of the login, register, an
 |--------|-------------|
 | Terms of Service URL | Link to your terms page (shown in registration form) |
 | Privacy Policy URL | Link to your privacy page (shown in registration form) |
+
+## RTL Support
+
+DeskHive automatically detects right-to-left languages and switches the entire portal layout. When a customer or agent sets their preferred language to an RTL language (Arabic, Hebrew, Persian, Urdu, etc.), the theme:
+
+1. Adds `dir="rtl"` to the `<html>` element
+2. Loads a dedicated `theme-rtl.css` stylesheet that mirrors all directional styles
+3. Flips navigation, sidebars, form layouts, and ticket threads
+
+RTL detection uses Botble's built-in `Language` registry — no manual configuration needed. It works with both the system-level language setting and per-user preferred language.
+
+::: tip
+RTL is activated automatically when a user's preferred language is an RTL language. No admin toggle is required.
+:::
 
 ## Shortcodes
 
