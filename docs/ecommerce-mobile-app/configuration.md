@@ -43,7 +43,7 @@ Environment variables flow through a dual configuration system:
 
 ### Feature Toggles
 
-```env
+```bash
 ENABLE_ORDER_UPLOAD_PROOF=true    # Allow uploading proof of payment for orders
 ENABLE_GUEST_CHECKOUT=true         # Allow checkout without login
 ```
@@ -63,7 +63,7 @@ These map to `appConfig.features.orderUploadProof` and `appConfig.features.guest
 
 Create or update your `.env` file with these settings:
 
-```env
+```bash
 # API Configuration
 API_BASE_URL=https://your-website.com
 API_KEY=your-api-key
@@ -148,7 +148,7 @@ Customize the homepage layout and content through environment variables.
 
 Control which ads/banners display on the homepage:
 
-```env
+```bash
 # Display specific ads only (comma-separated keys)
 AD_KEYS=banner-home-1,banner-home-2
 
@@ -171,7 +171,7 @@ AD_KEYS=
 
 Configure how products are displayed in category sections:
 
-```env
+```bash
 # Horizontal slider (default)
 PRODUCT_SECTION_LAYOUT=slider
 
@@ -183,7 +183,7 @@ PRODUCT_SECTION_LAYOUT=grid
 
 Control how many products appear in each category section:
 
-```env
+```bash
 # Default is 6
 PRODUCT_SECTION_NUMBER_OF_PRODUCTS=6
 ```
@@ -192,7 +192,7 @@ PRODUCT_SECTION_NUMBER_OF_PRODUCTS=6
 
 Set the thumbnail size for product images:
 
-```env
+```bash
 # Options: small, medium, large, thumb
 PRODUCT_IMAGE_THUMBNAIL_SIZE=small
 ```

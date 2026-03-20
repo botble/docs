@@ -78,7 +78,7 @@ php artisan vendor:publish --tag=license-config
 
 4. Set your credentials in `config/license.php` or `.env`:
 
-```env
+```bash
 LICENSE_API_KEY=your-api-key
 LICENSE_API_URL=https://license.yoursite.com
 LICENSE_PRODUCT_ID=your-product-id

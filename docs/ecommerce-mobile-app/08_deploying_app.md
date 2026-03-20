@@ -312,7 +312,7 @@ MYAPP_UPLOAD_KEY_PASSWORD=your_password_here
 
 Add signing config to `android/app/build.gradle`. Find the `android {` block and add:
 
-```gradle
+```groovy
 android {
     // ... existing config ...
 

@@ -122,7 +122,7 @@ Find and update the address text in the component:
 
 For centralized contact info, update `.env`:
 
-```env
+```bash
 APP_CONTACT_PHONE=+1 (800) 123-4567
 APP_CONTACT_EMAIL=support@yourstore.com
 ```

@@ -164,7 +164,7 @@ After adding both configuration files:
 - **Keep your service account JSON file secure** - it has full access to send notifications
 - Add Firebase config files to `.gitignore` if your repository is public:
 
-```gitignore
+```ini
 # Firebase config files
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist

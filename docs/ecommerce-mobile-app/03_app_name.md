@@ -10,7 +10,7 @@ Change your app's display name for both iOS and Android platforms.
 
 Update the `.env` file:
 
-```env
+```bash
 APP_NAME=Your Store Name
 ```
 

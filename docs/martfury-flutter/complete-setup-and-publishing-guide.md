@@ -103,7 +103,7 @@ cp .env.example .env
 
 Open the `.env` file and update these required values:
 
-```env
+```bash
 # REQUIRED: Your website URL (the app appends /api/v1 endpoints to this)
 API_BASE_URL=https://yourstore.com
 
@@ -224,7 +224,7 @@ Once configured, the app **automatically** pulls data from your website:
 
 You can customize the homepage content through environment variables in `.env`:
 
-```env
+```bash
 # Show specific banners only (comma-separated ad keys from your admin panel)
 AD_KEYS=Q9YDUIC9HSWS,NBDWRXTSVZ8N,VC2C8Q1UGCBG
 
@@ -431,7 +431,7 @@ By default, the release build uses debug signing (`signingConfigs.getByName("deb
 
 Make sure your `.env` file has `APP_ENV=production` set:
 
-```env
+```bash
 APP_ENV=production
 ```
 

@@ -220,7 +220,7 @@ eas build --platform all
 - **Keep your service account JSON file secure** - it has full access to send notifications
 - Add Firebase config files to `.gitignore` if your repository is public:
 
-```gitignore
+```ini
 # Firebase config files
 google-services.json
 GoogleService-Info.plist

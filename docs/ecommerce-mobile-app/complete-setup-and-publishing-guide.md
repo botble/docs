@@ -112,7 +112,7 @@ The API is **disabled by default** in Botble. You **must** enable it in **Admin 
 
 Open the `.env` file in the root of your project and update these values:
 
-```env
+```bash
 # REQUIRED: Your website URL (no trailing slash, no /api/v1)
 API_BASE_URL=https://yourstore.com
 
@@ -230,7 +230,7 @@ Once configured, the app **automatically** pulls data from your website:
 
 You can customize the homepage content through environment variables in `.env`:
 
-```env
+```bash
 # Show specific banners only (comma-separated ad keys from your admin panel)
 AD_KEYS=banner-home-1,banner-home-2
 

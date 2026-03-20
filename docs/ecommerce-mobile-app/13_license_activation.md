@@ -19,14 +19,14 @@ The purchase code looks like: `a1b2c3d4-e5f6-7890-abcd-ef1234567890`
 
 Add your purchase code to the `.env` file:
 
-```env
+```bash
 # License Validation (Development Only)
 LICENSE_CODE=your-envato-purchase-code
 ```
 
 ### Example
 
-```env
+```bash
 LICENSE_CODE=a1b2c3d4-e5f6-7890-abcd-ef1234567890
 ```
 

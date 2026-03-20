@@ -12,7 +12,7 @@ All brand colors can be configured in your `.env` file using hex color values (w
 
 Open your `.env` file and add or modify these settings:
 
-```env
+```bash
 # Primary Color - main brand color used for buttons, highlights, app bar background
 # Default: FFB800 (yellow/gold)
 PRIMARY_COLOR=FFB800
@@ -30,7 +30,7 @@ PRIMARY_DARK_COLOR=E6A600
 
 ### Text/Icon Colors on Primary Backgrounds
 
-```env
+```bash
 # On Primary Color - text/icons displayed on primary color backgrounds (buttons, etc.)
 # Use black (000000) for light primary colors, white (FFFFFF) for dark primary colors
 # Default: 000000 (black)
@@ -45,7 +45,7 @@ APP_BAR_FOREGROUND_COLOR=000000
 
 Accent colors are used for special sections like the Free Shipping banner and search button:
 
-```env
+```bash
 # Accent Background Color - background for accent sections (Free Shipping banner, search button)
 # Default: 212121 (dark gray)
 ACCENT_BACKGROUND_COLOR=212121
@@ -59,7 +59,7 @@ ACCENT_FOREGROUND_COLOR=FFFFFF
 
 Here's a complete example for a blue-themed app:
 
-```env
+```bash
 # =============================================================================
 # Brand Colors (use hex color without #)
 # =============================================================================

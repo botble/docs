@@ -55,7 +55,7 @@ That's it! Your app should start running.
 1. Open your `.env` file
 2. Add or modify color settings:
 
-```env
+```bash
 # Primary brand color (hex without #)
 PRIMARY_COLOR=FF0000
 

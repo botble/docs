@@ -74,7 +74,7 @@ No special Varnish VCL is required. The default Varnish behavior works correctly
 
 For better cache hit rates, add these to your `vcl_recv`:
 
-```vcl
+```txt
 sub vcl_recv {
     # Strip cookies from requests to public pages (improves cache key)
     if (req.url !~ "^/admin" && req.http.Cookie) {

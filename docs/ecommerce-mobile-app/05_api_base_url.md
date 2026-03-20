@@ -10,7 +10,7 @@ The API base URL connects your mobile app to your Botble e-commerce backend. Thi
 
 Open `.env` file and update:
 
-```env
+```bash
 API_BASE_URL=https://your-website.com
 API_KEY=your-api-key
 ```
@@ -22,25 +22,25 @@ Replace `your-website.com` with your actual Botble website domain.
 ## Examples
 
 ### Production Website
-```env
+```bash
 API_BASE_URL=https://mystore.com
 API_KEY=your-api-key
 ```
 
 ### Subdomain Setup
-```env
+```bash
 API_BASE_URL=https://shop.mycompany.com
 API_KEY=your-api-key
 ```
 
 ### Demo/Staging
-```env
+```bash
 API_BASE_URL=https://staging.mystore.com
 API_KEY=your-api-key
 ```
 
 ### Local Development
-```env
+```bash
 # For iOS Simulator
 API_BASE_URL=http://localhost:8000
 

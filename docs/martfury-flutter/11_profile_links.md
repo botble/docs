@@ -8,7 +8,7 @@ The profile screen includes a "Support" section with links to help resources, cu
 
 External URLs are configured in your `.env` file:
 
-```env
+```bash
 # External page URLs
 # You can use either:
 # - Absolute URLs: https://example.com/contact
@@ -24,14 +24,14 @@ CUSTOMER_SUPPORT_URL=/contact
 The Help Center can work in two modes:
 
 **Web-based Help (Default):**
-```env
+```bash
 USE_LOCAL_HELP=false
 HELP_CENTER_URL=/contact
 ```
 Opens the help center URL in a WebView.
 
 **Local Help Content:**
-```env
+```bash
 USE_LOCAL_HELP=true
 ```
 Uses local JSON help files from `assets/help/{language}.json`. This provides offline access to help content. Falls back to WebView if local files are missing.
@@ -40,7 +40,7 @@ Uses local JSON help files from `assets/help/{language}.json`. This provides off
 
 Opens your customer support page in a WebView.
 
-```env
+```bash
 CUSTOMER_SUPPORT_URL=/contact
 ```
 
@@ -65,12 +65,12 @@ The blog content is fetched from your API automatically based on your `API_BASE_
 You can use two URL formats in your `.env`:
 
 **Absolute URLs:**
-```env
+```bash
 CUSTOMER_SUPPORT_URL=https://mystore.com/support
 ```
 
 **Relative URLs:**
-```env
+```bash
 CUSTOMER_SUPPORT_URL=/support
 ```
 Relative URLs are automatically prepended with your `API_BASE_URL`.

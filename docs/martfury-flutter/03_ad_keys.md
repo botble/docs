@@ -8,7 +8,7 @@ The app displays advertisement banners on the home screen. Ad content is managed
 
 Ad keys are configured in your `.env` file as a comma-separated list:
 
-```env
+```bash
 # Advertisement keys (comma separated)
 AD_KEYS=Q9YDUIC9HSWS,NBDWRXTSVZ8N,VC2C8Q1UGCBG
 ```
@@ -34,7 +34,7 @@ Each key corresponds to an ad placement created in your admin panel.
 
 ### Three Ads (1 Large + 2 Small)
 
-```env
+```bash
 AD_KEYS=HERO_BANNER,PROMO_LEFT,PROMO_RIGHT
 ```
 
@@ -49,7 +49,7 @@ Layout:
 
 ### Four Ads (All Small)
 
-```env
+```bash
 AD_KEYS=AD1,AD2,AD3,AD4
 ```
 
@@ -64,7 +64,7 @@ Layout:
 
 ### Single Ad (Large Banner)
 
-```env
+```bash
 AD_KEYS=MAIN_BANNER
 ```
 
@@ -72,7 +72,7 @@ AD_KEYS=MAIN_BANNER
 
 To disable ads completely, leave the `AD_KEYS` variable empty or remove it:
 
-```env
+```bash
 AD_KEYS=
 ```
 

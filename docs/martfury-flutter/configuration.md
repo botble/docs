@@ -93,7 +93,7 @@ These optional keys let you fine-tune app behavior beyond the basic setup:
 | `LICENSE_CODE` | string | — | License code used for development mode validation |
 
 **Example `.env` additions:**
-```env
+```bash
 USE_LOCAL_HELP=false
 PRODUCT_IMAGE_THUMBNAIL_SIZE=medium
 HOMEPAGE_PRODUCTS_PER_CATEGORY=10

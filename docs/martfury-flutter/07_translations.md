@@ -6,7 +6,7 @@ The app uses `easy_localization` for managing multiple languages. Translations a
 
 Set your default language in the `.env` file:
 
-```env
+```bash
 # Default language code (e.g., en, ar, vi, es, fr, hi, id, bn)
 DEFAULT_LANGUAGE=en
 

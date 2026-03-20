@@ -6,7 +6,7 @@
 
 The app display name can be set in your `.env` file:
 
-```env
+```bash
 APP_NAME=YourAppName
 ```
 
