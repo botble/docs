@@ -94,6 +94,7 @@ Customers can update their profile at `/support/settings`:
 - Email
 - Password
 - Avatar / profile photo
+- Preferred language
 
 ## Authentication
 

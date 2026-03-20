@@ -65,6 +65,10 @@ Click on any ticket to open the detail view. From here you can:
 
 The customer receives an email notification (if enabled in settings).
 
+### Reply Reactions
+
+Agents and customers can like individual replies in a ticket thread. The like count is displayed on each message. This helps highlight helpful responses and provides feedback to support agents.
+
 ### Assigning Tickets
 
 Set the **Assigned To** field on a ticket to route it to a specific admin user. The assigned agent receives an email notification.

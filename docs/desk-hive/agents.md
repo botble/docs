@@ -74,6 +74,8 @@ From the ticket detail view, agents can:
 - Mark tickets as needing response
 - Mark tickets as favourites
 - Download attachments
+- Unassign themselves from a ticket (with confirmation and redirect)
+- Like replies in the ticket thread
 - Refresh Envato/license verification data
 
 ### Bulk Close
@@ -104,8 +106,20 @@ Agents can update their own profile at `/support/agent/settings`:
 - Email
 - Password
 - Avatar
+- Preferred language
 - Notification preferences
 - API keys
+
+### Password Reset
+
+Agents can reset their forgotten password:
+
+1. Click **Forgot Password** on the agent login page
+2. Enter their registered email
+3. Receive a password reset link by email
+4. Set a new password
+
+The password reset flow is at `/support/agent/forgot-password`.
 
 ## Assigning Tickets to Agents
 

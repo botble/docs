@@ -26,6 +26,11 @@ A standalone self-hosted help desk and support ticket system built with Laravel.
 - **Envato Integration** - Require and verify Envato purchase codes before ticket submission
 - **License Manager Integration** - Verify license codes via the Botble License Manager
 - **Dashboard Widgets** - At-a-glance counts for open, today's, and unassigned tickets
+- **Reply Reactions** - Like individual replies in ticket threads for feedback
+- **REST API** - Internal (admin) and external (agent) API with scope-based authentication
+- **39 Languages** - Built-in translations for 39 languages including RTL support
+- **Preferred Language** - Customers and agents can set their preferred interface language
+- **Agent Password Reset** - Agents can reset forgotten passwords via email
 - **Theme Customization** - Colors, typography, logo, auth page backgrounds, and footer content
 
 ## Quick Links
