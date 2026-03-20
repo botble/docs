@@ -60,6 +60,12 @@ export default defineConfig({
     ['meta', { 'name': 'theme-color', 'content': '#ffffff' }],
   ],
   lastUpdated: true,
+  markdown: {
+    languageAlias: {
+      env: 'dotenv',
+      gitignore: 'ini',
+    },
+  },
   themeConfig: {
     logo: 'logo.png',
     siteTitle: false,
