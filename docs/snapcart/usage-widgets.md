@@ -32,7 +32,3 @@ Each badge has a customizable title and description.
 
 Display product policies and guarantees. Configure policy items with icons and descriptions to build customer trust.
 
-## Blog Sidebar
-
-The blog sidebar appears on the right side of blog pages. Use this area to display widgets such as **Blog Search**,
-**Recent Posts**, **Categories**, etc.

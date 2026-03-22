@@ -18,11 +18,12 @@ To configure the delivery time picker, go to `Appearance` -> `Theme Options` -> 
 
 ### Available Settings
 
-- **Start Hour**: The earliest delivery time (e.g., 8:00 AM)
-- **End Hour**: The latest delivery time (e.g., 9:00 PM)
-- **Delivery Fees**: Standard delivery fee amount
-- **Peak Hours**: Define peak delivery hours with adjusted pricing
-- **Free Shipping Threshold**: Minimum order amount for free delivery
+- **Start Hour**: The earliest delivery hour as a number (default: `13` for 1:00 PM)
+- **End Hour**: The latest delivery hour as a number (default: `20` for 8:00 PM)
+- **Normal Delivery Fee**: Standard delivery fee (default: `31000`)
+- **Peak Delivery Fee**: Higher fee applied during peak hours (default: `34000`)
+- **Peak Hours**: Comma-separated hour numbers when peak fees apply (default: `14,15,18,19`)
+- **Free Shipping Threshold**: Minimum order amount for free delivery (default: `500000`)
 
 ## Enable/Disable
 

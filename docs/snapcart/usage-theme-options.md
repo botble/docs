@@ -16,9 +16,9 @@ The **General** tab allows you to configure your site's title, description, and 
 
 Configure your store's physical address, rating display, and review count shown on the storefront.
 
-- **Store Address**: Your store's physical or business address
-- **Store Rating**: Display rating (e.g., 4.8)
-- **Review Count**: Number of reviews to display
+- **Store Address**: Your store's address or delivery text (default: "Giao hàng toàn quốc")
+- **Store Rating**: Display rating (e.g., 4.9)
+- **Review Count**: Number of reviews to display (e.g., 196)
 
 ## Contact Information
 
@@ -26,7 +26,7 @@ Set up contact channels displayed on your store:
 
 - **Phone Number**: Main contact phone
 - **Zalo**: Zalo chat link
-- **Facebook**: Facebook page URL
+- **Facebook Page ID**: Facebook page identifier for linking
 - **Messenger**: Facebook Messenger link
 
 These are used by the [Floating Contact](./usage-floating-contact.md) feature.
@@ -55,25 +55,24 @@ Toggle key SnapCart features on/off:
 
 Configure ecommerce-specific display options:
 
-- **Sold Count Display**: Show how many units have been sold
-- **Checkout Color**: Customize the checkout button color
-- **SEO Titles**: Set custom SEO titles for product and category pages
+- **Fake Sold Count**: Toggle to show simulated sold count on product pages to create social proof
+- **Checkout Primary Color**: Customize the checkout button color separately from the theme's primary color (default: `#ce4002`)
+- **Checkout SEO Title**: Custom page title for the checkout page
+- **Checkout SEO Description**: Custom meta description for the checkout page
 
 ## Delivery
 
 Configure delivery time settings for the [Delivery Time Picker](./usage-delivery-time-picker.md):
 
-- **Start Hour / End Hour**: Available delivery time window
-- **Delivery Fees**: Standard and express delivery fees
-- **Peak Hours**: Define peak hours with adjusted fees
-- **Free Shipping Threshold**: Order amount for free shipping
+- **Start Hour / End Hour**: Available delivery time window (default: 13:00 - 20:00)
+- **Normal Delivery Fee**: Standard delivery fee (default: 31,000)
+- **Peak Delivery Fee**: Fee during peak hours (default: 34,000)
+- **Peak Hours**: Comma-separated list of peak hour numbers (e.g., `14,15,18,19`)
+- **Free Shipping Threshold**: Minimum order amount for free shipping (default: 500,000)
 
 ## Social Links
 
-Add your social media links displayed in the footer and contact sections:
+Social links are managed through the Botble CMS core settings, not theme-specific options.
 
-- Facebook
-- Instagram
-- TikTok
-- YouTube
-- Twitter
+To configure social links, go to `Settings` -> `General` in the admin panel. These links are displayed in the
+footer and contact sections of your store.
