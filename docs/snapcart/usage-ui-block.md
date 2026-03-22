@@ -1,0 +1,73 @@
+# UI Block
+
+UI Block (Shortcodes) allows you to build and customize page content using pre-built components. SnapCart provides
+8 shortcodes designed for mobile-focused ecommerce layouts.
+
+## Managing UI Blocks
+
+To manage UI blocks on a page, go to `Pages` in the admin panel, edit your desired page, and click the
+`UI Block` button to add or rearrange shortcodes.
+
+## Available Shortcodes
+
+### Hero Carousel
+
+Display a banner slider at the top of the homepage. Supports multiple slides with images, titles, and call-to-action
+buttons.
+
+To configure, click on the shortcode and set:
+
+- **Title**: The slide heading text
+- **Image**: The banner image
+- **Link**: The destination URL when clicked
+
+### Featured Products
+
+Display a grid or slider of featured products. Products are pulled from the featured product collection.
+
+- **Title**: Section heading
+- **Number of products**: How many products to display
+
+### Product Categories
+
+Display product categories in tabs, grid, or table layout. Useful for organizing your store's main categories
+on the homepage.
+
+- **Title**: Section heading
+- **Layout**: Choose between tabs, grid, or table display
+- **Categories**: Select which categories to show
+
+### Flash Sale
+
+Display flash sale products with a countdown timer. Creates urgency for time-limited deals.
+
+- **Title**: Section heading
+- **Flash sale**: Select the flash sale campaign to display
+
+### Reviews Section
+
+Display customer testimonials and reviews on the homepage.
+
+- **Title**: Section heading
+- **Reviews**: Select reviews to display
+
+### Ecommerce Categories
+
+Display a listing of product categories with icons or images.
+
+- **Title**: Section heading
+- **Categories**: Select categories to show
+
+### Ecommerce Brands
+
+Display brand logos on the homepage. Useful for showcasing partner or featured brands.
+
+- **Title**: Section heading
+- **Brands**: Select brands to display
+
+### Blog Posts
+
+Display the latest blog posts. Keeps your homepage fresh with content updates.
+
+- **Title**: Section heading
+- **Number of posts**: How many posts to display
