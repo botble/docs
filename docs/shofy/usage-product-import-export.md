@@ -1,25 +1,29 @@
-# Product Import & Export
+# Import & Export Data
 
-Bulk import and export products to efficiently manage large catalogs, update inventory, sync with external systems, or migrate from other platforms.
+Bulk import and export data to efficiently manage large catalogs, update inventory, sync with external systems, or migrate from other platforms.
+
+Navigate to `Tools` -> `Import/Export Data` to access all import and export operations.
 
 ## Overview
 
 Available import/export operations:
 
-| Operation | Purpose |
-|-----------|---------|
-| **Products** | Full product data including variations |
-| **Prices** | Bulk price updates |
-| **Inventory** | Stock levels and quantities |
-| **Categories** | Category assignments |
-| **Specifications** | Product specifications |
-| **License Codes** | Digital product license codes |
+| Operation | Import | Export | Purpose |
+|-----------|:------:|:------:|---------|
+| **Products** | ✅ | ✅ | Full product data including variations |
+| **Prices** | ✅ | ✅ | Bulk price updates |
+| **Inventory** | ✅ | ✅ | Stock levels and quantities |
+| **Categories** | ✅ | ✅ | Product category assignments |
+| **Specifications** | ✅ | ✅ | Product specifications |
+| **Customers** | ✅ | ✅ | Customer accounts and data |
+| **Orders** | ❌ | ✅ | Export order data with filters |
+| **License Codes** | ✅ | ❌ | Digital product license codes |
 
 ![Import products](./images/import-products.png)
 
 ## Exporting Products
 
-Navigate to `Ecommerce` -> `Products` -> `Export`.
+Navigate to `Tools` -> `Import/Export Data` -> `Export Products`.
 
 ### Export Options
 
@@ -58,7 +62,7 @@ Variations reference parent product by `name` or `slug`. Leave parent product fi
 
 ## Importing Products
 
-Navigate to `Ecommerce` -> `Products` -> `Import`.
+Navigate to `Tools` -> `Import/Export Data` -> `Import Products`.
 
 ### Import Process
 
@@ -258,7 +262,7 @@ Result: `TSHIRT-001-SMALL-RED`
 
 ## Importing Prices Only
 
-Navigate to `Ecommerce` -> `Products` -> `Import Prices`.
+Navigate to `Tools` -> `Import/Export Data` -> `Import Product Prices`.
 
 ### Price Import Format
 
@@ -279,7 +283,7 @@ Use price import for quick price updates without modifying other product data.
 
 ## Importing Inventory Only
 
-Navigate to `Ecommerce` -> `Products` -> `Import Inventory`.
+Navigate to `Tools` -> `Import/Export Data` -> `Import Product Inventory`.
 
 ### Inventory Import Format
 
@@ -297,7 +301,7 @@ SKU-VAR-1,Variation Name,50,in_stock,1
 
 ## Importing Categories
 
-Navigate to `Ecommerce` -> `Products` -> `Import Categories`.
+Navigate to `Tools` -> `Import/Export Data` -> `Import Product Categories`.
 
 ### Category Import Format
 
@@ -314,7 +318,7 @@ Categories must exist before import.
 
 ## Importing Specifications
 
-Navigate to `Ecommerce` -> `Products` -> `Import Specifications`.
+Navigate to `Tools` -> `Import/Export Data` -> `Import Product Specifications`.
 
 ### Specification Import Format
 
@@ -432,6 +436,80 @@ php artisan queue:work
 1. **Enable "Update existing"** - Check update option
 2. **Verify identifier** - Use correct SKU or ID
 3. **Check number format** - Use decimal format (99.99, not 99,99)
+
+## Importing/Exporting Customers
+
+Navigate to `Tools` -> `Import/Export Data` -> `Import Customers` or `Export Customers`.
+
+### Customer Export Columns
+
+| Column | Description |
+|--------|-------------|
+| `id` | Customer ID |
+| `name` | Customer name |
+| `email` | Email address |
+| `phone` | Phone number |
+| `dob` | Date of birth (Y-m-d) |
+| `status` | Account status |
+| `confirmed_at` | Email confirmation date |
+| `created_at` | Registration date |
+
+### Customer Import Format
+
+```csv
+name,email,phone,dob,status,password
+John Doe,john@example.com,+1234567890,1990-01-15,activated,secret123
+```
+
+**Import columns:**
+- `name` - Required
+- `email` - Required, must be unique
+- `phone` - Optional
+- `dob` - Optional, format `Y-m-d`
+- `status` - `activated` or `locked`
+- `password` - Optional (auto-generated if empty)
+
+**Import options:**
+- **Update existing customers** - Update customers with matching email
+
+## Exporting Orders
+
+Navigate to `Tools` -> `Import/Export Data` -> `Export Orders`.
+
+Orders can only be exported (no import). Export includes filters:
+
+| Filter | Description |
+|--------|-------------|
+| **Status** | Filter by order status |
+| **Date range** | Start and end date |
+| **Limit** | Maximum number of orders |
+
+### Order Export Columns
+
+| Column | Description |
+|--------|-------------|
+| `id` | Order ID |
+| `created_at` | Order date |
+| `status` | Order status |
+| `customer_name` | Customer name |
+| `customer_email` | Customer email |
+| `customer_phone` | Customer phone |
+| `amount` | Total amount |
+| `discount_amount` | Discount |
+| `tax_amount` | Tax |
+| `shipping_amount` | Shipping fee |
+| `sub_total` | Subtotal |
+| `shipping_address` | Full shipping address |
+| `billing_address` | Full billing address |
+| `payment_channel` | Payment method |
+| `payment_status` | Payment status |
+| `payment_amount` | Payment amount |
+| `payment_date` | Payment date |
+| `shipping_method` | Shipping method |
+| `shipping_status` | Shipment status |
+| `tracking_id` | Tracking ID |
+| `shipping_company` | Shipping company |
+| `products` | Product list with quantities |
 
 ## Export/Import Workflow Example
 
