@@ -36,6 +36,8 @@ export default [
             { text: 'Custom CSS/JS', link: '/snapcart/usage-custom-css-js' },
             { text: 'Multi-language', link: '/snapcart/usage-multi-language' },
             { text: 'Translation', link: '/snapcart/plugin-translation' },
+            { text: 'Facebook Pixel', link: '/snapcart/usage-facebook-pixel' },
+            { text: 'Google Tag Manager', link: '/snapcart/usage-google-tag-manager' },
             { text: 'Google Analytics', link: '/snapcart/usage-analytics' },
             { text: 'Media - Setup Amazon S3', link: '/snapcart/usage-media-s3' },
             { text: 'Media - Setup BunnyCDN', link: '/snapcart/usage-media-bunnycdn' },
@@ -50,6 +52,9 @@ export default [
             { text: 'Newsletter', link: '/snapcart/usage-newsletter' },
             { text: 'Floating Contact', link: '/snapcart/usage-floating-contact' },
             { text: 'Delivery Time Picker', link: '/snapcart/usage-delivery-time-picker' },
+            { text: 'Shipping by Location', link: '/snapcart/usage-shipping-by-location' },
+            { text: 'Shippo Integration', link: '/snapcart/usage-shippo' },
+            { text: 'Add to Cart via URL', link: '/snapcart/usage-add-to-cart-url' },
         ],
     },
     {
