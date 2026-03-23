@@ -109,6 +109,7 @@ export default [
     {
         text: 'Developer',
         items: [
+            { text: 'Product Detail Hooks', link: '/shofy/developer-product-detail-hooks' },
             { text: 'Payment Gateway Integration', link: '/shofy/developer-payment-gateway' },
             { text: 'Shipping Provider Integration', link: '/shofy/developer-shipping-provider' },
         ],
