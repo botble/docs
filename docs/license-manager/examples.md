@@ -22,14 +22,14 @@ Ready-to-use example code for integrating License Manager into your applications
 
 ## PHP
 
-A standalone PHP client class that works with any PHP application. Uses cURL for HTTP requests with no framework dependencies.
+Standalone PHP scripts using cURL with no framework dependencies. Includes both **External API** (client-facing) and **Internal API** (server-to-server management).
 
 **Features:**
-- License activation, verification, and deactivation
-- Update checking and downloading
+- License activation, verification, and deactivation (External API)
+- Product and license management (Internal API)
 - Works with any PHP 7.4+ application
 
-**Quick usage:**
+**External API usage (client applications):**
 
 ```php
 require_once 'LicenseManagerExternalAPI.php';
@@ -51,6 +51,19 @@ $result = $client->deactivate($licenseData);
 
 // Check for updates
 $result = $client->checkUpdate($currentVersion);
+```
+
+**Internal API usage (server-to-server):**
+
+```php
+$config = [
+    'api_url'    => 'https://your-license-server.com',
+    'api_key'    => 'your-internal-api-key',  // Internal API key (different from External)
+    'server_url' => 'https://your-backend-server.com',
+    'server_ip'  => '127.0.0.1',
+];
+
+// Operations: list/create products, list/create/block/unblock licenses
 ```
 
 [View PHP example on GitHub](https://github.com/botble/license-manager-examples/tree/main/php)
@@ -108,26 +121,149 @@ php artisan license:deactivate
 A WordPress plugin with admin settings page, auto-update integration, and scheduled license verification.
 
 **Features:**
-- Admin settings page under Settings menu
-- License activation/deactivation from WordPress admin
-- Automatic plugin/theme update checking via WordPress updates API
-- WP-Cron scheduled license verification
+- Admin settings page under **Settings > License Manager**
+- License activation, verification, and deactivation from WordPress admin
+- Automatic **plugin** update checking via `pre_set_site_transient_update_plugins`
+- One-click update installation with license-authenticated downloads
+- WP-Cron daily license verification
 - Admin notices for license status
 
-**Installation:**
+**File structure:**
 
-1. Copy the `wordpress/` folder to `wp-content/plugins/`
-2. Activate the plugin in WordPress admin
-3. Go to **Settings > License Manager** to enter your credentials
-4. Enter your license code and click **Activate**
+```
+wordpress/
+├── license-manager-wp.php              # Main plugin file (constants & bootstrap)
+├── includes/
+│   ├── class-lm-api-client.php         # Reusable API client (works in any WP plugin/theme)
+│   ├── class-lm-admin.php              # Admin settings page & license actions
+│   └── class-lm-updater.php            # WordPress plugin auto-updater
+├── assets/
+│   ├── css/admin.css
+│   └── js/admin.js
+└── README.md
+```
 
-**Hooks for developers:**
+**Installation (as a plugin):**
+
+1. Copy the `wordpress/` folder to `wp-content/plugins/license-manager-client/`
+2. Activate the plugin in **Plugins > Installed Plugins**
+3. Go to **Settings > License Manager** to enter your API URL, API Key, and Product ID
+4. Enter your license code and client name, then click **Activate**
+
+**Using the API client in your own code:**
+
+The `LM_API_Client` class can be used independently in any WordPress plugin or theme:
 
 ```php
-// Check if license is active in your plugin/theme
-if (function_exists('is_license_active') && is_license_active()) {
-    // Licensed features
+$client = new LM_API_Client(
+    'https://license.example.com',  // API URL
+    'your-api-key',                 // API Key
+    'PRODUCT_ID'                    // Product ID
+);
+
+// Activate a license
+$result = $client->activate_license('XXXX-XXXX-XXXX-XXXX', 'John Doe');
+if ($result['is_active']) {
+    // Save $result['lic_response'] for future verification
+    update_option('my_license_data', $result['lic_response']);
 }
+
+// Verify a license
+$result = $client->verify_license($license_data);
+
+// Deactivate
+$result = $client->deactivate_license($license_data);
+
+// Check for updates
+$result = $client->check_update('1.0.0');
+if (!empty($result['update_available'])) {
+    // New version: $result['version']
+}
+```
+
+### Adapting for Theme Updates
+
+::: warning
+The example is built as a **plugin** updater. If you want to use it for **theme** updates, you need to make these changes:
+:::
+
+**1. Define constants in your theme's `functions.php`:**
+
+```php
+define('LM_WP_VERSION', wp_get_theme()->get('Version'));
+define('LM_WP_PLUGIN_DIR', get_template_directory() . '/license-manager-wp/');
+define('LM_WP_PLUGIN_URL', get_template_directory_uri() . '/license-manager-wp/');
+define('LM_WP_PLUGIN_BASENAME', get_template()); // theme slug
+
+require_once LM_WP_PLUGIN_DIR . 'license-manager-wp.php';
+```
+
+::: danger Important
+Only define the constants **once** — either in `functions.php` or in `license-manager-wp.php`, not both. Duplicate `define()` calls cause a PHP fatal error.
+:::
+
+**2. Change update hooks in `class-lm-updater.php`:**
+
+```php
+// Change FROM (plugin hooks):
+add_filter('pre_set_site_transient_update_plugins', [$this, 'check_for_update']);
+add_filter('plugins_api', [$this, 'plugin_info'], 10, 3);
+
+// Change TO (theme hooks):
+add_filter('pre_set_site_transient_update_themes', [$this, 'check_for_update']);
+add_filter('themes_api', [$this, 'plugin_info'], 10, 3);
+```
+
+**3. Change transient response format (themes use arrays, not objects):**
+
+```php
+// Change FROM (plugin format — object):
+$transient->response[$this->plugin_slug] = (object) [
+    'slug' => dirname($this->plugin_slug),
+    'plugin' => $this->plugin_slug,
+    'new_version' => $result['version'],
+    // ...
+];
+
+// Change TO (theme format — array):
+$transient->response['your-theme-slug'] = [
+    'theme' => 'your-theme-slug',
+    'new_version' => $result['version'],
+    'url' => get_option('lm_api_url', ''),
+    'package' => $download_url,
+];
+```
+
+**4. Change `plugin_info` action check:**
+
+```php
+// Change FROM:
+if ($action !== 'plugin_information') { return $result; }
+
+// Change TO:
+if ($action !== 'theme_information') { return $result; }
+```
+
+**5. Change `maybe_rename_source` hook key:**
+
+```php
+// Change FROM:
+$plugin = $hook_extra['plugin'] ?? '';
+
+// Change TO:
+$plugin = $hook_extra['theme'] ?? '';
+```
+
+**6. Replace activation/deactivation hooks (plugins only → theme hooks):**
+
+```php
+// Change FROM (only works for plugins):
+register_activation_hook(__FILE__, [$this, 'activate']);
+register_deactivation_hook(__FILE__, [$this, 'deactivate']);
+
+// Change TO (works for themes):
+add_action('after_switch_theme', [$this, 'activate']);
+add_action('switch_theme', [$this, 'deactivate']);
 ```
 
 [View WordPress example on GitHub](https://github.com/botble/license-manager-examples/tree/main/wordpress)
@@ -168,6 +304,11 @@ var update = await client.CheckForUpdateAsync("PRODUCT_ID", "1.0.0");
 var path = await client.DownloadUpdateAsync(update.UpdateId, "./updates");
 ```
 
+**Examples included:**
+- **Console App** — Interactive CLI, suitable for WPF, WinForms, or .NET MAUI desktop apps
+- **ASP.NET Core API** — Minimal API endpoints wrapping the license client
+- **Blazor Server** — Interactive web dashboard with Bootstrap UI
+
 [View .NET example on GitHub](https://github.com/botble/license-manager-examples/tree/main/dotnet)
 
 ## Java
@@ -206,6 +347,11 @@ try (var client = new LicenseManagerClient(config)) {
 }
 ```
 
+**Integration tips:**
+- **Spring Boot**: Register `LicenseManagerClient` as a `@Bean` and inject via constructor
+- **Android**: Use on a background thread (network calls block the calling thread)
+- **Desktop (Swing/JavaFX)**: Call from a background thread, update UI on the event dispatch thread
+
 [View Java example on GitHub](https://github.com/botble/license-manager-examples/tree/main/java)
 
 ## Python
@@ -240,6 +386,11 @@ update = client.check_for_update("PRODUCT_ID", "1.0.0")
 # Download update
 path = client.download_update(update["update_id"], "./updates")
 ```
+
+**Integration tips:**
+- **Django**: Create a service class or use in a management command
+- **Flask/FastAPI**: Register as a dependency and inject into route handlers
+- **Desktop (Tkinter/PyQt)**: Call from a background thread to avoid blocking the UI
 
 [View Python example on GitHub](https://github.com/botble/license-manager-examples/tree/main/python)
 
@@ -339,7 +490,7 @@ A zero-dependency client using built-in `fetch` (Node 18+) with CLI demo and Exp
 **Features:**
 - Zero external dependencies (uses built-in `fetch`)
 - Interactive CLI sample application
-- Express.js API server example with optional license-gating middleware
+- Express.js API server example with license-gating middleware
 
 **Quick usage:**
 
@@ -364,6 +515,19 @@ const update = await client.checkForUpdate('PRODUCT_ID', '1.0.0');
 // Download update
 const path = await client.downloadUpdate(update.update_id, './updates');
 ```
+
+**Express.js server:**
+
+```bash
+LM_SERVER_URL=https://your-server.com LM_API_KEY=your-key LM_APP_URL=https://your-app.com node express-example.js
+```
+
+Provides REST endpoints: `POST /license/activate`, `GET /license/verify/:productId`, `POST /license/deactivate/:productId`, `POST /license/update-check`, and more.
+
+**Integration tips:**
+- **Express/Fastify/NestJS**: Register client as middleware or service
+- **Electron**: Use in the main process; communicate with renderer via IPC
+- **Serverless (Lambda)**: Create client per invocation or use a warm instance
 
 [View Node.js example on GitHub](https://github.com/botble/license-manager-examples/tree/main/nodejs)
 
