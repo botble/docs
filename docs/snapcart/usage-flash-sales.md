@@ -24,6 +24,20 @@ The flash sale section displays:
 - Countdown timer showing time remaining
 - Stock/sold indicators
 
+### Slides to Show
+
+The `slides_to_show` shortcode attribute controls how many product cards are visible at once in the horizontal scroll
+area. Accepted values: `1`, `2` (default), `3`, `4`.
+
+Example shortcode attribute:
+
+```
+slides_to_show="2"
+```
+
+Set a lower value (e.g., `1`) to make each card larger and more prominent, or a higher value (e.g., `3`–`4`) to show
+more products at a glance on wider screens.
+
 ::: tip
 Schedule flash sales during peak traffic hours for maximum visibility and conversions.
 :::

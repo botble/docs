@@ -23,18 +23,21 @@ To configure, click on the shortcode and set:
 
 ### Featured Products
 
-Display a grid or slider of featured products. Products are pulled from the featured product collection.
+Display a grid, slider, or list of featured products. Products are pulled from the featured product collection.
 
 - **Title**: Section heading
 - **Number of products**: How many products to display
+- **Style** (`style`): Display style — `grid` (default), or `list`. The `list` style renders horizontal cards with
+  product image, title, a 2-line description (HTML stripped), price, and an add-to-cart button.
 
 ### Product Categories
 
-Display product categories in tabs, grid, or table layout. Useful for organizing your store's main categories
+Display product categories in tabs, grid, table, or list layout. Useful for organizing your store's main categories
 on the homepage.
 
 - **Title**: Section heading
-- **Layout**: Choose between tabs, grid, or table display
+- **Layout** (`style`): Choose between `tabs`, `grid`, `table`, or `list`. The `list` style renders horizontal cards
+  with product image, title, a 2-line description (HTML stripped), price, and an add-to-cart button.
 - **Categories**: Select which categories to show
 
 ### Flash Sale
@@ -43,10 +46,13 @@ Display flash sale products with a countdown timer. Creates urgency for time-lim
 
 - **Title**: Section heading
 - **Flash sale**: Select the flash sale campaign to display
+- **Slides to show** (`slides_to_show`): Number of product cards visible at once in the horizontal scroll — accepts
+  `1`, `2` (default), `3`, or `4`.
 
 ### Reviews Section
 
-Display customer testimonials and reviews on the homepage.
+Display customer testimonials and reviews on the homepage. Each review card shows a decorative quotation mark,
+5-star rating, and the review text.
 
 - **Title**: Section heading
 - **Reviews**: Select reviews to display

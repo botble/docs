@@ -32,10 +32,16 @@ so much!
 * One-page checkout with delivery time picker.
 * Floating contact buttons (Zalo, Phone, Messenger).
 * AJAX cart with modal popup — no page reloads.
-* Flash sales with countdown timer.
-* Product reviews and social proof badges.
+* Flash sales with countdown timer and configurable slides-per-view.
+* Product reviews with 5-star display and testimonial slider.
+* Social proof badges on product pages.
 * Touch Friendly: Easy browsing on touch devices.
 * 100% Fully Responsive: Optimized for mobile viewports.
+* Sticky header with search bar on scroll.
+* Hero banner with optional store identity card overlay.
+* Promo info cards below hero banner (up to 3, icon + text).
+* Product list view style for category and featured-product shortcodes.
+* Mobile-optimized contact form with single-column layout.
 * Powerful admin panel, all things can be changed from the admin panel, no hardcode.
 * Multi-language: unlimited languages support.
 * Google Analytics: display analytics data in admin panel.

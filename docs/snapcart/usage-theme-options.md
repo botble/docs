@@ -50,6 +50,30 @@ Toggle key SnapCart features on/off:
 - **Delivery Time Picker**: Enable delivery date/time selection at checkout
 - **Product Reviews**: Enable customer reviews on product pages
 - **Social Proof**: Display trust badges on product pages
+- **Sticky Header** (`enable_sticky_header`): When enabled, a compact header containing the site title and a search bar
+  appears fixed at the top of the screen once the user scrolls past the original header. Keeps navigation accessible on
+  long pages.
+- **Hero Store Card** (`enable_hero_store_card`): When enabled, a store identity card (name, rating, address) overlaps
+  the bottom of the hero carousel banner. The header's inline store card is hidden automatically to avoid duplication.
+
+## Promo Info Cards
+
+Display up to 3 small info cards below the hero banner to highlight store benefits (e.g., free shipping, quality
+guarantee, fast delivery).
+
+Configure each card via the following options (repeat for cards 2 and 3):
+
+| Option | Description |
+|---|---|
+| `promo_card_1_icon` | Tabler icon name, e.g. `ti ti-truck` |
+| `promo_card_1_text` | Short text shown below the icon |
+| `promo_card_2_icon` | Tabler icon name for card 2 |
+| `promo_card_2_text` | Text for card 2 |
+| `promo_card_3_icon` | Tabler icon name for card 3 |
+| `promo_card_3_text` | Text for card 3 |
+
+Icons use [Tabler Icons](https://tabler.io/icons) names with the `ti ti-` prefix (e.g., `ti ti-shield-check`,
+`ti ti-truck`, `ti ti-star`). Leave a card's icon and text empty to hide it.
 
 ## Ecommerce
 
