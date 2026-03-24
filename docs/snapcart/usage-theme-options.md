@@ -2,101 +2,104 @@
 
 Theme options allow you to customize SnapCart's appearance and behavior without editing code.
 
-To access the theme options, go to `Appearance` -> `Theme Options` in your admin panel.
+To access theme options, go to **Appearance → Theme Options** in your admin panel.
 
 ![Theme Options](./images/theme-options.png)
 
 ## General
 
-The **General** tab allows you to configure your site's title, description, and other essential details.
+Configure your site's basic information.
+
+| Option | Description |
+|---|---|
+| Site Title | Your store name displayed in header and SEO |
+| Site Description | Short description of your store |
 
 ![General](./images/theme-option-general.png)
 
 ## Store Information
 
-Configure your store's physical address, rating display, and review count shown on the storefront.
+Configure store details displayed in the header and hero section.
 
-- **Store Address**: Your store's address or delivery text (default: "Giao hàng toàn quốc")
-- **Store Rating**: Display rating (e.g., 4.9)
-- **Review Count**: Number of reviews to display (e.g., 196)
+| Option | Type | Description |
+|---|---|---|
+| Store Address / Delivery Text | Text | Delivery info shown below store name |
+| Store Rating | Text | Display rating (e.g., `4.9`) |
+| Number of Reviews | Text | Review count (e.g., `196`) |
+| Show Store Card Overlay on Hero Banner | Toggle | When enabled, shows a store identity card overlapping the hero carousel. The header store card is hidden automatically to avoid duplication |
+| Promo Card 1–3 Icon | Icon Picker | Select a Tabler icon for each promo card |
+| Promo Card 1–3 Text | Text | Short text for each promo card (e.g., "Free shipping over $50") |
 
-## Contact Information
+### Promo Info Cards
 
-Set up contact channels displayed on your store:
+When promo card text is filled in, horizontal scrollable info cards appear below the hero banner. Up to 3 cards can be configured. Leave text empty to hide a card.
 
-- **Phone Number**: Main contact phone
-- **Zalo**: Zalo chat link
-- **Facebook Page ID**: Facebook page identifier for linking
-- **Messenger**: Facebook Messenger link
+![Hero Store Card](./images/hero-store-card.png)
+
+## Contact
+
+Configure up to 3 floating contact buttons displayed on your store.
+
+For each button (1–3):
+
+| Option | Description |
+|---|---|
+| Button Type | Phone, Zalo, WhatsApp, Messenger, Telegram, or Custom URL |
+| Button Value | Phone number, username, or URL |
+| Button Label | Custom label (optional, leave empty for default) |
 
 These are used by the [Floating Contact](./usage-floating-contact.md) feature.
 
 ## Colors
 
-Customize SnapCart's color scheme to match your brand:
+Customize SnapCart's color scheme to match your brand.
 
-- **Primary Color**: Main accent color (default: `#ce4002`)
-- **Secondary Color**: Secondary accent (default: `#ffc000`)
-- **Text Color**: Body text color
-- **Background Color**: Page background color
+| Option | Default |
+|---|---|
+| Primary Color | `#ce4002` |
+| Secondary Color | `#ffc000` |
+| Text Color | `#1a1a1a` |
+| Background Color | `#f5f5f5` |
+| Footer Background Color | `#1a1a1a` |
+| Footer Text Color | `#999999` |
+| Footer Heading Color | `#ffffff` |
+| Footer Link Color | `#999999` |
+| Footer Link Hover Color | `#ffffff` |
 
 ## Features
 
-Toggle key SnapCart features on/off:
+Toggle key SnapCart features on or off.
 
-- **Buy Now Button**: Show a "Buy Now" button on product pages
-- **Sticky Cart**: Display a sticky cart bar at the bottom of product pages
-- **Floating Contact**: Show floating contact buttons (Zalo, Phone, Messenger)
-- **Delivery Time Picker**: Enable delivery date/time selection at checkout
-- **Product Reviews**: Enable customer reviews on product pages
-- **Social Proof**: Display trust badges on product pages
-- **Sticky Header** (`enable_sticky_header`): When enabled, a compact header containing the site title and a search bar
-  appears fixed at the top of the screen once the user scrolls past the original header. Keeps navigation accessible on
-  long pages.
-- **Hero Store Card** (`enable_hero_store_card`): When enabled, a store identity card (name, rating, address) overlaps
-  the bottom of the hero carousel banner. The header's inline store card is hidden automatically to avoid duplication.
-
-## Promo Info Cards
-
-Display up to 3 small info cards below the hero banner to highlight store benefits (e.g., free shipping, quality
-guarantee, fast delivery).
-
-Configure each card via the following options (repeat for cards 2 and 3):
-
-| Option | Description |
-|---|---|
-| `promo_card_1_icon` | Tabler icon name, e.g. `ti ti-truck` |
-| `promo_card_1_text` | Short text shown below the icon |
-| `promo_card_2_icon` | Tabler icon name for card 2 |
-| `promo_card_2_text` | Text for card 2 |
-| `promo_card_3_icon` | Tabler icon name for card 3 |
-| `promo_card_3_text` | Text for card 3 |
-
-Icons use [Tabler Icons](https://tabler.io/icons) names with the `ti ti-` prefix (e.g., `ti ti-shield-check`,
-`ti ti-truck`, `ti ti-star`). Leave a card's icon and text empty to hide it.
+| Option | Default | Description |
+|---|---|---|
+| Enable Buy Now Button | On | Show "Buy Now" button on product pages |
+| Enable Sticky Footer Cart | On | Sticky cart bar at bottom of product pages |
+| Enable Floating Contact Buttons | On | Floating Zalo/Phone/Messenger buttons |
+| Enable Delivery Time Picker | On | Delivery date/time selection at checkout |
+| Enable Product Reviews | On | Customer reviews on product pages |
+| Enable Social Proof Badges | On | Trust badges on product pages |
+| Enable Sticky Header | Off | Fixed header with site title + search bar appears on scroll |
 
 ## Ecommerce
 
-Configure ecommerce-specific display options:
+Configure ecommerce-specific display options.
 
-- **Fake Sold Count**: Toggle to show simulated sold count on product pages to create social proof
-- **Checkout Primary Color**: Customize the checkout button color separately from the theme's primary color (default: `#ce4002`)
-- **Checkout SEO Title**: Custom page title for the checkout page
-- **Checkout SEO Description**: Custom meta description for the checkout page
+| Option | Default | Description |
+|---|---|---|
+| Show Estimated Sold Count | On | Shows simulated sold count on product cards |
+| Checkout Primary Color | `#ce4002` | Customize checkout button color separately |
+| Checkout Page SEO Title | — | Custom page title for checkout |
+| Checkout Page SEO Description | — | Custom meta description for checkout |
 
 ## Delivery
 
-Configure delivery time settings for the [Delivery Time Picker](./usage-delivery-time-picker.md):
+Configure delivery time settings for the [Delivery Time Picker](./usage-delivery-time-picker.md).
 
-- **Start Hour / End Hour**: Available delivery time window (default: 13:00 - 20:00)
-- **Normal Delivery Fee**: Standard delivery fee (default: 31,000)
-- **Peak Delivery Fee**: Fee during peak hours (default: 34,000)
-- **Peak Hours**: Comma-separated list of peak hour numbers (e.g., `14,15,18,19`)
-- **Free Shipping Threshold**: Minimum order amount for free shipping (default: 500,000)
-
-## Social Links
-
-Social links are managed through the Botble CMS core settings, not theme-specific options.
-
-To configure social links, go to `Settings` -> `General` in the admin panel. These links are displayed in the
-footer and contact sections of your store.
+| Option | Default | Description |
+|---|---|---|
+| Delivery Start Hour | `13` | Start of delivery window (24h format) |
+| Delivery End Hour | `20` | End of delivery window (24h format) |
+| Normal Delivery Fee | `31000` | Standard delivery fee |
+| Peak Hour Delivery Fee | `34000` | Fee during peak hours |
+| Peak Hours | `14,15,18,19` | Comma-separated peak hour numbers |
+| Free Shipping Threshold | `500000` | Minimum order for free shipping |
