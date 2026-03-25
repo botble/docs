@@ -16,7 +16,7 @@ Botble CMS is a modular Laravel CMS with the following structure:
 
 ### Tech Stack
 
-- **Backend**: Laravel 12+, PHP 8.2+
+- **Backend**: Laravel 13+, PHP 8.3+
 - **Frontend**: Vue.js 3, Bootstrap 5, jQuery
 - **Build**: Laravel Mix, npm workspaces
 - **Database**: MySQL (SQLite for tests)

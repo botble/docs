@@ -5,7 +5,7 @@
 Before installing our script, ensure that your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.2 or higher
+- PHP >= 8.3 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -35,6 +35,6 @@ follow [this article](https://chemicloud.com/kb/article/how-to-increase-the-php-
 PHP memory limit settings.
 
 ::: tip
-On this project, we're using the Laravel 10.x. Please go to [Laravel documentation page](https://laravel.com/docs/10.x)
+On this project, we're using the Laravel 13.x. Please go to [Laravel documentation page](https://laravel.com/docs/13.x)
 for more information.
 :::

@@ -28,7 +28,7 @@ Password: `12345678`
 
 ## System Requirements
 
-- PHP >= 8.2.0
+- PHP >= 8.3.0
 - MySQL >= 5.7 (or MariaDB >= 10.2)
 - BCMath PHP Extension
 - Ctype PHP Extension
@@ -71,7 +71,7 @@ For detailed installation instructions, please refer to the [Installation Guide]
 
 ## Why choose us
 
-- **Modern Architecture**: Built on Laravel 12.x with PHP 8.2+ support, following PSR-12 coding standards and best practices.
+- **Modern Architecture**: Built on Laravel 13.x with PHP 8.3+ support, following PSR-12 coding standards and best practices.
 - **Fully Responsive**: Compatible with all screen resolutions for a seamless experience across devices.
 - **Powerful Permission System**: Comprehensive user, team, and role management with granular permissions.
 - **Modular Design**: Core modules like Page, Blog, Menu, and Contact use components to avoid boilerplate code.

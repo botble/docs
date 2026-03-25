@@ -23,7 +23,7 @@ The API handles activation, verification, and deactivation across sites.
 
 ### What Botble CMS version is required?
 
-License Manager requires **Botble CMS v7.5.0+** running on Laravel 12.x with PHP 8.2 or higher. It installs as a standard Botble plugin — upload the zip through the admin panel or extract it to `platform/plugins/license-manager`.
+License Manager requires **Botble CMS v7.5.0+** running on Laravel 13.x with PHP 8.3 or higher. It installs as a standard Botble plugin — upload the zip through the admin panel or extract it to `platform/plugins/license-manager`.
 
 ## Licensing & Activation
 

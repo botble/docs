@@ -2,7 +2,7 @@
 
 ## Overview
 
-Botble CMS includes a REST API package that lets you interact with your application data from mobile apps, third-party services, or any HTTP client. It uses [Laravel Sanctum](https://laravel.com/docs/12.x/sanctum) for token-based authentication and supports optional API key protection, push notifications via Firebase Cloud Messaging (FCM), and user settings management.
+Botble CMS includes a REST API package that lets you interact with your application data from mobile apps, third-party services, or any HTTP client. It uses [Laravel Sanctum](https://laravel.com/docs/13.x/sanctum) for token-based authentication and supports optional API key protection, push notifications via Firebase Cloud Messaging (FCM), and user settings management.
 
 The API is managed at **Admin > Settings > API** (`/admin/settings/api`).
 

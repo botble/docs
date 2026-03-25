@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Carento - Car Dealer & Rental Booking Laravel System using Laravel 10.x. It's a product built on Botble CMS.
+Carento - Car Dealer & Rental Booking Laravel System using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `2024-12-10`
 

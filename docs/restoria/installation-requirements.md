@@ -5,7 +5,7 @@
 Before installing Restoria theme, ensure that your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.2 or higher
+- PHP >= 8.3 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -33,7 +33,7 @@ max_execution_time = 300
 If you are using cPanel, you can follow [this article](https://chemicloud.com/kb/article/how-to-increase-the-php-memory-limit-in-cpanel/) to change your PHP memory limit settings.
 
 ::: tip
-Restoria is built on Botble CMS using Laravel 12.x. Please go to [Laravel documentation page](https://laravel.com/docs) for more information about the framework.
+Restoria is built on Botble CMS using Laravel 13.x. Please go to [Laravel documentation page](https://laravel.com/docs) for more information about the framework.
 :::
 
 ## Database Requirements

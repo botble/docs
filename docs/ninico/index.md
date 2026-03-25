@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Ninico is a versatile ecommerce shop script powered by Laravel 10.x. Built on the foundation of **Botble CMS**, this
+Ninico is a versatile ecommerce shop script powered by Laravel 13.x. Built on the foundation of **Botble CMS**, this
 product offers remarkable flexibility for various use cases.
 
 ![Overview](./images/overview.png)

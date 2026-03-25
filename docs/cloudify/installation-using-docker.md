@@ -2,7 +2,7 @@
 
 _Docker installation for development only, do not use it on production environment._
 
-Botble utilizes [Laravel Sail](https://laravel.com/docs/12.x/sail). Please refer to the official documentation for instructions on how to use Laravel Sail.
+Botble utilizes [Laravel Sail](https://laravel.com/docs/13.x/sail). Please refer to the official documentation for instructions on how to use Laravel Sail.
 
 - Open `.env` file and change:
   - `DB_HOST=127.0.0.1` to `DB_HOST=mysql`

@@ -5,7 +5,7 @@
 DeskHive is a **standalone Laravel application**. Before installing, ensure your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.2 or higher
+- PHP >= 8.3 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -36,8 +36,8 @@ If you are using cPanel, you can follow [this article](https://chemicloud.com/kb
 
 - MySQL 5.7+ or MariaDB 10.2+
 - Composer 2.x
-- Laravel 12.x (included)
+- Laravel 13.x (included)
 
 ::: tip
-DeskHive is built on Laravel 12.x. Please go to the [Laravel documentation page](https://laravel.com/docs/12.x) for more information.
+DeskHive is built on Laravel 13.x. Please go to the [Laravel documentation page](https://laravel.com/docs/13.x) for more information.
 :::

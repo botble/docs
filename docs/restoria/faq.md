@@ -37,7 +37,7 @@ Yes! Restoria is 100% responsive and mobile-optimized:
 ### What are the hosting requirements?
 
 **Minimum Requirements:**
-- PHP 8.2 or higher
+- PHP 8.3 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - 256MB PHP memory limit
 - Apache/Nginx web server
@@ -65,7 +65,7 @@ Yes, perfect for development and testing:
 - Use XAMPP, WAMP, or MAMP
 - Laravel Valet for Mac
 - Docker for any platform
-- Ensure PHP 8.2+ is installed
+- Ensure PHP 8.3+ is installed
 
 ### How long does installation take?
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-LaraMag is a magazine system using Laravel 10.x. This is a product based on Botble CMS.
+LaraMag is a magazine system using Laravel 13.x. This is a product based on Botble CMS.
 
 Created: `17/12/2017`
 

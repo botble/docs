@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Shopwise is a Laravel Ecommerce System using Laravel 10.x. It's a product built on Botble CMS.
+Shopwise is a Laravel Ecommerce System using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `2020/10/07`
 

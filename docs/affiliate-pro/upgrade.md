@@ -28,7 +28,7 @@ Before upgrading, we strongly recommend taking the following precautions:
 
 - Ensure the new version is compatible with your current Botble CMS version
 - Review the [release notes](/affiliate-pro/releases) for any breaking changes
-- Check PHP version requirements (minimum PHP 8.2)
+- Check PHP version requirements (minimum PHP 8.3)
 - Verify database compatibility (MySQL 5.7+ or MariaDB 10.3+)
 
 ### 3. Maintenance Mode

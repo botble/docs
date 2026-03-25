@@ -66,7 +66,7 @@ When a customer enters their shipping address at checkout, the core `HandleShipp
 ## Prerequisites
 
 - The **Ecommerce** plugin must be activated
-- PHP 8.2+, Laravel 12.x
+- PHP 8.3+, Laravel 13.x
 - An account with your shipping provider and API credentials
 
 ## Plugin Directory Structure

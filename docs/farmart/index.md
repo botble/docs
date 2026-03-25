@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Farmart is a Single or Multivendor Laravel eCommerce System using Laravel 10.x. It's a product built on Botble CMS.
+Farmart is a Single or Multivendor Laravel eCommerce System using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `May 01, 2022`
 

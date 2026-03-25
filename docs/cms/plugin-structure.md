@@ -1213,7 +1213,7 @@ public function boot(): void
 - Keep your code organized in appropriate directories
 - Use namespaces consistently
 - Follow PSR-12 coding standards
-- Use type hints and return types in PHP 8.2+
+- Use type hints and return types in PHP 8.3+
 - Add proper PHPDoc comments to all classes and methods
 
 ### Security

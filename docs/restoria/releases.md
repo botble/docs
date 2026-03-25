@@ -66,7 +66,7 @@ We're excited to announce the first release of Restoria - Restaurant Management 
 - Backup system
 
 ### 📋 Requirements
-- PHP >= 8.2
+- PHP >= 8.3
 - MySQL 5.7+ or MariaDB 10.3+
 - Apache, Nginx, or compatible web server
 - SSL certificate recommended
@@ -120,8 +120,8 @@ Always backup your database and files before performing any updates.
 
 ### Compatibility Notes
 
-- **PHP Version**: Requires PHP 8.2 or higher
-- **Laravel Version**: Built on Laravel 11.x
+- **PHP Version**: Requires PHP 8.3 or higher
+- **Laravel Version**: Built on Laravel 13.x
 - **Botble CMS**: Compatible with latest Botble CMS version
 - **Browser Support**: Chrome, Firefox, Safari, Edge (latest versions)
 

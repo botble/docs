@@ -75,7 +75,7 @@ Checkout Form → PAYMENT_FILTER_PAYMENT_DATA → PAYMENT_FILTER_AFTER_POST_CHEC
 ## Prerequisites
 
 - The core **Payment** plugin must be activated (`platform/plugins/payment/`)
-- PHP 8.2+, Laravel 12.x
+- PHP 8.3+, Laravel 13.x
 - Familiarity with Laravel service providers and Blade views
 
 ## Plugin Directory Structure

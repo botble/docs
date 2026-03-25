@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Stories is a Creative Multilingual Blog script using Laravel 10.x. It's a product built on Botble CMS.
+Stories is a Creative Multilingual Blog script using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `Feb 23, 2021`
 

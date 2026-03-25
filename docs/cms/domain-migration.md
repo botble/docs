@@ -43,7 +43,7 @@ Before migrating, take note of:
 
 1. Purchase or set up hosting for your new domain
 2. Make sure the hosting meets these requirements:
-    - **PHP 8.2** or higher
+    - **PHP 8.3** or higher
     - **MySQL 8.0+** or **MariaDB 10.3+**
 3. Point your new domain's DNS to the new hosting server (your hosting provider can help with this)
 

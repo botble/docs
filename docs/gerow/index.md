@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Gerow - Laravel Business Consulting script using Laravel 10.x. It's a product built on Botble CMS.
+Gerow - Laravel Business Consulting script using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `2023-09-20`
 

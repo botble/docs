@@ -2,7 +2,7 @@
 
 ## Introduction
 
-TransP is Laravel Transport Courier & Logistics script using Laravel 10.x. It's a product built on Botble CMS.
+TransP is Laravel Transport Courier & Logistics script using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: _Aug 07, 2023_
 
