@@ -79,11 +79,11 @@ Click a preorder to see the full details. The page shows a 3-step accordion view
 
 **Step 1: Prepayment**
 
-When the store requests your deposit payment, this section becomes active. Click to pay via the available payment methods (COD, bank transfer, Stripe, PayPal — depends on the store's setup).
+Once the store accepts your preorder, this section becomes active. Click to pay your deposit via the available payment methods (COD, bank transfer, Stripe, PayPal — depends on the store's setup).
 
-**Step 2: Final Order**
+**Step 2: Final Pre-Order**
 
-After your deposit is confirmed and the product becomes available, this section lets you pay the remaining balance to complete your order.
+After your deposit is confirmed, this section lets you pay the remaining balance to complete your order.
 
 **Step 3: Refund (if applicable)**
 
@@ -94,10 +94,10 @@ If your order was cancelled and the product allows refunds, you can submit a ref
 | Your preorder status | Actions available |
 |---------------------|------------------|
 | **Requested** | Cancel |
-| **Accepted** | Cancel |
-| **Prepayment Requested** | Pay deposit, Cancel |
-| **Prepayment Confirmed** | Wait for product availability |
-| **Final Order** | Pay remaining balance |
+| **Accepted** | Pay deposit, Cancel |
+| **Prepayment Requested** | Cancel |
+| **Prepayment Confirmed** | Pay remaining balance |
+| **Final Pre-Order** | Wait for shipping |
 | **In Shipping** | Track your order |
 | **Delivered** | Order complete |
 | **Cancelled** | Request refund (if product is refundable) |

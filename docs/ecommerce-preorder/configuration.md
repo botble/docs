@@ -43,23 +43,11 @@ Whether new preorder products allow refund requests by default. Can be overridde
 
 ## Display Settings
 
-### Badge Text
-
-Text shown on preorder product badges throughout the store (product cards, product pages, cart).
-
-**Default:** "Pre-Order"
-
 ### Badge Color
 
 Hex color for the preorder badge.
 
 **Default:** `#f59e0b` (amber)
-
-### Button Text
-
-Text for the preorder add-to-cart button, replacing the regular "Add to Cart".
-
-**Default:** "Add to Pre-Order"
 
 ### Display Style
 
@@ -67,14 +55,14 @@ Controls how preorder information appears on the product detail page:
 
 | Style | What it shows |
 |-------|-------------|
-| **Detailed** (default) | Full info card with pricing breakdown, availability date, discount label, and custom message |
-| **Minimal** | Compact badge with brief text |
+| **Minimal** (default) | Compact box with badges |
+| **Banner** | Left-bordered horizontal strip |
+| **Inline** | Single-line badges and text |
+| **Detailed** | Full info card with pricing breakdown, availability date, discount label, and custom message |
 
-### Default Message
-
-Fallback message shown on preorder products when no custom message is set. Supports the `:date` placeholder, which is replaced with the formatted availability date.
-
-**Example:** `This product is available for pre-order. Expected availability: :date`
+::: tip
+Badge Text, Button Text, and Default Message use translation strings by default (`Pre-Order`, `Pre-Order Now`, `Expected availability: :date`). To customize these values, edit the translation files in `resources/lang/{locale}/preorder.php` under the `defaults` key.
+:::
 
 ## Vendor Settings
 

@@ -16,7 +16,7 @@ Go to **Preorder > Products** in admin to configure pre-order products.
 
 ### Track orders through a clear lifecycle
 
-Every pre-order moves through defined statuses: Requested → Accepted → Prepayment Requested → Prepayment Confirmed → Final Order → In Shipping → Delivered. You control each transition from the admin panel.
+Every pre-order moves through defined statuses: Requested → Accepted → Prepayment Requested → Prepayment Confirmed → Final Pre-Order → In Shipping → Delivered. You control each transition from the admin panel.
 
 Go to **Preorder > Orders** to manage pre-order orders.
 

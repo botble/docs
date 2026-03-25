@@ -11,7 +11,7 @@ By: [Botble Technologies](https://botble.com)
 Email: [contact@botble.com](mailto:contact@botble.com)
 
 Thank you for purchasing this product. If you have any questions that are beyond the scope of this help file, 
-please feel free to email via my user page contact form [here](https://codecanyon.net.net/user/botble) for quickly support. Thank you so much!
+please feel free to email via my user page contact form [here](https://codecanyon.net/user/botble) for quickly support. Thank you so much!
 
 ## Demo
 

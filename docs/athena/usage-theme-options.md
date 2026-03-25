@@ -64,7 +64,7 @@ tab.
 
 ![Social Links](./images/theme-options/social-links.png)
 
-Then, these links can be used in **[Social Links]()** widget.
+Then, these links can be used in **Social Links** widget.
 
 **Social links Widget** used in:
 

@@ -18,7 +18,7 @@ Yes. Ecommerce Preorder works with all Botble e-commerce themes including Shofy,
 ### What are the system requirements?
 
 - Botble CMS 7.6.0+
-- PHP 8.3+
+- PHP 8.2+
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 
@@ -99,7 +99,7 @@ The plugin is designed primarily for physical products with shipping stages. Whi
 
 ### Does it support multiple languages?
 
-Yes. The plugin ships with translations for 8 locales including English, Arabic, Bulgarian, Bengali, Czech, Danish, and German. You can add more translations in `resources/lang/`.
+Yes. The plugin ships with translations for 42+ locales including English, Vietnamese, Chinese, Japanese, Korean, Arabic, French, German, Spanish, Portuguese, Russian, and many more. You can add or customize translations in `resources/lang/`.
 
 ## Support
 

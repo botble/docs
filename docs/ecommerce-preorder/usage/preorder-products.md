@@ -11,8 +11,8 @@ Manage preorder products at **Preorder > Products** in the admin panel.
 | Field | Required | What to enter |
 |-------|----------|--------------|
 | **Product** | Yes | Search and select a product from your catalog |
-| **Availability Date** | Yes | Expected shipping date, e.g., `2026-06-15` |
-| **Preorder Price** | Yes | The price customers pay, e.g., `180` for $180 |
+| **Availability Date** | No | Expected shipping date, e.g., `2026-06-15`. Leave empty if unknown |
+| **Preorder Price** | No | The price customers pay, e.g., `180` for $180. Leave empty to use product's regular price |
 | **Price Type** | Yes | Full Price, Deposit Percentage, or Deposit Fixed |
 | **Prepayment Amount** | When deposit | The deposit value — percentage (e.g., `30`) or fixed amount (e.g., `50`) |
 | **Discount Type** | No | Percentage or Fixed — exclusive preorder discount |

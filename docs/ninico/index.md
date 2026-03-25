@@ -17,7 +17,7 @@ solid platform for your ecommerce venture.
 **Email:** [contact@botble.com](mailto:contact@botble.com)
 
 Thank you for choosing Ninico. For any inquiries beyond this documentation, please don't hesitate to reach us through
-our user page contact form [here](https://codecanyon.net.net/user/botble). We're here to provide prompt support.
+our user page contact form [here](https://codecanyon.net/user/botble). We're here to provide prompt support.
 
 ## Demo
 

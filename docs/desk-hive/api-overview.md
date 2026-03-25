@@ -93,5 +93,5 @@ GET /api/v1/health-check
 
 | Section | Description |
 |---------|-------------|
-| [Internal API](api-internal) | Admin-level CRUD endpoints |
-| [External API](api-external) | Agent-facing endpoints |
+| [Internal API](api-internal.md) | Admin-level CRUD endpoints |
+| [External API](api-external.md) | Agent-facing endpoints |

@@ -12,7 +12,7 @@ Every preorder moves through these statuses:
 | **Accepted** | Admin approved the preorder | Admin |
 | **Prepayment Requested** | Waiting for customer to pay the deposit | Admin triggers |
 | **Prepayment Confirmed** | Deposit payment received | Automatic |
-| **Final Order** | Customer paid the remaining balance | Customer |
+| **Final Pre-Order** | Customer paid the remaining balance | Customer |
 | **In Shipping** | Product shipped to customer | Admin |
 | **Delivered** | Order completed | Admin |
 | **Cancelled** | Order was cancelled | Admin or Customer |
@@ -22,7 +22,7 @@ Every preorder moves through these statuses:
 
 ```
 Requested → Accepted → Prepayment Requested → Prepayment Confirmed
-→ Final Order → In Shipping → Delivered
+→ Final Pre-Order → In Shipping → Delivered
 ```
 
 At most stages, an order can also be **Cancelled**. Cancelled orders with refundable products can then be **Refunded**.
@@ -87,17 +87,19 @@ For deposit-based preorders, payment happens in two stages:
 
 1. Customer places preorder → status is **Requested**
 2. You review and **Accept** the preorder
-3. You set status to **Prepayment Requested** — customer gets notified
-4. Customer pays the deposit from their dashboard (via COD, bank transfer, Stripe, or PayPal)
-5. On successful payment, status automatically moves to **Prepayment Confirmed**
+3. Customer sees the deposit payment option in their dashboard and pays (via COD, bank transfer, Stripe, or PayPal)
+4. On successful payment, status automatically moves to **Prepayment Confirmed**
+
+::: tip
+The customer can pay the deposit as soon as the order is **Accepted**. The admin can also manually advance to **Prepayment Requested** to prompt the customer, but payment is available from the Accepted stage.
+:::
 
 ### Stage 2: Final Payment (Balance)
 
-1. When the product is ready, you advance the order to **Final Order** stage
-2. Customer pays the remaining balance from their dashboard
-3. Payment is linked to the order record
-4. You ship the product → set status to **In Shipping**
-5. Product delivered → set status to **Delivered**
+1. Once the deposit is confirmed (**Prepayment Confirmed**), the customer can pay the remaining balance from their dashboard
+2. On successful payment, status moves to **Final Pre-Order**
+3. You ship the product → set status to **In Shipping**
+4. Product delivered → set status to **Delivered**
 
 ### Full price orders
 
