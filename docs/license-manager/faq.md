@@ -2,6 +2,30 @@
 
 ## General
 
+### Is the License Manager a SaaS product?
+
+No. The License Manager is a **self-hosted solution**. You install it on your own server and you own the entire system — the server, database, and all license data. The API settings you see in the admin panel are for your plugins/products to communicate with your License Manager installation, not for connecting to an external service.
+
+### Subdomain vs Plugin: Which deployment should I choose?
+
+You have two deployment options:
+
+| Approach | Admin Panel | Customer Frontend | Database |
+|----------|------------|-------------------|----------|
+| **Subdomain** (recommended) | Separate admin at `license.yourdomain.com` | Full customer portal (login, manage licenses, self-service) | Separate database |
+| **Plugin in existing CMS** | Same admin panel as your CMS | **Not available** unless your theme supports it | Shared database |
+
+**We recommend the subdomain approach** because:
+- Full customer-facing frontend works out of the box
+- Customers can self-manage their licenses (activate, deactivate, view history)
+- Independent from your main site — if your main site goes down for maintenance, license verification still works
+
+If you install it as a plugin, the admin dashboard works fine, but the frontend customer portal will **only work if your theme has been built to support the License Manager plugin views**. Most themes (e.g., Iori, Shofy, Nest) do not include these views.
+
+::: tip
+You can link to your subdomain License Manager from your main site's menu or footer so customers can easily access it.
+:::
+
 ### Does the License Manager only work with Envato?
 
 No. The License Manager is a **fully standalone license system**. Envato integration is just one optional feature. You can generate and manage your own license codes (UUID, ULID, or custom patterns) completely independently — no Envato account required.
@@ -43,6 +67,10 @@ Four formats are available:
 | **Custom pattern** | `%Z%Z%Z%Z-%Z%Z%Z%Z-%Z%Z%Z%Z` where `%X` = number, `%Y` = letter, `%Z` = mixed |
 
 Configure the format in **Settings > License > General**.
+
+### Can users deactivate a license and reactivate it on another domain?
+
+Yes. The API supports license deactivation and reactivation. Users can deactivate their license on one domain (freeing up a parallel use slot) and then activate it on a new domain. Use the [deactivate](/license-manager/api#deactivate-license) and [activate](/license-manager/api#activate-license) API endpoints. If you use the subdomain deployment, the customer portal provides a UI for this out of the box.
 
 ## Subscriptions & Payments
 

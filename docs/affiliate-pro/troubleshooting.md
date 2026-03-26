@@ -4,6 +4,16 @@ This guide will help you resolve common issues that may arise when using the Aff
 
 ## Common Issues
 
+### Plugin Not Working After CMS Update
+
+If the Affiliate Pro plugin stops working or shows errors after updating Botble CMS:
+
+1. Go to **Admin → Plugins → Installed plugins**
+2. **Deactivate** the Affiliate Pro plugin
+3. **Activate** it again
+
+This re-registers the plugin's service providers and resolves most post-update issues.
+
 ### Affiliate Links Not Tracking
 
 If affiliate links are not tracking properly:
