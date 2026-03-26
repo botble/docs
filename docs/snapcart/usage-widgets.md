@@ -32,3 +32,9 @@ Each badge has a customizable title and description.
 
 Display product policies and guarantees. Configure policy items with icons and descriptions to build customer trust.
 
+### Footer Widgets
+
+Located at the bottom of the page. The footer is divided into several widget areas. The main store information (like address, phone, and short description) can be changed by editing the **Site information** or **Text** widget in the first footer column.
+
+![Site Information Widget](./images/widget-site-information.png)
+

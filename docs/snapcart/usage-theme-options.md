@@ -14,6 +14,9 @@ Configure your site's basic information.
 |---|---|
 | Site Title | Your store name displayed in header and SEO |
 | Site Description | Short description of your store |
+| Copyright Text | The copyright text displayed at the very bottom of the footer |
+
+![Theme Options Copyright](./images/theme-options-copyright.png)
 
 ![General](./images/theme-option-general.png)
 

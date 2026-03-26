@@ -70,6 +70,7 @@ export default [
             { text: 'Discounts & Coupons', link: '/snapcart/usage-discounts-coupons' },
             { text: 'Tax', link: '/snapcart/usage-tax' },
             { text: 'Flash Sales', link: '/snapcart/usage-flash-sales' },
+            { text: 'Sale Popup', link: '/snapcart/usage-sale-popup' },
             { text: 'Payment Gateways', link: '/snapcart/usage-payment-gateways' },
             { text: 'Order Management', link: '/snapcart/usage-order-management' },
             { text: 'Order Returns', link: '/snapcart/usage-order-returns' },
