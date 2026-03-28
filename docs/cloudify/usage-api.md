@@ -10,7 +10,10 @@ When working with folders through the API:
 
 - **Root folders only**: `GET /api/v1/media/folders` returns only root-level folders
 - **Get subfolders**: Add `folder_id` parameter: `GET /api/v1/media/folders?folder_id={parent_id}`
+- **Get subfolders and files**: Add `include_files=true` to get both subfolders and files in one request
+- **Get folder details with files**: `GET /api/v1/media/folders/{folder_id}` returns folder info with its files
 - **Upload to folder**: Include `folder_id` in your upload request
+- **Pagination**: All list endpoints support `per_page` (default: 40, max: 100) and `page` parameters
 
 ### Example: Navigating Folder Structure
 
@@ -19,30 +22,40 @@ When working with folders through the API:
 curl -X GET "https://your-domain.com/api/v1/media/folders" \
   -H "X-API-KEY: your-token"
 
-# Get subfolders of folder ID 5
-curl -X GET "https://your-domain.com/api/v1/media/folders?folder_id=5" \
+# Get subfolders of a folder
+curl -X GET "https://your-domain.com/api/v1/media/folders?folder_id=9eccfc2c-1f49-490c-b8e3-..." \
   -H "X-API-KEY: your-token"
 
-# Upload file to folder ID 5
+# Get subfolders AND files in one request
+curl -X GET "https://your-domain.com/api/v1/media/folders?folder_id=9eccfc2c-...&include_files=true" \
+  -H "X-API-KEY: your-token"
+
+# Get folder details with paginated files
+curl -X GET "https://your-domain.com/api/v1/media/folders/9eccfc2c-...?per_page=20&page=1" \
+  -H "X-API-KEY: your-token"
+
+# Upload file to a folder
 curl -X POST "https://your-domain.com/api/v1/media/files" \
   -H "X-API-KEY: your-token" \
   -F "file=@document.pdf" \
-  -F "folder_id=5"
+  -F "folder_id=9eccfc2c-1f49-490c-b8e3-..."
 ```
 
 ## Available Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/media/folders` | GET | List folders (use `folder_id` param for subfolders) |
+| `/media/folders` | GET | List folders (use `folder_id` for subfolders, `include_files=true` for files) |
 | `/media/folders` | POST | Create new folder |
-| `/media/folders/{id}` | GET | Get folder details with files |
+| `/media/folders/{id}` | GET | Get folder details with paginated files |
 | `/media/folders/{id}/trash` | PATCH | Move folder to trash |
 | `/media/folders/{id}` | DELETE | Delete folder permanently |
-| `/media/files` | GET | List files in folder |
+| `/media/folders/deletes` | POST | Bulk delete folders |
+| `/media/files` | GET | List files in folder (paginated) |
 | `/media/files` | POST | Upload new file |
 | `/media/files/{id}/trash` | PATCH | Move file to trash |
 | `/media/files/{id}` | DELETE | Delete file permanently |
+| `/media/files/deletes` | POST | Bulk delete files |
 
 For complete API documentation including all parameters and responses, see the [API Reference](./api-reference.md) or view the [Postman Collection](https://documenter.getpostman.com/view/11116730/2sA3JQ3ejZ).
 
