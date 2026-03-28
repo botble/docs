@@ -414,12 +414,10 @@ return $this->httpResponse()->withDeletedSuccessMessage();
 {!! BaseHelper::clean($userContent) !!}
 
 // For JavaScript contexts - use @json directive
-<script>
-var data = @json($variable);
-</script>
+// <script> var data = @json($variable); </script>
 
 // Default - auto-escapes HTML
-{{ $variable }}
+// Use Blade double curly braces: {{ $variable }}
 ```
 
 ### CSRF in AJAX
@@ -773,9 +771,9 @@ BaseHelper::getHomepageUrl()
 ### RvMedia: ALWAYS Use for Images
 
 ```php
-// ❌ WRONG — raw path
-<img src="{{ $product->image }}">
-<img src="/storage/{{ $post->image }}">
+// ❌ WRONG — raw path in img src
+// <img src="{{ $product->image }}">
+// <img src="/storage/{{ $post->image }}">
 
 // ✅ CORRECT
 RvMedia::getImageUrl($model->image)
@@ -843,8 +841,8 @@ window.addEventListener('beforeunload', () => clearInterval(interval));
 
 ```php
 @php($sliderUniqueId = 'product-slider-' . uniqid())
-<div id="{{ $sliderUniqueId }}" ...>
-<button class="slider-prev-{{ $sliderUniqueId }}">Prev</button>
+// Use $sliderUniqueId in Blade: id="{{ $sliderUniqueId }}"
+// Button: class="slider-prev-{{ $sliderUniqueId }}"
 ```
 
 ## TailwindCSS v4 Themes
@@ -999,9 +997,10 @@ EcommerceHelper::jsAttributes('quick-shop', $product)
 
 ### Infinite Scroll Pattern
 
-```html
-<div class="bb-infinite-products-grid" data-url="{{ $products->nextPageUrl() }}">
-<button class="bb-load-more-btn">Load More</button>
+```php
+// Blade template for infinite scroll
+// <div class="bb-infinite-products-grid" data-url="{{ $products->nextPageUrl() }}">
+// <button class="bb-load-more-btn">Load More</button>
 ```
 
 ## API Development
@@ -1194,7 +1193,7 @@ class MyRequest extends Request
 | `bg-green` badge without `-fg` | Always add `text-green-fg` |
 | CDN Google Fonts link | Use `BaseHelper::googleFonts()` |
 | Skipping Pint formatting | Run `./vendor/bin/pint` before commit |
-| Raw `<img src="{{ $model->image }}">` | Use `RvMedia::getImageUrl()` |
+| Raw image path in `<img>` src | Use `RvMedia::getImageUrl()` |
 | Plugin `removed()` without dropping tables | Must drop ALL tables and settings |
 | `$_COOKIE` direct access | Use `request()->cookie()` with allowlist |
 
