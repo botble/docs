@@ -39,6 +39,7 @@ import licenseManagerSidebar from '../license-manager/sidebar'
 import snapcartSidebar from '../snapcart/sidebar'
 import deskHiveSidebar from '../desk-hive/sidebar'
 import ecommercePreorderSidebar from '../ecommerce-preorder/sidebar'
+import ecommerceBackInStockSidebar from '../ecommerce-back-in-stock/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -123,6 +124,7 @@ export default defineConfig({
           { text: 'SnapCart', link: '/snapcart/'},
           { text: 'Desk Hive', link: '/desk-hive/'},
           { text: 'Ecommerce Preorder', link: '/ecommerce-preorder/'},
+          { text: 'Back in Stock', link: '/ecommerce-back-in-stock/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -174,6 +176,7 @@ export default defineConfig({
       snapcart: snapcartSidebar,
       'desk-hive': deskHiveSidebar,
       'ecommerce-preorder': ecommercePreorderSidebar,
+      'ecommerce-back-in-stock': ecommerceBackInStockSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

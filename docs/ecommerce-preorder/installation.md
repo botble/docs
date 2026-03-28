@@ -11,7 +11,7 @@
 
 ### Step 1: Download the Plugin
 
-Download the Ecommerce Preorder plugin from [CodeCanyon](https://codecanyon.net/user/botble/portfolio) after purchase.
+Download the Ecommerce Preorder plugin from [CodeCanyon](https://1.envato.market/L005E0) after purchase.
 
 ### Step 2: Upload to Server
 
