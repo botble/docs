@@ -74,7 +74,7 @@ Yes, but both plugins modify product pricing. Test thoroughly to ensure prices d
 
 ### Can I customize the preorder badge?
 
-Yes. Go to **Preorder > Settings** to change the badge text (default: "Pre-Order"), badge color (default: amber), and button text (default: "Add to Pre-Order").
+Yes. Go to **Preorder > Settings** to change the badge text (default: "Pre-Order"), badge color (default: amber), and button text (default: "Pre-Order Now").
 
 ### What's the difference between "Detailed" and "Minimal" display styles?
 

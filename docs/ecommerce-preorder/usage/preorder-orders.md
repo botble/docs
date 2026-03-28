@@ -63,6 +63,8 @@ Use the status filter to show only orders in a specific status (e.g., show only 
 
 ### Order detail
 
+![Order Detail View](../images/preorder-order-detail.png)
+
 Click an order to view full details:
 
 - **Customer info** — Name, email, link to their account

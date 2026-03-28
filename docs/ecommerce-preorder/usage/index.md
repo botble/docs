@@ -31,11 +31,11 @@ How vendors manage their own preorder products and orders when the Marketplace p
                     ↓
 2. Customer sees the preorder badge and pricing on the product page
                     ↓
-3. Customer adds to cart → pays deposit at checkout
+3. Customer adds to cart and places a preorder request
                     ↓
 4. You review and accept the preorder request
                     ↓
-5. You request prepayment → customer pays deposit
+5. Customer pays the deposit (prepayment)
                     ↓
 6. Product becomes available → customer pays remaining balance
                     ↓

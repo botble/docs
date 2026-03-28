@@ -2,6 +2,8 @@
 
 Manage preorder products at **Preorder > Products** in the admin panel.
 
+![Preorder Products List](../images/preorder-products-list.png)
+
 ## Creating a Preorder Product
 
 1. Go to **Preorder > Products** in the admin sidebar
@@ -62,6 +64,8 @@ Discounts are applied **before** the prepayment calculation:
 The discount is exclusive to the preorder — regular customers see the original price.
 
 ## Quick Enable via Product Edit
+
+![Product Edit Preorder Toggle](../images/preorder-product-edit.png)
 
 You can also enable preorder directly from a product's edit page. A preorder metabox appears with a quick toggle. This creates a basic preorder configuration that you can then customize at **Preorder > Products**.
 

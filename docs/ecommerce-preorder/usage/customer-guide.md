@@ -8,6 +8,8 @@ This guide is for your customers — people who want to pre-order products from 
 
 Preorder products are shown throughout the store with a badge (typically "Pre-Order" in amber). You can also browse all available preorder products at `/preorder-products` on the store website.
 
+![Preorder Products Listing](../images/preorder-products-frontend.png)
+
 ### What you see on a preorder product page
 
 ![Preorder Product Page](../images/preorder-product-page.png)
@@ -35,7 +37,7 @@ When you visit a preorder product, you'll see:
 
 1. Visit a preorder product page
 2. Select your variant options (size, color, etc.) if applicable
-3. Click the **Add to Pre-Order** button
+3. Click the **Pre-Order Now** button
 
 ### Step 2: Review your cart
 
@@ -65,6 +67,8 @@ The menu item shows a badge with the count of pending preorders.
 
 ### Preorder list
 
+![Customer Preorder Dashboard](../images/preorder-customer-dashboard.png)
+
 Your preorder dashboard shows all your preorders with:
 - Order code
 - Product name and image
@@ -76,6 +80,8 @@ Your preorder dashboard shows all your preorders with:
 ### Preorder detail page
 
 Click a preorder to see the full details. The page shows a 3-step accordion view:
+
+![Customer Preorder Detail](../images/preorder-customer-detail.png)
 
 **Step 1: Prepayment**
 
