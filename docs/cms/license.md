@@ -128,6 +128,59 @@ Envato allows a license to be transferred to another person or company:
 
 For more information on license transfers, please refer to [Envato's License FAQ](https://help.market.envato.com/hc/en-us/articles/202501064-License-FAQ).
 
+## Troubleshooting License Activation
+
+### "Could not connect to the license server" / cURL Error 28
+
+If you see the error "Could not connect to the license server. Please site IP: x.x.x.x" or "cURL error 28: Connection timed out", your server cannot reach our license server (`license.botble.com`).
+
+**Common cause:** Your server's firewall is blocking outbound HTTPS (port 443) connections. This is common on servers from Hetzner, DigitalOcean, OVH, and other hosting providers that have strict default firewall rules.
+
+**How to diagnose:**
+
+Run these commands via SSH on your server:
+
+```bash
+# Test connectivity to the license server
+curl -v --max-time 15 https://license.botble.com/api/health-check
+
+# Test TCP connection to Cloudflare IPs
+nc -zv 104.21.76.15 443
+nc -zv 172.67.185.15 443
+```
+
+If these commands hang or time out, your server's outbound connections are blocked.
+
+**How to fix:**
+
+1. **Check your server firewall:**
+
+```bash
+# Check iptables rules
+iptables -L OUTPUT -n | grep -i drop
+
+# Check UFW status
+ufw status
+```
+
+2. **Allow outbound HTTPS traffic:**
+
+```bash
+# If using UFW
+ufw allow out 443/tcp
+
+# If using iptables
+iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+```
+
+3. **Check hosting provider firewall:** If you use a cloud hosting provider (Hetzner, DigitalOcean, etc.), check their cloud console for firewall settings. Ensure outbound TCP port 443 is allowed.
+
+4. **Contact your hosting provider:** If you're unsure how to configure the firewall, contact your hosting provider and ask them to allow outbound HTTPS (port 443) connections from your server.
+
+::: tip
+Our license server is behind Cloudflare. If your hosting provider blocks connections to Cloudflare IPs, you may need to whitelist them. See [Cloudflare IP Ranges](https://www.cloudflare.com/ips/).
+:::
+
 ## Frequently Asked Questions
 
 ### Can I use one license for multiple domains?
