@@ -27,6 +27,13 @@ A standalone self-hosted help desk and support ticket system built with Laravel.
 - **License Manager Integration** - Verify license codes via the Botble License Manager
 - **Dashboard Widgets** - At-a-glance counts for open, today's, and unassigned tickets
 - **Reply Reactions** - Like individual replies in ticket threads for feedback
+- **Ticket Escalation** - Agents escalate complex tickets to admins with tiered levels and required reasons
+- **Internal Agent Chat** - Private agent-to-agent messaging on escalated tickets for team collaboration
+- **Agent Invitations** - Invite agents via email with token-based acceptance flow
+- **Department Visibility** - Optional department-based ticket visibility so agents see all department tickets
+- **Custom Ticket Prefix** - Configurable ticket reference ID prefix (default: SD)
+- **Conversation Styles** - Choose between thread (chat) and classic (card) ticket conversation layouts
+- **Knowledge Base Visibility** - Admin toggle to show/hide the knowledge base on the customer portal
 - **Email-to-Ticket** - Automatically create tickets from inbound emails; thread replies back via subject tag
 - **REST API** - Internal (admin) and external (agent) API with scope-based authentication
 - **39 Languages** - Built-in translations for 39 languages

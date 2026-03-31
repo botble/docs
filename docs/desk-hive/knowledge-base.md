@@ -60,6 +60,19 @@ Each article tracks:
 
 Authenticated customers can vote on articles once per article. Use these metrics to identify articles that need improvement.
 
+## Visibility Setting
+
+Admins can hide the knowledge base from the customer portal entirely.
+
+Navigate to **Admin → Support Desk → Settings → Customer Portal** and toggle **Show Knowledge Base**. When disabled:
+
+- Knowledge base links are removed from the portal navigation
+- KB search is hidden from the homepage
+- KB routes return a 404 error
+- Category shortcodes are hidden
+
+This is useful if you want to use DeskHive purely as a ticket system without self-service articles.
+
 ## Customer Portal
 
 The knowledge base is publicly accessible (no login required) at `/support/knowledge-base`.

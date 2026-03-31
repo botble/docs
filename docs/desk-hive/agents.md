@@ -31,6 +31,17 @@ Navigate to **Admin → Support Desk → Agents**.
 
 The agent receives login credentials and can access the agent portal at `/support/agent/dashboard`.
 
+### Inviting an Agent
+
+Instead of creating an agent manually, you can send an email invitation:
+
+1. Navigate to **Admin → Support Desk → Agents**
+2. Click **Invite**
+3. Enter the agent's email address
+4. Click **Send Invitation**
+
+The agent receives an email with a link to set up their account. Invitations expire after a configurable period. Track invitation status (pending, accepted, rejected, expired) from the agent list.
+
 ### Editing an Agent
 
 1. Click **Edit** on an agent row
@@ -121,6 +132,23 @@ Agents can reset their forgotten password:
 
 The password reset flow is at `/support/agent/forgot-password`.
 
+### Ticket Escalation
+
+Agents can escalate tickets that need admin attention:
+
+1. Open the ticket detail view
+2. Click **Escalate** in the action bar
+3. Choose an escalation level and enter a reason
+4. The admin is notified via email and in-app alert
+
+Escalated tickets show a badge in the agent portal. See [Tickets](tickets.md#ticket-escalation) for more details.
+
+### Internal Chat
+
+Agents can discuss escalated tickets privately using the internal chat feature. Access it from the ticket detail view — only agents can see these messages, not customers.
+
+Navigate to **Agent Portal → Tickets → {ticket} → Internal Chat** to view and send messages.
+
 ## Assigning Tickets to Agents
 
 - **Manual**: Set the **Assigned To** field on any ticket in the admin panel
@@ -128,8 +156,14 @@ The password reset flow is at `/support/agent/forgot-password`.
 
 ## Ticket Visibility
 
-Agents only see tickets that are assigned to them (via the `sd_ticket_agent` relationship). Tickets not yet assigned to any agent appear in the queue but are marked as unassigned.
+By default, agents only see tickets that are directly assigned to them.
+
+### Department-Based Visibility
+
+When enabled, agents see **all tickets** in their assigned departments — not just tickets assigned to them personally. This is useful for teams that share workload.
+
+Enable this in **Admin → Support Desk → Settings → General → Enable department-based ticket visibility** (off by default).
 
 ::: tip
-When auto-assign is enabled, new tickets are automatically linked to an agent in the matching department. Agents then see those tickets immediately in their portal queue.
+When department-based visibility is enabled and auto-assign is also enabled, agents see both their personally assigned tickets and all unassigned tickets in their departments.
 :::

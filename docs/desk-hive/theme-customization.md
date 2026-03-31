@@ -13,6 +13,7 @@ Navigate to **Admin → Appearance → Theme Options** to configure the Support 
 | Site title | Title shown in the browser tab and portal header |
 | Dark mode | Enable dark mode for customer and agent portals |
 | Hero background image | Background image for the homepage hero section |
+| Conversation style | Choose between **Thread** (chat-style) and **Classic** (card-based) conversation layouts for ticket threads |
 
 ### Logo & Favicon
 

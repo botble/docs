@@ -26,6 +26,10 @@ No. Agents and admin users are separate account types with separate login creden
 
 There is no built-in limit on the number of agents.
 
+### Can I invite agents via email?
+
+Yes. Instead of creating agent accounts manually, you can send email invitations from **Admin → Support Desk → Agents → Invite**. The agent receives a link to set up their account. You can track invitation status (pending, accepted, expired) from the agent list.
+
 ## Tickets
 
 ### Can a ticket be assigned to multiple agents?
@@ -44,6 +48,14 @@ Yes. When a customer posts a reply on a closed ticket, the ticket is automatical
 
 Yes. Both customers and agents can attach files when submitting or replying to tickets. Agents can also delete attachments. Downloads are served through authenticated endpoints to prevent unauthorised access.
 
+### Can agents escalate tickets?
+
+Yes. Agents can escalate tickets to administrators from the agent portal. Escalation requires a reason and supports multiple severity levels. Escalated tickets display a visual badge and trigger email notifications to the assigned admin. Admins can de-escalate from the admin panel.
+
+### Can agents communicate privately on a ticket?
+
+Yes. Escalated tickets include an **internal chat** feature where agents can discuss the issue privately. These messages are not visible to the customer.
+
 ## Knowledge Base
 
 ### Is the knowledge base visible to guests (not logged in)?
@@ -53,6 +65,10 @@ Yes. The knowledge base at `/support/knowledge-base` is publicly accessible. No 
 ### Can I have articles in multiple categories?
 
 No. Each article belongs to exactly one category. If you need an article to appear in multiple places, consider linking to it from other articles or duplicating it.
+
+### Can I hide the knowledge base from customers?
+
+Yes. Go to **Admin → Support Desk → Settings → Customer Portal** and disable **Show Knowledge Base**. When hidden, all KB navigation, search, and routes are removed from the customer portal.
 
 ## Envato Integration
 

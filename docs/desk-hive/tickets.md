@@ -6,7 +6,7 @@ Tickets are the core of DeskHive. Customers submit tickets through the customer 
 
 | Field | Description |
 |-------|-------------|
-| Reference ID | Auto-generated unique identifier (e.g., `#1001`) |
+| Reference ID | Auto-generated unique identifier with configurable prefix (e.g., `SD-1001`). Change the prefix in **Settings → General → Ticket Prefix** |
 | Title | Short description of the issue |
 | Content | Full description of the issue |
 | Department | Team responsible for the ticket |
@@ -68,6 +68,36 @@ The customer receives an email notification (if enabled in settings).
 ### Reply Reactions
 
 Agents and customers can like individual replies in a ticket thread. The like count is displayed on each message. This helps highlight helpful responses and provides feedback to support agents.
+
+### Ticket Escalation
+
+Agents can escalate tickets to administrators when an issue requires higher-level attention.
+
+1. Open the ticket in the agent portal
+2. Click **Escalate** in the main action area
+3. Select an escalation level and provide a reason
+4. The ticket is flagged as escalated and the assigned admin is notified
+
+Escalated tickets display a visual badge in both agent and admin portals. Admins can de-escalate tickets from the admin panel ticket edit form.
+
+Escalation levels range from standard to critical, allowing tiered handling of complex issues.
+
+### Internal Agent Chat
+
+Escalated tickets include a private agent-to-agent chat channel. Agents can discuss the ticket internally without the customer seeing the conversation.
+
+Access the internal chat from the ticket detail view in the agent portal. Messages are visible only to agents assigned to the ticket.
+
+### Conversation Style
+
+DeskHive supports two conversation display styles:
+
+| Style | Description |
+|-------|-------------|
+| Thread | Chat-style layout with messages flowing top to bottom |
+| Classic | Card-based layout with each reply in a separate card |
+
+Configure the conversation style in **Admin → Appearance → Theme Options**. The setting applies to both agent and customer portals.
 
 ### Assigning Tickets
 

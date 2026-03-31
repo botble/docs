@@ -38,6 +38,12 @@ Agents are assigned to departments in one of two ways:
 
 Agents only see tickets from departments they are assigned to in the agent portal.
 
+### Department-Based Ticket Visibility
+
+By default, agents only see tickets assigned directly to them. You can optionally enable **department-based visibility** so that agents see all tickets in their assigned departments.
+
+Enable this in **Admin → Support Desk → Settings → General → Enable department-based ticket visibility**. See [Agents](agents.md#department-based-visibility) for details.
+
 ## Assigning Tickets to Departments
 
 - **On submission**: Customers select a department when submitting a ticket (if more than one department exists)
