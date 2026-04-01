@@ -38,6 +38,7 @@ import wholesaleSidebar from '../wholesale/sidebar'
 import licenseManagerSidebar from '../license-manager/sidebar'
 import snapcartSidebar from '../snapcart/sidebar'
 import deskHiveSidebar from '../desk-hive/sidebar'
+import liveChatSidebar from '../live-chat/sidebar'
 import ecommercePreorderSidebar from '../ecommerce-preorder/sidebar'
 import ecommerceBackInStockSidebar from '../ecommerce-back-in-stock/sidebar'
 
@@ -123,6 +124,7 @@ export default defineConfig({
           { text: 'License Manager', link: '/license-manager/'},
           { text: 'SnapCart', link: '/snapcart/'},
           { text: 'Desk Hive', link: '/desk-hive/'},
+          { text: 'Live Chat', link: '/live-chat/'},
           { text: 'Ecommerce Preorder', link: '/ecommerce-preorder/'},
           { text: 'Back in Stock', link: '/ecommerce-back-in-stock/'},
         ],
@@ -175,6 +177,7 @@ export default defineConfig({
       'license-manager': licenseManagerSidebar,
       snapcart: snapcartSidebar,
       'desk-hive': deskHiveSidebar,
+      'live-chat': liveChatSidebar,
       'ecommerce-preorder': ecommercePreorderSidebar,
       'ecommerce-back-in-stock': ecommerceBackInStockSidebar,
     },

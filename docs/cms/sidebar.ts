@@ -38,6 +38,7 @@ export default [
           { text: 'Setup cronjob', link: '/cms/cronjob' },
           { text: 'Security Settings', link: '/cms/security-cookies' },
           { text: 'Setup CDN', link: '/cms/usage-setup-cdn' },
+          { text: 'Public Cache Control', link: '/cms/usage-public-cache-control' },
           { text: 'Reset admin password', link: '/cms/usage-reset-admin-password' },
         ],
       },
@@ -191,6 +192,12 @@ export default [
       { text: 'Backup', link: '/cms/plugin-backup' },
       { text: 'FAQ', link: '/cms/plugin-faq' },
       { text: 'Translation', link: '/cms/plugin-translation' },
+    ],
+  },
+  {
+    text: 'Support',
+    items: [
+      { text: 'Troubleshooting', link: '/cms/troubleshooting' },
     ],
   }
 ] satisfies DefaultTheme.SidebarItem[];
