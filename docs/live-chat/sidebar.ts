@@ -32,4 +32,10 @@ export default [
             { text: 'Working Hours', link: '/live-chat/working-hours' },
         ],
     },
+    {
+        text: 'Integrations',
+        items: [
+            { text: 'DeskHive Integration', link: '/live-chat/deskhive-integration' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[]

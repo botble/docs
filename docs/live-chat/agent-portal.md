@@ -40,6 +40,8 @@ The agent messenger uses the same 3-panel layout as the admin messenger, but sco
 - **Close** — Close a conversation (with confirmation)
 - **Browse Available** — View unassigned open conversations and join them
 
+- **Convert to Ticket** — Create a DeskHive support ticket from the conversation (requires [DeskHive](https://codecanyon.net/item/deskhive/62441260) plugin)
+
 ### Filters
 
 - **All** — All assigned conversations

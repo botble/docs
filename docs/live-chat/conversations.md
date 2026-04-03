@@ -48,6 +48,10 @@ Click the bell icon in the sidebar header to enable desktop notifications. When 
 
 URLs in messages (both visitor and admin) are automatically converted to clickable links that open in a new tab.
 
+## Convert to Support Ticket
+
+When [DeskHive](https://codecanyon.net/item/deskhive/62441260) (Support Desk plugin) is installed and active, a **Convert to Ticket** button appears in the info panel. Click it to create a DeskHive support ticket from the conversation. See [DeskHive Integration](/live-chat/deskhive-integration) for details.
+
 ## Visitor Information
 
 The right panel shows:

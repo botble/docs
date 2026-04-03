@@ -20,6 +20,7 @@ A floating Ajax live chat widget for Botble CMS that enables real-time visitor s
 - **Emoji Conversion** — Text emoticons like `:)` `:D` `;)` automatically convert to emoji
 - **Random Admin Names** — Assign random support agent names per conversation
 - **Poll-based Updates** — Configurable polling interval for message updates
+- **DeskHive Integration** — Convert chat conversations to support tickets when [DeskHive](https://codecanyon.net/item/deskhive/62441260) is installed
 - **42+ Languages** — Built-in translations
 
 ## Requirements
