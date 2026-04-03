@@ -22,7 +22,7 @@ Watch the video tutorial to see how to install our script manually:
 You can install our script manually by following these steps:
 
 - Upload all files into the root folder of your hosting (normally, it is`public_html`).
-- Create a database and import data from `database.sql` (it's located in source code).
+- Create a database and import data from `database.sql` (it's located in source code). This file contains full demo data matching the demo site.
 
   ![Database](../cms/images/installation-1.png)
 - Update your database credentials and `APP_URL` in `.env`.
