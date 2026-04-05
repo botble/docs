@@ -266,9 +266,10 @@ The plugin doesn't create custom tables but uses existing Botble ecommerce table
 ### Marketplace Plugin Integration
 
 **Vendor Support**:
-- Per-vendor shipping configuration
-- Vendor-specific origin addresses
-- Access control for vendor users
+- Shippo uses a **single API token** configured by the admin — vendors cannot connect their own Shippo accounts
+- Shipping rates and carrier selection are managed by the admin only
+- Vendors can update shipping status (e.g., delivering, delivered) but cannot configure shipping rates or API connections
+- The store's origin address (configured by the admin) is used for all rate calculations
 
 ## Events & Hooks
 

@@ -14,6 +14,10 @@ To update your product automatically, follow these steps:
 
 ![Automatic Update](../cms/images/upgrade-1.png)
 
+::: tip
+If the automatic update fails with errors like **HTTP 504** or **Invalid or uninitialized Zip object**, use the manual update method below instead. See [Troubleshooting - System Updater Errors](/cms/troubleshooting#system-updater-errors) for more details.
+:::
+
 ## Manual Update
 
 This way is a bit more complex, but it gives you more control over the upgrade process. Here are the steps:

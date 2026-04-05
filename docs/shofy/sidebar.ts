@@ -78,6 +78,7 @@ export default [
             { text: 'Shipping Methods', link: '/shofy/usage-shipping-methods' },
             { text: 'Invoices', link: '/shofy/usage-invoices' },
             { text: 'Webhooks', link: '/shofy/usage-webhooks' },
+            { text: 'Reset Test Data', link: '/shofy/usage-reset-test-data' },
         ],
     },
     {

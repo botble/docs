@@ -110,6 +110,31 @@ Some shared hosting providers disable the `DELETE` HTTP method. If you cannot de
 - Contact your hosting provider to enable the `DELETE` method.
 - Reference: [How to enable DELETE method](https://stackoverflow.com/questions/37484888).
 
+## System Updater Errors
+
+If you encounter errors during the automatic update process:
+
+### HTTP 504 Gateway Timeout
+
+The server timed out while downloading the update files. This usually happens due to slow server connection or low PHP timeout limits.
+
+### Invalid or Uninitialized Zip Object
+
+The update file download was incomplete or corrupted, resulting in an invalid zip file.
+
+### Solution
+
+For both errors above, use the [manual update](/cms/upgrade#manual-update) method instead:
+
+1. Download the latest version from CodeCanyon.
+2. Extract the zip file.
+3. Upload and overwrite files on your server using File Manager or FTP.
+4. Go to **Admin → Platform Administration → System Updater** and run steps 3–6 (database migration, publish assets, etc.).
+
+::: tip
+If the issue persists, try increasing your PHP `max_execution_time` and `memory_limit` values in your hosting configuration.
+:::
+
 ## Session / Login Issues
 
 If you are being logged out frequently or cannot stay logged in:
