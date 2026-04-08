@@ -137,6 +137,17 @@ If the issue persists, try increasing your PHP `max_execution_time` and `memory_
 
 ## Session / Login Issues
 
+### Cannot Login — Wrong URL
+
+Botble CMS has two separate login pages:
+
+- **`/admin/login`** — Admin panel login (for site administrators)
+- **`/login`** — Customer/member dashboard login (for registered users)
+
+If your credentials are correct but login fails, make sure you are using the right URL. Admin accounts cannot log in at `/login`, and customer accounts cannot log in at `/admin/login`.
+
+### Frequent Logouts
+
 If you are being logged out frequently or cannot stay logged in:
 
 1. Ensure `storage/framework/sessions` is writable.

@@ -181,6 +181,85 @@ iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
 Our license server is behind Cloudflare. If your hosting provider blocks connections to Cloudflare IPs, you may need to whitelist them. See [Cloudflare IP Ranges](https://www.cloudflare.com/ips/).
 :::
 
+### Shared/Managed Hosting (No SSH Access)
+
+If your hosting provider blocks SSH commands like `curl`, `nc`, or `iptables` (common on managed hosting such as Infomaniak), you can test connectivity using PHP instead.
+
+**Step 1: Test basic connectivity**
+
+Create a file called `test-connection.php` in your web root:
+
+```php
+<?php
+$ch = curl_init("https://www.google.com");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+$response = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error: ' . curl_error($ch);
+} else {
+    echo 'Connection to Google is OK';
+}
+curl_close($ch);
+```
+
+Open this file in your browser (e.g., `https://yourdomain.com/test-connection.php`). If it shows "Connection to Google is OK", PHP cURL is working.
+
+**Step 2: Test license server connectivity**
+
+Create a file called `test-license.php` in your web root:
+
+```php
+<?php
+$urls = [
+    'https://license.botble.com/api/health-check',
+    'https://104.21.76.15',
+    'https://172.67.185.15',
+];
+
+foreach ($urls as $url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $response = curl_exec($ch);
+    $error = curl_error($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    echo "$url => HTTP $code | " . ($error ?: 'OK') . "<br>";
+}
+
+// DNS check
+$ip = gethostbyname('license.botble.com');
+echo "<br>DNS: license.botble.com => $ip";
+```
+
+Open this file in your browser. Expected results:
+
+- `license.botble.com/api/health-check` → **HTTP 200 | OK** — this means activation should work
+- Direct IPs (104.21.x.x, 172.67.x.x) → **SSL errors are expected** — Cloudflare requires the domain name for SSL, so direct IP connections will always show SSL handshake failures. This is normal.
+- DNS may resolve to a different IP than expected — this is normal with Cloudflare Anycast.
+
+If the health-check returns HTTP 200, try activating your license again.
+
+::: warning
+Remember to delete these test files from your server after troubleshooting.
+:::
+
+### "Your license has reached the maximum number of parallel uses"
+
+This error means the license has been activated too many times without being deactivated first. This commonly happens when:
+
+- Reinstalling the CMS without deactivating the license
+- Moving to a new server without deactivating first
+- Testing on multiple environments
+
+**Solution:** Reset your license at [https://license.botble.com](https://license.botble.com), then try activating again. If you cannot reset it yourself, contact us at contact@botble.com.
+
+### Purchased from Gumroad — "Envato Username" Field
+
+If you purchased from [Gumroad](https://botble.gumroad.com/l/license-manager) instead of CodeCanyon, the activation form still asks for an "Envato username". Since Gumroad purchases don't have Envato usernames, please contact us at contact@botble.com with your Gumroad purchase email, and we will provide you with the correct username and purchase code to use for activation.
+
 ## Frequently Asked Questions
 
 ### Can I use one license for multiple domains?
