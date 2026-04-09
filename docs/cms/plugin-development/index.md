@@ -4,6 +4,8 @@
 
 Plugins are a great way to extend the functionality of Botble CMS. They allow you to add new features to your website without modifying the core code. This guide will walk you through the process of creating, activating, and managing plugins in Botble CMS.
 
+Because Botble CMS is a full Laravel application, you can also use it as a foundation to build **custom business applications** — CRM, HRM, patient management, inventory, booking systems, etc. — while reusing the built-in admin panel, authentication, permissions, form builder, table builder, and media library. See the [Custom Applications FAQ](./faq.md#using-botble-as-a-foundation-for-custom-applications) for guidance.
+
 ::: warning
 Dev tools are removed in the download package, you need to delete folder `/vendor` and run command `composer install` to reinstall it, then you can use dev commands.
 :::

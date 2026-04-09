@@ -2,6 +2,84 @@
 
 This page provides answers to common questions about plugin development in Botble CMS.
 
+## Using Botble as a Foundation for Custom Applications
+
+### Can I use Botble CMS as a Laravel foundation to build a custom web application?
+
+Yes. Botble CMS is a full Laravel application, so you can extend it to build any custom business system — patient management, CRM, HRM, inventory, booking, project management, school management, etc. — instead of only using it for website content.
+
+You get the following out of the box, so you don't have to build them from scratch:
+
+- Authentication and login (admin and frontend users)
+- Role and permission system
+- Admin panel UI (Tabler-based, responsive, dark mode)
+- Form builder and table builder components
+- Dashboard menu and settings API
+- Media library with image/file uploads
+- Multi-language support
+- Notifications, email templates, and queue support
+- REST API helpers
+- System updater and plugin manager
+
+### Can I create custom Models, Controllers, Views, Migrations, and Routes?
+
+Yes, exactly as in a normal Laravel project. The recommended approach is to wrap your custom modules as a plugin inside `platform/plugins/` so core updates don't overwrite your code. Each plugin has its own:
+
+- `src/Models/` for Eloquent models
+- `src/Http/Controllers/` for controllers (admin and public)
+- `src/Http/Requests/` for form request validation
+- `src/Forms/` for form builder classes
+- `src/Tables/` for table builder classes
+- `src/Providers/` for service providers
+- `database/migrations/` for schema migrations
+- `resources/views/` for Blade templates
+- `resources/lang/` for translations
+- `routes/web.php` and `routes/api.php` for routing
+
+You can use every Laravel feature: Eloquent relationships, policies, events, listeners, jobs, notifications, mail, queues, scheduled tasks, broadcasting, etc.
+
+### Can I reuse Botble's admin panel and authentication for my custom modules?
+
+Yes. When you scaffold a plugin, it automatically integrates with:
+
+- **Admin login** — no need to build a separate login system. Your module's admin pages are accessible to any authenticated admin user.
+- **Permissions** — register custom permissions in your service provider, and the built-in role manager (`Admin → System → Roles & Permissions`) handles assignment.
+- **Admin menu** — register menu items via `DashboardMenu::registerItem()` so your modules appear in the sidebar alongside core features.
+- **Settings** — add settings pages via the `cms_settings_pages` filter.
+- **Form and table builders** — use `FormAbstract` and `TableAbstract` base classes to get admin UI with validation, pagination, filters, bulk actions, and export, without writing Blade markup.
+- **Media picker** — use the `mediaImage` form field to reuse the core media library for image uploads.
+
+### How do I scaffold a new plugin for my custom module?
+
+Run the artisan command:
+
+```bash
+php artisan cms:plugin:create patient-management
+```
+
+This generates a plugin skeleton at `platform/plugins/patient-management/` with service providers, a sample model, migration, controller, form, table, and routes already wired up. You can then add more models and controllers using standard Laravel patterns.
+
+You can also scaffold individual components inside an existing plugin:
+
+```bash
+php artisan cms:make:model Patient --plugin=patient-management
+php artisan cms:make:form PatientForm --plugin=patient-management
+php artisan cms:make:table PatientTable --plugin=patient-management
+```
+
+### What are the best reference plugins to study when building custom modules?
+
+Two core plugins ship with Botble and are excellent real-world examples:
+
+- **Blog plugin** (`platform/plugins/blog`) — simple CRUD with categories, tags, status, SEO helpers, and permissions. Great starting point for content-type modules.
+- **Ecommerce plugin** (`platform/plugins/ecommerce`) — complex plugin with many models, relationships, custom fields, dashboard widgets, settings pages, custom statuses, and REST API. Good reference for large business modules.
+
+Study how they register service providers, permissions, menus, forms, tables, and routes, then mirror the same patterns in your plugin.
+
+### Will core CMS updates break my custom plugin?
+
+No, as long as your code lives inside your own plugin in `platform/plugins/your-plugin/`. The System Updater only overwrites core files (`platform/core/`, `platform/packages/`, `platform/plugins/*` for core plugins). Third-party plugins are never touched. Always keep customizations in a plugin — never modify core files directly.
+
 ## General Questions
 
 ### How do I add a settings page for my plugin?
