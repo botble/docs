@@ -66,7 +66,11 @@ Adjust horizontal (X) and vertical (Y) pixel offset from the screen edge. Defaul
 ### Mobile Display
 
 - **Always show** — Widget appears on all devices
-- **Hide on mobile** — Widget hidden on screens ≤768px wide
+- **Hide on mobile** — Widget hidden on small screens
+
+### Full-screen on mobile
+
+When enabled, the chat window covers the entire screen on mobile devices (≤480px wide) instead of using the default floating layout with side margins. Useful when the chat window feels cramped on small viewports or when the floating button conflicts with themes that have fixed bottom navigation bars. Disabled by default.
 
 ## Visual Effects
 
@@ -115,3 +119,27 @@ Controls how frequently the frontend checks for new messages, in milliseconds.
 ::: warning
 Values below 2000ms are not recommended as they significantly increase server load.
 :::
+
+## File Attachments
+
+Visitors and agents can attach files (images, PDFs, documents, archives) directly in chat messages. Enabled by default.
+
+### Enable Attachments
+
+Toggle attachment uploads on or off. When enabled, a paperclip icon appears in the chat input and users can drag-and-drop files or click to browse.
+
+### Max File Size (MB)
+
+Maximum size per uploaded file in megabytes. Range: 1–20 MB. Default: 5 MB.
+
+### Allowed File Types
+
+Comma-separated list of file extensions allowed for upload. Default: `jpg,jpeg,png,gif,webp,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,csv,zip`.
+
+::: warning Security
+Executable and script extensions (php, exe, jsp, asp, sh, svg, html, js, etc.) are **permanently blocked** and cannot be added to the allowed list. The plugin enforces this block at three layers: setting save, helper read, and upload handler. Double-extension attacks (e.g. `shell.php.jpg`) are also rejected.
+:::
+
+### Max Files Per Message
+
+Maximum number of files that can be attached to a single chat message. Range: 1–10. Default: 3.

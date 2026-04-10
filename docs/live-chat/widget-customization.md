@@ -41,7 +41,11 @@ The widget container gets a position class based on settings:
 
 ## Mobile Visibility
 
-When **Hide on mobile** is selected in settings, the widget gets the class `lc-hidden-on-mobile` which hides it on screens ≤768px.
+When **Hide on mobile** is selected in settings, the widget gets the class `lc-hidden-on-mobile` which hides it on small screens.
+
+## Full-screen on mobile
+
+When **Full-screen on mobile** is enabled in settings, the widget root gets the class `lc-fullscreen-mobile`. On viewports ≤480px the chat window stretches to cover the full screen (`100vw × 100dvh`), removes border-radius and side margins, and the chat button is hidden while the window is open to avoid overlapping the header.
 
 ## Chat Flow
 

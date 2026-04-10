@@ -38,6 +38,7 @@ When enabled, each new conversation is assigned a random name from your list ins
 | Position | Widget placement on screen | Bottom Right |
 | Offset X/Y | Pixel offset from screen edge | 20px |
 | Display on Mobile | Show always or hide on mobile | Always show |
+| Full-screen on mobile | Chat window covers full viewport on mobile (≤480px) | Off |
 
 ## Polling
 

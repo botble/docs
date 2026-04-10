@@ -18,6 +18,7 @@ A floating Ajax live chat widget for Botble CMS that enables real-time visitor s
 - **Visitor Fields** — Configurable name/email/phone fields with optional/required settings
 - **Auto-linkify** — URLs in messages become clickable links
 - **Emoji Conversion** — Text emoticons like `:)` `:D` `;)` automatically convert to emoji
+- **File Attachments** — Visitors and agents can attach images, PDFs, documents, and archives. Hardcoded deny list blocks executable and script extensions
 - **Random Admin Names** — Assign random support agent names per conversation
 - **Poll-based Updates** — Configurable polling interval for message updates
 - **DeskHive Integration** — Convert chat conversations to support tickets when [DeskHive](https://codecanyon.net/item/deskhive/62441260) is installed
