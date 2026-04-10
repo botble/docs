@@ -40,5 +40,5 @@ PHP memory limit settings.
 - Composer 2.x
 
 ::: tip
-License Manager is built on Laravel 13.x. Please go to [Laravel documentation page](https://laravel.com/docs/13.x) for more information.
+The License Manager server is built on Laravel 13.x. You don't need Laravel knowledge to use it — your client applications communicate via a standard REST API and can be written in any language. For server administration details, see the [Laravel documentation](https://laravel.com/docs/13.x).
 :::

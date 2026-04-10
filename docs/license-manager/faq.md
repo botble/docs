@@ -30,9 +30,17 @@ You can link to your subdomain License Manager from your main site's menu or foo
 
 No. The License Manager is a **fully standalone license system**. Envato integration is just one optional feature. You can generate and manage your own license codes (UUID, ULID, or custom patterns) completely independently — no Envato account required.
 
+### Does it only work with Laravel or PHP?
+
+No. The License Manager **server** is built on Laravel, but your **client application** can be written in any language. The API is a standard REST API — any app that can make HTTP requests can integrate with it. We provide ready-to-use examples for PHP, Laravel, WordPress, .NET/C#, Java, Python, Django, Node.js, and Ruby on Rails. See [Integration Examples](/license-manager/examples) for details.
+
+### Can I use it to license my WordPress plugins or themes?
+
+Yes. We provide a complete [WordPress example](https://github.com/botble/license-manager-examples/tree/main/wordpress) with admin settings page, license activation/deactivation, automatic plugin update checking, one-click updates, and WP-Cron daily verification. It also includes instructions for adapting it for theme updates.
+
 ### Can I use it to create a license system for my own products?
 
-Absolutely. That's the primary use case. Create products in the admin panel, generate license codes, and use the REST API to activate and verify licenses from any of your applications — whether it's a WordPress plugin, Laravel package, SaaS app, or desktop software.
+Absolutely. That's the primary use case. Create products in the admin panel, generate license codes, and use the REST API to activate and verify licenses from any of your applications — whether it's a WordPress plugin, Laravel package, SaaS app, desktop software, or mobile app.
 
 ### Can I sell licenses from my store and verify them on another site?
 
@@ -45,9 +53,9 @@ Yes. A typical workflow:
 
 The API handles activation, verification, and deactivation across sites.
 
-### What Botble CMS version is required?
+### Can I install it as a Botble CMS plugin?
 
-License Manager requires **Botble CMS v7.5.0+** running on Laravel 13.x with PHP 8.3 or higher. It installs as a standard Botble plugin — upload the zip through the admin panel or extract it to `platform/plugins/license-manager`.
+Yes. If you want to install License Manager as a plugin inside an existing Botble CMS site (instead of as a standalone app), it requires **Botble CMS v7.5.0+** running on Laravel 13.x with PHP 8.3 or higher. Upload the zip through the admin panel or extract it to `platform/plugins/license-manager`. Note: the standalone deployment is recommended for most use cases — see [Subdomain vs Plugin](#subdomain-vs-plugin-which-deployment-should-i-choose).
 
 ## Licensing & Activation
 

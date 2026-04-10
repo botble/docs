@@ -1,6 +1,6 @@
 # License Manager
 
-A self-hosted license management system for software products. Protect your software with license activation, verification, and update delivery.
+A self-hosted license management system for software products. Protect your software with license activation, verification, and update delivery. Works with **any programming language or framework** — PHP, Laravel, WordPress, Node.js, Python, Django, .NET, Java, Ruby on Rails, and more.
 
 ## Live Demo
 
@@ -15,7 +15,7 @@ Integrate license protection into your software:
 | Guide | Description |
 |-------|-------------|
 | [Quick Start](quick-start.md) | Add licensing to your app in 5 minutes |
-| [Integration Examples](examples.md) | Ready-to-use code for PHP, Laravel & WordPress |
+| [Integration Examples](examples.md) | Ready-to-use code for PHP, Laravel, WordPress, .NET, Java, Python, Django, Node.js & Rails |
 | [Integration Guide](integration.md) | Detailed implementation patterns and examples |
 | [API Reference](api.md) | All API endpoints with request/response examples |
 | [Demo Playground](demo-playground.md) | Test API calls interactively |
@@ -82,6 +82,7 @@ Set up your own License Manager server:
 - **Envato Integration** - Verify Envato purchase codes
 - **Webhooks** - Real-time event notifications
 - **REST API** - Full programmatic access
+- **Platform Agnostic** - Integrate with any language: PHP, Python, Node.js, .NET, Java, Ruby, and more
 
 ## Support
 

@@ -1,6 +1,6 @@
 # Quick Start
 
-Integrate license validation into your software in 5 minutes.
+Integrate license validation into your software in 5 minutes. License Manager uses a REST API, so it works with **any programming language** that can make HTTP requests.
 
 ## TL;DR
 
@@ -231,7 +231,7 @@ Your software now requires a valid license to run.
 
 ## Next Steps
 
-- [Integration Examples](examples.md) - Ready-to-use code for PHP, Laravel & WordPress ([GitHub](https://github.com/botble/license-manager-examples))
+- [Integration Examples](examples.md) - Ready-to-use code for PHP, Laravel, WordPress, .NET, Java, Python, Django, Node.js & Rails ([GitHub](https://github.com/botble/license-manager-examples))
 - [Integration Guide](integration.md) - Detailed implementation patterns
 - [API Reference](api.md) - All API endpoints
 - [Demo Playground](demo-playground.md) - Test your setup interactively

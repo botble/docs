@@ -3,7 +3,7 @@
 This guide explains how to integrate License Manager into your software to enforce license activation and verification.
 
 ::: warning Important
-The generated API code (e.g., `LicenseManagerExternalAPI.php`) is an **API client helper** — it does not enforce licensing by itself. You must call its methods at the right places in your application to activate, verify, and deactivate licenses.
+The provided API client code (e.g., `LicenseManagerExternalAPI.php`) is a **helper class** — it does not enforce licensing by itself. You must call its methods at the right places in your application to activate, verify, and deactivate licenses.
 :::
 
 ## How It Works
