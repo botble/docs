@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "infinia" "isak" "qore")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "infinia" "isak" "qore" "orisa")
 
 function sync_doc_files() {
   files_to_sync=(
@@ -60,7 +60,7 @@ function sync_doc_files() {
       "usage-location.md"
     )
 
-    ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy")
+    ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "orisa")
 
     for i in "${ecommerce_projects[@]}"; do
       for j in "${files_to_sync[@]}"; do
