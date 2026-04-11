@@ -2,7 +2,7 @@
 
 Homepage is the first page that users see when they visit your website. It is the most important page of your website.
 
-![Overview](./images/pages/homepage.png)
+![Overview](./images/pages/homepage.webp)
 
 ## Create Homepage
 

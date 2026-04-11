@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Orisa is a modern, creative agency and portfolio theme built with Botble CMS, designed for agencies, freelancers, and creative professionals. Whether you're running a creative agency, digital agency, marketing firm, AI & tech company, or personal portfolio, Orisa delivers a polished and flexible digital presence to elevate your brand.
+**Orisa** is a premium Creative Agency & Portfolio theme built on Botble CMS, crafted for agencies, freelancers, and creative professionals who want to showcase their work with style. Whether you run a creative agency, digital agency, marketing firm, AI & tech company, or a personal portfolio, Orisa delivers a polished and flexible digital presence to elevate your brand.
 
-It is built on top of Botble CMS, which is a Laravel-based CMS. It offers remarkable flexibility for various use cases.
+It is built on top of Botble CMS, a Laravel-based CMS, and offers remarkable flexibility for a wide range of use cases.
 
-![Overview](./images/overview.png)
+![Overview](./images/overview.webp)
 
 Released Date: **Apr 07, 2025**
 
@@ -14,38 +14,56 @@ Author: **[Botble Technologies](https://botble.com)**
 
 Email: **contact@botble.com**
 
-Thank you for purchasing our product. If you have any questions that are beyond the scope of this help file, please feel
-free to email via our user page contact form [here](https://codecanyon.net/user/botble) for quick support. Thank you
-so much!
+Thank you for purchasing our product. If you have any questions that are beyond the scope of this help file, please feel free to email via our user page contact form [here](https://codecanyon.net/user/botble) for quick support. Thank you so much!
 
 ## Features Overview
 
-* Buy One Time & Get Free Updates Forever
-* **Free Theme Installation** – If you face any problem during installation – we will help you and It's FREE
-* Bootstrap 5.x Framework: Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.
-* Based on our Botble CMS (using modern Laravel framework) which is used by thousands of customers.
-* Full Blog features.
-* **5 homepage demos**: Creative Agency, Digital Agency, Marketing Agency, AI & Tech, Personal Creative.
-* **16+ shortcodes** for flexible page building.
-* **Dark mode** support with a toggle switcher.
-* **RTL** (Right To Left) language support.
-* **Ecommerce** ready with product listing shortcode.
-* **Font Awesome Pro** icons included.
-* Touch Friendly: Easy browsing on touch devices.
-* 100% Fully Responsive: Whatever device you use, your site will run as it should be.
-* Powerful admin panel — all settings are configurable from the admin panel, no hardcoding.
-* Magic cursor and scroll animations.
-* Multi-language: unlimited language support.
-* Google Analytics: display analytics data in the admin panel.
-* Translation tool: easy to translate the front theme and admin panel to your language.
-* Fast support: we always reply to your ticket within 1 business day.
+* **Buy Once & Get Free Updates Forever**
+* **Free Theme Installation** – if you face any problem during installation, we will help you and it's **FREE**
+* **5 Homepage Demos** – Creative Agency, Digital Agency, Marketing Agency, AI & Tech Agency, Personal Creative
+* **21+ Shortcodes with 57+ Style Variants** – hero, services, portfolio, testimonials, team, pricing, FAQ, CTA, and more
+* **3 Header Styles + 5 Footer Styles** – mix and match for each homepage
+* **Dark Mode / Light Mode** toggle with system preference auto-detection
+* **RTL (Right To Left)** language support, fully tested with Arabic
+* **Ecommerce Ready** – product archive, product detail, cart, wishlist, compare, checkout pages included
+* **Magic Cursor** – custom cursor powered by Matter.js physics engine
+* **Scroll Animations** – smooth entrance animations on scroll throughout all sections
+* **Bootstrap 5.x** – the most popular responsive CSS framework
+* **Based on Botble CMS** – modern Laravel framework used by thousands of customers
+* **Font Awesome Pro 6** icons bundled – no external CDN required (Envato compliant)
+* **100% Fully Responsive** – pixel-perfect on desktop, tablet, and mobile
+* **Powerful Admin Panel** – all settings configurable without touching code
+* **Multi-Language** – 24 pre-translated locales and unlimited custom languages
+* **Child Theme Support** – customize safely without breaking core updates
+* **Google Analytics** – analytics data displayed directly in admin panel
+* **SEO Optimized** – clean markup, meta management, sitemap generation
+* **Fast Support** – we reply to every ticket within 1 business day
 
 ## Demo
 
-* Homepage: https://orisa.botble.com
-* Admin panel: https://orisa.botble.com/admin
-* Admin account: `admin` – `12345678` (username & password are autofilled)
+| Demo | Link |
+|------|------|
+| Home 1 – Creative Agency | <https://orisa.botble.com> |
+| Home 2 – Digital Agency | <https://orisa-home-2.botble.com> |
+| Home 3 – Marketing Agency | <https://orisa-home-3.botble.com> |
+| Home 4 – AI & Tech Agency | <https://orisa-home-4.botble.com> |
+| Home 5 – Personal Creative | <https://orisa-home-5.botble.com> |
+| Admin Panel | <https://orisa.botble.com/admin> |
+
+Admin account: `admin` / `12345678` (username & password are autofilled)
+
+## Quick Links
+
+- [Homepage setup](./usage-homepage.md)
+- [Menus](./usage-menus.md)
+- [Theme Options](./usage-theme-options.md)
+- [UI Blocks (Shortcodes)](./usage-ui-block.md)
+- [Widgets](./usage-widgets.md)
+- [Custom CSS / JS](./usage-custom-css-js.md)
+- [Google Analytics](./usage-analytics.md)
+- [Upgrade Guide](./upgrade.md)
+- [Release Notes](./releases.md)
 
 ## Botble Team
 
-For more about our team, visit us at https://botble.com.
+For more about our team, visit us at <https://botble.com>.

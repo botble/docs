@@ -5,7 +5,6 @@ typography, header/footer behavior, and more.
 
 To access the theme options, go to `Appearance` -> `Theme Options` in your admin panel.
 
-![Theme Options](./images/theme-options/theme-option-overview.png)
 
 ## General
 
@@ -24,7 +23,6 @@ The **General** tab configures fundamental settings: site name, description, pre
 - **Header top text color** — color picker.
 - **Header top background color** — color picker.
 
-![Header](./images/theme-options/header.png)
 
 ## Footer
 
@@ -40,7 +38,6 @@ The **General** tab configures fundamental settings: site name, description, pre
 - **Footer service tags** — comma-separated tags displayed below the brand text.
 - **Enable decoration images** — toggle decorative background shapes.
 
-![Footer](./images/theme-options/footer.png)
 
 ## Styles
 
@@ -60,7 +57,6 @@ The **General** tab configures fundamental settings: site name, description, pre
 - **Body text color** — paragraph and body text color.
 - **Link color / Link hover color** — hyperlink states.
 
-![Styles](./images/theme-options/styles.png)
 
 ## Breadcrumbs
 
@@ -68,7 +64,6 @@ The **General** tab configures fundamental settings: site name, description, pre
 - **Background image** — custom image shown behind the breadcrumb bar.
 - **Background color** — fallback color when no image is set.
 
-![Breadcrumbs](./images/theme-options/breadcrumbs.png)
 
 ## Typography
 
@@ -78,7 +73,6 @@ The **Typography** settings configure font families and sizes for headings and b
 - Font sizes are specified in pixels (`px`).
 - Adjust these settings to match your design requirements and improve readability.
 
-![Typography](./images/theme-options/typography.png)
 
 ## Pages
 

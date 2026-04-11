@@ -1,163 +1,149 @@
 # UI Block (Shortcode)
 
-UI Blocks, also known as Shortcodes, are small pieces of code that allow you to add predefined elements to your website.
-They are used to enhance the functionality of your website without the need to write custom code.
+UI Blocks, also known as Shortcodes, are small pieces of code that allow you to add predefined elements to your website. They are used to enhance the functionality of your website without the need to write custom code.
 
 ## Usage
 
-To use a shortcode, add it to the content of a page or post using the shortcode button in the editor.
-
-![Shortcode button](./images/ui-blocks/shortcode-button.png)
-
-Search for the desired block and click the **Use** button.
-
-![Add shortcode](./images/ui-blocks/shortcode-add-block.png)
-
-Configure the block fields in the panel that appears, then save.
-
-![Edit shortcode](./images/ui-blocks/shortcode-edit.png)
+To use a shortcode, add it to the content of a page or post using the shortcode button in the editor. Search for the desired block and click the **Use** button. Configure the block fields in the panel that appears, then save.
 
 To edit an existing block, click on it in the editor and click the pencil icon.
 
 ## Available Shortcodes
 
-### hero-banner — 5 styles
+Orisa ships with **21+ shortcodes and 57+ style variants**. Each shortcode is fully configurable from the admin panel — no code editing required.
 
-The main hero section at the top of the page.
+### hero-banner (5 styles)
 
-| Style | Description |
-|-------|-------------|
-| Style 1 | Video background with service tags |
-| Style 2 | Split layout with social links |
-| Style 3 | Image right with CTA buttons |
-| Style 4 | Centered with service tags |
-| Style 5 | Full-screen image background |
+Main hero section: video bg, split, image right, centered, full-screen.
 
-**Fields:** Subtitle, Title, Description, Background image, Background video URL, Hero image, Primary/Secondary buttons, Social links, Service tags.
+![Hero Banner](./images/ui-blocks/hero-banner.png)
 
----
+### about-us-information (5 styles)
 
-### about-us-information — 3 styles
+About / introduction section with feature tabs and experience counter.
 
-About section with images and feature tabs.
+![About Us Information](./images/ui-blocks/about-us-information.png)
 
-**Fields:** Subtitle, Title, Description, Image 1–3, Experience years counter, Feature tabs (title, description, image), Primary button.
+### services (5 styles)
 
----
+Services grid (requires Portfolio plugin).
 
-### services — 3 styles
+![Services](./images/ui-blocks/services.png)
 
-Displays services from the Services module.
+### projects (5 styles)
 
-**Fields:** Style, Subtitle, Title, Description, Category filter, Limit, Primary button.
+Portfolio / project showcase (requires Portfolio plugin).
 
----
+![Projects](./images/ui-blocks/projects.png)
 
-### projects — 3 styles
+### testimonials (3+ styles)
 
-Displays portfolio projects from the Portfolio module.
+Customer testimonials carousel and grid layouts.
 
-**Fields:** Style, Subtitle, Title, Category filter, Limit, Primary button.
+![Testimonials](./images/ui-blocks/testimonials.png)
 
----
+### content-block (7 styles)
 
-### teams — 1 style
+Flexible content section for features, process steps, custom layouts.
 
-Displays team members.
+![Content Block](./images/ui-blocks/content-block.png)
 
-**Fields:** Subtitle, Title, Team member items (name, role, image, social links).
+### partners (4 styles)
 
----
+Ticker, inline, grid, carousel with reviews.
 
-### testimonials — 1 style
+![Partners](./images/ui-blocks/partners.png)
 
-Customer testimonials carousel.
+### call-to-action (3 styles)
 
-**Fields:** Subtitle, Title, Testimonial items (quote, author name, author role, avatar).
+Full banner, compact, dark with image.
 
----
+![Call to Action](./images/ui-blocks/call-to-action.png)
 
-### site-statistics — 1 style
+### pricing-plans (3 styles)
 
-Animated counter statistics section.
+Pricing tables with monthly/yearly toggle.
 
-**Fields:** Background image, Statistics items (value, suffix, label).
+![Pricing Plans](./images/ui-blocks/pricing-plans.png)
 
----
+### site-statistics (2 styles)
 
-### faqs — 1 style
+Animated counter statistics.
 
-Frequently asked questions accordion.
+![Site Statistics](./images/ui-blocks/site-statistics.png)
 
-**Fields:** Subtitle, Title, FAQ items (question, answer).
+### teams (1 style)
 
----
+Team member grid (requires Team plugin).
 
-### pricing-plans — 1 style
+![Teams](./images/ui-blocks/teams.png)
 
-Pricing table with monthly/yearly toggle.
+### faqs (1 style)
 
-**Fields:** Subtitle, Title, Plan items (name, monthly price, yearly price, features, is featured, button label/URL).
+FAQ accordion (requires FAQ plugin).
 
----
+![FAQs](./images/ui-blocks/faqs.png)
 
-### call-to-action — 2 styles
+### blog-posts (1 style)
 
-| Style | Description |
-|-------|-------------|
-| Style 1 | Full-width banner with background image |
-| Style 2 | Compact inline CTA bar |
+Recent blog posts grid (requires Blog plugin).
 
-**Fields:** Title, Subtitle, Description, Background image, Primary button.
+![Blog Posts](./images/ui-blocks/blog-posts.png)
 
----
+### ecommerce-products (1 style)
 
-### partners — 3 styles
+Product grid (requires Ecommerce plugin).
 
-| Style | Description |
-|-------|-------------|
-| Style 1 | Auto-scrolling ticker |
-| Style 2 | Inline row |
-| Style 3 | Grid layout |
+![Ecommerce Products](./images/ui-blocks/ecommerce-products.png)
 
-**Fields:** Title, Partner items (name, logo image, URL).
+### skills-carousel (1 style)
 
----
+Scrolling skills / technology tags strip.
 
-### blog-posts — 2 styles
+![Skills Carousel](./images/ui-blocks/skills-carousel.png)
 
-Displays recent blog posts.
+### awards (1 style)
 
-**Fields:** Style, Subtitle, Title, Limit, Category filter, Primary button.
+Awards timeline.
 
----
+![Awards](./images/ui-blocks/awards.png)
 
-### contact-form — 2 styles
+### image-gallery (1 style)
 
-Contact form section with map or info panel.
+Image carousel.
 
-**Fields:** Style, Section title, Form selection, Address, Phone, Email.
+![Image Gallery](./images/ui-blocks/image-gallery.png)
 
----
+### video-showreel (1 style)
 
-### skills-carousel — 1 style
+Video player with poster.
 
-Horizontally scrolling skills/technology tags strip.
+![Video Showreel](./images/ui-blocks/video-showreel.png)
 
-**Fields:** Skill items (name).
+### newsletter (2 styles)
 
----
+Newsletter subscription (dark banner / light box).
 
-### content-block — 5 styles
+![Newsletter](./images/ui-blocks/newsletter.png)
 
-Generic flexible content section for features, services, or any custom content.
+### contact-form (2 styles)
 
-**Fields:** Style, Title, Subtitle, Description, Image 1–2, Background image, Items (title, description, image, icon class), Primary button.
+Contact form with map or info panel.
 
----
+![Contact Form](./images/ui-blocks/contact-form.png)
 
-### ecommerce-products — 1 style
+### Per-homepage style variants
 
-Displays products from the Ecommerce module.
+Each of the 5 homepage demos uses different shortcode style variants. For example:
 
-**Fields:** Title, Subtitle, Limit, Category filter, Primary button.
+- **Home 1 – Creative Agency** uses `hero-banner` style 1, `content-block` style 1, `partners` ticker
+- **Home 2 – Digital Agency** uses `hero-banner` style 2, `about-us-information` style 2, vertical services panels
+- **Home 3 – Marketing Agency** uses `hero-banner` style 3, CTA style 2, pricing plans
+- **Home 4 – AI & Tech Agency** uses `hero-banner` style 4, process content blocks, case-study projects
+- **Home 5 – Personal Creative** uses `hero-banner` style 5, minimal layout, gallery-style projects
+
+Switching homepage demos via theme options or the demo importer automatically configures the correct shortcode styles.
+
+## Creating shortcodes
+
+See the [Botble CMS documentation on creating custom shortcodes](https://docs.botble.com/cms/development/shortcodes) if you want to add your own shortcodes on top of the Orisa theme.

@@ -8,8 +8,6 @@ different sections of your website.
 
 To manage widgets, go to `Appearance` -> `Widgets` in the admin panel.
 
-![Manage widgets](./images/widgets/manage-widgets.png)
-
 To add a widget to a sidebar area, drag and drop it from the left panel to the target area on the right.
 
 ## Available Widgets
@@ -36,7 +34,6 @@ Displayed in the main footer section. Typically contains:
 - 1 × `site-information` widget (logo, brand description, socials)
 - 3 × `core-simple-menu` widgets (footer link columns)
 
-![Widget footer sidebar](./images/widgets/footer-sidebar.png)
 
 ### 2. Footer Bottom Bar
 
@@ -54,5 +51,3 @@ Widgets placed here render inside the site header. Typically contains:
 ## Delete Widgets
 
 If you don't want to use a widget in a certain area, collapse it and click the **Delete** button.
-
-![Delete widget](./images/widgets/delete-widget.png)

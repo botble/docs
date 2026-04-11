@@ -24,22 +24,27 @@ Password: `12345678`
 
 ## Features
 
-- Multi-language, unlimited languages support.
-- Fully features: vehicle listings, vehicle details, rental options, pricing plans, discounts, delivery & pick-up services, blogs, ...
-- Vendor marketplace: vendors can register, list vehicles, manage bookings, track earnings and request withdrawals.
-- Customer management: registration, booking history, reviews, wishlists, and profile management.
-- Multi-currency support with exchange rates.
-- Commission-based vendor model with category-based commissions.
-- Dynamic pricing per date with calendar-based pricing.
-- Automatic invoice generation with customizable templates.
-- Coupon and discount system.
-- Tax management and calculation.
-- Add-on services (insurance, upgrades, etc.).
-- Dark mode and light mode with theme switcher.
+- **11 pre-built homepages** with different layouts and shortcode compositions.
+- **6 car detail styles** for vehicle detail pages.
+- **6 listing layouts**: off-canvas filter, sidebar left/right, top map, half map, top filter.
+- **3 car card styles** for listing grids.
+- **5 header styles**: simple, search+contact, contained, contact top bar, dark centered logo.
+- **Booking & rental system**: date-range selection, availability calendar, service add-ons, completion tracking.
+- **Vendor system**: vendors register, list vehicles, manage bookings, track earnings, request withdrawals.
+- **Dynamic pricing**: calendar-based pricing per date for flexible rates.
+- **Invoice generation**: customizable templates with PDF download.
+- **Coupon & discount system**: create and manage promotional codes.
+- **Tax management**: configurable tax rules and calculations.
+- **Customer reviews & ratings**: rate and review vehicles.
+- **Wishlist/favorites**: save favorite vehicles (guests and logged-in users).
+- **Customer-vendor messaging**: direct messaging between customers and vehicle listers.
+- **5 payment gateways**: Stripe, PayPal, Razorpay, SSLCommerz, Paystack.
+- **REST API**: 50+ endpoints with Sanctum authentication for mobile app integration.
+- **Map integration**: Leaflet maps with location-based car search and half-map listing layout.
+- **Dark mode & light mode** with theme switcher.
+- **25+ UI blocks/shortcodes** for page building.
+- Multi-language, 44+ languages support.
 - Full RTL support.
-- 6 different car detail view styles.
-- 6 different car listing layout options (grid, list, sidebar, map views).
-- 38+ UI blocks/shortcodes for page building.
 - Page, blog, menu, contact, newsletter, slider... modules are provided with the use of components to avoid boilerplate code.
 - Powerful media system, also support Amazon S3, DigitalOcean Spaces.
 - SEO & sitemap support: access sitemap.xml to see more.
@@ -50,7 +55,14 @@ Password: `12345678`
 - Admin template comes with color schemes to match your taste.
 - Fully Responsive: Compatible with all screen resolutions.
 - Coding Standard: All code follow coding standards PSR-12 and best practices.
-- RESTful API for mobile app integration.
+
+## Quick Links
+
+- [Setup Homepage](/auxero/usage-homepage)
+- [UI Blocks](/auxero/usage-ui-block)
+- [Setup Menus](/auxero/usage-menus)
+- [Theme Options](/auxero/usage-theme-options)
+- [Widgets](/auxero/usage-widgets)
 
 ## Botble Team
 
