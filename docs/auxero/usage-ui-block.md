@@ -31,22 +31,19 @@ Auxero provides **38 shortcodes** organized by category. Each shortcode supports
 
 ### Car Manager Shortcodes
 
-| Shortcode | Description | Style Variants |
-|-----------|-------------|----------------|
-| `cars` | Display car listings with different styles | 3 (latest, featured, popular) |
-| `car-list` | Car listing page with advanced filtering and pagination | 6 layout options |
-| `car-advance-search` | Advanced search form with tabs (all, new, used cars) | 1 |
-| `check-car-availability` | Car availability checking form | 1 |
-| `car-services` | Display car services | 1 |
-| `car-loan-form` | Car loan calculator form | 3 |
-| `cars-by-locations` | Cars grouped by geographical locations | 1 |
-| `brands` | Car brands/makes display | 4 |
-| `car-dealers` | Car dealer listings | 2 |
-| `car-types` | Car types display | 3 |
-
 #### Cars
 
 Display a list of cars with filtering options.
+
+![Cars](./images/shortcodes/cars-cars.png)
+
+**Style variants:**
+
+| Style | Preview |
+|-------|---------|
+| `style-latest` | ![Latest](./images/shortcodes/cars-style-latest.png) |
+| `style-feature` | ![Featured](./images/shortcodes/cars-style-feature.png) |
+| `style-popular` | ![Popular](./images/shortcodes/cars-style-popular.png) |
 
 **Attributes:**
 - `style` - Display style: `style-latest`, `style-feature`, `style-popular`
@@ -54,8 +51,6 @@ Display a list of cars with filtering options.
 - `subtitle` - Section subtitle
 - `limit` - Number of cars to display
 - `category_ids` - Filter by category IDs
-- `number_rows` - Number of rows
-- `filter_types` - Filter types to show
 - `button_label` - Button text
 - `button_url` - Button link
 
@@ -63,19 +58,22 @@ Display a list of cars with filtering options.
 
 Full car listing page with advanced filtering and pagination.
 
+![Car List](./images/ui-blocks/car-list.png)
+
 **Attributes:**
 - `title` - Page title
-- `subtitle` - Page subtitle
 - `enable_filter` - Enable/disable filter sidebar
 - `default_layout` - Default layout view
-- `layout_col` - Number of columns
+- `layout_col` - Number of columns (2, 3, 4)
 - `cars_per_page` - Items per page
-- `layout_style` - Layout style: `default`, `sidebar-left`, `sidebar-right`, `top-map`, `half-map`, `top-filter`
-- `card_style` - Card display style: `style-1`, `style-2`, `style-3`
+- `layout_style` - Layout: `default`, `sidebar-left`, `sidebar-right`, `top-map`, `half-map`, `top-filter`
+- `card_style` - Card style: `style-1`, `style-2`, `style-3`
 
 #### Car Advance Search
 
 Advanced search form with tab support.
+
+![Car Advance Search](./images/ui-blocks/car-advance-search.png)
 
 **Attributes:**
 - `title` - Search form title
@@ -83,47 +81,173 @@ Advanced search form with tab support.
 - `tabs` - Available tabs: `all`, `new_car`, `used_car`
 - `default_tab` - Default active tab
 - `background_color` - Background color
-- `top`, `bottom`, `left`, `right` - Position offset (px)
+
+#### Check Car Availability
+
+![Check Car Availability](./images/ui-blocks/check-car-availability.png)
+
+#### Car Services
+
+![Car Services](./images/ui-blocks/car-services.png)
+
+#### Car Loan Form
+
+![Car Loan Form](./images/shortcodes/car-loan-form-car-loan-form.png)
+
+**Style variants:**
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/car-loan-form-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/car-loan-form-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/car-loan-form-style-3.png) |
+
+#### Cars By Locations
+
+![Cars By Locations](./images/ui-blocks/cars-by-locations.png)
+
+#### Brands
+
+**Style variants:**
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/brands-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/brands-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/brands-style-3.png) |
+
+#### Car Dealers
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/car-dealers-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/car-dealers-style-2.png) |
+
+#### Car Types
+
+**Style variants:**
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/car-types-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/car-types-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/car-types-style-3.png) |
 
 ### Content Shortcodes
 
-| Shortcode | Description | Style Variants |
-|-----------|-------------|----------------|
-| `hero-banners` | Hero banner section with slider | 1 |
-| `banner` | Simple banner | 1 |
-| `simple-banners` | Two-column banner layout | 1 |
-| `promotion-block` | Promotion block display | 1 |
-| `call-to-action` | Call-to-action section | 1 |
-| `intro-video` | Video introduction section | 2 |
-| `featured-block` | Featured content block | 2 |
-| `why-us` | Why Us / Benefits section | 1 |
-| `trusted-expertise` | Trusted expertise section | 1 |
-| `about-us-information` | About Us with statistics | 1 |
-| `site-statistics` | Site statistics counters | 2 |
-| `content-columns` | Two-column content layout | 1 |
-| `content-images` | Image gallery layout | 1 |
-| `pricing` | Pricing tables with monthly/yearly toggle | 1 |
-| `install-apps` | Mobile app download CTA | 3 |
-| `rental-invitations` | Rental invitation action cards | 1 |
-| `sell-your-car` | Sell your car section with steps | 1 |
-| `financing` | Financing section with features | 1 |
-| `branch-locations` | Branch/office locations with tabs | 1 |
+#### Hero Banners
+
+![Hero Banners](./images/ui-blocks/hero-banners.png)
+
+#### Banner
+
+![Banner](./images/ui-blocks/banner.png)
+
+#### Simple Banners
+
+![Simple Banners](./images/ui-blocks/simple-banners.png)
+
+#### Promotion Block
+
+![Promotion Block](./images/ui-blocks/promotion-block.png)
+
+#### Intro Video
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/intro-video-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/intro-video-style-2.png) |
+
+#### Featured Block
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/featured-block-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/featured-block-style-2.png) |
+
+#### Why Us
+
+![Why Us](./images/ui-blocks/why-us.png)
+
+#### About Us Information
+
+![About Us Information](./images/ui-blocks/about-us-information.png)
+
+#### Site Statistics
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/site-statistics-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/site-statistics-style-2.png) |
+
+#### Pricing
+
+![Pricing](./images/ui-blocks/pricing.png)
+
+#### Install Apps
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/install-apps-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/install-apps-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/install-apps-style-3.png) |
+
+#### Rental Invitations
+
+![Rental Invitations](./images/ui-blocks/rental-invitations.png)
+
+#### Branch Locations
+
+![Branch Locations](./images/ui-blocks/branch-locations.png)
 
 ### Blog Shortcodes
 
-| Shortcode | Description | Style Variants |
-|-----------|-------------|----------------|
-| `blog-posts` | Blog posts display | 3 |
+#### Blog Posts
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/blog-posts-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/blog-posts-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/blog-posts-style-3.png) |
 
 ### Plugin-Dependent Shortcodes
 
-These shortcodes require their respective plugins to be activated:
+These shortcodes require their respective plugins to be activated.
 
-| Shortcode | Description | Required Plugin | Style Variants |
-|-----------|-------------|-----------------|----------------|
-| `team` | Team members display | Team | 2 |
-| `testimonials` | Customer testimonials | Testimonial | 4 |
-| `faqs` | FAQ accordion | FAQ | 1 |
-| `faq-categories` | FAQ categories listing | FAQ | 1 |
-| `contact-form` | Contact form with map | Contact | 1 |
-| `simple-slider` | Image slider | Simple Slider | 8 |
+#### Team
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/teams-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/teams-style-2.png) |
+
+#### Testimonials
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/testimonials-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/testimonials-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/testimonials-style-3.png) |
+| `style-4` | ![Style 4](./images/shortcodes/testimonials-style-4.png) |
+
+#### FAQs
+
+![FAQs](./images/ui-blocks/faqs.png)
+
+#### FAQ Categories
+
+![FAQ Categories](./images/ui-blocks/faq-categories.png)
+
+#### Contact Form
+
+![Contact Form](./images/ui-blocks/contact-form.png)
+
+#### Simple Slider
+
+8 slider styles available for homepage hero sections.
+
+| Style | Preview |
+|-------|---------|
+| `style-1` | ![Style 1](./images/shortcodes/simple-sliders-style-1.png) |
+| `style-2` | ![Style 2](./images/shortcodes/simple-sliders-style-2.png) |
+| `style-3` | ![Style 3](./images/shortcodes/simple-sliders-style-3.png) |

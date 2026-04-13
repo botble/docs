@@ -42,7 +42,7 @@ Password: `12345678`
 - **REST API**: 50+ endpoints with Sanctum authentication for mobile app integration.
 - **Map integration**: Leaflet maps with location-based car search and half-map listing layout.
 - **Dark mode & light mode** with theme switcher.
-- **25+ UI blocks/shortcodes** for page building.
+- **38 UI blocks/shortcodes** for page building.
 - Multi-language, 44+ languages support.
 - Full RTL support.
 - Page, blog, menu, contact, newsletter, slider... modules are provided with the use of components to avoid boilerplate code.
@@ -58,11 +58,25 @@ Password: `12345678`
 
 ## Quick Links
 
+**Getting Started**
+
 - [Setup Homepage](/auxero/usage-homepage)
-- [UI Blocks](/auxero/usage-ui-block)
+- [UI Blocks (38 shortcodes)](/auxero/usage-ui-block)
 - [Setup Menus](/auxero/usage-menus)
 - [Theme Options](/auxero/usage-theme-options)
 - [Widgets](/auxero/usage-widgets)
+
+**Car Manager**
+
+- [Car Management](/auxero/usage-car-management) - Manage vehicles, makes, types, categories, amenities
+- [Booking & Rental](/auxero/usage-booking-rental) - Booking flow, dynamic pricing, service add-ons
+- [Vendor System](/auxero/usage-vendor-system) - Vendor registration, dashboard, earnings, withdrawals
+- [Payment & Tax](/auxero/usage-payment-tax) - Payment gateways, coupons, tax, invoices, currencies
+- [Reviews & Messaging](/auxero/usage-reviews-messaging) - Customer reviews, ratings, vendor messaging
+
+**API**
+
+- [REST API](/auxero/usage-api) - 50+ endpoints with Sanctum authentication
 
 ## Botble Team
 

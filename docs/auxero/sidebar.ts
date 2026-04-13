@@ -45,4 +45,20 @@ export default [
             { text: 'Newsletter', link: '/auxero/usage-newsletter' },
         ],
     },
+    {
+        text: 'Car Manager',
+        items: [
+            { text: 'Car Management', link: '/auxero/usage-car-management' },
+            { text: 'Booking & Rental', link: '/auxero/usage-booking-rental' },
+            { text: 'Vendor System', link: '/auxero/usage-vendor-system' },
+            { text: 'Payment & Tax', link: '/auxero/usage-payment-tax' },
+            { text: 'Reviews & Messaging', link: '/auxero/usage-reviews-messaging' },
+        ],
+    },
+    {
+        text: 'API',
+        items: [
+            { text: 'REST API', link: '/auxero/usage-api' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[]
