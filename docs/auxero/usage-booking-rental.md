@@ -19,14 +19,14 @@ Auxero includes a date-based rental booking system. Customers select pickup/retu
 
 | Status | Description |
 |---|---|
-| Pending | Booking submitted, awaiting confirmation |
-| Confirmed | Admin or vendor has confirmed the booking |
+| Pending | Booking submitted, awaiting payment or admin/vendor action |
+| Processing | Booking is being processed (paid or in progress) |
 | Completed | Rental period has ended |
 | Cancelled | Booking was cancelled by customer, vendor, or admin |
 
 ## Managing Bookings in Admin
 
-Go to `Admin Panel` -> `Bookings` -> `Bookings`.
+Go to `Admin Panel` -> `Car Manager` -> `Bookings`.
 
 
 From the booking list you can:
@@ -49,7 +49,7 @@ The detail page shows:
 - Payment method and transaction reference.
 
 ::: tip
-Use the **Confirm** button on the booking detail page to move a booking from `Pending` to `Confirmed` and trigger the confirmation email automatically.
+Update a booking's status from the booking detail page. Moving it to `Processing` or `Completed` triggers the corresponding customer notification email.
 :::
 
 ## Dynamic Pricing
@@ -71,7 +71,7 @@ Dynamic pricing is applied at the time the customer views the car. If you update
 
 Add-ons are optional extras customers can select during checkout (e.g. GPS, Child Seat, Additional Driver).
 
-Go to `Admin Panel` -> `Bookings` -> `Add-on Services`.
+Go to `Admin Panel` -> `Car Manager` -> `Services`.
 
 | Field | Description |
 |---|---|

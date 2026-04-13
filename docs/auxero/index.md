@@ -28,7 +28,7 @@ Password: `12345678`
 - **6 car detail styles** for vehicle detail pages.
 - **6 listing layouts**: off-canvas filter, sidebar left/right, top map, half map, top filter.
 - **3 car card styles** for listing grids.
-- **5 header styles**: simple, search+contact, contained, contact top bar, dark centered logo.
+- **5 header styles**: Simple, Search + Contact, Contained Top Bar, Contact Top Bar, Dark Centered Logo.
 - **Booking & rental system**: date-range selection, availability calendar, service add-ons, completion tracking.
 - **Vendor system**: vendors register, list vehicles, manage bookings, track earnings, request withdrawals.
 - **Dynamic pricing**: calendar-based pricing per date for flexible rates.

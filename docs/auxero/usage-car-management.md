@@ -28,11 +28,11 @@ Go to `Admin Panel` -> `Car Manager` -> `Cars` -> `Add New`.
 
 | Field | Description |
 |---|---|
-| Title | Display name of the vehicle |
-| Description | Full description (supports rich text) |
-| Short Description | Shown in listing cards |
-| Price (per day) | Base rental price |
-| Sale Price | Optional discounted price |
+| Name | Display name of the vehicle |
+| Description | Short summary shown in listing cards |
+| Content | Full description (supports rich text) |
+| Rental rate | Base price per day for rentals |
+| Sale price | Listing price when the car is marked **For sale** |
 | Status | `Published`, `Draft`, or `Pending` |
 
 ### Vehicle Specifications

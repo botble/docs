@@ -51,7 +51,7 @@ For Razorpay, SSLCommerz, and Paystack, enter the Key ID/Secret or API key pairs
 
 ## Coupon / Discount Codes
 
-Go to `Admin Panel` -> `Bookings` -> `Coupons`.
+Go to `Admin Panel` -> `Car Manager` -> `Coupons`.
 
 | Field | Description |
 |---|---|
@@ -69,7 +69,7 @@ Leave the usage limit blank for unlimited uses. Set it to `1` for single-use pro
 
 ## Tax Configuration
 
-Go to `Admin Panel` -> `Bookings` -> `Tax`.
+Go to `Admin Panel` -> `Car Manager` -> `Taxes`.
 
 You can define multiple tax rules applied to bookings at checkout.
 
@@ -88,7 +88,7 @@ Taxes are calculated on the booking subtotal before coupon discounts are applied
 
 ## Invoice Settings
 
-Go to `Admin Panel` -> `Settings` -> `Invoice`.
+Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `Invoice`.
 
 | Setting | Description |
 |---|---|

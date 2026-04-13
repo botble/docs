@@ -7,36 +7,41 @@ description: How to enable and manage vendors/dealers in Auxero.
 
 Auxero supports a multi-vendor marketplace where car dealers can register, list vehicles, manage bookings, and withdraw earnings.
 
-## Enabling Vendor Registration
+## Enabling the Vendor System
 
-Go to `Admin Panel` -> `Settings` -> `General` and enable **Vendor Registration**.
+Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `General` and enable **Enable multi-vendor**.
 
-Additional settings:
+Related settings:
 
 | Setting | Description |
 |---|---|
-| Allow vendor registration | Enables the public registration form |
-| Auto-approve vendors | Approve vendors instantly without manual review |
-| Commission rate (%) | Platform fee deducted from vendor earnings |
-| Minimum withdrawal amount | Minimum balance required to request a payout |
+| Enable multi-vendor | Allows visitors to register as vendors and list their cars |
+| Enable post approval | Vendor-submitted cars require admin approval before being published |
+| Default commission fee | Platform commission applied to vendor earnings |
+| Commission fee type | `Percentage` or `Fixed` amount |
+| Enable commission per category | Use category-specific commissions instead of the default |
 
 ## Vendor Registration Flow
 
-1. Visitor clicks **Become a Vendor** on the frontend.
-2. They fill in the registration form: name, email, store name, description, and logo.
-3. If auto-approve is off, the account is set to `Pending` until an admin approves it.
-4. Once approved, the vendor receives an email and can log in to the vendor dashboard.
+1. Visitor opens the registration form on the frontend.
+2. They fill in: name, email, password, phone (optional), date of birth (optional), and tick **Register as vendor**.
+3. The account is created with `is_vendor = true`. Vendors can sign in to the vendor dashboard immediately.
+4. Vendor-submitted cars are auto-published unless **Enable post approval** is on, in which case they require admin moderation.
 
-## Approving Vendors
+## Managing Vendors
 
-Go to `Admin Panel` -> `Vendors` -> `Vendors`.
+Go to `Admin Panel` -> `Car Manager` -> `Vendors`.
 
-- Filter by status: All, Pending, Approved, Rejected.
-- Click a vendor to review their profile.
-- Use the **Approve** or **Reject** buttons to update their status.
+From the vendor list you can:
 
-::: warning
-Rejecting a vendor does not delete their account. You can re-approve them later if needed.
+- Open a vendor profile to review their information and listings.
+- **Verify** a vendor to display a verification badge on their store and listings.
+- **Unverify** to remove the badge.
+- **Block** a vendor to prevent them from listing or receiving bookings.
+- **Unblock** to restore access.
+
+::: tip
+Blocking a vendor does not delete their account or existing listings — it only prevents new activity. You can unblock them at any time.
 :::
 
 ## Vendor Dashboard Features
@@ -64,15 +69,15 @@ Vendors can create and manage their own car listings from the vendor dashboard. 
 Admin can restrict which fields vendors can edit by configuring permissions in `Admin Panel` -> `Settings` -> `Vendor`.
 :::
 
-By default, vehicle listings created by vendors are published immediately. Enable **Require admin approval for vendor listings** in settings to add a moderation step.
+By default, vehicle listings created by vendors are published immediately. Enable **Enable post approval** in `Car Manager` -> `Settings` -> `General` to add a moderation step before publishing.
 
 ## Booking Management for Vendors
 
 Vendors see only the bookings for their own vehicles. They can:
 
 - View booking details (customer name is shown, full contact details optional).
-- Confirm or cancel bookings.
-- Mark bookings as completed.
+- Update booking status (e.g. move from Pending to Processing or Cancelled).
+- Mark bookings as Completed.
 - Download invoices.
 
 Vendors cannot access bookings for other vendors' vehicles.
@@ -81,28 +86,26 @@ Vendors cannot access bookings for other vendors' vehicles.
 
 ### Earnings
 
-After a booking is marked **Completed**, the net amount (after platform commission) is credited to the vendor's balance.
-
-Go to `Admin Panel` -> `Vendors` -> `Earnings` to view a full transaction log for all vendors.
+After a booking is marked **Completed**, the net amount (after platform commission) is credited to the vendor's balance. Vendors view their balance and per-booking breakdown from `Vendor Dashboard` -> `Earnings`.
 
 ### Withdrawals
 
-Vendors request withdrawals from their dashboard. Requests appear in `Admin Panel` -> `Vendors` -> `Withdrawals`.
+Vendors request withdrawals from their dashboard. Requests appear in `Admin Panel` -> `Car Manager` -> `Withdrawals`.
 
 | Status | Description |
 |---|---|
 | Pending | Request submitted, awaiting admin action |
-| Approved | Admin has approved and processed the payout |
-| Rejected | Request denied (admin can add a reason) |
+| Processing | Admin is preparing the payout |
+| Completed | Payout has been sent |
+| Canceled | Withdrawal cancelled |
+| Refused | Request rejected by admin |
 
-Process a withdrawal by reviewing the request and updating the status to **Approved** after sending the funds manually.
+Process a withdrawal by reviewing the request and updating the status to **Completed** after sending the funds manually.
 
 ## Vendor Verification
 
-To add a verification badge to a vendor:
+Verified vendors display a badge on their store page and listings. To verify a vendor:
 
-1. Go to `Admin Panel` -> `Vendors` -> `Vendors`.
+1. Go to `Admin Panel` -> `Car Manager` -> `Vendors`.
 2. Open the vendor profile.
-3. Toggle the **Verified** status.
-
-Verified vendors display a badge on their store page and listings.
+3. Click **Verify**. Click **Unverify** to remove the badge.

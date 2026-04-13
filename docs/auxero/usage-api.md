@@ -1,35 +1,40 @@
 ---
 title: REST API
-description: Auxero REST API documentation with 50+ endpoints for mobile app integration.
+description: Auxero REST API documentation for mobile app integration.
 ---
 
 # REST API
 
-Auxero provides a comprehensive REST API with 50+ endpoints, using Laravel Sanctum for authentication. The API enables full mobile app integration for car listings, bookings, reviews, and customer management.
+Auxero ships with a REST API powered by Laravel Sanctum. All car-manager endpoints live under the `api/v1/car-manager` prefix.
+
+**Base URL:** `https://your-site.com/api/v1/car-manager`
 
 ## Authentication
 
-The API uses **Laravel Sanctum** token-based authentication.
+Auxero uses **Laravel Sanctum** bearer tokens. Register or log in to get a token, then pass it with every authenticated request.
 
 ### Register
 
 ```
-POST /api/v1/register
+POST /api/v1/car-manager/auth/register
 ```
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `first_name` | string | Yes | First name |
-| `last_name` | string | Yes | Last name |
-| `email` | string | Yes | Email address |
-| `password` | string | Yes | Password (min 6 chars) |
-| `password_confirmation` | string | Yes | Password confirmation |
+| `name` | string | Yes | Customer name |
+| `email` | string | Yes | Email address (unique) |
+| `password` | string | Yes | Password |
+| `password_confirmation` | string | Yes | Must match `password` |
 | `phone` | string | No | Phone number |
+| `dob` | date | No | Date of birth |
+| `is_vendor` | boolean | No | Register as a vendor |
+
+Response includes `customer`, `token`, and `token_type: Bearer`.
 
 ### Login
 
 ```
-POST /api/v1/login
+POST /api/v1/car-manager/auth/login
 ```
 
 | Parameter | Type | Required | Description |
@@ -37,128 +42,208 @@ POST /api/v1/login
 | `email` | string | Yes | Email address |
 | `password` | string | Yes | Password |
 
-Returns a bearer token for authenticated requests:
+### Forgot / Reset Password
 
-```json
-{
-  "data": {
-    "token": "1|abc123...",
-    "user": { ... }
-  }
-}
+```
+POST /api/v1/car-manager/auth/forgot-password
+POST /api/v1/car-manager/auth/reset-password
 ```
 
-### Using the Token
+### Logout
 
-Include the token in all authenticated requests:
+```
+POST /api/v1/car-manager/auth/logout
+```
+
+Requires `Authorization: Bearer {token}` header.
+
+### Using the Token
 
 ```
 Authorization: Bearer 1|abc123...
 ```
 
-## Core Endpoints
+## Public Endpoints
 
 ### Cars
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/cars` | No | List cars with filters |
-| `GET` | `/api/v1/cars/{id}` | No | Get car details |
-| `GET` | `/api/v1/cars/search` | No | Search cars |
-| `GET` | `/api/v1/car-makes` | No | List car makes/brands |
-| `GET` | `/api/v1/car-types` | No | List car types |
-| `GET` | `/api/v1/car-categories` | No | List categories |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/cars` | List cars (supports filters & pagination) |
+| `GET` | `/cars/search` | Search cars by criteria |
+| `GET` | `/cars/filters` | Get available filter options |
+| `GET` | `/cars/{slug}` | Get car by slug |
+| `GET` | `/cars/id/{id}` | Get car by ID |
+| `GET` | `/cars/id/{id}/availability` | Check availability for date range |
+| `GET` | `/cars/id/{id}/similar` | Get similar cars |
 
-### Bookings
+### Taxonomies
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/bookings` | Yes | List user bookings |
-| `POST` | `/api/v1/bookings` | Yes | Create a booking |
-| `GET` | `/api/v1/bookings/{id}` | Yes | Get booking details |
-| `PUT` | `/api/v1/bookings/{id}/cancel` | Yes | Cancel a booking |
-
-### Reviews
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/cars/{id}/reviews` | No | Get car reviews |
-| `POST` | `/api/v1/reviews` | Yes | Submit a review |
-| `DELETE` | `/api/v1/reviews/{id}` | Yes | Delete own review |
-
-### Wishlist
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/wishlist` | Yes | List wishlist items |
-| `POST` | `/api/v1/wishlist` | Yes | Add to wishlist |
-| `DELETE` | `/api/v1/wishlist/{id}` | Yes | Remove from wishlist |
-
-### Customer Profile
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/me` | Yes | Get profile |
-| `PUT` | `/api/v1/me` | Yes | Update profile |
-| `PUT` | `/api/v1/me/password` | Yes | Change password |
-| `POST` | `/api/v1/logout` | Yes | Logout |
-
-### Compare
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/compare` | No | List compared cars |
-| `POST` | `/api/v1/compare` | No | Add to compare |
-| `DELETE` | `/api/v1/compare/{id}` | No | Remove from compare |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/car-makes` | List car makes/brands |
+| `GET` | `/car-types` | List car types |
+| `GET` | `/car-categories` | List categories |
+| `GET` | `/car-transmissions` | List transmissions |
+| `GET` | `/car-fuels` | List fuel types |
+| `GET` | `/car-amenities` | List amenities |
 
 ### Locations
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `GET` | `/api/v1/countries` | No | List countries |
-| `GET` | `/api/v1/states` | No | List states |
-| `GET` | `/api/v1/cities` | No | List cities |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/locations` | List locations |
+| `GET` | `/locations/search` | Search locations |
 
-## Query Parameters for Car Listing
+### Reviews (read-only)
 
-The `GET /api/v1/cars` endpoint supports these filter parameters:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/cars/{car_id}/reviews` | Get reviews for a car |
+
+### Pricing & Coupons (public)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/calculate-price` | Calculate booking price |
+| `POST` | `/coupons/validate` | Validate a coupon code |
+
+### Inquiries
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/inquiries` | Submit a customer inquiry |
+
+## Bookings
+
+Bookings are accessible to both guest and authenticated users.
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/bookings` | List bookings |
+| `POST` | `/bookings` | Create a booking |
+| `GET` | `/bookings/{id}` | Get booking details |
+| `PUT` | `/bookings/{id}` | Update a booking |
+| `POST` | `/bookings/{id}/cancel` | Cancel a booking |
+| `GET` | `/bookings/{id}/invoice` | Get booking invoice |
+
+## Authenticated Endpoints
+
+All endpoints below require `Authorization: Bearer {token}`.
+
+### Profile
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/profile` | Get current profile |
+| `PUT` | `/profile` | Update profile |
+| `POST` | `/profile/avatar` | Upload avatar |
+| `POST` | `/profile/change-password` | Change password |
+
+### Reviews (write)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/reviews` | Submit a review |
+
+### Favorites / Wishlist
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/favorites` | List favorites |
+| `POST` | `/favorites/{car_id}` | Add to favorites |
+| `DELETE` | `/favorites/{car_id}` | Remove from favorites |
+
+### Coupons (apply)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/coupons/apply` | Apply a coupon |
+| `POST` | `/coupons/remove` | Remove an applied coupon |
+
+## Vendor Endpoints
+
+Vendor endpoints require an authenticated user with vendor verification. Prefix: `/vendor`.
+
+### Vendor Profile
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/vendor/profile` | Get vendor profile |
+| `PUT` | `/vendor/profile` | Update vendor profile |
+
+### Vendor Cars
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/vendor/cars` | List vendor's cars |
+| `POST` | `/vendor/cars` | Add a car |
+| `GET` | `/vendor/cars/{id}` | Get car details |
+| `PUT` | `/vendor/cars/{id}` | Update car |
+| `DELETE` | `/vendor/cars/{id}` | Delete car |
+| `POST` | `/vendor/cars/{id}/images` | Upload car images |
+
+### Vendor Bookings
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/vendor/bookings` | List vendor's bookings |
+| `GET` | `/vendor/bookings/{id}` | Get booking details |
+| `PUT` | `/vendor/bookings/{id}/status` | Update booking status |
+| `POST` | `/vendor/bookings/{id}/complete` | Mark booking complete |
+
+### Vendor Dashboard, Reviews & Earnings
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/vendor/dashboard` | Dashboard summary |
+| `GET` | `/vendor/reviews` | List received reviews |
+| `POST` | `/vendor/reviews/{id}/reply` | Reply to a review |
+| `GET` | `/vendor/earnings` | Earnings summary |
+
+## Filter Parameters for `GET /cars`
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `car_makes[]` | array | Filter by make IDs |
-| `car_categories[]` | array | Filter by category IDs |
-| `car_types[]` | array | Filter by type IDs |
-| `car_fuel_types[]` | array | Filter by fuel type IDs |
-| `car_transmissions[]` | array | Filter by transmission IDs |
-| `rental_rate_from` | integer | Minimum price |
-| `rental_rate_to` | integer | Maximum price |
-| `year_from` | integer | Minimum year |
-| `year_to` | integer | Maximum year |
-| `sort_by` | string | Sort: `recently_added`, `price_asc`, `price_desc` |
-| `per_page` | integer | Items per page |
-| `page` | integer | Page number |
+| `make_id` | int | Filter by make ID |
+| `type_id` | int | Filter by vehicle type ID |
+| `transmission_id` | int | Filter by transmission ID |
+| `fuel_id` | int | Filter by fuel type ID |
+| `min_price` | int | Minimum rental rate |
+| `max_price` | int | Maximum rental rate |
+| `seats` | int | Minimum number of seats |
+| `year_from` | int | Minimum year |
+| `year_to` | int | Maximum year |
+| `location` | string | Filter by location text |
+| `amenities` | array/csv | Filter by amenity IDs |
+| `search` | string | Full-text search |
+| `sort_by` | string | One of `created_at`, `name`, `rental_rate`, `year` |
+| `sort_order` | string | `asc` or `desc` |
+| `per_page` | int | Items per page (max 50, default 12) |
+| `page` | int | Page number |
 
 ## Response Format
 
-All API responses follow this structure:
+Successful response:
 
 ```json
 {
-  "data": { ... },
-  "message": "Success",
-  "error": false
+  "error": false,
+  "data": { },
+  "message": ""
 }
 ```
 
-Error responses:
+Error response:
 
 ```json
 {
-  "message": "Unauthenticated.",
-  "error": true
+  "error": true,
+  "data": null,
+  "message": "Error description"
 }
 ```
 
 ::: tip
-The API base URL is your site URL. For example: `https://auxero.botble.com/api/v1/cars`
+Example full URL: `https://auxero.botble.com/api/v1/car-manager/cars?make_id=1&min_price=50`
 :::

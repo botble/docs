@@ -16,46 +16,33 @@ Go to `Admin Panel` -> `Car Manager` -> `Reviews` to manage all reviews.
 
 | Field | Description |
 |---|---|
-| Rating | Star score from 1 (poor) to 5 (excellent) |
-| Title | Optional short summary from the customer |
-| Comment | Full review text |
+| Star | Star rating from 1 (poor) to 5 (excellent) |
+| Content | Review text from the customer |
 | Car | The vehicle being reviewed |
 | Customer | Who wrote the review |
-| Status | `Approved`, `Pending`, or `Rejected` |
+| Status | `Published`, `Draft`, or `Pending` |
 
-## Review Moderation
+## Enabling Reviews
 
-By default, reviews are set to `Pending` and must be approved before they appear publicly.
+Reviews are controlled by a single feature toggle. Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `Review` and enable **Enable review**.
 
-To change this behavior, go to `Admin Panel` -> `Settings` -> `Reviews` and enable **Auto-approve reviews**.
+Customers can only review cars they have actually booked, and only after the booking is `Completed`.
 
-### Approving or Rejecting Reviews
+## Moderation
+
+To moderate reviews:
 
 1. Go to `Admin Panel` -> `Car Manager` -> `Reviews`.
-2. Click a review to open its detail page.
-3. Set the status to `Approved` to publish or `Rejected` to hide it.
+2. Open a review.
+3. Change its status to `Published` to make it visible, or `Draft` / `Pending` to hide it.
 
 ::: tip
-You can bulk-approve reviews using the checkbox selection and the **Change Status** bulk action on the review list.
-:::
-
-::: warning
-Rejected reviews are hidden from the frontend but remain in the database. They can be re-approved at any time.
+Use the checkbox selection and the bulk **Change Status** action to publish or hide reviews in batch.
 :::
 
 ## Star Ratings Display
 
-The average star rating for each car is calculated from all approved reviews. It is shown:
-
-- On the car listing card.
-- On the car detail page.
-- In search results and filters.
-
-Customers can filter search results by minimum rating (e.g. 4 stars and above).
-
-## Review Scores in Filters
-
-The search/filter bar on the frontend includes a **Minimum Rating** filter. This uses the aggregated approved review score stored per car. No additional configuration is required — the score updates automatically when a review is approved or removed.
+The average star rating for each car is calculated from all published reviews. It is shown on the car listing card, the car detail page, and in search results.
 
 ---
 
@@ -73,30 +60,25 @@ Auxero includes an in-platform messaging system that allows customers to send qu
 
 ### Managing Messages in Admin
 
-Go to `Admin Panel` -> `Messages`.
+Go to `Admin Panel` -> `Car Manager` -> `Messages`.
 
 Admin can view all conversations across all vendors and customers.
 
 | Column | Description |
 |---|---|
-| Subject / Car | The vehicle the conversation is about |
+| Car | The vehicle the conversation is about |
 | Customer | Who initiated the message |
 | Vendor | The receiving party |
 | Last Message | Preview of the most recent message |
-| Status | `Open` or `Closed` |
+| Status | `Read` or `Unread` |
 
-Click a conversation to read the full thread. Admin can reply on behalf of any party or close the conversation.
-
-::: tip
-Enable **Email notifications for new messages** in `Admin Panel` -> `Settings` -> `Notifications` to ensure vendors are alerted promptly.
-:::
+Click a conversation to read the full thread. Admin can reply on behalf of any party.
 
 ### Vendor Message Management
 
-Vendors manage their messages from the vendor dashboard at `/vendor/messages`. They can:
+Vendors manage their messages from the vendor dashboard. They can:
 
 - Read and reply to customer enquiries.
-- Close conversations once resolved.
 - See the car listing associated with each conversation.
 
 Vendors only see messages related to their own listings.
