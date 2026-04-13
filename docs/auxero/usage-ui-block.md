@@ -69,6 +69,10 @@ Full car listing page with advanced filtering and pagination.
 - `layout_style` - Layout: `default`, `sidebar-left`, `sidebar-right`, `top-map`, `half-map`, `top-filter`
 - `card_style` - Card style: `style-1`, `style-2`, `style-3`
 
+Half-map layout preview:
+
+![Half-map layout](./images/map-view.jpg)
+
 #### Car Advance Search
 
 Advanced search form with tab support.

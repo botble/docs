@@ -41,6 +41,8 @@ Rejecting a vendor does not delete their account. You can re-approve them later 
 
 ## Vendor Dashboard Features
 
+![Vendor dashboard](./images/vendor-dashboard.jpg)
+
 Vendors access their dashboard at `/vendor/dashboard` after logging in.
 
 | Section | Description |

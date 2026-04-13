@@ -7,6 +7,18 @@ description: How to manage vehicles, makes, types, categories, and amenities in 
 
 Auxero provides a full vehicle inventory system. Navigate to `Admin Panel` -> `Car Manager` to access all car-related settings.
 
+## Listing Page
+
+The car listing page lets visitors filter, sort, and browse vehicles. Auxero includes 6 listing layouts (sidebar left/right, off-canvas filter, top filter, top map, half map).
+
+![Car listing](./images/car-listing.jpg)
+
+## Detail Page
+
+Each vehicle has a dedicated detail page with gallery, specs, pricing calendar, booking form, reviews, and vendor info. 6 detail styles are available.
+
+![Car detail](./images/car-detail.jpg)
+
 ## Adding a New Car
 
 Go to `Admin Panel` -> `Car Manager` -> `Cars` -> `Add New`.

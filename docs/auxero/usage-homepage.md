@@ -2,7 +2,7 @@
 
 Homepage is the first page that users see when they visit your website. It is the most important page of your website.
 
-![Overview](./images/overview.png)
+![Overview](./images/admin-panel.jpg)
 
 ## Create Homepage
 
@@ -48,6 +48,7 @@ Auxero comes with **11 pre-built homepage styles**. Each uses different shortcod
 | Homepage 08 | ![Home 8](./images/home-8.jpg) |
 | Homepage 09 | ![Home 9](./images/home-9.jpg) |
 | Homepage 10 | ![Home 10](./images/home-10.jpg) |
+| Homepage 11 | ![Home 11](./images/home-11.jpg) |
 
 ::: tip
 To switch homepage styles, edit the homepage in `Pages`, remove existing shortcodes, and add new ones from the [UI Block](./usage-ui-block.md) catalog. Change the slider style in the `Simple Slider` shortcode settings.
