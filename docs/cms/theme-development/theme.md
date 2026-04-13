@@ -77,6 +77,60 @@ To delete an existing theme, use the command:
 php artisan cms:theme:remove demo
 ```
 
+## Theme Metadata (`theme.json`)
+
+The `theme.json` file at the theme root contains metadata the installer reads to show available themes, theme presets, and required plugins.
+
+Minimal example:
+
+```json
+{
+    "id": "botble/my-theme",
+    "name": "My Theme",
+    "namespace": "Theme\\MyTheme\\",
+    "author": "Botble Technologies",
+    "url": "https://botble.com",
+    "description": "My Theme description",
+    "required_plugins": []
+}
+```
+
+### Theme presets (multi-home demos)
+
+If your theme ships multiple demo databases (e.g. Home 1, Home 2, …), add a `presets` array so the installer shows a preset picker during `/install/welcome`. Each preset is an object:
+
+```json
+{
+    "presets": [
+        {
+            "id": "home-1",
+            "name": "Home 1",
+            "screenshot": "screenshot-home-1.png",
+            "database": "database.sql"
+        },
+        {
+            "id": "home-2",
+            "name": "Home 2",
+            "screenshot": "screenshot-home-2.png",
+            "database": "database-home2.sql"
+        }
+    ]
+}
+```
+
+Preset fields:
+
+- `id` *(optional)* — slug used internally. If omitted, generated from `name` via `Str::kebab()`.
+- `name` *(required)* — label shown in the installer preset picker.
+- `screenshot` *(optional)* — filename of a preview image inside the theme root.
+- `database` *(optional)* — path to the SQL dump for this preset, relative to the project root. The installer loads this file when the preset is selected. If the file is missing or the field is omitted, the installer falls back to `database-{themeId}-{presetId}.sql`, then `database/sample/database-{presetId}.sql`, then `database/sample/database.sql`, then `database.sql`.
+
+The explicit `database` field lets you keep existing SQL filenames (for example `database-home2.sql`) without renaming them to match the convention.
+
+::: warning
+Each preset entry **must** be an object. A plain list of strings (`"presets": ["Home 1", "Home 2"]`) will be filtered out by the installer and no preset picker will appear.
+:::
+
 ## Configuration
 
 ::: info
