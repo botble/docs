@@ -44,6 +44,7 @@ import ecommerceBackInStockSidebar from '../ecommerce-back-in-stock/sidebar'
 import auxeroSidebar from '../auxero/sidebar'
 import orisaSidebar from '../orisa/sidebar'
 import kycSidebar from '../kyc/sidebar'
+import smsGatewaysSidebar from '../sms-gateways/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -133,6 +134,7 @@ export default defineConfig({
           { text: 'Auxero', link: '/auxero/'},
           { text: 'Orisa', link: '/orisa/'},
           { text: 'KYC Verification', link: '/kyc/'},
+          { text: 'SMS Gateways', link: '/sms-gateways/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -189,6 +191,7 @@ export default defineConfig({
       auxero: auxeroSidebar,
       orisa: orisaSidebar,
       kyc: kycSidebar,
+      'sms-gateways': smsGatewaysSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

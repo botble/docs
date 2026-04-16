@@ -1,0 +1,44 @@
+---
+title: Changelog
+description: SMS Gateways release history and version updates.
+---
+
+# Changelog
+
+All notable changes to SMS Gateways are documented here.
+
+## Version 1.0.0 — 2025-04-16
+
+Initial public release.
+
+### Features
+
+- **7 built-in SMS drivers**: Twilio, Vonage, AWS SNS, Plivo, Sepay, Fast2SMS, BulkSMSBD
+- **OTP verification**: Phone verification with TTL, rate limiting, and attempt tracking
+- **SMS templates**: Admin-editable templates with variable injection and character preview
+- **Delivery logs**: Comprehensive SMS tracking with filters, retry, and export
+- **Consent management**: STOP/START handling, opt-in/opt-out audit logs, GDPR erasure
+- **Outbound webhooks**: Real-time delivery notifications with HMAC-SHA256 verification
+- **Host integrations**: Ecommerce, Marketplace, Real Estate, Job Board, Car Manager, Hotel
+- **Scheduled commands**: Automatic cleanup, retry, and purge tasks
+- **GDPR compliance**: Data export, cascade delete, per-subject erasure, retention policies
+- **42 languages**: English source + 41 machine-translated locales
+- **Shared hosting support**: Works on cPanel, Plesk without queue workers
+- **Role-based permissions**: Admin gating for all SMS features
+
+### Known limitations
+
+- Fast2SMS requires DLT template registration (India regulation)
+- BulkSMSBD and Sepay support only domestic SMS (Bangladesh and Vietnam respectively)
+- AWS SNS does not support delivery confirmation (marked as "Sent" only)
+- Queue workers only supported on VPS/dedicated servers (not shared hosting)
+
+### Breaking changes
+
+None (initial release).
+
+## Support
+
+- **Documentation**: [docs.botble.com/sms-gateways](https://docs.botble.com/sms-gateways)
+- **Issues**: Open a CodeCanyon support ticket
+- **Feature requests**: Submit via CodeCanyon support
