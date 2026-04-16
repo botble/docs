@@ -66,7 +66,7 @@ To replace the chrome (header logo, footer, favicon, custom CSS) without forking
 3. Keep the required `@yield('content')` block and the CSS preset loader.
 4. Do not load assets from a CDN — Envato themes must be CDN-free.
 
-See Botble's [Standalone Layouts guardrail](/cms/theme-development/) for the full rules.
+See Botble's [Standalone Layouts guardrail](/cms/theme-development/theme-assets) for the full rules.
 
 ## Add a custom homepage banner
 
