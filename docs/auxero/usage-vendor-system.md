@@ -104,8 +104,77 @@ Process a withdrawal by reviewing the request and updating the status to **Compl
 
 ## Vendor Verification
 
-Verified vendors display a badge on their store page and listings. To verify a vendor:
+Verified vendors display a badge on their store page and listings. Auxero provides two verification paths that can be used together:
+
+1. **Manual verification** — admin flips a vendor to verified from the vendor detail page.
+2. **KYC document upload** — vendor submits identity documents from their dashboard; admin reviews and approves, which also sets the verified badge.
+
+### Manual verification
 
 1. Go to `Admin Panel` -> `Car Manager` -> `Vendors`.
 2. Open the vendor profile.
-3. Click **Verify**. Click **Unverify** to remove the badge.
+3. Click **Verify** and optionally add a note. Click **Unverify** to remove the badge.
+
+Unverifying a vendor also deletes any approved KYC submission they have on file (including the uploaded document files) so their data is not retained after trust is revoked.
+
+### KYC (ID / Document) verification
+
+KYC lets vendors prove their identity by uploading an ID document (passport, national ID, driving licence, or business licence). Admin reviews the submission and approves or rejects it. Approved submissions flip the same verified badge used by manual verification.
+
+#### Enabling KYC
+
+Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `KYC / Verification`.
+
+| Setting | Description |
+|---|---|
+| Enable KYC verification | Master switch. When off, the vendor dashboard link is hidden and all KYC routes return 404. |
+| Require KYC for car listings | When on, vendors cannot publish a new car listing until their KYC submission is approved. Existing listings are unaffected. |
+| Admin notification email | Optional override for the email that receives "new KYC submission" notifications. Defaults to the system admin email. |
+
+#### Vendor submission flow
+
+1. Vendor logs in and opens **Verification** from the customer dashboard sidebar.
+2. They pick a document type (passport / national ID / driving licence / business licence), enter the document number, and upload photos:
+   - **Front image** (required)
+   - **Back image** (required for everything except passport)
+   - **Selfie** (recommended but optional)
+   - **Additional document** (optional, e.g. business permit)
+3. They tick the terms checkbox and submit.
+4. The vendor sees the dashboard switch to a "Pending review" state. They cannot submit another application while one is pending.
+
+Allowed file types are JPEG, PNG, WebP, and PDF up to 5 MB each. File names that contain suspicious extensions (for example `passport.php.jpg`) are rejected at upload time.
+
+#### Admin review flow
+
+1. Go to `Admin Panel` -> `Car Manager` -> `Vendors` -> `KYC Submissions`. The menu item shows a badge with the pending submission count.
+2. Pending submissions are listed oldest-first (FIFO review queue).
+3. Open a submission to see the uploaded document images, vendor info, and the approve/reject actions.
+4. Click **Approve** to mark the submission approved. This also flips the vendor's `is_verified` flag and writes the review note into the vendor's verification note.
+5. Click **Reject** and provide a reason. The vendor receives the rejection reason by email and can submit a new application.
+
+::: tip
+Approving a KYC submission is different from the manual **Verify** action on the vendor detail page. Approve-via-KYC also creates an audit trail linked to the uploaded documents; manual **Verify** is a free-form admin override.
+:::
+
+Rejecting a submission does **not** touch the vendor's `is_verified` flag — if an admin had previously manually verified them, that status remains unchanged.
+
+#### Email notifications
+
+Three emails are sent during the KYC flow. Each template can be edited from `Admin Panel` -> `Settings` -> `Email templates` -> `Car Manager`:
+
+| Template | Sent to | When |
+|---|---|---|
+| `kyc-submission-received` | Admin notification email | Vendor submits a new KYC application |
+| `kyc-submission-approved` | Vendor | Admin approves the submission |
+| `kyc-submission-rejected` | Vendor | Admin rejects the submission |
+
+#### Data retention and privacy
+
+KYC files are stored privately and are never visible in `Admin Panel` -> `Media`. Specifically:
+
+- Files are written to `storage/app/private/kyc/{customer_id}/` using random 32-character hex filenames with no extension. The original filename and MIME type are stored in the database only and are used when the file is served.
+- Access to a file requires a short-lived (15 min) signed URL **and** an authenticated session. Admins need the `car-manager.vendors.edit` permission; vendors can only access their own submission.
+- Responses include `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Cache-Control: private, no-store`, and `Referrer-Policy: no-referrer` headers to block proxy caching and URL leakage.
+- Rejected submissions are automatically deleted (database row + files) **7 days** after the rejection timestamp. The cleanup runs daily — make sure your task scheduler is configured (see [Setup cronjob](./cronjob.md)).
+- When a vendor is unverified, the most recent approved KYC submission (and its files) is deleted.
+- When a customer account is hard-deleted, all KYC files for that customer are removed before the database cascade runs.

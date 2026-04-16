@@ -277,29 +277,28 @@ You can include parent theme partials within your overridden views:
 
 ## Building Assets
 
-If your child theme has custom SCSS/JS:
+If your child theme has custom SCSS/JS, ship a **`vite.build.mjs`** inside the theme directory. The project-wide runner discovers it automatically.
 
-**webpack.mix.js:**
+**platform/themes/my-child-theme/vite.build.mjs:**
 
 ```js
-const mix = require('laravel-mix');
-const path = require('path');
-
-const directory = path.basename(path.resolve(__dirname));
-const source = `platform/themes/${directory}`;
-const dist = `public/themes/${directory}`;
-
-mix
-    .sass(`${source}/assets/sass/theme.scss`, `${dist}/css`)
-    .js(`${source}/assets/js/theme.js`, `${dist}/js`);
+export default {
+    js:   [{ src: 'assets/js/theme.js',     out: 'theme.js' }],
+    sass: [{ src: 'assets/sass/theme.scss', out: 'theme.css' }],
+}
 ```
 
-Build:
+Build from the project root:
 
 ```bash
-# From project root
-npm run prod
+# Development (unminified)
+npm run dev
+
+# Production (minified + ships compiled assets inside the theme's public/ folder)
+npm run production
 ```
+
+For the full descriptor spec, SFC Vue support, RTL CSS variants, and migrating from the old Laravel Mix setup, see [Asset Compilation (Vite)](/cms/asset-compilation).
 
 ## Current Limitations
 

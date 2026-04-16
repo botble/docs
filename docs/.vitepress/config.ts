@@ -43,6 +43,7 @@ import ecommercePreorderSidebar from '../ecommerce-preorder/sidebar'
 import ecommerceBackInStockSidebar from '../ecommerce-back-in-stock/sidebar'
 import auxeroSidebar from '../auxero/sidebar'
 import orisaSidebar from '../orisa/sidebar'
+import kycSidebar from '../kyc/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -131,6 +132,7 @@ export default defineConfig({
           { text: 'Back in Stock', link: '/ecommerce-back-in-stock/'},
           { text: 'Auxero', link: '/auxero/'},
           { text: 'Orisa', link: '/orisa/'},
+          { text: 'KYC Verification', link: '/kyc/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -186,6 +188,7 @@ export default defineConfig({
       'ecommerce-back-in-stock': ecommerceBackInStockSidebar,
       auxero: auxeroSidebar,
       orisa: orisaSidebar,
+      kyc: kycSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

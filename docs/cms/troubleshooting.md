@@ -116,24 +116,109 @@ If you encounter errors during the automatic update process:
 
 ### HTTP 504 Gateway Timeout
 
-The server timed out while downloading the update files. This usually happens due to slow server connection or low PHP timeout limits.
+The server timed out while downloading the update files. This usually happens due to slow server connection, a reverse
+proxy in front of your site (Cloudflare, nginx), or low PHP timeout limits.
 
 ### Invalid or Uninitialized Zip Object
 
 The update file download was incomplete or corrupted, resulting in an invalid zip file.
 
-### Solution
+### 500 Error Mid-Progress (around 10–20%)
 
-For both errors above, use the [manual update](/cms/upgrade#manual-update) method instead:
+The web request was killed by an upstream proxy before the update could finish. Cloudflare's free plan caps connections
+at 100 seconds regardless of your `max_execution_time`, and nginx / php-fpm have their own proxy timeouts above PHP.
 
-1. Download the latest version from CodeCanyon.
-2. Extract the zip file.
-3. Upload and overwrite files on your server using File Manager or FTP.
-4. Go to **Admin → Platform Administration → System Updater** and run steps 3–6 (database migration, publish assets, etc.).
+### Solution: Use the Command Line Updater
+
+For all three errors above, the most reliable fix is to run the update from SSH instead of the browser. The CLI command
+bypasses every web-tier timeout, retries the download up to 3 times, and bumps PHP execution and memory limits at
+runtime:
+
+```bash
+cd /path/to/your/project
+php artisan cms:update
+```
+
+See [Command Line Update](/cms/upgrade#command-line-update) for details. This is the recommended path whenever the
+in-app updater fails mid-progress.
 
 ::: tip
-If the issue persists, try increasing your PHP `max_execution_time` and `memory_limit` values in your hosting configuration.
+Increasing `max_execution_time` and `memory_limit` in your `php.ini` only affects PHP itself — it does **not** override
+Cloudflare's 100s connection cap or web-server proxy timeouts. The command line method is the only reliable fix when
+those upstream limits are the cause.
 :::
+
+### Fallback: Manual Update (No SSH Access)
+
+If you do not have SSH access, you can fall back to the [manual update](/cms/upgrade#manual-update) method. **Always
+back up your `.env` file before extracting the package** — see the warning in the manual update section, and the
+[.env Overwritten After Manual Update](#env-overwritten-after-manual-update) section below if you have already lost
+your `.env`.
+
+## .env Overwritten After Manual Update
+
+### Symptom
+
+After a manual update extraction, your site goes down with an error like:
+
+```
+SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost'
+(Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: laravel)
+```
+
+The credentials in the error message (`root`, `laravel`, `127.0.0.1`) are Laravel's stock `.env` defaults. This means
+your real `.env` file has been overwritten by the default `.env` shipped inside the CodeCanyon package.
+
+### Why It Happens
+
+When you extract a fresh CodeCanyon package on top of your live install with a tool that does not skip `.env`, the
+default `.env` from the package overwrites your real one. Your database credentials, `APP_KEY`, mail settings, and
+everything else in `.env` are lost.
+
+The in-app updater and `php artisan cms:update` both explicitly refuse to apply any update zip that contains a `.env`
+file, exactly to prevent this. Manual extraction has no such guard.
+
+### Fix
+
+1. Edit `.env` in your project root via SSH, SFTP, or your hosting file manager.
+2. Restore your real database credentials. They should look like this (use the values from your hosting control panel
+   or your previous backup):
+
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_actual_db_name
+   DB_USERNAME=your_actual_db_user
+   DB_PASSWORD=your_actual_db_password
+   ```
+
+3. Restore `APP_KEY`, `APP_URL`, and any mail / storage / queue settings that were in your previous `.env`.
+4. Clear caches:
+
+   ```bash
+   php artisan cache:clear
+   php artisan config:clear
+   php artisan view:clear
+   php artisan route:clear
+   ```
+
+5. Reload your site — the database error should be gone.
+
+If you do not have a backup of `.env`, your hosting control panel (cPanel, Plesk, DirectAdmin) shows the database name,
+user, and host under the **Databases** section. The password is the one you set when you created the database.
+
+::: danger Critical: APP_KEY warning
+If `APP_KEY` is missing or different from the original value, **all existing user sessions will be invalidated** and
+**any encrypted database columns will become unreadable**. You must restore the original `APP_KEY` from a backup. If
+you do not have a backup, you will need to log everyone out and re-encrypt any encrypted columns with the new key.
+:::
+
+### Prevention
+
+For future updates, use the [Command Line Update](/cms/upgrade#command-line-update) (`php artisan cms:update`) or the
+[Automatic Update](/cms/upgrade#automatic-update) (in-app updater) instead of manual extraction. Both methods refuse
+update zips that contain a `.env` file, so this scenario cannot happen.
 
 ## Session / Login Issues
 

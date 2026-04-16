@@ -135,6 +135,7 @@ export default [
   {
     text: 'Development',
     items: [
+      { text: 'Asset Compilation (Vite)', link: '/cms/asset-compilation' },
       {
         text: 'Plugin Development',
         collapsed: false,
