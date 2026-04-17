@@ -103,13 +103,13 @@ description: Common SMS Gateways issues and solutions.
 4. Verify webhook URL is publicly accessible (not localhost)
 
 5. Verify your SMS provider supports inbound webhooks:
-   - Twilio: Yes (supports)
-   - Vonage: Yes
-   - AWS SNS: Limited
+   - Twilio: Yes
+   - Vonage (formerly Nexmo): Yes
+   - AWS SNS: Limited (no MO support)
    - Plivo: Yes
-   - Sepay: No
+   - Msg91: No (polling only)
    - Fast2SMS: No
-   - BulkSMSBD: No
+   - BulkSMSBD: No (status polled via `/api/smsapidl`)
 
 ## OTP code not arriving
 
@@ -139,7 +139,7 @@ description: Common SMS Gateways issues and solutions.
    - Read error message for details
 
 4. Verify OTP is not rate-limited:
-   - Check **Max OTP Attempts** setting (default: 3 wrong tries locks for 30 min)
+   - Check **Max OTP Attempts** setting (default: 5 wrong verify attempts exhausts the code)
    - Check **Per-phone rate limit** (default: 5 OTP requests/hour)
 
 ## "Permission denied" errors

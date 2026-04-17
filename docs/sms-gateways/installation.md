@@ -36,15 +36,18 @@ php artisan cms:plugin:activate sms-gateways
 
 When you activate the plugin, Botble runs:
 
-1. **Database migrations** — creates tables:
-   - `sms_logs` — delivery log (one row per SMS sent)
-   - `sms_templates` — admin-editable message templates
-   - `sms_consents` — opt-in/opt-out (STOP/START) audit log
-   - `sms_webhooks` — optional outgoing webhook endpoints
-   - `otp_attempts` — OTP verification attempts and rate limiting
-2. **Service provider registration** — registers routes, settings page, permissions, and admin menu.
+1. **Database migrations** — creates tables (all prefixed `smsg_`):
+   - `smsg_delivery_logs` — one row per SMS send attempt (queued → sent → delivered lifecycle)
+   - `smsg_templates` + `smsg_templates_translations` — admin-editable, translatable message bodies
+   - `smsg_consents` — per-channel opt-in/opt-out with source, IP, and user-agent audit
+   - `smsg_webhooks` — outbound webhook endpoints with HMAC secret
+   - `smsg_otps` — SHA-256 hashed OTP codes with purpose, expiry, and attempt counts
+   - `smsg_country_routes` — E.164-prefix → driver mapping with priority
+   - `smsg_runtime_pings` — scheduler health pings
+   - `smsg_abandoned_cart_sent` — idempotency table for abandoned-cart SMS reminders
+2. **Service provider registration** — registers routes, settings page, permissions, admin menu, FOB coexistence guard, and scheduled commands.
 3. **Translation registration** — loads 42 locale files.
-4. **Scheduler entries** — registers `sms:purge`, `sms:retry` with Laravel's scheduler.
+4. **Scheduler entries** — `sms:purge`, `sms:poll-status`, `sms:recover-abandoned-carts`, and retry dispatcher tick.
 
 ::: tip
 Activation is idempotent — you can safely deactivate and re-activate the plugin without data loss. Existing logs, templates, consents, and webhooks survive.
@@ -61,23 +64,29 @@ After activation you should see:
 Run this sanity check from the CLI:
 
 ```bash
-php artisan route:list | grep sms
+php artisan route:list | grep sms-gateways
 ```
 
-You should see routes grouped under `sms.` including `sms.logs.index`, `sms.templates.index`, `sms.consents.index`, `sms.settings.edit`, etc.
+You should see admin routes prefixed `sms-gateways.*` (logs, templates, consents, drivers, country-routes, webhooks, settings) plus the customer-facing `/account/sms-preferences/*` endpoints.
 
 ## Permissions
 
-The plugin registers these permission groups:
+The plugin registers these permission flags (managed in **Admin → Settings → Roles & Permissions**):
 
-| Permission | Effect |
+| Flag | Effect |
 |---|---|
-| `sms.logs.view` | View delivery logs |
-| `sms.logs.delete` | Delete log entries |
-| `sms.templates.manage` | Create/edit SMS templates |
-| `sms.consents.manage` | Handle opt-out requests |
-| `sms.settings.edit` | Configure drivers and defaults |
-| `sms.webhooks.manage` | Add/edit outbound webhooks |
+| `sms-gateways.index` | Access the SMS Gateways section |
+| `sms-gateways.logs.view` | View delivery logs |
+| `sms-gateways.logs.retry` | Manually retry failed sends |
+| `sms-gateways.templates.index` | View SMS templates |
+| `sms-gateways.templates.edit` | Edit template bodies |
+| `sms-gateways.templates.test-send` | Send a template preview to a phone |
+| `sms-gateways.consents.index` | View consent records |
+| `sms-gateways.consents.update` | Override opt-in / opt-out status |
+| `sms-gateways.drivers.configure` | Enter driver credentials |
+| `sms-gateways.country-routes.index` | Manage E.164 routing rules |
+| `sms-gateways.webhooks.index` | Manage outbound webhooks |
+| `sms-gateways.settings.edit` | Edit plugin-wide settings |
 
 Assign these to admin roles in **Admin → Settings → Roles & Permissions**.
 

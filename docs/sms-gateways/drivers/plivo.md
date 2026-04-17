@@ -73,4 +73,4 @@ Plivo supports alphanumeric sender IDs in some countries:
 
 ## Next step
 
-See [Sepay](./sepay.md) for Vietnam-specific SMS or [Configuration](../configuration.md) to activate additional drivers.
+See [Msg91](./msg91.md) or [Fast2SMS](./fast2sms.md) for India-specific SMS, or [Configuration](../configuration.md) to activate additional drivers.

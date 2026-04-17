@@ -1,171 +1,119 @@
 ---
 title: Artisan Commands
-description: CLI commands for bulk operations, retries, and data management.
+description: CLI commands shipped by SMS Gateways.
 ---
 
 # Artisan Commands
 
-Use these CLI commands to manage SMS in bulk from your server terminal.
+Use these CLI commands for bulk operations, retries, and housekeeping.
 
-## Retry failed SMS
+## `sms:retry`
 
-Retry all SMS that failed delivery:
+Re-dispatch delivery logs stuck in `failed` that are eligible for retry (based on `retry_at`).
 
 ```bash
 php artisan sms:retry
 ```
 
-Options:
+Runs on a scheduled tick automatically — manual invocation is only needed for ad-hoc catch-up.
 
-- `--days=7` — Only retry SMS from last 7 days (default: 30)
-- `--driver=twilio` — Only retry through a specific driver
-- `--phone=+1-555-1234` — Only retry to a specific phone number
+## `sms:purge`
 
-Example:
+Delete delivery logs older than a retention window.
 
 ```bash
-php artisan sms:retry --days=1 --driver=twilio
+php artisan sms:purge --days=90   # default window
+php artisan sms:purge --days=30   # stricter window
 ```
 
-Retries up to 3 times per SMS, respecting the retry backoff policy.
+Schedule nightly in `app/Console/Kernel.php`:
 
-## Purge old logs
+```php
+$schedule->command('sms:purge', ['--days=90'])->daily();
+```
 
-Delete logs older than N days:
+## `sms:purge-subject`
+
+GDPR per-subject erasure — cascade-deletes delivery logs, OTPs, and consents for one subject.
 
 ```bash
-php artisan sms:purge --days=90
+php artisan sms:purge-subject "Botble\\Ecommerce\\Models\\Customer" 42
+php artisan sms:purge-subject "Botble\\Marketplace\\Models\\Store" 15
 ```
 
-This also deletes associated OTP attempts and consent records. **This cannot be undone**, so export first if needed for compliance.
+See [GDPR & Data Export](./gdpr.md) for the full erasure flow and customer-facing endpoints.
 
-Options:
+## `sms:import-fob`
 
-- `--days=90` — Delete older than 90 days (default)
-- `--dry-run` — Show what would be deleted without actually deleting
-
-Example (preview):
+Migrate data from `friendsofbotble/fob-sms-gateway` into SMS Gateways tables.
 
 ```bash
-php artisan sms:purge --days=90 --dry-run
+php artisan sms:import-fob --dry-run        # preview
+php artisan sms:import-fob                   # apply
+php artisan sms:import-fob --delete-after   # apply + drop fob_* tables
 ```
 
-This command runs automatically nightly via scheduler.
+See [Migration from FOB](../migration.md) for status mapping, OTP re-hashing, and credential re-encryption details.
 
-## Purge subject SMS
+## `sms:status-poll`
 
-Delete all SMS for a specific subject (integration):
+Poll drivers without push delivery receipts (e.g. BulkSMSBD) for the latest status of `sent` rows and update the delivery log.
 
 ```bash
-php artisan sms:purge-subject ecommerce
+php artisan sms:status-poll
 ```
 
-Valid subjects:
+Scheduled automatically every few minutes while rows remain in `sent`.
 
-- `ecommerce`
-- `marketplace`
-- `real-estate`
-- `job-board`
-- `car-manager`
-- `hotel`
+## `sms:recover-abandoned-carts`
 
-Options:
-
-- `--force` — Skip confirmation prompt
-
-Example:
+Scan recent carts that never reached checkout and dispatch an abandoned-cart SMS to customers who have opted in. Uses the `smsg_abandoned_cart_sent` idempotency table to avoid duplicate sends.
 
 ```bash
-php artisan sms:purge-subject ecommerce --force
+php artisan sms:recover-abandoned-carts
 ```
 
-**Warning**: This deletes all SMS logs for that subject. Associated OTP attempts and consents are preserved if still needed by other subjects.
+Scheduled every 15 minutes by default.
 
-## Migrate from legacy SMS provider
+## `sms:verify-driver`
 
-If you previously used another SMS plugin (e.g., FOB SMS Gateway), import those SMS logs:
+Send a synthetic test SMS through a configured driver and print the provider response.
 
 ```bash
-php artisan sms:import-fob
+php artisan sms:verify-driver twilio --to=+12025550001
+php artisan sms:verify-driver msg91  --to=+919876543210
 ```
 
-This:
+Useful for smoke-testing credentials after rotating API keys.
 
-1. Reads `fob_sms_logs` table (if it exists)
-2. Maps to SMS Gateways schema
-3. Imports driver, status, phone, message text
-4. Skips duplicates (based on provider message ID)
+## `sms:heartbeat`
 
-Options:
-
-- `--driver=vonage` — Reassign all imported SMS to a different driver
-- `--dry-run` — Preview what would be imported
-
-Example:
+Write a runtime ping to `smsg_runtime_pings`. Used by the admin dashboard to confirm the scheduler is running.
 
 ```bash
-php artisan sms:import-fob --driver=vonage --dry-run
+php artisan sms:heartbeat
 ```
 
-After import, verify the count in **Admin → SMS Gateways → Delivery Logs**.
+Scheduled every minute alongside Laravel's `schedule:run`.
 
-## List available drivers
+## `sms:import-email-templates`
 
-Show all registered SMS drivers and their status:
+One-off import that mirrors legacy email templates into SMS templates. Matches event keys across the two systems and seeds `smsg_templates` rows with equivalent bodies. Safe to re-run — duplicates are skipped.
 
 ```bash
-php artisan sms:list-drivers
+php artisan sms:import-email-templates
 ```
 
-Output:
+## Scheduling
 
-```
-Registered SMS Drivers:
+Make sure your server's crontab runs Laravel's scheduler every minute:
 
-✓ twilio       (active)      - Twilio REST API
-✓ vonage       (active)      - Vonage SMS
-✗ aws-sns      (inactive)    - Amazon SNS
-✗ plivo        (inactive)    - Plivo SMS
-...
-```
-
-## Test driver credentials
-
-Verify that a driver's credentials are valid:
-
-```bash
-php artisan sms:test-driver twilio
-```
-
-This sends a test SMS to the number configured in settings. Check your phone within 10 seconds.
-
-If it fails, the command shows the provider's error message (e.g., "Invalid API token").
-
-## Queue background jobs
-
-If using queue workers, manually trigger job processing:
-
-```bash
-php artisan queue:work --queue=sms
-```
-
-This processes SMS in the background. For production, run this in a supervisor/systemd daemon. See [Shared Hosting](../shared-hosting/overview.md) for queue setup on cPanel and Plesk.
-
-## Scheduled tasks
-
-The plugin automatically registers these with Laravel's scheduler:
-
-- **`sms:purge`** — Runs nightly at 2 AM (purges logs > 90 days)
-- **`sms:retry`** — Runs every 30 minutes (retries failed SMS)
-- **`otp:cleanup`** — Runs nightly at 3 AM (removes expired OTP attempts)
-- **`consent:cleanup`** — Runs nightly at 3 AM (removes old consent records)
-
-These run automatically if you have `php artisan schedule:run` in your crontab:
-
-```bash
+```cron
 * * * * * cd /path/to/botble && php artisan schedule:run >> /dev/null 2>&1
 ```
 
+The plugin registers its scheduled commands automatically via the service provider — no kernel edits required.
+
 ## Next step
 
-See [Permissions](./permissions.md) to control who can access SMS features.
+See [Permissions](./permissions.md) for the admin permission flags that gate these commands' admin UI equivalents.

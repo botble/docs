@@ -41,7 +41,7 @@ Available in `car.booking_confirmed` template:
 - `{pickup_date}` — pickup date (YYYY-MM-DD)
 - `{pickup_time}` — pickup time (HH:MM)
 - `{total}` — total cost
-- `{brand}` — platform name
+- `{shop_name}` — platform name
 
 Example:
 
@@ -57,7 +57,7 @@ Available in `car.booking_status` template:
 - `{booking_id}`
 - `{old_status}` — previous status (e.g., "pending")
 - `{new_status}` — new status (e.g., "confirmed", "ready")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -75,7 +75,7 @@ Available in `car.pickup_reminder` template:
 - `{pickup_date}`
 - `{pickup_time}`
 - `{location}` — pickup location
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -92,7 +92,7 @@ Available in `car.test_drive_request` template:
 - `{car_model}`
 - `{request_date}` — requested date
 - `{request_time}` — requested time
-- `{brand}`
+- `{shop_name}`
 
 Example:
 

@@ -1,11 +1,13 @@
 ---
-title: Vonage Driver
-description: Set up SMS delivery through Vonage (formerly Nexmo).
+title: Vonage (formerly Nexmo) Driver
+description: Set up SMS delivery through Vonage — the provider formerly known as Nexmo.
 ---
 
-# Vonage Driver
+# Vonage (formerly Nexmo) Driver
 
-Send SMS through Vonage with global reach and competitive rates for Asia and Europe.
+Send SMS through Vonage — the same API service formerly branded as **Nexmo** before the 2020 rebrand. If your dashboard still says *Nexmo*, this is the right driver: the endpoint (`rest.nexmo.com`) and credentials (API key + API secret) are unchanged.
+
+Global reach, competitive rates for Asia and Europe, alphanumeric sender IDs where allowed.
 
 ## Get Vonage credentials
 

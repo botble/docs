@@ -48,7 +48,7 @@ Available in `vendor.new_order` template:
 - `{customer_name}` — buyer name
 - `{items_count}` — number of items purchased from vendor
 - `{total}` — vendor's portion of order total
-- `{brand}` — marketplace name
+- `{shop_name}` — marketplace name
 
 Example:
 
@@ -63,7 +63,7 @@ Available in `vendor.action_required` template:
 - `{vendor_name}`
 - `{order_id}`
 - `{action}` — what needs to be done (e.g., "ship", "confirm", "respond")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -78,7 +78,7 @@ Available in `vendor.commission_payout` template:
 - `{vendor_name}`
 - `{amount}` — payout amount
 - `{period}` — payout period (e.g., "January 2025")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 

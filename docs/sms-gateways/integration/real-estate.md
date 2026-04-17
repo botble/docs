@@ -41,7 +41,7 @@ Available in `property.inquiry` template:
 - `{property_address}` — property address
 - `{property_id}` — property reference number
 - `{inquiry_type}` — type of inquiry (e.g., "viewing request", "price question")
-- `{brand}` — platform name
+- `{shop_name}` — platform name
 
 Example:
 
@@ -57,7 +57,7 @@ Available in `inquiry.response` template:
 - `{agent_name}`
 - `{property_address}`
 - `{response}` — agent's response (first 100 chars)
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -74,7 +74,7 @@ Available in `showing.scheduled` template:
 - `{property_address}`
 - `{showing_date}` — appointment date (YYYY-MM-DD)
 - `{showing_time}` — appointment time (HH:MM)
-- `{brand}`
+- `{shop_name}`
 
 Example:
 

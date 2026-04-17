@@ -39,12 +39,12 @@ Available in `job.application_received` template:
 - `{candidate_name}` — candidate name
 - `{job_title}` — position title
 - `{job_id}` — job posting reference
-- `{brand}` — platform name
+- `{shop_name}` — platform name
 
 Example:
 
 ```
-{employer_name}, {candidate_name} applied for {job_title}. Review at {brand}.
+{employer_name}, {candidate_name} applied for {job_title}. Review at {shop_name}.
 ```
 
 ### Application Status Update
@@ -55,7 +55,7 @@ Available in `job.application_status_update` template:
 - `{employer_name}`
 - `{job_title}`
 - `{status}` — new status (e.g., "shortlisted", "rejected", "hired")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -71,7 +71,7 @@ Available in `job.posted` template:
 - `{employer_name}`
 - `{job_id}`
 - `{salary_range}` — if provided (e.g., "$50k–$70k")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 

@@ -14,10 +14,10 @@ Select one or more providers from the **Active Drivers** checkbox list. You can 
 | Driver | Best for | Priority |
 |--------|----------|----------|
 | **Twilio** | Worldwide coverage, reliable | Default |
-| **Vonage** | EU/Asia, good rates | Secondary |
+| **Vonage** (formerly Nexmo) | EU/Asia, good rates | Secondary |
 | **AWS SNS** | AWS-hosted apps | AWS-native |
 | **Plivo** | India, Southeast Asia | Regional |
-| **Sepay** | Vietnam | Regional |
+| **Msg91** | India OTP + DLT Flow templates | India-specific |
 | **Fast2SMS** | India, requires DLT approval | India-specific |
 | **BulkSMSBD** | Bangladesh | Bangladesh-specific |
 
@@ -39,10 +39,11 @@ Set these for phone verification across all integrations:
 
 | Setting | Default | Notes |
 |---------|---------|-------|
-| **OTP TTL** | 600 seconds (10 min) | How long the code is valid |
-| **Max attempts** | 3 | Lockout after N wrong tries |
-| **Resend delay** | 30 seconds | Min seconds between resends |
-| **Per-phone rate limit** | 5/hour | Max OTP requests per phone |
+| **Code length** | 6 digits | Range 4–8 |
+| **OTP TTL** | 300 seconds (5 min) | How long the code is valid |
+| **Max verify attempts** | 5 | Lockout after N wrong tries |
+| **Per-phone requests/hour** | 10 | Max OTP requests per phone per hour |
+| **Global rate limit** | 60/min | Plugin-wide send ceiling |
 
 ![OTP settings](./images/sms-otp-tab.png)
 

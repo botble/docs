@@ -1,183 +1,170 @@
 ---
 title: GDPR & Data Export
-description: Customer data export, erasure, and compliance.
+description: Customer-facing SMS data export and erasure endpoints, plus admin purge commands.
 ---
 
 # GDPR & Data Export
 
-Handle customer data requests (export, erasure) and maintain compliance with GDPR, CCPA, and similar regulations.
+The plugin ships ready-made GDPR primitives — two customer-facing endpoints and an admin per-subject erasure command. No host-theme edits are required; the endpoints are registered by the plugin when the `ecommerce` plugin (customer guard) is active.
 
-## Customer data export
+## Customer-facing endpoints
 
-Customers can request a copy of their SMS data in **Account → My Data → SMS Export** (if your site offers data export):
+Both endpoints require the `auth:customer` middleware.
 
-1. Customer logs in
-2. Goes to their dashboard's "My Data" or "Privacy" section
-3. Clicks **Export SMS data**
-4. Receives a JSON file with all their SMS records
+### Export customer SMS data
 
-The export includes:
+```
+GET /account/sms-preferences/export
+```
+
+Returns a JSON bundle containing:
+
+- Consent rows (per-channel opt-in/opt-out history)
+- Delivery logs (last 2 years, body included)
+- OTP attempt history — **codes never included**; only purpose, status, attempt counts, and timestamps
+
+Example response:
 
 ```json
 {
-  "export_date": "2025-01-15T10:30:00Z",
-  "phone": "+1-555-1234",
-  "sms_sent": [
-    {
-      "id": "550e8400-e29b-41d4-a716-446655440000",
-      "to": "+1-555-1234",
-      "body": "Your order #123 has been shipped",
-      "status": "delivered",
-      "sent_at": "2025-01-10T08:00:00Z",
-      "delivered_at": "2025-01-10T08:00:05Z",
-      "driver": "twilio"
-    }
-  ],
-  "otp_attempts": [
-    {
-      "phone": "+1-555-1234",
-      "status": "verified",
-      "created_at": "2025-01-05T12:00:00Z",
-      "verified_at": "2025-01-05T12:01:30Z"
-    }
-  ],
+  "generated_at": "2026-04-17T09:15:00+00:00",
+  "subject": {
+    "type": "Botble\\Ecommerce\\Models\\Customer",
+    "id": 42
+  },
   "consents": [
+    { "channel": "transactional", "opted_in": true, "opted_in_at": "2025-03-10T08:00:00Z", "source": "checkout" },
+    { "channel": "marketing", "opted_in": false, "opted_out_at": "2025-11-01T14:22:00Z", "source": "sms_stop_reply" }
+  ],
+  "delivery_logs": [
     {
-      "phone": "+1-555-1234",
-      "status": "opted_in",
-      "changed_at": "2025-01-01T00:00:00Z",
-      "changed_by": "customer"
+      "event": "order_placed",
+      "phone": "+12025550001",
+      "driver": "twilio",
+      "status": "delivered",
+      "body": "Hi John, your order ORD-10042 has been placed…",
+      "sent_at": "2025-12-01T08:00:02Z",
+      "delivered_at": "2025-12-01T08:00:08Z"
+    }
+  ],
+  "otp_history": [
+    {
+      "purpose": "checkout",
+      "status": "verified",
+      "attempt_count": 1,
+      "created_at": "2025-12-01T07:58:00Z",
+      "verified_at": "2025-12-01T07:58:42Z"
     }
   ]
 }
 ```
 
-**Rate limit**: Customers can request an export once per 30 days.
+::: info Codes never exported
+The `body` field in delivery logs includes rendered template text that may contain `{otp_code}` substitution. However, the plugin redacts the code before writing to the log (stores only the hashed code in `smsg_otps`). The export pulls the log body as-is.
+:::
 
-## Admin data export
+### Delete customer SMS data
 
-Admins can export SMS data for multiple customers in **Admin → SMS Gateways → Delivery Logs → Export**:
+```
+POST /account/sms-preferences/delete
+```
 
-1. Filter by phone number, date range, or status
-2. Click **Export**
-3. Choose format: CSV or JSON
-4. Download the file
+Cascade-deletes every `smsg_*` row for the authenticated customer:
 
-## Customer data erasure (right to be forgotten)
+- All delivery logs
+- All OTP records
+- All consent rows
+- Webhook send history for that recipient
 
-### Self-service erasure
+Keeps a single anonymised audit stub (`source=gdpr_delete`) with no personal data so compliance auditors can verify the request was processed. Returns a JSON receipt with deleted row counts.
 
-Customers can erase their own data in **Account → Privacy → Erase my data**:
+```json
+{
+  "success": true,
+  "deleted": {
+    "delivery_logs": 47,
+    "otps": 12,
+    "consents": 3
+  },
+  "audit_stub_id": "01JXYZ..."
+}
+```
 
-1. Customer logs in
-2. Goes to Privacy settings
-3. Clicks **Erase all my SMS data**
-4. Confirms the action (irreversible)
+### Update customer preferences
 
-This deletes:
-- All SMS logs for this customer's phone
-- All OTP attempts for this phone
-- All consent records for this phone
-- Webhook logs (if any)
+```
+POST /account/sms-preferences/update
+```
 
-The deletion is **permanent and cannot be undone**.
+Toggles per-channel opt-in (transactional / OTP / marketing) from the customer account's **SMS Preferences** widget. Mirrors the STOP/START reply flow — no SMS is sent to confirm.
 
-### Admin-initiated erasure
+## Admin per-subject erasure
 
-Admins with `sms.consents.manage` permission can erase a customer's SMS data:
+For subjects that are not the authenticated customer (vendors, agents, job candidates, hotel guests, car customers), use the artisan command:
 
-1. Go to **Admin → SMS Gateways → Consents**
-2. Find the phone number
-3. Click **Erase all data for this phone**
-4. Confirm (irreversible)
+```bash
+php artisan sms:purge-subject "Botble\Marketplace\Models\Store" 15
+php artisan sms:purge-subject "Botble\Ecommerce\Models\Customer" 42
+```
 
-This erases the same data as self-service erasure.
+**Arguments:**
 
-![Erasure confirmation dialog](./images/sms-gdpr-erase.png)
+- `subject_type` — Fully-qualified model class (e.g. `Botble\\Ecommerce\\Models\\Customer`)
+- `subject_id` — Primary key of the subject row
 
-## Audit trail retention
+Deletes rows from `smsg_delivery_logs`, `smsg_otps`, and `smsg_consents` matching the `(recipient_type, recipient_id)` or `(subject_type, subject_id)` pair. Output example:
 
-After customer data is erased, we retain:
+```
+[sms:purge-subject] Erased subject Botble\Marketplace\Models\Store#15: 23 log(s), 4 OTP(s), 3 consent(s).
+```
 
-- **Webhook logs**: "SMS was sent to +1-555-1234 and delivered" (no body text or personal details)
-- **Summary counts**: "100 SMS sent in 2024" (no individual records)
+## Global log purge
 
-This allows compliance auditing without retaining personal data.
+Retire logs older than the configured retention window:
+
+```bash
+php artisan sms:purge --days=90   # default
+php artisan sms:purge --days=30   # stricter
+```
+
+Schedule in `app/Console/Kernel.php` for automatic nightly enforcement — see [Artisan Commands](./commands.md).
+
+## Customer account widget
+
+When the `ecommerce` plugin is active, the **SMS Preferences** widget injects into the customer account page automatically (via form macros — no theme edit). Customers can:
+
+- Toggle per-channel consent
+- Trigger the export endpoint (downloads JSON)
+- Trigger the delete endpoint (cascade erasure + confirmation)
+
+The widget honours the site language and routes to the three endpoints above.
 
 ## Compliance checkpoints
 
 ### GDPR (Europe)
 
-- ✓ Customer can request export (Article 15)
-- ✓ Customer can request erasure (Article 17)
-- ✓ 30-day response deadline (our exports are immediate)
-- ✓ No non-consensual SMS (use Consent/STOP-START)
-- ✓ Data breach notification (if applicable, use webhooks to log)
+- Article 15 (access): `GET /account/sms-preferences/export`
+- Article 17 (erasure): `POST /account/sms-preferences/delete` + `sms:purge-subject`
+- Article 21 (objection): STOP keyword → `smsg_consents.opted_out_at`
+- Consent proof: `smsg_consents.source` + `ip_address` + `user_agent` captured on every opt-in
 
 ### CCPA (California)
 
-- ✓ Customer right to know (export)
-- ✓ Customer right to delete (erasure)
-- ✓ Customer right to opt-out (STOP/START)
-- ✓ Non-discrimination (we don't penalize deletes)
+- Right to know: export endpoint
+- Right to delete: delete endpoint
+- Right to opt-out: STOP/START reply or SMS Preferences widget
 
-### PIPEDA (Canada)
+## Sub-processor documentation
 
-- ✓ Consent management (Consent/STOP-START)
-- ✓ Access to personal info (export)
-- ✓ Right to erasure (erase)
-- ✓ Breach notification (via webhooks)
+SMS Gateways acts as a **processor** of customer phone numbers and message bodies. Your SMS providers are **sub-processors**. Document the chain in your privacy policy:
 
-## Data retention policy
-
-**Default**: SMS logs are retained for **90 days**, then auto-deleted via `sms:purge`.
-
-**Customization**: Modify in **Admin → Settings → SMS Gateways → Retention Days**.
-
-**Manual retention**: Before auto-purge, export logs to a data warehouse for long-term storage (for billing/audit).
-
-## Per-subject data management
-
-Different integrations may have different data retention needs:
-
-- **Ecommerce orders**: Retain SMS logs as long as order exists
-- **OTP verification**: Purge OTP attempts after 30 days
-- **Marketing campaigns**: Purge after 90 days if no purchase
-
-Use `sms:purge-subject` command to selectively delete SMS for one integration:
-
-```bash
-php artisan sms:purge-subject ecommerce --force
-```
-
-This does NOT erase per-phone data; it only removes logs for that subject.
-
-## Compliance documentation
-
-To generate GDPR/CCPA documentation:
-
-1. **Data Inventory**: Run `php artisan sms:list-drivers` to document active drivers and providers
-2. **Privacy Impact Assessment**: Document consent mechanisms in each integration (see integration pages)
-3. **Data Processing Agreement (DPA)**: With your SMS providers (Twilio, Vonage, etc.) — not managed by this plugin
-4. **Breach Notification**: Configure webhooks to log all delivery failures and opt-outs
-
-## Data processor agreements
-
-SMS Gateways acts as a **processor** (not controller) of SMS data. Your SMS providers (Twilio, Vonage, AWS, etc.) are **sub-processors**.
-
-For GDPR compliance, ensure:
-
-1. You have a **Data Processing Agreement** with each SMS provider
-2. You document the **data flow** (Botble → Provider → Carrier → Phone)
-3. You have a **Data Retention Policy** (configured in this plugin)
-4. You enable **customer erasure** (use the right-to-be-forgotten flows)
-
-Links to provider DPAs:
-
-- [Twilio Data Processing Agreement](https://www.twilio.com/en-us/legal/data-processing-agreement)
+- [Twilio DPA](https://www.twilio.com/en-us/legal/data-processing-agreement)
 - [Vonage DPA](https://www.vonage.com/communications/legal/data-processing-agreement/)
 - [AWS SNS DPA](https://aws.amazon.com/service-terms/)
+- [Plivo DPA](https://www.plivo.com/legal/data-processing-addendum/)
+- [Msg91 privacy](https://msg91.com/privacy)
+- [Fast2SMS terms](https://www.fast2sms.com/dashboard/terms)
 
 ## Next step
 
-See [Troubleshooting](../troubleshooting.md) if you have compliance questions or technical issues.
+See [Consent & STOP/START](./consent.md) for opt-in/opt-out mechanics, or [Troubleshooting](../troubleshooting.md) for compliance-related issues.

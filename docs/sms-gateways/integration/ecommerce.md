@@ -38,7 +38,7 @@ If using customer phone verification:
 
 1. Go to **Admin → Settings → SMS Gateways**
 2. Set **OTP Code Length** (default: 6)
-3. Set **OTP TTL** (default: 600 seconds)
+3. Set **OTP TTL** (default: 300 seconds / 5 minutes)
 4. Set **Max OTP Attempts** (default: 3)
 5. Click **Save**
 
@@ -52,7 +52,7 @@ Available in `order.confirmation` template:
 - `{customer_name}` — customer full name
 - `{total}` — order total (e.g., "$99.99")
 - `{items_count}` — number of items
-- `{brand}` — your site name
+- `{shop_name}` — your site name
 
 Example:
 
@@ -68,7 +68,7 @@ Available in `order.status_change` template:
 - `{customer_name}`
 - `{old_status}` — previous status (e.g., "pending")
 - `{new_status}` — new status (e.g., "processing")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -84,7 +84,7 @@ Available in `order.shipped` template:
 - `{customer_name}`
 - `{tracking_number}` — carrier tracking URL or number
 - `{carrier}` — carrier name (e.g., "FedEx")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -100,7 +100,7 @@ Available in `order.refunded` template:
 - `{customer_name}`
 - `{refund_amount}` — refund total
 - `{reason}` — refund reason (if provided)
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -193,7 +193,7 @@ See [Outbound Webhooks](../usage/outbound-webhooks.md) for verification and exam
 ### OTP verification always fails
 
 1. Ensure OTP template is active and not edited to wrong length
-2. Check OTP TTL is set correctly (default 600 seconds = 10 minutes)
+2. Check OTP TTL is set correctly (default 300 seconds = 5 minutes)
 3. Try generating a new code (old code may have expired)
 
 ## Next step

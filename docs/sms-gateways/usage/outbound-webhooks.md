@@ -136,13 +136,7 @@ payload = json.loads(raw_body)
 
 Your endpoint should respond with HTTP **200 OK** within 10 seconds. Response body is ignored.
 
-If your endpoint returns any non-2xx status or doesn't respond in time, SMS Gateways will retry up to 3 times with exponential backoff:
-
-- 1st retry: 30 seconds
-- 2nd retry: 2 minutes
-- 3rd retry: 30 minutes
-
-After 3 failed attempts, the event is marked as "delivery failed" in the webhook log (viewable in **Admin → SMS Gateways → Webhooks → Log**).
+If your endpoint returns any non-2xx status or doesn't respond in time, `DispatchSmsWebhookJob` will retry up to 3 times with a 60-second backoff between attempts. After 3 failed attempts, the job is dead-lettered to `failed_jobs` — inspect with `php artisan queue:failed` or restart with `php artisan queue:retry all`.
 
 ## Testing webhooks
 

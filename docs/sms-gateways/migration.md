@@ -1,137 +1,123 @@
 ---
 title: Migration from FOB SMS Gateway
-description: Migrate SMS logs from legacy FOB SMS Gateway to SMS Gateways.
+description: Import FOB SMS Gateway logs, OTPs, and settings into SMS Gateways.
 ---
 
 # Migration from FOB SMS Gateway
 
-If you're upgrading from FOB SMS Gateway to SMS Gateways, use the migration command to import your existing SMS logs.
+SMS Gateways can run alongside `friendsofbotble/fob-sms-gateway` without conflict (see [Coexistence](#coexistence) below). When you're ready to retire FOB, import its data with the `sms:import-fob` artisan command.
 
-## Overview
+## What gets migrated
 
-The migration command:
-
-1. Reads your `fob_sms_logs` table (if it exists)
-2. Maps columns to SMS Gateways schema
-3. Imports SMS logs, OTP records, and consent data
-4. Skips duplicates (based on provider message ID)
-
-## Run the migration
-
-```bash
-php artisan sms:import-fob
-```
-
-This command runs in **dry-run mode** by default — it shows what would be imported without making changes.
-
-## Options
-
-- `--force` — Actually import (skip dry-run mode)
-- `--driver=vonage` — Reassign all imported SMS to a different driver (optional)
-- `--limit=1000` — Import only the first 1000 SMS (default: all)
-
-## Examples
-
-### Preview what will be imported
-
-```bash
-php artisan sms:import-fob
-```
-
-Output:
-
-```
-Found 2,345 SMS logs to import
-Found 123 OTP records
-Found 45 consent records
-
-Preview mode: No changes made. Run with --force to import.
-```
-
-### Actually import
-
-```bash
-php artisan sms:import-fob --force
-```
-
-### Import and reassign all SMS to Vonage
-
-```bash
-php artisan sms:import-fob --force --driver=vonage
-```
-
-This is useful if you want to change providers after importing.
-
-### Import only the last 1000 SMS
-
-```bash
-php artisan sms:import-fob --force --limit=1000
-```
-
-## What gets imported
-
-### SMS Logs
-
-From `fob_sms_logs`:
-
-| FOB column | Maps to | Notes |
+| Source | → | Destination |
 |---|---|---|
-| `id` | `id` | Preserved as UUID |
-| `phone` | `to` | Recipient phone |
-| `message` | `body` | SMS text |
-| `status` | `status` | queued/sent/delivered/failed |
-| `driver` | `driver` | SMS provider (twilio, vonage, etc.) |
-| `provider_message_id` | `provider_message_id` | Used for deduplication |
-| `created_at` | `created_at` | Timestamp |
-| `updated_at` | `updated_at` | Timestamp |
+| `fob_sms_logs` | → | `smsg_delivery_logs` (driver/status mapped) |
+| `fob_otps` | → | `smsg_otps` (codes re-hashed with SHA-256) |
+| `fob_sms_*` setting rows | → | `smsg_*` setting rows (credentials re-encrypted) |
 
-### OTP Records
+The command is **idempotent** — rows already present in the destination tables are skipped, so it's safe to re-run.
 
-From `fob_otp_attempts`:
+## Dry run (recommended first step)
 
-| FOB column | Maps to |
-|---|---|
-| `id` | `id` |
-| `phone` | `phone` |
-| `code` | `code` |
-| `status` | `status` (pending/verified/expired) |
-| `created_at` | `created_at` |
-| `verified_at` | `verified_at` |
+Preview how many rows will move without writing anything:
 
-### Consent Data
+```bash
+php artisan sms:import-fob --dry-run
+```
 
-From `fob_sms_consents`:
+Sample output:
 
-| FOB column | Maps to |
-|---|---|
-| `phone` | `phone` |
-| `status` | `status` (opted_in/opted_out) |
-| `changed_at` | `changed_at` |
+```
+[DRY-RUN] No rows will be written.
++---------------------------------------+-----------------+
+| Resource                              | Rows to migrate |
++---------------------------------------+-----------------+
+| fob_sms_logs → smsg_delivery_logs     | 2,345           |
+| fob_otps → smsg_otps                  | 123             |
+| fob_sms_* settings → smsg_* settings  | 14              |
++---------------------------------------+-----------------+
+Dry-run complete. Re-run without --dry-run to apply.
+```
 
-## Deduplication
+## Apply the import
 
-The command checks for existing SMS by `provider_message_id`. If found, the SMS is skipped (not re-imported).
+```bash
+php artisan sms:import-fob
+```
 
-This prevents duplicate logs if you run the migration multiple times.
+Run it on a production host only after:
+
+1. Backing up the database
+2. Activating SMS Gateways (its migrations must have run)
+3. Reviewing the dry-run diff
+
+After success the command reports the migrated counts:
+
+```
+Import complete: 2345 logs, 123 OTPs, 14 settings migrated.
+```
+
+## Drop FOB tables after import
+
+Once you've verified the destination data, pass `--delete-after` on a subsequent run (or combine with the first pass) to drop the FOB source tables and clear `fob_sms_*` setting rows:
+
+```bash
+php artisan sms:import-fob --delete-after
+```
+
+::: warning
+`--delete-after` is irreversible. Only run it after verifying the migrated data in **Admin → SMS Gateways → Delivery Logs** and **Admin → Settings → SMS Gateways**.
+:::
+
+## Status mapping
+
+FOB status strings are normalised to SMS Gateways delivery status values:
+
+| FOB status | → | SMS Gateways |
+|---|---|---|
+| `success` / `sent` | → | `sent` |
+| `delivered` | → | `delivered` |
+| `failed` | → | `failed` |
+| `rejected` | → | `rejected` |
+
+Unmapped statuses are logged and imported as `failed`.
+
+## OTP re-hashing
+
+FOB stored OTP tokens in plaintext or with a different hash. The importer re-hashes every code with SHA-256 (our standard) so verification continues to work with existing unverified attempts — though any in-flight codes will need to be re-requested by the user.
+
+## Credential re-encryption
+
+FOB driver credentials stored under `fob_sms_*` settings are decrypted with FOB's encryption key and re-encrypted with the current Laravel `APP_KEY` before being saved under `smsg_*` keys. Keep your `APP_KEY` stable between the two plugins — rotating keys mid-migration will orphan existing cipher text.
+
+## Coexistence
+
+Until you run the importer, both plugins can stay active on the same host. The `HostSmsConflictGuard` service engages on boot:
+
+- Detects FOB's `SmsManager` binding
+- Defers the `SendRegistrationOtpListener` so registration OTPs are not double-sent
+
+This guard is automatic — no configuration needed. Once FOB is uninstalled or its tables dropped, the guard disengages and SMS Gateways takes over the registration OTP listener.
 
 ## Rollback
 
-If something goes wrong, you can rollback:
+If the import produced bad data:
 
-1. Delete imported records from the `sms_logs`, `otp_attempts`, and `sms_consents` tables
-2. Or restore from a backup and re-run the migration
+1. Restore the database from your pre-migration backup, **or**
+2. Run `php artisan sms:purge --days=0` to wipe all `smsg_delivery_logs`, then delete rows from `smsg_otps` and `smsg_consents` as needed
+3. Fix the underlying issue and re-run `sms:import-fob`
 
-SMS Gateways does not delete FOB tables, so your original data is preserved.
+The importer's idempotency means a second run is safe — it won't re-create rows that already exist.
 
 ## Verify the import
 
 After importing, verify in the admin panel:
 
-1. Go to **Admin → SMS Gateways → Delivery Logs**
-2. Check the log count and date range
-3. Filter by different statuses and drivers
-4. Export a sample to verify data accuracy
+1. **Admin → SMS Gateways → Delivery Logs** — check row count and filter by driver
+2. **Admin → SMS Gateways → OTP History** — confirm OTP rows are present (codes are hashed)
+3. **Admin → Settings → SMS Gateways** — verify driver credentials are populated
+4. Send a **Test SMS** to confirm credentials decrypt correctly under the new encryption key
 
 ## Next step
 
-See [Troubleshooting](./troubleshooting.md) if you encounter issues during migration.
+See [Troubleshooting](./troubleshooting.md) if a migration step fails, or [Configuration](./configuration.md) to adjust settings after the cutover.

@@ -43,7 +43,7 @@ Available in `hotel.booking_confirmed` template:
 - `{check_out}` — check-out date
 - `{nights}` — number of nights
 - `{total}` — total cost
-- `{brand}` — booking platform name
+- `{shop_name}` — booking platform name
 
 Example:
 
@@ -60,7 +60,7 @@ Available in `hotel.booking_status` template:
 - `{booking_id}`
 - `{old_status}` — previous status (e.g., "pending")
 - `{new_status}` — new status (e.g., "confirmed", "checked_in")
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -77,7 +77,7 @@ Available in `hotel.checkin_reminder` template:
 - `{check_in}` — arrival date
 - `{booking_id}`
 - `{room_type}`
-- `{brand}`
+- `{shop_name}`
 
 Example:
 
@@ -96,7 +96,7 @@ Available in `hotel.checkin_instructions` template:
 - `{check_in_time}` — check-in time (HH:MM)
 - `{check_out}` — checkout date
 - `{address}` — hotel address
-- `{brand}`
+- `{shop_name}`
 
 Example:
 

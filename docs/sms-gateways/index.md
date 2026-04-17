@@ -1,6 +1,6 @@
 ---
 title: SMS Gateways for Botble
-description: Multi-provider SMS plugin for Botble CMS — OTP verification, SMS templates, delivery logs, opt-in/STOP handling, outbound webhooks, and 7 pre-built drivers (Twilio, Vonage, AWS SNS, Plivo, Sepay, Fast2SMS, BulkSMSBD).
+description: Multi-provider SMS plugin for Botble CMS — OTP verification, SMS templates, delivery logs, opt-in/STOP handling, outbound webhooks, and 7 pre-built drivers (Twilio, Vonage/Nexmo, AWS SNS, Plivo, Msg91, Fast2SMS, BulkSMSBD).
 ---
 
 # SMS Gateways
@@ -13,7 +13,7 @@ The **SMS Gateways** plugin lets you send SMS notifications from any Botble host
 
 ## Highlights
 
-- **7 pre-built drivers** — Twilio, Vonage, AWS SNS, Plivo, Sepay, Fast2SMS (India), BulkSMSBD (Bangladesh)
+- **7 pre-built drivers** — Twilio, Vonage (formerly Nexmo), AWS SNS, Plivo, Msg91 (India), Fast2SMS (India), BulkSMSBD (Bangladesh)
 - **Flexible OTP delivery** — Phone verification, TTL/attempt limits, per-phone rate limiting
 - **SMS templates** — Admin-editable templates with variable injection, GSM-7 & UCS-2 preview
 - **STOP/START consent** — Auto-opt-in/opt-out, audit logs, per-subject erasure
@@ -39,7 +39,7 @@ The **SMS Gateways** plugin lets you send SMS notifications from any Botble host
 ## How it works
 
 1. Admin picks one or more SMS drivers in **Admin → Settings → SMS Gateways**.
-2. Host plugins (ecommerce, marketplace, etc.) trigger SMS via `SmsGateway::send()` or event listeners.
+2. Host plugins (ecommerce, marketplace, etc.) fire their own events; SMS Gateways's `HandleHostEventListener` resolves the matching subject + template and calls `Sms::send()` internally.
 3. SMS is queued and delivered through the selected driver(s).
 4. Admin reviews delivery logs in **Admin → SMS Gateways → Delivery Logs**.
 5. Optional: Outgoing webhooks notify your backend of delivery status.

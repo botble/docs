@@ -40,10 +40,10 @@ Each SMS provider has its own credentials format:
 | Driver | What you need |
 |--------|---|
 | **Twilio** | Account SID, Auth Token |
-| **Vonage** | API Key, API Secret |
+| **Vonage** (formerly Nexmo) | API Key, API Secret |
 | **AWS SNS** | Access Key, Secret Key, region |
 | **Plivo** | Auth ID, Auth Token |
-| **Sepay** | API Token, phone number |
+| **Msg91** | Auth Key, Flow ID, Sender ID |
 | **Fast2SMS** | API Authorization token |
 | **BulkSMSBD** | API Token, sender ID |
 

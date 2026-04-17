@@ -13,7 +13,7 @@ Initial public release.
 
 ### Features
 
-- **7 built-in SMS drivers**: Twilio, Vonage, AWS SNS, Plivo, Sepay, Fast2SMS, BulkSMSBD
+- **7 built-in SMS drivers**: Twilio, Vonage (formerly Nexmo), AWS SNS, Plivo, Msg91, Fast2SMS, BulkSMSBD
 - **OTP verification**: Phone verification with TTL, rate limiting, and attempt tracking
 - **SMS templates**: Admin-editable templates with variable injection and character preview
 - **Delivery logs**: Comprehensive SMS tracking with filters, retry, and export
@@ -28,8 +28,8 @@ Initial public release.
 
 ### Known limitations
 
-- Fast2SMS requires DLT template registration (India regulation)
-- BulkSMSBD and Sepay support only domestic SMS (Bangladesh and Vietnam respectively)
+- Fast2SMS and Msg91 require DLT template registration (India regulation)
+- BulkSMSBD supports only domestic SMS (Bangladesh)
 - AWS SNS does not support delivery confirmation (marked as "Sent" only)
 - Queue workers only supported on VPS/dedicated servers (not shared hosting)
 

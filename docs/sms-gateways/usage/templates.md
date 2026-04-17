@@ -29,11 +29,11 @@ Each template can inject dynamic data using `{variable_name}` syntax. Available 
 - `{order_id}` — the order number
 - `{customer_name}` — customer full name
 - `{status}` — new status (e.g., "Processing", "Shipped")
-- `{brand}` — your site name
+- `{shop_name}` — your site name
 
 Example:
 ```
-Hi {customer_name}, your order #{order_id} is now {status}. Track it at {brand}.
+Hi {customer_name}, your order #{order_id} is now {status}. Track it at {shop_name}.
 ```
 
 ### Vendor Alert (marketplace)

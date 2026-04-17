@@ -9,18 +9,29 @@ Control which admins can manage SMS settings, view logs, and handle opt-outs.
 
 ## Available permissions
 
-The plugin registers these permissions in **Admin → Settings → Roles & Permissions → SMS Gateways**:
+The plugin registers these permission flags in **Admin → Settings → Roles & Permissions → SMS Gateways**:
 
-| Permission | Effect |
+| Flag | Effect |
 |---|---|
-| `sms.logs.view` | View delivery logs and retry failed SMS |
-| `sms.logs.delete` | Delete log entries |
-| `sms.templates.manage` | Create, edit, delete SMS templates |
-| `sms.consents.manage` | View opt-out audit, manually opt-in/out |
-| `sms.consents.export` | Export consent records for compliance |
-| `sms.settings.edit` | Configure drivers, credentials, OTP defaults, webhook endpoints |
-| `sms.webhooks.manage` | Add/edit/delete outbound webhooks |
-| `sms.license.edit` | Activate/deactivate license |
+| `sms-gateways.index` | Access the SMS Gateways admin section (menu gate) |
+| `sms-gateways.logs.view` | View delivery logs |
+| `sms-gateways.logs.retry` | Manually retry failed sends |
+| `sms-gateways.templates.index` | View SMS templates |
+| `sms-gateways.templates.edit` | Edit template bodies |
+| `sms-gateways.templates.test-send` | Send a template preview to a phone |
+| `sms-gateways.consents.index` | View consent records |
+| `sms-gateways.consents.update` | Override opt-in / opt-out status |
+| `sms-gateways.drivers.configure` | Enter driver credentials |
+| `sms-gateways.country-routes.index` | View country routing rules |
+| `sms-gateways.country-routes.create` | Add a new country route |
+| `sms-gateways.country-routes.edit` | Edit an existing country route |
+| `sms-gateways.country-routes.destroy` | Delete country routes |
+| `sms-gateways.webhooks.index` | View outbound webhooks |
+| `sms-gateways.webhooks.create` | Add a new webhook |
+| `sms-gateways.webhooks.edit` | Edit a webhook |
+| `sms-gateways.webhooks.destroy` | Delete a webhook |
+| `sms-gateways.settings.edit` | Edit plugin-wide settings (OTP, rate limits, license) |
+| `sms-gateways.test-send` | Use the Test SMS tool |
 
 ## Assign permissions to a role
 
@@ -36,19 +47,23 @@ The plugin registers these permissions in **Admin → Settings → Roles & Permi
 ### Customer Service Role
 Allow support staff to view logs and handle opt-outs:
 
-- ✓ `sms.logs.view`
-- ✓ `sms.consents.manage`
-- ✗ `sms.settings.edit` (prevent credential access)
-- ✗ `sms.license.edit` (prevent license changes)
+- ✓ `sms-gateways.index`
+- ✓ `sms-gateways.logs.view`
+- ✓ `sms-gateways.consents.index`
+- ✓ `sms-gateways.consents.update`
+- ✗ `sms-gateways.drivers.configure` (prevent credential access)
+- ✗ `sms-gateways.settings.edit`
 
 ### Marketing Manager Role
 Allow marketing to manage templates and see deliverability:
 
-- ✓ `sms.logs.view`
-- ✓ `sms.templates.manage`
-- ✓ `sms.consents.export`
-- ✗ `sms.settings.edit`
-- ✗ `sms.webhooks.manage`
+- ✓ `sms-gateways.index`
+- ✓ `sms-gateways.logs.view`
+- ✓ `sms-gateways.templates.index`
+- ✓ `sms-gateways.templates.edit`
+- ✓ `sms-gateways.templates.test-send`
+- ✗ `sms-gateways.drivers.configure`
+- ✗ `sms-gateways.webhooks.index`
 
 ### SMS Admin Role
 Full access for dedicated SMS administrator:
@@ -61,7 +76,7 @@ The **Super Admin** role has all permissions by default and cannot be restricted
 
 ## Edit permission enforcement
 
-When an admin without `sms.settings.edit` views **Admin → Settings → SMS Gateways**, they see:
+When an admin without `sms-gateways.settings.edit` views **Admin → Settings → SMS Gateways**, they see:
 
 - Credentials are hidden (asterisks)
 - All form inputs are read-only
@@ -72,14 +87,15 @@ When an admin without `sms.settings.edit` views **Admin → Settings → SMS Gat
 
 If an admin lacks all SMS permissions, the **SMS Gateways** menu item is hidden from the left sidebar.
 
-If they have any SMS permission (e.g., `sms.logs.view`), they see:
+If they have `sms-gateways.index`, they see:
 
 - **SMS Gateways** menu
-  - **Delivery Logs** (if `sms.logs.view`)
-  - **Templates** (if `sms.templates.manage`)
-  - **Consents** (if `sms.consents.manage`)
-  - **Webhooks** (if `sms.webhooks.manage`)
-  - **Settings** (read-only if not `sms.settings.edit`)
+  - **Delivery Logs** (if `sms-gateways.logs.view`)
+  - **Templates** (if `sms-gateways.templates.index`)
+  - **Consents** (if `sms-gateways.consents.index`)
+  - **Country Routes** (if `sms-gateways.country-routes.index`)
+  - **Webhooks** (if `sms-gateways.webhooks.index`)
+  - **Settings** (read-only if not `sms-gateways.settings.edit`)
 
 ## Audit logging
 

@@ -15,10 +15,10 @@ export default [
     text: 'Drivers',
     items: [
       { text: 'Twilio', link: '/sms-gateways/drivers/twilio' },
-      { text: 'Vonage', link: '/sms-gateways/drivers/vonage' },
+      { text: 'Vonage (formerly Nexmo)', link: '/sms-gateways/drivers/vonage' },
       { text: 'AWS SNS', link: '/sms-gateways/drivers/aws-sns' },
       { text: 'Plivo', link: '/sms-gateways/drivers/plivo' },
-      { text: 'Sepay (Vietnam)', link: '/sms-gateways/drivers/sepay' },
+      { text: 'Msg91 (India)', link: '/sms-gateways/drivers/msg91' },
       { text: 'Fast2SMS (India)', link: '/sms-gateways/drivers/fast2sms' },
       { text: 'BulkSMSBD (Bangladesh)', link: '/sms-gateways/drivers/bulksmsbd' },
     ],

@@ -1,226 +1,186 @@
 ---
 title: Hooks & Events
-description: SMS hooks for extending the plugin's behavior.
+description: Filter hooks, action hooks, and Laravel events emitted by SMS Gateways.
 ---
 
 # Hooks & Events
 
-Extend SMS Gateways by hooking into SMS lifecycle events.
+Extend SMS Gateways by hooking into dispatch, template rendering, and lifecycle events.
 
-## Available hooks
+## Filter hooks
 
-### sms_before_send
+### `smsg_driver_register`
 
-Fires before an SMS is sent. Use to modify the message or phone number.
+Register a third-party driver factory. Called once on application boot.
 
 ```php
-add_filter('sms_before_send', function (array $data) {
-    // $data = [
-    //     'phone' => '+1-555-1234',
-    //     'body' => 'Your order #123 is shipped',
-    //     'subject' => 'ecommerce',
-    //     'template_name' => 'order.shipped',
-    // ]
-    
-    // Modify phone or body
-    $data['body'] = strtoupper($data['body']);
-    
-    return $data;
+use Botble\SmsGateways\AbstractSmsDriver;
+use Illuminate\Contracts\Foundation\Application;
+
+add_filter('smsg_driver_register', function (array $drivers): array {
+    $drivers['my_provider'] = fn (Application $app) => new MyProviderDriver();
+
+    return $drivers;
 });
 ```
 
-**When it fires**: Just before SMS is queued
+**Signature:** `array $drivers → array`
+**Fires in:** `SmsGatewaysServiceProvider::boot()`
+**See also:** [Custom Driver](./custom-driver.md)
 
-**Use cases**:
-- Add branding to SMS text
-- Normalize phone numbers
-- Log SMS for audit purposes
+### `sms_before_send`
 
-### sms_after_send
-
-Fires after SMS is sent successfully.
+Inspect or rewrite the outbound message just before it hits the driver. Return `false` to cancel the send (the delivery log is flagged `rejected`).
 
 ```php
-add_filter('sms_after_send', function (array $data) {
-    // $data = [
-    //     'phone' => '+1-555-1234',
-    //     'body' => 'Your order #123 is shipped',
-    //     'status' => 'sent', // or 'failed'
-    //     'log_id' => 'uuid',
-    //     'provider_id' => 'msg_12345', // provider's message ID
-    //     'error' => null, // error message if failed
-    // ]
-    
-    // Log to external system
-    Log::info('SMS sent', ['data' => $data]);
-    
-    return $data;
-});
-```
+use Botble\SmsGateways\DTOs\SmsMessageRequest;
+use Botble\SmsGateways\Models\SmsDeliveryLog;
 
-**When it fires**: After SMS is sent (success or failure)
+add_filter('sms_before_send', function (SmsMessageRequest $request, SmsDeliveryLog $log) {
+    // Rewrite body
+    return new SmsMessageRequest(
+        phone: $request->phone,
+        body: '[BRAND] ' . $request->body,
+        driver: $request->driver,
+        event: $request->event,
+        senderId: $request->senderId,
+        metadata: $request->metadata,
+        recipient: $request->recipient,
+    );
 
-**Use cases**:
-- Log to external CRM
-- Update custom database tables
-- Trigger downstream processes
-
-### sms_template_variables
-
-Customize template variables before rendering.
-
-```php
-add_filter('sms_template_variables', function (array $variables, string $subject) {
-    if ($subject === 'ecommerce') {
-        $variables['custom_field'] = 'custom value';
-    }
-    
-    return $variables;
+    // ...or return false to cancel:
+    // return false;
 }, 10, 2);
 ```
 
-**When it fires**: When rendering SMS template variables
+**Signature:** `SmsMessageRequest $request, SmsDeliveryLog $log → SmsMessageRequest|false`
+**Fires in:** `DispatchSmsJob::handle()`, `SmsDispatcher`
 
-**Use cases**:
-- Add custom variables to templates
-- Override existing variables
+### `sms_template_variables`
 
-### smsg_driver_register
-
-Register a custom SMS driver.
+Add or override variables available to the `TemplateRenderer` when a host event resolves.
 
 ```php
-add_filter('smsg_driver_register', function () {
-    return new MyCustomDriver();
-});
+use Botble\SmsGateways\Supports\SmsSubjectDefinition;
+
+add_filter('sms_template_variables', function (array $vars, $event, SmsSubjectDefinition $def) {
+    if ($def->key === 'customer') {
+        $vars['loyalty_points'] = $event->customer->loyalty_points ?? 0;
+    }
+
+    return $vars;
+}, 10, 3);
 ```
 
-See [Custom Driver](./custom-driver.md) for details.
+**Signature:** `array $vars, object|null $event, SmsSubjectDefinition $def → array`
+**Fires in:** `HandleHostEventListener::buildVariables()`
 
-## Events (Laravel events)
+### `sms_resolve_recipient_{subject_key}`
 
-If you prefer Laravel events over hooks, use:
+Override recipient resolution for a subject. Useful when the host event doesn't expose the subject model directly.
 
 ```php
-use Botble\SmsGateways\Events\SmsSending;
-use Botble\SmsGateways\Events\SmsSent;
-
-// Listen to SmsSending event
-Event::listen(SmsSending::class, function (SmsSending $event) {
-    $event->sms; // SMS data
-    $event->preventDefault(); // Cancel SMS sending
-});
-
-// Listen to SmsSent event
-Event::listen(SmsSent::class, function (SmsSent $event) {
-    $event->log; // SMS log record
-    $event->result; // SmsResult DTO
-});
+add_filter('sms_resolve_recipient_customer', function ($recipient, $event, $def) {
+    return $recipient ?? $event->order?->customer;
+}, 10, 3);
 ```
 
-## OTP events
+**Signature:** `Model|null $recipient, object $event, SmsSubjectDefinition $def → Model|null`
+**Fires in:** `HandleHostEventListener::resolveRecipient()`
 
-### otp_before_verify
+## Action hooks
 
-Fires before OTP code is verified.
+### `sms_after_send`
+
+Fires after every dispatch attempt — success, failure, or rejection. Inspect the log and driver response for analytics, Slack alerts, or CRM sync.
 
 ```php
-add_filter('otp_before_verify', function (array $data) {
-    // $data = ['phone' => '+1-555-1234', 'code' => '123456']
-    return $data;
-});
+use Botble\SmsGateways\Models\SmsDeliveryLog;
+use Botble\SmsGateways\DTOs\SmsDriverResponse;
+
+add_action('sms_after_send', function (SmsDeliveryLog $log, SmsDriverResponse $response) {
+    if ($log->status === 'failed') {
+        Log::warning('SMS send failed', [
+            'event' => $log->event,
+            'driver' => $log->driver,
+            'phone' => $log->phone,
+            'error' => $response->errorMessage,
+        ]);
+    }
+}, 10, 2);
 ```
 
-### otp_after_verify
+**Signature:** `SmsDeliveryLog $log, SmsDriverResponse $response`
+**Fires in:** `DispatchSmsJob::handle()`, `SmsDispatcher`
 
-Fires after OTP is verified successfully.
+## Laravel events
 
-```php
-add_filter('otp_after_verify', function (array $data) {
-    // $data = ['phone' => '+1-555-1234', 'verified' => true]
-    return $data;
-});
-```
+The plugin dispatches standard Laravel events from `Botble\SmsGateways\Events` — listen with `Event::listen()` or an `EventServiceProvider` mapping.
 
-## Consent hooks
+| Event | Fires when |
+|---|---|
+| `SmsQueued` | Delivery log created, job queued |
+| `SmsSent` | Driver accepted the message |
+| `SmsDelivered` | Inbound webhook reports delivery |
+| `SmsFailed` | Driver rejected or threw |
+| `SmsOptedOut` | Inbound STOP/HELP reply parsed |
+| `OtpRequested` | Generic login OTP requested |
+| `OtpCheckoutRequested` | Checkout OTP requested |
+| `OtpOrderTrackingRequested` | Order-tracking OTP requested |
+| `OtpJobApplyRequested` | Job-apply OTP requested |
+| `OtpCarBookingRequested` | Car-booking OTP requested |
+| `OtpHotelBookingRequested` | Hotel-booking OTP requested |
+| `OtpConsultRequested` | Real-estate consult OTP requested |
+| `OtpVerified` | OTP code verified successfully — triggers `otp.verified` webhook |
+| `OptOutReceived` | Legacy alias; use `SmsOptedOut` |
 
-### consent_changed
-
-Fires when a customer's SMS consent status changes.
-
-```php
-add_filter('consent_changed', function (array $data) {
-    // $data = [
-    //     'phone' => '+1-555-1234',
-    //     'status' => 'opted_in', // or 'opted_out'
-    //     'reason' => 'inbound', // 'inbound', 'admin', 'integration'
-    // ]
-    
-    // Log to compliance system
-    Log::info('Consent changed', $data);
-    
-    return $data;
-});
-```
-
-## Webhook hooks
-
-### sms_webhook_payload
-
-Modify outbound webhook payload before sending.
+Example:
 
 ```php
-add_filter('sms_webhook_payload', function (array $payload) {
-    // $payload = [
-    //     'event' => 'sms.sent',
-    //     'sms_id' => 'uuid',
-    //     'to' => '+1-555-1234',
-    //     ...
-    // ]
-    
-    // Add custom fields
-    $payload['custom_field'] = 'custom value';
-    
-    return $payload;
+use Botble\SmsGateways\Events\OtpVerified;
+
+Event::listen(OtpVerified::class, function (OtpVerified $event) {
+    $event->phone;   // '+12025550001'
+    $event->purpose; // 'login' | 'checkout' | ...
+    $event->subject; // Customer | Vendor | Account model
 });
 ```
 
 ## Examples
 
-### Log SMS to Slack
+### Block SMS to a blacklist
 
 ```php
-add_filter('sms_after_send', function (array $data) {
-    if ($data['status'] === 'failed') {
-        Notification::send(auth()->user(), new SmsSendFailed($data));
-    }
-    return $data;
+add_filter('sms_before_send', function ($request) {
+    $blacklist = cache()->get('sms_blacklist', []);
+
+    return in_array($request->phone, $blacklist, true) ? false : $request;
 });
 ```
 
-### Sanitize phone numbers
+### Mirror all sends to Slack
 
 ```php
-add_filter('sms_before_send', function (array $data) {
-    // Remove all non-digits
-    $data['phone'] = preg_replace('/\D/', '', $data['phone']);
-    // Re-add country code if missing
-    if (! str_starts_with($data['phone'], '+')) {
-        $data['phone'] = '+1' . $data['phone'];
+add_action('sms_after_send', function ($log) {
+    if ($log->status === 'failed') {
+        Http::post(env('SLACK_WEBHOOK'), [
+            'text' => "SMS failed: {$log->event} → {$log->phone}: {$log->error_message}",
+        ]);
     }
-    return $data;
 });
 ```
 
-### Sync SMS logs to external system
+### Inject extra template variables
 
 ```php
-add_filter('sms_after_send', function (array $data) {
-    Http::post('https://analytics.example.com/sms', $data);
-    return $data;
-});
+add_filter('sms_template_variables', function (array $vars, $event, $def) {
+    $vars['support_phone'] = setting('support_phone', '+1-800-000-0000');
+    $vars['support_url'] = url('/support');
+
+    return $vars;
+}, 10, 3);
 ```
 
 ## Next step
 
-See [Webhook Consumer](./webhook-consumer.md) to handle inbound webhooks.
+See [Webhook Consumer](./webhook-consumer.md) to process outbound webhooks on the receiving end.

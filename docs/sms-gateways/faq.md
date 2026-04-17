@@ -49,19 +49,19 @@ See the [Drivers](./drivers/twilio.md) section for step-by-step setup per provid
 
 ### How long is the OTP code valid?
 
-Default: 600 seconds (10 minutes). Configure in **Admin → Settings → SMS Gateways → OTP TTL**.
+Default: 300 seconds (5 minutes). Configure in **Admin → Settings → SMS Gateways → OTP TTL**.
 
 ### Can customers resend OTP?
 
-Yes. They must wait the **Resend delay** (default 30 seconds) between requests, up to the **Per-phone rate limit** (default 5/hour).
+Yes, up to **10 requests per phone per hour** by default (`smsg_otp_max_phone_attempts_per_hour`). Exceeding the cap short-circuits the send and writes a `rejected` row to the delivery log.
 
-### What happens after 3 wrong OTP attempts?
+### What happens after 5 wrong OTP attempts?
 
-The phone is locked for 30 minutes. After 3 total lockouts, the customer must contact admin to unlock. Configure in **Max Attempts** setting.
+The code is marked exhausted and can't be reused. The customer must request a new OTP — the previous code is dead. Configure the cap via `smsg_otp_default_max_attempts` (default `5`).
 
 ### Can I customize the OTP message?
 
-Yes. Go to **Admin → SMS Gateways → Templates** and edit the OTP template. Use variables like `{code}`, `{minutes}`, `{brand}`.
+Yes. Go to **Admin → SMS Gateways → Templates** and edit the per-event templates (`otp_login`, `otp_checkout`, `otp_phone_verify`, etc.). Use variables like `{otp_code}`, `{otp_ttl_minutes}`, `{shop_name}`, `{customer_name}`.
 
 ## SMS Sending
 
@@ -161,7 +161,7 @@ Yes. See [Custom Driver](./developer/custom-driver.md) for implementation detail
 
 ### Can I hook into SMS sending events?
 
-Yes. See [Hooks & Events](./developer/hooks.md) for filters like `sms_before_send`, `sms_after_send`, etc.
+Yes. See [Hooks & Events](./developer/hooks.md) for filters (`smsg_driver_register`, `sms_before_send`, `sms_template_variables`) and Laravel events (`SmsSent`, `SmsDelivered`, `OtpVerified`, etc.).
 
 ### Can I migrate from another SMS plugin?
 

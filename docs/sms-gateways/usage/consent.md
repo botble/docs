@@ -113,7 +113,7 @@ The system simulates an inbound STOP and logs it. Check **Admin → SMS Gateways
 
 ### STOP not being recognized
 
-1. Check that your SMS driver supports inbound webhooks (Twilio, Vonage, Plivo do; Sepay, Fast2SMS, BulkSMSBD may not)
+1. Check that your SMS driver supports inbound webhooks (Twilio, Vonage/Nexmo, Plivo do; Msg91, Fast2SMS, BulkSMSBD do not)
 2. Verify the inbound webhook URL is set in **Admin → SMS Gateways → Settings**
 3. Test with a known phone number using the "Test Inbound" button
 4. Check **Delivery Logs** for any inbound webhook errors

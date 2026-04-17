@@ -24,10 +24,10 @@ Configure OTP defaults in **Admin → Settings → SMS Gateways**:
 | Setting | Default | Range |
 |---------|---------|-------|
 | **Code length** | 6 digits | 4–8 |
-| **TTL (time-to-live)** | 600 seconds | 60–3600 |
-| **Max attempts** | 3 wrong tries | 1–10 |
-| **Resend delay** | 30 seconds | 10–300 |
-| **Per-phone rate limit** | 5 requests/hour | 1–100 |
+| **TTL (time-to-live)** | 300 seconds (5 min) | 60–3600 |
+| **Max verify attempts** | 5 wrong tries | 1–10 |
+| **Per-phone requests/hour** | 10 | 1–100 |
+| **Global rate limit** | 60/min | 1–1000 |
 
 ## Per-integration customization
 
@@ -39,49 +39,41 @@ Each host integration (ecommerce, marketplace, etc.) can override these defaults
 
 ## OTP template
 
-The system sends OTP using a built-in template. Customize it in **Admin → SMS Gateways → Templates → OTP**:
+The system sends OTP using built-in templates (one per OTP event). Customize them in **Admin → SMS Gateways → Templates** — filter by `otp_login`, `otp_checkout`, `otp_phone_verify`, `otp_password_reset`, `otp_order_tracking`, `otp_job_apply`, `otp_car_booking`, `otp_hotel_booking`, or `otp_consult_request`:
 
 ```
-Your verification code is: {code}
+Your {shop_name} login code is: {otp_code}. Valid for {otp_ttl_minutes} minutes. Do not share this code.
 ```
 
-Available variables:
-- `{code}` — the 6-digit code
-- `{minutes}` — TTL in minutes (e.g., "10")
-- `{brand}` — your site name (from settings)
+Common variables:
+- `{otp_code}` — the generated code
+- `{otp_ttl_minutes}` — TTL in minutes (e.g., `5`)
+- `{shop_name}` — your site name (from settings)
+- `{customer_name}` — recipient's name when available
 
-Example customization:
-```
-{brand}: Your code is {code}. Valid for {minutes} minutes. Do not share.
-```
+Template rendering also supports `{if_present variable}...{endif}` conditional blocks for optional fields.
 
 ## Rate limiting
 
-The plugin enforces **per-phone limits** to prevent SMS flooding:
+The plugin enforces **per-phone limits** through `RateLimiter`:
 
-1. **Per-phone resend delay**: Customer must wait 30 seconds between "send code" clicks
-2. **Per-phone hourly cap**: Max 5 OTP requests per phone number per hour
-3. **Per-IP daily cap**: Max 50 OTP requests per IP per day (prevents automated attacks)
+1. **Per-phone hourly cap**: Max 10 OTP requests per phone number per hour (`smsg_otp_max_phone_attempts_per_hour`)
+2. **Per-recipient dispatch cap**: 5 SMS per phone per hour across all events (`smsg_per_recipient_per_hour`)
+3. **Global dispatch cap**: 60 SMS per minute plugin-wide (`smsg_global_per_minute`)
 
-If a user hits the rate limit, they see:
-```
-Too many attempts. Please wait 30 seconds before trying again.
-```
+Exceeding any limit short-circuits the send and writes a `rejected` row to the delivery log.
 
-## Lockout and unlock
+## Lockout
 
-After 3 wrong attempts (configurable), the phone is locked for **30 minutes**. The user sees:
-```
-Too many wrong codes. Try again in 30 minutes, or request a new code.
-```
+After 5 wrong verify attempts on the same code (configurable via `smsg_otp_default_max_attempts`), the code is exhausted. The user must request a new one — the previous code cannot be retried. Codes also expire after the TTL (default 5 minutes).
 
-Admin can manually unlock a phone in **Admin → SMS Gateways → OTP Attempts** (if licensed).
+## OTP storage
+
+OTP codes are stored as **SHA-256 hashes** — the plaintext code never persists. The hash is only compared during verification. A successful verification dispatches the `OtpVerified` event, which fires the `otp.verified` outbound webhook.
 
 ## OTP in delivery logs
 
-All OTP attempts appear in **Admin → SMS Gateways → Delivery Logs** with event `otp.queued`, `otp.sent`, `otp.delivered`, or `otp.failed`.
-
-Filter by "Event Type" = "OTP" to see only verification codes.
+OTP sends appear in **Admin → SMS Gateways → Delivery Logs** with event keys prefixed `otp_` (e.g. `otp_login`, `otp_checkout`, `otp_phone_verify`). Filter by event in the table filters to isolate OTP traffic.
 
 ## Troubleshooting
 
@@ -94,7 +86,7 @@ Filter by "Event Type" = "OTP" to see only verification codes.
 
 ### Customer can't re-request code
 
-If hitting rate limit, customer must wait the resend delay (default 30 seconds) or wait for TTL to expire to request a new code.
+If hitting the hourly cap (10 requests/hour by default), customer must wait until the window rolls forward. Adjust `smsg_otp_max_phone_attempts_per_hour` in settings for stricter or looser limits.
 
 ### OTP is arriving but integration doesn't accept it
 

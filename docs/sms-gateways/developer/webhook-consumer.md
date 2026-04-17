@@ -203,13 +203,7 @@ if (! hash_equals($expected, $signature)) {
 
 ## Webhook failure handling
 
-If your endpoint returns non-2xx or times out, SMS Gateways retries up to 3 times:
-
-- 1st retry: 30 seconds
-- 2nd retry: 2 minutes
-- 3rd retry: 30 minutes
-
-After 3 failures, the webhook is marked as failed in **Admin → SMS Gateways → Webhooks → Log**.
+If your endpoint returns non-2xx or times out, the dispatcher job (`DispatchSmsWebhookJob`) retries up to 3 times with a 60-second backoff between attempts. After 3 failures the job is dead-lettered to Laravel's `failed_jobs` table — inspect with `php artisan queue:failed`.
 
 ## Testing webhooks
 
