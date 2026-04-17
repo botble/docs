@@ -11,7 +11,6 @@ Track every SMS sent, its delivery status, and debug failed sends.
 
 Go to **Admin → SMS Gateways → Delivery Logs**.
 
-![Delivery logs list](./images/sms-logs-tab.png)
 
 ## Filter logs
 
@@ -43,7 +42,6 @@ Click a log entry to see:
 - **Error message**: Human-readable reason for failure
 - **Message ID**: Provider's tracking reference
 
-![Log detail view](./images/sms-log-detail.png)
 
 ## Retry failed SMS
 

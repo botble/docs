@@ -18,7 +18,6 @@ Step-by-step cPanel configuration for SMS Gateways.
 
 4. Click **Add New Cron Job**
 
-![cPanel cron job setup](./images/cpanel-cron.png)
 
 This runs Laravel's scheduler every minute, which executes:
 

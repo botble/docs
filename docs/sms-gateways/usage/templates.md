@@ -19,7 +19,6 @@ Admin-editable templates let you customize SMS messages sent from integrations w
 
 4. Click **Save**
 
-![Template editor](./images/sms-templates-form.png)
 
 ## Variables
 

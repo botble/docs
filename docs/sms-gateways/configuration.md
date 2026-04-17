@@ -21,7 +21,6 @@ Select one or more providers from the **Active Drivers** checkbox list. You can 
 | **Fast2SMS** | India, requires DLT approval | India-specific |
 | **BulkSMSBD** | Bangladesh | Bangladesh-specific |
 
-![Driver selection](./images/sms-drivers-tab.png)
 
 ## Step 2 — Enter driver credentials
 
@@ -45,7 +44,6 @@ Set these for phone verification across all integrations:
 | **Per-phone requests/hour** | 10 | Max OTP requests per phone per hour |
 | **Global rate limit** | 60/min | Plugin-wide send ceiling |
 
-![OTP settings](./images/sms-otp-tab.png)
 
 ## Step 4 — Subject toggles
 
@@ -75,7 +73,6 @@ Each webhook receives 6 event types:
 
 All webhooks are signed with HMAC-SHA256. See [Outbound Webhooks](./usage/outbound-webhooks.md) for payload format and verification.
 
-![Webhook management](./images/sms-webhooks-tab.png)
 
 ## Step 6 — Retention policy
 

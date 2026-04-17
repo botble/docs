@@ -19,7 +19,6 @@ Receive real-time notifications on SMS delivery status by configuring outbound w
 
 4. Click **Save**
 
-![Webhook configuration](./images/sms-webhooks-config.png)
 
 ## Webhook events
 

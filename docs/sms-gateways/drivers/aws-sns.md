@@ -19,7 +19,6 @@ Send SMS through Amazon SNS with tight integration for AWS-hosted applications.
      - **Secret Access Key**
 4. Attach policy `AmazonSNSFullAccess` to the user
 
-![AWS IAM access keys](./images/aws-iam-keys.png)
 
 ## Configure in Botble
 
@@ -33,7 +32,6 @@ Send SMS through Amazon SNS with tight integration for AWS-hosted applications.
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![AWS SNS configuration](./images/aws-sns-settings-tab.png)
 
 ## Enable SMS in your AWS region
 

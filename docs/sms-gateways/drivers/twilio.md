@@ -17,7 +17,6 @@ Send SMS through Twilio's REST API with worldwide coverage and reliable delivery
 4. Get a **Phone Number** from **Phone Numbers → Manage Active Numbers**
    - Twilio provides a test number, or you can buy one per country
 
-![Twilio console](./images/twilio-console.png)
 
 ## Configure in Botble
 
@@ -30,7 +29,6 @@ Send SMS through Twilio's REST API with worldwide coverage and reliable delivery
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![Twilio configuration](./images/twilio-settings-tab.png)
 
 ## Test the connection
 

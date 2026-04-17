@@ -108,7 +108,7 @@ php artisan sms:import-email-templates
 
 Make sure your server's crontab runs Laravel's scheduler every minute:
 
-```cron
+```bash
 * * * * * cd /path/to/botble && php artisan schedule:run >> /dev/null 2>&1
 ```
 

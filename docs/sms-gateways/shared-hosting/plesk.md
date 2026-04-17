@@ -20,7 +20,6 @@ Step-by-step Plesk configuration for SMS Gateways.
    - **Schedule**: `Every minute`
 5. Click **Add**
 
-![Plesk scheduled task](./images/plesk-scheduled-task.png)
 
 This runs Laravel's scheduler every minute, executing SMS cleanup and retry tasks.
 

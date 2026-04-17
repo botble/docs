@@ -47,7 +47,6 @@ Admin can view and modify consent in **Admin → SMS Gateways → Consents**:
 | **Opt-out** | Block SMS to this phone |
 | **Delete** | Remove consent record (resets to "unknown") |
 
-![Consent audit log](./images/sms-consents-tab.png)
 
 The log shows:
 - Phone number

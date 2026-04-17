@@ -18,7 +18,6 @@ Global reach, competitive rates for Asia and Europe, alphanumeric sender IDs whe
    - **API Secret**
 4. Optionally, buy a dedicated **Virtual Number** from **Numbers → Buy Numbers**
 
-![Vonage credentials](./images/vonage-credentials.png)
 
 ## Configure in Botble
 
@@ -31,7 +30,6 @@ Global reach, competitive rates for Asia and Europe, alphanumeric sender IDs whe
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![Vonage configuration](./images/vonage-settings-tab.png)
 
 ## Test the connection
 

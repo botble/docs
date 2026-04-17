@@ -15,7 +15,6 @@ Send SMS in Bangladesh through BulkSMSBD with local rates and sender ID registra
    - **API Token**
 4. Register your **Sender ID** in the BulkSMSBD portal (required by Bangladesh regulations)
 
-![BulkSMSBD API settings](./images/bulksmsbd-settings.png)
 
 ## Sender ID registration
 
@@ -39,7 +38,6 @@ Without a registered sender ID, SMS may be delayed or rejected.
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![BulkSMSBD configuration](./images/bulksmsbd-settings-tab.png)
 
 ## Test the connection
 

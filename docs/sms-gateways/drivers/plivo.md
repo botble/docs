@@ -16,7 +16,6 @@ Send SMS through Plivo with strong coverage in Asia and competitive internationa
    - **Auth Token**
 4. Optionally, buy a **Phone Number** from **Numbers → Buy Numbers** for a specific country
 
-![Plivo credentials](./images/plivo-credentials.png)
 
 ## Configure in Botble
 
@@ -29,7 +28,6 @@ Send SMS through Plivo with strong coverage in Asia and competitive internationa
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![Plivo configuration](./images/plivo-settings-tab.png)
 
 ## Test the connection
 

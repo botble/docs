@@ -17,7 +17,6 @@ The **SMS Gateways** plugin is a standard Botble CMS plugin. You can install it 
 6. Once uploaded, the plugin appears in the list with an **Activate** button.
 7. Click **Activate**.
 
-![SMS Gateways plugin activation](./images/sms-install-panel.png)
 
 ## Option B — Manual upload (SFTP / Git)
 

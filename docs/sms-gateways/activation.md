@@ -14,7 +14,6 @@ After installation, validate your CodeCanyon purchase to unlock full plugin feat
 3. Find **SMS Gateways** and click **License**
 4. Copy the **Purchase Code** (32-character string)
 
-![CodeCanyon purchase code](./images/activation-codecanyon.png)
 
 ## Step 2 — Activate in Botble
 
@@ -23,7 +22,6 @@ After installation, validate your CodeCanyon purchase to unlock full plugin feat
 3. Paste your purchase code in the **License** field
 4. Click **Verify License**
 
-![License verification form](./images/activation-form.png)
 
 Botble sends your purchase code to Envato's API to verify authenticity. This requires outbound HTTPS from your server to `api.envato.com`.
 

@@ -40,7 +40,6 @@ The plugin registers these permission flags in **Admin → Settings → Roles & 
 3. Check the SMS permission boxes you want to grant
 4. Click **Save**
 
-![Permission assignment](./images/sms-permissions-form.png)
 
 ## Common role configurations
 

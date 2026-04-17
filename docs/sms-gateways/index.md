@@ -9,8 +9,6 @@ Professional SMS delivery across e-commerce, marketplace, real estate, job board
 
 The **SMS Gateways** plugin lets you send SMS notifications from any Botble host plugin using multiple providers. One unified admin interface manages OTP verification, customer notifications, STOP/STOP handling, and delivery logs — with optional webhooks for downstream systems.
 
-![SMS delivery overview](./images/sms-overview.png)
-
 ## Highlights
 
 - **7 pre-built drivers** — Twilio, Vonage (formerly Nexmo), AWS SNS, Plivo, Msg91 (India), Fast2SMS (India), BulkSMSBD (Bangladesh)

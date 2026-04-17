@@ -16,7 +16,6 @@ Send SMS in India (and internationally where enabled) through Msg91's DLT-compli
 4. Copy the **Flow ID** from the flow detail screen.
 5. Configure your **DLT-registered Sender ID** under **Sender ID Management** (6 characters, all caps).
 
-![Msg91 console](./images/msg91-credentials.png)
 
 ## DLT registration (required for India)
 
@@ -41,7 +40,6 @@ Msg91's UI walks you through DLT onboarding if your account is new.
 4. Click **Test SMS** to verify.
 5. Click **Save**.
 
-![Msg91 configuration](./images/msg91-settings-tab.png)
 
 ## How body rendering works
 

@@ -15,7 +15,6 @@ Send SMS in India through Fast2SMS with DLT registration and competitive rates.
    - **Authorization Token**
 4. Register your **Sender ID** and **Templates** with DLT (India's Distributed Ledger Technology system)
 
-![Fast2SMS API credentials](./images/fast2sms-credentials.png)
 
 ## DLT registration (required for India)
 
@@ -44,7 +43,6 @@ Fast2SMS provides templates, but you must register them with TRAI first.
 4. Click **Test SMS** to verify credentials
 5. Click **Save**
 
-![Fast2SMS configuration](./images/fast2sms-settings-tab.png)
 
 ## SMS costs
 
