@@ -48,7 +48,7 @@ npm install -g expo-cli
 ### Step 5: Configure Your App
 
 1. Open the `.env` file and update your settings:
-   ```env
+   ```txt
    # Your website URL
    API_BASE_URL=https://your-website.com
    API_KEY=your-api-key

@@ -53,7 +53,7 @@ The app ships with 29 languages already included and registered — no setup nee
 ### How do I change the app colors?
 1. Open your `.env` file
 2. Add color settings (hex values without #):
-   ```env
+   ```txt
    PRIMARY_COLOR=FF0000
    PRIMARY_DARK_COLOR=CC0000
    ```

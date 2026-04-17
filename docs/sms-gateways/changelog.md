@@ -7,7 +7,7 @@ description: SMS Gateways release history and version updates.
 
 All notable changes to SMS Gateways are documented here.
 
-## Version 1.0.0 — 2025-04-16
+## Version 1.0.0 — 2026-04-16
 
 Initial public release.
 

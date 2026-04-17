@@ -45,7 +45,7 @@ Image.asset('assets/images/logo.png', width: 200) // Change 200 to your desired 
 The splash screen uses `AppColors.primary` which is configurable via `.env`:
 
 1. **Update your `.env` file**:
-   ```env
+   ```txt
    # Primary Color - used for splash screen background
    PRIMARY_COLOR=FFB800
    ```

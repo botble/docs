@@ -37,7 +37,7 @@ Simple steps to get your MartFury app running on your computer.
    cp .env.example .env
    ```
 2. Open the `.env` file and update your settings:
-   ```env
+   ```txt
    # Your website URL
    API_BASE_URL=https://your-website.com
 

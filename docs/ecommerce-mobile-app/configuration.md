@@ -15,7 +15,7 @@ Examples:
 
 1. Open the `.env` file in your app folder
 2. Update these settings:
-   ```env
+   ```txt
    API_BASE_URL=https://your-website.com
    API_KEY=your-api-key
    APP_NAME=Your Store Name
