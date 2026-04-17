@@ -47,7 +47,7 @@ The plugin ships two nightly commands:
 
 Both are registered with Laravel's scheduler. Add the following cron entry on your server (once — it runs all scheduled Laravel tasks):
 
-```cron
+```bash
 * * * * * cd /var/www/site && php artisan schedule:run >> /dev/null 2>&1
 ```
 

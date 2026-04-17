@@ -38,7 +38,7 @@ Both retention and expiry run through Artisan commands registered with Laravel's
 
 The scheduler invokes them automatically as long as you have the standard Laravel cron entry in place:
 
-```cron
+```bash
 * * * * * cd /var/www/site && php artisan schedule:run >> /dev/null 2>&1
 ```
 

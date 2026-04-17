@@ -32,7 +32,7 @@ Leave a field empty to disable that webhook.
 | **Order Cancelled** | An order is cancelled |
 | **Shipping Status Updated** | Shipment status changes (e.g., shipped, delivered) |
 | **Payment Status Updated** | Payment is confirmed |
-| **Abandoned Cart** | Abandoned cart reminder fires (requires [cronjob setup](/shofy/cronjob)) |
+| **Abandoned Cart** | Abandoned cart reminder fires (requires [cronjob setup](https://docs.botble.com/shofy/cronjob.html)) |
 
 ## Testing Webhooks
 

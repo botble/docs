@@ -66,7 +66,7 @@ Never run `kyc:demo-seed` on a production site. It creates fake customers and su
 
 All scheduled commands run through Laravel's scheduler. You need a single cron entry on the server:
 
-```cron
+```bash
 * * * * * cd /var/www/site && php artisan schedule:run >> /dev/null 2>&1
 ```
 
