@@ -242,6 +242,17 @@ description: Common SMS Gateways issues and solutions.
 
 4. Use supervisor or systemd to keep queue worker running automatically
 
+## Provider-side errors in Delivery Logs
+
+**Symptom**: Delivery Log row is Failed, and the **Provider Response** panel shows a provider-specific `response_code` with an error string.
+
+These errors originate on the SMS provider's side — the plugin surfaces the raw response without interpreting it. Decode them in the driver-specific docs:
+
+- BulkSMSBD — [`1032` "IP not Whitelisted" and `1005` "is_masking on null"](./drivers/bulksmsbd.md#troubleshooting)
+- Other drivers — see the **Troubleshooting** section of the matching file in [drivers/](./drivers/)
+
+If the provider response references data that must exist on the provider's account (Sender ID, whitelisted IP, API token), fix it on the provider portal first — there is no plugin-side toggle that can override it.
+
 ## Next step
 
 See [FAQ](./faq.md) for more questions or [Support](../index.md) for contacting developers.

@@ -74,11 +74,40 @@ International recipients are not supported.
 
 ## Troubleshooting
 
+BulkSMSBD surfaces errors through `response_code` values in the provider response. Open **Admin → SMS Gateways → Delivery Logs → (row) → Provider Response** to see the exact code.
+
+### `response_code: 1032` — "Your ip X not Whitelisted"
+
+BulkSMSBD rejected the request because your server's public IP is not on its API whitelist.
+
+1. Copy the IP shown in the error (the server making the outbound call).
+2. Log in to [bulksmsbd.com](https://www.bulksmsbd.com/) → **Phonebook → IP White List**.
+3. Set **Source IP Checking** to **Enable**, choose **Type: API**, paste the IP, and click **Submit**.
+4. Confirm the row shows **Active**, then re-run **Send test SMS**.
+
+If your server has multiple outbound IPs (load balancer, NAT pool), whitelist each one — the next request may exit through a different IP.
+
+### `response_code: 1005` — "Attempt to read property is_masking on null"
+
+This is an internal BulkSMSBD error. Their server tried to load the Sender ID record you submitted and got no match — the Sender ID does not exist / is not approved on your account.
+
+1. On bulksmsbd.com open **Sender ID** in the left menu.
+2. Confirm your Sender ID is listed with status **Approved / Active** (pending or rejected entries trigger this error).
+3. Copy it exactly as shown — no extra spaces, correct case:
+   - Non-masking: 11-digit number like `01XXXXXXXXX`
+   - Masking: the approved text mask (e.g. `MyShop`)
+4. Paste it into **Admin → SMS Gateways → Settings → BulkSMSBD → Sender ID** and save.
+5. Re-run **Send test SMS**.
+
+If 1005 still comes back with the exact Sender ID shown on bulksmsbd.com, their database record is missing — contact BulkSMSBD support and quote the error; only they can fix it.
+
 ### "Invalid API Token" error
 
-1. Double-check API Token from [BulkSMSBD Dashboard](https://www.bulksmsbd.com/)
+1. Double-check API Token from [BulkSMSBD Dashboard](https://www.bulksmsbd.com/) → **API Settings**
 2. Ensure no trailing spaces
 3. Verify your account is active and funded
+
+The API Token field always renders empty after save — the stored value is encrypted and never echoed back. If a token is stored, the field shows `••••••••` as a placeholder. Leave it blank on subsequent saves to keep the existing token; enter a new value only to replace it.
 
 ### SMS not delivered to Bangladesh
 

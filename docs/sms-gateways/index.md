@@ -7,7 +7,7 @@ description: Multi-provider SMS plugin for Botble CMS — OTP verification, SMS 
 
 Professional SMS delivery across e-commerce, marketplace, real estate, job board, car rental, and hotel platforms.
 
-The **SMS Gateways** plugin lets you send SMS notifications from any Botble host plugin using multiple providers. One unified admin interface manages OTP verification, customer notifications, STOP/STOP handling, and delivery logs — with optional webhooks for downstream systems.
+The **SMS Gateways** plugin lets you send SMS notifications from any Botble host plugin using multiple providers. One unified admin interface manages OTP verification, customer notifications, STOP/START handling, and delivery logs — with optional webhooks for downstream systems.
 
 ## Highlights
 
