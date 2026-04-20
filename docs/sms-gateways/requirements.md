@@ -46,6 +46,7 @@ Each SMS provider has its own credentials format:
 | **Msg91** | Auth Key, Flow ID, Sender ID |
 | **Fast2SMS** | API Authorization token |
 | **BulkSMSBD** | API Token, sender ID |
+| **eSMS.vn** | ApiKey, SecretKey, registered Brandname |
 
 See [Drivers](./drivers/twilio.md) for per-provider signup and credential setup.
 

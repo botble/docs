@@ -1,6 +1,6 @@
 ---
 title: SMS Gateways for Botble
-description: Multi-provider SMS plugin for Botble CMS — OTP verification, SMS templates, delivery logs, opt-in/STOP handling, outbound webhooks, and 7 pre-built drivers (Twilio, Vonage/Nexmo, AWS SNS, Plivo, Msg91, Fast2SMS, BulkSMSBD).
+description: Multi-provider SMS plugin for Botble CMS — OTP verification, SMS templates, delivery logs, opt-in/STOP handling, outbound webhooks, and 8 pre-built drivers (Twilio, Vonage/Nexmo, AWS SNS, Plivo, Msg91, Fast2SMS, BulkSMSBD, eSMS.vn).
 ---
 
 # SMS Gateways
@@ -11,7 +11,7 @@ The **SMS Gateways** plugin lets you send SMS notifications from any Botble host
 
 ## Highlights
 
-- **7 pre-built drivers** — Twilio, Vonage (formerly Nexmo), AWS SNS, Plivo, Msg91 (India), Fast2SMS (India), BulkSMSBD (Bangladesh)
+- **8 pre-built drivers** — Twilio, Vonage (formerly Nexmo), AWS SNS, Plivo, Msg91 (India), Fast2SMS (India), BulkSMSBD (Bangladesh), eSMS.vn (Vietnam)
 - **Flexible OTP delivery** — Phone verification, TTL/attempt limits, per-phone rate limiting
 - **SMS templates** — Admin-editable templates with variable injection, GSM-7 & UCS-2 preview
 - **STOP/START consent** — Auto-opt-in/opt-out, audit logs, per-subject erasure

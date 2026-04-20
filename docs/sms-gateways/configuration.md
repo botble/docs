@@ -20,6 +20,7 @@ Select one or more providers from the **Active Drivers** checkbox list. You can 
 | **Msg91** | India OTP + DLT Flow templates | India-specific |
 | **Fast2SMS** | India, requires DLT approval | India-specific |
 | **BulkSMSBD** | Bangladesh | Bangladesh-specific |
+| **eSMS.vn** | Vietnam — Brandname, CSKH/OTP, Advertising | Vietnam-specific |
 
 
 ## Step 2 — Enter driver credentials
