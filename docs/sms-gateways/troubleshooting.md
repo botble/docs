@@ -249,7 +249,7 @@ description: Common SMS Gateways issues and solutions.
 These errors originate on the SMS provider's side — the plugin surfaces the raw response without interpreting it. Decode them in the driver-specific docs:
 
 - BulkSMSBD — [`1032` "IP not Whitelisted" and `1005` "is_masking on null"](./drivers/bulksmsbd.md#troubleshooting)
-- Other drivers — see the **Troubleshooting** section of the matching file in [drivers/](./drivers/)
+- Other drivers — see the **Troubleshooting** section of the matching file under `drivers/` ([Twilio](./drivers/twilio.md), [Vonage](./drivers/vonage.md), [AWS SNS](./drivers/aws-sns.md), [Plivo](./drivers/plivo.md), [Msg91](./drivers/msg91.md), [Fast2SMS](./drivers/fast2sms.md), [eSMS.vn](./drivers/esmsvn.md))
 
 If the provider response references data that must exist on the provider's account (Sender ID, whitelisted IP, API token), fix it on the provider portal first — there is no plugin-side toggle that can override it.
 
