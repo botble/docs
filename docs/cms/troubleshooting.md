@@ -240,3 +240,62 @@ If you are being logged out frequently or cannot stay logged in:
 3. If using `redis` or `database` driver, ensure the connection is properly configured.
 4. Clear browser cookies for your domain and try again.
 5. Check that `SESSION_DOMAIN` in `.env` matches your domain (or remove it to use the default).
+
+### Admin Login Redirect Loop (No Error Shown)
+
+#### Symptom
+
+You submit the admin login form and the page reloads back to `/admin/login` with no error message, no success flash, and no entry in `storage/logs/laravel-*.log`. Your credentials are correct, the database is reachable, and nothing in debug mode reveals the problem. The same symptom can block a **fresh install** from completing the first-time admin sign-in.
+
+#### Cause
+
+Your PHP installation has `output_buffering` set to `0` (disabled). Without an output buffer, PHP flushes response headers to the browser before Laravel has a chance to write the `Set-Cookie` header for the new authenticated session. The browser never receives the auth cookie, so on the next request it is treated as unauthenticated and bounced back to the login page.
+
+You can confirm the setting with:
+
+```bash
+php -i | grep -E 'output_buffering|zlib.output_compression'
+```
+
+Or by creating a file `phpinfo.php` with `<?php phpinfo();` in your web root and checking the **output_buffering** row.
+
+#### Fix
+
+Enable output buffering using **either** of the two options below — one is enough.
+
+**Option 1 — Set `output_buffering`:**
+
+```ini
+output_buffering = 4096
+```
+
+Any non-zero value works (`On` is also accepted).
+
+**Option 2 — Enable `zlib.output_compression`:**
+
+```ini
+zlib.output_compression = On
+```
+
+This implicitly enables output buffering and also gzip-compresses responses.
+
+#### Where to apply the change
+
+- **SiteGround** — Site Tools → Devs → PHP Manager → PHP Variables → set `output_buffering` to `4096` (click **CUSTOM**), then Save.
+- **cPanel** — Select PHP Version → Options → find `output_buffering` (or `zlib.output_compression`) → change the value → Save.
+- **Plesk** — Websites & Domains → PHP Settings → set `output_buffering` to `4096` → OK.
+- **Shared hosting without a PHP settings UI** — add to `.htaccess` in your project root:
+
+  ```apache
+  php_value output_buffering 4096
+  ```
+
+- **VPS / dedicated server with php-fpm** — edit your pool file (for example `/etc/php/8.3/fpm/pool.d/www.conf`):
+
+  ```ini
+  php_admin_value[output_buffering] = 4096
+  ```
+
+  Then restart php-fpm: `sudo systemctl restart php8.3-fpm`.
+
+After saving the change, clear your browser cookies for the domain and retry the login — you should now stay authenticated.
