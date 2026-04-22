@@ -39,6 +39,7 @@ export default [
           { text: 'Security Settings', link: '/cms/security-cookies' },
           { text: 'Setup CDN', link: '/cms/usage-setup-cdn' },
           { text: 'Public Cache Control', link: '/cms/usage-public-cache-control' },
+          { text: 'Cache Management', link: '/cms/cache-management' },
           { text: 'Reset admin password', link: '/cms/usage-reset-admin-password' },
         ],
       },
