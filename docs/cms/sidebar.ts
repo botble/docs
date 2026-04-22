@@ -51,6 +51,7 @@ export default [
           { text: 'Wasabi', link: '/cms/usage-media-wasabi' },
           { text: 'BunnyCDN', link: '/cms/usage-media-bunnycdn' },
           { text: 'Cloudflare R2', link: '/cms/usage-media-cloudflare-r2' },
+          { text: 'Upload Errors', link: '/cms/media-upload-errors' },
         ],
       },
       {
