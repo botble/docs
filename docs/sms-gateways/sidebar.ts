@@ -21,6 +21,8 @@ export default [
       { text: 'Msg91 (India)', link: '/sms-gateways/drivers/msg91' },
       { text: 'Fast2SMS (India)', link: '/sms-gateways/drivers/fast2sms' },
       { text: 'BulkSMSBD (Bangladesh)', link: '/sms-gateways/drivers/bulksmsbd' },
+      { text: 'SSL Wireless (Bangladesh)', link: '/sms-gateways/drivers/sslwireless' },
+      { text: 'BulkSMSDhaka (Bangladesh)', link: '/sms-gateways/drivers/bulksmsdhaka' },
       { text: 'eSMS.vn (Vietnam)', link: '/sms-gateways/drivers/esmsvn' },
     ],
   },

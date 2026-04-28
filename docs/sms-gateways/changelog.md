@@ -7,6 +7,32 @@ description: SMS Gateways release history and version updates.
 
 All notable changes to SMS Gateways are documented here.
 
+## Version 1.0.5 — 2026-04-28
+
+### Added
+
+- **SSL Wireless preset** for the Custom HTTP Driver — Bangladesh's largest enterprise SMS aggregator (banks, government, insurance). One-click pre-fill at `Admin → SMS Gateways → Custom Drivers → Create?preset=sslwireless`. See [SSL Wireless driver guide](./drivers/sslwireless.md).
+- **BulkSMSDhaka preset** for the Custom HTTP Driver — Bangladeshi SMS provider on the `bulksmsdhaka.net` domain (different vendor from BulkSMSBD). One-click pre-fill at `?preset=bulksmsdhaka`. See [BulkSMSDhaka driver guide](./drivers/bulksmsdhaka.md).
+- Structural unit tests for the preset registry covering required-key set, HTTP method / auth type / phone format enums, HTTPS endpoint, and JSON-validity for POST_JSON body templates.
+- Placeholder-validity test that catches typos in `body_template` referencing unknown variables (`{whatever}`) the runtime renderer cannot substitute.
+
+### Notes
+
+- Both new presets are **starter configs**: the form pre-fills endpoint, headers, body template, and success indicators, but the API key and sender ID still need to be entered before saving.
+- `BulkSMSDhaka` description explicitly disambiguates the vendor from `BulkSMSBD` (`bulksmsbd.net`) and `BulkSMS Bangladesh` (`bulksmsbd.com`) to prevent admins from routing traffic to the wrong provider.
+
+## Version 1.0.4 — 2026-04-28
+
+### Added
+
+- Post-registration phone verification page at `GET /otp/verify` — proper controller, view, routes plus migrations adding `phone_verified_at` to `ec_customers`, `members`, and real-estate / job-board account tables (idempotent guards on `Schema::hasColumn`).
+
+### Fixed
+
+- OTP intercept middleware no longer hijacks Botble's JS validator probes — was previously surfacing "Whoops" errors and burning real OTP SMS on every keystroke during live field validation.
+- `EnsurePhoneVerified` middleware redirects to a real route and preserves `url.intended`. Was previously redirecting to a non-existent route causing 404s on every page load after registration.
+- `EnsurePhoneVerified` skips the admin (`web`) guard so admins are not forced through SMS verification on every backend page load.
+
 ## Version 1.0.0 — 2026-04-16
 
 Initial public release.
