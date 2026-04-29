@@ -1,81 +1,60 @@
 # Version Management
 
-## Android Version
+The version is set in `pubspec.yaml`:
 
-1. **Update pubspec.yaml**
-   ```yaml
-   version: 1.0.0+1  # Format: version_name+version_code
-   ```
+```yaml
+version: 1.0.0+2     # <versionName>+<versionCode>
+```
 
-2. **Update Android Manifest**
-   In `android/app/src/main/AndroidManifest.xml`:
-   ```xml
-   <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-       package="com.example.app"
-       android:versionCode="1"
-       android:versionName="1.0.0">
-   ```
+- `versionName` (e.g. `1.0.0`) — public version shown in the stores. Major.Minor.Patch.
+- `versionCode` (e.g. `2`) — internal build number. **Must increase by at least 1 for every store upload**, even for the same `versionName`.
 
-## iOS Version
+Both Android and iOS read these values automatically:
 
-1. **Update pubspec.yaml**
-   ```yaml
-   version: 1.0.0+1  # Format: version_name+version_code
-   ```
+- Android: `android/app/build.gradle.kts` uses `flutter.versionCode` / `flutter.versionName`
+- iOS: `ios/Runner/Info.plist` uses `$(FLUTTER_BUILD_NAME)` / `$(FLUTTER_BUILD_NUMBER)`
 
-2. **Update Info.plist**
-   In `ios/Runner/Info.plist`:
-   ```xml
-   <key>CFBundleShortVersionString</key>
-   <string>1.0.0</string>
-   <key>CFBundleVersion</key>
-   <string>1</string>
-   ```
+## Same version on both stores
 
-## Version Numbering
+Bump `pubspec.yaml`, then build:
 
-- **Version Name (e.g., 1.0.0)**
-  - First number: Major version (breaking changes)
-  - Second number: Minor version (new features)
-  - Third number: Patch version (bug fixes)
+```bash
+flutter build appbundle --release      # Play Store
+flutter build ipa --release            # App Store
+```
 
-- **Version Code (e.g., 1)**
-  - Increment for each new release
-  - Must be higher than previous version
-  - Used by app stores for updates
+## Different version per store
 
-## Best Practices
+Either override on the command line:
 
-1. **Version Synchronization**
-   - Keep version numbers consistent across platforms
-   - Update all version numbers before release
-   - Document version changes in changelog
+```bash
+flutter build appbundle --release --build-name=1.2.0 --build-number=5
+flutter build ipa --release --build-name=1.3.0 --build-number=8
+```
 
-2. **Release Process**
-   - Increment version numbers
-   - Update changelog
-   - Tag release in version control
-   - Build release version
-   - Submit to app stores
+Or set a fixed value in the platform file (the values then ignore `pubspec.yaml`):
 
-3. **Version Control**
-   ```bash
-   # Tag release
-   git tag -a v1.0.0 -m "Version 1.0.0"
-   git push origin v1.0.0
-   ```
+- Android — `android/app/build.gradle.kts`:
 
-4. **Changelog Example**
-   ```markdown
-   # Changelog
+  ```kotlin
+  defaultConfig {
+      versionCode = 5
+      versionName = "1.2.0"
+  }
+  ```
 
-   ## [1.0.0] - 2024-03-20
-   - Initial release
-   - Basic features implemented
-   - Bug fixes
+- iOS — `ios/Runner/Info.plist` (replace the `$(...)` placeholders with literal strings):
 
-   ## [0.9.0] - 2024-03-15
-   - Beta release
-   - Feature X added
-   - Performance improvements
-   ```
+  ```xml
+  <key>CFBundleShortVersionString</key>
+  <string>1.3.0</string>
+  <key>CFBundleVersion</key>
+  <string>8</string>
+  ```
+
+## Tag the release
+
+```bash
+git tag -a v1.0.0 -m "Version 1.0.0"
+git push origin v1.0.0
+```
