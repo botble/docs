@@ -37,8 +37,8 @@ Before starting, make sure you have:
 
 - A **Botble e-commerce website** up and running (e.g., `https://yourstore.com`)
 - Products, categories, and brands already added to your website
-- An **API key** from your Botble admin panel (if required by your backend)
-- Your **Envato purchase code** (from CodeCanyon)
+- An **API key** generated in your Botble admin panel at **Settings → API Settings** (this is sent in the `X-API-KEY` header — it is **not** your Envato purchase code)
+- Your **Envato purchase code** (from CodeCanyon — used only for development license validation)
 - Your **brand assets**: logo (1024x1024 PNG), app icon, brand colors
 
 ---
@@ -95,33 +95,24 @@ The API is **disabled by default** in Botble. You **must** enable it in **Admin 
 
 ### Step 5: Configure Environment
 
-Copy the example env file and update it with your settings:
-
 ```bash
 cp .env.example .env
 ```
 
-Open the `.env` file and update these required values:
+Open `.env` and set:
 
 ```bash
-# REQUIRED: Your website URL (the app appends /api/v1 endpoints to this)
 API_BASE_URL=https://yourstore.com
-
-# API authentication key (if your backend requires it)
-API_KEY=your-api-key-here
-
-# App display name
+API_KEY=<from Admin → Settings → API Settings>
 APP_NAME=Your Store Name
-
-# Your Envato purchase code (for development license)
-LICENSE_CODE=your-envato-purchase-code
+LICENSE_CODE=<your Envato purchase code>
 ```
 
-::: danger Critical
-- `API_BASE_URL` must be your **website URL** — the app builds full API paths like `{API_BASE_URL}/api/v1/ecommerce/products`
-- Use `https://` (not `http://`) for production websites
-- The `LICENSE_CODE` is only needed during development — production builds skip license validation. See the [Installation Guide](installation.md) for details.
-:::
+`API_BASE_URL` must use `https://` and must not end with `/`.
+
+`API_KEY` is sent as the `X-API-KEY` header on every API call. Get it from your admin panel at **Settings → API Settings** — click **Generate** if no key exists, otherwise copy the existing key. A wrong value returns `401 Unauthorized`.
+
+`LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`). It is used for development license validation only. **Never put it in `API_KEY`.**
 
 ### Step 6: Test the Connection
 

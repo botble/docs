@@ -1,186 +1,99 @@
-# Troubleshooting Guide
+# Troubleshooting
 
-Simple solutions to common problems. Don't worry - most issues are easy to fix!
+## App won't start
 
-## 🚨 Most Common Problems
-
-### App Won't Start
-**Problem**: App crashes when you try to run it
-
-**Quick Fix**:
 ```bash
 flutter clean
 flutter pub get
 flutter run
 ```
 
-**If that doesn't work**:
-- Restart your computer
-- Check if Flutter is installed correctly
-- Make sure your phone/emulator is connected
+If it still fails, verify Flutter is installed and a device or emulator is connected.
 
-### Can't Connect to Website
-**Problem**: App shows "connection error" or "network error"
+## Connection error / network error
 
-**Quick Fix**:
-1. Check your `.env` file
-2. Make sure `API_BASE_URL=https://your-website.com` is correct
-3. Test your website in a browser first
+1. Open `.env` and confirm `API_BASE_URL=https://your-domain.com` is correct (no trailing slash, `https://` in production).
+2. Open the URL in a browser to confirm the site is online.
 
-**Common mistakes**:
-- Wrong website URL
-- Website is down
-- No internet connection
+## 401 Unauthorized — "Invalid or missing API key"
 
-### Login Doesn't Work
-**Problem**: Users can't login to the app
+The `API_KEY` in your `.env` does not match the key saved on the backend.
 
-**Quick Fix**:
-1. Test login on your website first
-2. Make sure the website login works
-3. Check if API is enabled on your website
+1. Open `https://your-domain.com/admin`
+2. Go to **Settings → API Settings**
+3. Click **Generate** if no key is shown, or copy the existing key
+4. Paste it into `.env` as `API_KEY=...`
+5. Rebuild the app
 
-**If still not working**:
-- Contact your website developer
-- Check if user accounts exist
-- Try creating a new test account
+Do not put your Envato purchase code in `API_KEY`. The purchase code goes in `LICENSE_CODE` only. See [API Configuration](./06_api_base_url.md#api-key).
 
-### No Products Showing
-**Problem**: App loads but no products appear
+## Login doesn't work
 
-**Quick Fix**:
-1. Make sure you have products on your website
-2. Check if categories are set up correctly
-3. Try refreshing the app (pull down on the screen)
+1. Test login on the website itself — it must work there first.
+2. Confirm the API is enabled at **Admin → Settings → API Settings**.
+3. Confirm `API_KEY` is set correctly (see section above).
 
-**If still empty**:
-- Check your website has products
-- Make sure products are published/active
-- Contact your website developer
+## No products showing
 
-### Social Login Not Working
-**Problem**: Google/Facebook/Apple/Twitter login fails
+1. Confirm the website has published products.
+2. Pull down on the home screen to refresh.
+3. Confirm `API_BASE_URL` and `API_KEY` are correct.
 
-**Quick Fix**:
-1. Check the setup guides:
-   - **[Google Login](14_google_login_setup.md)**
-   - **[Facebook Login](15_facebook_login_setup.md)**
-   - **[Apple Login](13_apple_login_setup.md)**
-   - **[Twitter Login](12_twitter_login_setup.md)**
+## Social login not working
 
-2. Make sure you followed all steps exactly
-3. Test regular email login first
-4. Restart app completely after changing `.env` (hot reload doesn't work)
+Open the matching setup guide and follow every step. Email login must work first.
 
-### Twitter Login Error 302
-**Problem**: Twitter login shows "An error occurred (302)"
+- [Google Login](14_google_login_setup.md)
+- [Facebook Login](15_facebook_login_setup.md)
+- [Apple Login](13_apple_login_setup.md)
+- [Twitter Login](12_twitter_login_setup.md)
 
-**This is the most common Twitter issue!** It means your Twitter Developer Portal settings are wrong.
+After changing `.env`, fully stop and re-run the app. Hot reload does not pick up `.env` changes.
 
-**Solution**:
-1. Go to [Twitter Developer Portal](https://developer.twitter.com)
-2. Open your app → **User authentication settings** → **Edit**
-3. Change these settings:
-   - **Type of App**: Must be **"Native App"** (NOT "Web App")
-   - **Client type**: Must be **"Public client"** (NOT "Confidential client")
-4. Make sure **OAuth 1.0a** is enabled
-5. Callback URL must be exactly: `martfury://twitter-auth`
-6. Save and try again
+### Twitter login error 302
 
-See **[Twitter Login Setup](12_twitter_login_setup.md)** for complete guide.
+In the Twitter Developer Portal → User authentication settings:
+
+- Type of App: **Native App**
+- Client type: **Public client**
+- OAuth 1.0a: enabled
+- Callback URL: `martfury://twitter-auth`
+
+See [Twitter Login Setup](12_twitter_login_setup.md).
 
 ### Google Sign In "DEVELOPER_ERROR"
-**Problem**: Google Sign In shows error code 10 or DEVELOPER_ERROR
 
-**Solution**:
-1. Verify SHA-1 fingerprint in Google Cloud Console matches your keystore
-2. Check package name matches between app and OAuth client
-3. Ensure `google-services.json` is in `android/app/` folder
-4. For release builds, add release keystore SHA-1 fingerprint
+- SHA-1 fingerprint in Google Cloud Console must match your keystore (debug and release).
+- Package name in the OAuth client must match the app.
+- `google-services.json` must be in `android/app/`.
 
-See **[Google Login Setup](14_google_login_setup.md)** for details.
+See [Google Login Setup](14_google_login_setup.md).
 
 ### Facebook "Invalid Key Hash"
-**Problem**: Facebook login shows "Invalid key hash" error on Android
 
-**Solution**:
-1. Generate your key hash:
-   ```bash
-   keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
-   ```
-2. Add it to Facebook app settings → Android → Key Hashes
-3. Add both debug AND release key hashes
+Generate your key hash and add it to Facebook app settings → Android → Key Hashes (both debug and release):
 
-See **[Facebook Login Setup](15_facebook_login_setup.md)** for details.
+```bash
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+```
 
-### Apple Sign In Button Missing
-**Problem**: Apple Sign In button doesn't appear
+See [Facebook Login Setup](15_facebook_login_setup.md).
 
-**Solution**:
-1. Verify `ENABLE_APPLE_SIGN_IN=true` in `.env`
-2. Check `APPLE_SERVICE_ID` and `APPLE_TEAM_ID` are set
-3. On Android, Apple button may be hidden by design
-4. Restart app completely
+### Apple Sign In button missing
 
-See **[Apple Login Setup](13_apple_login_setup.md)** for details.
+In `.env`:
 
-## 🔧 Setup Problems
+```bash
+ENABLE_APPLE_SIGN_IN=true
+APPLE_SERVICE_ID=<your-service-id>
+APPLE_TEAM_ID=<your-team-id>
+```
 
-### Colors Not Changing
-**Problem**: Changed colors in `.env` but app still looks the same
+The button is iOS-only by design. See [Apple Login Setup](13_apple_login_setup.md).
 
-**Solution**:
-1. Make sure you saved the `.env` file
-2. **Stop the app completely** (Ctrl+C or stop button)
-3. Run: `flutter run` again
-4. **Important**: Hot reload (`r`) and hot restart (`R`) do NOT reload `.env` changes - you must fully restart
+## Theme colors not updating
 
-If colors still don't change:
-1. Run: `flutter clean`
-2. Run: `flutter pub get`
-3. Run: `flutter run`
-
-See **[Theme Colors Guide](01_theme_colors.md)** for correct color format.
-
-### App Name Not Changing
-**Problem**: Changed app name but it's still "MartFury"
-
-**Solution**:
-1. Follow guide **[04_app_name.md](04_app_name.md)** exactly
-2. Change it in BOTH Android and iOS files
-3. Rebuild the app completely
-
-### Logo Not Changing
-**Problem**: Changed logo files but old logo still shows
-
-**Solution**:
-1. Make sure image files are the right size
-2. Replace ALL logo files (there are many)
-3. Follow guide **[05_app_logo.md](05_app_logo.md)**
-4. Clean and rebuild the app
-
-## 📱 App Store Problems
-
-### Can't Upload to Google Play
-**Problem**: Error when trying to upload app
-
-**Solution**:
-1. Follow guide **[09_deploying_app.md](09_deploying_app.md)** exactly
-2. Make sure you have a Google Play Developer account
-3. Check file format (should be .aab not .apk)
-
-### Can't Upload to Apple App Store
-**Problem**: Error when trying to upload to App Store
-
-**Solution**:
-1. Make sure you have Apple Developer account ($99/year)
-2. Use Xcode to upload (not just the command line)
-3. Check all certificates are valid
-
-## 💡 Quick Fixes for Everything
-
-### The "Magic" Fix
-When nothing else works, try this:
+`.env` changes are not picked up by hot reload. Stop the app and run `flutter run` again. If the colors still do not change:
 
 ```bash
 flutter clean
@@ -188,42 +101,29 @@ flutter pub get
 flutter run
 ```
 
-This fixes about 80% of all problems!
+See [Theme Colors](01_theme_colors.md).
 
-### Restart Everything
-Sometimes you just need to restart:
-1. Close the app
-2. Restart your phone/emulator
-3. Restart your computer
-4. Try again
+## App name not changing
 
-### Check the Basics
-Before asking for help:
-- ✅ Is your internet working?
-- ✅ Is your website online?
-- ✅ Did you save all your changes?
-- ✅ Did you follow the guides exactly?
+`.env` does not control the native app name. Follow [App Name Configuration](04_app_name.md) — both Android and iOS files must be updated, then rebuild.
 
-## 🆘 When to Ask for Help
+## Logo not updating
 
-### You Should Try First
-- Read the error message carefully
-- Try the "magic fix" above
-- Check the setup guides (01-15)
-- Restart everything
+Replace every logo file listed in [App Logo](05_app_logo.md), then `flutter clean && flutter run`.
 
-### Ask for Help When
-- You get the same error after trying everything
-- You don't understand the error message
-- Something worked before but stopped working
-- You're completely stuck
+## Cannot upload to Google Play
 
-### How to Ask for Help
-When contacting support, include:
-1. **What you were trying to do**
-2. **What error message you saw** (screenshot if possible)
-3. **What you already tried**
-4. **Your website URL**
-5. **What device/computer you're using**
+Upload `.aab`, not `.apk`. A Google Play Developer account is required. See [Deploying the App](09_deploying_app.md).
 
-**Remember**: There's no such thing as a stupid question! Everyone gets stuck sometimes, and most problems have simple solutions.
+## Cannot upload to Apple App Store
+
+Apple Developer account ($99/year) is required. Upload via Xcode → Archive → Distribute App. See [Deploying the App](09_deploying_app.md).
+
+## When asking for support
+
+Include:
+
+- What you did and the exact error message (screenshot of network logs if it is an API error)
+- Your website URL
+- Device or emulator and OS version
+- Steps already tried

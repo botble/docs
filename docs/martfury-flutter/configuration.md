@@ -1,136 +1,39 @@
-# Configuration Guide
+# Configuration
 
-How to connect your app to your website and customize basic settings.
+All app configuration lives in the `.env` file at the project root. Hot reload does not pick up `.env` changes — fully stop and rerun the app after editing.
 
-## 🔗 Connect to Your Website
+## Required keys
 
-### Step 1: Find Your Website URL
-Your website URL is the address people use to visit your online store.
-Examples:
-- `https://mystore.com`
-- `https://shop.mycompany.com`
-- `https://mystore.botble.com`
-
-### Step 2: Update App Configuration
-1. Open the `.env` file in your app folder
-2. Find this line:
-   ```
-   API_BASE_URL=https://ecommerce-api.botble.com
-   ```
-3. Replace it with your website:
-   ```
-   API_BASE_URL=https://your-website.com
-   ```
-4. Save the file
-
-### Step 3: Test the Connection
-1. Run your app:
-   ```bash
-   flutter run
-   ```
-2. Try to login with an account from your website
-3. If it works, you're connected! 🎉
-
-## ⚙️ Basic App Settings
-
-### App Name
-Change your app's name by following: **[App Name Guide](04_app_name.md)**
-
-### App Colors
-Customize your app's colors: **[Theme Colors Guide](01_theme_colors.md)**
-
-### App Logo
-Add your logo: **[App Logo Guide](05_app_logo.md)**
-
-### Languages
-Set up multiple languages: **[Translations Guide](07_translations.md)**
-
-## 🔐 Security Settings
-
-### HTTPS Required
-- Always use `https://` in your website URL
-- Never use `http://` for live websites
-- This keeps your customers' data safe
-
-### API Access
-Make sure your website allows the app to connect:
-1. Contact your website developer
-2. Tell them you need "API access enabled"
-3. They'll know what this means
-
-## 🧪 Testing Your Setup
-
-### Test These Features:
-- ✅ Login with existing account
-- ✅ Browse products
-- ✅ Add items to cart
-- ✅ Search for products
-- ✅ View product details
-
-### If Something Doesn't Work:
-1. Check your website URL is correct
-2. Make sure your website is online
-3. Try logging in on your website directly
-4. Contact support with details
-
-## 🚀 Advanced Configuration
-
-For more advanced setup:
-- **[API Integration](api-integration.md)** - Technical details
-- **[Development Guide](development.md)** - Customization options
-
-## ⚙️ Additional `.env` Keys
-
-These optional keys let you fine-tune app behavior beyond the basic setup:
-
-| Key | Values | Default | Description |
-|-----|--------|---------|-------------|
-| `USE_LOCAL_HELP` | `true` / `false` | `false` | Use local help center content instead of loading it in a WebView |
-| `PRODUCT_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `medium` | Size of product image thumbnails throughout the app |
-| `HOMEPAGE_PRODUCTS_PER_CATEGORY` | number | `10` | Number of products displayed per category on the homepage |
-| `ENABLE_ORDER_UPLOAD_PROOF` | `true` / `false` | `true` | Allow customers to upload payment proof images for orders |
-| `ENABLE_GUEST_CHECKOUT` | `true` / `false` | `false` | Allow customers to check out without creating an account |
-| `LICENSE_CODE` | string | — | License code used for development mode validation |
-
-**Example `.env` additions:**
 ```bash
-USE_LOCAL_HELP=false
-PRODUCT_IMAGE_THUMBNAIL_SIZE=medium
-HOMEPAGE_PRODUCTS_PER_CATEGORY=10
-ENABLE_ORDER_UPLOAD_PROOF=true
-ENABLE_GUEST_CHECKOUT=false
-LICENSE_CODE=your-license-code-here
+API_BASE_URL=https://your-domain.com
+API_KEY=<from Admin → Settings → API Settings>
+APP_NAME=Your Store Name
+LICENSE_CODE=<your Envato purchase code>
 ```
 
-## 💡 Tips for Success
+See [API Configuration](06_api_base_url.md) for `API_BASE_URL` and `API_KEY`.
 
-### Before Going Live:
-- Test everything thoroughly
-- Try on different phones
-- Ask friends to test the app
-- Make sure payments work
+## Optional keys
 
-### Keep It Simple:
-- Start with basic setup
-- Add features gradually
-- Test each change
-- Don't change too many things at once
+| Key | Values | Default | Description |
+|---|---|---|---|
+| `USE_LOCAL_HELP` | `true` / `false` | `false` | Use bundled help content instead of loading the help URL in a WebView |
+| `PRODUCT_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `medium` | Thumbnail size for product images |
+| `HOMEPAGE_PRODUCTS_PER_CATEGORY` | integer | `10` | Products shown per category on the home screen |
+| `ENABLE_ORDER_UPLOAD_PROOF` | `true` / `false` | `true` | Allow customers to upload a payment proof image |
+| `ENABLE_GUEST_CHECKOUT` | `true` / `false` | `false` | Allow checkout without an account |
+| `DEFAULT_LANGUAGE` | language code | `en` | Default language (e.g. `en`, `ar`, `vi`, `fr`) |
+| `DEFAULT_LANGUAGE_DIRECTION` | `ltr` / `rtl` | `ltr` | Layout direction |
+| `DEFAULT_THEME_MODE` | `light` / `dark` / `system` | `system` | Default theme |
 
-## 🆘 Common Problems
+## Common follow-ups
 
-### "Connection Failed"
-- Check your website URL
-- Make sure website is online
-- Contact your website developer
+- App name: [04_app_name.md](04_app_name.md)
+- Theme colors: [01_theme_colors.md](01_theme_colors.md)
+- Logo: [05_app_logo.md](05_app_logo.md)
+- Translations: [07_translations.md](07_translations.md)
+- Social login: [16_social_login_configuration.md](16_social_login_configuration.md)
 
-### "Login Doesn't Work"
-- Test login on your website first
-- Check if API is enabled
-- Verify user accounts exist
+## Troubleshooting
 
-### "No Products Show"
-- Make sure products exist on website
-- Check if products are published
-- Verify categories are set up
-
-For more help, check the [Troubleshooting Guide](troubleshooting.md).
+See [Troubleshooting](troubleshooting.md). Most issues come down to `API_BASE_URL` typos or a missing `API_KEY`.

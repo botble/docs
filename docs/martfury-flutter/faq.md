@@ -1,146 +1,54 @@
-# Frequently Asked Questions
+# FAQ
 
-Simple answers to common questions about your MartFury mobile app.
+### Does the app require Botble e-commerce on the backend?
 
-## 🤔 Basic Questions
+Yes. The app calls Botble's REST API. Any other backend will not work.
 
-### What is this app?
-It's a mobile shopping app that connects to your website. Customers can browse products, shop, and place orders from their phones.
+### Do I need to know Flutter to deploy the app?
 
-### Do I need to know programming?
-No! The app is ready to use. You just need to:
-- Change your website URL
-- Update colors and logo (optional)
-- Publish to app stores
+You need basic Flutter and command-line skills to set environment variables, replace assets (logo, icons), build, and submit to the stores.
 
-### How much does it cost to publish?
-- **Google Play Store**: $25 one-time fee
-- **Apple App Store**: $99 per year
-- You need developer accounts for both
+### What does it cost to publish?
 
-### Will it work with my website?
-Yes, if your website uses Botble E-commerce system. The app connects to your website automatically.
+- Google Play: $25 one-time
+- Apple App Store: $99 per year
 
-## 📱 App Features
+### What payment methods are supported?
 
-### What can customers do?
-- Browse and search products
-- Add items to cart and wishlist
-- Login with email or social accounts (Google, Facebook, Apple)
-- Track their orders
-- Leave reviews
-- Compare products
-- Save addresses
+Whatever you have configured on your Botble backend. Checkout runs in a WebView, so any payment gateway that works on the website also works in the app (Stripe, PayPal, Razorpay, Mollie, SSLCommerz, COD, etc.).
 
-### What languages does it support?
-The app ships with 29 languages already included and registered — no setup needed on your part. The full list covers English, Vietnamese, Arabic, French, Spanish, Hindi, Bengali, Indonesian, and 21 more. Simply select the language your customers need; everything is already in place.
+### What languages are included?
 
-### What payment methods work?
-- Credit/debit cards (Stripe)
-- PayPal
-- Cash on delivery
-- Regional options (Razorpay, Mollie, SSLCommerz)
-
-*Note: Payment methods depend on your website setup.*
-
-## 🔧 Setup Questions
+29 languages, registered out of the box. See [Translations](07_translations.md).
 
 ### How do I connect the app to my website?
-1. Open the `.env` file
-2. Change `API_BASE_URL=https://your-website.com`
-3. Save and test the app
 
-### How do I change the app colors?
-1. Open your `.env` file
-2. Add color settings (hex values without #):
-   ```txt
-   PRIMARY_COLOR=FF0000
-   PRIMARY_DARK_COLOR=CC0000
-   ```
-3. **Stop the app completely** and run `flutter run` again
+Set `API_BASE_URL` and `API_KEY` in `.env`. See [API Configuration](06_api_base_url.md).
 
-See **[Theme Colors Guide](01_theme_colors.md)** for all available color options.
+### How do I change the app's colors?
 
-### How do I change the app name?
-Follow guide **[04_app_name.md](04_app_name.md)** - it's very simple!
+Edit `.env`, then fully stop and rerun the app. Hot reload does not pick up `.env` changes. See [Theme Colors](01_theme_colors.md).
 
-### How do I add my logo?
-Follow guide **[05_app_logo.md](05_app_logo.md)** - just replace image files.
+### How do I change the app name and logo?
+
+- App name: [04_app_name.md](04_app_name.md)
+- Logo: [05_app_logo.md](05_app_logo.md)
 
 ### How do I set up social login?
-Follow these guides:
-- **[Google Login](14_google_login_setup.md)**
-- **[Facebook Login](15_facebook_login_setup.md)**
-- **[Apple Login](13_apple_login_setup.md)**
 
-## 🚨 Common Problems
+- [Google](14_google_login_setup.md)
+- [Facebook](15_facebook_login_setup.md)
+- [Apple](13_apple_login_setup.md)
+- [Twitter](12_twitter_login_setup.md)
 
-### App won't connect to my website
-- Check your website URL in `.env` file
-- Make sure your website is online
-- Contact your website developer
+### How do I publish?
 
-### Login doesn't work
-- Test login on your website first
-- Make sure API is enabled on your website
-- Check internet connection
+See [Deploying the App](09_deploying_app.md). Approval typically takes 1–3 days for Google Play and 1–7 days for the App Store.
 
-### No products showing
-- Make sure you have products on your website
-- Check if categories are set up
-- Try refreshing the app
+### How often should I update the app?
 
-### App crashes
-- Run: `flutter clean` then `flutter pub get`
-- Restart your computer
-- Contact support if it still crashes
+Only when the source includes a meaningful change (security, bug fix, new feature). Routine product updates do not require an app update — the app fetches them from the API.
 
-## 📱 Publishing Questions
+### Common problems
 
-### How do I publish to Google Play Store?
-1. Create a Google Play Developer account ($25)
-2. Follow guide **[09_deploying_app.md](09_deploying_app.md)**
-3. Upload your app file
-4. Wait for approval (usually 1-3 days)
-
-### How do I publish to Apple App Store?
-1. Create an Apple Developer account ($99/year)
-2. Follow guide **[09_deploying_app.md](09_deploying_app.md)**
-3. Upload through Xcode or App Store Connect
-4. Wait for approval (usually 1-7 days)
-
-### Do I need to update the app regularly?
-Yes, but it's simple:
-- Update when you add new products to your website
-- Update if you change your website design
-- Update for security improvements
-
-## 💡 Tips for Success
-
-### Before Publishing
-- Test the app thoroughly on different phones
-- Make sure all features work with your website
-- Check that payments work correctly
-- Test with real customers if possible
-
-### After Publishing
-- Monitor app reviews and ratings
-- Respond to customer feedback
-- Keep your website and app in sync
-- Update the app when needed
-
-## 🆘 Need Help?
-
-### Quick Self-Help
-1. Check the numbered guides (01-15) for specific setup
-2. Read the **[Troubleshooting Guide](troubleshooting.md)**
-3. Make sure your website is working first
-
-### Contact Support
-If you're still stuck:
-- Describe exactly what you're trying to do
-- Include any error messages
-- Mention your website URL
-- Tell us what device you're using
-
-**Remember**: Most problems are simple to fix! Don't worry if you're not technical - the guides are written for beginners.
+See [Troubleshooting](troubleshooting.md).

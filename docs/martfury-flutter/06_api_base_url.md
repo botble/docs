@@ -1,35 +1,46 @@
-# Configuring API Base URL
+# API Configuration
 
-The API base URL is used to connect your app to the backend server. To configure it:
+Configure two values in your `.env` file at the project root: `API_BASE_URL` and `API_KEY`.
 
-1. Open `.env` file in the root directory
-2. Update the `API_BASE_URL` variable:
-   ```bash
-   API_BASE_URL=https://your-domain.com
-   ```
+## API_BASE_URL
 
-If the `.env` file doesn't exist:
-1. Copy `.env.example` to `.env`
-2. Update the `API_BASE_URL` variable
+The website URL the app connects to.
 
-The default API base URL is `https://ecommerce-api.botble.com` if not specified.
+```bash
+API_BASE_URL=https://your-domain.com
+```
 
-## Important Notes
-- Make sure to use HTTPS for production environments
-- The URL should not end with a trailing slash (/)
-- The URL should be accessible from your app's target devices
-- For local development, you can use `http://localhost:8000` or your local IP address
+Rules:
 
-## HTTPS Validation
+- Use `https://` in production.
+- No trailing slash.
+- Default: `https://ecommerce-api.botble.com`.
 
-The app enforces HTTPS for `API_BASE_URL` in production and staging environments. This validation runs automatically when the app starts.
+`http://` is allowed only in development mode for `localhost`, `127.0.0.1`, `192.168.x.x`, `10.x.x.x`. Any other host must use `https://`.
 
-**Allowed in development mode only:**
-- `http://localhost`
-- `http://127.0.0.1`
-- `http://192.168.x.x` (local network)
-- `http://10.x.x.x` (local network)
+## API_KEY
 
-**All other environments** require `https://` — the app will throw a `StateError` if HTTP is used with a public domain.
+The app sends `API_KEY` as the `X-API-KEY` header on every request. It must match the key saved in your backend.
 
-> **Note:** The `.env` file is optional. If missing, the app uses safe defaults (production mode, HTTPS required).
+### Get the key
+
+1. Open `https://your-domain.com/admin`
+2. Go to **Settings → API Settings**
+3. Click **Generate** if no key is shown, or copy the existing key
+
+### Set the key
+
+```bash
+API_KEY=<paste-the-key-here>
+```
+
+Rebuild the app.
+
+### Do not confuse with LICENSE_CODE
+
+| Variable | Where it comes from | What it does |
+|---|---|---|
+| `API_KEY` | **Admin → Settings → API Settings** | Authenticates API calls. Wrong value → `401 Unauthorized`. |
+| `LICENSE_CODE` | Envato purchase code | Development license check only. Never sent as the API key. |
+
+Putting your Envato purchase code in `API_KEY` will return `401 — Invalid or missing API key`.

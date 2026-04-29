@@ -1,274 +1,125 @@
 # Development Guide
 
-This guide helps you customize the MartFury Flutter app. No advanced Flutter knowledge required!
-
-## Understanding the App Structure
-
-Think of the app like a house with different rooms:
+## Project structure
 
 ```
 lib/
-├── core/                  # 🏠 Main settings (like your house's electrical panel)
-│   └── app_config.dart   # App settings (colors, URLs, etc.)
-├── main.dart             # 🚪 Front door (app starts here)
+├── core/
+│   └── app_config.dart        # .env-backed configuration
+├── main.dart                  # entry point
 └── src/
-    ├── controller/       # 🧠 Smart controls (handles app logic)
-    ├── model/           # 📋 Data templates (user info, product info)
-    ├── service/         # 🌐 Internet connections (talks to your website)
-    ├── theme/           # 🎨 Design settings (colors, fonts)
-    └── view/            # 👀 What users see
-        ├── screen/      # 📱 App pages (login, home, etc.)
-        └── widget/      # 🧩 Reusable parts (buttons, cards)
+    ├── controller/            # GetX controllers
+    ├── model/                 # data models
+    ├── service/               # API services
+    ├── theme/                 # theme tokens, fonts
+    └── view/
+        ├── screen/            # full-screen routes
+        └── widget/            # reusable UI widgets
+test/                          # unit, widget, and integration tests
+assets/translations/           # one JSON file per language
 ```
 
-## Quick Start
-
-### Before You Begin
-
-✅ **What You Need:**
-1. Flutter installed on your computer
-2. A code editor (VS Code is easiest)
-3. The app source code
-4. 30 minutes of your time
-
-### First Steps
-
-1. **Open Terminal/Command Prompt**
-2. **Go to your app folder**
-3. **Install dependencies:**
-   ```bash
-   flutter pub get
-   ```
-4. **Run the app:**
-   ```bash
-   flutter run
-   ```
-
-That's it! Your app should start running.
-
-## Common Customizations
-
-### 🎨 Changing Colors
-
-**Brand colors are configured via the `.env` file - no code changes needed!**
-
-1. Open your `.env` file
-2. Add or modify color settings:
+## Run
 
 ```bash
-# Primary brand color (hex without #)
-PRIMARY_COLOR=FF0000
-
-# Darker shade for pressed states
-PRIMARY_DARK_COLOR=CC0000
-
-# Text/icons on primary backgrounds
-ON_PRIMARY_COLOR=FFFFFF
-
-# App bar icons and text
-APP_BAR_FOREGROUND_COLOR=FFFFFF
-
-# Accent sections (banners, search button)
-ACCENT_BACKGROUND_COLOR=212121
-ACCENT_FOREGROUND_COLOR=FFFFFF
-```
-
-3. **Restart the app completely** (hot reload won't work for `.env` changes)
-
-For detailed color customization, see **[Theme Colors Guide](01_theme_colors.md)**.
-
-### 🔤 Changing Fonts
-
-**Want different fonts?**
-1. Open `lib/src/theme/app_fonts.dart`
-2. Change the font name
-
-```dart
-// Example: Change to Roboto font
-const kAppTextStyle = GoogleFonts.roboto;
-```
-
-### 📝 Adding New Text
-
-**To add new text that can be translated:**
-
-1. Open `assets/translations/en.json`
-2. Add your text:
-```json
-{
-  "my_new_text": "Hello World"
-}
-```
-3. Use it in your app:
-```dart
-Text('my_new_text'.tr())
-```
-
-### 🔗 Adding New API Connections
-
-**Need to connect to a new API?**
-
-1. **Add the URL** in `lib/core/app_config.dart`:
-```dart
-static const String myNewApiUrl = 'https://api.example.com/data';
-```
-
-2. **Create a simple service** in `lib/src/service/`:
-```dart
-class MyNewService {
-  static Future<List<dynamic>> getData() async {
-    // This gets data from your API
-    final response = await http.get(Uri.parse(AppConfig.myNewApiUrl));
-    return json.decode(response.body);
-  }
-}
-```
-
-3. **Use it in your screen**:
-```dart
-// In your screen file
-FutureBuilder(
-  future: MyNewService.getData(),
-  builder: (context, snapshot) {
-    if (snapshot.hasData) {
-      return Text('Data loaded!');
-    }
-    return CircularProgressIndicator();
-  },
-)
-```
-
-## Testing
-
-The project includes a comprehensive test suite with 633+ tests covering services, models, controllers, widgets, and security.
-
-### Running Tests
-
-```bash
-# Run all tests
-flutter test
-
-# Run with coverage
-flutter test --coverage
-
-# Run a specific test file
-flutter test test/service/cart_service_test.dart
-```
-
-### Test Structure
-
-```
-test/
-├── helpers/          # Test utilities and mocks
-├── model/            # Data model serialization tests
-├── service/          # API service tests
-├── controller/       # GetX controller tests
-├── widget/           # Widget rendering tests
-├── security/         # Security regression tests
-├── utils/            # Utility function tests
-└── *.dart            # Feature/integration tests
-```
-
-### CI/CD
-
-The project includes a GitHub Actions workflow (`.github/workflows/test.yml`) that runs on every push and pull request:
-- `flutter analyze` — Static analysis
-- `flutter test --coverage` — Full test suite with coverage reporting
-
-## Testing Your Changes
-
-### 🧪 Simple Testing
-
-**Before releasing your app:**
-
-1. **Test on different devices:**
-   - Android phone
-   - iPhone (if possible)
-   - Different screen sizes
-
-2. **Test basic functions:**
-   - Login/logout
-   - Browse products
-   - Add to cart
-   - Search
-
-3. **Test your changes:**
-   - Did your color changes work?
-   - Do new texts show correctly?
-   - Are new features working?
-
-### 🔧 Quick Fixes
-
-**App not starting?**
-```bash
-flutter clean
 flutter pub get
 flutter run
 ```
 
-**Colors not changing after editing `.env`?**
-- Make sure you saved the `.env` file
-- **Stop the app completely** (Ctrl+C or stop button)
-- Run `flutter run` again
-- Hot reload (`r`) and hot restart (`R`) do NOT reload `.env` changes
+If anything fails to start: `flutter clean && flutter pub get && flutter run`.
 
-**New text not showing?**
-- Check spelling in translation files
-- Make sure you're using `.tr()` at the end
+## Customize colors
 
-## Building Your App
+Set hex values (no `#`) in `.env`, then fully stop and rerun the app — `.env` changes do not propagate via hot reload:
 
-### 📱 For Testing
-
-**Android:**
 ```bash
-flutter build apk --debug
+PRIMARY_COLOR=FF0000
+PRIMARY_DARK_COLOR=CC0000
+ON_PRIMARY_COLOR=FFFFFF
+APP_BAR_FOREGROUND_COLOR=FFFFFF
+ACCENT_BACKGROUND_COLOR=212121
+ACCENT_FOREGROUND_COLOR=FFFFFF
 ```
 
-**iPhone:**
-```bash
-flutter build ios --debug
+Full list: [Theme Colors](01_theme_colors.md).
+
+## Change the font
+
+Edit `lib/src/theme/app_fonts.dart`:
+
+```dart
+const kAppTextStyle = GoogleFonts.roboto;
 ```
 
-### 🚀 For App Store Release
+See [App Font](02_app_font.md).
 
-**Android (Google Play):**
-```bash
-flutter build appbundle --release
+## Add a translation key
+
+1. Add the key to every file in `assets/translations/` (`en.json` first, then translate the rest).
+2. Use it in code: `Text('my_new_key'.tr())`.
+
+See [Translations](07_translations.md).
+
+## Add an API call
+
+1. Add the URL or endpoint to `lib/core/app_config.dart`.
+2. Create a service in `lib/src/service/`:
+
+```dart
+class ProductService {
+  static Future<List<dynamic>> fetch() async {
+    final response = await http.get(
+      Uri.parse('${AppConfig.apiBaseUrl}/api/v1/ecommerce/products'),
+      headers: {'X-API-KEY': AppConfig.apiKey},
+    );
+    return json.decode(response.body)['data'];
+  }
+}
 ```
 
-**iPhone (App Store):**
+3. Consume it from a screen via `FutureBuilder` or a GetX controller.
+
+Always include `X-API-KEY: AppConfig.apiKey` on requests to the Botble backend.
+
+## Tests
+
 ```bash
-flutter build ios --release
+flutter test                              # all tests
+flutter test --coverage                   # with coverage
+flutter test test/service/cart_service_test.dart   # one file
 ```
 
-## Getting Help
+Test layout:
 
-### 📚 Useful Resources
+```
+test/
+├── helpers/      # mocks and fixtures
+├── model/
+├── service/
+├── controller/
+├── widget/
+├── security/
+└── utils/
+```
 
-- **Flutter Documentation**: [flutter.dev](https://flutter.dev)
-- **Quick Setup Guides**: Check files 01-15 in this documentation
-- **Social Login Setup**: Check files 12-15 for Facebook, Google, Apple, Twitter
+CI runs `flutter analyze` and `flutter test --coverage` on every push and PR via `.github/workflows/test.yml`.
 
-### 🆘 Common Problems
+## Build
 
-**Problem: "Flutter not found"**
-- Solution: Install Flutter SDK first
+| Target | Command |
+|---|---|
+| Android debug APK | `flutter build apk --debug` |
+| Android release AAB | `flutter build appbundle --release` |
+| iOS debug | `flutter build ios --debug` |
+| iOS release | `flutter build ios --release` |
 
-**Problem: "No devices found"**
-- Solution: Connect your phone or start an emulator
+See [Deploying the App](09_deploying_app.md) for store submission.
 
-**Problem: "Build failed"**
-- Solution: Run `flutter clean` then `flutter pub get`
+## Common errors
 
-**Problem: "App crashes"**
-- Solution: Check the error message in terminal/console
+- **`flutter: command not found`** — Flutter SDK not on `PATH`.
+- **No devices** — connect a USB device with debugging on, or start an emulator.
+- **Build failed** — `flutter clean && flutter pub get && flutter run`.
+- **`.env` change has no effect** — hot reload does not pick up `.env`. Stop and rerun.
 
-### 💡 Tips for Success
-
-1. **Start Small**: Make one change at a time
-2. **Test Often**: Run the app after each change
-3. **Keep Backups**: Use git to save your work
-4. **Ask for Help**: Don't hesitate to contact support
-
-Remember: You don't need to be a Flutter expert to customize this app! Start with simple changes like colors and text, then gradually try more advanced features.
+More: [Troubleshooting](troubleshooting.md).
