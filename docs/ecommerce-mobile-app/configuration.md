@@ -1,237 +1,72 @@
-# Configuration Guide
+# Configuration
 
-How to connect your app to your website and customize basic settings.
+All configuration lives in `.env` at the project root. After editing `.env`, restart with `npm start -- --clear` — Metro does not pick up `.env` changes via fast refresh.
 
-## Connect to Your Website
+## Required keys
 
-### Step 1: Find Your Website URL
-Your website URL is the address people use to visit your online store.
-Examples:
-- `https://mystore.com`
-- `https://shop.mycompany.com`
-- `https://mystore.botble.com`
+```bash
+API_BASE_URL=https://your-domain.com
+API_KEY=<from Admin → Settings → API Settings>
+APP_NAME=Your Store Name
+```
 
-### Step 2: Update App Configuration
+The app appends `/api/v1` to `API_BASE_URL` for API calls and uses the bare value for the WebView checkout URL. See [API Base URL](05_api_base_url.md) for `API_KEY` details.
 
-1. Open the `.env` file in your app folder
-2. Update these settings:
-   ```txt
-   API_BASE_URL=https://your-website.com
-   API_KEY=your-api-key
-   APP_NAME=Your Store Name
-   ```
-3. Save the file
-
-**Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls.
-
-### Configuration Flow
-
-Environment variables flow through a dual configuration system:
+## How `.env` reaches the runtime
 
 ```
 .env → app.config.js (extra.appConfig) → expo-constants → src/config/app.ts
 ```
 
-`src/config/app.ts` reads from `Constants.expoConfig.extra.appConfig` with built-in defaults for every field, so the app works even with missing env vars.
+`src/config/app.ts` provides defaults for every field, so missing keys fall back to safe values.
 
-### API URLs
+## App store metadata
 
-| Variable | Purpose |
-|----------|---------|
-| `API_BASE_URL` | Backend API endpoint (e.g., `https://your-site.com/api/v1`) — used for all API calls |
-| `SITE_URL` | Frontend website URL (e.g., `https://your-site.com`) — used for WebView checkout, external links, notification URL validation |
+| Variable | Description |
+|---|---|
+| `APP_NAME` | Display name shown on the home screen |
+| `APP_VERSION` | App version (e.g. `1.0.0`) |
 
-### Feature Toggles
+Bundle identifiers and other platform settings are edited directly in `app.config.js`.
 
-```bash
-ENABLE_ORDER_UPLOAD_PROOF=true    # Allow uploading proof of payment for orders
-ENABLE_GUEST_CHECKOUT=true         # Allow checkout without login
-```
-
-These map to `appConfig.features.orderUploadProof` and `appConfig.features.guestCheckout` in the code.
-
-### Step 3: Test the Connection
-
-1. Run your app:
-   ```bash
-   npm start
-   ```
-2. Try to login with an account from your website
-3. If it works, you're connected!
-
-## Environment Configuration
-
-Create or update your `.env` file with these settings:
+## Optional keys
 
 ```bash
-# API Configuration
-API_BASE_URL=https://your-website.com
-API_KEY=your-api-key
-
-# App Configuration
-APP_NAME=Your Store Name
-APP_VERSION=1.0.0
-
-# Contact Information (optional)
 APP_CONTACT_PHONE=+1 (800) 123-4567
 APP_CONTACT_EMAIL=support@example.com
-
-# Social Media (optional)
 APP_SOCIAL_FACEBOOK=https://facebook.com/yourstore
 APP_SOCIAL_X=https://x.com/yourstore
 APP_SOCIAL_INSTAGRAM=https://instagram.com/yourstore
 ```
 
-## App Configuration (app.config.js)
-
-The app reads configuration from environment variables through `app.config.js`. Update your `.env` file for app store settings:
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| APP_NAME | Display name | My Store |
-| APP_VERSION | App version | 1.0.0 |
-| API_BASE_URL | Website URL (without /api/v1) | https://mystore.com |
-| API_KEY | API authentication key | your-api-key |
-
-For bundle identifiers and other platform-specific settings, modify `app.config.js` directly.
-
-## Basic App Settings
-
-### App Name
-Change your app's name by following: **[App Name Guide](03_app_name.md)**
-
-### App Colors
-Customize your app's colors: **[Theme Colors Guide](01_theme_colors.md)**
-
-### App Logo
-Add your logo: **[App Logo Guide](04_app_logo.md)**
-
-### Languages
-Set up multiple languages: **[Translations Guide](06_translations.md)**
-
-## Security Settings
-
-### HTTPS Required
-- Always use `https://` in your website URL
-- Never use `http://` for live websites
-- This keeps your customers' data safe
-
-### API Access
-Make sure your website allows the app to connect:
-1. Contact your website developer
-2. Tell them you need "API access enabled"
-3. Verify CORS settings allow mobile app requests
-
-## Testing Your Setup
-
-### Test These Features:
-- Login with existing account
-- Browse products
-- Add items to cart
-- Search for products
-- View product details
-- Apply coupon codes
-- Complete checkout
-
-### If Something Doesn't Work:
-1. Check your website URL is correct
-2. Make sure your website is online
-3. Try logging in on your website directly
-4. Check browser console for errors
-5. Contact support with details
-
-## Homepage Configuration
-
-Customize the homepage layout and content through environment variables.
-
-### Ads/Banners
-
-Control which ads/banners display on the homepage:
+## Feature flags
 
 ```bash
-# Display specific ads only (comma-separated keys)
-AD_KEYS=banner-home-1,banner-home-2
-
-# Or leave empty to fetch all ads from your website
-AD_KEYS=
+ENABLE_ORDER_UPLOAD_PROOF=true   # allow uploading payment proof
+ENABLE_GUEST_CHECKOUT=true       # allow checkout without login
 ```
 
-**How it works:**
-- The ad keys correspond to the ad keys configured in your Botble admin panel
-- When specified, only ads with matching keys are displayed
-- When empty, all ads are fetched and displayed
-- This is useful for showing different banners on mobile vs. web
+These map to `appConfig.features.orderUploadProof` and `appConfig.features.guestCheckout`.
 
-**To find your ad keys:**
-1. Go to your Botble admin panel
-2. Navigate to **Ads** > **Ads**
-3. Note the "Key" column for each ad you want to display
-
-### Product Section Layout
-
-Configure how products are displayed in category sections:
+## Homepage
 
 ```bash
-# Horizontal slider (default)
-PRODUCT_SECTION_LAYOUT=slider
-
-# 2-column grid layout
-PRODUCT_SECTION_LAYOUT=grid
-```
-
-### Products Per Section
-
-Control how many products appear in each category section:
-
-```bash
-# Default is 6
+AD_KEYS=banner-home-1,banner-home-2     # comma-separated; empty = fetch all
+PRODUCT_SECTION_LAYOUT=slider            # slider | grid
 PRODUCT_SECTION_NUMBER_OF_PRODUCTS=6
+PRODUCT_IMAGE_THUMBNAIL_SIZE=small       # small | medium | large | thumb
 ```
 
-### Product Image Size
+`AD_KEYS` corresponds to ad keys configured in Botble admin → **Ads → Ads** (the "Key" column).
 
-Set the thumbnail size for product images:
+## Common follow-ups
 
-```bash
-# Options: small, medium, large, thumb
-PRODUCT_IMAGE_THUMBNAIL_SIZE=small
-```
+- App name: [03_app_name.md](03_app_name.md)
+- Colors: [01_theme_colors.md](01_theme_colors.md)
+- Logo: [04_app_logo.md](04_app_logo.md)
+- Translations: [06_translations.md](06_translations.md)
+- Social login: [11_social_login_setup.md](11_social_login_setup.md)
 
-## Advanced Configuration
+## Troubleshooting
 
-For more advanced setup:
-- **[API Integration](api-integration.md)** - Technical details
-- **[Development Guide](development.md)** - Customization options
-
-## Tips for Success
-
-### Before Going Live:
-- Test everything thoroughly
-- Try on different phones (iOS and Android)
-- Ask friends to test the app
-- Make sure payments work
-
-### Keep It Simple:
-- Start with basic setup
-- Add features gradually
-- Test each change
-- Don't change too many things at once
-
-## Common Problems
-
-### "Connection Failed"
-- Check your website URL
-- Make sure website is online
-- Verify API is accessible
-
-### "Login Doesn't Work"
-- Test login on your website first
-- Check if API is enabled
-- Verify user accounts exist
-
-### "No Products Show"
-- Make sure products exist on website
-- Check if products are published
-- Verify categories are set up
-
-For more help, check the [Troubleshooting Guide](troubleshooting.md).
+See [Troubleshooting](troubleshooting.md). Most issues are `API_BASE_URL` typos, a missing `API_KEY`, or `.env` changes applied without restarting Metro.

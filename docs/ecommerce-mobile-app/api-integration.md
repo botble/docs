@@ -1,363 +1,111 @@
-# API Integration Guide
+# API Integration
 
-This guide explains how the app communicates with the Botble E-commerce backend API.
+The app talks to the Botble e-commerce REST API. Full reference: [https://ecommerce-api.botble.com/docs](https://ecommerce-api.botble.com/docs).
 
 ![API Integration](./images/api-integration.png)
 
-## API Overview
-
-The app uses the Botble E-commerce REST API for all data operations. The API documentation is available at [https://ecommerce-api.botble.com/docs](https://ecommerce-api.botble.com/docs).
-
-## Configuration
-
-### Base URL
-
-Set your API base URL in the `.env` file:
+## Configure
 
 ```bash
-API_BASE_URL=https://your-website.com
-API_KEY=your-api-key
+API_BASE_URL=https://your-domain.com
+API_KEY=<from Admin → Settings → API Settings>
 ```
 
-**Note**: The app automatically appends `/api/v1` to `API_BASE_URL` for API calls.
+The app appends `/api/v1` to `API_BASE_URL` for API calls. `API_KEY` is sent as the `X-API-KEY` header on every request. See [API Configuration](05_api_base_url.md).
 
-### API Client
+## API client
 
-The app uses a centralized API client at `src/services/apiClient.ts` with these features:
+`src/services/apiClient.ts` is the centralized client. Highlights:
 
-- **Automatic headers** — `X-LANGUAGE`, `X-CURRENCY`, `X-API-KEY`, and `Authorization` headers are injected automatically
-- **In-memory cache** — Language, currency, and auth token are cached in memory (synced from AsyncStorage on startup)
-- **30-second timeout** — All requests abort after 30s via `AbortController`
-- **Error extraction** — Parses API error responses to extract validation messages (e.g., `{errors: {qty: ["Max qty is 2"]}}`)
-- **App status monitoring** — 503 responses trigger maintenance mode UI; 500/502/504 trigger server error state
+- Auto-injects `X-LANGUAGE`, `X-CURRENCY`, `X-API-KEY`, and `Authorization`
+- Memory cache for language, currency, and auth token (synced with `AsyncStorage` on startup)
+- 30s timeout via `AbortController`
+- Extracts validation errors (`{errors: {field: ["msg"]}}` → `msg`)
+- Maps `503` → maintenance mode UI; `500/502/504` → server-error state
 
 ```typescript
 import { api } from '@/services/apiClient';
 
-// GET request (auth token auto-injected if user is logged in)
 const products = await api.get('/ecommerce/products');
-
-// POST request
 const result = await api.post('/ecommerce/cart/add', { product_id: 123, quantity: 1 });
-
-// With explicit token override
 const data = await api.get('/ecommerce/profile', customToken);
 ```
 
 ## Authentication
 
-### Login
-
 ```
 POST /api/v1/ecommerce/login
+POST /api/v1/ecommerce/register
 ```
 
-Request:
-```json
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-```
+Login response:
 
-Response:
 ```json
 {
   "error": false,
   "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "user": {
-      "id": 1,
-      "name": "John Doe",
-      "email": "user@example.com"
-    }
+    "token": "eyJhbGci...",
+    "user": { "id": 1, "name": "John Doe", "email": "user@example.com" }
   }
 }
 ```
 
-### Register
-
-```
-POST /api/v1/ecommerce/register
-```
-
-Request:
-```json
-{
-  "name": "John Doe",
-  "email": "user@example.com",
-  "password": "password123",
-  "password_confirmation": "password123"
-}
-```
-
-### Token Storage
-
-Tokens are stored securely using Expo Secure Store:
+Tokens are stored with Expo Secure Store:
 
 ```typescript
 import * as SecureStore from 'expo-secure-store';
 
-// Store token
 await SecureStore.setItemAsync('auth_token', token);
-
-// Retrieve token
 const token = await SecureStore.getItemAsync('auth_token');
-
-// Remove token
 await SecureStore.deleteItemAsync('auth_token');
 ```
 
-## Products
+## Endpoints
 
-### Get Products
+| Group | Endpoint |
+|---|---|
+| Products | `GET /ecommerce/products`, `/products/{slug}`, `/categories`, `/brands`, `/products?keyword=...` |
+| Cart | `GET /ecommerce/cart`, `POST /cart/add`, `PUT /cart/update`, `DELETE /cart/remove/{rowId}` |
+| Coupons | `POST /ecommerce/coupon/apply`, `POST /ecommerce/coupon/remove` (`cart_id` always required) |
+| Wishlist | `GET /ecommerce/wishlist`, `POST /wishlist`, `DELETE /wishlist/{product_id}` |
+| Orders | `GET /ecommerce/orders`, `/orders/{id}`, `POST /orders/{id}/cancel` |
+| Addresses | `GET/POST /addresses`, `PUT/DELETE /addresses/{id}`, `GET /countries` |
 
-```
-GET /api/v1/ecommerce/products
-```
-
-Query Parameters:
-- `page` - Page number
-- `per_page` - Items per page
-- `categories[]` - Filter by category IDs
-- `brands[]` - Filter by brand IDs
-- `min_price` - Minimum price
-- `max_price` - Maximum price
-- `sort_by` - Sort field (name, price, created_at)
-- `order_by` - Sort order (asc, desc)
-
-### Get Product Detail
-
-```
-GET /api/v1/ecommerce/products/{slug}
-```
-
-### Get Categories
-
-```
-GET /api/v1/ecommerce/categories
-```
-
-### Get Brands
-
-```
-GET /api/v1/ecommerce/brands
-```
-
-### Search Products
-
-```
-GET /api/v1/ecommerce/products?keyword={query}
-```
-
-## Cart
-
-### Get Cart
-
-```
-GET /api/v1/ecommerce/cart
-```
-
-### Add to Cart
-
-```
-POST /api/v1/ecommerce/cart/add
-```
-
-Request:
-```json
-{
-  "product_id": 123,
-  "quantity": 1,
-  "options": {
-    "attribute_color": "Red",
-    "attribute_size": "M"
-  }
-}
-```
-
-### Update Cart Item
-
-```
-PUT /api/v1/ecommerce/cart/update
-```
-
-### Remove from Cart
-
-```
-DELETE /api/v1/ecommerce/cart/remove/{rowId}
-```
-
-### Apply Coupon
-
-```
-POST /api/v1/ecommerce/coupon/apply
-```
-
-Request:
-```json
-{
-  "coupon_code": "DISCOUNT10",
-  "cart_id": "abc123"
-}
-```
-
-**Note**: The `cart_id` is always required when applying or removing coupons — both for guest and authenticated users.
-
-### Remove Coupon
-
-```
-POST /api/v1/ecommerce/coupon/remove
-```
-
-Request:
-```json
-{
-  "cart_id": "abc123"
-}
-```
-
-## Wishlist
-
-### Get Wishlist
-
-```
-GET /api/v1/ecommerce/wishlist
-```
-
-### Add to Wishlist
-
-```
-POST /api/v1/ecommerce/wishlist
-```
-
-Request:
-```json
-{
-  "product_id": 123
-}
-```
-
-### Remove from Wishlist
-
-```
-DELETE /api/v1/ecommerce/wishlist/{product_id}
-```
-
-## Orders
-
-### Get Orders
-
-```
-GET /api/v1/ecommerce/orders
-```
-
-### Get Order Detail
-
-```
-GET /api/v1/ecommerce/orders/{id}
-```
-
-### Cancel Order
-
-```
-POST /api/v1/ecommerce/orders/{id}/cancel
-```
-
-## Addresses
-
-### Get Addresses
-
-```
-GET /api/addresses
-```
-
-### Create Address
-
-```
-POST /api/addresses
-```
-
-Request:
-```json
-{
-  "name": "John Doe",
-  "phone": "+1234567890",
-  "email": "john@example.com",
-  "country": "United States",
-  "state": "California",
-  "city": "Los Angeles",
-  "address": "123 Main St",
-  "zip_code": "90001",
-  "is_default": true
-}
-```
-
-### Update Address
-
-```
-PUT /api/addresses/{id}
-```
-
-### Delete Address
-
-```
-DELETE /api/addresses/{id}
-```
-
-### Get Countries
-
-```
-GET /api/countries
-```
+Product list query params: `page`, `per_page`, `categories[]`, `brands[]`, `min_price`, `max_price`, `sort_by` (`name`/`price`/`created_at`), `order_by` (`asc`/`desc`).
 
 ## Checkout
 
-### WebView Checkout
-
-The app uses a WebView-based checkout for payment processing:
+WebView-based:
 
 ```
 GET /checkout/cart/{cartId}?token={authToken}
 ```
 
-This opens the website's checkout page with the user's cart and authentication.
+This loads the website's checkout in a WebView so all backend payment gateways and shipping plugins work without app changes.
 
-## Error Handling
+## Errors
 
-### Standard Error Response
+Standard response:
 
 ```json
 {
   "error": true,
   "message": "Error description",
-  "errors": {
-    "field_name": ["Validation error message"]
-  }
+  "errors": { "field_name": ["Validation error message"] }
 }
 ```
 
-### Error Codes
+| Status | Meaning | App behavior |
+|---|---|---|
+| 400 | Bad Request | Show message |
+| 401 | Invalid / expired token | Redirect to login |
+| 403 | Forbidden | Show message |
+| 404 | Not Found | Show message |
+| 422 | Validation error | Show first field message |
+| 500 / 502 / 504 | Server error | server-error UI |
+| 503 | Maintenance | maintenance UI |
 
-| Code | Meaning | App Behavior |
-|------|---------|--------------|
-| 400 | Bad Request - Invalid data | Shows error message |
-| 401 | Unauthorized - Invalid/expired token | Redirects to login |
-| 403 | Forbidden - Access denied | Shows error message |
-| 404 | Not Found - Resource doesn't exist | Shows error message |
-| 422 | Validation Error | Extracts first validation message |
-| 500 | Server Error | Triggers server_error app status |
-| 503 | Service Unavailable | Triggers maintenance mode UI |
-
-### Error Message Extraction
-
-The API client automatically extracts user-friendly messages from error responses. It checks in order:
-
-1. `errors` object → first validation message (e.g., `{errors: {qty: ["Max qty is 2"]}}` → `"Max qty is 2"`)
-2. `message` field → generic API message
-3. Fallback → `"API request failed: {status} {statusText}"`
-
-### Handling Errors in Code
+Message resolution order: `errors[firstField][0]` → `message` → `"API request failed: {status} {statusText}"`.
 
 ```typescript
 import { ApiError } from '@/services/apiClient';
@@ -366,88 +114,49 @@ try {
   const data = await api.get('/ecommerce/products');
 } catch (error) {
   if (error instanceof ApiError) {
-    // error.message contains the extracted user-friendly message
-    // error.status contains the HTTP status code
-    if (error.status === 401) {
-      logout();
-    } else {
-      showToast(error.message);
-    }
+    if (error.status === 401) logout();
+    else showToast(error.message);
   }
 }
 ```
 
-## React Query Integration
-
-### Query Example
+## React Query
 
 ```typescript
 import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '@/services/api';
 
-function ProductList() {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['products'],
-    queryFn: fetchProducts,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
-
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage onRetry={refetch} />;
-
-  return <ProductGrid products={data} />;
-}
+const { data, isLoading, error, refetch } = useQuery({
+  queryKey: ['products'],
+  queryFn: fetchProducts,
+  staleTime: 5 * 60 * 1000,
+});
 ```
 
-### Mutation Example
+Mutations invalidate related queries:
 
 ```typescript
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addToCart } from '@/services/api';
-
-function AddToCartButton({ productId }) {
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: addToCart,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
-      showToast('Added to cart!');
-    },
-    onError: (error) => {
-      showToast(error.message);
-    },
-  });
-
-  return (
-    <Button
-      onPress={() => mutation.mutate({ productId, quantity: 1 })}
-      loading={mutation.isPending}
-    >
-      Add to Cart
-    </Button>
-  );
-}
+const mutation = useMutation({
+  mutationFn: addToCart,
+  onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] }),
+  onError: (error) => showToast(error.message),
+});
 ```
 
-## Testing API Connections
-
-### Check API Health
+## Test the connection
 
 ```bash
-curl https://your-website.com/api/v1/ecommerce/products
-```
+curl https://your-domain.com/api/v1/ecommerce/products
 
-### Test Authentication
-
-```bash
-curl -X POST https://your-website.com/api/v1/ecommerce/login \
+curl -X POST https://your-domain.com/api/v1/ecommerce/login \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"password"}'
 ```
 
-## Need Help?
+| Result | Cause |
+|---|---|
+| 401 on every request | `API_KEY` missing or wrong |
+| 404 on every request | API plugin disabled on the backend |
+| Connection error | `API_BASE_URL` typo or site down |
 
-- Check [API Documentation](https://ecommerce-api.botble.com/docs)
-- Read the [Troubleshooting Guide](troubleshooting.md)
-- Contact support for assistance
+See [Troubleshooting](troubleshooting.md) for more.

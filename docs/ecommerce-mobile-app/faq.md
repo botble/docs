@@ -1,281 +1,144 @@
-# Frequently Asked Questions
+# FAQ
 
-## General Questions
+## General
 
-### What is this app?
+### Does the app require Botble e-commerce on the backend?
 
-The Botble Ecommerce Mobile App is a React Native application built with Expo that connects to your Botble e-commerce website, providing your customers with a native mobile shopping experience on iOS and Android.
+Yes. The app is a customer-facing client only — no built-in backend, database, or admin. You need [Botble Ecommerce](https://codecanyon.net/collections/10433615-laravel-ecommerce) running on a server. All admin work (products, orders, settings) is done through the web admin at `your-domain.com/admin`.
 
-### What do I need to use this app?
+### Flutter or React Native?
 
-- A Botble e-commerce website with API access enabled
-- Node.js 18 or higher
-- Expo CLI
-- Developer accounts for app stores (if publishing)
+Both have feature parity with the same backend. Pick the stack your team is comfortable with.
 
-### Is Flutter or React Native version better?
+### Multi-tenant / SaaS?
 
-Both versions offer similar features. Choose based on your development team's expertise:
-- **React Native (this app)**: JavaScript/TypeScript, Expo ecosystem
-- **Flutter**: Dart language, single codebase compilation
+No. The app supports the **multi-vendor marketplace** plugin (multiple sellers in one app), but it is not a multi-tenant SaaS. To serve multiple businesses, deploy separate Botble instances and rebrand the app per instance.
 
-### Where is the eCommerce website that connects to this app?
+### Does the app work with any Botble theme?
 
-This app is a mobile frontend for the [Botble Ecommerce](https://codecanyon.net/collections/10433615-laravel-ecommerce) script — a Laravel-based eCommerce platform sold separately on CodeCanyon. Botble Ecommerce provides the website, admin panel, and API. This React Native app connects to it via REST API, sharing the same database. You configure your Botble URL in the `.env` file (`API_BASE_URL`).
+Yes. The app connects via API, independent of the website theme.
 
-### Can I use this app standalone without the eCommerce website?
+## Setup
 
-No. This app is a customer-facing mobile client only — it has no built-in backend, database, or admin panel. You need the [Botble Ecommerce](https://codecanyon.net/collections/10433615-laravel-ecommerce) script running on a server. All admin work (adding products, managing orders, etc.) is done through Botble's web-based admin dashboard at `yourdomain.com/admin`. The mobile app is for your customers to browse and shop.
+### How do I install?
 
-### Does this app have SaaS or multi-tenant features?
+```bash
+npm install
+cp .env.example .env       # then edit
+npm start
+```
 
-No. The app supports **multi-vendor marketplace** (multiple sellers within one app via Botble's Marketplace plugin), but it is not a multi-tenant SaaS platform. There is no subscription billing, tenant isolation, or per-customer admin panel. To serve multiple businesses, you would need to deploy separate Botble Ecommerce instances and white-label (clone & rebrand) this app for each one.
+See [Installation](installation.md).
 
-## Setup & Installation
+### Why does my phone show a "Development Build" screen?
 
-### How do I install the app?
-
-1. Download the source code from CodeCanyon
-2. Run `npm install` to install dependencies
-3. Create `.env` file with your API URL
-4. Run `npm start` to launch the development server
-
-See the [Installation Guide](installation.md) for detailed steps.
-
-### Why do I see "Development Build" screen on my phone?
-
-You installed a development build, which requires a running development server. To test on your phone without a server:
-
-1. Create free Expo account at [expo.dev](https://expo.dev)
-2. Run `npm install -g eas-cli && eas login`
-3. Run `eas build --platform android --profile preview` for APK
-
-See [Troubleshooting Guide](troubleshooting.md#development-build-screen-on-device) for details.
-
-### What are EAS login credentials?
-
-EAS (Expo Application Services) login requires an **Expo account** - NOT your CodeCanyon credentials.
-
-1. Create account at [expo.dev/signup](https://expo.dev/signup) (free)
-2. Use that email and password when running `eas login`
-
-### What's the difference between development build and production APK?
-
-| Development Build | Production APK |
-|------------------|----------------|
-| Needs dev server running | Standalone app |
-| For developers only | For end users |
-| Hot reload enabled | No hot reload |
-| Can't distribute | Can share/publish |
-
-### How do I build an APK without Android Studio?
-
-Use EAS Build (cloud-based, no local SDK needed):
+A development build needs Metro running. To test without Metro, build a preview APK with EAS:
 
 ```bash
 npm install -g eas-cli
 eas login
-eas build:configure
 eas build --platform android --profile preview
 ```
 
-Download APK from expo.dev when build completes.
+See [Troubleshooting → Development build screen](troubleshooting.md#development-build-screen-on-device).
 
-### Why does my app show a black screen after installing APK?
+### What credentials does `eas login` ask for?
 
-Your `.env` file is gitignored and **not included in EAS builds**. You must set environment variables using EAS Secrets before building:
+A free Expo account from [expo.dev/signup](https://expo.dev/signup). Not your CodeCanyon credentials.
+
+### Why does my installed APK show a black screen?
+
+`.env` is gitignored and is **not** included in EAS builds. Set EAS Secrets and rebuild:
 
 ```bash
-eas secret:create --name API_BASE_URL --value "https://your-website.com"
-eas secret:create --name API_KEY --value "your-api-key"
+eas secret:create --name API_BASE_URL --value "https://your-domain.com"
+eas secret:create --name API_KEY --value "<your-api-key>"
+eas build --platform android --profile production
 ```
 
-Then rebuild: `eas build --platform android --profile production`
+See [Deploying → Environment Variables](08_deploying_app.md#environment-variables-critical).
 
-See [Environment Variables section](08_deploying_app.md#environment-variables-critical) in Deploying Guide for complete details.
+### `.env` vs EAS Secrets
 
-### What's the difference between .env file and EAS Secrets?
-
-| Source | Local Dev | EAS Build |
-|--------|-----------|-----------|
+| Source | Local dev | EAS build |
+|---|---|---|
 | `.env` file | Yes | No |
 | EAS Secrets | No | Yes |
 
-- **`.env` file**: Used for local development only. Gitignored for security.
-- **EAS Secrets**: Required for production builds. Set via `eas secret:create` command.
-
-### Why won't the app connect to my website?
-
-Check these common issues:
-1. Verify your API URL is correct in `.env`
-2. Make sure your website is online and accessible
-3. Ensure API access is enabled on your Botble backend
-4. Check CORS settings allow mobile app requests
-
-### Can I use this with any Botble theme?
-
-Yes! The app works with any Botble e-commerce theme since it connects via API, not the frontend.
-
 ## Customization
 
-### How do I change the app colors?
+### Colors, logo, translations
 
-Edit the CSS variables in `global.css`. See [Theme Colors Guide](01_theme_colors.md) for details.
-
-### How do I add my logo?
-
-Replace the image files in the `assets/` folder:
-- `icon.png` (1024x1024)
-- `splash.png` (1284x2778)
-- `adaptive-icon.png` (1024x1024)
-
-See [App Logo Guide](04_app_logo.md) for details.
-
-### How do I add a new language?
-
-1. Create a new JSON file in `src/i18n/locales/`
-2. Register it in `src/i18n/index.ts`
-3. Add all translation keys
-
-See [Translations Guide](06_translations.md) for details.
+- Colors: edit CSS variables in `global.css`. See [Theme Colors](01_theme_colors.md).
+- Logo: replace `assets/icon.png`, `splash.png`, `adaptive-icon.png`. See [App Logo](04_app_logo.md).
+- New language: add a JSON file under `src/i18n/locales/` and register in `src/i18n/index.ts`. See [Translations](06_translations.md).
 
 ### Can I customize the checkout page?
 
-The app uses WebView checkout, so the checkout page comes from your Botble website. Customize it there.
+Checkout runs in a WebView served by your Botble website. Customize the checkout there.
 
 ## Features
 
-### Does the app support push notifications?
+### Push notifications
 
-Push notifications can be added using Expo Notifications. This requires additional setup with Firebase/APNs.
+Supported via Firebase Cloud Messaging. See [Push Notifications](14_push_notifications.md).
 
-![Push Notifications](./images/push-notifications.jpg)
+### Social login
 
-### Does the app support social login?
+Supported via Google, Apple, Facebook. See [Social Login Setup](11_social_login_setup.md).
 
-Currently, the app supports email/password authentication. Social login can be added following Botble's API documentation.
+### Payment methods
 
-### Can customers pay through the app?
+Whatever is configured on your Botble backend. Checkout is a WebView, so all backend gateways and shipping plugins work without app changes.
 
-Yes! The app uses WebView checkout which supports all payment methods configured on your Botble website.
+### Offline mode
 
-### Is offline mode supported?
-
-The app requires internet connection to fetch products and process orders. Some data is cached for faster loading.
+The app requires an internet connection. Some responses are cached for performance.
 
 ## Deployment
 
-### How do I publish to the app stores?
+### How do I publish?
 
-Use Expo Application Services (EAS):
 ```bash
 eas build --platform all --profile production
 eas submit --platform all
 ```
 
-See [Deploying App Guide](08_deploying_app.md) for details.
+See [Deploying the App](08_deploying_app.md).
 
-### How much does it cost to publish?
+### Costs
 
-- **Apple App Store**: $99/year developer account
-- **Google Play Store**: $25 one-time fee
-- **Expo**: Free tier available
+- Apple Developer: $99/year
+- Google Play Developer: $25 one-time
+- Expo: free tier is sufficient for most projects
 
-### How long does app review take?
+### Review times
 
-- **Apple**: Usually 1-3 days, sometimes up to a week
-- **Google**: Usually 1-3 days
+- Apple: typically 1–3 days
+- Google: typically 1–3 days
 
-### Can I update the app without going through app stores?
+### Update without resubmitting?
 
-Yes! Use EAS Update for JavaScript changes:
+Yes, for JS-only changes via EAS Update:
+
 ```bash
 eas update --branch production --message "Bug fixes"
 ```
 
-Native changes require new builds and store submissions.
+Native changes require a new build and store submission.
 
-## Troubleshooting
+## Tech
 
-### The app shows "Network Error"
+- React Native 0.81+ with Expo SDK 54
+- Node.js 18+
+- TypeScript (strict)
+- npm (default; yarn also works)
 
-1. Check your internet connection
-2. Verify API URL in `.env`
-3. Test the API in a browser
-4. Check if your website is online
+## Common problems
 
-### Products don't appear in the app
-
-1. Make sure products exist on your website
-2. Verify products are published/active
-3. Check API response in browser
-4. Clear app cache and reload
-
-### Login doesn't work
-
-1. Test login on your website first
-2. Check API authentication settings
-3. Verify user account exists
-4. Check for CORS issues
-
-### The app is slow
-
-1. Enable production mode: `npx expo start --no-dev`
-2. Optimize images on your website
-3. Check network speed
-4. Reduce number of products per page
-
-## Technical
-
-### What React Native version does it use?
-
-The app uses React Native 0.81+ with Expo SDK 54.
-
-### What Node.js version is required?
-
-Node.js 18 or higher is required.
-
-### Can I use npm instead of yarn?
-
-Yes, npm is the default package manager for this app.
-
-### Does it support TypeScript?
-
-Yes, the entire codebase is written in TypeScript with strict mode enabled.
-
-## Support
-
-### Where can I get help?
-
-- **Documentation**: You're reading it!
-- **Email**: contact@botble.com
-- **Support Center**: https://botble.ticksy.com
-
-### How do I report a bug?
-
-1. Check if it's a known issue in the documentation
-2. Try to reproduce the issue
-3. Contact support with:
-   - Steps to reproduce
-   - Expected behavior
-   - Actual behavior
-   - Screenshots if applicable
-
-### Can I request new features?
-
-Yes! Contact us at contact@botble.com with your feature request.
+See [Troubleshooting](troubleshooting.md).
 
 ## Updates
 
-### How do I update to a new version?
-
-1. Backup your customizations
-2. Download the new version
-3. Compare and merge changes
-4. Test thoroughly before deploying
-
-See [Upgrade Guide](upgrade.md) for details.
-
-### Where can I see what's new?
-
-Check the [Release Notes](releases.md) for version history and changes.
+- [Upgrade Guide](upgrade.md)
+- [Release notes](releases.md)

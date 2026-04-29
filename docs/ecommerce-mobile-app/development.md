@@ -1,118 +1,50 @@
 # Development Guide
 
-This guide covers the technical aspects of customizing and extending the Botble Ecommerce Mobile App.
+## Tech stack
 
-## Project Architecture
+- React Native + Expo SDK 54
+- TypeScript (strict)
+- Expo Router v6 (file-based routing)
+- React Query (server state) + Context API (client state)
+- NativeWind (Tailwind for React Native)
+- Fetch API via custom client (`src/services/apiClient.ts`)
+- Expo Secure Store (tokens), AsyncStorage (preferences)
 
-### Tech Stack
-- **Framework**: React Native with Expo SDK 54
-- **Language**: TypeScript (strict mode)
-- **Navigation**: Expo Router v6 (file-based routing)
-- **State Management**: React Query + Context API
-- **Styling**: NativeWind (Tailwind CSS for React Native)
-- **HTTP Client**: Fetch API with custom wrapper
-- **Storage**: Expo Secure Store (tokens), AsyncStorage (preferences)
-
-### Directory Structure
+## Project structure
 
 ```
-├── app/                          # Expo Router pages
-│   ├── (auth)/                   # Auth screens (login, register)
-│   ├── (tabs)/                   # Tab navigation
-│   │   ├── index.tsx            # Home
-│   │   ├── categories.tsx       # Categories
-│   │   ├── search.tsx           # Search
-│   │   ├── cart.tsx             # Cart
-│   │   ├── account.tsx          # Account
-│   │   └── wishlist.tsx         # Wishlist
-│   ├── account/                  # Account management
-│   ├── product/                  # Product pages
-│   └── _layout.tsx              # Root layout
-│
-├── src/
-│   ├── components/              # Reusable components
-│   │   ├── ui/                  # Base UI components
-│   │   ├── home/                # Home page components
-│   │   ├── products/            # Product components
-│   │   ├── cart/                # Cart components
-│   │   └── ...
-│   ├── context/                 # React Contexts (6 total)
-│   │   ├── AuthContext.tsx      # Authentication
-│   │   ├── CartContext.tsx      # Shopping cart
-│   │   ├── WishlistContext.tsx  # Wishlist
-│   │   ├── SettingsContext.tsx  # Theme & language
-│   │   ├── CompareContext.tsx   # Product comparison
-│   │   └── AppStatusContext.tsx # Network & app status
-│   ├── services/                # API services
-│   │   ├── api.ts               # API endpoints
-│   │   ├── apiClient.ts         # HTTP client
-│   │   └── auth.ts              # Authentication helpers
-│   ├── hooks/                   # Custom hooks
-│   ├── lib/                     # Utilities
-│   └── i18n/                    # Translations
+app/                          Expo Router screens
+├── (auth)/                   login, register
+├── (tabs)/                   home, categories, search, cart, account, wishlist
+├── account/                  account management
+├── product/                  product detail
+└── _layout.tsx               root layout
+
+src/
+├── components/               UI components (ui/, home/, products/, cart/, ...)
+├── context/                  Auth, Cart, Wishlist, Settings, Compare, AppStatus
+├── services/                 api.ts, apiClient.ts, auth.ts
+├── hooks/                    custom hooks
+├── lib/                      utilities
+└── i18n/                     translations
 ```
 
-## State Management
+## Run
 
-### React Query (Server State)
-
-Used for all API data fetching with automatic caching:
-
-```typescript
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-
-// Fetching data
-const { data, isLoading, error } = useQuery({
-  queryKey: ['products', categoryId],
-  queryFn: () => fetchProducts(categoryId),
-});
-
-// Mutating data
-const queryClient = useQueryClient();
-const mutation = useMutation({
-  mutationFn: addToCart,
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['cart'] });
-  },
-});
+```bash
+npm install
+npm start                # Metro
+npm run ios              # iOS simulator
+npm run android          # Android emulator
 ```
 
-### Context API (Client State)
+`.env` is read at Metro start. Stop and rerun (`npm start -- --clear`) after editing.
 
-Used for global app state:
+## Add a screen
 
-```typescript
-// Using auth context
-const { user, token, login, logout } = useAuth();
+Expo Router uses file-based routing — file paths become URLs.
 
-// Using settings context
-const { theme, language, setTheme, setLanguage, themeColors } = useSettings();
-
-// Using cart context
-const { items, addToCart, removeFromCart, cartTotal } = useCart();
-```
-
-## Adding New Pages
-
-### File-Based Routing
-
-With Expo Router, file paths become routes:
-
-```
-app/
-├── index.tsx           → /
-├── about.tsx           → /about
-├── product/
-│   └── [slug].tsx      → /product/:slug
-└── (tabs)/
-    └── cart.tsx        → /cart (in tab navigator)
-```
-
-### Creating a New Page
-
-1. Create a new file in the `app/` directory:
-
-```typescript
+```tsx
 // app/my-page.tsx
 import { View, Text } from 'react-native';
 import { Stack } from 'expo-router';
@@ -122,133 +54,79 @@ export default function MyPage() {
     <>
       <Stack.Screen options={{ title: 'My Page' }} />
       <View className="flex-1 bg-background p-4">
-        <Text className="text-foreground">Hello World</Text>
+        <Text className="text-foreground">Hello</Text>
       </View>
     </>
   );
 }
 ```
 
-2. Navigate to it:
+Navigate with `router.push('/my-page')`.
 
-```typescript
-import { router } from 'expo-router';
+## Add a component
 
-router.push('/my-page');
-```
-
-## Adding New Components
-
-### Component Structure
-
-```typescript
+```tsx
 // src/components/products/ProductPrice.tsx
 import { View, Text } from 'react-native';
-import { useSettings } from '@/context/SettingsContext';
 
-interface ProductPriceProps {
-  price: number;
-  salePrice?: number;
-}
-
-export function ProductPrice({ price, salePrice }: ProductPriceProps) {
-  const { themeColors } = useSettings();
-
+export function ProductPrice({ price, salePrice }: { price: number; salePrice?: number }) {
   return (
     <View className="flex-row items-center gap-2">
-      {salePrice && (
-        <Text className="text-muted line-through">${price}</Text>
-      )}
-      <Text className="text-foreground font-bold">
-        ${salePrice || price}
-      </Text>
+      {salePrice && <Text className="text-muted line-through">${price}</Text>}
+      <Text className="text-foreground font-bold">${salePrice ?? price}</Text>
     </View>
   );
 }
 ```
 
-### Using Theme Colors
+For non-Tailwind styling, read theme colors from `useSettings()`:
 
-```typescript
-import { useSettings } from '@/context/SettingsContext';
-
-function MyComponent() {
-  const { themeColors, isDarkMode } = useSettings();
-
-  return (
-    <View style={{ backgroundColor: themeColors.background }}>
-      <Text style={{ color: themeColors.foreground }}>
-        Hello
-      </Text>
-    </View>
-  );
-}
+```tsx
+const { themeColors, isDarkMode } = useSettings();
 ```
 
-## API Integration
+## Add an API call
 
-### Adding New API Endpoints
+Use the central client — it handles `X-API-KEY`, `Authorization`, language, currency, timeout, and error parsing automatically.
 
-```typescript
+```ts
 // src/services/api.ts
+import { api } from './apiClient';
 
-export const fetchMyData = async (token: string) => {
-  const response = await fetch(`${API_URL}/my-endpoint`, {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return response.json();
-};
+export const fetchMyData = () => api.get('/my-endpoint');
 ```
 
-### Using with React Query
+Consume with React Query:
 
-```typescript
-import { useQuery } from '@tanstack/react-query';
-import { fetchMyData } from '@/services/api';
-import { useAuth } from '@/context/AuthContext';
-
-function MyComponent() {
-  const { token } = useAuth();
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['myData', token],
-    queryFn: () => fetchMyData(token!),
-    enabled: !!token,
-  });
-
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage />;
-
-  return <DataDisplay data={data} />;
-}
+```tsx
+const { data, isLoading, error } = useQuery({
+  queryKey: ['myData'],
+  queryFn: fetchMyData,
+});
 ```
 
-## Styling with NativeWind
+For mutations, invalidate related queries on success:
 
-### Tailwind Classes
-
-```typescript
-<View className="flex-1 bg-background p-4">
-  <Text className="text-xl font-bold text-foreground mb-2">
-    Title
-  </Text>
-  <Text className="text-muted">
-    Description text
-  </Text>
-</View>
+```tsx
+const mutation = useMutation({
+  mutationFn: addToCart,
+  onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] }),
+});
 ```
 
-### Custom Theme Colors
+See [API Integration](api-integration.md) for the full client API.
 
-Theme colors are defined in `global.css`:
+## Use contexts
+
+```ts
+const { user, token, login, logout } = useAuth();
+const { theme, language, setTheme, setLanguage, themeColors } = useSettings();
+const { items, addToCart, removeFromCart, cartTotal } = useCart();
+```
+
+## Theme colors
+
+Defined in `global.css` and consumed by NativeWind:
 
 ```css
 :root {
@@ -266,146 +144,73 @@ Theme colors are defined in `global.css`:
 }
 ```
 
-## Internationalization
+See [Theme Colors](01_theme_colors.md).
 
-### Adding Translations
+## Translations
 
-1. Add keys to locale files in `src/i18n/locales/`:
+Add keys to every locale in `src/i18n/locales/`:
 
 ```json
 // en.json
 {
-  "myFeature": {
-    "title": "My Feature",
-    "description": "This is my feature"
-  }
+  "myFeature": { "title": "My Feature", "description": "..." }
 }
 ```
 
-2. Use in components:
+Use:
 
-```typescript
-import { useTranslation } from 'react-i18next';
-
-function MyComponent() {
-  const { t } = useTranslation();
-
-  return (
-    <View>
-      <Text>{t('myFeature.title')}</Text>
-      <Text>{t('myFeature.description')}</Text>
-    </View>
-  );
-}
+```tsx
+const { t } = useTranslation();
+<Text>{t('myFeature.title')}</Text>
 ```
 
-### Adding New Languages
+Add a new language by creating `src/i18n/locales/<code>.json` and registering it in `src/i18n/index.ts`. See [Translations](06_translations.md).
 
-1. Create new locale file: `src/i18n/locales/de.json`
-2. Register in `src/i18n/index.ts`:
-
-```typescript
-import de from './locales/de.json';
-
-const resources = {
-  en: { translation: en },
-  es: { translation: es },
-  de: { translation: de }, // Add new language
-};
-```
-
-## Testing
-
-The app includes a comprehensive test suite with 248+ tests across 39 test suites using Jest and React Native Testing Library.
-
-### Running Tests
+## Tests
 
 ```bash
-npm test              # Run all tests
-npm run test:watch    # Watch mode
-npm run test:coverage # Run with coverage report
-npm run test:ci       # CI mode (coverage + no cache)
+npm test              # all tests
+npm run test:watch    # watch mode
+npm run test:coverage # with coverage
+npm run typecheck     # TypeScript check
 ```
 
-### Test Structure
+Layout:
 
 ```
-src/
-├── __tests__/
-│   ├── integration/          # Cross-module integration tests
-│   └── setup.ts              # Jest setup (mocks for native modules)
-├── components/
-│   └── cart/
-│       └── CartItem.test.tsx  # Co-located component tests
-├── hooks/
-│   └── __tests__/            # Hook tests
-├── lib/
-│   └── __tests__/            # Utility function tests
-└── services/
-    └── __tests__/            # API service tests
+src/__tests__/                 integration tests
+src/components/**/*.test.tsx   co-located component tests
+src/hooks/__tests__/
+src/lib/__tests__/
+src/services/__tests__/
 ```
 
-### Coverage Thresholds
+Coverage thresholds: statements 20%, branches 15%, functions 20%, lines 20%.
 
-| Metric | Threshold |
-|--------|-----------|
-| Statements | 20% |
-| Branches | 15% |
-| Functions | 20% |
-| Lines | 20% |
+## Conventions
 
-### Type Checking
+- Functional components with hooks. TypeScript everywhere.
+- `FlatList` (not `ScrollView`) for long lists.
+- Debounce search inputs.
+- Tokens go in `expo-secure-store`, never in AsyncStorage.
+- HTTPS for all API calls.
+
+## Debug
+
+- Shake the device or `Cmd+D` (iOS) / `Cmd+M` (Android) to open the dev menu.
+- React Query devtools:
+
+  ```tsx
+  import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+  <ReactQueryDevtools initialIsOpen={false} />
+  ```
+
+## Build
 
 ```bash
-npm run typecheck     # Check TypeScript types (tsc --noEmit)
+eas build --platform android --profile preview
+eas build --platform android --profile production
+eas build --platform ios --profile production
 ```
 
-## Best Practices
-
-### Code Style
-- Use TypeScript for all new files
-- Use functional components with hooks
-- Follow existing naming conventions
-- Keep components small and focused
-
-### Performance
-- Use React Query for API calls (automatic caching)
-- Use FlatList for long lists
-- Debounce search inputs
-- Lazy load screens when possible
-
-### Security
-- Never store sensitive data in AsyncStorage
-- Use Expo Secure Store for tokens
-- Validate user inputs
-- Use HTTPS for all API calls
-
-## Debugging
-
-### React Native Debugger
-
-1. Shake your device or press `Cmd+D` (iOS) / `Cmd+M` (Android)
-2. Select "Debug Remote JS"
-
-### Console Logging
-
-```typescript
-console.log('Debug info:', data);
-console.warn('Warning message');
-console.error('Error message');
-```
-
-### React Query DevTools
-
-```typescript
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-// Add to your app
-<ReactQueryDevtools initialIsOpen={false} />
-```
-
-## Need Help?
-
-- Check the [API Integration Guide](api-integration.md)
-- Read the [Troubleshooting Guide](troubleshooting.md)
-- Contact support for assistance
+See [Deploying the App](08_deploying_app.md). Production builds need EAS Secrets, not `.env` (see [Troubleshooting → Black screen](troubleshooting.md#black-screen-after-installing-apk-aab)).

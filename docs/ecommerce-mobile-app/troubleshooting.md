@@ -1,586 +1,233 @@
-# Troubleshooting Guide
+# Troubleshooting
 
-## "Development Build" Screen on Device
-
-### Problem
-
-When opening the app on your phone, you see this screen:
+## "Development Build" screen on device
 
 ![Development Build Screen](./images/development-build-screen.png)
 
-The app shows "Development Build" with options like:
-- "Start a local development server with: npx expo start"
-- "Fetch development servers"
-- "Scan QR Code"
+A development build needs Metro running on your computer. To run the app standalone, build a preview or production binary with EAS:
 
-**Why this happens**: You installed a **development build** which requires a running development server on your computer. Development builds are meant for developers, not end users.
-
-### Solution: Build a Production APK
-
-To use the app standalone (without a dev server), you need to build a **production APK**:
-
-**Quick Steps:**
-
-1. **Create Expo Account** (free): Go to [expo.dev/signup](https://expo.dev/signup)
-
-2. **Install EAS CLI**:
-   ```bash
-   npm install -g eas-cli
-   ```
-
-3. **Login to EAS**:
-   ```bash
-   eas login
-   ```
-   Enter your Expo account email and password when prompted.
-
-4. **Configure EAS** (first time only):
-   ```bash
-   eas build:configure
-   ```
-
-5. **Build APK**:
-   ```bash
-   eas build --platform android --profile preview
-   ```
-
-6. **Download & Install**: Get the APK link from terminal or [expo.dev](https://expo.dev), install on your Android device.
-
-See [Deploying App Guide](08_deploying_app.md) for detailed instructions.
-
-### Alternative: Use Development Server
-
-If you want to use the development build (for testing during development):
-
-1. On your computer, run:
-   ```bash
-   npx expo start
-   ```
-
-2. Make sure your phone and computer are on the same WiFi network
-
-3. On your phone, tap "Fetch development servers" or scan the QR code
-
----
-
-## Black Screen After Installing APK/AAB
-
-### Problem
-
-After building and installing the production APK or AAB, the app opens to a **black screen** or crashes immediately.
-
-### Cause
-
-Your `.env` file is **gitignored** and not included in EAS builds. EAS Build runs in the cloud and only has access to your Git repository and EAS Secrets. Without environment variables, the app has no API configuration and fails to start.
-
-### Solution
-
-You must set environment variables using EAS Secrets **before building**:
-
-**Step 1: Set required variables:**
 ```bash
-eas secret:create --name API_BASE_URL --value "https://your-website.com"
-eas secret:create --name API_KEY --value "your-api-key"
+npm install -g eas-cli
+eas login
+eas build:configure
+eas build --platform android --profile preview
 ```
 
-**Step 2: (Optional) Set additional variables:**
-```bash
-eas secret:create --name APP_NAME --value "Your App Name"
-```
+Install the resulting APK from [expo.dev](https://expo.dev). See [Deploying the App](08_deploying_app.md).
 
-**Step 3: Verify secrets are set:**
-```bash
-eas secret:list
-```
+To keep using the development build instead, run `npx expo start` on your computer (same WiFi as the phone), then tap **Fetch development servers** in the app.
 
-**Step 4: Rebuild the app:**
+## Black screen after installing APK / AAB
+
+`.env` is gitignored and not included in EAS builds. Set EAS Secrets and rebuild:
+
 ```bash
+eas secret:create --name API_BASE_URL --value "https://your-domain.com"
+eas secret:create --name API_KEY --value "<your-api-key>"
+eas secret:list                  # verify
 eas build --platform android --profile production
 ```
 
-**Step 5: Uninstall old app and install new APK**
-
-::: tip Bulk Import
-If you have many variables, import them all at once:
-```bash
-cat .env | xargs -L 1 eas secret:create
-```
-:::
-
-### Why This Happens
-
-| Source | Local Dev | EAS Build |
-|--------|-----------|-----------|
+| Source | Local dev | EAS build |
+|---|---|---|
 | `.env` file | Yes | No |
 | EAS Secrets | No | Yes |
 
-The `.env` file is gitignored for security reasons. EAS cannot read local files - it only sees what's in your Git repository plus EAS Secrets.
+To bulk-import all `.env` keys: `cat .env | xargs -L 1 eas secret:create`.
 
-See [Environment Variables section](08_deploying_app.md#environment-variables-critical) in the Deploying Guide for complete details.
+See [Deploying → Environment Variables](08_deploying_app.md#environment-variables-critical).
 
----
+## EAS login
 
-## EAS Login Issues
+`eas login` asks for your **Expo account** credentials, not CodeCanyon. Sign up free at [expo.dev/signup](https://expo.dev/signup).
 
-### "Email or username" prompt - What credentials?
+If you signed up via Google or GitHub, use SSO: `eas login --sso`.
 
-**Problem**: Running `eas login` asks for "Email or username" but you don't know what to enter.
+To check current account: `eas whoami`.
 
-**Solution**: These are your **Expo account** credentials, NOT your CodeCanyon or any other account.
+## EAS init: "Cannot read properties of undefined (reading 'projectId')"
 
-1. If you don't have an Expo account, create one at [expo.dev/signup](https://expo.dev/signup) (free)
-2. Use the email and password you created for Expo
+The `eas` block is in the wrong place in `app.json`. It must be inside `extra`:
 
-### Login fails with wrong password
-
-```bash
-# Try SSO login if you signed up with Google/GitHub
-eas login --sso
-
-# Or reset password at expo.dev
-```
-
-### Check if already logged in
-
-```bash
-eas whoami
-```
-
----
-
-## EAS Configuration Issues
-
-### "Cannot read properties of undefined (reading 'projectId')"
-
-**Problem**: Running `eas init` fails with error:
-
-```
-Cannot read properties of undefined (reading 'projectId')
-Error: project:init command failed.
-```
-
-**Cause**: The `projectId` is placed at wrong location in `app.json`. It's under `expo.eas` instead of `expo.extra.eas`.
-
-**Wrong structure**:
 ```json
 {
   "expo": {
     "extra": {
-      "appConfig": { ... }
-    },
-    "eas": {
-      "projectId": "6a00fcd0-890a-4c97-b82e-00aed812ec59"
-    }
-  }
-}
-```
-
-**Correct structure**:
-```json
-{
-  "expo": {
-    "extra": {
-      "appConfig": { ... },
+      "appConfig": { },
       "eas": {
-        "projectId": "6a00fcd0-890a-4c97-b82e-00aed812ec59"
+        "projectId": "<your-project-id>"
       }
     }
   }
 }
 ```
 
-**Solution**:
-1. Open `app.json`
-2. Move `"eas": { "projectId": "..." }` block **inside** the `"extra"` object
-3. Remove the standalone `"eas"` block from directly under `"expo"`
-4. Save and run `eas init` again
+Move it under `expo.extra` (not directly under `expo`), then run `eas init` again.
 
-### "Existing project found" but link fails
+## Installation errors
 
-**Problem**: EAS detects existing project but fails to link:
+| Error | Fix |
+|---|---|
+| `npm: command not found` | Install Node.js LTS from [nodejs.org](https://nodejs.org), restart terminal. |
+| `expo: command not found` | `npm install -g expo-cli` |
+| `Cannot find module` | `rm -rf node_modules package-lock.json && npm install` |
+| Metro crash / port conflict | `npm start -- --clear` or `npm start -- --port 8082` |
 
-```
-Existing project found: @username/project-name (ID: xxx). Link this project? ... yes
-Cannot read properties of undefined (reading 'projectId')
-```
+## API connection
 
-**Solution**: Same as above - fix the `projectId` location in `app.json`, then run:
+### Network error
+
+1. Confirm the website is online and reachable in a browser.
+2. Verify `API_BASE_URL` in `.env` (no trailing slash, `https://` in production).
+3. Test directly:
+
+   ```bash
+   curl https://your-domain.com/api/v1/ecommerce/products
+   ```
+
+### 401 Unauthorized — "Invalid or missing API key"
+
+The `API_KEY` in `.env` does not match the key saved on the backend.
+
+1. Open `https://your-domain.com/admin`
+2. Go to **Settings → API Settings**
+3. Click **Generate** if no key is shown, or copy the existing key
+4. Paste into `.env` as `API_KEY=...` (or set the EAS Secret if building)
+5. Restart Metro: `npm start -- --clear`
+
+Do not put your Envato purchase code in `API_KEY`. The purchase code is for development license validation only. See [API Configuration](05_api_base_url.md#api-key).
+
+### CORS error
+
+The backend rejects requests from the app. Configure CORS on the Botble backend to allow the mobile app origin.
+
+### SSL certificate error
+
+Use a valid certificate. Self-signed certificates are not supported on iOS or Android in production.
+
+## Build failures
+
+### iOS
 
 ```bash
-eas init
-```
-
----
-
-## Installation Issues
-
-### "npm not found" or "node not found"
-
-**Problem**: Node.js is not installed or not in PATH.
-
-**Solution**:
-1. Download Node.js from [nodejs.org](https://nodejs.org)
-2. Install the LTS version
-3. Restart your terminal
-4. Verify: `node --version`
-
-### "expo command not found"
-
-**Problem**: Expo CLI is not installed globally.
-
-**Solution**:
-```bash
-npm install -g expo-cli
-```
-
-### "Cannot find module" errors
-
-**Problem**: Dependencies are not installed or corrupted.
-
-**Solution**:
-```bash
-rm -rf node_modules
-rm package-lock.json
-npm install
-```
-
-### Metro bundler crashes
-
-**Problem**: Cache corruption or port conflict.
-
-**Solution**:
-```bash
-npm start -- --clear
-```
-
-Or use a different port:
-```bash
-npm start -- --port 8082
-```
-
-## Connection Issues
-
-### "Network Error" or "Failed to fetch"
-
-**Problem**: Cannot connect to your API.
-
-**Checklist**:
-1. [ ] Is your website online?
-2. [ ] Is the API URL correct in `.env`?
-3. [ ] Does the URL use HTTPS?
-4. [ ] Is there a trailing slash? (Remove it)
-
-**Test**:
-```bash
-curl https://your-website.com/api/v1/ecommerce/products
-```
-
-### "401 Unauthorized"
-
-**Problem**: Authentication failed.
-
-**Solutions**:
-- Check if your token is expired
-- Verify login credentials
-- Clear app storage and login again
-- Check API authentication settings on backend
-
-### "CORS Error"
-
-**Problem**: Backend doesn't allow requests from the app.
-
-**Solution**: Contact your backend developer to:
-1. Add appropriate CORS headers
-2. Allow requests from mobile apps
-3. Whitelist the Expo development server
-
-### "SSL Certificate Error"
-
-**Problem**: Invalid or self-signed SSL certificate.
-
-**Solutions**:
-- Use a valid SSL certificate (Let's Encrypt is free)
-- Don't use self-signed certificates in production
-- For local development, use HTTP (not recommended for production)
-
-## Build Issues
-
-### iOS build fails
-
-**Common causes**:
-1. Invalid bundle identifier
-2. Missing Apple credentials
-3. Provisioning profile issues
-
-**Solutions**:
-```bash
-# Reset credentials
 eas credentials --platform ios
-
-# Clean and rebuild
 eas build --platform ios --clear-cache
 ```
 
-### Android build fails
+Common causes: bundle identifier in use, missing Apple credentials, provisioning profile expired.
 
-**Common causes**:
-1. Invalid package name
-2. Keystore issues
-3. SDK version conflicts
+### Android
 
-**Solutions**:
 ```bash
-# Reset credentials
 eas credentials --platform android
-
-# Clean and rebuild
 eas build --platform android --clear-cache
 ```
 
-### "Invariant Violation" errors
+Common causes: package name in use, keystore mismatch, SDK version conflict.
 
-**Problem**: Code error or incompatible library.
-
-**Solutions**:
-1. Check the full error message
-2. Clear Metro cache: `npm start -- --clear`
-3. Delete node_modules and reinstall
-4. Check for library version conflicts
-
-## Runtime Issues
+## Runtime issues
 
 ### App crashes on launch
 
-**Debugging steps**:
-1. Run in development mode: `npm start`
-2. Check terminal for error messages
-3. Use React Native Debugger
-4. Check Expo logs on expo.dev
+Run in dev mode (`npm start`) and read the Metro output. Production crashes appear in EAS Build logs and the device's native log.
 
 ### Products not loading
 
-**Checklist**:
-1. [ ] Is the API responding?
-2. [ ] Are products published on website?
-3. [ ] Is there a category filter applied?
-4. [ ] Check network tab in debugger
+1. Verify `API_BASE_URL` and `API_KEY`.
+2. Confirm products are published on the website.
+3. Inspect the network response in the React Native Debugger.
 
-**Solution**:
-```typescript
-// Add console logging to debug
-console.log('API URL:', API_URL);
-console.log('Response:', response);
-```
+### Images missing or broken
 
-### Images not displaying
-
-**Common causes**:
-1. Wrong image URL format
-2. HTTP vs HTTPS mismatch
-3. CORS blocking images
-4. Large image files timing out
-
-**Solutions**:
-- Ensure images use HTTPS
-- Optimize image sizes on backend
-- Check image URLs are accessible
+- Use HTTPS for images. iOS blocks plain HTTP by default.
+- Backend image URLs must be publicly accessible.
+- Optimize image size — large images time out on slow connections.
 
 ### Cart not updating
 
-**Problem**: Cart state not syncing.
+Log out and back in. Verify the cart endpoints respond on the website.
 
-**Solutions**:
-1. Clear app cache
-2. Logout and login again
-3. Check network requests in debugger
-4. Verify cart API endpoints
+### Login failing
 
-### Login not working
+1. Confirm login works on the website itself.
+2. Check `API_BASE_URL` and `API_KEY`.
+3. Inspect the response payload in the debugger.
 
-**Checklist**:
-1. [ ] Can you login on the website?
-2. [ ] Is email/password correct?
-3. [ ] Is API responding?
-4. [ ] Check network requests
+## Social login
 
-**Debug**:
-```typescript
-try {
-  const response = await login(email, password);
-  console.log('Login response:', response);
-} catch (error) {
-  console.error('Login error:', error);
-}
-```
+General checklist:
 
-### Social Login not working
+- Use a development or preview build, not Expo Go.
+- All required keys set in `.env` and Metro restarted.
+- The backend has the social provider configured.
 
-**General checklist**:
-1. [ ] Are you using a development build (not Expo Go)?
-2. [ ] Are credentials set in `.env`?
-3. [ ] Did you restart the dev server after changing `.env`?
-4. [ ] Is the backend configured for social auth?
+See [Social Login Setup](11_social_login_setup.md).
 
-See [Social Login Setup Guide](11_social_login_setup.md) for detailed configuration.
+### Twitter error 302
 
-### Twitter Login Error 302
+In the Twitter Developer Portal → User authentication settings:
 
-**Problem**: Twitter login shows redirect error or "302".
-
-**Cause**: Incorrect Twitter Developer Portal settings.
-
-**Solution**: Go to [Twitter Developer Portal](https://developer.twitter.com) → Your App → User authentication settings → Edit:
-
-| Setting | Must Be |
-|---------|---------|
-| Type of App | **Native App** (NOT "Web App") |
-| Client type | **Public client** (NOT "Confidential client") |
-| OAuth 2.0 | **Enabled** |
+| Setting | Value |
+|---|---|
+| Type of App | **Native App** |
+| Client type | **Public client** |
+| OAuth 2.0 | enabled |
 | Callback URL | `botble://twitter-auth` |
 
-After fixing, restart your development server and try again.
+### Google Sign-In failing
 
-### Google Sign-In Fails
+- Use the **Web application** Client ID, not Android/iOS.
+- Add SHA-1 fingerprints for debug and release keystores.
+- Test on a device with Google Play Services.
 
-**Problem**: Google Sign-In shows error or doesn't work.
+### Apple Sign-In button missing
 
-**Common causes**:
-1. Wrong Client ID type (must be **Web application**, not Android/iOS)
-2. SHA-1 fingerprint not registered for Android
-3. Google Play Services not available on device
-
-**Solution**:
-1. Use the **Web application** Client ID from Google Cloud Console
-2. Add SHA-1 fingerprints for both debug and release builds
-3. Test on a device with Google Play Services
-
-### Apple Sign-In Button Missing
-
-**Problem**: Apple Sign-In button doesn't appear.
-
-**Solution**:
-1. Apple Sign-In only appears on iOS (hidden on Android by design)
-2. Verify `usesAppleSignIn: true` in `app.config.js`
-3. Rebuild development build after enabling: `eas build --profile development --platform ios`
+- Apple Sign-In is iOS-only by design.
+- Set `usesAppleSignIn: true` in `app.config.js` and rebuild the development build.
 
 ### Facebook "Invalid Key Hash"
 
-**Problem**: Facebook login shows key hash error on Android.
-
-**Solution**:
-1. Generate key hash:
-   ```bash
-   keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
-   ```
-2. Add to Facebook app → Settings → Android → Key Hashes
-3. Add both debug AND release key hashes
-
-## Performance Issues
-
-### App is slow
-
-**Solutions**:
-1. Run in production mode:
-   ```bash
-   npx expo start --no-dev
-   ```
-
-2. Optimize images on backend
-
-3. Enable Hermes (default in SDK 54+)
-
-4. Reduce API payload sizes
-
-### High memory usage
-
-**Solutions**:
-1. Use FlatList for long lists
-2. Optimize image sizes
-3. Clear cached data periodically
-4. Use pagination
-
-### Slow initial load
-
-**Solutions**:
-1. Optimize splash screen
-2. Lazy load screens
-3. Reduce initial API calls
-4. Use cached data
-
-## Platform-Specific Issues
-
-### iOS Simulator not opening
-
-**Solutions**:
 ```bash
-# Install Xcode command line tools
-xcode-select --install
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+```
 
-# Reset simulator
+Add the output to Facebook app → Settings → Android → Key Hashes (debug and release).
+
+## Performance
+
+- Run a release-mode build to benchmark, not the dev server: `npx expo start --no-dev --minify`.
+- Hermes is on by default in SDK 54+.
+- Use `FlatList` (not `ScrollView`) for long product lists.
+- Optimize images on the backend; use `PRODUCT_IMAGE_THUMBNAIL_SIZE`.
+
+## Platform-specific
+
+### iOS Simulator does not open
+
+```bash
+xcode-select --install
 xcrun simctl shutdown all
 npm run ios
 ```
 
-### Android Emulator not starting
+### Android Emulator does not start
 
-**Solutions**:
-1. Open Android Studio
-2. Go to Device Manager
-3. Start emulator manually
-4. Then run `npm run android`
+Start the emulator manually from Android Studio → Device Manager, then run `npm run android`.
 
-### Physical device not connecting
+### Physical device cannot connect
 
-**Solutions**:
-1. Make sure Expo Go is installed
-2. Use tunnel mode: `npm start -- --tunnel`
-3. Check both devices are on same network
-4. Restart Expo Go app
+Use tunnel mode if not on the same WiFi:
 
-## Environment Issues
-
-### .env changes not applying
-
-**Problem**: Environment variables are cached.
-
-**Solution**:
-1. Stop the development server (Ctrl+C)
-2. Restart with `npm start -- --clear`
-
-Hot reload does NOT apply .env changes!
-
-### Wrong API URL in production
-
-**Problem**: Development URL in production build.
-
-**Solution**:
-Use EAS secrets or environment-specific builds:
 ```bash
-eas secret:create --name API_BASE_URL --value "https://production-url.com"
-eas secret:create --name API_KEY --value "your-api-key"
+npm start -- --tunnel
 ```
 
-## Getting Help
+## Environment variables
 
-### Before contacting support:
+`.env` changes do not apply via fast refresh. Stop Metro and run:
 
-1. Check this troubleshooting guide
-2. Check the [FAQ](faq.md)
-3. Search error message online
-4. Try the solutions above
+```bash
+npm start -- --clear
+```
 
-### When contacting support:
-
-Include:
-- Error message (full text)
-- Steps to reproduce
-- Platform (iOS/Android)
-- Expo SDK version
-- Node.js version
-- Screenshots if applicable
-
-### Support channels:
-
-- **Email**: contact@botble.com
-- **Support Center**: https://botble.ticksy.com
-- **Documentation**: https://docs.botble.com/ecommerce-mobile-app
+For production builds, `.env` is **not** read. Use EAS Secrets (see [Black screen after installing APK / AAB](#black-screen-after-installing-apk-aab)).
