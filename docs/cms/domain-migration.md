@@ -109,7 +109,22 @@ DB_PASSWORD=your_new_database_password
 
 Your database may still contain references to your old domain (in page content, settings, etc.). You need to replace them.
 
-**Using phpMyAdmin:**
+**Option A (simpler): Find/Replace in the SQL file before importing**
+
+If you have not imported the database yet, this is the easiest way:
+
+1. Open the exported `.sql` file from Step 3 in a text editor (VS Code, Sublime Text, Notepad++, or any code editor)
+2. Use **Find & Replace** (Ctrl+H / Cmd+H) to replace `old-domain.com` with `new-domain.com`
+3. **Save** the file
+4. Import the modified `.sql` file in phpMyAdmin (Step 3)
+
+This avoids running multiple SQL queries and is recommended for non-technical users.
+
+::: warning
+For very large `.sql` files (>100 MB), basic text editors may struggle. Use VS Code or Sublime Text, or fall back to Option B.
+:::
+
+**Option B: Run SQL queries after import (phpMyAdmin)**
 
 1. Open **phpMyAdmin** on your new hosting
 2. Select your database
@@ -134,6 +149,11 @@ WHERE content LIKE '%old-domain.com%';
 ```sql
 UPDATE posts SET content = REPLACE(content, 'old-domain.com', 'new-domain.com')
 WHERE content LIKE '%old-domain.com%';
+```
+
+```sql
+UPDATE meta_box_metas SET meta_value = REPLACE(meta_value, 'old-domain.com', 'new-domain.com')
+WHERE meta_value LIKE '%old-domain.com%';
 ```
 
 5. Click **Go** after each query
@@ -201,6 +221,29 @@ If you use any of these, update your domain in their settings:
 - Social media accounts (Facebook, Twitter, etc.)
 - Payment gateways (PayPal, Stripe, etc.)
 - Email services (Mailchimp, SendGrid, etc.)
+
+## Migrating from a Subfolder to the Root Domain
+
+If you built your site inside a subfolder (e.g. `https://example.com/new-web/public/`) and now want to publish it on the root domain (e.g. `https://example.com/`), the process is the same as a regular migration with two differences:
+
+- The hosting and database are usually the same — only files location and the document root change
+- The URL pattern to replace is **`example.com/subfolder/public`** → **`example.com`** (not old-domain → new-domain)
+
+**Steps:**
+
+1. **Deactivate the license** at **Admin → Settings → General → License** so you can re-activate after the move.
+2. **Backup files and database** as described in [Before You Start](#2-create-a-full-backup).
+3. **Open the exported `.sql` file** in a text editor and find/replace `example.com/subfolder/public` with `example.com`. Save the file.
+4. **Move the files** from the subfolder to the document root (e.g. `public_html/`).
+5. **Point the document root** to the `public` folder of the moved site so the live URL becomes `https://example.com/` (without `/public`). See the [shared hosting installation guide](https://botble.com/the-best-way-to-install-our-script-on-a-shared-hosting) for instructions.
+6. **Import the modified `.sql` file** into the same (or a new) database.
+7. **Edit `.env`**: set `APP_URL=https://example.com` and update the database credentials if they changed.
+8. **Clear the cache** at **Admin → Platform Administration → Cache Management → Clear all caches**.
+9. **Re-activate the license** at **Admin → Settings → General → License**.
+
+::: tip
+Keep the old subfolder online until the new root domain is verified working. Only delete the subfolder once everything is confirmed.
+:::
 
 ## Alternative: Fresh Install Method
 
