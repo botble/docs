@@ -32,6 +32,10 @@ export default [
       { text: 'Menu', link: '/orisa/usage-menus' },
       { text: 'UI Blocks', link: '/orisa/usage-ui-block' },
       { text: 'Theme options', link: '/orisa/usage-theme-options' },
+      { text: 'Logo customization', link: '/orisa/usage-logo-customization' },
+      { text: 'Offcanvas menu', link: '/orisa/usage-offcanvas-menu' },
+      { text: 'Newsletter popup', link: '/orisa/usage-newsletter-popup' },
+      { text: 'Project metrics', link: '/orisa/usage-project-metrics' },
       { text: 'Widgets', link: '/orisa/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/orisa/usage-custom-css-js' },
       { text: 'Translation', link: '/orisa/plugin-translation' },
@@ -47,6 +51,12 @@ export default [
       { text: 'Invoice template', link: '/orisa/invoice-template' },
       { text: 'Setup cronjob', link: '/orisa/cronjob' },
       { text: 'Newsletter', link: '/orisa/usage-newsletter' },
+    ],
+  },
+  {
+    text: 'Migration',
+    items: [
+      { text: 'Subfolder to root domain', link: '/orisa/migration-subfolder-to-root' },
     ],
   },
   {
