@@ -27,11 +27,21 @@ Most Amerce homepages are pre-built with shortcodes via the UI Block editor. To 
 
 ## Available Shortcodes
 
-Amerce ships with **46 shortcodes**, grouped below. Each shortcode supports several presets/styles — explore the **Style** dropdown inside the UI Block editor to preview variants used across the 21 niche demos.
+Amerce ships with **47 shortcodes**, grouped below. Each shortcode supports several presets/styles — explore the **Style** dropdown inside the UI Block editor to preview variants used across the 21 niche demos.
+
+For per-shortcode field references, jump to the dedicated category pages:
+
+- [Hero & Banners](./shortcodes-hero-banners.md) — 14 shortcodes
+- [Products](./shortcodes-products.md) — 9 shortcodes
+- [Categories, Brands & Vendors](./shortcodes-categories-brands.md) — 5 shortcodes
+- [Lookbook & Visual](./shortcodes-lookbook-visual.md) — 6 shortcodes
+- [Content](./shortcodes-content.md) — 8 shortcodes
+- [Marketing & Trust](./shortcodes-marketing.md) — 4 shortcodes
+- [Simple Slider override](./shortcodes-simple-slider.md) — 1 shortcode
 
 ### Hero & Banners
 
-Hero, banner, and parallax shortcodes used at the top of homepages.
+Hero, banner, and parallax shortcodes used at the top of homepages. → [Details](./shortcodes-hero-banners.md)
 
 | Shortcode | Description |
 |-----------|-------------|
@@ -52,7 +62,7 @@ Hero, banner, and parallax shortcodes used at the top of homepages.
 
 ### Products
 
-Shortcodes that pull from the ecommerce catalog.
+Shortcodes that pull from the ecommerce catalog. → [Details](./shortcodes-products.md)
 
 | Shortcode | Description |
 |-----------|-------------|
@@ -68,6 +78,8 @@ Shortcodes that pull from the ecommerce catalog.
 
 ### Categories, Brands & Vendors
 
+→ [Details](./shortcodes-categories-brands.md)
+
 | Shortcode | Description |
 |-----------|-------------|
 | `[ecommerce-categories]` | Category grid/slider. |
@@ -77,6 +89,8 @@ Shortcodes that pull from the ecommerce catalog.
 | `[ecommerce-vendors]` | Marketplace vendor list (multivendor only). |
 
 ### Lookbook & Visual
+
+→ [Details](./shortcodes-lookbook-visual.md)
 
 | Shortcode | Description |
 |-----------|-------------|
@@ -88,6 +102,8 @@ Shortcodes that pull from the ecommerce catalog.
 | `[instagram-feed]` | Instagram feed gallery. |
 
 ### Content
+
+→ [Details](./shortcodes-content.md)
 
 | Shortcode | Description |
 |-----------|-------------|
@@ -101,6 +117,8 @@ Shortcodes that pull from the ecommerce catalog.
 | `[term-content]` | Render content from a taxonomy term (category/tag description). |
 
 ### Marketing & Trust
+
+→ [Details](./shortcodes-marketing.md)
 
 | Shortcode | Description |
 |-----------|-------------|
