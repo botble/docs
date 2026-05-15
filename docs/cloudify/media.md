@@ -46,6 +46,42 @@ Watch this video for a step-by-step guide:
 
 <iframe width="100%" height="360" src="https://www.youtube.com/embed/Hlw4erp2DGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+## Setup Google Drive
+
+You can use a Google Drive account as the storage backend for your media files.
+
+### Steps
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a new project.
+
+2. In the project, enable the **Google Drive API** (`APIs & Services` -> `Library` -> search for "Google Drive API" -> `Enable`).
+
+3. Configure the **OAuth consent screen** (`APIs & Services` -> `OAuth consent screen`). Add your Google account under **Test users**.
+
+4. Create credentials (`APIs & Services` -> `Credentials` -> `Create Credentials` -> `OAuth client ID`):
+   - Application type: **Web application**
+   - Authorized redirect URIs: add `https://developers.google.com/oauthplayground`
+
+   After saving, copy the generated **Client ID** and **Client Secret**.
+
+5. Open the [Google OAuth 2.0 Playground](https://developers.google.com/oauthplayground/):
+   - Click the gear icon (top right) and check **Use your own OAuth credentials**, then paste your **Client ID** and **Client Secret**.
+   - In the left panel, authorize the scope `https://www.googleapis.com/auth/drive`.
+   - Click **Exchange authorization code for tokens** and copy the **Refresh token**.
+
+6. In the admin panel, go to `Settings` -> `Media`, set the storage driver to **Google Drive**, and enter:
+   - **Client ID**
+   - **Client Secret**
+   - **Refresh Token**
+   - **Folder ID** (optional) — leave as `root` to store files at the drive root, or paste the ID of a specific Google Drive folder.
+
+7. Save the settings. New uploads will now be stored on Google Drive.
+
+::: tip
+The **Folder ID** is the last segment of the folder URL when you open it in Google Drive
+(e.g. `https://drive.google.com/drive/folders/THIS_IS_THE_FOLDER_ID`).
+:::
+
 ## Changing or Adding Image Sizes
 
 When an image is uploaded, there will be an original image and thumbnails generated.

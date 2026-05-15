@@ -58,7 +58,7 @@ These events fire from JavaScript event handlers when users interact with the si
 
 ### Optional Events (require theme integration)
 
-These event listeners are wired but only fire when the theme dispatches the corresponding hook. The Shofy theme does not wire them by default — they are available for custom integrations.
+These event listeners are wired but only fire when the theme dispatches the corresponding hook. The Amerce theme does not wire them by default — they are available for custom integrations.
 
 | Event | Trigger | Required dispatcher |
 |-------|---------|---------------------|

@@ -63,7 +63,7 @@ Events marked as "custom event" use `fbq('trackCustom', ...)` instead of `fbq('t
 
 ### Optional Events (require theme integration)
 
-These event listeners are wired but only fire when the theme dispatches the corresponding JavaScript event. The Shofy theme does not dispatch them by default — they are available for custom integrations.
+These event listeners are wired but only fire when the theme dispatches the corresponding JavaScript event. The Amerce theme does not dispatch them by default — they are available for custom integrations.
 
 | Event | Trigger | Required dispatcher |
 |-------|---------|---------------------|

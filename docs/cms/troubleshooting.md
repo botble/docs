@@ -103,6 +103,58 @@ Some hosting providers have ModSecurity enabled, which can block legitimate admi
 </IfModule>
 ```
 
+::: tip
+ModSecurity does not always return a `403`. It can also **silently strip the query string** from a request — the page still loads, but `$_GET` arrives empty. This breaks OAuth callbacks. See [Social Login Fails](#social-login-fails-invalidstateexception-or-missing-required-parameter-code) below.
+:::
+
+## Social Login Fails — "InvalidStateException" or "Missing required parameter: code"
+
+When setting up Google (or Facebook) social login, you click the provider button, pick an account, and get bounced back to `/login`. Depending on the stage, you may see:
+
+- `InvalidStateException occurred while trying to login`
+- A browser console error (`Uncaught SyntaxError: Invalid or unexpected token`) on the `/login` page after the redirect
+- `POST https://www.googleapis.com/oauth2/v4/token resulted in a 400 Bad Request` with `"error_description": "Missing required parameter: code"`
+
+### Cause
+
+The OAuth callback query string is being stripped before it reaches Laravel. Google appends parameters such as `code`, `state`, `scope`, and `iss=https://accounts.google.com` to the callback URL. Because `scope` and `iss` contain full `https://` URLs **embedded inside the query string**, ModSecurity's Remote File Inclusion (RFI) rules — enabled by default on most cPanel shared hosts — flag the request and silently drop the query string. Laravel then receives an empty request, Socialite has no `code` to exchange, and the token request fails.
+
+A second, less common cause is a **double `.htaccess` rewrite** (root `public_html/.htaccess` rewrites into a `public/` subfolder, then `public/.htaccess` rewrites to `index.php`) dropping the query string on some Apache versions.
+
+### Diagnosis
+
+1. Confirm the correct callback URL in Google Cloud Console is `https://your-domain.com/auth/callback/google` — note the path order is `auth/callback/google`, **not** `auth/google/callback`.
+2. Temporarily add this as the first line of `handleProviderCallback()` in `platform/plugins/social-login/src/Http/Controllers/SocialLoginController.php`:
+
+   ```php
+   dd(request()->fullUrl(), request()->all());
+   ```
+
+3. In an incognito window, open a **synthetic** callback URL with simple values:
+
+   ```
+   https://your-domain.com/auth/callback/google?code=ABC123&state=XYZ&scope=email
+   ```
+
+   Laravel should receive all three parameters.
+4. Now perform a **real** Google login. If the synthetic test passed but the real callback arrives with an empty query string, the only difference is the embedded `https://` URLs in `scope`/`iss` — confirming ModSecurity is stripping them.
+5. Remove the `dd()` line afterwards.
+
+### Fix
+
+1. **Disable ModSecurity for the domain** — in cPanel → Security → ModSecurity, toggle it OFF for your domain. (If you cannot disable it globally, ask your host to whitelist the RFI rules for `/auth/callback/*` paths.)
+2. **Preserve the query string through `.htaccess` rewrites** — if your root `public_html/.htaccess` rewrites into a `public/` subfolder, add the `QSA` (Query String Append) flag:
+
+   ```apache
+   RewriteRule ^(.*)$ public/$1 [L,QSA]
+   ```
+
+3. Clear all caches in **Admin → Platform Administration → Cache Management**, then retry social login in an incognito window.
+
+::: tip
+The console `SyntaxError` after the redirect is a side effect, not the root cause — the toast that displays the Google error contains a newline that breaks the inline script. Fixing the query-string stripping removes the Google error, and the toast (and its syntax error) disappears with it.
+:::
+
 ## DELETE Method Not Allowed
 
 Some shared hosting providers disable the `DELETE` HTTP method. If you cannot delete items:

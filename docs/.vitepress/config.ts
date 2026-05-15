@@ -45,6 +45,7 @@ import auxeroSidebar from '../auxero/sidebar'
 import orisaSidebar from '../orisa/sidebar'
 import kycSidebar from '../kyc/sidebar'
 import smsGatewaysSidebar from '../sms-gateways/sidebar'
+import amerceSidebar from '../amerce/sidebar'
 
 export default defineConfig({
   title: 'Botble Documentation',
@@ -135,6 +136,7 @@ export default defineConfig({
           { text: 'Orisa', link: '/orisa/'},
           { text: 'KYC Verification', link: '/kyc/'},
           { text: 'SMS Gateways', link: '/sms-gateways/'},
+          { text: 'Amerce', link: '/amerce/'},
         ],
       },
       { text: 'Support', link: 'https://botble.ticksy.com' },
@@ -192,6 +194,7 @@ export default defineConfig({
       orisa: orisaSidebar,
       kyc: kycSidebar,
       'sms-gateways': smsGatewaysSidebar,
+      amerce: amerceSidebar,
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
