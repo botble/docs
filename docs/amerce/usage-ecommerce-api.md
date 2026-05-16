@@ -4,7 +4,7 @@
 
 The Ecommerce API provides RESTful endpoints for building mobile apps and custom storefronts. It covers the full shopping flow: browsing products, managing carts, applying coupons, checking out, and tracking orders.
 
-All endpoints use the `/api/v1/ecommerce/` prefix. See the [API page](./api.md) for general authentication, API key protection, and response format details.
+All endpoints use the `/api/v1/ecommerce/` prefix. See the [API page](/cms/api) for general authentication, API key protection, and response format details.
 
 ::: tip
 The **cart does not store customer information** (name, email, address). Customer details are collected during checkout. This is a deliberate separation — the cart handles products and quantities, while checkout handles customer identity and shipping.

@@ -36,7 +36,7 @@ Slide records are managed via the plugin UI:
 3. Add slides with image, title, subtitle, button text, button URL.
 4. Reference the slider via the `[simple-slider]` shortcode in a UI Block (or in raw page content).
 
-See the [simple-slider plugin docs](/cms/simple-slider) for the underlying data model.
+Refer to the **simple-slider** plugin source for the underlying data model.
 
 ## See also
 

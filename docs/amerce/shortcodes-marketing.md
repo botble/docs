@@ -67,7 +67,7 @@ Newsletter signup section with optional banner image. Drops into the homepage or
 | `mailchimp_list_id` | — | Optional Mailchimp list ID — falls back to the theme's built-in newsletter handler when empty. |
 | `background_color` | — | Section background color (hex). |
 
-See [Newsletter](./usage-newsletter.md) for configuring the underlying handler.
+See [Newsletter](/cms/usage-newsletter) for configuring the underlying handler.
 
 ---
 

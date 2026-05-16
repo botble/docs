@@ -135,4 +135,4 @@ Full FAQ page layout with sidebar nav grouping questions by category, plus an op
 
 - [Lookbook & Visual](./shortcodes-lookbook-visual.md)
 - [Marketing & Trust](./shortcodes-marketing.md)
-- [FAQs](./plugin-faq.md)
+- [FAQs](/cms/plugin-faq)
