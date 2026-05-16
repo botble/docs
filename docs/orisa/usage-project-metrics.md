@@ -4,8 +4,6 @@ Each Project record has 3 optional **metric** value/label pairs that appear on c
 (e.g. **+72% Planning Efficiency**, **-18% Cost**, **4.8/5 NPS**). Metric values are free text — you control
 the prefix, suffix, and formatting.
 
-![Case study cards](./images/usage-project-metrics-cards.png)
-
 ## Where to edit
 
 `Admin` -> `Portfolio` -> `Projects` -> open a project -> scroll to the **Project metrics (case-study cards)** section.

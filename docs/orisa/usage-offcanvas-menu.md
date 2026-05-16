@@ -3,8 +3,6 @@
 The offcanvas menu is the side panel that slides in when visitors click the hamburger / menu icon in the
 header. It contains a greeting, contact details, an optional gallery, and your social links.
 
-![Offcanvas drawer](./images/usage-offcanvas-menu.png)
-
 ## Where to edit
 
 In admin panel, go to `Appearance` -> `Theme Options` -> `Offcanvas menu`.

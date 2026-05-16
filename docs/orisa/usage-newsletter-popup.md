@@ -3,8 +3,6 @@
 The newsletter popup is the modal that appears for first-time visitors and prompts them to subscribe to
 your mailing list. Configure its content, images, and timing from the admin panel — no code edits.
 
-![Newsletter popup](./images/usage-newsletter-popup.png)
-
 ## Where to edit
 
 `Admin` -> `Appearance` -> `Theme Options` -> `Newsletter popup`.
