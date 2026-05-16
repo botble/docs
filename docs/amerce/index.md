@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Amerce is a Multi-Purpose eCommerce & Multivendor Marketplace theme built on top of Botble CMS. Ships with **21 niche home presets** covering fashion, electronics, furniture, cosmetics, organic, jewelry, sports, sneakers, audio, baby, pet care, automotive, construction, bags & accessories, home decor, garden, wellness, office equipment, and more — so you can launch any niche store with one install.
+Amerce is a Multi-Purpose eCommerce & Multivendor Marketplace theme built on top of Botble CMS. Ships with **20 niche home presets** covering fashion, electronics, furniture, cosmetics, organic, jewelry, sports, sneakers, audio, baby, pet care, automotive, construction, bags & accessories, home decor, garden, wellness, office equipment, and more — so you can launch any niche store with one install.
 
 It built on top of Botble CMS, which is a Laravel based CMS. It offers remarkable flexibility for various use cases.
 
@@ -22,7 +22,7 @@ so much!
 
 * Buy One Time & Get Free Updates Forever
 * **Free Theme Installation** – If you face any problem during installation – we will help you and it’s FREE
-* **21 Niche Home Presets** — Fashion, Electronics, Furniture, Cosmetic, Organic, Jewelry, Sport, Sneaker, Headphone, Pod, Baby, Pet Care, Auto, Construction, Bag & Accessories, Home Decor, Garden, Wellness, Office Equipment, Fashion Modern.
+* **20 Niche Home Presets** — Fashion, Electronics, Furniture, Cosmetic, Organic, Jewelry, Sport, Sneaker, Headphone, Pod, Baby, Pet Care, Auto, Construction, Bag & Accessories, Home Decor, Garden, Wellness, Office Equipment, Fashion Modern.
 * Bootstrap 5.x Framework: the most popular HTML, CSS, and JS framework for responsive, mobile-first projects.
 * Based on our Botble CMS (modern Laravel framework) used by thousands of customers.
 * Full eCommerce features with built-in **multivendor marketplace** support.
@@ -39,7 +39,7 @@ so much!
 
 ## Niche Home Presets
 
-Amerce ships 21 niche home presets — pick the one that matches your store and seed it in one command. Live previews:
+Amerce ships 20 niche home presets — pick the one that matches your store and seed it in one command. Live previews:
 
 | | | |
 |:---:|:---:|:---:|

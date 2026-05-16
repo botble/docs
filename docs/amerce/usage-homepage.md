@@ -32,7 +32,7 @@ If you are using the sample data of **Amerce**, the homepage is already created 
 
 ## Switching Between Homepage Presets
 
-Amerce ships with **21 niche home presets** (Fashion, Electronics, Furniture, Cosmetic, Organic, Jewelry, Sport, Sneaker, Headphone, Pod, Baby, Pet Care, Auto, Construction, Bag & Accessories, Home Decor, Garden, Wellness, Office Equipment, Fashion Modern, and Fashion).
+Amerce ships with **20 niche home presets** (Fashion, Electronics, Furniture, Cosmetic, Organic, Jewelry, Sport, Sneaker, Headphone, Pod, Baby, Pet Care, Auto, Construction, Bag & Accessories, Home Decor, Garden, Wellness, Office Equipment, and Fashion Modern).
 
 To switch to a different preset:
 

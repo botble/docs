@@ -27,7 +27,7 @@ Most Amerce homepages are pre-built with shortcodes via the UI Block editor. To 
 
 ## Available Shortcodes
 
-Amerce ships with **47 shortcodes**, grouped below. Each shortcode supports several presets/styles — explore the **Style** dropdown inside the UI Block editor to preview variants used across the 21 niche demos.
+Amerce ships with **47 shortcodes** (46 theme-native + 1 simple-slider override), grouped below. Each shortcode supports several presets/styles — explore the **Style** dropdown inside the UI Block editor to preview variants used across the 20 niche demos.
 
 For per-shortcode field references, jump to the dedicated category pages:
 
