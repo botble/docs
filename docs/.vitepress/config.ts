@@ -67,14 +67,13 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/favicon/manifest.json' }],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
   ],
-  lastUpdated: true,
+  lastUpdated: false,
   themeConfig: {
     logo: 'logo.png',
     siteTitle: false,
     editLink: {
       pattern: ({ filePath }) => `https://github.com/botble/docs/edit/master/docs/${filePath}`,
     },
-    search: { provider: 'local' },
     nav,
     sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],
