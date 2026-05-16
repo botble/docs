@@ -8,8 +8,8 @@
   },
   "scripts": {
     "sync": "bash bin/shell_cmd.sh",
-    "docs:dev": "npm run sync && vitepress dev docs",
-    "docs:build": "npm run sync && NODE_OPTIONS='--max-old-space-size=4096' vitepress build docs",
+    "docs:dev": "pnpm run sync && vitepress dev docs",
+    "docs:build": "pnpm run sync && NODE_OPTIONS='--max-old-space-size=8192' vitepress build docs",
     "docs:preview": "vitepress preview docs"
   }
 }

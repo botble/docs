@@ -58,6 +58,9 @@ export default defineConfig({
   vite: {
     build: { chunkSizeWarningLimit: 1500 },
   },
+  markdown: {
+    languageAlias: { env: 'bash' },
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-icon-180x180.png' }],
