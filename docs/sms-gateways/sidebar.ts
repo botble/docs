@@ -45,6 +45,7 @@ export default [
       { text: 'Consent & STOP/START', link: '/sms-gateways/usage/consent' },
       { text: 'Delivery Logs', link: '/sms-gateways/usage/delivery-logs' },
       { text: 'Outbound Webhooks', link: '/sms-gateways/usage/outbound-webhooks' },
+      { text: 'Queue Setup (Async)', link: '/sms-gateways/usage/queue' },
       { text: 'Artisan Commands', link: '/sms-gateways/usage/commands' },
       { text: 'Permissions & Roles', link: '/sms-gateways/usage/permissions' },
       { text: 'GDPR & Data Export', link: '/sms-gateways/usage/gdpr' },

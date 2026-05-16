@@ -7,6 +7,17 @@ description: SMS Gateways release history and version updates.
 
 All notable changes to SMS Gateways are documented here.
 
+## Version 1.0.33 — 2026-05-16
+
+### Changed
+
+- **Async SMS sending is now opt-in via `QUEUE_CONNECTION` — no plugin file edits required.** `DispatchSmsJob` and `RetryFailedSmsJob` implement Laravel's `ShouldQueue` and target a dedicated `sms-gateways` queue. Shared-hosting installs keep `QUEUE_CONNECTION=sync` (Laravel default) and jobs continue to run inline — the behaviour you had on v1.0.32 is unchanged for those installs. VPS / dedicated installs set `QUEUE_CONNECTION=database|redis|sqs`, point a worker at `--queue=sms-gateways,default`, and the checkout / login response returns immediately instead of waiting on the carrier HTTP call. See the new [Queue Setup](./usage/queue.md) page for the worker / Supervisor recipe.
+
+### Notes
+
+- Until v1.0.32, customers who wanted async had to manually patch `DispatchSmsJob` to add `implements ShouldQueue` — that edit was wiped on the next plugin update. v1.0.33 makes async a config switch and ships the right defaults for both hosting models.
+- `$tries = 1` on both jobs keeps Laravel's worker from auto-retrying on top of the plugin's existing retry ladder (`SmsRetryCommand` + `RetryFailedSmsJob`).
+
 ## Version 1.0.5 — 2026-04-28
 
 ### Added

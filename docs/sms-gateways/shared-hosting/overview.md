@@ -9,12 +9,12 @@ SMS Gateways works on shared hosting (cPanel, Plesk, etc.) with or without a que
 
 ## The issue with shared hosting
 
-Most shared hosts don't allow background queue workers (PHP processes running continuously). This means:
+Most shared hosts don't allow background queue workers (PHP processes running continuously). The plugin handles this transparently:
 
-- **With queue**: SMS are queued instantly and sent in the background (2–10 seconds)
-- **Without queue**: SMS are sent synchronously (2–5 seconds latency per SMS)
+- **With queue worker (VPS / dedicated)**: SMS dispatch is queued and the request returns immediately. The worker sends in the background. See [Queue Setup](../usage/queue.md).
+- **Without queue worker (shared hosting)**: With Laravel's default `QUEUE_CONNECTION=sync`, the plugin's `ShouldQueue` jobs execute inline — exactly as if the queue feature didn't exist. Order-confirm / login responses block on the carrier HTTP call (1–5 s typical).
 
-Both work; synchronous is just slightly slower.
+Both paths use the same code. The only difference is `QUEUE_CONNECTION` in `.env` — leave it on `sync` and you'll never see a "Queued forever" row.
 
 ## What you need
 
@@ -71,8 +71,8 @@ If it fails, see [Troubleshooting](./troubleshooting.md).
 
 | Feature | Works? | Notes |
 |---------|--------|-------|
-| **Sync SMS sending** | ✓ | Default, no queue needed |
-| **Async SMS sending** | ✗ | Requires queue worker; not available on most shared hosts |
+| **Sync SMS sending** | ✓ | Default with `QUEUE_CONNECTION=sync`; no setup |
+| **Async SMS sending** | ✗ | Requires `QUEUE_CONNECTION=database/redis` + a long-running worker — most shared hosts don't allow that |
 | **Cron cleanup** | ✓ | Set in cPanel/Plesk, runs once per minute |
 | **Inbound webhooks** | ✓ | SMS providers can POST to your endpoint |
 | **Outbound webhooks** | ✓ | Plugin sends webhooks synchronously |

@@ -31,7 +31,7 @@ description: Common SMS Gateways issues and solutions.
    - If status is "Opted out", customer won't receive SMS
 
 4. If using queue:
-   - Run: `php artisan queue:work --queue=sms` (on VPS/dedicated server only)
+   - Run: `php artisan queue:work --queue=sms-gateways,default` (on VPS/dedicated server only — see [Queue Setup](./usage/queue.md))
    - Check logs for queue errors: `tail -f storage/logs/laravel.log`
 
 ## SMS test fails with "Invalid credentials"
@@ -52,22 +52,27 @@ description: Common SMS Gateways issues and solutions.
 
 ## SMS delivery is very slow (10+ seconds)
 
-**Symptom**: SMS takes 10+ seconds to be marked as "Sent".
+**Symptom**: SMS takes 10+ seconds to be marked as "Sent", or the checkout / login response itself hangs for several seconds.
 
 **Causes**:
-1. On shared hosting, SMS sends synchronously (2–5 seconds is normal)
+1. On `QUEUE_CONNECTION=sync` (Laravel default), the SMS HTTP call runs inline with the checkout / login request — 1–5 s is expected
 2. Network latency to SMS provider
 3. Server is under heavy load
 4. Queue is backed up (if using queue)
 
 **Fixes**:
 
-1. For shared hosting, 2–5 second latency is normal
-2. Check SMS provider status page for downtime
-3. If latency is consistent 10+ seconds, consider:
-   - Upgrading to a VPS with optimized queue workers
+1. **Move SMS off the request thread (VPS / dedicated only):**
+   - Set `QUEUE_CONNECTION=database` (or `redis`) in `.env`
+   - Run a worker: `php artisan queue:work --queue=sms-gateways,default`
+   - Keep it alive with Supervisor — see [Queue Setup](./usage/queue.md)
+   - Checkout / login responses return immediately; the worker sends in the background
+2. On shared hosting (no worker), 2–5 second latency is normal — you cannot eliminate it without queue workers
+3. Check SMS provider status page for downtime
+4. If latency is consistent 10+ seconds inside the worker, consider:
    - Switching to a faster SMS provider
-4. Check server load: `top` or `htop` (SSH access required)
+   - Increasing `numprocs` in Supervisor to run more workers in parallel
+5. Check server load: `top` or `htop` (SSH access required)
 
 ## Inbound webhooks not working (STOP not recognized)
 
@@ -225,22 +230,24 @@ description: Common SMS Gateways issues and solutions.
 
 **Fixes**:
 
-1. Start queue worker:
+1. Start queue worker (note the dedicated queue name is `sms-gateways`):
    ```bash
-   php artisan queue:work --queue=sms
+   php artisan queue:work --queue=sms-gateways,default
    ```
 
 2. Check queue status:
    ```bash
-   php artisan queue:work --queue=sms --verbose
+   php artisan queue:work --queue=sms-gateways,default --verbose
    ```
 
-3. Clear stuck jobs (use with caution):
+3. Clear stuck jobs (use with caution — drops jobs across all queues):
    ```bash
    php artisan queue:flush
    ```
 
-4. Use supervisor or systemd to keep queue worker running automatically
+4. Use supervisor or systemd to keep queue worker running automatically — see [Queue Setup](./usage/queue.md) for the recipe.
+
+5. After every code deploy, send `php artisan queue:restart` so workers reload with fresh code.
 
 ## Provider-side errors in Delivery Logs
 
