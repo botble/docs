@@ -9,3 +9,64 @@ docs/.vitepress/cache
 docs/.vitepress/dist
 node_modules
 .claude
+
+# Files mirrored into every theme by bin/shell_cmd.sh at build time.
+# Source of truth lives in docs/cms/ (and docs/farmart/ for ecommerce extras).
+# Do not commit the mirrors — sync regenerates them on `npm run docs:build`.
+docs/*/installation-command-line.md
+docs/*/installation-requirements.md
+docs/*/installation-using-docker.md
+docs/*/installation-web-interface.md
+docs/*/ssl.md
+docs/*/cronjob.md
+docs/*/upgrade.md
+docs/*/usage-analytics.md
+docs/*/usage-email.md
+docs/*/usage-media-bunnycdn.md
+docs/*/usage-media-s3.md
+docs/*/usage-media-wasabi.md
+docs/*/usage-multi-language.md
+docs/*/plugin-translation.md
+docs/*/usage-newsletter.md
+docs/*/api.md
+docs/*/plugin-backup.md
+docs/*/usage-social-login.md
+docs/*/usage-custom-css-js.md
+docs/*/license.md
+docs/*/theme-rename.md
+docs/*/invoice-template.md
+docs/*/usage-currencies.md
+docs/*/usage-location.md
+docs/*/images/backup-list.png
+docs/*/images/social-login-settings.png
+
+# Re-include canonical sources:
+# - docs/cms/** is the source for the 21 standard files + 2 images.
+# - docs/farmart/{invoice-template,usage-currencies,usage-location}.md is
+#   the source for the ecommerce extras only (farmart itself receives the
+#   cms files via sync, so those mirrored copies stay ignored above).
+!docs/cms/installation-command-line.md
+!docs/cms/installation-requirements.md
+!docs/cms/installation-using-docker.md
+!docs/cms/installation-web-interface.md
+!docs/cms/ssl.md
+!docs/cms/cronjob.md
+!docs/cms/upgrade.md
+!docs/cms/usage-analytics.md
+!docs/cms/usage-email.md
+!docs/cms/usage-media-bunnycdn.md
+!docs/cms/usage-media-s3.md
+!docs/cms/usage-media-wasabi.md
+!docs/cms/usage-multi-language.md
+!docs/cms/plugin-translation.md
+!docs/cms/usage-newsletter.md
+!docs/cms/api.md
+!docs/cms/plugin-backup.md
+!docs/cms/usage-social-login.md
+!docs/cms/usage-custom-css-js.md
+!docs/cms/license.md
+!docs/cms/images/backup-list.png
+!docs/cms/images/social-login-settings.png
+!docs/farmart/invoice-template.md
+!docs/farmart/usage-currencies.md
+!docs/farmart/usage-location.md

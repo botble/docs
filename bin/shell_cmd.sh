@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "infinia" "isak" "qore" "orisa")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "infinia" "isak" "qore" "orisa" "amerce")
 
 function sync_doc_files() {
   files_to_sync=(
@@ -25,7 +25,6 @@ function sync_doc_files() {
     "usage-social-login.md"
     "usage-custom-css-js.md"
     "license.md"
-    "releases.md"
   )
 
   # Images referenced by synced docs that need to be copied along
@@ -68,3 +67,5 @@ function sync_doc_files() {
       done
     done
 }
+
+sync_doc_files
