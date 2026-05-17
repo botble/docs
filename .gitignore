@@ -70,3 +70,8 @@ docs/*/images/social-login-settings.png
 !docs/farmart/invoice-template.md
 !docs/farmart/usage-currencies.md
 !docs/farmart/usage-location.md
+
+# amerce ships its own copies of the ecommerce extras because it is not in
+# `ecommerce_projects` (bin/shell_cmd.sh) — see audit-260517-0726-amerce-docs.md.
+!docs/amerce/invoice-template.md
+!docs/amerce/usage-location.md

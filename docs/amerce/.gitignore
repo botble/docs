@@ -1,9 +1,7 @@
 .DS_Store
 api.md
-installation.md
 license.md
 plugin-backup.md
-plugin-language.md
 ssl.md
 theme-rename.md
 upgrade.md
@@ -15,4 +13,3 @@ usage-media-s3.md
 usage-media-wasabi.md
 usage-multi-language.md
 usage-social-login.md
-usage-translation.md
