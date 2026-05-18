@@ -18,7 +18,7 @@ In the `Create new page` page, fill in the following fields:
 - **Title**: Enter the title of the page. For example, `Coming soon`.
 - **Content**: 
 ```
-[coming-soon title="Get Notified When We Launch" countdown_time="2024-12-11" address=" 58 Street Commercial Road Fratton, Australia" hotline="+123456789" business_hours="Mon – Sat: 8 am – 5 pm, Sunday: CLOSED" show_social_links="0,1" image="main/general/contact-img.jpg"][/coming-soon]
+[coming-soon title="Get Notified When We Launch" countdown_time="2024-12-11" address=" 58 Street Commercial Road Fratton, Australia" hotline="+123456789" business_hours="Mon - Sat: 8 am - 5 pm, Sunday: CLOSED" show_social_links="0,1" image="main/general/contact-img.jpg"][/coming-soon]
 ```
 
 ![Content](./images/coming-soon-page-1.png)

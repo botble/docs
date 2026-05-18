@@ -1,10 +1,10 @@
-# Shortcodes — Products
+# Shortcodes - Products
 
 Shortcodes that pull products from the ecommerce catalog. 9 shortcodes in this group. All require the **ecommerce** plugin to be active.
 
 ## `[ecommerce-products]`
 
-The main product listing block — grid, slider, list, or featured layout sourced from latest / best-seller / featured / on-sale / manual selection.
+The main product listing block - grid, slider, list, or featured layout sourced from latest / best-seller / featured / on-sale / manual selection.
 
 ![Ecommerce Products](./images/shortcodes/ecommerce-products.png)
 
@@ -13,19 +13,19 @@ The main product listing block — grid, slider, list, or featured layout source
 | Field | Default | Description |
 |-------|---------|-------------|
 | `style` | `style-grid` | Layout preset. |
-| `title`, `subtitle` | — | Section heading. |
+| `title`, `subtitle` | - | Section heading. |
 | `source` | `latest` | `latest`, `best-seller`, `featured`, `sale`, `manual`. |
-| `category_ids` | — | Filter by categories (multi). |
-| `brand_ids` | — | Filter by brands (multi). |
-| `product_ids` | — | Specific products (used when `source="manual"`). |
+| `category_ids` | - | Filter by categories (multi). |
+| `brand_ids` | - | Filter by brands (multi). |
+| `product_ids` | - | Specific products (used when `source="manual"`). |
 | `limit` | `12` | Max products. |
 | `items_per_row` | `4` | Grid density. |
 | `show_view_all` | `no` | Render a "View all" link below the block. |
-| `view_all_url` | — | "View all" target. |
+| `view_all_url` | - | "View all" target. |
 
 ### Tabs mode
 
-When `style` is `style-tabs` or `style-auto-featured-tabs`, the following pipe-separated lists drive the tab strip — one entry per tab:
+When `style` is `style-tabs` or `style-auto-featured-tabs`, the following pipe-separated lists drive the tab strip - one entry per tab:
 
 | Field | Example | Description |
 |-------|---------|-------------|
@@ -44,7 +44,7 @@ Tab 0 is server-rendered; the rest lazy-load via the `public.ajax.ecommerce-prod
 
 ## `[ecommerce-product-groups]`
 
-Tabbed product groups — each tab pulls from its own category set. Useful for "Shop by category" sections.
+Tabbed product groups - each tab pulls from its own category set. Useful for "Shop by category" sections.
 
 ![Ecommerce Product Groups](./images/shortcodes/ecommerce-product-groups.png)
 
@@ -53,7 +53,7 @@ Tabbed product groups — each tab pulls from its own category set. Useful for "
 | Field | Description |
 |-------|-------------|
 | `title` | Section heading. |
-| `groups` | Repeater — each entry: `tab_label`, `category_ids` (multi), `limit` (default 8). |
+| `groups` | Repeater - each entry: `tab_label`, `category_ids` (multi), `limit` (default 8). |
 
 ---
 
@@ -67,10 +67,10 @@ Active flash sale block with countdown timer and discounted products.
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `flash_sale_id` | — | Pick from active **Admin → Flash Sales**. Required — block returns empty without it. |
-| `title`, `subtitle` | — | Section heading. |
+| `flash_sale_id` | - | Pick from active **Admin → Flash Sales**. Required - block returns empty without it. |
+| `title`, `subtitle` | - | Section heading. |
 | `show_countdown` | `yes` | Render countdown timer. |
-| `background_image` | — | Banner background (style-1 only). |
+| `background_image` | - | Banner background (style-1 only). |
 
 See [Flash Sales](./usage-flash-sales.md) for managing the discount records.
 
@@ -86,8 +86,8 @@ Display product collections as banner cards.
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title` | — | Section heading. |
-| `collection_ids` | — | Pick collections (multi). |
+| `title` | - | Section heading. |
+| `collection_ids` | - | Pick collections (multi). |
 | `items_per_row` | `4` | Card density. |
 | `limit` | `4` | Max collections. |
 
@@ -101,7 +101,7 @@ Display active discount coupons as redeemable cards. Useful at the top of catego
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title` | — | Section heading. |
+| `title` | - | Section heading. |
 | `limit` | `4` | Max coupons. |
 | `featured_only` | `no` | When `yes`, only coupons flagged "Display at checkout" appear. |
 
@@ -117,12 +117,12 @@ Heading + numbered tab list LEFT + tab-pane image with a product overlay card RI
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title`, `subtitle` | — | Section heading. |
+| `title`, `subtitle` | - | Section heading. |
 | `view_all_url` | `/products` | View More link. |
 | `view_all_text` | `View More` | View More label. |
-| `tab_N_label` *(1–4)* | — | Tab label. |
-| `tab_N_image` *(1–4)* | — | Tab pane image. |
-| `tab_N_product_id` *(1–4)* | — | Product to overlay on the pane. |
+| `tab_N_label` *(1-4)* | - | Tab label. |
+| `tab_N_image` *(1-4)* | - | Tab pane image. |
+| `tab_N_product_id` *(1-4)* | - | Product to overlay on the pane. |
 
 ---
 
@@ -132,7 +132,7 @@ Zoom-on-hover product showcase with optional clickable hotspots.
 
 ![Product Feature Zoom](./images/shortcodes/product-feature-zoom.png)
 
-**Styles:** `style-1` (default), `style-2-detail` (vertical thumbs + zoom + full product info — used by organic preset).
+**Styles:** `style-1` (default), `style-2-detail` (vertical thumbs + zoom + full product info - used by organic preset).
 
 | Field | Description |
 |-------|-------------|
@@ -147,7 +147,7 @@ The `style-2-detail` variant additionally honors: `wrapper_style`, `container_cl
 
 ## `[recently-viewed-products]`
 
-Show products the visitor has recently viewed. Driven by per-user cookies/session — the block renders empty for first-time visitors.
+Show products the visitor has recently viewed. Driven by per-user cookies/session - the block renders empty for first-time visitors.
 
 ![Recently Viewed Products](./images/shortcodes/recently-viewed-products.png)
 
@@ -166,14 +166,14 @@ Two-column section: a paired product slider (products shown in pairs of 2) LEFT 
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title`, `subtitle` | — | Section heading. |
-| `view_all_url`, `view_all_text` | — | View-all link. |
-| `product_ids` | — | Products in the LEFT slider (paired in twos). |
+| `title`, `subtitle` | - | Section heading. |
+| `view_all_url`, `view_all_text` | - | View-all link. |
+| `product_ids` | - | Products in the LEFT slider (paired in twos). |
 | `bundle_caption` | `Buy 3 products and save up to 30%` | Widget caption. |
-| `bundle_progress` | `50` | Progress bar % (0–100). |
-| `bundle_product_ids` | — | 3 products shown in the bundle widget. |
+| `bundle_progress` | `50` | Progress bar % (0-100). |
+| `bundle_product_ids` | - | 3 products shown in the bundle widget. |
 | `bundle_button_text` | `Add To Cart` | Bundle CTA. |
-| `bundle_button_url` | — | Bundle CTA URL. |
+| `bundle_button_url` | - | Bundle CTA URL. |
 
 ---
 

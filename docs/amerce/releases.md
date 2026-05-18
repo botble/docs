@@ -2,11 +2,11 @@
 
 This page contains the release notes for Amerce, detailing the changes and improvements in each version.
 
-## Version 1.1.0 – May 2026
+## Version 1.1.0 - May 2026
 
 ### Initial Release
 
-First release of Amerce — Multi-Purpose eCommerce & Multivendor Marketplace theme built on Botble CMS.
+First release of Amerce - Multipurpose eCommerce & Multivendor Marketplace Laravel script built on Botble CMS.
 
 ### Features
 
@@ -20,4 +20,4 @@ First release of Amerce — Multi-Purpose eCommerce & Multivendor Marketplace th
 - Multi-language with RTL support.
 - Google Analytics, Google Tag Manager, Facebook Pixel integration.
 - Newsletter, abandoned-carts recovery, customer reviews, and webhook system.
-- Demo-data seeders per niche preset — one command reproduces the live demo for that niche.
+- Demo-data seeders per niche preset - one command reproduces the live demo for that niche.

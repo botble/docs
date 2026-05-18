@@ -7,7 +7,7 @@ The Ecommerce API provides RESTful endpoints for building mobile apps and custom
 All endpoints use the `/api/v1/ecommerce/` prefix. See the [API page](/cms/api) for general authentication, API key protection, and response format details.
 
 ::: tip
-The **cart does not store customer information** (name, email, address). Customer details are collected during checkout. This is a deliberate separation — the cart handles products and quantities, while checkout handles customer identity and shipping.
+The **cart does not store customer information** (name, email, address). Customer details are collected during checkout. This is a deliberate separation - the cart handles products and quantities, while checkout handles customer identity and shipping.
 :::
 
 ## Common Headers
@@ -147,7 +147,7 @@ Returns active flash sale campaigns with discounted products.
 The cart supports both **guest** and **authenticated** users:
 
 - **Guest users**: Cart is identified by a UUID (`cartId`). Store this ID on the client (e.g., AsyncStorage, localStorage) to persist the cart across sessions.
-- **Authenticated users**: Cart is linked to the customer account. The UUID is not needed — the server uses the Sanctum token to identify the customer.
+- **Authenticated users**: Cart is linked to the customer account. The UUID is not needed - the server uses the Sanctum token to identify the customer.
 
 ### Add Product to Cart
 
@@ -166,7 +166,7 @@ Use the first form to create a new cart. Use the second form to add items to an 
 | `qty` | integer | No | Quantity (default: 1, min: 1) |
 | `options` | object | No | Product option selections (see below) |
 
-**Product options** — If the product has configurable options (color, size, engraving text, etc.), pass them as an object keyed by option ID:
+**Product options** - If the product has configurable options (color, size, engraving text, etc.), pass them as an object keyed by option ID:
 
 ```json
 {
@@ -268,7 +268,7 @@ GET /api/v1/ecommerce/cart/{cartId}
 
 Returns the current cart contents with totals.
 
-**For authenticated users**, the `{cartId}` is optional — the server identifies the cart from the auth token.
+**For authenticated users**, the `{cartId}` is optional - the server identifies the cart from the auth token.
 
 ### Update Quantity
 
@@ -508,7 +508,7 @@ This endpoint:
 | `shipping_method` | For physical products | Selected shipping method |
 | `payment_method` | Yes | Payment method (cod, bank_transfer, paypal, stripe, etc.) |
 
-**Detecting order completion** — Watch for URL changes in the WebView:
+**Detecting order completion** - Watch for URL changes in the WebView:
 - **Success**: URL contains `/checkout/*/success` or `/thank-you` or `/order-success`
 - **Continue shopping**: URL contains `/products` or `/shop` or `/home`
 
@@ -687,8 +687,8 @@ The typical flow is:
 2. **Checkout phase**: Open the checkout URL in a WebView → the checkout page collects customer details, shipping address, and payment info
 
 If you need to pre-fill customer information during checkout, either:
-- **Authenticate the user** before checkout — their saved addresses will be available on the checkout page
-- **Save addresses beforehand** using `POST /addresses` — the checkout page will show saved addresses for selection
+- **Authenticate the user** before checkout - their saved addresses will be available on the checkout page
+- **Save addresses beforehand** using `POST /addresses` - the checkout page will show saved addresses for selection
 
 ### How does guest checkout work?
 
@@ -709,7 +709,7 @@ Send the `X-LANGUAGE` header with every request (e.g., `X-LANGUAGE: vi`). Produc
 
 ### What is the difference between `cart` and `cart/{cartId}`?
 
-- `POST /cart` — Creates a **new cart** and returns a UUID. Use this for the first item.
-- `POST /cart/{cartId}` — Adds an item to an **existing cart**. Use this for subsequent items.
+- `POST /cart` - Creates a **new cart** and returns a UUID. Use this for the first item.
+- `POST /cart/{cartId}` - Adds an item to an **existing cart**. Use this for subsequent items.
 
 Both return the same response format. The only difference is whether a new cart is created or an existing one is used.

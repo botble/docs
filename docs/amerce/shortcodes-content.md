@@ -1,4 +1,4 @@
-# Shortcodes — Content
+# Shortcodes - Content
 
 Editorial blocks for blog posts, testimonials, team, FAQs, and long-form policy pages. 8 shortcodes in this group.
 
@@ -12,15 +12,15 @@ Latest blog posts in grid, slider, or list layout. Requires the **blog** plugin.
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title` | — | Section heading. |
-| `category_ids` | — | Filter to specific blog categories (multi). |
+| `title` | - | Section heading. |
+| `category_ids` | - | Filter to specific blog categories (multi). |
 | `limit` | `6` | Max posts. |
 | `show_excerpt` | `yes` | Show post excerpt. |
 | `show_meta` | `yes` | Show date and author. |
 | `data_preview` | `3` | Slider items per view (style-slider only). |
 
 ::: warning
-The `[blog-posts]` shortcode is double-registered — the blog plugin's renderer wins. The active partial is `views/templates/posts.blade.php`, not the theme's `partials/shortcodes/blog-posts/index.blade.php` (which is dead code).
+The `[blog-posts]` shortcode is double-registered - the blog plugin's renderer wins. The active partial is `views/templates/posts.blade.php`, not the theme's `partials/shortcodes/blog-posts/index.blade.php` (which is dead code).
 :::
 
 ---
@@ -37,7 +37,7 @@ Customer testimonials slider with avatar, name, role, quote, and rating.
 |-------|-------------|
 | `title`, `subtitle` | Section heading. |
 | `items` | Repeater: `avatar`, `name`, `role`, `content`, `rating` (1-5). The `style-v3-product` variant additionally uses `product_image`, `product_name`, `product_price`, `product_url`. |
-| `autoplay` | `yes` / `no` — auto-cycle slides. |
+| `autoplay` | `yes` / `no` - auto-cycle slides. |
 
 ---
 
@@ -47,16 +47,16 @@ A 2-up testimonial swiper with image-left + content layout. Tailored for About p
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `heading` | — | Section heading. |
-| `subtitle` | — | Section subtitle. |
+| `heading` | - | Section heading. |
+| `subtitle` | - | Section subtitle. |
 | `verified_label` | `Verified Buyer` | Badge label rendered next to the name. |
-| `items` | — | Repeater: `image`, `name`, `text` (quote). |
+| `items` | - | Repeater: `image`, `name`, `text` (quote). |
 
 ---
 
 ## `[team-members]`
 
-Team member cards — photo, role, bio, and socials.
+Team member cards - photo, role, bio, and socials.
 
 ![Team Members](./images/shortcodes/team-members.png)
 
@@ -77,7 +77,7 @@ Team member cards — photo, role, bio, and socials.
 
 ## `[about-team]`
 
-Team members swiper variant tailored for About pages — social icons reveal on hover.
+Team members swiper variant tailored for About pages - social icons reveal on hover.
 
 | Field | Description |
 |-------|-------------|
@@ -96,7 +96,7 @@ FAQ in accordion or tabbed layout. Requires the **faq** plugin.
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `title` | — | Section heading. |
+| `title` | - | Section heading. |
 | `faq_category_id` | all | Restrict to one FAQ category (empty = all). |
 | `limit` | `10` | Max questions. |
 
@@ -108,12 +108,12 @@ Full FAQ page layout with sidebar nav grouping questions by category, plus an op
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `items` | — | Repeater: `category` (group heading), `category_id` (anchor slug), `question`, `answer` (HTML allowed). |
+| `items` | - | Repeater: `category` (group heading), `category_id` (anchor slug), `question`, `answer` (HTML allowed). |
 | `categories_label` | `Categories` | Sidebar group heading. |
-| `sidebar_image` | — | Promo banner image. |
-| `sidebar_title`, `sidebar_subtitle` | — | Promo banner copy. |
-| `sidebar_cta` | — | Promo button label. |
-| `sidebar_url` | — | Promo button URL. |
+| `sidebar_image` | - | Promo banner image. |
+| `sidebar_title`, `sidebar_subtitle` | - | Promo banner copy. |
+| `sidebar_cta` | - | Promo button label. |
+| `sidebar_url` | - | Promo button URL. |
 
 ---
 

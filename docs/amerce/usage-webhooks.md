@@ -4,7 +4,7 @@ Webhooks allow your store to send real-time order data to external services when
 
 ## Overview
 
-When an event happens (e.g., a new order is placed), the system sends an HTTP **POST** request with JSON data to the URL you configure. This is an **outgoing** notification to external systems — it does not create in-app notifications for admin users.
+When an event happens (e.g., a new order is placed), the system sends an HTTP **POST** request with JSON data to the URL you configure. This is an **outgoing** notification to external systems - it does not create in-app notifications for admin users.
 
 ### Common Use Cases
 
@@ -103,8 +103,8 @@ The following structure applies to **Order Placed**, **Order Updated**, **Order 
 
 **Additional fields by event:**
 
-- **Order Cancelled** — includes `cancellation_reason`
-- **Shipping Status Updated** — includes `previous_shipping_status` with the prior status
+- **Order Cancelled** - includes `cancellation_reason`
+- **Shipping Status Updated** - includes `previous_shipping_status` with the prior status
 
 ### Abandoned Cart Webhook
 

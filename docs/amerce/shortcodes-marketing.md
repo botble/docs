@@ -1,4 +1,4 @@
-# Shortcodes — Marketing & Trust
+# Shortcodes - Marketing & Trust
 
 Conversion-oriented blocks: trust badges, feature callouts, animated stats, and the newsletter CTA. 4 shortcodes in this group.
 
@@ -29,9 +29,9 @@ Central product image surrounded by 4 feature callouts arranged in a 2×2 grid (
 | `title` | Section heading. |
 | `subtitle` | Section subtitle (supports `<br>`). |
 | `image` | Central image (e.g. an exploded product view). |
-| `feature_N_icon` *(1–4)* | Icon class for each callout (e.g. `icon-Wind`). |
-| `feature_N_name` *(1–4)* | Callout name. |
-| `feature_N_desc` *(1–4)* | Callout description. |
+| `feature_N_icon` *(1-4)* | Icon class for each callout (e.g. `icon-Wind`). |
+| `feature_N_name` *(1-4)* | Callout name. |
+| `feature_N_desc` *(1-4)* | Callout description. |
 
 ---
 
@@ -44,7 +44,7 @@ Hero image, heading, description, and a swipeable row of animated count-up stats
 | `hero_image` | Hero image. |
 | `heading` | Heading. |
 | `description` | Description paragraph. |
-| `items` | Repeater per stat: `value` (static fallback), `animate_to` (target number — count-up runs when present), `suffix` (e.g. `k`, `+`), `label`, `desc` (textarea). |
+| `items` | Repeater per stat: `value` (static fallback), `animate_to` (target number - count-up runs when present), `suffix` (e.g. `k`, `+`), `label`, `desc` (textarea). |
 
 Leave `animate_to` empty for static numbers (e.g. years in business, certifications).
 
@@ -60,12 +60,12 @@ Newsletter signup section with optional banner image. Drops into the homepage or
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `heading` | — | Heading. |
-| `subheading` | — | Subheading. |
-| `image` | — | Banner image (style-banner). |
+| `heading` | - | Heading. |
+| `subheading` | - | Subheading. |
+| `image` | - | Banner image (style-banner). |
 | `submit_button_text` | `Subscribe` | Submit button label. |
-| `mailchimp_list_id` | — | Optional Mailchimp list ID — falls back to the theme's built-in newsletter handler when empty. |
-| `background_color` | — | Section background color (hex). |
+| `mailchimp_list_id` | - | Optional Mailchimp list ID - falls back to the theme's built-in newsletter handler when empty. |
+| `background_color` | - | Section background color (hex). |
 
 See [Newsletter](/cms/usage-newsletter) for configuring the underlying handler.
 

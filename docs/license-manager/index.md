@@ -80,6 +80,7 @@ Set up your own License Manager server:
 - **Update Delivery** - Serve software updates to licensed users
 - **Customer Portal** - Self-service license management
 - **Envato Integration** - Verify Envato purchase codes
+- **Gumroad Integration** - Verify [Gumroad](gumroad-integration.md) license keys
 - **Webhooks** - Real-time event notifications
 - **REST API** - Full programmatic access
 - **Platform Agnostic** - Integrate with any language: PHP, Python, Node.js, .NET, Java, Ruby, and more

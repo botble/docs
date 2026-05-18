@@ -24,19 +24,19 @@ If you need to develop a custom plugin, the best way to learn the structure is b
 
 You will need to make the same structure and handle events during checkout to implement a new shipping option. The key files to study are:
 
-- **`src/Providers/HookServiceProvider.php`** — The main integration file. This is where the plugin hooks into the checkout rate calculation (`handle_shipping_fee` filter), registers the shipping method enum, and adds the settings UI. Start here to understand how everything connects.
+- **`src/Providers/HookServiceProvider.php`** - The main integration file. This is where the plugin hooks into the checkout rate calculation (`handle_shipping_fee` filter), registers the shipping method enum, and adds the settings UI. Start here to understand how everything connects.
 
-- **`resources/views/settings.blade.php`** — The admin settings form displayed under **Ecommerce → Settings → Shipping**. Shows how to build the configuration UI for API keys, sandbox mode, etc.
+- **`resources/views/settings.blade.php`** - The admin settings form displayed under **Ecommerce → Settings → Shipping**. Shows how to build the configuration UI for API keys, sandbox mode, etc.
 
-- **`resources/views/rate.blade.php`** — The shipping option displayed at the checkout page. Shows how individual rates are rendered for the customer to select.
+- **`resources/views/rate.blade.php`** - The shipping option displayed at the checkout page. Shows how individual rates are rendered for the customer to select.
 
-- **`src/Shippo.php`** — The core service class that calls the Shippo API to get rates, create labels, and track shipments. Replace this with your provider's API logic.
+- **`src/Shippo.php`** - The core service class that calls the Shippo API to get rates, create labels, and track shipments. Replace this with your provider's API logic.
 
-- **`helpers/constants.php`** — Defines the `SHIPPO_SHIPPING_METHOD_NAME` constant used throughout the plugin.
+- **`helpers/constants.php`** - Defines the `SHIPPO_SHIPPING_METHOD_NAME` constant used throughout the plugin.
 
-- **`routes/web.php`** — Admin routes for managing shipments and webhook routes for tracking updates.
+- **`routes/web.php`** - Admin routes for managing shipments and webhook routes for tracking updates.
 
-- **`src/Plugin.php`** — Cleanup logic that removes all settings when the plugin is uninstalled.
+- **`src/Plugin.php`** - Cleanup logic that removes all settings when the plugin is uninstalled.
 
 You can copy the entire `platform/plugins/shippo` folder, rename it, and modify it to work with your provider's API.
 
@@ -44,11 +44,11 @@ You can copy the entire `platform/plugins/shippo` folder, rename it, and modify 
 
 Integrating a new shipping provider requires building a plugin that hooks into the ecommerce shipping system. Every shipping plugin follows the same pattern:
 
-1. **HookServiceProvider** — registers hooks for rate calculation, settings UI, and enum integration
-2. **Shipping Service** — handles API calls to your provider for rates, labels, and tracking
-3. **Settings View** — provides the admin settings UI (API keys, mode toggle, etc.)
-4. **Controller** — handles admin actions (view rates, create labels) and webhooks
-5. **Plugin.php** — cleans up settings when the plugin is uninstalled
+1. **HookServiceProvider** - registers hooks for rate calculation, settings UI, and enum integration
+2. **Shipping Service** - handles API calls to your provider for rates, labels, and tracking
+3. **Settings View** - provides the admin settings UI (API keys, mode toggle, etc.)
+4. **Controller** - handles admin actions (view rates, create labels) and webhooks
+5. **Plugin.php** - cleans up settings when the plugin is uninstalled
 
 The shipping flow looks like this:
 
@@ -186,7 +186,7 @@ class MyShippingServiceProvider extends ServiceProvider implements DeferrablePro
 
 ### Step 4: Hook Service Provider
 
-Create `src/Providers/HookServiceProvider.php`. This is the core file — it hooks your plugin into the shipping rate calculation and admin settings.
+Create `src/Providers/HookServiceProvider.php`. This is the core file - it hooks your plugin into the shipping rate calculation and admin settings.
 
 ```php
 <?php
@@ -202,7 +202,7 @@ class HookServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        // 1. Hook into rate calculation — this is the main integration point
+        // 1. Hook into rate calculation - this is the main integration point
         add_filter('handle_shipping_fee', [$this, 'handleShippingFee'], 12, 2);
 
         // 2. Add settings UI to the shipping methods page
@@ -804,6 +804,6 @@ Before submitting your plugin:
 
 ## Additional Resources
 
-- **Marketplace plugins**: [marketplace.botble.com/products?q=shipping](https://marketplace.botble.com/products?q=shipping) — Free community-built shipping plugins you can install directly
-- **Reference plugin**: Study `platform/plugins/shippo` as a starting point — it's a complete, production-ready implementation covering rates, labels, tracking, and webhooks
-- **Official docs**: [docs.botble.com](https://docs.botble.com) — General CMS documentation
+- **Marketplace plugins**: [marketplace.botble.com/products?q=shipping](https://marketplace.botble.com/products?q=shipping) - Free community-built shipping plugins you can install directly
+- **Reference plugin**: Study `platform/plugins/shippo` as a starting point - it's a complete, production-ready implementation covering rates, labels, tracking, and webhooks
+- **Official docs**: [docs.botble.com](https://docs.botble.com) - General CMS documentation

@@ -20,25 +20,25 @@ Browse all available payment plugins at [marketplace.botble.com/products?q=payme
 
 ## Reference Examples in the Codebase
 
-If you need to develop a custom plugin, the best way to learn the structure is by studying the existing payment gateway plugins included in your project. Good starting points are `platform/plugins/razorpay` or `platform/plugins/paystack` — they are the simplest and cleanest examples.
+If you need to develop a custom plugin, the best way to learn the structure is by studying the existing payment gateway plugins included in your project. Good starting points are `platform/plugins/razorpay` or `platform/plugins/paystack` - they are the simplest and cleanest examples.
 
 You will need to make the same structure and handle events during checkout to implement a new payment gateway. The key files to study (using Stripe as example):
 
-- **`src/Providers/HookServiceProvider.php`** — The main integration file. This is where the plugin registers itself with the checkout flow (`PAYMENT_FILTER_AFTER_POST_CHECKOUT` filter), adds the payment method to the enum, renders the settings form, and shows payment details in admin. Start here to understand how everything connects.
+- **`src/Providers/HookServiceProvider.php`** - The main integration file. This is where the plugin registers itself with the checkout flow (`PAYMENT_FILTER_AFTER_POST_CHECKOUT` filter), adds the payment method to the enum, renders the settings form, and shows payment details in admin. Start here to understand how everything connects.
 
-- **`src/Forms/StripePaymentMethodForm.php`** — The admin settings form displayed under **Settings → Payment → Payment methods**. Shows how to build the configuration UI for API keys, webhook secrets, etc. using the `PaymentMethodForm` base class.
+- **`src/Forms/StripePaymentMethodForm.php`** - The admin settings form displayed under **Settings → Payment → Payment methods**. Shows how to build the configuration UI for API keys, webhook secrets, etc. using the `PaymentMethodForm` base class.
 
-- **`resources/views/methods.blade.php`** — The payment option displayed at the checkout page. Shows how the radio button and payment method description are rendered for the customer to select.
+- **`resources/views/methods.blade.php`** - The payment option displayed at the checkout page. Shows how the radio button and payment method description are rendered for the customer to select.
 
-- **`src/Services/Gateways/StripePaymentService.php`** — The core service class that calls the gateway API to process payments, verify transactions, and handle refunds. Replace this with your gateway's API logic.
+- **`src/Services/Gateways/StripePaymentService.php`** - The core service class that calls the gateway API to process payments, verify transactions, and handle refunds. Replace this with your gateway's API logic.
 
-- **`src/Http/Controllers/StripeController.php`** — Handles webhooks from the gateway (payment succeeded, failed, refunded) and callback routes (success/error pages after redirect).
+- **`src/Http/Controllers/StripeController.php`** - Handles webhooks from the gateway (payment succeeded, failed, refunded) and callback routes (success/error pages after redirect).
 
-- **`helpers/constants.php`** — Defines the `STRIPE_PAYMENT_METHOD_NAME` constant used throughout the plugin.
+- **`helpers/constants.php`** - Defines the `STRIPE_PAYMENT_METHOD_NAME` constant used throughout the plugin.
 
-- **`routes/web.php`** — Webhook route (with CSRF bypass) and frontend callback routes.
+- **`routes/web.php`** - Webhook route (with CSRF bypass) and frontend callback routes.
 
-- **`src/Plugin.php`** — Cleanup logic that removes all settings when the plugin is uninstalled.
+- **`src/Plugin.php`** - Cleanup logic that removes all settings when the plugin is uninstalled.
 
 You can copy any payment plugin folder (e.g., `platform/plugins/razorpay`), rename it, and modify it to work with your gateway's API.
 
@@ -50,11 +50,11 @@ For a general overview of the integration process, see the [community tutorial o
 
 Integrating a new payment gateway requires building a plugin that hooks into the core payment system. Every gateway plugin follows the same pattern:
 
-1. **HookServiceProvider** — registers 8-9 filters to integrate with checkout, admin settings, and order display
-2. **PaymentService** — handles the actual payment processing via the gateway API
-3. **PaymentMethodForm** — provides the admin settings UI (API keys, mode toggle, etc.)
-4. **Controller** — handles webhooks and callbacks from the gateway
-5. **Plugin.php** — cleans up settings when the plugin is uninstalled
+1. **HookServiceProvider** - registers 8-9 filters to integrate with checkout, admin settings, and order display
+2. **PaymentService** - handles the actual payment processing via the gateway API
+3. **PaymentMethodForm** - provides the admin settings UI (API keys, mode toggle, etc.)
+4. **Controller** - handles webhooks and callbacks from the gateway
+5. **Plugin.php** - cleans up settings when the plugin is uninstalled
 
 The payment flow looks like this:
 
@@ -929,7 +929,7 @@ Before submitting your plugin:
 
 ## Additional Resources
 
-- **Marketplace plugins**: [marketplace.botble.com/products?q=payment](https://marketplace.botble.com/products?q=payment) — Free community-built payment plugins you can install directly
-- **Forum tutorial**: [forums.botble.com/d/1-tutorial-integrate-a-new-payment-gateway](https://forums.botble.com/d/1-tutorial-integrate-a-new-payment-gateway) — Community discussion and tips
-- **Reference plugins**: Study `platform/plugins/razorpay` or `platform/plugins/paystack` as starting points — they are the simplest and cleanest examples to follow
-- **Official docs**: [docs.botble.com](https://docs.botble.com) — General CMS documentation
+- **Marketplace plugins**: [marketplace.botble.com/products?q=payment](https://marketplace.botble.com/products?q=payment) - Free community-built payment plugins you can install directly
+- **Forum tutorial**: [forums.botble.com/d/1-tutorial-integrate-a-new-payment-gateway](https://forums.botble.com/d/1-tutorial-integrate-a-new-payment-gateway) - Community discussion and tips
+- **Reference plugins**: Study `platform/plugins/razorpay` or `platform/plugins/paystack` as starting points - they are the simplest and cleanest examples to follow
+- **Official docs**: [docs.botble.com](https://docs.botble.com) - General CMS documentation

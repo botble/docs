@@ -19,7 +19,7 @@ After you've set up your web data stream, you will have a Google Tag Manager cod
 The following GA4 ecommerce events are tracked automatically:
 
 ::: warning Not server-to-server tracking
-All events below fire from the browser via `gtag()` / `dataLayer.push()`. Some events are rendered into the page HTML on the server so they fire on page load (listed under **Page-Load Events**); others fire from JavaScript event handlers on user interaction (listed under **Interaction Events**). In both cases, the request to Google originates from the visitor's browser — not from the merchant's server.
+All events below fire from the browser via `gtag()` / `dataLayer.push()`. Some events are rendered into the page HTML on the server so they fire on page load (listed under **Page-Load Events**); others fire from JavaScript event handlers on user interaction (listed under **Interaction Events**). In both cases, the request to Google originates from the visitor's browser - not from the merchant's server.
 
 Google's [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/ga4) (a true server-to-server integration that bypasses the browser and ad blockers) is **not** included. It can be added via custom development.
 :::
@@ -58,7 +58,7 @@ These events fire from JavaScript event handlers when users interact with the si
 
 ### Optional Events (require theme integration)
 
-These event listeners are wired but only fire when the theme dispatches the corresponding hook. The Amerce theme does not wire them by default — they are available for custom integrations.
+These event listeners are wired but only fire when the theme dispatches the corresponding hook. The Amerce theme does not wire them by default - they are available for custom integrations.
 
 | Event | Trigger | Required dispatcher |
 |-------|---------|---------------------|

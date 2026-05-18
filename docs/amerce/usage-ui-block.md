@@ -27,17 +27,17 @@ Most Amerce homepages are pre-built with shortcodes via the UI Block editor. To 
 
 ## Available Shortcodes
 
-Amerce ships with **47 shortcodes** (46 theme-native + 1 simple-slider override), grouped below. Each shortcode supports several presets/styles — explore the **Style** dropdown inside the UI Block editor to preview variants used across the 20 niche demos.
+Amerce ships with **47 shortcodes** (46 theme-native + 1 simple-slider override), grouped below. Each shortcode supports several presets/styles - explore the **Style** dropdown inside the UI Block editor to preview variants used across the 20 niche demos.
 
 For per-shortcode field references, jump to the dedicated category pages:
 
-- [Hero & Banners](./shortcodes-hero-banners.md) — 14 shortcodes
-- [Products](./shortcodes-products.md) — 9 shortcodes
-- [Categories, Brands & Vendors](./shortcodes-categories-brands.md) — 5 shortcodes
-- [Lookbook & Visual](./shortcodes-lookbook-visual.md) — 6 shortcodes
-- [Content](./shortcodes-content.md) — 8 shortcodes
-- [Marketing & Trust](./shortcodes-marketing.md) — 4 shortcodes
-- [Simple Slider override](./shortcodes-simple-slider.md) — 1 shortcode
+- [Hero & Banners](./shortcodes-hero-banners.md) - 14 shortcodes
+- [Products](./shortcodes-products.md) - 9 shortcodes
+- [Categories, Brands & Vendors](./shortcodes-categories-brands.md) - 5 shortcodes
+- [Lookbook & Visual](./shortcodes-lookbook-visual.md) - 6 shortcodes
+- [Content](./shortcodes-content.md) - 8 shortcodes
+- [Marketing & Trust](./shortcodes-marketing.md) - 4 shortcodes
+- [Simple Slider override](./shortcodes-simple-slider.md) - 1 shortcode
 
 ### Hero & Banners
 
@@ -129,7 +129,7 @@ Shortcodes that pull from the ecommerce catalog. → [Details](./shortcodes-prod
 
 ## Customizing Shortcodes
 
-Each shortcode exposes options through the UI Block form — title, subtitle, source category, item count, style preset, etc.
+Each shortcode exposes options through the UI Block form - title, subtitle, source category, item count, style preset, etc.
 
 1. Open **Admin → Pages → [Your Page]**.
 2. Switch the content editor to **UI Block** mode.

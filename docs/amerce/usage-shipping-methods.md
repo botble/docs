@@ -616,7 +616,7 @@ You can restrict delivery to only certain areas (cities, states, or zip code ran
 ### Blocking Delivery Outside Your Zones
 
 ::: tip Key Concept
-If you **only** define shipping rules for specific locations/zones and **do not** set a catch-all "All locations" rule, customers outside those zones will see **no shipping options** at checkout — effectively blocking delivery to unlisted areas.
+If you **only** define shipping rules for specific locations/zones and **do not** set a catch-all "All locations" rule, customers outside those zones will see **no shipping options** at checkout - effectively blocking delivery to unlisted areas.
 :::
 
 **Example setup to deliver only within Colombo and Kandy:**
@@ -716,7 +716,7 @@ Yes. Add handling fees to your shipping rates, or create separate line items in 
 
 ### Can I limit delivery to specific cities or zones?
 
-Yes. Use "Based on Location" or "Based on Zip Code" rules and only add items for the areas you deliver to. Do not create a catch-all "All locations" rule — customers outside your listed zones will not see any shipping options. See [Restricting Delivery to Specific Zones](#restricting-delivery-to-specific-zones) above.
+Yes. Use "Based on Location" or "Based on Zip Code" rules and only add items for the areas you deliver to. Do not create a catch-all "All locations" rule - customers outside your listed zones will not see any shipping options. See [Restricting Delivery to Specific Zones](#restricting-delivery-to-specific-zones) above.
 
 ### How do I test shipping calculations?
 

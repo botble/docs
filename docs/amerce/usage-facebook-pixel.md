@@ -25,7 +25,7 @@ After saving, the pixel base script (`fbq('init', ...)` and `PageView` event) is
 The following Meta Pixel events are tracked automatically:
 
 ::: warning Not server-to-server tracking
-All events below fire from the browser via `fbq()`. Some events are rendered into the page HTML on the server so they fire on page load (listed under **Page-Load Events**); others fire from JavaScript event handlers on user interaction (listed under **Interaction Events**). In both cases, the request to Facebook originates from the visitor's browser — not from the merchant's server.
+All events below fire from the browser via `fbq()`. Some events are rendered into the page HTML on the server so they fire on page load (listed under **Page-Load Events**); others fire from JavaScript event handlers on user interaction (listed under **Interaction Events**). In both cases, the request to Facebook originates from the visitor's browser - not from the merchant's server.
 
 Facebook's [Conversions API](https://developers.facebook.com/docs/marketing-api/conversions-api/) (a true server-to-server integration that bypasses the browser and ad blockers) is **not** included. It can be added via custom development.
 :::
@@ -63,7 +63,7 @@ Events marked as "custom event" use `fbq('trackCustom', ...)` instead of `fbq('t
 
 ### Optional Events (require theme integration)
 
-These event listeners are wired but only fire when the theme dispatches the corresponding JavaScript event. The Amerce theme does not dispatch them by default — they are available for custom integrations.
+These event listeners are wired but only fire when the theme dispatches the corresponding JavaScript event. The Amerce theme does not dispatch them by default - they are available for custom integrations.
 
 | Event | Trigger | Required dispatcher |
 |-------|---------|---------------------|

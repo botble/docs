@@ -114,7 +114,7 @@ X-API-IP: 192.168.1.100
 | `product_id` | Product reference ID | Yes |
 | `license_code` | License code to activate | Yes |
 | `client_name` | Customer/buyer name | No |
-| `verify_type` | `non_envato` or `envato` | No |
+| `verify_type` | `non_envato`, `envato`, or `gumroad` | No |
 
 **Response (Success):**
 ```json

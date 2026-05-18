@@ -104,5 +104,5 @@ body {
 
 ## Related
 
-- [Invoices](./usage-invoices.md) — invoice management, settings, and template variables
-- [Currencies](./usage-currencies.md) — currency formatting on invoices
+- [Invoices](./usage-invoices.md) - invoice management, settings, and template variables
+- [Currencies](./usage-currencies.md) - currency formatting on invoices

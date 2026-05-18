@@ -187,14 +187,14 @@ Admin can verify or unverify stores from the store detail page. Navigate to `Mar
 
 The **Store Verification** card on the left sidebar shows the current status:
 
-- **Not Verified** — Displays a warning indicator with a "Verify Store" button
-- **Verified** — Displays a success indicator with verified-by name, date, optional note, and an "Unverify Store" button
+- **Not Verified** - Displays a warning indicator with a "Verify Store" button
+- **Verified** - Displays a success indicator with verified-by name, date, optional note, and an "Unverify Store" button
 
 ### Verifying a Store
 
 1. Navigate to the store detail page (`Marketplace` -> `Stores` -> view store)
 2. In the **Store Verification** card, click **Verify Store**
-3. A confirmation modal appears — optionally add a verification note
+3. A confirmation modal appears - optionally add a verification note
 4. Click confirm to verify
 
 The store is marked as verified with a timestamp and the admin's name. An email notification is sent to the store owner.
@@ -206,7 +206,7 @@ Verification badges appear next to verified store names on the frontend.
 ### Unverifying a Store
 
 1. On the store detail page, click **Unverify Store** in the verification card
-2. A confirmation modal appears — optionally add a reason note
+2. A confirmation modal appears - optionally add a reason note
 3. Click confirm to unverify
 
 The vendor receives an email notification with:

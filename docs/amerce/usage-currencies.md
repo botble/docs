@@ -53,7 +53,7 @@ The logic lives in `platform/plugins/ecommerce/src/Supports/CurrencySupport.php`
 
 When resolving the currency for each request, the system uses this priority:
 
-1. **Session currency** (set when the visitor manually clicks the currency switcher) — highest priority
+1. **Session currency** (set when the visitor manually clicks the currency switcher) - highest priority
 2. **Auto-detect from Accept-Language** (only if enabled and no session currency exists)
 3. **Default currency** (fallback if nothing matches)
 
@@ -87,6 +87,6 @@ sets the correct currency and language.
 
 ::: tip
 If you are using a CDN or host-level cache (Cloudflare, Hostinger hPanel Cache Manager, LiteSpeed Cache,
-etc.), make sure to purge those caches as well — they run outside the CMS and can serve stale pages with
+etc.), make sure to purge those caches as well - they run outside the CMS and can serve stale pages with
 the wrong currency.
 :::

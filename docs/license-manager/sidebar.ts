@@ -11,6 +11,7 @@ export default [
             { text: 'API Reference', link: '/license-manager/api' },
             { text: 'Demo Playground', link: '/license-manager/demo-playground' },
             { text: 'Webhooks', link: '/license-manager/webhooks' },
+            { text: 'Gumroad Integration', link: '/license-manager/gumroad-integration' },
         ],
     },
     {

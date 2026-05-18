@@ -45,7 +45,7 @@ To switch to a different preset:
 3. Clear cache: `php artisan cache:clear`.
 
 ::: warning
-Every preset seeder upserts the `Homepage` page row with the same name — re-running a different seeder will overwrite the previously seeded homepage content. Export or back up customizations first.
+Every preset seeder upserts the `Homepage` page row with the same name - re-running a different seeder will overwrite the previously seeded homepage content. Export or back up customizations first.
 :::
 
 ## Customize Homepage
