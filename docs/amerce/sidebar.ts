@@ -122,6 +122,7 @@ export default [
     {
         text: 'Developer',
         items: [
+            { text: 'Theme Customization', link: '/amerce/developer-theme-customization' },
             { text: 'Product Detail Hooks', link: '/amerce/developer-product-detail-hooks' },
             { text: 'Payment Gateway Integration', link: '/amerce/developer-payment-gateway' },
             { text: 'Shipping Provider Integration', link: '/amerce/developer-shipping-provider' },
