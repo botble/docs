@@ -88,17 +88,28 @@ Team members swiper variant tailored for About pages - social icons reveal on ho
 
 ## `[faq-list]`
 
-FAQ in accordion or tabbed layout. Requires the **faq** plugin.
+FAQ in accordion, tabbed, or two-column (side-CTA) layout. Requires the **faq** plugin.
 
 ![FAQ List](./images/shortcodes/faq-list.png)
 
-**Styles:** `style-accordion`, `style-tabs`.
+**Styles:** `style-accordion`, `style-tabs`, `style-side-cta`.
+
+The `style-side-cta` layout is the two-column block used on the demo homepage: a heading, description, and button in the left column, with the accordion on the right.
 
 | Field | Default | Description |
 |-------|---------|-------------|
 | `title` | - | Section heading. |
+| `subtitle` | - | Left-column description text (`style-side-cta` only). |
+| `button_text` | - | Left-column button label (`style-side-cta` only). |
+| `button_url` | `#` | Left-column button link (`style-side-cta` only). |
 | `faq_category_id` | all | Restrict to one FAQ category (empty = all). |
 | `limit` | `10` | Max questions. |
+
+Example (two-column demo FAQ):
+
+```
+[faq-list style="style-side-cta" title="Frequently Asked Questions" subtitle="Your supporting text here" button_text="Shop Now" button_url="/products" limit="5"]
+```
 
 ---
 
