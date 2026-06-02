@@ -42,6 +42,7 @@ export default [
         items: [
             { text: 'FAQ', link: '/license-manager/faq' },
             { text: 'Troubleshooting', link: '/license-manager/troubleshooting' },
+            { text: 'Changelog', link: '/license-manager/changelog' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[];
