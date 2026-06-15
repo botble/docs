@@ -3,6 +3,7 @@
 // (e.g. `lara-mag` would default to `Lara Mag`; override below if wrong).
 export const PRODUCT_LABELS: Record<string, string> = {
   cms: 'Botble',
+  digimart: 'DigiMart',
   hasa: 'HASA',
   'lara-mag': 'LaraMag',
   'bb-form-builder': 'BB Form Builder',
