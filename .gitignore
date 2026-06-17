@@ -76,6 +76,14 @@ docs/*/images/social-login-settings.png
 !docs/amerce/invoice-template.md
 !docs/amerce/usage-location.md
 
+# digimart is a standalone marketplace product (not in the `projects` sync
+# array in bin/shell_cmd.sh) and ships its own customized install/api/license docs.
+!docs/digimart/api.md
+!docs/digimart/installation-command-line.md
+!docs/digimart/installation-requirements.md
+!docs/digimart/installation-web-interface.md
+!docs/digimart/license.md
+
 # licenza is a standalone product (not in the `projects` sync array in
 # bin/shell_cmd.sh) and ships its own customized install/api/cronjob docs.
 !docs/licenza/api.md

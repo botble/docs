@@ -125,7 +125,7 @@ Then trigger a test conversion and watch for `DispatchFunnelConversionWebhookJob
 - **Tracking pixels** — Meta Pixel, GA4, TikTok each add ~30KB of JS. This is expected.
 - **Theme assets bleeding through** — verify no `theme.css` is loaded on the funnel page. The plugin ships its own standalone layout — if you see theme styles, something is wrong with the layout extension.
 
-The plugin's own CSS is one file, ~25KB, with no external dependencies.
+The plugin's own CSS is one file, ~25 KB gzipped, with no external dependencies.
 
 ## After upgrading the plugin, the admin settings page errors
 

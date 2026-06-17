@@ -60,8 +60,8 @@ For everything else — no. Funnel pages render synchronously, visit logs write 
 
 ## How big is the public bundle?
 
-- Plugin CSS: ~25 KB (one file, vanilla CSS)
-- Plugin JS: ~6 KB (vanilla JS, no jQuery)
+- Plugin CSS: ~25 KB gzipped (one file, vanilla CSS)
+- Plugin JS: ~6 KB gzipped (vanilla JS, no jQuery)
 - SVG icons: inline, ~2 KB total
 - Pixel scripts (per-platform): ~30 KB each from external CDN
 
