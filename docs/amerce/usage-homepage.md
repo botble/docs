@@ -47,9 +47,11 @@ Keeps all your existing data (orders, products, customers).
 
 ### Option 2: Wipe the database and import the preset SQL
 
-Each preset ships as a SQL dump in the source code at `database/sample/database-amerce-{preset}.sql`. Available preset slugs:
+Each preset ships as a SQL dump in the source code at `database/sample/database-home-{preset}.sql`. Available preset slugs:
 
-`auto`, `baby`, `bag`, `construct`, `cosmetic`, `decor`, `electronics`, `fashion-2`, `furniture`, `garden`, `headphone`, `jewelry`, `mental`, `office`, `organic`, `pet-care`, `pod`, `sneaker`, `sport`.
+`auto`, `baby`, `bag-accessories`, `construction`, `cosmetic`, `decor`, `electronics`, `fashion-2`, `furniture`, `garden`, `headphone`, `jewelry`, `mental`, `office-equipment`, `organic`, `pet-care`, `pod`, `sneaker`, `sport`.
+
+For example, the Wellness preset is `database/sample/database-home-mental.sql`.
 
 The default **Fashion Store** preset lives at `database.sql` in the project root.
 
