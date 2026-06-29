@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Travlla - Travel & Tour Booking Laravel System using Laravel 12.x. It's a product built on Botble CMS.
+Travlla - Travel & Tour Booking Laravel System using Laravel 13.x. It's a product built on Botble CMS.
 
 Created: `2026-06-25`
 

@@ -6,7 +6,7 @@ This guide helps you migrate from the original LicenseBox PHP script to the new 
 
 License Manager is a modern, standalone replacement for LicenseBox with:
 - Standalone application (no CMS required)
-- Modern Laravel 12 architecture
+- Modern Laravel 13 architecture
 - Enhanced security features
 - Better API design
 - Admin panel management
