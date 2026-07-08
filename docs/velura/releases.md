@@ -43,7 +43,7 @@ We're excited to announce the first release of Velura - Spa, Beauty & Nail Salon
 #### Technical Features
 - Based on Botble CMS (Laravel framework)
 - Powerful admin panel
-- 15 drag-and-drop UI Block shortcodes
+- 18 drag-and-drop UI Block shortcodes
 - Widget system (footer, footer bottom, info bar, blog sidebars)
 - Custom CSS/JS support
 - Google Analytics integration

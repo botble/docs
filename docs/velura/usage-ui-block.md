@@ -28,7 +28,7 @@ To modify an existing UI block:
 
 ## Available Shortcodes
 
-Velura ships with 15 UI Block shortcodes designed for spa, beauty, and nail salon websites:
+Velura ships with 18 UI Block shortcodes designed for spa, beauty, and nail salon websites:
 
 | Shortcode | Description |
 |-----------|-------------|
@@ -46,9 +46,12 @@ Velura ships with 15 UI Block shortcodes designed for spa, beauty, and nail salo
 | **FAQ Section** | Frequently asked questions accordion |
 | **Contact Section** | Display contact information with a contact form |
 | **News Section** | Display the latest blog posts |
-| **Spa Booking Menu** | Display spa booking service categories |
+| **Service Menu** | Display spa booking service categories |
+| **Brand Logos** | Display an associated brand logos strip |
+| **Gift Voucher Section** | Display a gift voucher band |
+| **Newsletter Section** | Display a newsletter subscribe band |
 
 ::: tip
-Most spa-related shortcodes (Services, Packages, Memberships, Staff, Reserve, Spa Booking Menu) pull their data from
+Most spa-related shortcodes (Services, Packages, Memberships, Staff, Reserve, Service Menu) pull their data from
 the **Spa Booking** section of the admin panel. See [Spa Booking](./usage-spa-booking.md) to set up your catalog first.
 :::

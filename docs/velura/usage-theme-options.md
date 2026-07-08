@@ -12,6 +12,21 @@ Control the top area of every page.
 - **Show Book Appointment Button**: Toggle the call-to-action button in the header
 - **Header Background Color**: Header background (defaults to transparent for hero overlap)
 - **Header Text Color**: Header link and text color
+- **Sticky Header Style**: Appearance of the header when it sticks on scroll
+- **Menu Background / Text / Hover Color**: Colors for the navigation menu
+
+## Footer
+
+Control the colors of the footer area.
+
+- **Footer Background Color**: Footer background
+- **Footer Text Color**: Footer body text
+- **Footer Link Color** and **Footer Link Hover Color**: Footer links
+- **Footer Muted Text Color**: Secondary/muted footer text
+
+## Blog
+
+- **Blog List Layout**: Choose how blog post listings are displayed
 
 ## Styles
 
@@ -19,10 +34,13 @@ Customize the visual appearance of your website.
 
 ### Color Scheme
 - **Primary Color**: Main brand color
-- **Secondary Color**: Accent color
-- **Text Color**: Body text color
+- **Secondary Color**: Secondary brand color
+- **Accent Color**: Accent/highlight color
 - **Heading Color**: Titles and headings
-- **Link Color**: Hyperlink color
+- **Text Color**: Body text color
+- **Link Color** and **Link Hover Color**: Hyperlink colors
+- **Button Background / Text / Hover Colors**: Button styling
+- **Border Color**: Borders and dividers
 
 ![Styles Settings](./images/theme-options/styles.png)
 
@@ -45,11 +63,9 @@ Control fonts and text styling throughout your website. Velura ships with an ele
 
 ## Breadcrumbs
 
-Configure breadcrumb navigation for better user experience.
+Configure the breadcrumb banner shown at the top of inner pages.
 
-### Breadcrumb Settings
-- **Enable Breadcrumbs**: Show/hide breadcrumbs
-- **Background Image**: Upload a custom background for the breadcrumb banner
+- **Breadcrumb Background Image**: Upload a custom background for the breadcrumb banner
 
 ![Breadcrumbs Settings](./images/theme-options/breadcrumbs.png)
 

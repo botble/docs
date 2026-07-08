@@ -2,7 +2,7 @@
 
 Velura is powered by the built-in **Spa Booking** system. It manages your service catalog, staff, packages,
 memberships, and online appointments. Most of the spa-related [UI Blocks](./usage-ui-block.md) (Services, Packages,
-Memberships, Staff, Reserve, Spa Booking Menu) pull their content from here, so it's the first thing to set up.
+Memberships, Staff, Reserve, Service Menu) pull their content from here, so it's the first thing to set up.
 
 You can access it from the **Spa Booking** menu in the admin sidebar.
 

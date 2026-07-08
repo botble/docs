@@ -77,5 +77,8 @@ The homepage can be customized using UI Blocks specifically designed for spa & b
 - **FAQ Section** - Answer common questions
 - **Contact Section** - Show location, hours, and a contact form
 - **News Section** - Feature the latest blog posts
+- **Gift Voucher Section** - Promote gift vouchers
+- **Newsletter Section** - Collect newsletter subscribers
+- **Brand Logos** - Display an associated brand logos strip
 
 A complete list of available shortcodes can be found in [UI Block](./usage-ui-block.md#available-shortcodes).
