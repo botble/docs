@@ -102,7 +102,7 @@ See [Profile links](11_profile_links.md).
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `CAR_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `medium` | Thumbnail size in list cells (`large` = full image) |
+| `CAR_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `large` | Image size in list cells. `large` = full-size (sharp); small/medium use the 150x150 thumbnail to save bandwidth |
 
 ### Home section counts
 

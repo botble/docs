@@ -200,7 +200,7 @@ Tune how many items each home section shows via `.env`:
 HOME_FEATURED_COUNT=6    # featured cars
 HOME_DEALERS_COUNT=2     # dealers
 HOME_BLOG_COUNT=5        # blog posts
-CAR_IMAGE_THUMBNAIL_SIZE=medium   # small | medium | large
+CAR_IMAGE_THUMBNAIL_SIZE=large    # small | medium | large (large = full-size, sharp)
 ```
 
 ---
