@@ -132,5 +132,5 @@ again so the native change is compiled into the app.
 
 5. **Reinstall dependencies from scratch**:
    ```bash
-   rm -rf node_modules && npm install
+   rm -rf node_modules && npm install --legacy-peer-deps
    ```
