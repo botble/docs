@@ -63,7 +63,7 @@ If anything fails to start, clear caches: `npm start -- --clear`. If native conf
 | `ToastContext` | `success` / `error` / `info` banners |
 | `AppStatusContext` | `isMaintenance` / `isServerError` (driven by apiClient status pub/sub) |
 
-Auth tokens are persisted to **expo-secure-store**; preferences to **async-storage**. See [system-architecture](api-integration.md) and the API reference for the full data flow.
+Auth tokens are persisted to **expo-secure-store**; preferences to **async-storage**. See [API integration](api-integration.md) and the API reference for the full data flow.
 
 ## Add an API call
 

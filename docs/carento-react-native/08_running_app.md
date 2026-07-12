@@ -6,7 +6,7 @@ bundler and load the app onto a simulator, emulator, or a physical device.
 Before you start, install dependencies once:
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 Copy the environment template and fill in at least `API_BASE_URL` (your Botble

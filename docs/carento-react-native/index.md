@@ -83,4 +83,4 @@ A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental ba
 - Demo: #
 - API: [API Integration Guide](api-integration.md)
 - Support tickets: https://botble.ticksy.com
-- Email: support@botble.com
+- Email: contact@botble.com

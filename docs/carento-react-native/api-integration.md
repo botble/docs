@@ -122,7 +122,7 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 | `POST /car-manager/bookings/{id}/cancel` | `cancelBooking(id, token?)` | `src/services/bookings.ts` |
 | `GET /car-manager/bookings/{id}/invoice` | `fetchBookingInvoice(id, token?)` | `src/services/bookings.ts` |
 | `POST /car-manager/calculate-price` | `calculatePrice(payload)` | `src/services/pricing.ts` |
-| `POST /car-manager/coupons/validate` | `validateCoupon(code, carId?)` | `src/services/pricing.ts` |
+| `POST /car-manager/coupons/validate` | `validateCoupon(code, totalAmount, carId?)` | `src/services/pricing.ts` |
 
 **Guest booking lookup:** the `/car-manager/bookings/{id}` route is auth-scoped (a signed-in customer's own bookings only). Guests who just checked out resolve their booking with `lookupGuestBooking()`, which requires **both** the booking number and the email — the id alone is rejected. `getBookingForViewer()` picks the authed path when a token is present and the guest path otherwise.
 
