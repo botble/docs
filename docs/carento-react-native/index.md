@@ -2,6 +2,12 @@
 
 A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental backend](https://botble.com) running the **car-manager** plugin. One codebase builds both iOS and Android — customers browse cars, book rentals, pay through a hosted checkout, and manage their account, all driven live from your Botble admin.
 
+<div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:28px 0;">
+  <img src="./images/carento-home-light.png" alt="Home" style="width:31%; max-width:240px; border-radius:18px;" />
+  <img src="./images/carento-car-detail.png" alt="Car detail" style="width:31%; max-width:240px; border-radius:18px;" />
+  <img src="./images/carento-booking-trip.png" alt="Booking" style="width:31%; max-width:240px; border-radius:18px;" />
+</div>
+
 ## Get started
 
 1. [Overview](overview.md)
@@ -51,6 +57,16 @@ A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental ba
 - Light / dark / system theme
 - Social login (Google, Apple, Facebook), biometric unlock, push notifications
 
+## Tech stack
+
+- React Native + Expo SDK 54
+- TypeScript (strict)
+- Expo Router v6 (file-based routing)
+- React Query + Context API
+- NativeWind (Tailwind for React Native)
+- react-i18next + RTL support
+- expo-secure-store
+
 ## Reference
 
 - [API Integration](api-integration.md)
@@ -60,3 +76,11 @@ A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental ba
 - [FAQ](faq.md)
 - [Support](support.md)
 - [Release notes](releases.md)
+
+## Resources
+
+- Documentation: https://docs.botble.com/carento-react-native
+- Demo: #
+- API: [API Integration Guide](api-integration.md)
+- Support tickets: https://botble.ticksy.com
+- Email: support@botble.com

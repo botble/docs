@@ -11,6 +11,7 @@ export default [
             { text: 'Configuration', link: '/carento-react-native/configuration' },
             { text: 'Development Guide', link: '/carento-react-native/development' },
             { text: 'API Integration', link: '/carento-react-native/api-integration' },
+            { text: 'License Activation', link: '/carento-react-native/license-activation' },
         ],
     },
     {
@@ -28,7 +29,8 @@ export default [
             { text: '10. Profile Links', link: '/carento-react-native/11_profile_links' },
             { text: '11. Splash Screen', link: '/carento-react-native/17_splash_screen' },
             { text: '12. Loading Screen', link: '/carento-react-native/18_loading_screen' },
-            { text: '13. Push Notifications', link: '/carento-react-native/push_notifications' },
+            { text: '13. Onboarding', link: '/carento-react-native/onboarding' },
+            { text: '14. Push Notifications', link: '/carento-react-native/push_notifications' },
         ],
     },
     {
