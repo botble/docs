@@ -14,6 +14,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   'sms-gateways': 'SMS Gateways',
   snapcart: 'SnapCart',
   'e-wallet': 'E-Wallet',
+  'carento-react-native': 'Carento (Mobile)',
 }
 
 // Products pinned to the top of the nav dropdown (kept in this order),
