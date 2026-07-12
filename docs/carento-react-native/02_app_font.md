@@ -2,103 +2,89 @@
 
 ## Overview
 
-Carento pairs two Google Fonts, loaded through Expo's `@expo-google-fonts/*` packages:
+Carento's fonts are **`.env`-driven**. Two roles are configured independently:
 
-- **Inter** — body text
-- **Instrument Sans** — display / headings
+- **`APP_FONT_BODY`** — body text (default `Inter`)
+- **`APP_FONT_HEADING`** — display / headings (default `InstrumentSans`)
 
-Fonts are centralized in **one seam** so a rebrand touches as few files as possible:
+```bash
+# .env
+APP_FONT_BODY=Inter
+APP_FONT_HEADING=InstrumentSans
+```
 
-- `src/lib/fonts.ts` — imports the font modules and exposes `fontAssets` (the map passed to `useFonts`).
-- `src/lib/theme.ts` — the `fonts` map (family-name strings) plus `fontFamilyFor` (numeric weight → Inter family).
-- `app/_layout.tsx` — calls `useFonts(fontAssets)` to load the fonts at startup.
-- `src/lib/setup-typography.ts` — applies the Inter body font app-wide.
+Each value must name a font **registered** in `src/lib/fonts.ts`. Two families ship
+bundled: `Inter` and `InstrumentSans`. Because Expo bundles fonts at build time (it
+can't fetch an arbitrary font by name at runtime), adding a new typeface means adding
+its package to the registry once — after that it's just an `.env` value.
 
 ## How it fits together
 
-1. `src/lib/fonts.ts` imports the weighted font modules and collects them:
-   ```ts
-   import {
-     Inter_400Regular, Inter_500Medium, Inter_600SemiBold,
-     Inter_700Bold, Inter_800ExtraBold,
-   } from "@expo-google-fonts/inter";
-   import {
-     InstrumentSans_400Regular, InstrumentSans_500Medium,
-     InstrumentSans_600SemiBold, InstrumentSans_700Bold,
-   } from "@expo-google-fonts/instrument-sans";
+- `src/lib/fonts.ts` — the **registry**. A `FAMILIES` map holds each family's weighted
+  font modules and its weight→family-name table. `APP_FONT_BODY` / `APP_FONT_HEADING`
+  (via `appConfig.fonts`) select which registered family is used for each role. Exposes
+  `fontAssets` (every bundled asset, passed to `useFonts`) plus `bodyFamilyFor(weight)` /
+  `headingFamilyFor(weight)` which resolve a weight to the loaded family name (with a
+  nearest-weight fallback when a family lacks a weight — e.g. Instrument Sans has no 800).
+- `src/lib/theme.ts` — builds the `fonts` map (`regular`/`medium`/…/`display`/…) and
+  `fontFamilyFor` from those resolvers, so every component follows the selected fonts.
+- `app/_layout.tsx` — `useFonts(fontAssets)` loads all bundled fonts at startup.
+- `src/lib/setup-typography.ts` — applies the body font to `<Text>`/`<TextInput>`
+  app-wide (headings that set an explicit display family are left untouched).
 
-   export const fontAssets = {
-     Inter_400Regular, Inter_500Medium, Inter_600SemiBold,
-     Inter_700Bold, Inter_800ExtraBold,
-     InstrumentSans_400Regular, InstrumentSans_500Medium,
-     InstrumentSans_600SemiBold, InstrumentSans_700Bold,
-   } as const;
-   ```
+## Switching between bundled fonts
 
-2. `app/_layout.tsx` loads them:
-   ```ts
-   import { useFonts } from "@expo-google-fonts/inter";
-   import { fontAssets } from "@/lib/fonts";
-   // ...
-   const [fontsLoaded] = useFonts(fontAssets);
-   ```
+To swap body and heading (both `Inter` and `InstrumentSans` are already bundled), just
+edit `.env` and restart the dev server:
 
-3. `src/lib/theme.ts` names the families used in styles:
-   ```ts
-   export const fonts = {
-     // Body — Inter
-     regular: "Inter_400Regular",
-     medium: "Inter_500Medium",
-     semibold: "Inter_600SemiBold",
-     bold: "Inter_700Bold",
-     extrabold: "Inter_800ExtraBold",
-     // Display / headings — Instrument Sans
-     display: "InstrumentSans_600SemiBold",
-     displayMedium: "InstrumentSans_500Medium",
-     displaySemibold: "InstrumentSans_600SemiBold",
-     displayBold: "InstrumentSans_700Bold",
-   } as const;
-   ```
+```bash
+APP_FONT_BODY=InstrumentSans
+APP_FONT_HEADING=Inter
+```
 
-4. `src/lib/setup-typography.ts` patches React Native's `<Text>` / `<TextInput>` once (from the root layout) to apply the correct weighted **Inter** family app-wide — choosing the variant from each element's `fontWeight` via `fontFamilyFor`. Any element that already sets an explicit `fontFamily` (e.g. an Instrument Sans heading) is left untouched.
+No native rebuild is needed — both families are bundled, so a JS reload is enough.
 
-## Changing the font
+## Adding a new font (e.g. Poppins)
 
-To swap the typeface (say, Inter → **Poppins**):
-
-1. **Install the new Google Fonts package:**
+1. **Install the package:**
    ```bash
    npx expo install @expo-google-fonts/poppins
    ```
 
-2. **Update `src/lib/fonts.ts`** — change the imports and the `fontAssets` keys to the new family's weighted modules:
+2. **Register it in `src/lib/fonts.ts`** — import the weighted modules and add a
+   `FAMILIES` entry (the key is what you'll put in `.env`):
    ```ts
    import {
      Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold,
      Poppins_700Bold, Poppins_800ExtraBold,
    } from "@expo-google-fonts/poppins";
 
-   export const fontAssets = {
-     Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold,
-     Poppins_700Bold, Poppins_800ExtraBold,
-     // ...keep or replace the display family too
-   } as const;
+   const FAMILIES = {
+     // ...Inter, InstrumentSans
+     Poppins: {
+       assets: {
+         Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold,
+         Poppins_700Bold, Poppins_800ExtraBold,
+       },
+       weights: {
+         "400": "Poppins_400Regular",
+         "500": "Poppins_500Medium",
+         "600": "Poppins_600SemiBold",
+         "700": "Poppins_700Bold",
+         "800": "Poppins_800ExtraBold",
+       },
+     },
+   };
    ```
 
-3. **Update `src/lib/theme.ts`** — set the `fonts` map to the new family-name strings, and update `fontFamilyFor` so each numeric weight returns the matching family:
-   ```ts
-   export const fonts = {
-     regular: "Poppins_400Regular",
-     medium: "Poppins_500Medium",
-     semibold: "Poppins_600SemiBold",
-     bold: "Poppins_700Bold",
-     extrabold: "Poppins_800ExtraBold",
-     // ...display families
-   } as const;
+3. **Point `.env` at it:**
+   ```bash
+   APP_FONT_HEADING=Poppins
    ```
 
-   The keys in `fontAssets` **must exactly match** the family strings referenced in `theme.ts`.
+4. **Rebuild** (`npx expo prebuild` then `npm run ios` / `android`) so the new font
+   package is bundled into the native app. Switching among already-bundled families
+   only needs a restart; adding a new package needs a rebuild.
 
-4. **Restart** the dev server (stop and re-run `npm start`). Nothing else references the font packages directly, so these are the only files you touch.
-
-Browse available typefaces at [Google Fonts](https://fonts.google.com/); each has a matching `@expo-google-fonts/<family>` package.
+Browse typefaces at [Google Fonts](https://fonts.google.com/); each has a matching
+`@expo-google-fonts/<family>` package.

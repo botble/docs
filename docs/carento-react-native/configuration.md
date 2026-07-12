@@ -51,9 +51,19 @@ Hex **without** `#`. Full guide: [Theme Colors](01_theme_colors.md).
 
 | Key | Default | Description |
 |---|---|---|
-| `PRIMARY_COLOR` | `84cc16` | Brand primary (lime green) |
-| `PRIMARY_DARK_COLOR` | `4d7c0f` | Primary variant for dark mode |
+| `PRIMARY_COLOR` | `84cc16` | Brand primary — applied to the whole theme (light + dark) |
+| `PRIMARY_DARK_COLOR` | `4d7c0f` | Darker shade for pressed/active states |
 | `ON_PRIMARY_COLOR` | `FFFFFF` | Foreground color on top of primary |
+
+### Fonts
+
+Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
+`Inter`, `InstrumentSans`). Full guide: [App Font](02_app_font.md).
+
+| Key | Default | Description |
+|---|---|---|
+| `APP_FONT_BODY` | `Inter` | Body-text font family |
+| `APP_FONT_HEADING` | `InstrumentSans` | Display / heading font family |
 
 ### Contact & social
 
