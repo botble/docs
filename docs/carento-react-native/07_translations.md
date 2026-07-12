@@ -69,6 +69,9 @@ So a buyer rebrands the app name across every screen and every language by setti
 write `{{appName}}` (never the literal name), and keep the app name out of translation
 **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToCarento`).
 
+This is enforced: `npm run i18n:check` (run in CI) fails if the brand literal appears
+in any locale key or value, pointing you to use `{{appName}}`.
+
 ## Extract & verify workflow
 
 Two npm scripts keep the locale files in sync:
