@@ -161,11 +161,12 @@ There is intentionally **no** public `/car-manager/vendors` (dealer-list) endpoi
 | `GET /categories` | `fetchBlogCategories()` | `src/services/blog.ts` |
 | `GET /simple-sliders` | `fetchSliders()` | `src/services/misc.ts` |
 | `GET /languages` | `fetchLanguages()` | `src/services/misc.ts` |
+| `GET /car-manager/currencies` | `fetchCurrencies()` | `src/services/misc.ts` |
 | `POST /car-manager/inquiries` | `submitInquiry(payload)` | `src/services/misc.ts` |
 | `POST /contacts` | `submitContact(payload)` | `src/services/misc.ts` |
 | `POST /device-tokens` | `registerDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
 
-Languages come from `GET /languages`; the active currency defaults to `USD` and is sent as `X-CURRENCY`. Both drive the localization headers described above.
+Languages come from `GET /languages` and currencies from `GET /car-manager/currencies` (the currency picker); the active currency is sent as `X-CURRENCY` (default `USD`), and the API converts prices to it server-side. Both drive the localization headers described above.
 
 ## Query params
 
