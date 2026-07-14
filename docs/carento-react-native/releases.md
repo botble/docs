@@ -25,7 +25,7 @@
 - Review submissions that the server rejected (for example, reviewing a car you have not booked)
   were reported to the user as successful even though nothing was created.
 
-## 1.0.0 — Initial release
+## 1.0.0
 
 - Car-rental mobile app for the Carento platform, built with Expo SDK 54 / React Native, connecting to a Botble backend running the car-manager plugin.
 - Browse cars, search and filter, view car details, dealers, and blog.

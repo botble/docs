@@ -1,12 +1,12 @@
 # FAQ
 
-### What is Carento?
+### What is Carento Mobile?
 
-A car-rental mobile app built with Expo (React Native). It connects to a Botble backend running the **car-manager** plugin and lets customers browse cars, view dealers, read the blog, and make bookings.
+A car rental and car dealer mobile app built with Expo (React Native). It is the mobile client for your Laravel backend, and lets customers browse cars, view dealers, read the blog, and make bookings.
 
-### Does the app require a Botble backend?
+### Which backend do I need?
 
-Yes. The app calls Botble's REST API, and specifically the **car-manager** plugin (cars, bookings, dealers, favorites, reviews, pricing). Any other backend will not work. See [API Integration](api-integration.md).
+Either [Carento](https://codecanyon.net/item/carento-car-dealer-rental-booking-laravel-system/55782539) or [Auxero](https://codecanyon.net/item/auxero-car-dealer-listing-laravel-system/62730624). Both are Laravel systems that ship the **car-manager** plugin, and both expose the same REST API (cars, bookings, dealers, favorites, reviews, pricing), so the app works against either one. No other backend will work. See [API Integration](api-integration.md).
 
 ### How is this licensed?
 

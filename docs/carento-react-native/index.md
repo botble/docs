@@ -95,7 +95,8 @@ reviews, dealers, and dark mode.
 ## Resources
 
 - Documentation: https://docs.botble.com/carento-react-native
-- Demo: #
+- Backend demo: https://carento.botble.com
+- App demo video: https://youtu.be/1S6liILg5ls
 - API: [API Integration Guide](api-integration.md)
 - Support tickets: https://botble.ticksy.com
 - Email: contact@botble.com
