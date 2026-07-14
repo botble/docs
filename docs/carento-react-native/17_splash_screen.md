@@ -1,8 +1,6 @@
 # Splash Screen (JS Splash Hold)
 
-Carento keeps the branded splash on screen a little longer than the OS would, so
-the first frame users see is your styled home screen — never a white flash of
-unstyled content while fonts and cached settings load.
+Carento keeps the branded splash on screen a little longer than the OS would, so the first frame users see is your styled home screen. There's never a white flash of unstyled content while fonts and cached settings load.
 
 This page covers the **JavaScript splash hold** implemented with
 `expo-splash-screen` in `app/_layout.tsx`. For the underlying **native launch
@@ -21,8 +19,7 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync().catch(() => {});
 ```
 
-`preventAutoHideAsync()` is called **at module load** — before the component
-tree mounts — so the splash stays up from the very first moment.
+`preventAutoHideAsync()` is called **at module load**, before the component tree mounts. This keeps the splash up from the very first moment.
 
 The root layout then loads the brand fonts (`useFonts`) and initializes the
 API client cache (language / currency / token) from storage:
@@ -37,9 +34,7 @@ useEffect(() => {
 }, []);
 ```
 
-Only once **both fonts and cache are ready** does it hide the splash, from the
-root view's `onLayout` callback — so the handoff goes straight to the styled
-first screen with no white flash:
+Only once **both fonts and cache are ready** does it hide the splash, from the root view's `onLayout` callback. This ensures the handoff goes straight to the styled first screen with no white flash:
 
 ```tsx
 const onLayoutRootView = useCallback(() => {
@@ -71,9 +66,8 @@ splash: {
 },
 ```
 
-- **Image** — `assets/splash-icon.png`.
-- **Background** — the `SPLASH_BACKGROUND_COLOR` environment variable, defaulting
-  to the brand primary `#84cc16`.
+- **Image**: `assets/splash-icon.png`.
+- **Background**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#84cc16`.
 
 ### Changing the background color
 
@@ -89,9 +83,7 @@ the color stays consistent across the whole startup sequence.
 
 ## Replacing the splash image
 
-1. **Prepare your image** — a PNG (transparent background recommended). Because
-   `resizeMode` is `contain`, the whole image is shown, centered, without being
-   cropped; keep the logo comfortably inside the canvas.
+1. **Prepare your image**: Use a PNG with a transparent background if possible. Since `resizeMode` is `contain`, the whole image is shown centered without being cropped. Keep the logo comfortably inside the canvas.
 
 2. **Replace the file**, keeping the same name:
 
@@ -101,8 +93,7 @@ the color stays consistent across the whole startup sequence.
 
    (Or point `splash.image` in `app.config.js` at a different path.)
 
-3. **Regenerate the native projects** — the splash image is baked into the
-   native launch screen, so a change requires a prebuild:
+3. **Regenerate the native projects**: The splash image is baked into the native launch screen, so a change requires a prebuild:
 
    ```bash
    npx expo prebuild
@@ -119,11 +110,6 @@ the color stays consistent across the whole startup sequence.
 
 ## Notes
 
-- `SPLASH_BACKGROUND_COLOR` is read at bundle time; restart Metro (ideally
-  `npx expo start -c`) after changing it.
-- A change to the splash image or its background color affects the native launch
-  screen too and therefore always needs `npx expo prebuild` — a JS-only reload
-  is not enough.
-- The JS splash hold only controls **timing** (how long the splash stays up); it
-  reuses the native launch screen's image and color, so the two never visibly
-  differ during handoff.
+- `SPLASH_BACKGROUND_COLOR` is read at bundle time. Restart Metro (ideally `npx expo start -c`) after changing it.
+- A change to the splash image or its background color affects the native launch screen too and always requires `npx expo prebuild`. A JS-only reload is not enough.
+- The JS splash hold only controls **timing** (how long the splash stays up). It reuses the native launch screen's image and color, so the two never visibly differ during handoff.

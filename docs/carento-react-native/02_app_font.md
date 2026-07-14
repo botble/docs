@@ -4,8 +4,8 @@
 
 Carento's fonts are **`.env`-driven**. Two roles are configured independently:
 
-- **`APP_FONT_BODY`** — body text (default `Inter`)
-- **`APP_FONT_HEADING`** — display / headings (default `InstrumentSans`)
+- **`APP_FONT_BODY`**: body text (default `Inter`)
+- **`APP_FONT_HEADING`**: display / headings (default `InstrumentSans`)
 
 ```bash
 # .env
@@ -16,21 +16,14 @@ APP_FONT_HEADING=InstrumentSans
 Each value must name a font **registered** in `src/lib/fonts.ts`. Two families ship
 bundled: `Inter` and `InstrumentSans`. Because Expo bundles fonts at build time (it
 can't fetch an arbitrary font by name at runtime), adding a new typeface means adding
-its package to the registry once — after that it's just an `.env` value.
+its package to the registry once. After that it is only an `.env` value.
 
 ## How it fits together
 
-- `src/lib/fonts.ts` — the **registry**. A `FAMILIES` map holds each family's weighted
-  font modules and its weight→family-name table. `APP_FONT_BODY` / `APP_FONT_HEADING`
-  (via `appConfig.fonts`) select which registered family is used for each role. Exposes
-  `fontAssets` (every bundled asset, passed to `useFonts`) plus `bodyFamilyFor(weight)` /
-  `headingFamilyFor(weight)` which resolve a weight to the loaded family name (with a
-  nearest-weight fallback when a family lacks a weight — e.g. Instrument Sans has no 800).
-- `src/lib/theme.ts` — builds the `fonts` map (`regular`/`medium`/…/`display`/…) and
-  `fontFamilyFor` from those resolvers, so every component follows the selected fonts.
-- `app/_layout.tsx` — `useFonts(fontAssets)` loads all bundled fonts at startup.
-- `src/lib/setup-typography.ts` — applies the body font to `<Text>`/`<TextInput>`
-  app-wide (headings that set an explicit display family are left untouched).
+- `src/lib/fonts.ts`: The **registry**. A `FAMILIES` map holds each family's weighted font modules and its weight→family-name table. `APP_FONT_BODY` / `APP_FONT_HEADING` (via `appConfig.fonts`) select which registered family is used for each role. Exposes `fontAssets` (every bundled asset, passed to `useFonts`) plus `bodyFamilyFor(weight)` / `headingFamilyFor(weight)` which resolve a weight to the loaded family name. When a family lacks a weight, it falls back to the nearest weight (e.g. Instrument Sans has no 800).
+- `src/lib/theme.ts`: Builds the `fonts` map (`regular`/`medium`/…/`display`/…) and `fontFamilyFor` from those resolvers, so every component follows the selected fonts.
+- `app/_layout.tsx`: `useFonts(fontAssets)` loads all bundled fonts at startup.
+- `src/lib/setup-typography.ts`: Applies the body font to `<Text>`/`<TextInput>` app-wide. Headings that set an explicit display family are left untouched.
 
 ## Switching between bundled fonts
 
@@ -42,7 +35,7 @@ APP_FONT_BODY=InstrumentSans
 APP_FONT_HEADING=Inter
 ```
 
-No native rebuild is needed — both families are bundled, so a JS reload is enough.
+No native rebuild is needed. Both families are bundled, so a JS reload is enough.
 
 ## Adding a new font (e.g. Poppins)
 
@@ -51,7 +44,7 @@ No native rebuild is needed — both families are bundled, so a JS reload is eno
    npx expo install @expo-google-fonts/poppins
    ```
 
-2. **Register it in `src/lib/fonts.ts`** — import the weighted modules and add a
+2. Register it in `src/lib/fonts.ts`: import the weighted modules and add a
    `FAMILIES` entry (the key is what you'll put in `.env`):
    ```ts
    import {

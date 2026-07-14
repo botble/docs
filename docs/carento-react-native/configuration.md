@@ -3,13 +3,13 @@
 All app configuration lives in the `.env` file at the project root. `app.config.js` reads it at build/start time and exposes it to the app as `extra.appConfig` (read at runtime through `expo-constants`).
 
 ::: warning `.env` changes are not hot-reloaded
-`.env` is read when Metro starts and when a native build is produced. After editing `.env`, **restart the Metro dev server** (stop and rerun `npm start`) — and **rebuild the app** (`npm run ios:sim` / `npm run android`, or `npx expo prebuild` first) if you changed a value baked into the native project (app name, colors, splash, plugins).
+`.env` is read when Metro starts and when a native build is produced. After editing `.env`, **restart the Metro dev server** (stop and rerun `npm start`). If you changed a value baked into the native project (app name, colors, splash, plugins), **rebuild the app** (`npm run ios:sim` / `npm run android`, or `npx expo prebuild` first).
 :::
 
 ## Required keys
 
 ```bash
-API_BASE_URL=http://carento.test        # backend site root — /api/v1 is appended automatically
+API_BASE_URL=http://carento.test        # backend site root (/api/v1 appended automatically)
 API_KEY=                                # only if an API key is configured in Botble admin
 APP_NAME=Carento
 LICENSE_CODE=                           # your Envato purchase code (development-only license check)
@@ -51,7 +51,7 @@ Hex **without** `#`. Full guide: [Theme Colors](01_theme_colors.md).
 
 | Key | Default | Description |
 |---|---|---|
-| `PRIMARY_COLOR` | `84cc16` | Brand primary — applied to the whole theme (light + dark) |
+| `PRIMARY_COLOR` | `84cc16` | Brand primary, applied to the whole theme (light + dark) |
 | `PRIMARY_DARK_COLOR` | `4d7c0f` | Darker shade for pressed/active states |
 | `ON_PRIMARY_COLOR` | `FFFFFF` | Foreground color on top of primary |
 
@@ -118,11 +118,11 @@ Leave a provider's credentials blank to disable it. Full setup: [Social login co
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `ENABLE_GOOGLE_SIGN_IN` | `true` / `false` | `true` | Enable Google — also requires `GOOGLE_WEB_CLIENT_ID` |
+| `ENABLE_GOOGLE_SIGN_IN` | `true` / `false` | `true` | Enable Google (also requires `GOOGLE_WEB_CLIENT_ID`) |
 | `GOOGLE_WEB_CLIENT_ID` | client id | *(empty)* | Google Web Client ID ([Google setup](14_google_login_setup.md)) |
 | `GOOGLE_SERVICES_FILE` | file path | *(empty)* | Path to `google-services.json` (Android push / Google services) |
 | `ENABLE_APPLE_SIGN_IN` | `true` / `false` | `true` | Enable Apple Sign-In (iOS) ([Apple setup](13_apple_login_setup.md)) |
-| `ENABLE_FACEBOOK_SIGN_IN` | `true` / `false` | `true` | Enable Facebook — also requires `FACEBOOK_APP_ID` |
+| `ENABLE_FACEBOOK_SIGN_IN` | `true` / `false` | `true` | Enable Facebook (also requires `FACEBOOK_APP_ID`) |
 | `FACEBOOK_APP_ID` | app id | *(empty)* | Facebook App ID ([Facebook setup](15_facebook_login_setup.md)) |
 | `FACEBOOK_CLIENT_TOKEN` | client token | *(empty)* | Facebook Client Token |
 

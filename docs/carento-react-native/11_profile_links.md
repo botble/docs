@@ -26,10 +26,8 @@ USE_LOCAL_HELP=true
 
 Both URLs may be **absolute** or **relative**:
 
-- **Absolute** (`https://carento.com/contact`) — used as-is.
-- **Relative** (`/contact`) — resolved against your backend site URL
-  (`API_BASE_URL`). For example, with `API_BASE_URL=https://carento.com` and
-  `HELP_CENTER_URL=/help`, the app opens `https://carento.com/help`.
+- **Absolute** (`https://carento.com/contact`): Used as-is.
+- **Relative** (`/contact`): Resolved against your backend site URL (`API_BASE_URL`). For example, with `API_BASE_URL=https://carento.com` and `HELP_CENTER_URL=/help`, the app opens `https://carento.com/help`.
 
 Resolution is handled by `resolveUrl()` in `src/config/app.ts`.
 
@@ -37,13 +35,8 @@ Resolution is handled by `resolveUrl()` in `src/config/app.ts`.
 
 The Help row logic lives in `app/(tabs)/profile.tsx`:
 
-- When **`USE_LOCAL_HELP=false` and `HELP_CENTER_URL` is set**, the Help row
-  opens that page in the in-app browser (`app/web-view.tsx`) — a `WebView` with
-  loading and error/retry states.
-- **Otherwise** (the default, `USE_LOCAL_HELP=true`, or no `HELP_CENTER_URL`),
-  the Help row opens the **bundled help screen** (`app/account/help.tsx`) —
-  native "Call support" / "Email us" links, a Frequently Asked section, and a
-  contact form wired to the backend contact plugin.
+- When **`USE_LOCAL_HELP=false` and `HELP_CENTER_URL` is set**, the Help row opens that page in the in-app browser (`app/web-view.tsx`). This is a `WebView` with loading and error/retry states.
+- **Otherwise** (the default, `USE_LOCAL_HELP=true`, or no `HELP_CENTER_URL`), the Help row opens the **bundled help screen** (`app/account/help.tsx`). This has native "Call support" / "Email us" links, a Frequently Asked section, and a contact form wired to the backend contact plugin.
 
 ## The "Customer support" row
 
@@ -54,7 +47,7 @@ The Help row logic lives in `app/(tabs)/profile.tsx`:
 
 ## Worked examples
 
-### Default — bundled help, no extra row
+### Default: bundled help, no extra row
 
 ```bash
 USE_LOCAL_HELP=true

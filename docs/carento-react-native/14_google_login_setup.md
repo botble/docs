@@ -4,7 +4,7 @@ This guide sets up **Google Sign-In** in the Carento React Native (Expo) car-ren
 
 ## How it works in the app
 
-- The `@react-native-google-signin/google-signin` config plugin is added **only when** `GOOGLE_WEB_CLIENT_ID` is set — `app.config.js` `buildPlugins()` pushes it conditionally. Without the web client ID the native module is never linked and the button stays hidden.
+- The `@react-native-google-signin/google-signin` config plugin is added **only when** `GOOGLE_WEB_CLIENT_ID` is set. `app.config.js` `buildPlugins()` pushes it conditionally. Without the web client ID the native module is never linked and the button stays hidden.
 - The login flow lives in `src/hooks/use-social-auth.ts` → `signInWithGoogle()`. It configures the SDK with `webClientId: appConfig.auth.googleWebClientId`, calls `GoogleSignin.signIn()`, and exchanges the returned **ID token** with the Botble backend:
 
   ```
@@ -32,11 +32,11 @@ Carento's native identifiers (needed below):
 
 In [Google Cloud Console](https://console.cloud.google.com) → **APIs & Services** → **Credentials** → **Create Credentials** → **OAuth client ID**, create **three** clients:
 
-### Web client ID (required — used by the app and backend)
+### Web client ID (required: used by the app and backend)
 
 1. Application type: **Web application**.
 2. Name it (e.g. `Carento Web Client`) and click **Create**.
-3. Copy the client ID — this is your **`GOOGLE_WEB_CLIENT_ID`**. The Android/iOS native SDKs use it as the `webClientId` to mint the ID token the backend verifies.
+3. Copy the client ID. This is your **`GOOGLE_WEB_CLIENT_ID`**. The Android/iOS native SDKs use it as the `webClientId` to mint the ID token the backend verifies.
 
 ### iOS client ID (required for iOS)
 
@@ -48,7 +48,7 @@ In [Google Cloud Console](https://console.cloud.google.com) → **APIs & Service
 
 1. Application type: **Android**.
 2. Package name: `com.carento.mobile`.
-3. SHA-1 certificate fingerprint — get it from your keystore:
+3. SHA-1 certificate fingerprint: get it from your keystore:
 
    ```bash
    # Debug keystore
@@ -102,7 +102,7 @@ npm run android      # and / or: npm run ios
 ```
 
 ::: warning `.env` is not hot-reloaded
-`app.config.js` reads these keys at build/start time. After editing `.env`, restart Metro and rebuild — a running app will not pick up a newly set `GOOGLE_WEB_CLIENT_ID`.
+`app.config.js` reads these keys at build/start time. After editing `.env`, restart Metro and rebuild. A running app will not pick up a newly set `GOOGLE_WEB_CLIENT_ID`.
 :::
 
 ## Step 6: Test
@@ -116,7 +116,7 @@ npm run android      # and / or: npm run ios
 | Symptom | Fix |
 |---|---|
 | Google button not showing | `GOOGLE_WEB_CLIENT_ID` must be set (plugin only added then) and `ENABLE_GOOGLE_SIGN_IN` must not be `false`. Re-run `npx expo prebuild` and rebuild. |
-| "Google sign-in is not configured" toast | `appConfig.auth.googleEnabled` is false — the web client ID is empty or the flag is `false`. |
+| "Google sign-in is not configured" toast | `appConfig.auth.googleEnabled` is false. The web client ID is empty or the flag is `false`. |
 | `DEVELOPER_ERROR` / `ApiException: 10` (Android) | SHA-1 fingerprint or package name mismatch. Register the correct SHA-1 for your keystore and confirm the package is `com.carento.mobile`. |
 | "Play Services" prompt on Android | The device lacks up-to-date Google Play Services; the app calls `hasPlayServices({ showPlayServicesUpdateDialog: true })`. |
 | Backend rejects the token | Ensure the backend verifies against the same web client ID as `GOOGLE_WEB_CLIENT_ID`. |

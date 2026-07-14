@@ -36,7 +36,7 @@ web: { favicon: "./assets/favicon.png" },
 | Asset | Recommended size | Notes |
 |---|---|---|
 | `icon.png` | 1024×1024 | Square PNG, no transparency for iOS. |
-| `adaptive-icon.png` | 1024×1024 | Foreground layer; keep the logo centered within the safe zone (~66%) — Android masks it into a circle/squircle. Background comes from `adaptiveIcon.backgroundColor`. |
+| `adaptive-icon.png` | 1024×1024 | Foreground layer; keep the logo centered within the safe zone (~66%), because Android masks it into a circle or squircle. Background comes from `adaptiveIcon.backgroundColor`. |
 | `splash-icon.png` | 1024×1024 (or ~1284 wide) | Displayed `contain`ed over `splash.backgroundColor`. Keep it centered. |
 | `favicon.png` | 48×48 (or 64×64) | Web browser tab icon. |
 

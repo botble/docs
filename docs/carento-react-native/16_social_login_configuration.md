@@ -24,7 +24,7 @@ ENABLE_FACEBOOK_SIGN_IN=true
 | Key | Default | Notes |
 |---|---|---|
 | `ENABLE_GOOGLE_SIGN_IN` | `true` | Also requires `GOOGLE_WEB_CLIENT_ID` to be set |
-| `ENABLE_APPLE_SIGN_IN` | `true` | iOS only — auto-hidden on Android |
+| `ENABLE_APPLE_SIGN_IN` | `true` | iOS only, auto-hidden on Android |
 | `ENABLE_FACEBOOK_SIGN_IN` | `true` | Also requires `FACEBOOK_APP_ID` to be set |
 
 ::: tip Enable ≠ visible
@@ -55,7 +55,7 @@ So disabling every provider leaves a clean email/password-only login screen.
 |---|---|---|---|
 | Google | `ENABLE_GOOGLE_SIGN_IN`, `GOOGLE_WEB_CLIENT_ID`, `GOOGLE_SERVICES_FILE` (Android, optional) | `@react-native-google-signin/google-signin` (added when `GOOGLE_WEB_CLIENT_ID` set) | [Google Sign-In](14_google_login_setup.md) |
 | Apple | `ENABLE_APPLE_SIGN_IN` | `expo-apple-authentication` + `ios.usesAppleSignIn: true` (always added) | [Apple Sign-In](13_apple_login_setup.md) |
-| Facebook | `ENABLE_FACEBOOK_SIGN_IN`, `FACEBOOK_APP_ID`, `FACEBOOK_CLIENT_TOKEN` | `react-native-fbsdk-next` + `expo-build-properties` (static frameworks) — added when `FACEBOOK_APP_ID` set | [Facebook Login](15_facebook_login_setup.md) |
+| Facebook | `ENABLE_FACEBOOK_SIGN_IN`, `FACEBOOK_APP_ID`, `FACEBOOK_CLIENT_TOKEN` | `react-native-fbsdk-next` + `expo-build-properties` (static frameworks), added when `FACEBOOK_APP_ID` set | [Facebook Login](15_facebook_login_setup.md) |
 
 ## Configuration examples
 
@@ -89,7 +89,7 @@ Every enabled provider posts its token to `POST {API_BASE_URL}/api/v1/auth/{prov
 3. Open the login screen and confirm only the intended providers appear.
 
 ::: warning `.env` is not hot-reloaded
-`app.config.js` reads these keys at build/start time. Adding or removing a provider changes the native project, so a full `npx expo prebuild` + rebuild is required — not just a Metro restart.
+`app.config.js` reads these keys at build/start time. Adding or removing a provider changes the native project, so a full `npx expo prebuild` and rebuild is required. A Metro restart is not enough.
 :::
 
 ## Related

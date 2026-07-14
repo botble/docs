@@ -5,7 +5,7 @@
 Carento is an Expo SDK 54 / React Native 0.81 app using **expo-router** for file-based navigation, **React Context** for app state, and **@tanstack/react-query** over a custom `fetch` wrapper for the API. TypeScript strict mode throughout.
 
 ```
-app/                          expo-router routes (screens — thin, delegate to hooks/services)
+app/                          expo-router routes (thin screens that delegate to hooks/services)
   _layout.tsx                 root: providers + Stack + AppGate
   (tabs)/                     Home, Search, Dealers, Bookings, Profile
   (auth)/                     login, register, forgot/reset password
@@ -34,10 +34,10 @@ eas.json                      EAS Build profiles (development / preview / produc
 
 **Conventions:**
 
-- **File naming** — kebab-case for TS files and component files; PascalCase for the exported component name.
-- **Path alias** — `@/*` → `src/*` (configured in `tsconfig.json`, mirrored in Jest). Import via `@/...` from `app/` and across `src/` modules.
-- **Theme-aware colors** — never hardcode hex in screens; read `themeColors`/`themeShadow` from `useSettings()` so light/dark switches correctly. `src/lib/theme.ts` is the design-token source of truth.
-- **200-line guideline** — split large screens into `components/{area}/` pieces and hooks.
+- **File naming**: Use kebab-case for TS files and component files. Exported component names are PascalCase.
+- **Path alias**: `@/*` → `src/*` (configured in `tsconfig.json`, mirrored in Jest). Import via `@/...` from `app/` and across `src/` modules.
+- **Theme-aware colors**: Never hardcode hex in screens. Read `themeColors`/`themeShadow` from `useSettings()` so light/dark switches correctly. `src/lib/theme.ts` is the design-token source of truth.
+- **200-line guideline**: Split large screens into `components/{area}/` pieces and hooks.
 
 ## Run
 
@@ -52,7 +52,7 @@ If anything fails to start, clear caches: `npm start -- --clear`. If native conf
 
 ## State management
 
-- **Server state** goes through `@tanstack/react-query`. All reads/writes use `useQuery` / `useMutation` calling `src/services/*` functions — never call a service directly from a component body. The shared `queryClient` (`src/lib/query-client.ts`) uses `staleTime: 5min`, `gcTime: 10min`, and only retries `5xx` errors (4xx never retries).
+- **Server state** goes through `@tanstack/react-query`. All reads/writes use `useQuery` / `useMutation` calling `src/services/*` functions. Never call a service directly from a component body. The shared `queryClient` (`src/lib/query-client.ts`) uses `staleTime: 5min`, `gcTime: 10min`, and only retries `5xx` errors (4xx never retries).
 - **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` in this order: `QueryClient → Toast → Settings → AppStatus → Auth → Favorites`.
 
 | Context | Provides |
@@ -119,7 +119,7 @@ Arabic (`ar`) runs right-to-left. To keep layouts correct:
 
 - Use **logical** layout props (`marginStart`/`marginEnd`, `start`/`end`, `textAlign: "left"` which flips automatically) instead of physical `left`/`right`.
 - Direction is driven by `SettingsContext` (`DEFAULT_LANGUAGE_DIRECTION` / the selected language) and React Native's `I18nManager`. A direction change that requires `I18nManager.forceRTL()` needs an app reload to fully apply, so switching to/from an RTL language may prompt a restart.
-- Test both directions when building new screens — mirror icons (chevrons, back arrows) as needed.
+- Test both directions when building new screens, and mirror icons (chevrons, back arrows) as needed.
 
 ## Tests
 
@@ -151,9 +151,9 @@ See [Running the app](08_running_app.md), [Deploying the App](09_deploying_app.m
 
 ## Common errors
 
-- **`npm install` peer errors** — add `--legacy-peer-deps`.
-- **"No code signing certificates"** — use `npm run ios:sim` (Simulator) instead of `npm run ios`.
-- **`.env` change has no effect** — `.env` is not hot-reloaded. Restart Metro and rebuild.
-- **Native change not showing** — run `npx expo prebuild` (or `--clean`) to regenerate `ios/` and `android/`.
+- **`npm install` peer errors**: Add `--legacy-peer-deps`.
+- **"No code signing certificates"**: Use `npm run ios:sim` (Simulator) instead of `npm run ios`.
+- **`.env` change has no effect**: `.env` is not hot-reloaded. Restart Metro and rebuild.
+- **Native change not showing**: Run `npx expo prebuild` (or `--clean`) to regenerate `ios/` and `android/`.
 
 More: [Troubleshooting](troubleshooting.md).

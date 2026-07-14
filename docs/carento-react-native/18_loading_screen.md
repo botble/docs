@@ -1,6 +1,6 @@
 # Loading Screen (Launch Screen)
 
-The loading screen — also called the native launch screen — is what iOS and
+The loading screen (also called the native launch screen) is what iOS and
 Android draw the instant Carento is tapped, before the React Native/JS engine is
 running. In an Expo app you do not hand-edit iOS storyboards or Android
 `res/drawable` files; the launch screen is generated from the `splash` block in
@@ -35,15 +35,11 @@ splash: {
 },
 ```
 
-- **`image`** — `assets/splash-icon.png`, shown centered.
-- **`resizeMode: "contain"`** — the entire image is fitted inside the screen
-  without cropping (as opposed to `cover`, which fills and may crop).
-- **`backgroundColor`** — the `SPLASH_BACKGROUND_COLOR` environment variable,
-  defaulting to the brand primary `#84cc16`.
+- **`image`**: `assets/splash-icon.png`, shown centered.
+- **`resizeMode: "contain"`**: The entire image is fitted inside the screen without cropping (as opposed to `cover`, which fills and may crop).
+- **`backgroundColor`**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#84cc16`.
 
-Expo applies this single `splash` block to **both** iOS and Android during
-prebuild, so the two platforms stay consistent automatically — no separate
-`colors.xml` or `LaunchScreen.storyboard` to maintain.
+Expo applies this single `splash` block to **both** iOS and Android during prebuild, so the two platforms stay consistent automatically. There's no separate `colors.xml` or `LaunchScreen.storyboard` to maintain.
 
 ## Changing the background color
 
@@ -59,9 +55,7 @@ splash hold, so the whole startup stays one color.
 
 ## Replacing the launch image
 
-1. **Prepare your image** — a PNG, ideally with a transparent background. With
-   `resizeMode: "contain"`, keep the logo comfortably within the canvas so it is
-   not clipped on tall or short screens.
+1. **Prepare your image**: Use a PNG, ideally with a transparent background. With `resizeMode: "contain"`, keep the logo comfortably within the canvas so it is not clipped on tall or short screens.
 
 2. **Replace the file**, keeping the same name:
 
@@ -71,7 +65,7 @@ splash hold, so the whole startup stays one color.
 
    (Or repoint `splash.image` in `app.config.js`.)
 
-3. **Regenerate the native launch screen** — the image and color are compiled
+3. Regenerate the native launch screen. The image and color are compiled
    into the native projects, so you must prebuild:
 
    ```bash
@@ -98,10 +92,6 @@ cleanly edge to edge.
 
 ## Notes
 
-- `SPLASH_BACKGROUND_COLOR` is read at bundle time; changing it means a rebuild
-  (and a prebuild), not just a Metro restart.
-- Any change to the launch image or its background requires `npx expo prebuild`
-  followed by a native rebuild — a JS-only reload will not update the native
-  launch screen.
-- Optimize the PNG for size; a smaller launch image loads and renders faster at
-  cold start.
+- `SPLASH_BACKGROUND_COLOR` is read at bundle time. Changing it means a rebuild (and a prebuild), not just a Metro restart.
+- Any change to the launch image or its background requires `npx expo prebuild` followed by a native rebuild. A JS-only reload will not update the native launch screen.
+- Optimize the PNG for size. A smaller launch image loads and renders faster at cold start.

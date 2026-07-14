@@ -1,6 +1,6 @@
-# Carento — React Native (Expo) Car-Rental App for Botble
+# Carento Mobile: React Native Car Rental & Dealer App
 
-A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental backend](https://botble.com) running the **car-manager** plugin. One codebase builds both iOS and Android — customers browse cars, book rentals, pay through a hosted checkout, and manage their account, all driven live from your Botble admin.
+A React Native (Expo SDK 54) mobile app for car rental and car dealer businesses. It is the mobile client for either of the two Laravel systems that ship the **car-manager** plugin: [Carento](https://codecanyon.net/item/carento-car-dealer-rental-booking-laravel-system/55782539) or [Auxero](https://codecanyon.net/item/auxero-car-dealer-listing-laravel-system/62730624). Both expose the same API, so the app works against either one. One codebase builds both iOS and Android. Customers browse cars, book rentals, pay through a hosted checkout, and manage their account, all driven live from your Botble admin.
 
 <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:28px 0;">
   <img src="./images/carento-home-light.png" alt="Home" style="width:31%; max-width:240px; border-radius:18px;" />
@@ -64,7 +64,7 @@ reviews, dealers, and dark mode.
 ## Feature list
 
 - Browse cars, search and filter, car detail with photo gallery
-- Booking flow with hosted checkout (WebView) — works with every Botble payment gateway
+- Booking flow with hosted checkout (WebView), which works with every Botble payment gateway
 - Guest booking (no account required)
 - Dealers directory and blog
 - Favorites, profile and account management

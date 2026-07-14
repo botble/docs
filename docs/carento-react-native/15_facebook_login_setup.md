@@ -4,7 +4,7 @@ This guide sets up **Facebook Login** in the Carento React Native (Expo) car-ren
 
 ## How it works in the app
 
-- Two plugins are added **only when** `FACEBOOK_APP_ID` is set — `app.config.js` `buildPlugins()` pushes `react-native-fbsdk-next` and `expo-build-properties` with `ios.useFrameworks: "static"` (the Facebook SDK requires static frameworks on iOS). Without the App ID neither is added and the button stays hidden.
+- Two plugins are added **only when** `FACEBOOK_APP_ID` is set. `app.config.js` `buildPlugins()` pushes `react-native-fbsdk-next` and `expo-build-properties` with `ios.useFrameworks: "static"` (the Facebook SDK requires static frameworks on iOS). Without the App ID neither is added and the button stays hidden.
 - The login flow lives in `src/hooks/use-social-auth.ts` → `signInWithFacebook()`. It calls `LoginManager.logInWithPermissions(["public_profile", "email"])`, reads the current `AccessToken`, and exchanges it with the Botble backend:
 
   ```
@@ -41,8 +41,8 @@ Carento's native identifiers (needed below):
 
 ## Step 3: Get your credentials
 
-- **App ID** — **Settings → Basic**. This is `FACEBOOK_APP_ID`.
-- **Client Token** — **Settings → Advanced → Security**. This is `FACEBOOK_CLIENT_TOKEN`.
+- **App ID**: **Settings → Basic**. This is `FACEBOOK_APP_ID`.
+- **Client Token**: **Settings → Advanced → Security**. This is `FACEBOOK_CLIENT_TOKEN`.
 
 ::: warning Client Token, not App Secret
 Copy the **Client Token**, never the App Secret. The App Secret must never ship in a mobile app.
@@ -91,7 +91,7 @@ FACEBOOK_CLIENT_TOKEN=your_facebook_client_token
 | `ENABLE_FACEBOOK_SIGN_IN` | `true` / `false` | `true` | `false` hides the button even if the App ID is set. |
 
 ::: tip Native config is handled by the plugin
-`react-native-fbsdk-next`'s config plugin writes the iOS `Info.plist` entries (`FacebookAppID`, `FacebookClientToken`, the `fb<APP_ID>` URL scheme, `LSApplicationQueriesSchemes`) and the Android manifest/resources for you at prebuild time from the `.env` values — no manual native edits needed.
+`react-native-fbsdk-next`'s config plugin writes the iOS `Info.plist` entries (`FacebookAppID`, `FacebookClientToken`, the `fb<APP_ID>` URL scheme, `LSApplicationQueriesSchemes`) and the Android manifest/resources for you at prebuild time from the `.env` values. No manual native edits needed.
 :::
 
 ## Step 7: Prebuild and rebuild
@@ -116,7 +116,7 @@ While testing, keep the Facebook app in **Development** mode and add your accoun
 | Symptom | Fix |
 |---|---|
 | Facebook button not showing | `FACEBOOK_APP_ID` must be set (plugins only added then) and `ENABLE_FACEBOOK_SIGN_IN` must not be `false`. Re-run `npx expo prebuild` and rebuild. |
-| "Facebook sign-in is not configured" toast | `appConfig.auth.facebookEnabled` is false — App ID empty or flag `false`. |
+| "Facebook sign-in is not configured" toast | `appConfig.auth.facebookEnabled` is false. App ID empty or flag `false`. |
 | iOS build fails after adding Facebook | Confirm `expo-build-properties` with `ios.useFrameworks: "static"` is present (it is added automatically with the App ID). Clean and re-run `npx expo prebuild`. |
 | "Invalid key hash" (Android) | Add the base64 SHA-1 key hash for the signing certificate you built with, including Google Play App Signing. |
 | "App Not Setup" / development mode | Add your account as a Tester/Developer under **Roles**, or switch the app to Live. |

@@ -31,7 +31,7 @@ The app ships with four locales (473 keys each), all registered in `src/i18n/ind
 
 ## Using Translations in Code
 
-Call the `t` function from `react-i18next` with an **inline default** — `t("key", "Default")`. The default doubles as the English string that the extractor writes into `en.json`:
+Call the `t` function from `react-i18next` with an **inline default** like `t("key", "Default")`. The default doubles as the English string that the extractor writes into `en.json`:
 
 ```tsx
 import { useTranslation } from "react-i18next";
@@ -47,7 +47,7 @@ t("booking.pickupOn", "Pick-up on {{date}}", { date });
 
 Keys are dot-separated and nested (e.g. `home.title`, `booking.pickupOn`).
 
-## The app name (`{{appName}}`) — white-labeling
+## The app name (`{{appName}}`): white-labeling
 
 The app name is never written literally in a translation. Every string that shows it
 uses the `{{appName}}` variable, which is registered globally in `src/i18n/index.ts`
@@ -64,10 +64,7 @@ interpolation: {
 t("auth.loginTitle", "Sign in to {{appName}}");   // → "Sign in to <APP_NAME>"
 ```
 
-So a buyer rebrands the app name across every screen and every language by setting
-`APP_NAME` alone — no string edits. When you add strings that mention the app name,
-write `{{appName}}` (never the literal name), and keep the app name out of translation
-**keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToCarento`).
+So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToCarento`).
 
 This is enforced: `npm run i18n:check` (run in CI) fails if the brand literal appears
 in any locale key or value, pointing you to use `{{appName}}`.
@@ -84,8 +81,8 @@ npm run i18n:scan
 npm run i18n:check
 ```
 
-- `npm run i18n:scan` runs **i18next-parser** (config in `i18next-parser.config.js`). It scans `app/**` and `src/**`, extracts every `t("key", "Default")` call, and updates `src/i18n/locales/en.json` (only `en` is extracted; keys are sorted). The inline default is used as the English value; if none is given, a readable label is derived from the last key segment.
-- `npm run i18n:check` runs `scripts/check-i18n-locales.mjs`, which flattens each locale to dot-paths and compares against `en.json`. It reports any **missing** or **extra** keys and exits non-zero, so CI fails on translation drift.
+- `npm run i18n:scan` runs **i18next-parser** (config in `i18next-parser.config.js`). It scans `app/**` and `src/**` and extracts every `t("key", "Default")` call, then updates `src/i18n/locales/en.json` (only `en` is extracted; keys are sorted). The inline default is used as the English value. If none is given, a readable label is derived from the last key segment.
+- `npm run i18n:check` runs `scripts/check-i18n-locales.mjs`, which flattens each locale to dot-paths and compares against `en.json`. It reports any **missing** or **extra** keys and exits non-zero so CI fails on translation drift.
 
 ## Adding a New Language
 
@@ -93,7 +90,7 @@ To add, for example, Spanish (`es`):
 
 1. **Create the JSON file** `src/i18n/locales/es.json`. The easiest start is to copy `en.json` and translate the values (keep every key so parity passes).
 
-2. **Register it in `src/i18n/index.ts`** — import the file and add it to the `resources` map:
+2. **Register it in `src/i18n/index.ts`**: Import the file and add it to the `resources` map:
    ```ts
    import es from "./locales/es.json";
 
@@ -107,7 +104,7 @@ To add, for example, Spanish (`es`):
    ```
    `SUPPORTED_LANGUAGES` is derived automatically from `Object.keys(resources)`, so the new code is picked up for device-locale detection.
 
-3. **Add a flag/label** — the language picker (`app/settings/language.tsx`) shows an emoji flag from `src/lib/language-flags.ts`. Add an entry if the code isn't already mapped:
+3. **Add a flag/label**: The language picker (`app/settings/language.tsx`) shows an emoji flag from `src/lib/language-flags.ts`. Add an entry if the code isn't already mapped:
    ```ts
    const FLAG_BY_CODE: Record<string, string> = {
      // ...
@@ -115,7 +112,7 @@ To add, for example, Spanish (`es`):
    };
    ```
 
-4. **Set RTL direction for RTL languages.** For a right-to-left language, register its code in `RTL_LANGUAGES` in `src/lib/rtl.ts` (it already contains `ar`, `he`, `fa`, `ur`). If it should be the app default, also set `DEFAULT_LANGUAGE_DIRECTION=rtl` in `.env`.
+4. **Set RTL direction for RTL languages**: For a right-to-left language, register its code in `RTL_LANGUAGES` in `src/lib/rtl.ts` (it already contains `ar`, `he`, `fa`, `ur`). If it should be the app default, also set `DEFAULT_LANGUAGE_DIRECTION=rtl` in `.env`.
 
 5. **Verify parity:**
    ```bash
@@ -130,13 +127,13 @@ Arabic (`ar`) is RTL. RTL is handled in `src/lib/rtl.ts`:
 - `RTL_LANGUAGES` lists the RTL codes (`ar`, `he`, `fa`, `ur`); `isRtlLanguage(code)` checks membership.
 - `applyLayoutDirection(shouldBeRTL)` calls `I18nManager.allowRTL` / `forceRTL`.
 
-**Important:** React Native only applies `allowRTL` / `forceRTL` on the **next app launch** — flipping direction at runtime does not re-layout the current session. `applyLayoutDirection` returns `true` when the direction actually changed, so the app can prompt the user to restart.
+**Important:** React Native only applies `allowRTL` / `forceRTL` on the next app launch. Flipping direction at runtime does not re-layout the current session. `applyLayoutDirection` returns `true` when the direction actually changed, so the app can prompt the user to restart.
 
 Build layouts with **logical layout props** (e.g. `marginStart` / `marginEnd`, `start` / `end`, `textAlign: "start"`) rather than hard-coded `left` / `right` so they mirror correctly under RTL.
 
 ## Important Notes
 
-- `en.json` is the source of truth — always extract with `npm run i18n:scan` and keep other locales at key parity.
+- `en.json` is the source of truth. Always extract with `npm run i18n:scan` and keep other locales at key parity.
 - Use meaningful, nested keys and always pass an inline default: `t("key", "Default")`.
 - After changing `.env` language settings, restart the dev server (`npm start`).
 - A native RTL/LTR flip requires an app restart to take effect.

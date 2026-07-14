@@ -2,10 +2,7 @@
 
 ## Overview
 
-On first launch the app shows a short onboarding carousel introducing the
-car-rental experience, then remembers that it has been seen. The onboarding is
-**code-driven** — its slides live in `app/onboarding.tsx` and its text in the
-translation files. There is no separate config object for it.
+On first launch the app shows a short onboarding carousel introducing the car-rental experience, then remembers that it has been seen. The onboarding is **code-driven**. Its slides live in `app/onboarding.tsx` and its text in the translation files. There is no separate config object for it.
 
 ## How it works
 
@@ -57,14 +54,9 @@ const slides = [
 
 To customize:
 
-- **Swap an icon** — import a different icon from `lucide-react-native` and set it
-  as the slide's `icon`. Icons render at 64px in the brand color (`themeColors.primary`).
-- **Add or remove a slide** — add/remove an entry in the `slides` array and add the
-  matching `onboarding.slideNTitle` / `slideNText` keys to every locale. The dots
-  indicator and paging adapt automatically.
-- **Use an image instead of an icon** — replace the `<item.icon />` render in the
-  slide with an `<Image>` (bundle the asset under `assets/` and `require()` it). No
-  CDN URLs — bundle images locally.
+- **Swap an icon**: Import a different icon from `lucide-react-native` and set it as the slide's `icon`. Icons render at 64px in the brand color (`themeColors.primary`).
+- **Add or remove a slide**: Add or remove an entry in the `slides` array and add the matching `onboarding.slideNTitle` / `slideNText` keys to every locale. The dots indicator and paging adapt automatically.
+- To use an image instead of an icon, replace the `<item.icon />` render in the slide with an `<Image>`, bundling the asset under `assets/` and `require()`-ing it. Do not use CDN URLs; bundle images locally.
 
 ## Disabling onboarding
 

@@ -5,9 +5,9 @@
 - **Node.js LTS** (18 or newer) and npm
 - **Xcode** + an iOS Simulator (Mac only, for iOS)
 - **Android Studio** + an emulator or a connected device (for Android)
-- **Watchman** (optional, macOS) — improves file-watching: `brew install watchman`
+- **Watchman** (optional, macOS): improves file-watching. Install with `brew install watchman`
 
-You do **not** need the Expo Go app for a full build — this project uses native modules (Google Sign-In, Facebook SDK, secure store), so run it as a dev/native build.
+You do not need the Expo Go app for a full build. This project uses native modules (Google Sign-In, Facebook SDK, secure store), so run it as a dev or native build.
 
 ## Steps
 
@@ -26,7 +26,7 @@ npm install --legacy-peer-deps
 ```
 
 ::: warning Use `--legacy-peer-deps`
-The `--legacy-peer-deps` flag is required — some native modules declare strict peer ranges that npm 7+ would otherwise reject.
+The `--legacy-peer-deps` flag is required, because some native modules declare strict peer ranges that npm 7+ would otherwise reject.
 :::
 
 ### 3. Configure `.env`
@@ -71,10 +71,10 @@ npm start                # Metro dev server (open on device/simulator)
 
 ## Common errors
 
-- **`npm install` peer-dependency errors** — you omitted `--legacy-peer-deps`. Re-run with the flag.
-- **"No code signing certificates are available"** — you ran `npm run ios` (device build) without a certificate. Use `npm run ios:sim` for the Simulator instead.
-- **No simulator found** — start one from Xcode → Open Developer Tool → Simulator, or run `xcrun simctl list devices available`.
-- **`.env` change has no effect** — Metro caches the config. Stop the dev server and rebuild (see [Configuration](configuration.md)).
+- **`npm install` peer-dependency errors**: You omitted `--legacy-peer-deps`. Re-run with the flag.
+- **"No code signing certificates are available"**: You ran `npm run ios` (device build) without a certificate. Use `npm run ios:sim` for the Simulator instead.
+- **No simulator found**: Start one from Xcode → Open Developer Tool → Simulator, or run `xcrun simctl list devices available`.
+- **`.env` change has no effect**: Metro caches the config. Stop the dev server and rebuild (see [Configuration](configuration.md)).
 
 ## Next steps
 

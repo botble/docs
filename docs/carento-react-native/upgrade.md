@@ -7,7 +7,7 @@ How to pull a new version of the Carento (Expo) codebase into a project you have
 1. Back up the current project folder (or make sure your work is committed to git).
 2. Save copies of:
    - `.env`
-   - Replaced brand assets — `assets/icon.png`, `assets/adaptive-icon.png`, `assets/splash-icon.png`, `assets/favicon.png`, and any custom images
+   - Replaced brand assets: `assets/icon.png`, `assets/adaptive-icon.png`, `assets/splash-icon.png`, `assets/favicon.png`, and any custom images
    - Custom theme / design tokens (`src/lib/theme.ts`)
    - Custom translation strings in `src/i18n/` locale JSON
    - Any other source files you have edited
@@ -25,7 +25,7 @@ Read the [release notes](releases.md) first to see what changed.
    npm install --legacy-peer-deps
    ```
 
-   The `--legacy-peer-deps` flag is required — the Expo SDK 54 dependency tree has peer-dependency ranges that npm's strict resolver rejects.
+   The `--legacy-peer-deps` flag is required, because the Expo SDK 54 dependency tree has peer-dependency ranges that npm's strict resolver rejects.
 
 4. Re-apply any customizations that were not isolated to the files above (diff your old edits against the new source).
 

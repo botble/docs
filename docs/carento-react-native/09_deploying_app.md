@@ -1,9 +1,6 @@
 # Deploying the App
 
-Carento ships production builds and submits them to the stores with **EAS**
-(Expo Application Services). You do not run `xcodebuild`, keystore tooling, or
-Xcode archives by hand — EAS builds in the cloud and manages your signing
-credentials. There is no `flutter build` step here.
+Carento ships production builds and submits them to the stores with **EAS** (Expo Application Services). You do not run `xcodebuild`, keystore tooling, or Xcode archives by hand. EAS builds in the cloud and manages your signing credentials. There is no `flutter build` step here.
 
 ## 1. Install and sign in
 
@@ -35,7 +32,7 @@ The project defines three build profiles plus a submit profile:
 
 | Profile       | `APP_ENV`     | Distribution        | Notes                                    |
 |---------------|---------------|---------------------|------------------------------------------|
-| `development` | `development` | internal            | `developmentClient: true` — dev client   |
+| `development` | `development` | internal            | `developmentClient: true` (dev client) |
 | `preview`     | `staging`     | internal            | internal/QA testing builds               |
 | `production`  | `production`  | store               | `autoIncrement: true` for build numbers  |
 
@@ -45,12 +42,10 @@ number for you on its servers (see
 
 ## 3. Credentials
 
-Let EAS manage signing credentials — this is the default and the recommended
-path. On the first iOS or Android build, EAS prompts to generate and store:
+Let EAS manage signing credentials. This is the default and the recommended path. On the first iOS or Android build, EAS prompts to generate and store:
 
-- **iOS** — Distribution Certificate and Provisioning Profile (needs an Apple
-  Developer account).
-- **Android** — an upload keystore.
+- **iOS**: Distribution Certificate and Provisioning Profile (needs an Apple Developer account).
+- **Android**: An upload keystore.
 
 You can inspect or edit them any time with:
 
@@ -102,8 +97,7 @@ a specific build with `--id`.
 
 ## Important notes
 
-- Bump the app version before every store release — see
-  [Version Management](10_version_management.md).
+- Bump the app version before every store release. See [Version Management](10_version_management.md).
 - Ensure `APP_ENV=production` for store builds (the `production` profile sets
   this). Production builds enforce HTTPS for the API and strip the dev-only
   test-account prefill.

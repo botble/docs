@@ -18,7 +18,7 @@ No. One regular Envato license covers **one** app / end product. To publish a se
 
 ### Which platforms are supported?
 
-iOS and Android, both from the **same Expo codebase**. There is no separate iOS and Android project to maintain — you configure once and build for both with EAS. See [Deploying the App](09_deploying_app.md).
+iOS and Android, both from the **same Expo codebase**. There is no separate iOS and Android project to maintain. You configure once and build for both with EAS. See [Deploying the App](09_deploying_app.md).
 
 ### What languages are included?
 
@@ -26,7 +26,7 @@ English (`en`), Vietnamese (`vi`), Arabic (`ar`), and French (`fr`) out of the b
 
 ### How do I connect the app to my website?
 
-Set `API_BASE_URL` (and `API_KEY` if your backend requires one) in `.env`. Do not include the `/api/v1` suffix — it is appended automatically. See [API Base URL](06_api_base_url.md).
+Set `API_BASE_URL` (and `API_KEY` if your backend requires one) in `.env`. Do not include the `/api/v1` suffix. It is appended automatically. See [API Base URL](06_api_base_url.md).
 
 ### What payment methods are supported?
 
@@ -34,9 +34,9 @@ Whatever you configure on your Botble backend. A created booking is returned as 
 
 ### How do I change the branding?
 
-- **Colors:** `PRIMARY_COLOR`, `PRIMARY_DARK_COLOR`, `ON_PRIMARY_COLOR` in `.env` — see [Theme Colors](01_theme_colors.md).
+- **Colors:** `PRIMARY_COLOR`, `PRIMARY_DARK_COLOR`, `ON_PRIMARY_COLOR` in `.env`. See [Theme Colors](01_theme_colors.md).
 - **Font:** [App Font](02_app_font.md).
-- **App name:** `APP_NAME` in `.env` — see [App Name](04_app_name.md).
+- **App name:** `APP_NAME` in `.env`. See [App Name](04_app_name.md).
 - **Logo / icon:** [App Logo](05_app_logo.md).
 - **Splash / loading:** [Splash Screen](17_splash_screen.md) and [Loading Screen](18_loading_screen.md).
 
@@ -60,11 +60,11 @@ You need basic React Native / Expo and command-line skills to set environment va
 
 ### How do guests view their booking without an account?
 
-Guest booking is supported (`ENABLE_GUEST_BOOKING`). After checkout, a guest looks up their booking with the **booking number plus the email** used at checkout — the id alone is rejected. See [API Integration → Bookings](api-integration.md#bookings-incl-guest-lookup).
+Guest booking is supported (`ENABLE_GUEST_BOOKING`). After checkout, a guest looks up their booking with the **booking number plus the email** used at checkout. The id alone is rejected. See [API Integration → Bookings](api-integration.md#bookings-incl-guest-lookup).
 
 ### How often should I update the app?
 
-Only when the source has a meaningful change (security, bug fix, new feature). Routine catalog updates (new cars, prices, dealers) do not require an app update — the app fetches them from the API.
+Only when the source has a meaningful change (security, bug fix, new feature). Routine catalog updates (new cars, prices, dealers) do not require an app update. The app fetches them from the API.
 
 ### Common problems
 

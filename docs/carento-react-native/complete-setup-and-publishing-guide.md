@@ -8,7 +8,7 @@ A step-by-step guide covering everything from initial setup to publishing your C
 
 ---
 
-## Part 1: Prerequisites — What You Need Before Starting
+## Part 1: Prerequisites
 
 ### Accounts You Need
 
@@ -37,8 +37,8 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 - A **Botble car-rental website** up and running (e.g. `https://yourcarento.com`) with the **car-manager** plugin
 - Cars, dealers, and content already added in admin
 - The **API enabled** in your Botble admin at **Settings → API**
-- An **API key** if you configured one in admin (sent as the `X-API-KEY` header — this is **not** your Envato purchase code)
-- Your **Envato purchase code** (from CodeCanyon — used only for the development license check)
+- An **API key** if you configured one in admin (sent as the `X-API-KEY` header; note this is **not** your Envato purchase code)
+- Your **Envato purchase code** (from CodeCanyon; used only for the development license check)
 - Your **brand assets**: app icon (1024×1024 PNG), splash icon, adaptive icon, brand colors
 
 ---
@@ -82,7 +82,7 @@ Before configuring the app, enable the API on your Botble backend:
 1. Log in to your **Botble admin panel** (e.g. `https://yourcarento.com/admin`)
 2. Go to **Settings → API**
 3. **Enable the API** (turn the toggle **ON**)
-4. If you require an API key, generate/copy it here — you'll paste it into `.env`
+4. If you require an API key, generate/copy it here. You'll paste it into `.env`
 
 ::: warning Important
 The API must be enabled in **Admin → Settings → API** before the mobile app can connect. If the API is disabled, the app treats the backend as being in maintenance mode.
@@ -97,7 +97,7 @@ cp .env.example .env
 Open `.env` and set:
 
 ```bash
-API_BASE_URL=https://yourcarento.com     # no trailing /api/v1 — it is appended automatically
+API_BASE_URL=https://yourcarento.com     # no trailing /api/v1 (appended automatically)
 API_KEY=<only if configured in admin>
 APP_NAME=Your Rental Brand
 LICENSE_CODE=<your Envato purchase code>
@@ -105,7 +105,7 @@ LICENSE_CODE=<your Envato purchase code>
 
 - `API_BASE_URL` should use `https://` in production and must **not** end with `/api/v1` (the app appends it).
 - `API_KEY` is sent as the `X-API-KEY` header and is only needed if you configured one in admin.
-- `LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`). It is used for the development-only license check — **never** put it in `API_KEY`.
+- `LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`). It is used for the development-only license check. **Never** put it in `API_KEY`.
 
 See [Configuration](configuration.md) for the full env-key reference.
 
@@ -121,7 +121,7 @@ A wrong key returns `401 Unauthorized` on every request.
 
 ### Step 7: Run on a simulator
 
-The iOS Simulator needs **no** signing certificate — it's the fastest first run:
+The iOS Simulator needs **no** signing certificate. It's the fastest first run:
 
 ```bash
 npm run ios:sim          # iOS Simulator
@@ -241,7 +241,7 @@ npx expo prebuild --clean
 
 ### Version numbers
 
-Set the marketing version via `.env` (`APP_VERSION`) — `app.config.js` reads it into the Expo `version`. Build numbers are auto-incremented by the EAS `production` profile. See [Version management](10_version_management.md).
+Set the marketing version via `.env` (`APP_VERSION`). `app.config.js` reads it into the Expo `version`. Build numbers are auto-incremented by the EAS `production` profile. See [Version management](10_version_management.md).
 
 ### Configure social login (optional)
 
@@ -264,7 +264,7 @@ Guides: [Google](14_google_login_setup.md) · [Apple](13_apple_login_setup.md) �
 
 ## Part 5: Building with EAS
 
-Carento builds and submits through **EAS** (Expo Application Services) — a cloud build service. No local Xcode archiving is required.
+Carento builds and submits through **EAS** (Expo Application Services), a cloud build service. No local Xcode archiving is required.
 
 ### Step 1: Install and log in
 
@@ -285,7 +285,7 @@ This links the project to your Expo account and prepares credentials. The repo a
 |---|---|---|---|
 | `development` | `development` | internal | Dev client, for debugging |
 | `preview` | `staging` | internal | Internal testing build |
-| `production` | `production` | store | `autoIncrement: true` — bumps the build number automatically |
+| `production` | `production` | store | `autoIncrement: true`, bumps build number automatically |
 
 ::: warning APP_ENV=production for store builds
 The `production` profile sets `APP_ENV=production`, which disables the development-only license check. Always use `--profile production` for store builds.
@@ -301,7 +301,7 @@ eas build -p ios --profile production
 eas build -p android --profile production
 ```
 
-EAS provisions credentials (signing certificates, keystore) for you on first run — accept the prompts to let EAS manage them. When the build finishes, EAS gives you a download URL and stores the artifact in your Expo dashboard.
+EAS provisions credentials (signing certificates, keystore) for you on first run. Accept the prompts to let EAS manage them. When the build finishes, EAS gives you a download URL and stores the artifact in your Expo dashboard.
 
 For an internal test build (installable without the stores):
 
@@ -336,7 +336,7 @@ Before your first iOS submission, in [App Store Connect](https://appstoreconnect
 - [ ] App name (max 30 chars), subtitle, description, keywords
 - [ ] Screenshots for each required device size (6.7", 6.5" iPhone; iPad if you support tablet)
 - [ ] App icon 1024×1024 PNG (no transparency, no rounded corners)
-- [ ] **Privacy Policy URL** (required) — host it on your Botble site
+- [ ] **Privacy Policy URL** (required): host it on your Botble site
 - [ ] App Privacy answers (contact info for accounts/bookings, purchase history)
 - [ ] **A demo account** for the reviewer (email + password) and reviewer notes: "Car-rental app connecting to yourcarento.com; checkout is completed on the hosted web page in a WebView"
 
@@ -422,7 +422,7 @@ See [Deploying the App](09_deploying_app.md) and [Version management](10_version
 
 ### Do I need to manually add cars to the app?
 
-**No.** The app pulls all cars automatically from your Botble website via the API. Manage cars in admin — the app displays them in real time.
+**No.** The app pulls all cars automatically from your Botble website via the API. Manage cars in admin; the app displays them in real time.
 
 ### Can customers who registered on my website log in to the app?
 
@@ -430,7 +430,7 @@ See [Deploying the App](09_deploying_app.md) and [Version management](10_version
 
 ### Do I need a Mac to publish?
 
-- **Google Play**: No — EAS builds Android in the cloud from any OS.
+- **Google Play**: No. EAS builds Android in the cloud from any OS.
 - **Apple App Store**: A Mac is handy for the iOS Simulator, but EAS builds and submits iOS **in the cloud**, so you don't need to archive locally in Xcode.
 
 ### How is payment handled?
@@ -443,7 +443,7 @@ Build with the `production` profile (`eas build --profile production`), which se
 
 ### A `.env` change has no effect
 
-`.env` is read when Metro starts / when a build is produced — it is not hot-reloaded. Restart Metro (`npm start`) and rebuild the app.
+`.env` is read when Metro starts or when a build is produced. It is not hot-reloaded. Restart Metro (`npm start`) and rebuild the app.
 
 ---
 

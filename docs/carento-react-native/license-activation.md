@@ -7,7 +7,7 @@ Activate your license to enable development mode. This is required for running t
 Your Envato purchase code can be found in your CodeCanyon account:
 
 1. Go to [CodeCanyon Downloads](https://codecanyon.net/downloads)
-2. Find "Carento — React Native Car-Rental App"
+2. Find "Carento Mobile"
 3. Click **Download** → **License certificate & purchase code**
 4. Open the text file and copy the purchase code
 

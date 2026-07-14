@@ -1,12 +1,12 @@
 # API Integration
 
-The Carento app talks to a Botble backend running the **car-manager** plugin over its REST API. Every screen — car listings, booking flow, dealers, blog — is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
+The Carento app talks to a Botble backend running the **car-manager** plugin over its REST API. Every screen (car listings, booking flow, dealers, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
 
 ## Base URL / environment
 
 - `API_BASE_URL` (`.env`, e.g. `http://carento.test`) is the Botble backend's site root. `app.config.js` appends `/api/v1` to build `appConfig.api.baseUrl` (used for every request) and keeps the raw root as `appConfig.api.siteUrl` (used to build the hosted-checkout WebView URL).
-- Do **not** put `/api/v1` in `API_BASE_URL` yourself — it is appended automatically. Use no trailing slash, and `https://` in production.
-- `API_KEY` (`.env`, optional) → sent as the `X-API-KEY` header, only when an API key is configured in Botble admin (**Settings → API**).
+- Do **not** put `/api/v1` in `API_BASE_URL` yourself; it is appended automatically. Use no trailing slash, and `https://` in production.
+- `API_KEY` (`.env`, optional) is sent as the `X-API-KEY` header. Only set this if an API key is configured in Botble admin under **Settings → API**.
 - Values are resolved at runtime via `expo-constants` (`Constants.expoConfig.extra.appConfig`, injected by `app.config.js` from `process.env` at build/start time) and read through `src/config/app.ts` (`appConfig`).
 
 See [API Base URL](06_api_base_url.md) for the full configuration walkthrough.
@@ -19,12 +19,12 @@ Open this URL in a browser (replace the host):
 http://carento.test/api/v1/car-manager/cars
 ```
 
-You should get a JSON response with a `data` array of cars. If you do not:
+You should get a JSON response with a `data` array of cars. If not, check:
 
-- `404` — the car-manager plugin is not installed/enabled, or the API is turned off.
-- `401` — an API key is required but `API_KEY` is missing or wrong.
-- `503` — the API is disabled in admin or the site is in maintenance mode.
-- Empty `data` — no cars are published/available on the backend.
+- `404`: the car-manager plugin is not installed/enabled, or the API is turned off.
+- `401`: an API key is required but `API_KEY` is missing or wrong.
+- `503`: the API is disabled in admin or the site is in maintenance mode.
+- Empty `data`: no cars are published/available on the backend.
 
 ## Response envelope
 
@@ -38,7 +38,7 @@ interface ApiResponse<T> {
 }
 ```
 
-List endpoints return a `PaginatedResponse<T>` instead — same shape but `data: T[]` plus Laravel pagination `links`/`meta` siblings:
+List endpoints return a `PaginatedResponse<T>` instead. Same shape but `data: T[]` plus Laravel pagination `links`/`meta` siblings:
 
 ```ts
 interface PaginatedResponse<T> {
@@ -49,7 +49,7 @@ interface PaginatedResponse<T> {
 }
 ```
 
-`src/services/apiClient.ts` (`api.get/post/put/patch/delete`) returns the raw parsed JSON body — each `src/services/*.ts` function unwraps `res.data` (or `res.message` for confirmation-only endpoints) so screens and hooks work with plain domain types, not the envelope.
+`src/services/apiClient.ts` (`api.get/post/put/patch/delete`) returns the raw parsed JSON body. Each `src/services/*.ts` function unwraps `res.data` (or `res.message` for confirmation-only endpoints) so screens and hooks work with plain domain types, not the envelope.
 
 ## Auth headers
 
@@ -59,8 +59,8 @@ interface PaginatedResponse<T> {
 |---|---|
 | `Content-Type: application/json` | Always, unless the body is `FormData` (fetch sets its own multipart boundary) |
 | `Accept: application/json` | Always |
-| `X-LANGUAGE: <code>` | Always — cached language code (`SettingsContext` / `initializeCacheFromStorage`), default from `appConfig.defaultLanguage` |
-| `X-CURRENCY: <code>` | Always — cached currency code (default `USD`); Botble uses it for currency-aware pricing |
+| `X-LANGUAGE: <code>` | Always. Cached language code (`SettingsContext` / `initializeCacheFromStorage`), default from `appConfig.defaultLanguage` |
+| `X-CURRENCY: <code>` | Always. Cached currency code (default `USD`). Botble uses it for currency-aware pricing |
 | `X-API-KEY: <key>` | Only if `appConfig.api.apiKey` is configured |
 | `Authorization: Bearer <token>` | If an explicit `token` arg is passed, else the in-memory cached auth token (`setAuthToken`, kept in sync by `AuthContext`) |
 
@@ -70,9 +70,9 @@ Changing the language or currency invalidates the React Query cache (see `Settin
 
 ## Error handling
 
-- `4xx` / other non-2xx: `extractApiError()` parses the JSON body — Laravel validation errors (`{ errors: { field: [msg] } }`) surface the **first** message as `ApiError.message`, with the raw `errors` map attached; otherwise it falls back to `body.message` or a generic `"Request failed: <status> <statusText>"`.
-- `401` on a request that actually carried a bearer token → notifies `AuthContext` to clear the stale session (a failed login, which sends no token, does not trigger this).
-- `503`: treated as maintenance / API-disabled — notifies `AppStatusContext` listeners with `"maintenance"` and throws `ApiError`.
+- `4xx` / other non-2xx: `extractApiError()` parses the JSON body. Laravel validation errors (`{ errors: { field: [msg] } }`) surface the **first** message as `ApiError.message`, with the raw `errors` map attached. Otherwise it falls back to `body.message` or a generic `"Request failed: <status> <statusText>"`.
+- `401` on a request that carried a bearer token: notifies `AuthContext` to clear the stale session. A failed login, which sends no token, does not trigger this.
+- `503`: treated as maintenance / API-disabled. Notifies `AppStatusContext` listeners with `"maintenance"` and throws `ApiError`.
 - `5xx` (other): notifies listeners with `"server_error"` and throws `ApiError`.
 - All errors throw `ApiError extends Error` (`status: number`, `errors?: Record<string, string[]>`).
 - Requests time out after 30s (`AbortController`).
@@ -124,7 +124,7 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 | `POST /car-manager/calculate-price` | `calculatePrice(payload)` | `src/services/pricing.ts` |
 | `POST /car-manager/coupons/validate` | `validateCoupon(code, totalAmount, carId?)` | `src/services/pricing.ts` |
 
-**Guest booking lookup:** the `/car-manager/bookings/{id}` route is auth-scoped (a signed-in customer's own bookings only). Guests who just checked out resolve their booking with `lookupGuestBooking()`, which requires **both** the booking number and the email — the id alone is rejected. `getBookingForViewer()` picks the authed path when a token is present and the guest path otherwise.
+**Guest booking lookup:** the `/car-manager/bookings/{id}` route is auth-scoped (a signed-in customer can only see their own bookings). Guests who just checked out resolve their booking with `lookupGuestBooking()`, which requires **both** the booking number and the email; the id alone is rejected. `getBookingForViewer()` picks the authed path when a token is present and the guest path otherwise.
 
 ### Favorites
 
@@ -149,7 +149,7 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 
 ### Dealers / vendors
 
-There is intentionally **no** public `/car-manager/vendors` (dealer-list) endpoint. Dealers are vendor customers surfaced nested inside car and booking data, so the Dealers tab derives its list from `fetchCars()` client-side (see `src/hooks/use-dealers.ts`). This is a known v1 limitation documented in the app's `docs/system-architecture.md`.
+There is intentionally **no** public `/car-manager/vendors` (dealer-list) endpoint. Dealers are vendor customers that surface nested inside car and booking data, so the Dealers tab derives its list from `fetchCars()` on the client (see `src/hooks/use-dealers.ts`). This is a known v1 limitation documented in the app's `docs/system-architecture.md`.
 
 ### Blog, content & misc
 
@@ -166,18 +166,18 @@ There is intentionally **no** public `/car-manager/vendors` (dealer-list) endpoi
 | `POST /contacts` | `submitContact(payload)` | `src/services/misc.ts` |
 | `POST /device-tokens` | `registerDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
 
-Languages come from `GET /languages` and currencies from `GET /car-manager/currencies` (the currency picker); the active currency is sent as `X-CURRENCY` (default `USD`), and the API converts prices to it server-side. Both drive the localization headers described above.
+Languages come from `GET /languages` and currencies from `GET /car-manager/currencies` (the currency picker). The active currency is sent as `X-CURRENCY` (default `USD`), and the API converts prices to it server-side. Both drive the localization headers described above.
 
 ## Query params
 
-List / search endpoints build their query string via `src/lib/query-string.ts#buildQueryString` — it skips `null` / `undefined` / `""` values, serializes arrays as CSV (`amenities=1,2,3`), and URL-encodes keys and values.
+List / search endpoints build their query string via `src/lib/query-string.ts#buildQueryString`. It skips `null` / `undefined` / `""` values, serializes arrays as CSV (`amenities=1,2,3`), and URL-encodes keys and values.
 
 ## Client-side normalization
 
 The app normalizes two things the backend can return loosely:
 
-- **Media URLs** — image paths are resolved against `appConfig.api.siteUrl` so relative upload paths render correctly, and the configured `CAR_IMAGE_THUMBNAIL_SIZE` (`small` | `medium` | `large`) selects the thumbnail variant used in list cells.
-- **Null slugs** — records with a missing/null slug fall back to their numeric id (e.g. `fetchCarById` / `GET /car-manager/cars/id/{id}`) so navigation and detail lookups never break on unslugged content.
+- Media URLs: image paths are resolved against `appConfig.api.siteUrl` so relative upload paths render correctly. The configured `CAR_IMAGE_THUMBNAIL_SIZE` (`small` | `medium` | `large`) selects the thumbnail variant used in list cells.
+- Null slugs: records with a missing/null slug fall back to their numeric id (e.g. `fetchCarById` / `GET /car-manager/cars/id/{id}`), so navigation and detail lookups don't break on unslugged content.
 
 ## Checkout
 
