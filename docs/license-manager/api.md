@@ -435,6 +435,101 @@ GET /api/internal/products/{reference_id}/versions/{version_id}
 POST /api/internal/products/{reference_id}/versions/{version_id}
 ```
 
+### Downloads
+
+Endpoints for delivering the **initial installation file** after a purchase.
+
+The external `POST /api/external/update/{version}/download/{type}` endpoint requires `license_data`, which only exists once the license has been activated. That is a problem for sellers: the buyer needs the file *before* they can install and activate it. The endpoints below solve that. Neither of them consumes an activation slot.
+
+#### Download a Version File
+
+Server-to-server download, authenticated with your **internal** API key. Streams the file directly.
+
+```http
+POST /api/internal/products/{reference_id}/download
+POST /api/internal/products/{reference_id}/versions/{version}/download/{type}
+```
+
+**Parameters:**
+- `version`: `latest` (default), a version string (`1.2.0`), or a `version_id`
+- `type`: `main` (default) or `sql`
+
+```bash
+curl -X POST "https://your-site.com/api/internal/products/PROD-001/versions/latest/download/main" \
+  -H "X-API-KEY: your-internal-api-key" \
+  -o product.zip
+```
+
+::: tip
+Returns the file as a binary download stream. Use this when your store backend fetches the file itself and serves it from your own infrastructure.
+:::
+
+#### Create a Download Token
+
+Generates a **temporary public URL** you can hand straight to the buyer: put it in the order confirmation email, the download field of your store, or the customer area. No API key is needed to use the resulting URL, so it is safe to give to the customer.
+
+```http
+POST /api/internal/products/{reference_id}/download-tokens
+```
+
+**Body:**
+```json
+{
+  "version": "latest",
+  "type": "main",
+  "max_downloads": 5,
+  "expires_at": "2025-12-31 23:59:59"
+}
+```
+
+All fields are optional:
+- `version`: `latest` (default), a version string, or a `version_id`
+- `type`: `main` (default) or `sql`
+- `max_downloads`: positive integer. Omit for unlimited downloads.
+- `expires_at`: any future date. Omit for a token that never expires.
+
+**Response:**
+```json
+{
+  "error": false,
+  "data": {
+    "token": "hL8xK2...",
+    "url": "https://your-site.com/api/download/hL8xK2...",
+    "product_reference_id": "PROD-001",
+    "version": "latest",
+    "type": "main",
+    "max_downloads": 5,
+    "expires_at": "2025-12-31T23:59:59+00:00"
+  }
+}
+```
+
+::: tip
+Use `data.url` exactly as returned rather than building the URL yourself.
+:::
+
+#### Download via Token (Public)
+
+The URL returned above. No authentication headers, the unguessable token is the credential.
+
+```http
+GET /api/download/{token}
+```
+
+Expiry and the download cap are enforced server-side. The download counter is incremented atomically, so concurrent requests can never exceed `max_downloads`.
+
+**Error responses:**
+
+| Status | Meaning |
+|--------|---------|
+| `404` | Token does not exist, or the product/version it points at is missing |
+| `410` | Token has expired |
+| `403` | `max_downloads` has been reached |
+
+::: warning
+Version files are stored and served **byte for byte**. License Manager never unzips, re-zips, or rewrites the archive, so the file a customer downloads is exactly the file that was uploaded to that version. If a download looks wrong, check which file was actually uploaded to the version in the admin panel.
+:::
+
 ### Licenses
 
 #### List Licenses

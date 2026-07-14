@@ -8,6 +8,21 @@ A React Native (Expo SDK 54) mobile app that connects to a [Botble car-rental ba
   <img src="./images/carento-booking-trip.png" alt="Booking" style="width:31%; max-width:240px; border-radius:18px;" />
 </div>
 
+## Demo video
+
+A full walkthrough of the app: search, car detail, the 4-step booking flow, bookings,
+reviews, dealers, and dark mode.
+
+<div style="position:relative; padding-bottom:56.25%; height:0; margin:24px 0; border-radius:14px; overflow:hidden;">
+  <iframe src="https://www.youtube-nocookie.com/embed/1S6liILg5ls?rel=0"
+          title="Carento React Native app demo"
+          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+</div>
+
+[Watch on YouTube](https://youtu.be/1S6liILg5ls)
+
 ## Get started
 
 1. [Overview](overview.md)
