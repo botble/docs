@@ -486,7 +486,7 @@ All fields are optional:
 - `version`: `latest` (default), a version string, or a `version_id`
 - `type`: `main` (default) or `sql`
 - `max_downloads`: positive integer. Omit for unlimited downloads.
-- `expires_at`: any future date. Omit for a token that never expires.
+- `expires_at`: a future date/time as an ISO 8601 string (`2025-12-31T23:59:59Z`) or `Y-m-d H:i:s` (`2025-12-31 23:59:59`). Unix timestamps are not accepted. Omit for a token that never expires.
 
 **Response:**
 ```json
