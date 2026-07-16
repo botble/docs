@@ -7,6 +7,13 @@ HTTP v1 API.
 Both platforms go through Firebase, so you need a Firebase project even if you only ship on
 iOS. There is no way around this: the backend's sender only speaks FCM.
 
+::: warning Third-party service
+Firebase Cloud Messaging is a third-party Google service, so you must create and configure
+your own Firebase account and project to enable push. FCM is currently free, but Firebase is
+a Google product and its plans or pricing may change over time, which could incur additional
+costs. Push is optional - the app runs fully without it.
+:::
+
 ## How it works in the app
 
 The app obtains its FCM token in `src/services/push-token.ts`, using
