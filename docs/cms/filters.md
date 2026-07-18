@@ -377,6 +377,13 @@ By default, a PDF template may only load remote (`http`/`https`) images and styl
   add_filter('core_base_pdf_is_remote_enabled', fn () => false, 20, 1);
   ```
 
+### Email Filters
+
+- **cms_email_sanitize_output**: Opt-in HTML sanitization of the final email body before it is sent. Email templates are HTML-by-design (auto-escaping is off), so values rendered into them are emitted as raw HTML. This is **disabled by default** to avoid altering legitimate email markup. Return `true` to run the outgoing email through the CMS HTML purifier (`BaseHelper::clean()`), which strips XSS vectors such as `<script>`, `on*` event handlers and `javascript:` URIs while preserving text, inline styles, images and safe links. CSS is already inlined at this point, so removing `<head>`/`<style>` wrappers does not affect styling.
+  ```php
+  add_filter('cms_email_sanitize_output', fn () => true, 20, 1);
+  ```
+
 ## Best Practices
 
 1. **Always Return a Value**: Filters must always return a value, even if you don't modify it.
