@@ -377,6 +377,18 @@ By default, a PDF template may only load remote (`http`/`https`) images and styl
   add_filter('core_base_pdf_is_remote_enabled', fn () => false, 20, 1);
   ```
 
+::: warning SSRF hardening: known limitation (host-only allow-list)
+The allow-list matches by **hostname only — it does not restrict the port**. A URL that reuses an allowed host but targets an internal service port (for example `http://your-site.com:6379/` for Redis, `:9200` for Elasticsearch) still passes the host check. This is intentional: port filtering would break legitimate storage that runs on a non-standard port (e.g. self-hosted **MinIO** on `:9000`), and it cannot be enforced through DomPDF, whose allow-list is host-only.
+
+Whether this is exploitable depends on your deployment — it only matters when your site's hostname resolves to a machine where internal services are reachable on that hostname (common on local/dev, or when services bind to `0.0.0.0`; usually not the case when the public domain resolves to a public IP and internal services bind to loopback).
+
+Mitigate at the network layer rather than in the template:
+
+- Bind internal services (Redis, Elasticsearch, databases, admin panels) to `127.0.0.1` only.
+- Apply egress firewall rules to the PHP worker so it cannot reach internal ports.
+- Keep the allow-list as tight as possible and avoid returning `null` from `core_base_pdf_allowed_remote_hosts` on internet-facing sites.
+:::
+
 ### Email Filters
 
 The final email body is sanitized before sending. Email templates are HTML-by-design (auto-escaping is off), so values rendered into them are emitted as raw HTML. By default a **structure-preserving strip** runs: it removes active-content XSS vectors (`<script>`, `on*` event handlers, `javascript:`/`vbscript:` URIs) while keeping the document intact — the `<html>`/`<body>` wrapper, `dir`/`lang` attributes (so RTL emails keep their direction), Outlook conditional comments, inline styles, images and safe links all survive.
