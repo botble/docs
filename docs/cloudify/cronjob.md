@@ -16,6 +16,19 @@ For setting up a cron job in cPanel, watch this video tutorial:
 
 ## For Hostinger.com
 
+::: warning
+Hostinger's cron field does not run the command through a shell, so `>> /dev/null 2>&1` is passed to Laravel as
+arguments and the job fails with `No arguments expected for "schedule:run" command, got ">>"`.
+
+On Hostinger, enter the command **without** the redirection:
+
+```bash
+/usr/local/bin/php /path-to-your-project/artisan schedule:run
+```
+
+Hostinger captures the output itself (visible via the **View Output** button), so the redirection is not needed.
+:::
+
 * Go to Dashboard -> Advanced -> Cron Jobs
 
 ![Image](../cms/images/cronjob-setup-on-hostinger.png)
