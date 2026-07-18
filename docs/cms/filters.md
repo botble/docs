@@ -352,6 +352,31 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   }, 20, 1);
   ```
 
+### PDF Generation Filters
+
+These filters control how the PDF generator (`Botble\Base\Supports\Pdf`, used for invoices and other documents) fetches remote resources. They apply to **both** the DomPDF and mPDF engines.
+
+By default, a PDF template may only load remote (`http`/`https`) images and stylesheets from the site's own host(s) — the application URL plus the configured storage disk URL. This prevents server-side request forgery (SSRF): a value rendered into a template (e.g. a customer-supplied name or address containing `<img src="http://169.254.169.254/...">`) cannot make the server fetch arbitrary internal or cloud-metadata URLs. Local files remain restricted to the DomPDF `chroot`.
+
+- **core_base_pdf_allowed_remote_hosts**: Customize the list of hosts the PDF engine may fetch remote resources from. Receives an array of lowercase hostnames (or `null`). Return `null` to allow **every** host — only do this if you fully trust every value rendered into your PDF templates.
+  ```php
+  // Allow an external CDN in addition to the site's own host(s)
+  add_filter('core_base_pdf_allowed_remote_hosts', function (?array $hosts) {
+      $hosts[] = 'cdn.example.com';
+
+      return $hosts;
+  }, 20, 1);
+  ```
+  ```php
+  // Disable the allow-list entirely (fetch any host) — re-opens the SSRF surface
+  add_filter('core_base_pdf_allowed_remote_hosts', fn () => null, 20, 1);
+  ```
+
+- **core_base_pdf_is_remote_enabled**: Toggle whether the PDF engine may fetch remote resources at all. Return `false` to block every remote fetch (local images and fonts still work).
+  ```php
+  add_filter('core_base_pdf_is_remote_enabled', fn () => false, 20, 1);
+  ```
+
 ## Best Practices
 
 1. **Always Return a Value**: Filters must always return a value, even if you don't modify it.
