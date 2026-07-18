@@ -379,9 +379,16 @@ By default, a PDF template may only load remote (`http`/`https`) images and styl
 
 ### Email Filters
 
-- **cms_email_sanitize_output**: Opt-in HTML sanitization of the final email body before it is sent. Email templates are HTML-by-design (auto-escaping is off), so values rendered into them are emitted as raw HTML. This is **disabled by default** to avoid altering legitimate email markup. Return `true` to run the outgoing email through the CMS HTML purifier (`BaseHelper::clean()`), which strips XSS vectors such as `<script>`, `on*` event handlers and `javascript:` URIs while preserving text, inline styles, images and safe links. CSS is already inlined at this point, so removing `<head>`/`<style>` wrappers does not affect styling.
+The final email body is sanitized before sending. Email templates are HTML-by-design (auto-escaping is off), so values rendered into them are emitted as raw HTML. By default a **structure-preserving strip** runs: it removes active-content XSS vectors (`<script>`, `on*` event handlers, `javascript:`/`vbscript:` URIs) while keeping the document intact — the `<html>`/`<body>` wrapper, `dir`/`lang` attributes (so RTL emails keep their direction), Outlook conditional comments, inline styles, images and safe links all survive.
+
+- **cms_email_sanitize_output**: Toggle email sanitization. Enabled by default; return `false` to send the raw email body without any sanitization.
   ```php
-  add_filter('cms_email_sanitize_output', fn () => true, 20, 1);
+  add_filter('cms_email_sanitize_output', fn () => false, 20, 1);
+  ```
+
+- **cms_email_sanitize_output_strict**: Switch to the stricter CMS HTML purifier (`BaseHelper::clean()`) instead of the default strip. It removes more aggressively, but also strips the `<body>` wrapper — and therefore its `dir`/`lang` attributes, so **RTL emails lose their direction**. Opt in only when that trade-off is acceptable.
+  ```php
+  add_filter('cms_email_sanitize_output_strict', fn () => true, 20, 1);
   ```
 
 ## Best Practices
