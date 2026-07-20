@@ -34,4 +34,4 @@
 - Localization in English, Vietnamese, Arabic (RTL), and French.
 - Favorites, reviews, profile management, and push notifications.
 
-For the latest changes, check the CodeCanyon portfolio: https://codecanyon.net/user/botble/portfolio
+For the latest changes, check the item page on CodeCanyon: https://codecanyon.net/item/carento-mobile-car-rental-dealer-react-native-expo-app/64277973
