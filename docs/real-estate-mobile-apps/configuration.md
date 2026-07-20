@@ -11,7 +11,7 @@ All app configuration lives in the `.env` file at the project root. `app.config.
 ```bash
 API_BASE_URL=http://homzen.test        # backend site root (/api/v1 appended automatically)
 API_KEY=                                # only if an API key is configured in Botble admin
-APP_NAME=FlexHome
+APP_NAME=Real Estate
 LICENSE_CODE=                           # your Envato purchase code (development-only license check)
 ```
 
@@ -25,7 +25,7 @@ Every key below is read by `app.config.js`. Keys not listed there have no effect
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `APP_NAME` | text | `FlexHome` | Display name on the home screen and in the app |
+| `APP_NAME` | text | `Flex Home` | Display name on the home screen and in the app |
 | `APP_VERSION` | semver | `1.0.0` | Marketing version (see [Version management](10_version_management.md)) |
 | `APP_ENV` | `development` / `staging` / `production` | `development` | Runtime environment. Enables the dev-only license check and test-account prefill outside production |
 | `LICENSE_CODE` | Envato purchase code | *(empty)* | Checked only when `APP_ENV=development`; leave blank in production |
@@ -51,7 +51,7 @@ Hex **without** `#`. Full guide: [Theme Colors](01_theme_colors.md).
 
 | Key | Default | Description |
 |---|---|---|
-| `PRIMARY_COLOR` | `84cc16` | Brand primary, applied to the whole theme (light + dark) |
+| `PRIMARY_COLOR` | `161E2D` | Brand primary, applied to the whole theme (light + dark) |
 | `PRIMARY_DARK_COLOR` | `4d7c0f` | Darker shade for pressed/active states |
 | `ON_PRIMARY_COLOR` | `FFFFFF` | Foreground color on top of primary |
 
@@ -70,7 +70,7 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 | Key | Default | Description |
 |---|---|---|
 | `APP_CONTACT_PHONE` | `+1 (800) 227-3686` | Support phone shown in the app |
-| `APP_CONTACT_EMAIL` | `support@carento.com` | Support email |
+| `APP_CONTACT_EMAIL` | `support@yoursite.com` | Support email |
 | `APP_SOCIAL_FACEBOOK` | `https://facebook.com` | Facebook profile link |
 | `APP_SOCIAL_X` | `https://x.com` | X (Twitter) profile link |
 | `APP_SOCIAL_INSTAGRAM` | `https://instagram.com` | Instagram profile link |
@@ -86,7 +86,7 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#84cc16` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
+| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#161E2D` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
 
 ### Support links (Profile screen)
 

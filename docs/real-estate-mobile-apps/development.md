@@ -2,7 +2,7 @@
 
 ## Project structure
 
-FlexHome is an Expo SDK 54 / React Native 0.81 app using **expo-router** for file-based navigation, **React Context** for app state, and **@tanstack/react-query** over a custom `fetch` wrapper for the API. TypeScript strict mode throughout.
+Flex Home is an Expo SDK 54 / React Native 0.81 app using **expo-router** for file-based navigation, **React Context** for app state, and **@tanstack/react-query** over a custom `fetch` wrapper for the API. TypeScript strict mode throughout.
 
 ```
 app/                          expo-router routes (thin screens that delegate to hooks/services)

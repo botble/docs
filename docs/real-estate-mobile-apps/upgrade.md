@@ -1,6 +1,6 @@
 # Upgrade
 
-How to pull a new version of the FlexHome (Expo) codebase into a project you have already customized, without losing your changes.
+How to pull a new version of the Flex Home (Expo) codebase into a project you have already customized, without losing your changes.
 
 ## Before upgrading
 
@@ -49,7 +49,7 @@ Read the [release notes](releases.md) first to see what changed.
 
 ## Build new store releases
 
-FlexHome builds through **EAS Build** (not local Xcode/Gradle archives). Bump `APP_VERSION` in `.env` (mirrored into `app.config.js` `version`), then:
+Flex Home builds through **EAS Build** (not local Xcode/Gradle archives). Bump `APP_VERSION` in `.env` (mirrored into `app.config.js` `version`), then:
 
 ```bash
 eas build --platform android --profile production   # Google Play (.aab)

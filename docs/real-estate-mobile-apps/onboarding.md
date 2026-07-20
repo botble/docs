@@ -2,7 +2,7 @@
 
 ## Overview
 
-On first launch the app shows a short onboarding carousel introducing the car-rental experience, then remembers that it has been seen. The onboarding is **code-driven**. Its slides live in `app/onboarding.tsx` and its text in the translation files. There is no separate config object for it.
+On first launch the app shows a short onboarding carousel introducing the property-browsing experience, then remembers that it has been seen. The onboarding is **code-driven**. Its slides live in `app/onboarding.tsx` and its text in the translation files. There is no separate config object for it.
 
 ## How it works
 

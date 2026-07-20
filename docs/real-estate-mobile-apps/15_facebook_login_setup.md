@@ -1,6 +1,6 @@
 # Facebook Login Setup
 
-This guide sets up **Facebook Login** in the FlexHome React Native (Expo) car-rental app. On the login screen it renders the **Facebook** button in the "or continue with" row.
+This guide sets up **Facebook Login** in the Flex Home React Native (Expo) real-estate app. On the login screen it renders the **Facebook** button in the "or continue with" row.
 
 ## How it works in the app
 
@@ -21,12 +21,12 @@ This guide sets up **Facebook Login** in the FlexHome React Native (Expo) car-re
 2. A Facebook App with the **Facebook Login** product added.
 3. Botble backend with Facebook enabled as a social-login provider.
 
-FlexHome's native identifiers (needed below):
+Flex Home's native identifiers (needed below):
 
 | Platform | Identifier |
 |---|---|
-| iOS bundle ID | `com.flexhome.mobile` |
-| Android package | `com.flexhome.mobile` |
+| iOS bundle ID | `com.realestate.mobile` |
+| Android package | `com.realestate.mobile` |
 
 ## Step 1: Create a Facebook app
 
@@ -53,14 +53,14 @@ Copy the **Client Token**, never the App Secret. The App Secret must never ship 
 ### iOS
 
 1. **Settings → Basic → + Add Platform → iOS**.
-2. Bundle ID: `com.flexhome.mobile`.
+2. Bundle ID: `com.realestate.mobile`.
 3. Enable **Single Sign On** and save.
 
 ### Android
 
 1. **Settings → Basic → + Add Platform → Android**.
-2. Package name: `com.flexhome.mobile`.
-3. Default Activity Class Name: `com.flexhome.mobile.MainActivity`.
+2. Package name: `com.realestate.mobile`.
+3. Default Activity Class Name: `com.realestate.mobile.MainActivity`.
 4. Add **key hashes** (base64 SHA-1 of your signing keys):
 
    ```bash

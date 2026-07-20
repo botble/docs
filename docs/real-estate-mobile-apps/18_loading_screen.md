@@ -1,7 +1,7 @@
 # Loading Screen (Launch Screen)
 
 The loading screen (also called the native launch screen) is what iOS and
-Android draw the instant FlexHome is tapped, before the React Native/JS engine is
+Android draw the instant Flex Home is tapped, before the React Native/JS engine is
 running. In an Expo app you do not hand-edit iOS storyboards or Android
 `res/drawable` files; the launch screen is generated from the `splash` block in
 `app.config.js` and materialized into the native projects by `expo prebuild`.
@@ -31,13 +31,13 @@ splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
   // Native launch + JS splash background. Defaults to the brand primary.
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#84cc16",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
 },
 ```
 
 - **`image`**: `assets/splash-icon.png`, shown centered.
 - **`resizeMode: "contain"`**: The entire image is fitted inside the screen without cropping (as opposed to `cover`, which fills and may crop).
-- **`backgroundColor`**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#84cc16`.
+- **`backgroundColor`**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#161E2D`.
 
 Expo applies this single `splash` block to **both** iOS and Android during prebuild, so the two platforms stay consistent automatically. There's no separate `colors.xml` or `LaunchScreen.storyboard` to maintain.
 
@@ -83,7 +83,7 @@ splash hold, so the whole startup stays one color.
 
 ## Android edge-to-edge note
 
-FlexHome enables Android edge-to-edge (`android.edgeToEdgeEnabled: true` in
+Flex Home enables Android edge-to-edge (`android.edgeToEdgeEnabled: true` in
 `app.config.js`), so content draws behind the system status and navigation bars.
 Keep the launch image centered and avoid placing critical elements near the very
 top or bottom edges, where the system bars overlay. The `splash.backgroundColor`

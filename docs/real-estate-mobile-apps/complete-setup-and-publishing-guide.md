@@ -1,6 +1,6 @@
 # Complete Setup & Publishing Guide
 
-A step-by-step guide covering everything from initial setup to publishing your FlexHome React Native (Expo) app on the Apple App Store and Google Play Store, and connecting it to your Botble car-rental website so properties and inquiries sync automatically.
+A step-by-step guide covering everything from initial setup to publishing your Flex Home React Native (Expo) app on the Apple App Store and Google Play Store, and connecting it to your Botble real-estate website so properties and inquiries sync automatically.
 
 ## Table of Contents
 
@@ -34,7 +34,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 
 ### What You Need From Your Website
 
-- A **Botble car-rental website** up and running (e.g. `https://yourcarento.com`) with the **real-estate** plugin
+- A **Botble real-estate website** up and running (e.g. `https://yoursite.com`) with the **real-estate** plugin
 - Properties, agents, and content already added in admin
 - The **API enabled** in your Botble admin at **Settings → API**
 - An **API key** if you configured one in admin (sent as the `X-API-KEY` header; note this is **not** your Envato purchase code)
@@ -59,7 +59,7 @@ On a Mac, install Xcode (for the iOS Simulator) from the Mac App Store. For Andr
 ### Step 2: Get the app source code
 
 1. Go to [CodeCanyon](https://codecanyon.net/downloads)
-2. Find **"FlexHome React Native"** in your purchases
+2. Find **"Flex Home React Native"** in your purchases
 3. Click **Download** → **All files & documentation**
 4. Extract the ZIP and open a terminal in the folder:
 
@@ -79,7 +79,7 @@ The `--legacy-peer-deps` flag is required (some native modules declare strict pe
 
 Before configuring the app, enable the API on your Botble backend:
 
-1. Log in to your **Botble admin panel** (e.g. `https://yourcarento.com/admin`)
+1. Log in to your **Botble admin panel** (e.g. `https://yoursite.com/admin`)
 2. Go to **Settings → API**
 3. **Enable the API** (turn the toggle **ON**)
 4. If you require an API key, generate/copy it here. You'll paste it into `.env`
@@ -97,9 +97,9 @@ cp .env.example .env
 Open `.env` and set:
 
 ```bash
-API_BASE_URL=https://yourcarento.com     # no trailing /api/v1 (appended automatically)
+API_BASE_URL=https://yoursite.com     # no trailing /api/v1 (appended automatically)
 API_KEY=<only if configured in admin>
-APP_NAME=Your Rental Brand
+APP_NAME=Your Brand
 LICENSE_CODE=<your Envato purchase code>
 ```
 
@@ -161,11 +161,11 @@ Test these to confirm the app is connected to your website:
 The app connects to your Botble website through its **REST API** (`real-estate` plugin):
 
 ```
-Your Botble Website (yourcarento.com)
+Your Botble Website (yoursite.com)
         ↓
     REST API (/api/v1/real-estate)
         ↓
-    FlexHome app fetches data
+    Flex Home app fetches data
         ↓
     Properties, agents, inquiries, blog displayed
 ```
@@ -220,7 +220,7 @@ Before publishing, apply your branding. Each step takes 5–15 minutes:
 
 ### App identifiers
 
-The defaults in `app.config.js` are `com.flexhome.mobile` (both iOS `bundleIdentifier` and Android `package`) and the slug `flexhome-mobile`. Change them to your own before publishing:
+The defaults in `app.config.js` are `com.realestate.mobile` (both iOS `bundleIdentifier` and Android `package`) and the slug `flexhome-mobile`. Change them to your own before publishing:
 
 ```js
 // app.config.js
@@ -264,7 +264,7 @@ Guides: [Google](14_google_login_setup.md) · [Apple](13_apple_login_setup.md) �
 
 ## Part 5: Building with EAS
 
-FlexHome builds and submits through **EAS** (Expo Application Services), a cloud build service. No local Xcode archiving is required.
+Flex Home builds and submits through **EAS** (Expo Application Services), a cloud build service. No local Xcode archiving is required.
 
 ### Step 1: Install and log in
 
@@ -338,7 +338,7 @@ Before your first iOS submission, in [App Store Connect](https://appstoreconnect
 - [ ] App icon 1024×1024 PNG (no transparency, no rounded corners)
 - [ ] **Privacy Policy URL** (required): host it on your Botble site
 - [ ] App Privacy answers (contact info for accounts/inquiries, purchase history)
-- [ ] **A demo account** for the reviewer (email + password) and reviewer notes: "Car-rental app connecting to yourcarento.com; checkout is completed on the hosted web page in a WebView"
+- [ ] **A demo account** for the reviewer (email + password) and reviewer notes: "Real-estate app connecting to yoursite.com; checkout is completed on the hosted web page in a WebView"
 
 Apple review typically takes **1–3 days**.
 

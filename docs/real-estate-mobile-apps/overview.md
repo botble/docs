@@ -1,6 +1,6 @@
 # Overview
 
-FlexHome is a React Native (Expo) app for property inquiry and property agent businesses. It is the mobile client for a **Botble real-estate backend** with the `/api/v1` plugin enabled. The app is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` with no code changes. One codebase builds both iOS and Android. Properties, inquiries, agents, and blog posts are managed entirely from your Botble admin and appear in the app in real time.
+Flex Home is a React Native (Expo) app for property inquiry and property agent businesses. It is the mobile client for a **Botble real-estate backend** with the `/api/v1` plugin enabled. The app is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` with no code changes. One codebase builds both iOS and Android. Properties, inquiries, agents, and blog posts are managed entirely from your Botble admin and appear in the app in real time.
 
 ## Features
 

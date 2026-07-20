@@ -1,6 +1,6 @@
 # Apple Sign-In Setup
 
-This guide sets up **Sign in with Apple** in the FlexHome React Native (Expo) car-rental app. On the login screen it renders the **Apple** button in the "or continue with" row, next to Google and Facebook.
+This guide sets up **Sign in with Apple** in the Flex Home React Native (Expo) real-estate app. On the login screen it renders the **Apple** button in the "or continue with" row, next to Google and Facebook.
 
 ::: tip iOS-only feature
 Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig.auth.appleEnabled`, which is `Platform.OS === "ios" && ENABLE_APPLE_SIGN_IN !== "false"` (see `src/config/app.ts`). On Android the Apple button never appears, so no Android configuration is required.
@@ -21,13 +21,13 @@ Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig
 ## Prerequisites
 
 1. An [Apple Developer Program](https://developer.apple.com/programs/) membership ($99/year).
-2. Your app's bundle identifier registered in the Apple Developer portal. FlexHome ships with `com.flexhome.mobile` (`ios.bundleIdentifier` in `app.config.js`).
+2. Your app's bundle identifier registered in the Apple Developer portal. Flex Home ships with `com.realestate.mobile` (`ios.bundleIdentifier` in `app.config.js`).
 3. Botble backend with the **real-estate** plugin and Apple configured as a social-login provider.
 
 ## Step 1: Enable "Sign in with Apple" for your App ID
 
 1. Go to the [Apple Developer Portal](https://developer.apple.com/account) → **Certificates, Identifiers & Profiles**.
-2. Open **Identifiers** and select your app's App ID (or create one that matches `com.flexhome.mobile`).
+2. Open **Identifiers** and select your app's App ID (or create one that matches `com.realestate.mobile`).
 3. Enable the **Sign In with Apple** capability.
 4. Click **Save**.
 
@@ -36,7 +36,7 @@ Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig
 The native iOS app validates through the App ID, but Botble verifies Apple tokens server-side and needs a Services ID.
 
 1. **Identifiers** → **+** → **Services IDs** → **Continue**.
-2. Enter a description and an identifier (e.g. `com.flexhome.mobile.service`).
+2. Enter a description and an identifier (e.g. `com.realestate.mobile.service`).
 3. Register it, then reopen it and enable **Sign In with Apple**.
 4. Click **Configure** and add your Botble site domain and the return URL Botble expects for its Apple callback.
 5. Click **Save**.
@@ -92,7 +92,7 @@ After editing `.env`, restart Metro and rebuild the app. Changing `ENABLE_APPLE_
 | Apple button not showing | Confirm you are on iOS (it never renders on Android). Check `ENABLE_APPLE_SIGN_IN` is not `false`. Rebuild after `.env` changes. |
 | "Apple sign-in is not available on this device" | `AppleAuthentication.isAvailableAsync()` returned false. The device/simulator lacks Apple Sign-In support, or the capability was not baked in. Re-run `npx expo prebuild` and rebuild. |
 | Sign-in cancelled | Tapping cancel throws `ERR_REQUEST_CANCELED`; the app treats this as a no-op (no error toast). Expected behavior. |
-| Backend rejects the token | Verify the Services ID, Team ID, Key ID, and `.p8` in Botble match the Apple Developer portal, and that the bundle ID is `com.flexhome.mobile`. |
+| Backend rejects the token | Verify the Services ID, Team ID, Key ID, and `.p8` in Botble match the Apple Developer portal, and that the bundle ID is `com.realestate.mobile`. |
 
 ## Security
 

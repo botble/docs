@@ -1,6 +1,6 @@
 # Version Management
 
-FlexHome uses Expo's versioning, not `pubspec.yaml`. There are two numbers to
+Flex Home uses Expo's versioning, not `pubspec.yaml`. There are two numbers to
 keep in mind:
 
 - **`version`**: The public, human-readable version shown in the stores (Major.Minor.Patch, e.g. `1.2.0`).
@@ -60,12 +60,12 @@ blocks in `app.config.js` (and set `appVersionSource` to `local`):
 
 ```js
 ios: {
-  bundleIdentifier: "com.flexhome.mobile",
+  bundleIdentifier: "com.realestate.mobile",
   buildNumber: "5",           // iOS build number (string)
   // ...
 },
 android: {
-  package: "com.flexhome.mobile",
+  package: "com.realestate.mobile",
   versionCode: 5,             // Android version code (integer)
   // ...
 },

@@ -1,6 +1,6 @@
 # API Integration
 
-The FlexHome app talks to a Botble backend running the **real-estate** plugin over its REST API. Every screen (property listings, inquiry flow, agents, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
+The Flex Home app talks to a Botble backend running the **real-estate** plugin over its REST API. Every screen (property listings, inquiry flow, agents, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
 
 ## Base URL / environment
 

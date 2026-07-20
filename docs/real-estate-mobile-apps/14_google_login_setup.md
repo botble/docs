@@ -1,6 +1,6 @@
 # Google Sign-In Setup
 
-This guide sets up **Google Sign-In** in the FlexHome React Native (Expo) car-rental app. On the login screen it renders the **Google** button in the "or continue with" row.
+This guide sets up **Google Sign-In** in the Flex Home React Native (Expo) real-estate app. On the login screen it renders the **Google** button in the "or continue with" row.
 
 ## How it works in the app
 
@@ -21,12 +21,12 @@ This guide sets up **Google Sign-In** in the FlexHome React Native (Expo) car-re
 2. Basic knowledge of Expo prebuild / native builds.
 3. Botble backend with Google enabled as a social-login provider.
 
-FlexHome's native identifiers (needed below):
+Flex Home's native identifiers (needed below):
 
 | Platform | Identifier | Source |
 |---|---|---|
-| iOS bundle ID | `com.flexhome.mobile` | `ios.bundleIdentifier` in `app.config.js` |
-| Android package | `com.flexhome.mobile` | `android.package` in `app.config.js` |
+| iOS bundle ID | `com.realestate.mobile` | `ios.bundleIdentifier` in `app.config.js` |
+| Android package | `com.realestate.mobile` | `android.package` in `app.config.js` |
 
 ## Step 1: Create OAuth client IDs
 
@@ -35,19 +35,19 @@ In [Google Cloud Console](https://console.cloud.google.com) → **APIs & Service
 ### Web client ID (required: used by the app and backend)
 
 1. Application type: **Web application**.
-2. Name it (e.g. `FlexHome Web Client`) and click **Create**.
+2. Name it (e.g. `Flex Home Web Client`) and click **Create**.
 3. Copy the client ID. This is your **`GOOGLE_WEB_CLIENT_ID`**. The Android/iOS native SDKs use it as the `webClientId` to mint the ID token the backend verifies.
 
 ### iOS client ID (required for iOS)
 
 1. Application type: **iOS**.
-2. Bundle ID: `com.flexhome.mobile`.
+2. Bundle ID: `com.realestate.mobile`.
 3. Create it, then note the **reversed client ID** (`com.googleusercontent.apps.XXXX`). If you use a `GoogleService-Info.plist` from Firebase, the plugin wires the URL scheme for you.
 
 ### Android client ID (required for Android)
 
 1. Application type: **Android**.
-2. Package name: `com.flexhome.mobile`.
+2. Package name: `com.realestate.mobile`.
 3. SHA-1 certificate fingerprint: get it from your keystore:
 
    ```bash
@@ -117,7 +117,7 @@ npm run android      # and / or: npm run ios
 |---|---|
 | Google button not showing | `GOOGLE_WEB_CLIENT_ID` must be set (plugin only added then) and `ENABLE_GOOGLE_SIGN_IN` must not be `false`. Re-run `npx expo prebuild` and rebuild. |
 | "Google sign-in is not configured" toast | `appConfig.auth.googleEnabled` is false. The web client ID is empty or the flag is `false`. |
-| `DEVELOPER_ERROR` / `ApiException: 10` (Android) | SHA-1 fingerprint or package name mismatch. Register the correct SHA-1 for your keystore and confirm the package is `com.flexhome.mobile`. |
+| `DEVELOPER_ERROR` / `ApiException: 10` (Android) | SHA-1 fingerprint or package name mismatch. Register the correct SHA-1 for your keystore and confirm the package is `com.realestate.mobile`. |
 | "Play Services" prompt on Android | The device lacks up-to-date Google Play Services; the app calls `hasPlayServices({ showPlayServicesUpdateDialog: true })`. |
 | Backend rejects the token | Ensure the backend verifies against the same web client ID as `GOOGLE_WEB_CLIENT_ID`. |
 | "User cancelled" | Tapping outside the picker returns a cancel/`type: "cancelled"`, handled as a no-op. Expected. |

@@ -5,20 +5,20 @@
 The app display name is set in your `.env` file:
 
 ```bash
-APP_NAME=FlexHome
+APP_NAME=Real Estate
 ```
 
 In `app.config.js` this single value drives both:
 
 - the Expo project `name`:
   ```js
-  name: process.env.APP_NAME || "FlexHome",
+  name: process.env.APP_NAME || "Flex Home",
   ```
 - the iOS home-screen name via `CFBundleDisplayName`:
   ```js
   ios: {
     infoPlist: {
-      CFBundleDisplayName: process.env.APP_NAME || "FlexHome",
+      CFBundleDisplayName: process.env.APP_NAME || "Flex Home",
     },
   },
   ```

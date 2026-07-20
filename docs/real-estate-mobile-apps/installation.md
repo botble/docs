@@ -13,7 +13,7 @@ You do not need the Expo Go app for a full build. This project uses native modul
 
 ### 1. Get the source
 
-Download the FlexHome source from CodeCanyon and extract it, then open a terminal in the project folder:
+Download the Flex Home source from CodeCanyon and extract it, then open a terminal in the project folder:
 
 ```bash
 cd path/to/flexhome-mobile-apps
@@ -40,7 +40,7 @@ Open `.env` and set at least:
 ```bash
 API_BASE_URL=http://homzen.test        # your Botble backend, no trailing /api/v1
 API_KEY=                                # only if configured in Botble admin
-APP_NAME=FlexHome
+APP_NAME=Real Estate
 LICENSE_CODE=                           # your Envato purchase code (dev only)
 ```
 

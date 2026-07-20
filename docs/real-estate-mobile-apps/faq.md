@@ -1,12 +1,12 @@
 # FAQ
 
-### What is FlexHome?
+### What is Flex Home?
 
 A property inquiry and property agent mobile app built with Expo (React Native). It is the mobile client for your Laravel backend, and lets customers browse properties, view agents, read the blog, and make inquiries.
 
 ### Which backend do I need?
 
-Either [FlexHome](https://codecanyon.net/item/flexhome-car-agent-rental-inquiry-laravel-system/55782539) or [Auxero](https://codecanyon.net/item/auxero-car-agent-listing-laravel-system/62730624). Both are Laravel systems that ship the **real-estate** plugin, and both expose the same REST API (properties, inquiries, agents, favorites, reviews, pricing), so the app works against either one. No other backend will work. See [API Integration](api-integration.md).
+Either [Homzen](https://1.envato.market/Vm1QmJ) or [Flex Home](https://1.envato.market/QrdYz). Both are Laravel systems that ship the **real-estate** plugin, and both expose the same REST API (properties, inquiries, agents, favorites, reviews, pricing), so the app works against either one. No other backend will work. See [API Integration](api-integration.md).
 
 ### How is this licensed?
 

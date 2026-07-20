@@ -1,6 +1,6 @@
 # Push Notifications
 
-FlexHome sends push through Firebase Cloud Messaging. The app registers an FCM registration
+Flex Home sends push through Firebase Cloud Messaging. The app registers an FCM registration
 token with your Botble backend, and the backend sends messages to that token using the FCM
 HTTP v1 API.
 
@@ -64,8 +64,8 @@ Note that push does not work in Expo Go. You need a development or production bu
 In the [Firebase Console](https://console.firebase.google.com), create a project, then add
 your apps to it:
 
-- An **Android** app with package name `com.flexhome.mobile`. Download `google-services.json`.
-- An **iOS** app with bundle ID `com.flexhome.mobile`. Download `GoogleService-Info.plist`.
+- An **Android** app with package name `com.realestate.mobile`. Download `google-services.json`.
+- An **iOS** app with bundle ID `com.realestate.mobile`. Download `GoogleService-Info.plist`.
 
 Use your own package name and bundle ID if you have renamed the app. They must match what is
 in `app.config.js`, or Firebase will reject the token request.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-FlexHome's brand colors are configured through the `.env` file, so you can rebrand the app's primary color without touching code. The three env values flow through `app.config.js` (into `extra.appConfig`), are read by `src/config/app.ts`, and are ultimately consumed by the theme in `src/lib/theme.ts`.
+Flex Home's brand colors are configured through the `.env` file, so you can rebrand the app's primary color without touching code. The three env values flow through `app.config.js` (into `extra.appConfig`), are read by `src/config/app.ts`, and are ultimately consumed by the theme in `src/lib/theme.ts`.
 
 ## Brand Colors Configuration
 
@@ -14,8 +14,8 @@ Open your `.env` file and set these three keys:
 
 ```bash
 # Primary Color: main brand color (buttons, active states, highlights, links)
-# Default: 84cc16 (FlexHome lime green)
-PRIMARY_COLOR=84cc16
+# Default: 161E2D (Flex Home lime green)
+PRIMARY_COLOR=161E2D
 
 # Primary Dark Color: darker shade for pressed/active states
 # Default: 4d7c0f
@@ -38,7 +38,7 @@ ON_PRIMARY_COLOR=FFFFFF
 1. **`.env`**: You set `PRIMARY_COLOR`, `PRIMARY_DARK_COLOR`, `ON_PRIMARY_COLOR` (hex without `#`).
 2. **`app.config.js`**: Reads them and injects them into `extra.appConfig`:
    ```js
-   primaryColor: process.env.PRIMARY_COLOR || "84cc16",
+   primaryColor: process.env.PRIMARY_COLOR || "161E2D",
    primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "4d7c0f",
    onPrimaryColor: process.env.ON_PRIMARY_COLOR || "FFFFFF",
    ```
@@ -94,4 +94,4 @@ That's it. The primary color updates across both light and dark mode and both th
 Need help choosing colors? Try:
 - [Coolors](https://coolors.co/)
 - [Adobe Color](https://color.adobe.com/)
-- [Tailwind Color Reference](https://tailwindcss.com/docs/customizing-colors) (FlexHome's palette is Tailwind-derived)
+- [Tailwind Color Reference](https://tailwindcss.com/docs/customizing-colors) (Flex Home's palette is Tailwind-derived)

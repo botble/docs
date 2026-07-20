@@ -1,6 +1,6 @@
 # API Configuration
 
-FlexHome connects to a Botble Laravel backend running the **real-estate** plugin. Configure two values in your `.env` file at the project root: `API_BASE_URL` and `API_KEY`.
+Flex Home connects to a Botble Laravel backend running the **real-estate** plugin. Configure two values in your `.env` file at the project root: `API_BASE_URL` and `API_KEY`.
 
 ## API_BASE_URL
 

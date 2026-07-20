@@ -27,7 +27,7 @@
 
 ## 1.0.0
 
-- Car-rental mobile app for the FlexHome platform, built with Expo SDK 54 / React Native, connecting to a Botble backend running the real-estate API.
+- Real-estate mobile app for the Flex Home platform, built with Expo SDK 54 / React Native, connecting to a Botble backend running the real-estate API.
 - Browse properties, search and filter, view property details, agents, and blog.
 - Inquiry flow with guest inquiry and one-way rental support; WebView checkout against the backend's hosted payment page.
 - Customer auth via Laravel Sanctum, plus Google, Apple, and Facebook social login.

@@ -1,6 +1,6 @@
 # Social Login Configuration
 
-This document explains how the FlexHome car-rental app decides which social login providers appear on the login screen, and which environment keys each one needs.
+This document explains how the Flex Home real-estate app decides which social login providers appear on the login screen, and which environment keys each one needs.
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # Deploying the App
 
-FlexHome ships production builds and submits them to the stores with **EAS** (Expo Application Services). You do not run `xcodebuild`, keystore tooling, or Xcode archives by hand. EAS builds in the cloud and manages your signing credentials. There is no `flutter build` step here.
+Flex Home ships production builds and submits them to the stores with **EAS** (Expo Application Services). You do not run `xcodebuild`, keystore tooling, or Xcode archives by hand. EAS builds in the cloud and manages your signing credentials. There is no `flutter build` step here.
 
 ## 1. Install and sign in
 

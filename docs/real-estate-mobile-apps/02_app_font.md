@@ -2,7 +2,7 @@
 
 ## Overview
 
-FlexHome's fonts are **`.env`-driven**. Two roles are configured independently:
+Flex Home's fonts are **`.env`-driven**. Two roles are configured independently:
 
 - **`APP_FONT_BODY`**: body text (default `Inter`)
 - **`APP_FONT_HEADING`**: display / headings (default `InstrumentSans`)

@@ -26,8 +26,8 @@ USE_LOCAL_HELP=true
 
 Both URLs may be **absolute** or **relative**:
 
-- **Absolute** (`https://carento.com/contact`): Used as-is.
-- **Relative** (`/contact`): Resolved against your backend site URL (`API_BASE_URL`). For example, with `API_BASE_URL=https://carento.com` and `HELP_CENTER_URL=/help`, the app opens `https://carento.com/help`.
+- **Absolute** (`https://yoursite.com/contact`): Used as-is.
+- **Relative** (`/contact`): Resolved against your backend site URL (`API_BASE_URL`). For example, with `API_BASE_URL=https://yoursite.com` and `HELP_CENTER_URL=/help`, the app opens `https://yoursite.com/help`.
 
 Resolution is handled by `resolveUrl()` in `src/config/app.ts`.
 
@@ -60,34 +60,34 @@ Help row → bundled help screen. No "Customer support" row.
 ### Web help center, hosted on your Botble site (relative URL)
 
 ```bash
-API_BASE_URL=https://carento.com
+API_BASE_URL=https://yoursite.com
 USE_LOCAL_HELP=false
 HELP_CENTER_URL=/help-center
 ```
 
-Help row → opens `https://carento.com/help-center` in the in-app browser.
+Help row → opens `https://yoursite.com/help-center` in the in-app browser.
 
 ### Bundled help plus a customer-support page
 
 ```bash
 USE_LOCAL_HELP=true
-CUSTOMER_SUPPORT_URL=https://support.carento.com
+CUSTOMER_SUPPORT_URL=https://support.yoursite.com
 ```
 
 Help row → bundled help screen, which now shows a "Customer support" row that
-opens `https://support.carento.com` in the in-app browser.
+opens `https://support.yoursite.com` in the in-app browser.
 
 ### Everything web-based
 
 ```bash
-API_BASE_URL=https://carento.com
+API_BASE_URL=https://yoursite.com
 USE_LOCAL_HELP=false
 HELP_CENTER_URL=/contact
 CUSTOMER_SUPPORT_URL=/support
 ```
 
-Help row → `https://carento.com/contact`. The bundled screen (reachable when it
-is shown) also exposes a "Customer support" row → `https://carento.com/support`.
+Help row → `https://yoursite.com/contact`. The bundled screen (reachable when it
+is shown) also exposes a "Customer support" row → `https://yoursite.com/support`.
 
 ## Applying changes
 

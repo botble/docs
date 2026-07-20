@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues when setting up and running the FlexHome (Expo) app, and how to fix them.
+Common issues when setting up and running the Flex Home (Expo) app, and how to fix them.
 
 > After changing `.env`, fully stop and restart the dev server. `.env` values are baked in by `app.config.js` at start/build time and are **not** picked up by Fast Refresh.
 
@@ -8,7 +8,7 @@ Common issues when setting up and running the FlexHome (Expo) app, and how to fi
 
 The most common cause of empty screens is a bad backend URL.
 
-1. Open `.env` and confirm `API_BASE_URL` points at your running FlexHome (Botble) backend, e.g. `http://homzen.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
+1. Open `.env` and confirm `API_BASE_URL` points at your running Flex Home (Botble) backend, e.g. `http://homzen.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
 2. Open `http://homzen.test/api/v1/real-estate/properties` in a browser. You should get JSON with a `data` array of properties.
 3. Restart with `npx expo start -c`.
 

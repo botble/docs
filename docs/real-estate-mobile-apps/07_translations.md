@@ -2,7 +2,7 @@
 
 ## Overview
 
-FlexHome uses **react-i18next** for localization. Each language is a flat/nested JSON file under `src/i18n/locales/`, registered in `src/i18n/index.ts`. English (`en`) is the **source of truth**; every other locale must have exactly the same key set.
+Flex Home uses **react-i18next** for localization. Each language is a flat/nested JSON file under `src/i18n/locales/`, registered in `src/i18n/index.ts`. English (`en`) is the **source of truth**; every other locale must have exactly the same key set.
 
 ## Default Language Configuration
 
@@ -20,7 +20,7 @@ At startup `src/i18n/index.ts` resolves the initial language from the device loc
 
 ## Supported Languages
 
-The app ships with four locales (473 keys each), all registered in `src/i18n/index.ts`:
+The app ships with four locales (500 keys each), all registered in `src/i18n/index.ts`:
 
 | Language | Code | File | Direction |
 |----------|------|------|-----------|
@@ -64,7 +64,7 @@ interpolation: {
 t("auth.loginTitle", "Sign in to {{appName}}");   // → "Sign in to <APP_NAME>"
 ```
 
-So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToFlexHome`).
+So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToFlex Home`).
 
 This is enforced: `npm run i18n:check` (run in CI) fails if the brand literal appears
 in any locale key or value, pointing you to use `{{appName}}`.
