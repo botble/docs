@@ -2,26 +2,6 @@
 
 A React Native (Expo SDK 54) mobile app for job search and recruitment businesses. It is the mobile client for a **Botble job-board backend** with the `/api/v1` plugin enabled. The codebase is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` (app name, bundle ID, API URL, colors). One codebase builds both iOS and Android. Candidates search and browse jobs on a list or an interactive map, apply for positions, save favorites, compare opportunities, build resumes, and manage their profile, all driven live from your Botble admin. Employers get a full native portal for job CRUD, applicants, packages, and finance.
 
-<div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:28px 0;">
-  <img src="./images/jobboard-home-light.png" alt="Home" style="width:31%; max-width:240px; border-radius:18px;" />
-  <img src="./images/jobboard-job-detail.png" alt="Job detail" style="width:31%; max-width:240px; border-radius:18px;" />
-  <img src="./images/jobboard-search.png" alt="Search and filters" style="width:31%; max-width:240px; border-radius:18px;" />
-</div>
-
-## Demo video
-
-A full walkthrough of the app: home, job search with filters, job detail, application flow, saved jobs, employer reviews, resume builder, and dark mode.
-
-<div style="position:relative; padding-bottom:56.25%; height:0; margin:24px 0; border-radius:14px; overflow:hidden;">
-  <iframe src="https://www.youtube-nocookie.com/embed/placeholder-video-id?rel=0"
-          title="Botble JobBoard React Native app demo"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-</div>
-
-[Watch on YouTube](https://youtu.be/placeholder-video-id)
-
 ## Get started
 
 1. [Overview](overview.md)
