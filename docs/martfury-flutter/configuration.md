@@ -11,7 +11,7 @@ APP_NAME=Your Store Name
 LICENSE_CODE=<your Envato purchase code>
 ```
 
-See [API Configuration](06_api_base_url.md) for `API_BASE_URL` and `API_KEY`.
+See [API Configuration](06_api_base_url.md) for `API_BASE_URL` and `API_KEY`, and [License activation](license-activation.md) for `LICENSE_CODE`.
 
 ## Optional keys
 

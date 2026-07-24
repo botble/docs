@@ -4,6 +4,7 @@
 
 - Flutter SDK (latest stable)
 - A device or emulator (Android or iOS)
+- A Botble e-commerce website with the API turned on - see [Enable the API on your website](backend-api-setup.md)
 
 ## Steps
 
@@ -37,7 +38,7 @@ APP_NAME=Your Store Name
 LICENSE_CODE=<your Envato purchase code>
 ```
 
-See [API Configuration](06_api_base_url.md) for `API_KEY` details and [Theme Colors](01_theme_colors.md) for color overrides.
+See [API Configuration](06_api_base_url.md) for `API_KEY` details, [License activation](license-activation.md) for `LICENSE_CODE`, and [Theme Colors](01_theme_colors.md) for color overrides.
 
 ### 5. Run
 

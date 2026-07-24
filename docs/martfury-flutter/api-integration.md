@@ -2,6 +2,8 @@
 
 The app talks to the Botble e-commerce REST API. The full reference is at [https://ecommerce-api.botble.com/docs](https://ecommerce-api.botble.com/docs).
 
+Before anything else, turn the API on in your website admin panel - see [Enable the API on your website](backend-api-setup.md). It is off by default.
+
 ## Configure
 
 In `.env`:
@@ -23,7 +25,8 @@ https://your-domain.com/api/v1/ecommerce/products
 
 You should get a JSON response with products. If you do not:
 
-- `404` — the API plugin is not installed or not enabled.
+- `503` — the API is disabled. Turn it on at **Admin → Settings → API Settings**.
+- `404` — the API package is not installed; update the CMS to the latest version.
 - `401` — `API_KEY` is missing or wrong.
 - Empty / no data — no products are published on the website.
 
@@ -51,8 +54,9 @@ Checkout runs in a WebView. The app calls `POST /api/v1/ecommerce/checkout/cart/
 
 | Symptom | Cause | Fix |
 |---|---|---|
+| `503 API is currently disabled` | API turned off on the website | Enable it at **Admin → Settings → API Settings** |
 | `401 Invalid or missing API key` | Wrong / empty `API_KEY` | Get the key from **Admin → Settings → API Settings** |
-| `404` on every endpoint | API plugin disabled | Enable the API plugin on the backend |
+| `404` on every endpoint | CMS too old to include the API package | Update the CMS to the latest version |
 | Connection error | Wrong `API_BASE_URL` or site down | Verify the URL in a browser |
 | `419` / CSRF errors | `APP_URL` mismatch on backend | Set `APP_URL` to the live domain in the backend `.env` |
 

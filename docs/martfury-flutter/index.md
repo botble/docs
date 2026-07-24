@@ -5,9 +5,11 @@ A Flutter mobile app that connects to a [Botble e-commerce backend](https://code
 ## Get started
 
 1. [Overview](overview.md)
-2. [Installation](installation.md)
-3. [Configuration](configuration.md)
-4. [Complete Setup & Publishing Guide](complete-setup-and-publishing-guide.md)
+2. [Enable the API on your website](backend-api-setup.md)
+3. [Installation](installation.md)
+4. [License activation (purchase code)](license-activation.md)
+5. [Configuration](configuration.md)
+6. [Complete Setup & Publishing Guide](complete-setup-and-publishing-guide.md)
 
 ## Customize the app
 

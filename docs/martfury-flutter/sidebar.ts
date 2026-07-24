@@ -8,6 +8,8 @@ export default [
         text: 'Getting Started',
         items: [
             { text: 'Installation', link: '/martfury-flutter/installation' },
+            { text: 'Enable the API on your website', link: '/martfury-flutter/backend-api-setup' },
+            { text: 'License Activation', link: '/martfury-flutter/license-activation' },
             { text: 'Configuration', link: '/martfury-flutter/configuration' },
             { text: 'Development Guide', link: '/martfury-flutter/development' },
             { text: 'API Integration', link: '/martfury-flutter/api-integration' },

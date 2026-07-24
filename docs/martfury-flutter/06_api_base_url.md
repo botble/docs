@@ -26,7 +26,9 @@ The app sends `API_KEY` as the `X-API-KEY` header on every request. It must matc
 
 1. Open `https://your-domain.com/admin`
 2. Go to **Settings → API Settings**
-3. Click **Generate** if no key is shown, or copy the existing key
+3. Turn on **Enable API** (off by default - see [Enable the API on your website](backend-api-setup.md))
+4. Click **Generate Random Key** if no key is shown, or copy the existing key
+5. Click **Save settings**
 
 ### Set the key
 
