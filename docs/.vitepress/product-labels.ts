@@ -16,6 +16,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   'e-wallet': 'E-Wallet',
   'carento-react-native': 'Carento (Mobile)',
   'real-estate-mobile-apps': 'FlexHome (Mobile)',
+  'job-board-mobile-apps': 'Botble JobBoard (Mobile)',
 }
 
 // Products pinned to the top of the nav dropdown (kept in this order),
