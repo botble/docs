@@ -334,13 +334,18 @@ This implicitly enables output buffering and also gzip-compresses responses.
 #### Where to apply the change
 
 - **SiteGround** — Site Tools → Devs → PHP Manager → PHP Variables → set `output_buffering` to `4096` (click **CUSTOM**), then Save.
-- **cPanel** — Select PHP Version → Options → find `output_buffering` (or `zlib.output_compression`) → change the value → Save.
+- **cPanel** — Select PHP Version → Options → find `output_buffering` (or `zlib.output_compression`) → change the value → Save. On **LiteSpeed / lsphp** hosts the basic MultiPHP INI editor often exposes only `zlib.output_compression` (not `output_buffering`) — toggling that On is enough, or use the `.htaccess` method below.
 - **Plesk** — Websites & Domains → PHP Settings → set `output_buffering` to `4096` → OK.
 - **Shared hosting without a PHP settings UI** — add to `.htaccess` in your project root:
 
   ```apache
+  <IfModule LiteSpeed>
   php_value output_buffering 4096
+  php_value zlib.output_compression On
+  </IfModule>
   ```
+
+  On LiteSpeed this takes effect on the very next request. If your host ignores `.htaccess` PHP values, use a `.user.ini` file in the project root instead (`output_buffering=4096`) — note it is only re-read every `user_ini.cache_ttl` seconds (300 by default), so the change can take a few minutes to apply.
 
 - **VPS / dedicated server with php-fpm** — edit your pool file (for example `/etc/php/8.3/fpm/pool.d/www.conf`):
 
