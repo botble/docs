@@ -8,7 +8,7 @@ The E-Wallet dashboard gives you a quick overview of how your wallet program is 
 2. Click **E-Wallet** in the left menu
 3. You'll see the main dashboard
 
-![E-Wallet Dashboard](https://botble.com/storage/envato/e-wallet/e-wallet-admin-dashboard.png)
+![E-Wallet Dashboard](../images/e-wallet-admin-dashboard.png)
 
 ## What You'll See
 

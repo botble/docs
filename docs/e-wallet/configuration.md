@@ -8,7 +8,7 @@ This guide will walk you through the process of configuring the E-Wallet plugin 
 2. Navigate to **Settings** > **E-Wallet**
 3. You will see the E-Wallet configuration page
 
-![E-Wallet Settings](https://botble.com/storage/envato/e-wallet/e-wallet-settings-page.png)
+![E-Wallet Settings](./images/e-wallet-settings-page.png)
 
 ## General Settings
 

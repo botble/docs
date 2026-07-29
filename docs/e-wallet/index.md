@@ -91,22 +91,22 @@ E-Wallet is a comprehensive digital wallet system designed for e-commerce stores
 ### Settings Page
 Configure wallet functionality, top-up limits, withdrawal settings, and payment methods.
 
-![E-Wallet Settings](https://botble.com/storage/envato/e-wallet/e-wallet-settings-page.png)
+![E-Wallet Settings](./images/e-wallet-settings-page.png)
 
 ### Customer Wallet
 Customers can view their balance, transaction history, and manage their wallet.
 
-![Customer Wallet](https://botble.com/storage/envato/e-wallet/customer-wallet-page.png)
+![Customer Wallet](./images/customer-wallet-page.png)
 
 ### Checkout Payment
 Customers can pay with their wallet balance at checkout.
 
-![Checkout Payment](https://botble.com/storage/envato/e-wallet/wallet-checkout-payment.png)
+![Checkout Payment](./images/wallet-checkout-payment.png)
 
 ### Admin Dashboard
 Comprehensive analytics showing wallet program performance.
 
-![Admin Dashboard](https://botble.com/storage/envato/e-wallet/e-wallet-admin-dashboard.png)
+![Admin Dashboard](./images/e-wallet-admin-dashboard.png)
 
 ## Transaction Types
 
