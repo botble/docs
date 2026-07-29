@@ -7,6 +7,7 @@
 .idea
 docs/.vitepress/cache
 docs/.vitepress/dist
+docs/.vitepress/.temp
 node_modules
 .claude
 
@@ -84,13 +85,27 @@ docs/*/images/social-login-settings.png
 !docs/digimart/installation-web-interface.md
 !docs/digimart/license.md
 
-# licenza is a standalone product (not in the `projects` sync array in
-# bin/shell_cmd.sh) and ships its own customized install/api/cronjob docs.
-!docs/licenza/api.md
-!docs/licenza/cronjob.md
-!docs/licenza/installation-command-line.md
-!docs/licenza/installation-requirements.md
-!docs/licenza/installation-using-docker.md
-!docs/licenza/installation-web-interface.md
-!docs/licenza/ssl.md
-!docs/licenza/upgrade.md
+# snapcart is a standalone product (not in the `projects` sync array in
+# bin/shell_cmd.sh) and ships its own condensed install/api/usage docs.
+!docs/snapcart/api.md
+!docs/snapcart/cronjob.md
+!docs/snapcart/installation-command-line.md
+!docs/snapcart/installation-requirements.md
+!docs/snapcart/installation-using-docker.md
+!docs/snapcart/installation-web-interface.md
+!docs/snapcart/invoice-template.md
+!docs/snapcart/license.md
+!docs/snapcart/plugin-translation.md
+!docs/snapcart/ssl.md
+!docs/snapcart/upgrade.md
+!docs/snapcart/usage-analytics.md
+!docs/snapcart/usage-currencies.md
+!docs/snapcart/usage-custom-css-js.md
+!docs/snapcart/usage-email.md
+!docs/snapcart/usage-location.md
+!docs/snapcart/usage-media-bunnycdn.md
+!docs/snapcart/usage-media-s3.md
+!docs/snapcart/usage-media-wasabi.md
+!docs/snapcart/usage-multi-language.md
+!docs/snapcart/usage-newsletter.md
+!docs/snapcart/usage-social-login.md
