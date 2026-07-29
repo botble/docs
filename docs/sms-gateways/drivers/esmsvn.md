@@ -136,11 +136,11 @@ See the official [error code table](https://developers.esms.vn/en/esms-api/table
 
 - **Vietnam-only SMS** with brandname, OTP, or advertising.
 - **Multi-region setups**: pair eSMS.vn with Twilio / Vonage using the
-  [Country Routes](../configuration.md#country-routes) feature to route
+  [Country Routes](../configuration.md#country-routes-optional) feature to route
   Vietnamese numbers through eSMS and others through global providers.
 
 ## Next step
 
 See [Configuration](../configuration.md) to activate additional drivers, or
-[Country Routes](../configuration.md#country-routes) to route Vietnamese
+[Country Routes](../configuration.md#country-routes-optional) to route Vietnamese
 numbers through eSMS.vn automatically.

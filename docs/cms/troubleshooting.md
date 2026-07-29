@@ -186,7 +186,7 @@ Some hosting providers have ModSecurity enabled, which can block legitimate admi
 ModSecurity does not always return a `403`. It can also **silently strip the query string** from a request — the page still loads, but `$_GET` arrives empty. This breaks OAuth callbacks. See [Social Login Fails](#social-login-fails-invalidstateexception-or-missing-required-parameter-code) below.
 :::
 
-## Social Login Fails — "InvalidStateException" or "Missing required parameter: code"
+## Social Login Fails — "InvalidStateException" or "Missing required parameter: code" {#social-login-fails-invalidstateexception-or-missing-required-parameter-code}
 
 When setting up Google (or Facebook) social login, you click the provider button, pick an account, and get bounced back to `/login`. Depending on the stage, you may see:
 

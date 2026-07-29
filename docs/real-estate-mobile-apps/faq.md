@@ -60,7 +60,7 @@ You need basic React Native / Expo and command-line skills to set environment va
 
 ### How do guests view their inquiry without an account?
 
-Guest inquiry is supported (`ENABLE_GUEST_BOOKING`). After checkout, a guest looks up their inquiry with the **inquiry number plus the email** used at checkout. The id alone is rejected. See [API Integration → Inquirys](api-integration.md#inquiries-incl-guest-lookup).
+Guest inquiry is supported (`ENABLE_GUEST_BOOKING`). After checkout, a guest looks up their inquiry with the **inquiry number plus the email** used at checkout. The id alone is rejected. See [API Integration → Inquiries](api-integration.md#inquiries-incl-guest-lookup).
 
 ### How often should I update the app?
 

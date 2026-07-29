@@ -33,9 +33,9 @@ Configure OTP defaults in **Admin → Settings → SMS Gateways**:
 
 Each host integration (ecommerce, marketplace, etc.) can override these defaults. See the integration page for details:
 
-- [Ecommerce OTP](../integration/ecommerce.md#otp)
-- [Marketplace OTP](../integration/marketplace.md#otp)
-- [Real Estate OTP](../integration/real-estate.md#otp)
+- [Ecommerce OTP](../integration/ecommerce.md#otp-in-ecommerce)
+- [Marketplace OTP](../integration/marketplace.md#otp-in-marketplace)
+- [Real Estate OTP](../integration/real-estate.md#customer-otp)
 
 ## OTP template
 
@@ -94,4 +94,4 @@ Check that the integration's OTP template matches the configured code length. If
 
 ## Next step
 
-See [OTP in Ecommerce](../integration/ecommerce.md#otp) for checkout-specific OTP setup.
+See [OTP in Ecommerce](../integration/ecommerce.md#otp-in-ecommerce) for checkout-specific OTP setup.

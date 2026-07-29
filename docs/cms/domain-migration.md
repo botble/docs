@@ -232,7 +232,7 @@ If you built your site inside a subfolder (e.g. `https://example.com/new-web/pub
 **Steps:**
 
 1. **Deactivate the license** at **Admin → Settings → General → License** so you can re-activate after the move.
-2. **Backup files and database** as described in [Before You Start](#2-create-a-full-backup).
+2. **Backup files and database** as described in [Before You Start](#_2-create-a-full-backup).
 3. **Open the exported `.sql` file** in a text editor and find/replace `example.com/subfolder/public` with `example.com`. Save the file.
 4. **Move the files** from the subfolder to the document root (e.g. `public_html/`).
 5. **Point the document root** to the `public` folder of the moved site so the live URL becomes `https://example.com/` (without `/public`). See the [shared hosting installation guide](https://botble.com/the-best-way-to-install-our-script-on-a-shared-hosting) for instructions.
@@ -289,7 +289,7 @@ This method is simpler but requires you to reconfigure all settings, menus, widg
 
 ## If Something Goes Wrong
 
-Don't panic! You have your backup from [Step 2](#2-create-a-full-backup).
+Don't panic! You have your backup from [Step 2](#_2-create-a-full-backup).
 
 1. Restore files from your backup using your hosting panel's **Backup** tool or **File Manager**
 2. Restore the database using **phpMyAdmin** (import your backup `.sql` file)

@@ -96,6 +96,25 @@ Send a test SMS to verify driver credentials:
 
 If the test fails, see [Troubleshooting](./troubleshooting.md).
 
+## Country Routes (optional)
+
+When you serve several countries, you can send each one through the driver that has the best rates or the required
+local registration, instead of pushing every message through the global default driver.
+
+Go to **Admin → SMS Gateways → Country Routes → Add** and set:
+
+- **Country code** — the dialling prefix, e.g. `+880`, `+84`, `+91`
+- **Driver** — the driver that should handle numbers matching that prefix
+
+Numbers that don't match any route fall back to the global default driver you picked in **Step 1**.
+
+::: tip
+This is how you combine a worldwide driver with country-specific ones — for example Twilio globally, with `+84`
+routed to [eSMS.vn](./drivers/esmsvn.md) and `+880` to [SSL Wireless](./drivers/sslwireless.md).
+:::
+
+Managing routes requires the `sms-gateways.country-routes.*` permissions — see [Permissions](./usage/permissions.md).
+
 ## Environment variables (optional)
 
 You can also set driver credentials via `.env`:

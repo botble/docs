@@ -106,7 +106,7 @@ No. The feature is off by default. Enable it in **Admin → Support Desk → Set
 
 ### Can I use Gmail with Email-to-Ticket?
 
-Yes. Use an **App Password** rather than your regular Google account password. Enable IMAP in Gmail settings, then generate an App Password under **Google Account → Security → App passwords**. See [Email-to-Ticket Setup](email-to-ticket.md#gmail-setup-app-password) for step-by-step instructions.
+Yes. Use an **App Password** rather than your regular Google account password. Enable IMAP in Gmail settings, then generate an App Password under **Google Account → Security → App passwords**. See [Email-to-Ticket Setup](email-to-ticket.md#_3-gmail-setup-app-password) for step-by-step instructions.
 
 ### What happens if an email sender is not a registered customer?
 

@@ -30,4 +30,4 @@ If you are using the sample data of **Athena**, the homepage is already created 
 ## Customize Homepage
 
 The homepage or any other page can be customized using UI Block. A list of available
-shortcodes can be found in [UI Block](./usage-ui-block.md#available-shortcodes).
+shortcodes can be found in [UI Block](./usage-ui-block.md).

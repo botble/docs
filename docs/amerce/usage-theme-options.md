@@ -195,7 +195,7 @@ Each preset comes with its own demo data seeder — see **[Installation](./insta
 Configure social URLs in **Footer** (above) — the same values feed:
 
 - The footer social icon row
-- The **Site Information** widget — see **[Widgets](./usage-widgets.md#12-footer-primary-sidebar)**
+- The **Site Information** widget — see **[Widgets](./usage-widgets.md#_12-footer-primary-sidebar)**
 - The **Contact Form** shortcode
 
 ![Social Links](./images/theme-option-social-links.png)

@@ -62,7 +62,7 @@ Social links are a great way to connect with your audience. You can add your soc
 
 ![Social Links](./images/theme-option-social-links.png)
 
-Then, these links can be used in **[Site Information](./usage-widgets.md#12-footer-primary-sidebar)** widget, or in **Contact Form** shortcode.
+Then, these links can be used in **[Site Information](./usage-widgets.md#_12-footer-primary-sidebar)** widget, or in **Contact Form** shortcode.
 
 ![Social Links](./images/theme-option-social-links-2.png)
 

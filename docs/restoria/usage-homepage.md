@@ -61,4 +61,4 @@ The homepage can be customized using UI Blocks specifically designed for restaur
 - **Special Offers** - Highlight promotions and events
 - **Contact Information** - Display location, hours, and contact details
 
-A complete list of available shortcodes can be found in [UI Block](./usage-ui-block.md#available-shortcodes).
+A complete list of available shortcodes can be found in [UI Block](./usage-ui-block.md).

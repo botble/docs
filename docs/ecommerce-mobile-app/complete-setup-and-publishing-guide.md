@@ -681,7 +681,7 @@ This usually means environment variables weren't set. Make sure you configured E
 
 ### My app shows "License Required" dialog
 
-Set `APP_ENV=production` in your `eas.json` or EAS Secrets. See [License Activation](13_license_activation.md#license-required-alert-in-productionrelease-apk).
+Set `APP_ENV=production` in your `eas.json` or EAS Secrets. See [License Activation](13_license_activation.md#license-required-alert-in-production-release-apk).
 
 ### Can I build an APK for testing before publishing?
 

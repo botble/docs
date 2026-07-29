@@ -4,16 +4,15 @@ Botble CMS provides a variety of Artisan commands to help you manage your applic
 
 ## Command Categories
 
-- [Installation & Setup](#installation--setup)
-- [User Management](#user-management)
-- [Asset Management](#asset-management)
+- [Installation & Setup](#installation-setup)
+- [Package Management](#package-management)
 - [Plugin Management](#plugin-management)
 - [Theme Management](#theme-management)
 - [Widget Management](#widget-management)
 - [Database Management](#database-management)
 - [System Maintenance](#system-maintenance)
-- [Backup & Restore](#backup--restore)
-- [Logging & Monitoring](#logging--monitoring)
+- [Backup & Restore](#backup-restore)
+- [Logging & Monitoring](#logging-monitoring)
 - [Miscellaneous](#miscellaneous)
 
 ## Installation & Setup

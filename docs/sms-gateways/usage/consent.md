@@ -62,7 +62,7 @@ When customers sign up, ecommerce/marketplace/real-estate integrations can:
 2. **Explicit opt-in** — show checkbox ("Send me order updates via SMS")
 3. **Explicit opt-out** — show checkbox ("Do NOT send SMS")
 
-See the [integration pages](../integration/ecommerce.md#consent) for per-host opt-in flow.
+See the [integration pages](../integration/ecommerce.md#consent-opt-out) for per-host opt-in flow.
 
 ## STOP/START keywords
 

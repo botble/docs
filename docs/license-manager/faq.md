@@ -106,4 +106,4 @@ Yes. Customers can register, log in (including via Envato OAuth), view their lic
 
 ### Can I distribute software updates through the License Manager?
 
-Yes. Upload product versions with changelogs and files. Licensed users can check for updates and download them via the API. You can control update access with the `updates_until` date on each license. See [Products](/license-manager/products) and [API Reference](/license-manager/api#update-endpoints) for details.
+Yes. Upload product versions with changelogs and files. Licensed users can check for updates and download them via the API. You can control update access with the `updates_until` date on each license. See [Products](/license-manager/products) and [API Reference](/license-manager/api#check-for-updates) for details.

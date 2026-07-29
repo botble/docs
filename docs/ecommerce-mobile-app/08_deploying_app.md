@@ -473,7 +473,7 @@ After running `eas build:configure`, verify that the `projectId` is in the corre
 }
 ```
 
-If the `projectId` is in the wrong location, you'll get `Cannot read properties of undefined (reading 'projectId')` error. See [Troubleshooting](troubleshooting.md#cannot-read-properties-of-undefined-reading-projectid) for details.
+If the `projectId` is in the wrong location, you'll get `Cannot read properties of undefined (reading 'projectId')` error. See [Troubleshooting](troubleshooting.md#eas-init-cannot-read-properties-of-undefined-reading-projectid) for details.
 :::
 
 ### Step 2: Update eas.json for APK Build

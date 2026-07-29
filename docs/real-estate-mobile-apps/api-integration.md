@@ -110,7 +110,7 @@ Base path for real-estate endpoints: `/real-estate` (relative to `{API_BASE_URL}
 | `GET /real-estate/properties/{carId}/reviews` | `fetchCarReviews(carId)` | `src/services/properties.ts` |
 | `POST /real-estate/reviews` | `createReview(payload, token?)` | `src/services/reviews.ts` |
 
-### Inquirys (incl. guest lookup)
+### Inquiries (incl. guest lookup)
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
