@@ -89,7 +89,7 @@ php artisan cms:translation:auto-translate-core fr --override
 You can download translation files for a specific locale:
 
 ```bash
-php artisan cms:translation:download <locale>
+php artisan cms:translations:download-locale <locale>
 ```
 
 This command downloads the latest translation files for the specified locale from the Botble repository.
@@ -99,7 +99,7 @@ This command downloads the latest translation files for the specified locale fro
 To remove a locale and all its translation files:
 
 ```bash
-php artisan cms:translation:remove <locale>
+php artisan cms:translations:remove-locale <locale>
 ```
 
 ### Updating Theme Translations

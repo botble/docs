@@ -30,6 +30,17 @@ As per Envato's licensing rules, one license can only be used for one website. T
 
 If you want to use Botble CMS for multiple sites or clients, you need to purchase multiple licenses.
 
+::: warning A subdomain counts as a separate site
+`blog.example.com` and `kb.example.com` are two installs, and therefore two licenses — one license does not cover
+every subdomain of a domain.
+:::
+
+::: tip One install uses exactly one license
+Each install carries a single product ID in `platform/core/core.json`, and activation checks against that product
+only. If you merge a second purchased product's plugins into an existing install, only the base product's license is
+consumed — the second key stays unused and can be activated on another domain.
+:::
+
 ### Development Environments
 
 You can use Botble CMS without activating a license on development, staging, or UAT environments for development purposes without violating license terms. All features will work fine except:
@@ -44,6 +55,12 @@ This allows you to develop and test your site before deploying to production.
 In admin panel, go to `Settings` -> `General` to activate your license.
 
 ![Activate license](../cms/images/license.png)
+
+::: tip Don't see a license section on that page?
+The block is hidden by the **White Label** plugin's "Hide license activation info" toggle, or by
+`CMS_HIDE_ACTIVATED_LICENSE_INFO=true` in `.env`. See
+[License Section Missing from Settings → General](/cms/troubleshooting#license-section-missing-from-general-settings).
+:::
 
 If you don't know how to get purchase code, check this
 article [Where Is My Purchase Code?](https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code)

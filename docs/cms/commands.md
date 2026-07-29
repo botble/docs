@@ -183,10 +183,11 @@ php artisan cms:plugin:list
 
 ### Publish Plugin Assets
 
-Publishes assets for all or specific plugins.
+Publishes assets for a plugin. The plugin name is required — to republish everything, use
+`php artisan cms:publish:assets`.
 
 ```bash
-php artisan cms:plugin:assets:publish [plugin]
+php artisan cms:plugin:assets:publish <plugin>
 ```
 
 ### Discover Plugins
@@ -249,17 +250,21 @@ Deletes published theme assets from the public directory.
 php artisan cms:theme:assets:remove [theme]
 ```
 
-### Install Theme Sample Data
+### Clear Theme Cache
 
-Imports sample data for a theme.
+Clears the cached theme data (options, registered assets, compiled partial lookups).
 
 ```bash
-php artisan cms:theme:install-sample-data
+php artisan cms:theme:clear-cache
 ```
 
-This command imports the SQL file located at `platform/themes/your-theme/data/sample.sql`.
+### Clean Up Shared Theme Options
 
-![Theme install sample data](./images/theme-install-sample-data.png)
+Removes orphaned shared theme-option rows left behind after languages or options are removed.
+
+```bash
+php artisan cms:theme:options:cleanup-shared
+```
 
 ### Check Theme Options
 
@@ -350,10 +355,11 @@ php artisan cms:cache:clear-expired
 
 ### Compress Images
 
-Compresses images to reduce file size without significant quality loss.
+Compresses images in a media folder to reduce file size without significant quality loss. The folder argument is
+required.
 
 ```bash
-php artisan cms:media:compress
+php artisan cms:images:compress <folder>
 ```
 
 ### Fetch Google Fonts
@@ -384,13 +390,14 @@ php artisan cms:backup:create [name] --description=[description]
 
 ### Restore Backup
 
-Restores a backup from a specific date or the latest backup.
+Restores a backup from a specific date or the latest backup. The date is passed as an option, not a positional
+argument.
 
 ```bash
-php artisan cms:backup:restore [backup-date]
+php artisan cms:backup:restore --backup=<backup-date>
 ```
 
-If no date is provided, it restores the latest backup.
+If `--backup` is omitted, it restores the latest backup.
 
 ### List Backups
 
@@ -402,10 +409,10 @@ php artisan cms:backup:list
 
 ### Remove Backup
 
-Deletes a specific backup.
+Deletes a specific backup. The backup date is required. Add `--force` to skip the confirmation prompt.
 
 ```bash
-php artisan cms:backup:remove [backup-date]
+php artisan cms:backup:remove <backup-date> --force
 ```
 
 ### Clean Backups
@@ -454,11 +461,13 @@ php artisan cms:request-logs:clear
 
 ### Activate License
 
-Activates your Botble CMS license.
+Activates your Botble CMS license. Both values are passed as options — there is no positional argument.
 
 ```bash
-php artisan cms:license:activate <license-key>
+php artisan cms:license:activate --buyer=<envato-username> --purchase_code=<purchase-code>
 ```
+
+Run it without options to be prompted for each value interactively.
 
 ### Update CMS
 

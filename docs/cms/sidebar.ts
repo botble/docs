@@ -40,6 +40,7 @@ export default [
           { text: 'Setup CDN', link: '/cms/usage-setup-cdn' },
           { text: 'Public Cache Control', link: '/cms/usage-public-cache-control' },
           { text: 'Cache Management', link: '/cms/cache-management' },
+          { text: 'Performance Optimization', link: '/cms/performance-optimization' },
           { text: 'Reset admin password', link: '/cms/usage-reset-admin-password' },
         ],
       },
@@ -59,6 +60,7 @@ export default [
         text: 'Integrations',
         collapsed: false,
         items: [
+          { text: 'Website Tracking', link: '/cms/usage-website-tracking' },
           { text: 'Google Analytics', link: '/cms/usage-analytics' },
           { text: 'Social Login', link: '/cms/usage-social-login' },
         ],

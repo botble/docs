@@ -29,7 +29,7 @@ Ex: to translate your theme to Vietnamese.
 You can also translate it from UI.
 
 - Go to Admin -> Settings -> Languages then add a new language.
-- Go to Admin -> Appearance -> Theme translations to translate your theme.
+- Go to Admin -> Settings -> Theme translations to translate your theme.
 
 ::: tip
 You can see full example in /platform/themes/ripple

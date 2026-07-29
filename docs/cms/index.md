@@ -29,7 +29,7 @@ Password: `12345678`
 ## System Requirements
 
 - PHP >= 8.3.0
-- MySQL >= 5.7 (or MariaDB >= 10.2)
+- MySQL >= 5.7 (or MariaDB >= 10.3)
 - BCMath PHP Extension
 - Ctype PHP Extension
 - Fileinfo PHP Extension
@@ -117,13 +117,13 @@ php artisan list
 php artisan cache:clear
 
 # Generate API documentation
-php artisan scribe:generate
+php artisan cms:api:generate-docs
 
 # Update the CMS to the latest version
 php artisan cms:update
 
 # Activate your license
-php artisan cms:license:activate <license-key>
+php artisan cms:license:activate --buyer=<envato-username> --purchase_code=<purchase-code>
 
 # Create a new plugin
 php artisan cms:plugin:create <plugin-name>

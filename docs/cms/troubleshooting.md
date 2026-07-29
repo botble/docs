@@ -90,6 +90,85 @@ chmod -R 775 storage bootstrap/cache
 3. Click **Send test email** to verify the configuration.
 4. If emails go to spam, consider using a dedicated service like **Mailgun**, **SendGrid**, or **Amazon SES**.
 
+## Dates Show UTC Instead of Local Time
+
+Orders, posts, and every other timestamp in the admin panel render in UTC, even though you are in another timezone.
+
+### Cause
+
+`config/app.php` hardcodes `'timezone' => 'UTC'`. It does **not** read `APP_TIMEZONE` from `.env`, so adding that
+variable has no effect on its own.
+
+The real control is a database setting. At boot, the CMS reads the `time_zone` setting and calls PHP's
+`date_default_timezone_set()`, which is why all model timestamps then render in your chosen zone automatically.
+
+### Fix
+
+1. Go to **Admin → Settings → General → Time zone** and pick your timezone.
+2. Save.
+3. Go to **Admin → Platform Administration → Cache Management** and clear all caches.
+
+::: warning The cache step is required
+Boot settings are cached for one hour. Without clearing the cache, your new timezone will not take effect until the
+cache expires on its own.
+:::
+
+## License Section Missing from General Settings
+
+You open **Admin → Settings → General** to activate or re-activate your license, and the entire license block is
+absent — no purchase code field, no activation button. This commonly surfaces after moving an install to a new domain,
+when you expect to re-activate.
+
+### Cause
+
+The license section only renders when `core.base.general.hide_activated_license_info` is `false`. Two things set it to
+`true`:
+
+- The free **White Label** plugin (FriendsOfBotble) has a **Hide license activation info** toggle that sets this config.
+- `CMS_HIDE_ACTIVATED_LICENSE_INFO=true` in `.env` sets the same config directly.
+
+### Fix
+
+**If the White Label plugin is installed:**
+
+1. Go to **Admin → Settings → Others → White Label**.
+2. Turn **Hide license activation info** off.
+3. Save.
+4. Clear all caches at **Admin → Platform Administration → Cache Management**.
+5. Reload **Settings → General** — the activation form is back at the bottom.
+
+**If it is not installed:** open `.env`, remove `CMS_HIDE_ACTIVATED_LICENSE_INFO=true`, and clear the caches.
+
+::: tip Moving to a new domain
+No reinstall and no data loss is needed. Release the old domain at
+[license.botble.com](https://license.botble.com), then activate with the same purchase code on the new one. You do not
+need to delete `storage/.license` — server-side verification fails on the new domain, so the activation form renders as
+soon as the block is visible again. See [Domain Migration](/cms/domain-migration).
+:::
+
+## Captcha Enabled but Not Rendering (All Forms Blocked)
+
+You turn on a captcha in **Admin → Settings → Captcha**, the widget never appears on the form, and now every submission
+fails — login, contact, newsletter, and registration are all blocked, because validation still expects the captcha
+field.
+
+Check these in order:
+
+1. **The theme does not render the captcha type you chose.** Math captcha needs the theme's form partial to output the
+   math-question markup. If the form was built for reCAPTCHA only, the Math widget has nowhere to render. Switch back
+   to reCAPTCHA v2/v3, or have the theme add Math captcha support. Confirm which type your theme supports before
+   enabling it.
+2. **Missing or wrong keys.** With reCAPTCHA selected but the site key or secret key empty or incorrect, the widget
+   silently fails to load. Re-check both in **Settings → Captcha**.
+3. **Stale cache.** Clear all caches after changing the captcha type or keys.
+4. **Blocked JavaScript.** An ad blocker, a strict Content Security Policy, or no outbound access prevents Google's
+   reCAPTCHA script from loading.
+
+::: tip
+reCAPTCHA v3 is invisible, which also sidesteps a class of layout problems — an overflowing widget on narrow vendor and
+sidebar forms, or the widget rendering above the email field on newsletter and coming-soon forms.
+:::
+
 ## ModSecurity Blocking Requests
 
 Some hosting providers have ModSecurity enabled, which can block legitimate admin requests. You may see `403 Forbidden` errors.
@@ -271,6 +350,155 @@ you do not have a backup, you will need to log everyone out and re-encrypt any e
 For future updates, use the [Command Line Update](/cms/upgrade#command-line-update) (`php artisan cms:update`) or the
 [Automatic Update](/cms/upgrade#automatic-update) (in-app updater) instead of manual extraction. Both methods refuse
 update zips that contain a `.env` file, so this scenario cannot happen.
+
+## "Unknown Column" / "Column Not Found" After Install or Update
+
+You see an error such as `SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.sessions_invalidated_at'`.
+
+### Cause
+
+You installed from an older package, so the `database.sql` you imported predates migrations that added those columns.
+The code is newer than the schema.
+
+### Fix
+
+Go to **Admin → Platform Administration → System Updater** and click **Re-install the latest version**. This pulls the
+latest core and runs every outstanding migration.
+
+If the error blocks the admin panel entirely and you have SSH access:
+
+```bash
+cd /path/to/your/project
+php artisan migrate
+```
+
+## Site Breaks After Upgrading PHP
+
+After switching your hosting to PHP 8.3 or 8.4, the site returns a fatal error naming a vendor package — for example
+`Declaration of Maatwebsite\Excel\... must be compatible with ...`.
+
+### Cause
+
+The packages in `composer.lock` were resolved against your previous PHP version. They need to be rebuilt for the new
+one. This is not a CMS bug.
+
+### Fix
+
+With SSH access:
+
+```bash
+cd /path/to/your/project
+composer install
+```
+
+Without SSH, use **Admin → Platform Administration → System Updater → Re-install the latest version**, which ships an
+updated `vendor` folder.
+
+Do not downgrade PHP as a workaround — current versions require PHP 8.3 or higher, and the updater will keep refusing
+to run.
+
+## Update Fails with a Generic "Update error"
+
+When the System Updater reports a vague error with no traceable cause, a third-party plugin is the most common culprit.
+
+1. Go to **Admin → Plugins → Installed Plugins**.
+2. Deactivate recently added third-party plugins — two-factor authentication plugins are a known offender.
+3. Re-run the updater.
+4. Reactivate the plugins.
+
+If the update then succeeds, report the conflict to that plugin's author.
+
+## Plugins Page Fails to Load Marketplace Plugins
+
+**Admin → Plugins → Add New Plugin** shows a toast reading `Cannot read properties of undefined (reading 'status')`, and
+the browser's Network tab shows `ERR_HTTP2_PROTOCOL_ERROR` or `ERR_INCOMPLETE_CHUNKED_ENCODING` on the
+`/admin/plugins/marketplace/ajax/plugins` request.
+
+### Cause
+
+The marketplace plugin list response is roughly 1.2 MB, which exceeds nginx's in-memory FastCGI buffers. nginx tries to
+spill the response to `/var/lib/nginx/fastcgi/`, and on some stacks (CloudPanel's defaults in particular) the worker
+process cannot write there, so it drops the connection mid-stream. The JavaScript toast is the admin error handler
+masking the real network failure.
+
+Confirm it in the nginx error log for the site:
+
+```
+[crit] open() "/var/lib/nginx/fastcgi/N/NN/000..." failed (13: Permission denied) while reading upstream
+```
+
+### Fix
+
+Either option works.
+
+**Option 1 — fix the spill directory permissions:**
+
+```bash
+ps -o user= -p $(pgrep -f "nginx: worker" | head -1)   # find the worker user
+chown -R <user>:<user> /var/lib/nginx
+chmod -R u+rwX /var/lib/nginx
+systemctl reload nginx
+```
+
+**Option 2 — raise the buffers so the response never spills to disk.** In the `http` block of `nginx.conf`:
+
+```nginx
+fastcgi_buffer_size 256k;
+fastcgi_buffers 16 256k;
+fastcgi_busy_buffers_size 512k;
+```
+
+Then reload nginx.
+
+The same root cause affects any admin endpoint returning a response larger than the configured buffers. If you disabled
+a CDN or proxy while debugging, you can re-enable it afterwards — it was not the cause.
+
+## Data Synchronize Import Errors
+
+### Import fails with a file naming mismatch
+
+Delete the `storage/app/data-synchronize` folder and re-run the import.
+
+### "Not a text field" when importing translations
+
+The importer rejects cells that Excel has formatted as numbers. A translation whose value is numeric — `404`, for
+example — must be stored as text.
+
+In Excel: right-click the cell → **Format Cells** → **Text** → re-enter the value → save → re-import.
+
+## Missing Security Headers in a Site Audit
+
+Scanners such as Mozilla Observatory and securityheaders.com flag missing security headers.
+
+### What the CMS already sends
+
+Four headers are emitted by the built-in `HttpSecurityHeaders` middleware, **enabled by default**:
+
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: SAMEORIGIN`
+- `X-XSS-Protection: 1; mode=block`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+
+If a scanner reports these as missing, they are being stripped or overridden downstream — check your CDN, reverse
+proxy, or a conflicting `add_header` block in your web server config. You can also confirm the toggle is on at
+**Admin → Platform Administration → Security Settings**, or that `ENABLE_HTTP_SECURITY_HEADERS` is not set to `false`
+in `.env`. See [Security Settings](/cms/security-cookies) for the full reference.
+
+### What you must add yourself
+
+`Strict-Transport-Security`, `Content-Security-Policy`, and `Permissions-Policy` are **not** emitted by the CMS. Add
+them at your web server (nginx `add_header`, Apache `Header set`) or at your CDN (Cloudflare → Rules → Transform Rules
+→ Modify Response Header):
+
+```nginx
+add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+```
+
+::: danger Do not add a strict CSP without auditing your own site first
+Themes and plugins load inline scripts and styles. A strict `Content-Security-Policy` will break the admin panel and
+most frontends unless you tailor it to your specific deployment.
+:::
 
 ## Session / Login Issues
 

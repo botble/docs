@@ -43,7 +43,7 @@ You can use every Laravel feature: Eloquent relationships, policies, events, lis
 Yes. When you scaffold a plugin, it automatically integrates with:
 
 - **Admin login** — no need to build a separate login system. Your module's admin pages are accessible to any authenticated admin user.
-- **Permissions** — register custom permissions in your service provider, and the built-in role manager (`Admin → System → Roles & Permissions`) handles assignment.
+- **Permissions** — register custom permissions in your service provider, and the built-in role manager (`Admin → Platform Administration → Roles & Permissions`) handles assignment.
 - **Admin menu** — register menu items via `DashboardMenu::registerItem()` so your modules appear in the sidebar alongside core features.
 - **Settings** — add settings pages via the `cms_settings_pages` filter.
 - **Form and table builders** — use `FormAbstract` and `TableAbstract` base classes to get admin UI with validation, pagination, filters, bulk actions, and export, without writing Blade markup.

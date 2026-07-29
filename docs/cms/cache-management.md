@@ -18,7 +18,32 @@ If the cache exceeds the warning threshold, a yellow banner appears at the top o
 
 Go to **Admin → Settings → Cache**.
 
-The following options control how the framework cache is monitored and cleaned up:
+::: tip Two different pages
+**Settings → Cache** *configures* caching. **Platform Administration → Cache Management** *clears* it. Neither page
+sets the cache driver — that is `CACHE_STORE` in `.env`.
+:::
+
+### What gets cached
+
+| Setting | Default | Purpose |
+|---------|---------|---------|
+| Cache admin menu | `Off` | Cache the rendered admin sidebar. Enable if the admin panel feels slow. |
+| Cache front menu | `On` | Cache the frontend navigation tree. Leave on — rebuilding a large menu on every request is expensive. |
+| Cache user avatar | `On` | Cache resolved avatar URLs. |
+| Cache shortcodes (UI blocks) | `Off` | Cache rendered shortcode output. Big win on page-builder pages. |
+| Shortcode cache time | `1800` | TTL in seconds for shortcode output. |
+| Cache widgets | `On`/`Off` per install | Cache rendered widget output for sidebars and footers. |
+| Widget cache time | `1800` | TTL in seconds for widget output. |
+| Plugin cache | `On` | Cache the activated-plugin list. Leave on. |
+| Cache sitemap | `On` | Cache generated sitemap XML. Shown only when the sitemap is enabled. |
+| Sitemap cache time | `60` | Sitemap cache duration in minutes. |
+
+::: warning Shortcode and widget caching hold stale output
+Once enabled, an edit to a shortcode or widget does not show on the frontend until its TTL expires or you clear the
+cache. If content looks stale right after an edit, clear all caches before assuming a bug.
+:::
+
+### Size monitoring and auto-cleanup
 
 | Setting | Default | Purpose |
 |---------|---------|---------|

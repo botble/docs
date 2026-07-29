@@ -157,14 +157,58 @@ This will create sitemap sections for each month, going back 2 years, with up to
 
 ## Sitemap Settings
 
-Botble CMS provides several settings for configuring your sitemaps:
+Go to **Admin → Settings → Sitemap**.
 
-- **Enable Sitemap**: Enable or disable the sitemap feature
-- **Sitemap Items Per Page**: Maximum number of URLs per sitemap file
-- **Enable Sitemap Cache**: Enable or disable caching of sitemaps
-- **Sitemap Cache Duration**: How long to cache sitemaps (in minutes)
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| Enable sitemap | On | Master switch. When off, `/sitemap.xml` returns 404 and all child sitemaps are disabled. |
+| Sitemap items per page | `1000` | Maximum URLs per sitemap file. Range 10–100,000. Google's hard limit is 50,000 URLs / 50 MB per file. |
+| Enable llms.txt | On | Serves a dynamic `/llms.txt` following the [llmstxt.org](https://llmstxt.org) specification, so AI assistants can discover your content. Only used when a static `public/llms.txt` file does not already exist. |
 
-You can access these settings in the admin panel under Settings > General > Sitemap.
+### Content types
+
+The **Sitemap content types** section lets you exclude a content type from the sitemap entirely. When a type is turned
+off, its `{key}.xml` returns 404 and the entry is dropped from the sitemap index.
+
+Core ships the **Pages** toggle. Active plugins contribute their own:
+
+| Toggle | Contributed by |
+| --- | --- |
+| Pages | Core (`sitemap` package) |
+| Blog posts | Blog plugin |
+| Blog categories | Blog plugin |
+| Blog tags | Blog plugin |
+
+Other plugins (Ecommerce, Real Estate, and so on) register their content types the same way when active.
+
+### IndexNow
+
+Turn on **IndexNow** and supply an API key (a UUID) to have new and updated URLs submitted automatically to Bing,
+Yandex, and other IndexNow participants. The inline info panel on the settings page explains where to host the key
+verification file.
+
+### Sitemap caching
+
+Sitemap cache settings live on a different page: **Admin → Settings → Cache**.
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| Cache sitemap | On | Cache the generated sitemap output. |
+| Sitemap cache time | `60` | Cache duration in minutes. |
+
+## What Appears in the Sitemap
+
+- Only **published** items. Drafts and pending items are excluded.
+- The sitemap index splits into per-type child files (`pages.xml`, `blog-posts.xml`, plugin types), and each child is
+  itself paginated once it approaches the per-file limit. If your site has thousands of items and `sitemap.xml` looks
+  short, inspect the child files it references — not just the index.
+- Sitemap output is cached. After publishing new content, clear caches at
+  **Platform Administration → Cache Management** before checking.
+
+::: warning `noindex` items are still listed
+Items whose SEO meta box is set to **No index** are currently **not** filtered out of the sitemap. SEO audit tools flag
+this as "Noindex page in sitemap". Until this is addressed in core, unpublish or delete the item if it must not appear.
+:::
 
 ## Clearing the Sitemap Cache
 

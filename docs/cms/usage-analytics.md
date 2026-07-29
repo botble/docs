@@ -1,6 +1,14 @@
 # Analytics
 
-Integrate with Google Analytics
+Show Google Analytics traffic reports as widgets on the admin dashboard.
+
+::: warning This page does not add tracking code to your site
+**Settings → Google Analytics** is read-only reporting: it uses a service account to *pull* report data into the admin
+dashboard. It does **not** inject `gtag.js`, GTM, or any pixel into your frontend.
+
+To install tracking code on your site, use **Settings → Website Tracking** — see
+[Website Tracking](/cms/usage-website-tracking). The two are configured independently, and most sites need both.
+:::
 
 ## Getting credentials
 

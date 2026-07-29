@@ -390,8 +390,12 @@ Use the **Send Custom Notification** form at **Admin > Settings > API**:
 ### Sending Notifications via Command Line
 
 ```bash
-php artisan api:send-notification --title="Sale!" --message="50% off all items today"
+php artisan cms:push-notification:send --title="Sale!" --message="50% off all items today"
 ```
+
+Additional options: `--type` (`general`, `order`, `promotion`, `system`), `--target` (`all`, `platform`, `user_type`,
+`user`), `--target-value`, `--action-url`, `--image-url`, `--data`, `--schedule` (`Y-m-d H:i:s`), and `--interactive`
+to be prompted for each value.
 
 ### Notification Tracking
 
@@ -500,14 +504,15 @@ class YourPluginServiceProvider extends ServiceProvider
 
 ## API Documentation Generation
 
-Generate browsable API documentation using [Scribe](https://scribe.knuckles.wtf/):
+Generate browsable API documentation with the built-in command:
 
 ```bash
-composer require knuckleswtf/scribe
-php artisan scribe:generate
+php artisan cms:api:generate-docs
 ```
 
-Access documentation at `https://your-domain.com/docs`.
+This enables the API setting if it is off, then generates the documentation from your API routes using
+[Scribe](https://scribe.knuckles.wtf/), which ships as a dependency of the API package. Access the result at
+`https://your-domain.com/docs`.
 
 ## API Versioning
 

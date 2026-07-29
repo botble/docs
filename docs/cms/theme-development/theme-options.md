@@ -624,7 +624,7 @@ add_filter('theme_option_field_is_shared', function (bool $isShared, string $key
 If you previously had locale-specific copies of fields that are now shared, you can clean up the duplicate settings entries:
 
 ```bash
-php artisan cms:theme-option:cleanup-shared
+php artisan cms:theme:options:cleanup-shared
 ```
 
 This command removes locale-specific keys for fields that are marked as shared, keeping only the default-language value.

@@ -15,17 +15,71 @@ You can configure media settings by going to **Admin Panel** → **Settings** �
 - File type restrictions
 - Chunk upload settings
 
+## Where Files Are Stored
+
+Botble resolves the local upload path in this order:
+
+1. If **Customize upload path** is enabled in **Settings → Media**, files go to `public_path(<your upload path>)`.
+2. Otherwise, if `public/storage` is a **symlink**, files go to `storage/app/public` (the standard Laravel layout).
+3. Otherwise — the default for a Botble install — files go **directly into `public/storage`**, which is a real
+   directory.
+
+::: warning `public/storage` is usually a real folder, not a symlink
+Because case 3 is the default, `php artisan storage:link` is **not** part of a normal Botble install, and a "broken
+symlink" is usually the wrong diagnosis for missing uploads. Check first:
+
+```bash
+ls -la public/storage
+```
+
+If it is a real directory, the symlink theory does not apply — look at permissions, the media driver, or whether the
+files were physically removed.
+:::
+
 ## Troubleshooting
 
 ### Image uploaded successfully but doesn't display
 
-Make sure you have done the following steps:
+Work through these in order:
 
-- Make sure `APP_URL` in `.env` is correct
-- Make sure PHP extension `GD` or `Imagick` is enabled
-- Chmod folder `public/storage` to make it writeable
-- Go to **Admin** → **Settings** → **Media** and set Driver to `Local`
-- Run `php artisan storage:link` to create the symbolic link
+- Confirm `APP_URL` in `.env` matches the site's real URL (including `https://`).
+- Confirm the PHP extension `GD` or `Imagick` is enabled.
+- Confirm the media driver at **Admin → Settings → Media → Driver** is the one you intend, and that its credentials are
+  valid if it is a cloud driver.
+- Make `public/storage` writable: `chmod -R 775 public/storage`.
+- Only if `public/storage` is a symlink (or missing entirely), run `php artisan storage:link`.
+
+### Newly uploaded images 404 while older images load fine
+
+The stored records are intact — the files themselves are gone from disk. Test it directly:
+
+```bash
+curl -I https://your-domain.com/storage/<a-working-file>   # 200
+curl -I https://your-domain.com/storage/<a-broken-file>    # 404
+```
+
+If other files in the same folder return `200`, the URL path and the storage driver are both fine, and the specific
+files have been physically deleted. Common causes:
+
+- Hosting-side cleanup — quota enforcement, a malware scan quarantine, or maintenance.
+- A database-only backup restore that did not cover `public/storage/`.
+- The media driver was switched to a cloud provider and back, leaving those files only on external storage.
+- A third-party plugin touching the media folder — an image optimizer, security scanner, or cleaner.
+
+To prevent recurrence, back up the database **and** `public/storage/` together, and never switch the media driver
+without migrating the existing files first.
+
+### Images look stretched or cropped after an update
+
+Usually the theme now defines different thumbnail dimensions. Triage in this order:
+
+1. Confirm the problem reproduces on the default theme.
+2. Regenerate thumbnails — use the **Generate thumbnails** button on **Admin → Settings → Media**, or run
+   `php artisan cms:media:thumbnail:generate`.
+3. Check that any thumbnail size overridden in `.env` or `config/core/media/media.php` still names a size the theme
+   defines — see [Change media image sizes](#change-media-image-sizes) above.
+4. Temporarily disable host-level image optimization (Cloudflare Polish, LiteSpeed image optimization), which can
+   re-compress and resize images independently of the CMS.
 
 ## Change media image sizes
 
