@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/athena/releases' },
       { text: 'Upgrade Guide', link: '/athena/upgrade' },
     ]
   },

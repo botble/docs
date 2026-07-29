@@ -6,7 +6,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/lara-mag/releases' },
             { text: 'Upgrade Guide', link: '/lara-mag/upgrade' },
         ],
     },
@@ -43,7 +42,7 @@ export default [
     {
         text: 'Development',
         items: [
-            { text: 'Rename theme', link: '/jobzilla/theme-rename' },
+            { text: 'Rename theme', link: '/lara-mag/theme-rename' },
         ]
     }
 ] satisfies DefaultTheme.SidebarItem[];

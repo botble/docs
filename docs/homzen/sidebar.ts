@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/homzen/releases' },
             { text: 'Upgrade Guide', link: '/homzen/upgrade' },
         ],
     },

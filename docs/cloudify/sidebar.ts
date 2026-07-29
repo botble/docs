@@ -31,6 +31,7 @@ export default [
         text: 'Usage',
         items: [
             { text: 'API Integration', link: '/cloudify/usage-api' },
+            { text: 'API Reference', link: '/cloudify/api-reference' },
         ],
     },
     { text: 'Frequent Questions', link: '/cloudify/faq' },

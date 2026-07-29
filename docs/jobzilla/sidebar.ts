@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/jobzilla/releases' },
       { text: 'Upgrade Guide', link: '/jobzilla/upgrade' },
     ],
   },
@@ -41,6 +40,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/jobzilla/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/jobzilla/usage-media-wasabi' },
       { text: 'Setup email', link: '/jobzilla/usage-email' },
+      { text: 'Backup', link: '/jobzilla/plugin-backup' },
       { text: 'Currencies', link: '/jobzilla/usage-currencies' },
       { text: 'Setup social login', link: '/jobzilla/usage-social-login' },
       { text: 'Setup cronjob', link: '/jobzilla/cronjob' },

@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/martfury/releases' },
       { text: 'Upgrade Guide', link: '/martfury/upgrade' },
     ],
   },

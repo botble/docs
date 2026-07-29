@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/transp/releases' },
       { text: 'Upgrade Guide', link: '/transp/upgrade' },
     ]
   },

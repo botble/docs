@@ -41,6 +41,7 @@ export default [
             { text: '16. Apple Sign-In', link: '/martfury-flutter/13_apple_login_setup' },
             { text: '17. Google Login', link: '/martfury-flutter/14_google_login_setup' },
             { text: '18. Facebook Login', link: '/martfury-flutter/15_facebook_login_setup' },
+            { text: '19. Backend Configuration', link: '/martfury-flutter/16_social_login_configuration' },
         ],
     },
 

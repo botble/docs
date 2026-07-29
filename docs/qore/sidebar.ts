@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/qore/releases' },
       { text: 'Upgrade Guide', link: '/qore/upgrade' },
     ]
   },

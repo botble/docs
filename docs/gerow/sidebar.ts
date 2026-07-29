@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/gerow/releases' },
             { text: 'Upgrade Guide', link: '/gerow/upgrade' },
         ]
     },

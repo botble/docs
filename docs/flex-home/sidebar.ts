@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/flex-home/releases' },
             { text: 'Upgrade Guide', link: '/flex-home/upgrade' },
         ],
     },

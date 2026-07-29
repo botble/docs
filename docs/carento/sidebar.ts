@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/carento/releases' },
             { text: 'Upgrade Guide', link: '/carento/upgrade' },
         ]
     },

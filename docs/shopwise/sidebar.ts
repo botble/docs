@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/shopwise/releases' },
       { text: 'Upgrade Guide', link: '/shopwise/upgrade' },
     ],
   },

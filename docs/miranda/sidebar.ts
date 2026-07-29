@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/miranda/releases' },
       { text: 'Upgrade Guide', link: '/miranda/upgrade' },
     ],
   },

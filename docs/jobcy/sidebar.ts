@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/jobcy/releases' },
       { text: 'Upgrade Guide', link: '/jobcy/upgrade' },
     ],
   },

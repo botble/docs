@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/auxero/releases' },
             { text: 'Upgrade Guide', link: '/auxero/upgrade' },
         ]
     },

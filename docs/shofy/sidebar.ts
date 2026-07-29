@@ -5,7 +5,6 @@ export default [
     {
         text: 'Prologue',
         items: [
-            { text: 'Release Notes', link: '/shofy/releases' },
             { text: 'Upgrade Guide', link: '/shofy/upgrade' },
         ],
     },

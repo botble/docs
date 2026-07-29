@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/ninico/releases' },
       { text: 'Upgrade Guide', link: '/ninico/upgrade' },
     ],
   },

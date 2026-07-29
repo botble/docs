@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/wowy/releases' },
       { text: 'Upgrade Guide', link: '/wowy/upgrade' },
     ],
   },
@@ -32,6 +31,7 @@ export default [
       { text: 'Menu', link: '/wowy/usage-menu' },
       { text: 'Theme options', link: '/wowy/usage-theme-options' },
       { text: 'Widgets', link: '/wowy/usage-widgets' },
+      { text: 'Ads', link: '/wowy/usage-ads' },
       { text: 'Custom CSS/JS', link: '/wowy/usage-custom-css-js' },
       { text: 'Translation', link: '/wowy/plugin-translation' },
       { text: 'Multi-language', link: '/wowy/usage-multi-language' },

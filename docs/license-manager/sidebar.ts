@@ -40,6 +40,7 @@ export default [
     {
         text: 'More',
         items: [
+            { text: 'Migration from LicenseBox', link: '/license-manager/migration-from-licensebox' },
             { text: 'FAQ', link: '/license-manager/faq' },
             { text: 'Troubleshooting', link: '/license-manager/troubleshooting' },
             { text: 'Changelog', link: '/license-manager/changelog' },

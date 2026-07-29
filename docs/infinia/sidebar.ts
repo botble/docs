@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/infinia/releases' },
       { text: 'Upgrade Guide', link: '/infinia/upgrade' },
     ]
   },

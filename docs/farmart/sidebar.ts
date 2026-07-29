@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/farmart/releases' },
       { text: 'Upgrade Guide', link: '/farmart/upgrade' },
     ],
   },
@@ -32,6 +31,7 @@ export default [
       { text: 'Menu', link: '/farmart/usage-menu' },
       { text: 'Theme options', link: '/farmart/usage-theme-options' },
       { text: 'Widgets', link: '/farmart/usage-widgets' },
+      { text: 'Ads', link: '/farmart/usage-ads' },
       { text: 'Custom CSS/JS', link: '/farmart/usage-custom-css-js' },
       { text: 'Translation', link: '/farmart/plugin-translation' },
       { text: 'Multi-language', link: '/farmart/usage-multi-language' },

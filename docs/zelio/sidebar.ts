@@ -5,7 +5,6 @@ export default [
   {
     text: 'Prologue',
     items: [
-      { text: 'Release Notes', link: '/zelio/releases' },
       { text: 'Upgrade Guide', link: '/zelio/upgrade' },
     ]
   },
