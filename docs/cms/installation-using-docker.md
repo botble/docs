@@ -24,19 +24,19 @@ Botble utilizes [Laravel Sail](https://laravel.com/docs/13.x/sail). Please refer
 - Run `sail composer install` to install the dependencies (or `update` command).
 - Run `sail artisan migrate` to create the database structure.
 - Run `sail artisan db:seed` if you need our sample data.
-- run `sail artisan cms:publish:assets` to publish assets.
-- open `http://localhost` to see the homepage (or `http://localhost:{your_port}`).
-- admin panel url: `http://localhost/admin`
-- default admin account:
-    - if you use our sample data, the default admin account is `admin` with the password `12345678`.
-    - if not, run `sail artisan cms:user:create` to create an admin user.
-- run `sail down` to stop the services.
+- Run `sail artisan cms:publish:assets` to publish assets.
+- Open `http://localhost` to see the homepage (or `http://localhost:{your_port}`).
+- Admin panel URL: `http://localhost/admin`
+- Default admin account:
+    - If you use our sample data, the default admin account is `admin` with the password `12345678`.
+    - If not, run `sail artisan cms:user:create` to create an admin user.
+- Run `sail down` to stop the services.
 
 ::: tip
-somethings ports are already in use, you can change the port in the `docker-compose.yml` file or use environment variables to change the port (e.g: `app_port=8080`).
+Sometimes ports are already in use. You can change the port in the `docker-compose.yml` file or use environment variables to change the port (e.g. `APP_PORT=8080`).
 :::
 
-## issues
+## Issues
 
 ### Rebuild images
 

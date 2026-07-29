@@ -143,7 +143,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
         url: 'https://cloudify.botble.com/api/v1/media/files',
         headers: {
             Accept: 'application/json',
-            X-API-KEY: '{token}',
+            'X-API-KEY': '{token}',
         },
         formData: {
             file: {
@@ -177,3 +177,5 @@ app.listen(3000, () => {
     console.log('Server started on http://localhost:3000')
 })
 ```
+
+:::

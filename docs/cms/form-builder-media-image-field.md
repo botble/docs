@@ -35,7 +35,7 @@ Result:
 
 ![Form images](./images/form-images.png)
 
-# Media File Field
+## Media File Field
 
 ```php
 use Botble\Base\Forms\Fields\MediaFileField;
@@ -51,7 +51,7 @@ $this->add(
 
 ![Form images](./images/form-file.png)
 
-# File Field
+## File Field
 
 Default file field is used to upload files.
 
