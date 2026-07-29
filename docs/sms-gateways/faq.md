@@ -180,7 +180,7 @@ Yes. See [Migration](./migration.md) to import from FOB SMS Gateway.
 
 - **Documentation**: This site (docs.botble.com/sms-gateways)
 - **CodeCanyon support**: Contact via CodeCanyon ticket system
-- **Community forums**: Botble forums (botble.com/forums)
+- **Community forums**: Botble forums (forums.botble.com)
 
 ### How do I report a bug?
 

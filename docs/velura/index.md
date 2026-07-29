@@ -73,15 +73,15 @@ presets in the CMS installer, or import the sample data to get them all:
 
 | Preset | Preview |
 |--------|---------|
-| **Home 1** — https://velura.botble.com | ![Home 1](./images/homepages/home-1.png) |
-| **Home 2** — https://velura.botble.com/home-2 | ![Home 2](./images/homepages/home-2.png) |
-| **Home 3** — https://velura.botble.com/home-3 | ![Home 3](./images/homepages/home-3.png) |
-| **Home 4** — https://velura.botble.com/home-4 | ![Home 4](./images/homepages/home-4.png) |
-| **Home 5** — https://velura.botble.com/home-5 | ![Home 5](./images/homepages/home-5.png) |
-| **Home 6** — https://velura.botble.com/home-6 | ![Home 6](./images/homepages/home-6.png) |
-| **Home 7** — https://velura.botble.com/home-7 | ![Home 7](./images/homepages/home-7.png) |
-| **Home 8** — https://velura.botble.com/home-8 | ![Home 8](./images/homepages/home-8.png) |
-| **Home 9** — https://velura.botble.com/home-9 | ![Home 9](./images/homepages/home-9.png) |
+| **Home 1** — Spa Standard Slider<br>[velura.botble.com](https://velura.botble.com/) | ![Home 1](./images/homepages/home-1.png) |
+| **Home 2** — Spa Minimal<br>[velura-home-2.botble.com](https://velura-home-2.botble.com) | ![Home 2](./images/homepages/home-2.png) |
+| **Home 3** — Spa Video<br>[velura-home-3.botble.com](https://velura-home-3.botble.com) | ![Home 3](./images/homepages/home-3.png) |
+| **Home 4** — Spa Category<br>[velura-home-4.botble.com](https://velura-home-4.botble.com) | ![Home 4](./images/homepages/home-4.png) |
+| **Home 5** — Beauty Slider<br>[velura-home-5.botble.com](https://velura-home-5.botble.com) | ![Home 5](./images/homepages/home-5.png) |
+| **Home 6** — Beauty & Glow<br>[velura-home-6.botble.com](https://velura-home-6.botble.com) | ![Home 6](./images/homepages/home-6.png) |
+| **Home 7** — Nail Studio<br>[velura-home-7.botble.com](https://velura-home-7.botble.com) | ![Home 7](./images/homepages/home-7.png) |
+| **Home 8** — Nail Artistry<br>[velura-home-8.botble.com](https://velura-home-8.botble.com) | ![Home 8](./images/homepages/home-8.png) |
+| **Home 9** — Nail Lounge<br>[velura-home-9.botble.com](https://velura-home-9.botble.com) | ![Home 9](./images/homepages/home-9.png) |
 
 ## Botble Team
 

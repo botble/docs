@@ -155,4 +155,4 @@ npm run ios          # and / or: npm run android
 ## Additional resources
 
 - [React Native Firebase: Cloud Messaging](https://rnfirebase.io/messaging/usage)
-- [FCM HTTP v1 API](https://firebase.google.com/docs/cloud-messaging/migrate-v1)
+- [FCM HTTP v1 API](https://firebase.google.com/docs/reference/fcm/rest)

@@ -146,4 +146,4 @@ Switching homepage demos via theme options or the demo importer automatically co
 
 ## Creating shortcodes
 
-See the [Botble CMS documentation on creating custom shortcodes](https://docs.botble.com/cms/development/shortcodes) if you want to add your own shortcodes on top of the Orisa theme.
+See the [Botble CMS documentation on creating custom shortcodes](/cms/shortcode) if you want to add your own shortcodes on top of the Orisa theme.

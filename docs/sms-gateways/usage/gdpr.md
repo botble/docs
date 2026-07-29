@@ -158,12 +158,12 @@ The widget honours the site language and routes to the three endpoints above.
 
 SMS Gateways acts as a **processor** of customer phone numbers and message bodies. Your SMS providers are **sub-processors**. Document the chain in your privacy policy:
 
-- [Twilio DPA](https://www.twilio.com/en-us/legal/data-processing-agreement)
+- [Twilio DPA](https://www.twilio.com/en-us/legal/data-protection-addendum)
 - [Vonage DPA](https://www.vonage.com/communications/legal/data-processing-agreement/)
 - [AWS SNS DPA](https://aws.amazon.com/service-terms/)
-- [Plivo DPA](https://www.plivo.com/legal/data-processing-addendum/)
+- [Plivo subprocessors](https://www.plivo.com/legal/subprocessors/)
 - [Msg91 privacy](https://msg91.com/privacy)
-- [Fast2SMS terms](https://www.fast2sms.com/dashboard/terms)
+- [Fast2SMS terms](https://www.fast2sms.com/terms-conditions)
 
 ## Next step
 

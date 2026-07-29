@@ -531,7 +531,7 @@ Triggered when shipment tracking status changes.
 ### Documentation Links
 - [Shippo API Documentation](https://goshippo.com/docs/)
 - [Botble CMS Documentation](https://docs.botble.com/)
-- [Plugin Development Guide](https://docs.botble.com/plugin-development)
+- [Plugin Development Guide](/cms/plugin-development/)
 
 ### Getting Help
 - Check plugin logs for error details

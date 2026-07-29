@@ -54,7 +54,7 @@ You can also trigger processing manually at any time:
 php artisan support-desk:process-emails
 ```
 
-For full cron setup instructions see the [Botble scheduler documentation](https://cms.botble.com/docs/cms/cronjob).
+For full cron setup instructions see the [Botble scheduler documentation](/cms/cronjob).
 
 ### 3. Gmail Setup (App Password)
 

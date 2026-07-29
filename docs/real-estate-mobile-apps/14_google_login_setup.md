@@ -136,5 +136,5 @@ npm run android      # and / or: npm run ios
 ## Additional resources
 
 - [Google Cloud Console](https://console.cloud.google.com)
-- [@react-native-google-signin/google-signin docs](https://react-native-google-signin.github.io/docs/)
+- [@react-native-google-signin/google-signin docs](https://react-native-google-signin.github.io/docs/install)
 - [Firebase Console](https://console.firebase.google.com)

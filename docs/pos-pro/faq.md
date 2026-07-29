@@ -237,4 +237,4 @@ See [Troubleshooting](troubleshooting.md) for more help.
 
 - Documentation: [https://docs.botble.com/pos-pro](https://docs.botble.com/pos-pro)
 - Support Email: [support@botble.com](mailto:support@botble.com)
-- Support Forum: [https://botble.com/forum](https://botble.com/forum)
+- Support Forum: [https://forums.botble.com](https://forums.botble.com)

@@ -78,7 +78,7 @@ For each provider, you need to create an OAuth application on the provider's dev
 
 #### Envato
 
-1. Go to [Envato API](https://build.envato.com/create-app/)
+1. Go to [Envato API](https://build.envato.com/api/)
 2. Create a new application
 3. Set the **Confirmation URL** (redirect URI) to:
    ```

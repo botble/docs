@@ -362,7 +362,7 @@ If you can't resolve the issue:
 
 3. **Contact Support**:
    - Email: [support@botble.com](mailto:support@botble.com)
-   - Forum: [https://botble.com/forum](https://botble.com/forum)
+   - Forum: [https://forums.botble.com](https://forums.botble.com)
 
 ## Quick Reference
 

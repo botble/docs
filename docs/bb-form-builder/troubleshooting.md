@@ -305,7 +305,7 @@ If you're unable to resolve the issue using this troubleshooting guide, please c
 
 - **Documentation**: [https://docs.botble.com/bb-form-builder](https://docs.botble.com/bb-form-builder)
 - **Support Email**: [contact@botble.com](mailto:contact@botble.com)
-- **Support Forum**: [https://botble.com/forum](https://botble.com/forum)
+- **Support Forum**: [https://forums.botble.com](https://forums.botble.com)
 
 When contacting support, please provide:
 

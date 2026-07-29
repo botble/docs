@@ -196,7 +196,7 @@ If you're unable to resolve the issue using this troubleshooting guide, please c
 
 - **Documentation**: [https://docs.botble.com/affiliate-pro](https://docs.botble.com/affiliate-pro)
 - **Support Email**: [support@botble.com](mailto:support@botble.com)
-- **Support Forum**: [https://botble.com/forum](https://botble.com/forum)
+- **Support Forum**: [https://forums.botble.com](https://forums.botble.com)
 
 When contacting support, please provide:
 

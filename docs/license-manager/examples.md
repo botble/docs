@@ -66,7 +66,7 @@ $config = [
 // Operations: list/create products, list/create/block/unblock licenses
 ```
 
-[View PHP example on GitHub](https://github.com/botble/license-manager-examples/tree/main/php)
+[View PHP example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/php)
 
 ## Laravel
 
@@ -114,7 +114,7 @@ php artisan license:verify
 php artisan license:deactivate
 ```
 
-[View Laravel example on GitHub](https://github.com/botble/license-manager-examples/tree/main/laravel)
+[View Laravel example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/laravel)
 
 ## WordPress
 
@@ -266,7 +266,7 @@ add_action('after_switch_theme', [$this, 'activate']);
 add_action('switch_theme', [$this, 'deactivate']);
 ```
 
-[View WordPress example on GitHub](https://github.com/botble/license-manager-examples/tree/main/wordpress)
+[View WordPress example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/wordpress)
 
 ## .NET / C#
 
@@ -309,7 +309,7 @@ var path = await client.DownloadUpdateAsync(update.UpdateId, "./updates");
 - **ASP.NET Core API** — Minimal API endpoints wrapping the license client
 - **Blazor Server** — Interactive web dashboard with Bootstrap UI
 
-[View .NET example on GitHub](https://github.com/botble/license-manager-examples/tree/main/dotnet)
+[View .NET example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/dotnet)
 
 ## Java
 
@@ -352,7 +352,7 @@ try (var client = new LicenseManagerClient(config)) {
 - **Android**: Use on a background thread (network calls block the calling thread)
 - **Desktop (Swing/JavaFX)**: Call from a background thread, update UI on the event dispatch thread
 
-[View Java example on GitHub](https://github.com/botble/license-manager-examples/tree/main/java)
+[View Java example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/java)
 
 ## Python
 
@@ -392,7 +392,7 @@ path = client.download_update(update["update_id"], "./updates")
 - **Flask/FastAPI**: Register as a dependency and inject into route handlers
 - **Desktop (Tkinter/PyQt)**: Call from a background thread to avoid blocking the UI
 
-[View Python example on GitHub](https://github.com/botble/license-manager-examples/tree/main/python)
+[View Python example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/python)
 
 ## Django
 
@@ -481,7 +481,7 @@ update = client.check_for_update("1.0.0")
 path = client.download_update(update["update_id"], "./updates")
 ```
 
-[View Django example on GitHub](https://github.com/botble/license-manager-examples/tree/main/django)
+[View Django example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/django)
 
 ## Node.js
 
@@ -529,7 +529,7 @@ Provides REST endpoints: `POST /license/activate`, `GET /license/verify/:product
 - **Electron**: Use in the main process; communicate with renderer via IPC
 - **Serverless (Lambda)**: Create client per invocation or use a warm instance
 
-[View Node.js example on GitHub](https://github.com/botble/license-manager-examples/tree/main/nodejs)
+[View Node.js example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/nodejs)
 
 ## Ruby on Rails
 
@@ -573,7 +573,7 @@ config.middleware.use LicenseMiddleware,
   cache_ttl: 300
 ```
 
-[View Rails example on GitHub](https://github.com/botble/license-manager-examples/tree/main/rails)
+[View Rails example on GitHub](https://github.com/botble/license-manager-examples/tree/develop/rails)
 
 ## Customizing the Examples
 
