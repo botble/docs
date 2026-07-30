@@ -7,6 +7,22 @@ description: SMS Gateways release history and version updates.
 
 All notable changes to SMS Gateways are documented here.
 
+## Version 1.0.35 — 2026-07-30
+
+### Added
+
+- **New setting: Send SMS inline (bypass the queue)** (Admin → SMS Gateways → Settings, default off). Turn this on for shared hosting that drives the queue worker from a once-per-minute cron. Since v1.0.33 dispatches SMS to a dedicated `sms-gateways` queue, and the cron line most hosts hand out (`php artisan queue:work --stop-when-empty --max-time=55`) reads only the `default` queue, switching `QUEUE_CONNECTION` from `sync` to `database` on those installs silently stopped SMS altogether — with `queue:failed` empty and `queue:work --once` reporting "nothing to process", because nothing was ever wrong with the jobs, they were simply in a queue nobody read. Inline mode sends SMS during the request so OTP arrives instantly, while order emails, vendor notifications and the invoice PDF stay on the database queue. Leave it off on a VPS running a continuous worker. See [Queue Setup](./usage/queue.md#shared-hosting-with-a-cron-worker-turn-on-inline-mode).
+
+### Fixed
+
+- **System Health showed a green cron status for a cron that had stopped running.** The cron-alive age was computed with `now()->diffInSeconds()`, which is signed in Carbon 3, so a past heartbeat produced a negative age that passed every staleness threshold.
+
+## Version 1.0.34 — 2026-05-22
+
+### Fixed
+
+- **OTP expired the moment it was created on MySQL/MariaDB installs where `explicit_defaults_for_timestamp` is OFF** (the default on MariaDB &lt;10.10, which CloudPanel ships). Under that flag the first `NOT NULL TIMESTAMP` column in a table silently acquires `ON UPDATE CURRENT_TIMESTAMP` — for `smsg_otps` that column is `expires_at`, so the follow-up write that links the delivery log rewrote the expiry to the current timestamp. Customers entered the correct code and got "OTP is incorrect / no active OTP" regardless of the configured TTL. An idempotent migration re-declares the column with an explicit `DEFAULT` and no `ON UPDATE`. PostgreSQL and SQLite installs were never affected and the migration no-ops there.
+
 ## Version 1.0.33 — 2026-05-16
 
 ### Changed

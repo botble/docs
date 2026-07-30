@@ -31,6 +31,34 @@ QUEUE_CONNECTION=sync
 
 The order-confirm flow blocks on the SMS HTTP call exactly as it did pre-v1.0.33. No risk of "Queued forever" rows.
 
+## Shared hosting with a cron worker — turn on inline mode
+
+Shared hosts have no Supervisor, so the usual advice is to run the worker from a once-per-minute cron:
+
+```
+* * * * * php /home/you/public_html/artisan queue:work --stop-when-empty --max-time=55
+```
+
+**That cron line does not send SMS.** `queue:work` with no `--queue` flag reads only the `default` queue, and this plugin dispatches to `sms-gateways`. If you switch `QUEUE_CONNECTION` from `sync` to `database` with that cron in place, SMS stops entirely and the symptoms all point the wrong way: `queue:failed` is empty (nothing failed — nothing ran) and `queue:work --once` says "nothing to process" because it is looking at the wrong queue.
+
+Adding `--queue=sms-gateways,default` fixes the delivery, but a once-a-minute worker can still delay an OTP by up to 60 seconds — unusable when the customer is watching a countdown on the verification screen.
+
+For this setup, enable **Send SMS inline (bypass the queue)** (v1.0.35+):
+
+```
+Admin → SMS Gateways → Settings → Send SMS inline (bypass the queue)
+```
+
+SMS is then sent during the request, exactly as on `sync`, while everything genuinely worth deferring — order emails, vendor notifications, the invoice PDF — stays on your `database` queue. It applies to `RetryFailedSmsJob` too, so the plugin does not depend on the `sms-gateways` queue being consumed at all.
+
+Leave the setting **off** on a VPS with a continuous worker — there it would give up async delivery for nothing.
+
+| Your setup | What to do |
+|---|---|
+| `QUEUE_CONNECTION=sync` | Nothing. Inline already. |
+| `database` / `redis` + cron worker (shared hosting) | Turn **Send SMS inline** on |
+| `database` / `redis` + Supervisor worker (VPS) | Leave it off, run the worker with `--queue=sms-gateways,default` |
+
 ## Enabling async on a VPS
 
 ### 1. Choose a queue driver
@@ -147,6 +175,7 @@ Pattern B is recommended once you push >100 SMS / hour — slow mail jobs (large
 
 | Symptom | Cause | Fix |
 |---|---|---|
+| SMS status stays `Queued` forever, `queue:failed` is empty and `queue:work --once` says "nothing to process" | Worker started without `--queue=sms-gateways`, so it only reads `default` while SMS sits in the dedicated queue | Add `--queue=sms-gateways,default` to the worker command. On a cron-driven shared host, also turn on **Send SMS inline** so OTP does not wait for the next cron tick |
 | SMS status stays `Queued` for hours | Worker not running, or worker started before `.env` was updated | `sudo supervisorctl restart sms-worker:*` then `php artisan optimize:clear` |
 | Worker process dies after one job | `--max-time` is missing or too low | Add `--max-time=3600` to the command |
 | Worker uses old code after deploys | Workers cache the bootstrapped app in memory | Send `php artisan queue:restart` after every deploy; Supervisor will respawn with fresh code |
