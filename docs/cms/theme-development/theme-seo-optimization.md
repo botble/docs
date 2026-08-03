@@ -36,6 +36,30 @@ SeoHelper::openGraph()->setImage(RvMedia::getImageUrl($post->image));
 SeoHelper::openGraph()->setType('article');
 ```
 
+#### Setting `article:*` Meta Tags
+
+Open Graph properties set through `SeoHelper::openGraph()` are always prefixed with `og:`, so they cannot emit the
+`article:*` family. Use `addPropertyMeta()` (or `addPropertyMetas()`) for those — it renders `<meta property="...">`
+with no prefix:
+
+```php
+SeoHelper::meta()->addPropertyMetas([
+    'article:published_time' => $post->created_at->toIso8601String(),
+    'article:modified_time' => $post->updated_at->toIso8601String(),
+    'article:author' => $post->author_name,
+    'article:section' => $post->first_category?->name,
+    'article:tag' => $post->tags->pluck('name')->implode(', '),
+]);
+```
+
+The blog plugin already emits these on single post pages, so you only need this for your own content types.
+
+::: warning Two things to know
+- Empty values are skipped, so you can pass `null` freely.
+- Meta tags are keyed by name, so adding `article:tag` twice **replaces** the first value rather than emitting two
+  tags. Join multiple values into one string, as above.
+:::
+
 #### Setting Twitter Card Data
 
 ```php
@@ -73,6 +97,28 @@ In your theme's views, you should include the SEO meta tags in the head section:
 Structured data helps search engines understand the content of your pages better. Botble CMS supports adding structured data through the SEO Helper or directly in your theme.
 
 #### Article Schema
+
+::: tip The blog plugin already does this
+Single post pages emit article JSON-LD automatically. Configure it at **Admin → Settings → Blog**: *Enable blog post
+schema* and *Schema type* (`BlogPosting` by default — pick `NewsArticle` only for timely news, since parsers apply
+freshness decay to it). Do not hand-roll a second block in your theme, or the page ships two conflicting entities.
+
+Write your own only for content types core does not cover, and if you do, note the pitfall below.
+:::
+
+::: warning Blade escaping breaks JSON-LD
+In the example below, <code v-pre>{{ $post->name }}</code> HTML-escapes its output, so a title containing `&` is emitted as `&amp;`
+inside the JSON — valid HTML, invalid JSON-LD, and parsers show the literal entity. Decode and strip before
+interpolating, and escape angle brackets so no value can terminate the `<script>` block:
+
+```php
+$headline = html_entity_decode(strip_tags($post->name), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+$json = json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG);
+```
+
+Note `json_encode()` does **not** escape `<` and `>` by default — `JSON_HEX_TAG` is what prevents a `</script>`
+payload in a title from breaking out.
+:::
 
 For blog posts or articles:
 
@@ -193,6 +239,11 @@ app()->booted(function () {
 ### Robots.txt
 
 Botble CMS allows you to customize the robots.txt file through the admin panel under Appearance > Robots.txt.
+
+To control AI crawlers specifically, use **Admin → Settings → Sitemap → AI crawler policy** instead of writing the
+rules by hand — see [AI crawlers](../sitemap.md#ai-crawlers). Both that policy and this editor write the same
+`public/robots.txt` file; the policy owns only the block between its `# BEGIN/# END Botble AI crawler policy` markers,
+so rules you add here outside those markers are kept.
 
 You can also programmatically modify the robots.txt content:
 

@@ -164,6 +164,82 @@ Go to **Admin → Settings → Sitemap**.
 | Enable sitemap | On | Master switch. When off, `/sitemap.xml` returns 404 and all child sitemaps are disabled. |
 | Sitemap items per page | `1000` | Maximum URLs per sitemap file. Range 10–100,000. Google's hard limit is 50,000 URLs / 50 MB per file. |
 | Enable llms.txt | On | Serves a dynamic `/llms.txt` following the [llmstxt.org](https://llmstxt.org) specification, so AI assistants can discover your content. Only used when a static `public/llms.txt` file does not already exist. |
+| Pages listed in llms.txt | `100` | Maximum pages listed. Range 1–1000. When there are more, llms.txt links to the XML sitemap for full coverage instead of silently cutting the list short. |
+| Blog posts listed in llms.txt | `50` | Same, for blog posts. |
+| Enable llms-full.txt | Off | Serves `/llms-full.txt` with the **full text** of your pages and posts rather than just links. Only published content is included, but it does republish complete article bodies — leave this off unless you want that. Returns 404 while disabled. |
+| AI crawler policy | Allow all crawlers | Which AI crawlers may access the site. See [AI crawlers](#ai-crawlers) below. |
+
+### llms.txt and llms-full.txt
+
+`/llms.txt` is an index: your site name, a one-line description, then linked lists of pages and posts. It is cached for
+one hour.
+
+`/llms-full.txt` is the full-text variant and is **off by default**. When enabled it streams content with a 5 MB
+output budget; if that budget is reached, the file ends with a note pointing at the sitemap. It never answers with an
+empty body — while disabled or when there is nothing published, it returns 404.
+
+::: tip Adding your own content types
+Plugins can add their own sections to both files through the `FILTER_LLMS_TXT_SECTIONS` filter:
+
+```php
+add_filter(FILTER_LLMS_TXT_SECTIONS, function (array $sections): array {
+    $sections[] = [
+        'model' => \Botble\Ecommerce\Models\Product::class,
+        'heading' => 'Products',
+        'limit' => 100,
+    ];
+
+    return $sections;
+});
+```
+
+The model needs a `wherePublished()` scope, a `name`, a `description` and a slugable `url`. Limits are capped at 1000.
+:::
+
+### AI crawlers
+
+**AI crawler policy** writes crawler rules into `public/robots.txt` when you save the settings page. The three options
+separate two very different groups of bots:
+
+| Policy | Effect |
+| --- | --- |
+| Allow all crawlers | No crawler is disallowed. |
+| Block training crawlers | Disallows crawlers that collect content to train models — GPTBot, ClaudeBot, CCBot, Amazonbot, Bytespider, Google-Extended, Applebot-Extended and others. AI search and citations keep working. |
+| Block all AI crawlers | The above, plus retrieval crawlers that fetch a page to answer a question and normally link back — OAI-SearchBot, ChatGPT-User, Claude-User, PerplexityBot, DuckAssistBot and others. |
+
+Blocking the retrieval group also gives up AI citations and the referral traffic that comes with them, so prefer
+**Block training crawlers** if you only want to stay out of training data.
+
+#### How the rules are written
+
+Saving the settings page updates `public/robots.txt` in place, inside a managed block:
+
+```
+User-agent: *
+Disallow:
+Disallow: /my-private-area/
+
+# BEGIN Botble AI crawler policy
+# Generated from Admin -> Settings -> Sitemap -> AI crawler policy.
+# Edits between these markers are overwritten; add your own rules outside them.
+User-agent: GPTBot
+Disallow: /
+...
+# END Botble AI crawler policy
+```
+
+Only the block between the markers is managed. Anything you write outside it — by hand or through
+**Admin → Theme → Robots.txt** — is preserved on every save, and switching back to *Allow all crawlers* removes the
+block and leaves the rest of your file exactly as it was.
+
+::: warning
+- Edits **between** the markers are overwritten the next time settings are saved. Put your own rules outside them.
+- If `public/robots.txt` is not writable, the policy cannot be applied. The settings page warns you, and saving
+  reports the failure instead of silently doing nothing.
+- If you delete `public/robots.txt` entirely, Botble serves a generated `robots.txt` from the policy instead.
+- `robots.txt` is advisory: crawlers choose whether to honour it. Enforcement needs a rule at your web server, CDN, or
+  firewall (for example a Cloudflare WAF rule).
+:::
 
 ### Content types
 
