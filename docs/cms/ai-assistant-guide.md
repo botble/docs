@@ -16,11 +16,12 @@ Botble CMS is a modular Laravel CMS with the following structure:
 
 ### Tech Stack
 
-- **Backend**: Laravel 13+, PHP 8.3+
-- **Frontend**: Vue.js 3, Bootstrap 5, jQuery
-- **Build**: Vite (per-module `vite.build.mjs` descriptors, shared `vite-build.mjs` runner), npm workspaces. See [Asset Compilation](/cms/asset-compilation).
+- **Backend**: Laravel 13+, PHP 8.3+ / 8.4
+- **Frontend**: Vue.js 3.5, Bootstrap 5.3, jQuery
+- **Build**: Vite (per-module `vite.build.mjs` descriptors, shared `vite-build.mjs` runner), npm workspaces. Applies to **core, packages, plugins AND themes** — `webpack.mix.js` is legacy. See [Asset Compilation](/cms/asset-compilation).
 - **Database**: MySQL (SQLite for tests)
 - **UI Framework**: [Tabler UI](https://docs.tabler.io/ui)
+- **Tooling**: Pint (`pint.json`), PHPStan (`phpstan.neon`), Rector (`rector.php`), Prettier (`.prettierrc`)
 
 ## Naming Conventions
 
@@ -214,15 +215,15 @@ $this
 
 ### Available Field Types
 
-**Text & Input:** `TextField`, `EmailField`, `PasswordField`, `PhoneNumberField`, `NumberField`, `TextareaField`, `HiddenField`
+**Text & Input:** `TextField`, `EmailField`, `PasswordField`, `PhoneNumberField`, `NumberField`, `TextareaField`, `UrlField`, `HiddenField`
 
 **Rich Content:** `EditorField`, `CkEditorField`, `TinyMceField`, `CodeEditorField` (with `.mode('css'|'javascript'|'html'|'php')`)
 
-**Selection:** `SelectField`, `RadioField`, `MultiCheckListField`, `OnOffField`, `TreeCategoryField`
+**Selection:** `SelectField`, `RadioField`, `CheckboxField`, `MultiCheckListField`, `OnOffField`, `OnOffCheckboxField`, `TreeCategoryField`
 
 **Media:** `MediaImageField`, `MediaImagesField`, `MediaFileField`, `FileField`
 
-**Date & Time:** `DatePickerField` (with `.withTimePicker()`), `DateField`, `TimeField`, `TimePickerField`
+**Date & Time:** `DatePickerField` (with `.withTimePicker()`), `DateField`, `DatetimeField`, `TimeField`, `TimePickerField`
 
 **Special:** `ColorField`, `ColorSelectorField`, `TagField`, `RepeaterField`, `CoreIconField`, `GoogleFontsField`, `UiSelectorField`, `AutocompleteField`, `AlertField`, `HtmlField`, `LabelField`
 
@@ -302,7 +303,7 @@ The `image` accessor depends on the `images` field as fallback. Always include b
 
 ### All Column Types
 
-`IdColumn`, `NameColumn`, `ImageColumn`, `StatusColumn`, `CreatedAtColumn`, `UpdatedAtColumn`, `FormattedColumn`, `EnumColumn`, `LinkableColumn`, `EmailColumn`, `PhoneColumn`, `YesNoColumn`, `CheckboxColumn`
+`IdColumn`, `NameColumn`, `ImageColumn`, `StatusColumn`, `CreatedAtColumn`, `UpdatedAtColumn`, `DateColumn`, `DateTimeColumn`, `FormattedColumn`, `EnumColumn`, `LinkableColumn`, `EmailColumn`, `PhoneColumn`, `YesNoColumn`, `CheckboxColumn`, `RowActionsColumn`
 
 ### Column Customization Methods
 
@@ -334,6 +335,85 @@ class MyReadOnlyTable extends TableAbstract
     // NOT ->addActions([]) — empty array doesn't disable it
 }
 ```
+
+## Controller Pattern
+
+::: danger IMPORTANT
+Modern Botble controllers are **thin**. They extend `BaseController`, delegate rendering to the Form class, and delegate deletion to `DeleteResourceAction`. Do **not** generate controllers that inject repositories, build responses manually, or call `findOrFail()`.
+:::
+
+```php
+use Botble\Base\Http\Actions\DeleteResourceAction;
+use Botble\Base\Http\Controllers\BaseController;
+use Botble\Base\Supports\Breadcrumb;
+
+class FaqController extends BaseController
+{
+    protected function breadcrumb(): Breadcrumb
+    {
+        return parent::breadcrumb()
+            ->add(trans('plugins/faq::faq.name'), route('faq.index'));
+    }
+
+    public function index(FaqTable $table)
+    {
+        $this->pageTitle(trans('plugins/faq::faq.name'));
+
+        return $table->renderTable();
+    }
+
+    public function create()
+    {
+        $this->pageTitle(trans('plugins/faq::faq.create'));
+
+        return FaqForm::create()->renderForm();
+    }
+
+    public function store(FaqRequest $request)
+    {
+        $form = FaqForm::create()->setRequest($request);
+        $form->save();
+
+        return $this
+            ->httpResponse()
+            ->setPreviousRoute('faq.index')
+            ->setNextRoute('faq.edit', $form->getModel()->getKey())
+            ->withCreatedSuccessMessage();
+    }
+
+    public function edit(Faq $faq)
+    {
+        $this->pageTitle(trans('core/base::forms.edit_item', ['name' => $faq->question]));
+
+        return FaqForm::createFromModel($faq)->renderForm();
+    }
+
+    public function update(Faq $faq, FaqRequest $request)
+    {
+        FaqForm::createFromModel($faq)->setRequest($request)->save();
+
+        return $this->httpResponse()->setPreviousRoute('faq.index')->withUpdatedSuccessMessage();
+    }
+
+    public function destroy(Faq $faq)
+    {
+        return DeleteResourceAction::make($faq);
+    }
+}
+```
+
+### Key Points
+
+| Element | Rule |
+|---------|------|
+| Base class | Always `BaseController` — never plain `Controller` |
+| Page title | `$this->pageTitle(...)` — not a `$data['title']` array |
+| Breadcrumb | Override `protected function breadcrumb(): Breadcrumb` |
+| Create form | `MyForm::create()->renderForm()` |
+| Edit form | `MyForm::createFromModel($model)->renderForm()` |
+| Save | `->setRequest($request)->save()` — form handles persistence |
+| Delete | `DeleteResourceAction::make($model)` — handles permissions, events, response |
+| Model resolution | Route model binding (`edit(Faq $faq)`) — auto-404, supports int + UUID |
 
 ## Hooks System
 
@@ -522,6 +602,10 @@ Before creating new plugins, study example plugins from the community:
 # Create new plugin scaffold
 php artisan cms:plugin:create my-plugin
 
+# Scaffold a full CRUD module inside a plugin (preferred — generates all classes at once)
+php artisan cms:plugin:make:crud my-plugin
+php artisan cms:package:make:crud my-package   # same, for /platform/packages
+
 # Scaffold individual components
 php artisan cms:make:model {Name} --no-interaction
 php artisan cms:make:form {Name} --no-interaction
@@ -529,10 +613,17 @@ php artisan cms:make:table {Name} --no-interaction
 php artisan cms:make:controller {Name} --no-interaction
 php artisan cms:make:request {Name} --no-interaction
 php artisan cms:make:route {Name} --no-interaction
+php artisan cms:make:panel-section {Name}      # Settings panel section
+php artisan cms:make:setting {Name}            # Setting controller + form + request
 
 # Plugin management
 php artisan cms:plugin:activate my-plugin
 php artisan cms:plugin:deactivate my-plugin
+php artisan cms:plugin:activate:all
+php artisan cms:plugin:discover                # Rebuild cached plugin manifest
+php artisan cms:plugin:assets:publish my-plugin
+php artisan cms:plugin:install-from-marketplace {name}
+php artisan cms:plugin:update-version-info
 ```
 
 ### Plugin.php Lifecycle
@@ -655,6 +746,8 @@ if (is_plugin_active('language') && is_plugin_active('language-advanced')) {
 │   └── shortcodes/{name}/
 │       ├── index.blade.php   # Frontend render
 │       └── admin.blade.php   # Admin config form
+├── routes/web.php        # Theme-specific routes (optional)
+├── src/                  # Theme PHP classes, e.g. Http/Controllers (optional)
 ├── views/                # Page views
 ├── widgets/{name}/templates/
 │   ├── frontend.blade.php
@@ -662,7 +755,18 @@ if (is_plugin_active('language') && is_plugin_active('language-advanced')) {
 ├── public/               # Compiled public assets
 ├── screenshot.png        # Theme preview image
 ├── theme.json            # Theme metadata
-└── webpack.mix.js        # Asset compilation
+└── vite.build.mjs        # Asset build descriptor
+```
+
+### vite.build.mjs
+
+Themes declare entries, not a full Vite config — the shared root `vite-build.mjs` runner consumes them. Themes that keep sources in `assets/` (rather than `resources/`) must use the explicit `{src, out}` form:
+
+```js
+export default {
+    js: [{ src: 'assets/js/my-theme.js', out: 'my-theme.js' }],
+    sass: [{ src: 'assets/sass/style.scss', out: 'style.css' }],
+}
 ```
 
 ### theme.json Configuration
@@ -731,11 +835,17 @@ php artisan cms:theme:create my-theme
 # Activate theme
 php artisan cms:theme:activate my-theme
 
-# Remove theme
+# Rename / remove theme
+php artisan cms:theme:rename my-theme new-name
 php artisan cms:theme:remove my-theme
 
 # Publish theme assets
 php artisan cms:theme:assets:publish
+
+# Theme options & cache
+php artisan cms:theme:clear-cache
+php artisan cms:theme:options:check            # Diff DB options vs option definitions
+php artisan cms:theme:options:cleanup-shared   # Remove stale locale-specific keys
 ```
 
 ### Using Theme Facade
@@ -871,11 +981,14 @@ Toggle `.dark` class on `<html>`. Use `dark:` prefix on all affected classes. Pe
 ### Build Pipeline
 
 ```bash
-npm run dev     # development
-npm run watch   # watch mode
-npm run prod    # production (minifies + copies to public/)
+npm run dev     # development build (alias: npm run development)
+npm run prod    # production build (alias: npm run production) — minifies + copies to public/
 php artisan cms:publish:assets  # always run after prod build
 ```
+
+::: warning
+There is no `npm run watch` script. Available scripts are `dev`, `development`, `prod`, `production`, `screenshot`, `admin-screenshot`.
+:::
 
 ## UI Components (Tabler)
 
@@ -1092,21 +1205,22 @@ database/seeders/
 
 ```bash
 # Build assets
-npm run dev|prod|watch
+npm run dev|prod
 
 # Format code
-./vendor/bin/pint [path]           # PHP (PSR-12)
-npm run format                      # JS/Vue/Blade
+./vendor/bin/pint [path]              # PHP (config: pint.json)
+npx prettier --write {path}           # JS/Vue/Blade (config: .prettierrc)
 
 # Quality checks
-php artisan test                    # Run tests
-./vendor/bin/phpstan analyse        # Static analysis
+php artisan test                      # Run tests
+./vendor/bin/phpstan analyse          # Static analysis (config: phpstan.neon)
+./vendor/bin/rector process --dry-run # Automated refactors (config: rector.php)
 
 # CMS commands
 php artisan cms:plugin:list
 php artisan cms:plugin:activate {name}
 php artisan cms:theme:activate {name}
-php artisan cms:publish:assets      # After prod build
+php artisan cms:publish:assets        # After prod build
 ```
 
 ### Pre-commit Verification
@@ -1140,21 +1254,25 @@ php artisan test platform/plugins/{plugin}/tests
 
 **Low:** Missing `query()` builder, `setInterval` without cleanup, noisy comments
 
-## Repository Pattern
+## Repository Pattern (Deprecated)
+
+::: danger DO NOT USE IN NEW CODE
+`Botble\Support\Repositories\Eloquent\RepositoriesAbstract` is marked `@deprecated` in core. Older plugins (blog, contact, gallery, faq, language, member…) still ship `src/Repositories/` folders — that is legacy, not a pattern to copy.
+
+**For new code:** query the model directly (`MyModel::query()->...`) and put reusable logic in the Model, a Service class, or a query scope.
+:::
 
 ```php
-// Interface
+// ❌ DEPRECATED - do not scaffold this for new plugins
 interface MyInterface extends RepositoryInterface {}
-
-// Implementation
-class MyRepository extends RepositoriesAbstract implements MyInterface
-{
-    // Custom methods using $this->model
-}
-
-// Register in ServiceProvider
+class MyRepository extends RepositoriesAbstract implements MyInterface {}
 $this->app->bind(MyInterface::class, MyRepository::class);
+
+// ✅ CURRENT - direct model access
+MyModel::query()->where('status', BaseStatusEnum::PUBLISHED)->get();
 ```
+
+When editing an existing plugin that already uses repositories, follow its established pattern rather than mixing both styles in one plugin.
 
 ## Request Validation
 
@@ -1176,6 +1294,26 @@ class MyRequest extends Request
 }
 ```
 
+## "My Change Isn't Showing" — Check Before Debugging Code
+
+::: warning
+A large share of reported Botble "bugs" are stale caches or unpublished assets, not logic errors. Rule these out **before** rewriting working code.
+:::
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| Blade/shortcode edit has no effect | Shortcode cache | Admin → Settings → Cache → disable "Enable shortcode cache" |
+| Widget content stale | Widget cache | Same settings page |
+| Any admin/frontend staleness | CMS cache | Platform Administration → Cache Management, or `php artisan cache:clear` |
+| CSS/JS edit not applied | Assets not published | `npm run prod` **then** `php artisan cms:publish:assets` |
+| Theme option/asset changes ignored | Theme cache | `php artisan cms:theme:clear-cache` |
+| New route 404s | Cached routes | `php artisan route:clear` |
+| New plugin class not found | Stale plugin manifest | `php artisan cms:plugin:discover` |
+| Images wrong size after changing `theme.json` / `config/image_sizes.php` | Old thumbnails still on disk | Admin → Settings → Media → Regenerate thumbnails |
+| Session-dependent output (currency, locale) never changes | Host-level cache ignores session cookies | Check LiteSpeed / Cloudflare / hPanel cache outside the CMS |
+
+Also note: `plugin.json` `version` reflects the plugin's own tag, **not** the core CMS version — a "low" number there is by design, not a stale install.
+
 ## Common Pitfalls to Avoid
 
 | Pitfall | Solution |
@@ -1196,6 +1334,11 @@ class MyRequest extends Request
 | Raw image path in `<img>` src | Use `RvMedia::getImageUrl()` |
 | Plugin `removed()` without dropping tables | Must drop ALL tables and settings |
 | `$_COOKIE` direct access | Use `request()->cookie()` with allowlist |
+| New controller injecting a repository | Use the thin `BaseController` + Form + `DeleteResourceAction` pattern |
+| Scaffolding `RepositoriesAbstract` in new code | Deprecated — query the model directly |
+| `webpack.mix.js` in a new theme | Use `vite.build.mjs` |
+| `npm run watch` | Doesn't exist — use `npm run dev` |
+| Forgetting `cms:publish:assets` after `npm run prod` | Compiled assets never reach `public/` |
 
 ## Quick Reference Card
 
@@ -1233,6 +1376,12 @@ RvMedia::getImageUrl($path, 'thumb') // With size preset
 
 // Routes
 Route::get('{id}', ...)->wherePrimaryKey()  // Support int + UUID
+
+// Controllers
+MyForm::create()->renderForm()              // Create screen
+MyForm::createFromModel($model)->renderForm()  // Edit screen
+DeleteResourceAction::make($model)          // Destroy
+$this->pageTitle(trans('...'))              // Page title
 
 // Response
 $this->httpResponse()->withCreatedSuccessMessage()
