@@ -8,7 +8,7 @@ The **site URL** of your Botble backend (without the trailing `/api/v1`).
 
 ```bash
 # Local Botble backend example
-API_BASE_URL=http://jobbox.test
+API_BASE_URL=http://jobcy.test
 ```
 
 In `app.config.js` the app derives two values from this one key:
@@ -34,7 +34,7 @@ Rules:
 
 ### Local development & plain HTTP
 
-Local Botble sites often run over plain `http://` (e.g. `http://jobbox.test` or `http://192.168.1.10:8000`). iOS blocks plain HTTP by default, so `app.config.js` only relaxes App Transport Security when `APP_ENV=development`:
+Local Botble sites often run over plain `http://` (e.g. `http://jobcy.test` or `http://192.168.1.10:8000`). iOS blocks plain HTTP by default, so `app.config.js` only relaxes App Transport Security when `APP_ENV=development`:
 
 ```js
 NSAppTransportSecurity: {
@@ -65,7 +65,7 @@ API_KEY=
 
 ### Get the key
 
-1. Open your backend admin, e.g. `http://jobbox.test/admin`
+1. Open your backend admin, e.g. `http://jobcy.test/admin`
 2. Go to **Settings → API**
 3. Copy the API key (or generate one if none exists)
 

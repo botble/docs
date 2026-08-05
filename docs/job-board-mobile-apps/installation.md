@@ -38,7 +38,7 @@ cp .env.example .env
 Open `.env` and set at least:
 
 ```bash
-API_BASE_URL=http://jobbox.test        # your Botble backend, no trailing /api/v1
+API_BASE_URL=http://jobcy.test        # your Botble backend, no trailing /api/v1
 API_KEY=                                # only if configured in Botble admin
 APP_NAME=Botble JobBoard
 LICENSE_CODE=                           # your Envato purchase code (dev only)

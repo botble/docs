@@ -35,7 +35,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 ### What You Need From Your Website
 
 - A **Botble job-board website** up and running (e.g. `https://yoursite.com`) with the **job-board** plugin
-- Properties, employers, and content already added in admin
+- Jobs, companies, and content already added in admin
 - The **API enabled** in your Botble admin at **Settings → API**
 - An **API key** if you configured one in admin (sent as the `X-API-KEY` header; note this is **not** your Envato purchase code)
 - Your **Envato purchase code** (from CodeCanyon; used only for the development license check)
@@ -144,11 +144,11 @@ If you change app name, bundle id, icons, splash, or plugins in `app.config.js`/
 
 Test these to confirm the app is connected to your website:
 
-- [ ] Properties appear on the home screen
+- [ ] Jobs appear on the home screen
 - [ ] Search and filters return jobs from your site
-- [ ] Property detail shows specs, photos, and reviews
+- [ ] Job detail shows the description, company and requirements
 - [ ] You can log in with an account from your website
-- [ ] The inquiry flow calculates a price
+- [ ] Applying to a job submits successfully
 - [ ] Checkout opens the hosted payment page in a WebView
 - [ ] Favorites save
 
@@ -156,7 +156,7 @@ Test these to confirm the app is connected to your website:
 
 ---
 
-## Part 3: How Properties & Inquiries Sync Automatically
+## Part 3: How Jobs & Applications Sync Automatically
 
 The app connects to your Botble website through its **REST API** (`job-board` plugin):
 
@@ -167,7 +167,7 @@ Your Botble Website (yoursite.com)
         ↓
     Botble JobBoard app fetches data
         ↓
-    Properties, employers, applications, blog displayed
+    Jobs, companies, applications, blog displayed
 ```
 
 `API_BASE_URL` from `.env` is combined into `{API_BASE_URL}/api/v1` by `app.config.js` and used by the app's API client (`src/services/apiClient.ts`).
@@ -176,12 +176,12 @@ Your Botble Website (yoursite.com)
 
 | Data | How it syncs | Endpoint |
 |---|---|---|
-| **Properties** | Real-time on each visit | `/api/v1/jobs` |
+| **Jobs** | Real-time on each visit | `/api/v1/jobs` |
 | **Search / filters** | Real-time | `/api/v1/jobs/search`, `/jobs/filters` |
-| **Property detail** | Real-time | `/api/v1/jobs/{slug}` |
+| **Job detail** | Real-time | `/api/v1/jobs/{id}` |
 | **Projects** (developments) | Real-time | `/api/v1/projects` |
 | **Agents** | Real-time | `/api/v1/employers` |
-| **My applications** | Real-time when the customer views | `/api/v1/account/consults?type=sent` |
+| **My applications** | Real-time when the candidate views | `/api/v1/account/applications` |
 | **Saved jobs** | Synced with the account | `/api/v1/account/saved-jobs` |
 | **Taxonomy** (categories, features, facilities) | Real-time | `/api/v1/categories`, `/features`, `/facilities` |
 | **Blog** | Real-time | `/api/v1/posts` |
@@ -189,7 +189,7 @@ Your Botble Website (yoursite.com)
 
 - **Add a job on your website** → it appears in the app automatically
 - **Update a price** → the app shows it immediately
-- **Customer sends an inquiry in the app** → it appears in your admin panel
+- **A candidate applies in the app** → the application appears in your admin panel and in the employer portal
 
 See [API Integration](api-integration.md) for the full endpoint map.
 
@@ -367,7 +367,7 @@ Google review typically takes **1–3 days** (new apps may take up to 7).
 
 - [ ] Download your app from the store and test on a real device
 - [ ] Verify jobs load, search works, and job detail opens
-- [ ] Test the full inquiry flow (dates → extras → details → review → checkout)
+- [ ] Test the full apply flow (job detail → apply → application appears under My applications)
 - [ ] Verify login works for existing website customers
 - [ ] Check push notifications (see [Push notifications](push_notifications.md))
 - [ ] Share the app links with your customers
@@ -397,7 +397,7 @@ See [Deploying the App](09_deploying_app.md) and [Version management](10_version
 
 2. TEST LOCALLY
    ├── npm run ios:sim   (or npm run android)
-   └── Verify jobs, login, inquiry, checkout
+   └── Verify jobs, login, apply
 
 3. CUSTOMIZE
    ├── Theme colors, logo, app name, splash, translations

@@ -9,7 +9,7 @@ All app configuration lives in the `.env` file at the project root. `app.config.
 ## Required keys
 
 ```bash
-API_BASE_URL=http://jobbox.test        # backend site root (/api/v1 appended automatically)
+API_BASE_URL=http://jobcy.test        # backend site root (/api/v1 appended automatically)
 API_KEY=                                # only if an API key is configured in Botble admin
 APP_NAME=Botble JobBoard
 LICENSE_CODE=                           # your Envato purchase code (development-only license check)
@@ -38,7 +38,7 @@ Every key below is read by `app.config.js`. Keys not listed there have no effect
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `API_BASE_URL` | URL | `http://jobbox.test` | Backend site root **without** `/api/v1` (appended automatically) |
+| `API_BASE_URL` | URL | `http://jobcy.test` | Backend site root **without** `/api/v1` (appended automatically) |
 | `API_KEY` | text | *(empty)* | Sent as `X-API-KEY` only if configured in Botble admin → Settings → API |
 
 ### Localization & theme
@@ -98,7 +98,7 @@ The search map ships with a **free, no-key** engine (`MAP_PROVIDER=osm`, MapLibr
 | `MAP_OSM_STYLE_URL` | URL | `https://tiles.openfreemap.org/styles/liberty` | MapLibre vector-tile style (used when `MAP_PROVIDER=osm`) |
 | `GOOGLE_MAPS_ANDROID_API_KEY` | key | *(empty)* | Google Maps key for Android (required for `default`/`google`). Restrict to "Maps SDK for Android" |
 | `GOOGLE_MAPS_IOS_API_KEY` | key | *(empty)* | Google Maps key for iOS (required only for `google`). Restrict to "Maps SDK for iOS" |
-| `MAP_PIN_LIMIT` | integer | `200` | Max property pins fetched for the search map |
+| `MAP_PIN_LIMIT` | integer | `200` | Max job pins fetched for the search map |
 | `MAP_ENABLE_CLUSTERING` | `true` / `false` | `true` | Cluster nearby pins |
 | `MAP_CLUSTER_RADIUS` | integer | `50` | Clustering radius in pixels |
 | `MAP_SHOW_PRICE_MARKERS` | `true` / `false` | `true` | Show price-bubble markers instead of plain pins |
@@ -113,7 +113,7 @@ The search map ships with a **free, no-key** engine (`MAP_PROVIDER=osm`, MapLibr
 |---|---|---|---|
 | `QUERY_CACHE_PERSIST` | `true` / `false` | `true` | Persist the query cache to AsyncStorage so lists/pins survive app restarts |
 | `QUERY_CACHE_MAX_AGE_HOURS` | integer | `24` | Max age of persisted cache before it is discarded |
-| `MAP_PINS_STALE_MINUTES` | integer | `5` | `staleTime` (minutes) for map/list property queries before background revalidation |
+| `MAP_PINS_STALE_MINUTES` | integer | `5` | `staleTime` (minutes) for map/list job queries before background revalidation |
 
 ### Splash / launch
 
@@ -141,9 +141,7 @@ See [Profile links](11_profile_links.md).
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `HOME_FEATURED_PROPERTIES_COUNT` | integer | `6` | Featured properties on the home screen |
-| `HOME_FEATURED_PROJECTS_COUNT` | integer | `4` | Featured projects on the home screen |
-| `HOME_AGENTS_COUNT` | integer | `6` | Agents shown on the home screen |
+| `HOME_FEATURED_PROPERTIES_COUNT` | integer | `6` | Featured jobs on the home screen. The name is historical — it sizes the featured-jobs feed |
 | `HOME_BLOG_COUNT` | integer | `5` | Blog posts shown on the home screen |
 
 ### Social authentication

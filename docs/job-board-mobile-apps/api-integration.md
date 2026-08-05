@@ -4,7 +4,7 @@ The Botble JobBoard app talks to a Botble backend running the **job-board** plug
 
 ## Base URL / environment
 
-- `API_BASE_URL` (`.env`, e.g. `http://jobbox.test`) is the Botble backend's site root. `app.config.js` appends `/api/v1` to build `appConfig.api.baseUrl` (used for every request) and keeps the raw root as `appConfig.api.siteUrl` (used to resolve relative media URLs and to build the employer checkout WebView URL).
+- `API_BASE_URL` (`.env`, e.g. `http://jobcy.test`) is the Botble backend's site root. `app.config.js` appends `/api/v1` to build `appConfig.api.baseUrl` (used for every request) and keeps the raw root as `appConfig.api.siteUrl` (used to resolve relative media URLs and to build the employer checkout WebView URL).
 - Do **not** put `/api/v1` in `API_BASE_URL` yourself; it is appended automatically. Use no trailing slash, and `https://` in production.
 - All endpoints live **directly under `/api/v1`** (e.g. `/api/v1/jobs`, `/api/v1/companies`, `/api/v1/account/applications`). There is **no** `/job-board` path segment.
 - `API_KEY` (`.env`, optional) is sent as the `X-API-KEY` header. Only set this if an API key is configured in Botble admin under **Settings → API**.
@@ -17,7 +17,7 @@ See [API Base URL](06_api_base_url.md) for the full configuration walkthrough.
 Open this URL in a browser (replace the host):
 
 ```
-http://jobbox.test/api/v1/jobs
+http://jobcy.test/api/v1/jobs
 ```
 
 You should get a JSON response with a `data` array of jobs. If not, check:

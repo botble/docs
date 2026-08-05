@@ -7,17 +7,19 @@ Botble JobBoard is an Expo SDK 54 / React Native 0.81 app using **expo-router** 
 ```
 app/                          expo-router routes (thin screens that delegate to hooks/services)
   _layout.tsx                 root: providers + Stack + AppGate
-  (tabs)/                     Home (index), Search, Projects, Saved, Profile
+  (tabs)/                     Home (index), Search, Companies, Saved, Profile
   (auth)/                     login, register, forgot/reset password, verify-pending
-  property/[slug].tsx         property detail
-  project/[slug].tsx          project (development) detail
-  consult.tsx                 contact-an-agent inquiry (consult) form
-  inquiries/                  My Inquiries list + inquiry detail ([id].tsx)
-  agents.tsx, agent/[id].tsx  agents list + agent profile
-  agent/                      agent portal (dashboard, listings, packages, checkout-webview, …)
+  job/[id].tsx                job detail
+  company/[id].tsx            company profile + reviews
+  apply/[jobId].tsx           job application form
+  applications/               my applications list + detail ([id].tsx)
+  resume/                     candidate resume (skills, experience, education, languages)
+  employer/                   employer portal: dashboard (index), jobs/, applicants/,
+                              companies/, packages/, invoices/, transactions, reviews,
+                              status, checkout-webview
   account/                    profile-edit, change-password, notifications, help, settings
   settings/                   language, currency, theme pickers
-  blog/, compare.tsx, notifications.tsx, web-view.tsx, onboarding.tsx, ...
+  blog/, compare.tsx, notifications.tsx, web-view.tsx, onboarding.tsx
 
 src/
   config/app.ts               env-driven config (reads expo-constants extra.appConfig)
@@ -26,7 +28,7 @@ src/
   types/                      domain types mirroring API resources
   lib/                        theme, storage, secure-storage, format, query-string, query-client
   components/ui/              shared UI kit (Button, Input, Card, Badge, StarRating, …)
-  components/{properties,property,projects,home,search,consult,agents,agent,account,auth,blog,compare,notifications,status}/
+  components/{jobs,job-detail,company,candidate,employer,apply,home,search,account,auth,blog,compare,notifications,status}/
   hooks/                      useDebounce, useBiometric, useSocialAuth, usePushNotifications, …
   i18n/                       i18next setup (index.ts) + locale JSON (locales/*.json)
 
@@ -55,14 +57,14 @@ If anything fails to start, clear caches: `npm start -- --clear`. If native conf
 ## State management
 
 - **Server state** goes through `@tanstack/react-query`. All reads/writes use `useQuery` / `useMutation` calling `src/services/*` functions. Never call a service directly from a component body. The shared `queryClient` (`src/lib/query-client.ts`) uses `staleTime: 5min`, `gcTime: 10min`, and only retries `5xx` errors (4xx never retries).
-- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` (outer → inner): `Toast → Settings → AppStatus → Auth → Notification → SavedProperties → Compare → QueryClient`.
+- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` (outer → inner): `Toast → Settings → AppStatus → Auth → Notification → SavedJobs → Compare → QueryClient`.
 
 | Context | Provides |
 |---|---|
 | `AuthContext` | `customer`, `token`, `isAuthenticated`, session bootstrap/persist/logout |
 | `SettingsContext` | `language`, `currency`, `themeMode`/`isDarkMode`, `themeColors`, RTL flag |
-| `SavedPropertiesContext` | Server-backed saved-jobs wishlist with optimistic toggle |
-| `CompareContext` | Property comparison selection |
+| `SavedJobsContext` | Server-backed saved-jobs wishlist with optimistic toggle |
+| `CompareContext` | Job comparison selection |
 | `NotificationContext` | In-app notification inbox + unread badge count |
 | `ToastContext` | `success` / `error` / `info` banners |
 | `AppStatusContext` | `isMaintenance` / `isServerError` (driven by apiClient status pub/sub) |
@@ -105,7 +107,7 @@ Add a key to `en.json` first, then to the other locales, and use it in code:
 import { useTranslation } from "react-i18next";
 
 const { t } = useTranslation();
-<Text>{t("property.contactAgent", "Contact agent")}</Text>
+<Text>{t("apply.title", "Apply for this job")}</Text>
 ```
 
 Tooling:

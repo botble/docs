@@ -6,7 +6,7 @@ A job search and recruitment mobile app built with Expo (React Native). It is th
 
 ### Which backend do I need?
 
-[Botble JobBoard](https://jobbox.botble.com). A Laravel system that ships the **job-board** plugin and exposes the same REST API (jobs, companies, applications, saved jobs, reviews). No other backend will work. See [API Integration](api-integration.md).
+[Botble JobBoard](https://jobcy.botble.com). A Laravel system that ships the **job-board** plugin and exposes the same REST API (jobs, companies, applications, saved jobs, reviews). No other backend will work. See [API Integration](api-integration.md).
 
 ### How is this licensed?
 

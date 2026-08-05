@@ -2,7 +2,7 @@
 
 ## Overview
 
-On first launch the app shows a short onboarding carousel introducing the property-browsing experience, then remembers that it has been seen. The onboarding is **code-driven**. Its slides live in `app/onboarding.tsx` and its text in the translation files. There is no separate config object for it.
+On first launch the app shows a short onboarding carousel introducing the job-search experience, then remembers that it has been seen. The onboarding is **code-driven**. Its slides live in `app/onboarding.tsx` and its text in the translation files. There is no separate config object for it.
 
 ## How it works
 
@@ -22,9 +22,9 @@ file under `src/i18n/locales/` (`en.json`, `vi.json`, `ar.json`, `fr.json`):
 {
   "onboarding": {
     "slide1Title": "Find your home",
-    "slide1Text": "Browse thousands of properties from trusted agents.",
+    "slide1Text": "Browse thousands of openings from verified companies.",
     "slide2Title": "Search with ease",
-    "slide2Text": "Filter by location, price and property type.",
+    "slide2Text": "Filter by location, salary and job type.",
     "slide3Title": "Connect with agents",
     "slide3Text": "Save listings and reach out to agents in minutes.",
     "getStarted": "Get started",

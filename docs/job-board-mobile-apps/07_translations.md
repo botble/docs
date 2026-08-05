@@ -42,10 +42,10 @@ function Greeting() {
 }
 
 // With interpolation
-t("home.cityRow.propertiesCount", "{{count}} properties", { count });
+t("compare.emptySubtitle", "Add up to {{count}} jobs from search results to compare them here.", { count });
 ```
 
-Keys are dot-separated and nested (e.g. `home.title`, `home.cityRow.propertiesCount`).
+Keys are dot-separated and nested (e.g. `home.title`, `compare.emptySubtitle`).
 
 ## The app name (`{{appName}}`): white-labeling
 

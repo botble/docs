@@ -8,8 +8,8 @@ Common issues when setting up and running the Botble JobBoard (Expo) app, and ho
 
 The most common cause of empty screens is a bad backend URL.
 
-1. Open `.env` and confirm `API_BASE_URL` points at your running Botble JobBoard (Botble) backend, e.g. `http://jobbox.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
-2. Open `http://jobbox.test/api/v1/jobs` in a browser. You should get JSON with a `data` array of jobs.
+1. Open `.env` and confirm `API_BASE_URL` points at your running Botble JobBoard (Botble) backend, e.g. `http://jobcy.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
+2. Open `http://jobcy.test/api/v1/jobs` in a browser. You should get JSON with a `data` array of jobs.
 3. Restart with `npx expo start -c`.
 
 ## `401` / API key missing
