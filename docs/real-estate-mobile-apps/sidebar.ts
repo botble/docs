@@ -3,7 +3,7 @@ import {DefaultTheme} from 'vitepress';
 export default [
     { text: 'Overview', link: '/real-estate-mobile-apps/' },
     { text: 'App Overview', link: '/real-estate-mobile-apps/overview' },
-    { text: '⭐ Complete Setup & Publishing Guide', link: '/real-estate-mobile-apps/complete-setup-and-publishing-guide' },
+    { text: 'Complete Setup & Publishing Guide', link: '/real-estate-mobile-apps/complete-setup-and-publishing-guide' },
     {
         text: 'Getting Started',
         items: [

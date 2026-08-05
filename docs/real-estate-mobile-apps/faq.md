@@ -2,11 +2,11 @@
 
 ### What is Flex Home?
 
-A property inquiry and property agent mobile app built with Expo (React Native). It is the mobile client for your Laravel backend, and lets customers browse properties, view agents, read the blog, and make inquiries.
+A property listing and property agent mobile app built with Expo (React Native). It is the mobile client for your Laravel backend, and lets customers browse properties and projects, search on an interactive map, view agents, read the blog, save listings, and send consultation requests. It also ships a full agent portal for managing listings.
 
 ### Which backend do I need?
 
-Either [Homzen](https://1.envato.market/Vm1QmJ) or [Flex Home](https://1.envato.market/QrdYz). Both are Laravel systems that ship the **real-estate** plugin, and both expose the same REST API (properties, inquiries, agents, favorites, reviews, pricing), so the app works against either one. No other backend will work. See [API Integration](api-integration.md).
+Either [Homzen](https://1.envato.market/Vm1QmJ) or [Flex Home](https://1.envato.market/QrdYz). Both are Laravel systems that ship the **real-estate** plugin, and both expose the same REST API (properties, projects, agents, consultations, saved properties, reviews), so the app works against either one. No other backend will work. See [API Integration](api-integration.md).
 
 ### How is this licensed?
 
@@ -30,7 +30,7 @@ Set `API_BASE_URL` (and `API_KEY` if your backend requires one) in `.env`. Do no
 
 ### What payment methods are supported?
 
-Whatever you configure on your Botble backend. A created inquiry is returned as PENDING and checkout runs in a WebView against the backend's hosted payment page, so any gateway that works on the website also works in the app.
+Payments apply to **agent credit packages**, not to property listings — browsing and sending consultation requests are free for customers. When an agent subscribes to a package, the backend returns a hosted checkout URL that the app opens in a WebView, so any gateway configured on your Botble backend also works in the app, with no native SDK.
 
 ### How do I change the branding?
 
@@ -58,9 +58,9 @@ You need basic React Native / Expo and command-line skills to set environment va
 - Google Play: $25 one-time
 - Apple App Store: $99 per year
 
-### How do guests view their inquiry without an account?
+### Can visitors send an inquiry without an account?
 
-Guest inquiry is supported (`ENABLE_GUEST_BOOKING`). After checkout, a guest looks up their inquiry with the **inquiry number plus the email** used at checkout. The id alone is rejected. See [API Integration → Inquiries](api-integration.md#inquiries-incl-guest-lookup).
+Yes. `POST /consults` accepts guest submissions, so a visitor can send a consultation request to an agent without registering. Signing in adds the ability to review sent consultations under the profile tab (`/account/consults?type=sent`). See [API Integration → Consultations](api-integration.md#consultations-inquiries).
 
 ### How often should I update the app?
 

@@ -47,7 +47,7 @@ npm run ios:sim                 # default: iPhone 16 Plus
 npm run ios:sim "iPhone 17 Pro" # pick another simulator by name
 ```
 
-This runs `scripts/run-ios-sim.sh`, which builds with `CODE_SIGNING_ALLOWED=NO` and installs straight onto the iOS Simulator. Because simulator builds are never signed, this avoids the "No code signing certificates are available" error from `expo run:ios`. It's the best choice when you have no Apple developer certificate. The script boots the named simulator, starts Metro if it is not already running on port 8081, builds the `FlexHome.xcworkspace` with `xcodebuild`, then installs and launches `com.realestate.mobile`.
+This runs `scripts/run-ios-sim.sh`, which builds with `CODE_SIGNING_ALLOWED=NO` and installs straight onto the iOS Simulator. Because simulator builds are never signed, this avoids the "No code signing certificates are available" error from `expo run:ios`. It's the best choice when you have no Apple developer certificate. The script boots the named simulator, starts Metro if it is not already running on port 8081, builds the generated `.xcworkspace` with `xcodebuild`, then installs and launches `com.realestate.mobile`.
 
 ## Run on Android
 

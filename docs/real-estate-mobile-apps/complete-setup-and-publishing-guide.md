@@ -148,26 +148,26 @@ Test these to confirm the app is connected to your website:
 - [ ] Search and filters return properties from your site
 - [ ] Property detail shows specs, photos, and reviews
 - [ ] You can log in with an account from your website
-- [ ] The inquiry flow calculates a price
-- [ ] Checkout opens the hosted payment page in a WebView
-- [ ] Favorites save
+- [ ] The map view shows property pins
+- [ ] Sending a consultation request from a property reaches the agent
+- [ ] Saved properties persist to the account
 
 **If properties appear, your app is connected to your website.**
 
 ---
 
-## Part 3: How Properties & Inquirys Sync Automatically
+## Part 3: How Properties & Consultations Sync Automatically
 
 The app connects to your Botble website through its **REST API** (`real-estate` plugin):
 
 ```
 Your Botble Website (yoursite.com)
         ↓
-    REST API (/api/v1/real-estate)
+    REST API (/api/v1)
         ↓
     Flex Home app fetches data
         ↓
-    Properties, agents, inquiries, blog displayed
+    Properties, projects, agents, consultations, blog displayed
 ```
 
 `API_BASE_URL` from `.env` is combined into `{API_BASE_URL}/api/v1` by `app.config.js` and used by the app's API client (`src/services/apiClient.ts`).
@@ -176,19 +176,20 @@ Your Botble Website (yoursite.com)
 
 | Data | How it syncs | Endpoint |
 |---|---|---|
-| **Properties** | Real-time on each visit | `/api/v1/real-estate/properties` |
-| **Search / filters** | Real-time | `/api/v1/real-estate/properties/search`, `/properties/filters` |
-| **Property detail** | Real-time | `/api/v1/real-estate/properties/{slug}` |
-| **Inquirys** | Real-time when the customer views | `/api/v1/real-estate/inquiries` |
-| **Pricing** | Live calculation | `/api/v1/real-estate/calculate-price` |
-| **Favorites** | Synced with the account | `/api/v1/real-estate/favorites` |
-| **Taxonomy** (makes, types, fuels…) | Real-time | `/api/v1/real-estate/car-makes`, etc. |
+| **Properties** | Real-time on each visit | `/api/v1/properties` |
+| **Search / filters** | Real-time | `/api/v1/properties/search`, `/api/v1/properties/filters` |
+| **Property detail** | Real-time | `/api/v1/properties/{slug}` |
+| **Projects** | Real-time | `/api/v1/projects` |
+| **Agents** | Real-time | `/api/v1/agents` |
+| **Consultations** | Sent to the agent immediately | `/api/v1/consults` |
+| **Saved properties** | Synced with the account | `/api/v1/properties/{id}/save` |
+| **Taxonomy** (categories, features, facilities, cities) | Real-time | `/api/v1/categories`, `/api/v1/features/all`, … |
 | **Blog** | Real-time | `/api/v1/posts` |
-| **User accounts** | Shared login with the website | `/api/v1/real-estate/auth/login` |
+| **User accounts** | Shared login with the website | `/api/v1/auth/login` |
 
 - **Add a property on your website** → it appears in the app automatically
 - **Update a price** → the app shows it immediately
-- **Customer books in the app** → the inquiry appears in your admin panel
+- **Customer sends a consultation in the app** → the lead appears in your admin panel and in the agent's portal
 
 See [API Integration](api-integration.md) for the full endpoint map.
 
@@ -197,10 +198,11 @@ See [API Integration](api-integration.md) for the full endpoint map.
 Tune how many items each home section shows via `.env`:
 
 ```bash
-HOME_FEATURED_COUNT=6    # featured properties
-HOME_DEALERS_COUNT=2     # agents
-HOME_BLOG_COUNT=5        # blog posts
-CAR_IMAGE_THUMBNAIL_SIZE=large    # small | medium | large (large = full-size, sharp)
+HOME_FEATURED_PROPERTIES_COUNT=6   # featured properties
+HOME_FEATURED_PROJECTS_COUNT=4     # featured projects
+HOME_AGENTS_COUNT=6                # agents
+HOME_BLOG_COUNT=5                  # blog posts
+PROPERTY_IMAGE_THUMBNAIL_SIZE=large   # small | medium | large (large = full-size, sharp)
 ```
 
 ---
@@ -365,7 +367,7 @@ Google review typically takes **1–3 days** (new apps may take up to 7).
 
 - [ ] Download your app from the store and test on a real device
 - [ ] Verify properties load, search works, and property detail opens
-- [ ] Test the full inquiry flow (dates → extras → details → review → checkout)
+- [ ] Test the consultation flow (property → contact agent → message sent)
 - [ ] Verify login works for existing website customers
 - [ ] Check push notifications (see [Push notifications](push_notifications.md))
 - [ ] Share the app links with your customers
@@ -395,7 +397,7 @@ See [Deploying the App](09_deploying_app.md) and [Version management](10_version
 
 2. TEST LOCALLY
    ├── npm run ios:sim   (or npm run android)
-   └── Verify properties, login, inquiry, checkout
+   └── Verify properties, map, login, consultation
 
 3. CUSTOMIZE
    ├── Theme colors, logo, app name, splash, translations
@@ -435,7 +437,7 @@ See [Deploying the App](09_deploying_app.md) and [Version management](10_version
 
 ### How is payment handled?
 
-The `POST /real-estate/inquiries` endpoint creates a **PENDING** inquiry without a payment URL. Checkout is completed on the backend's **hosted payment page**, loaded in a WebView (`app/checkout-webview.tsx`). This means every Botble payment gateway works without a native SDK.
+Payments apply to **agent credit packages**, not to property listings — browsing and sending consultation requests are free. `POST /account/packages/{id}/subscribe` returns a hosted checkout URL, which the app opens on the backend's **hosted payment page** in a WebView (`app/agent/checkout-webview.tsx`). This means every Botble payment gateway works without a native SDK.
 
 ### My app shows "License Required"
 

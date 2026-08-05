@@ -21,12 +21,12 @@ file under `src/i18n/locales/` (`en.json`, `vi.json`, `ar.json`, `fr.json`):
 ```json
 {
   "onboarding": {
-    "slide1Title": "Find your ride",
-    "slide1Text": "Browse thousands of properties from trusted local agents.",
-    "slide2Title": "Pick up anywhere",
-    "slide2Text": "Choose convenient pickup and drop-off locations.",
-    "slide3Title": "Book in minutes",
-    "slide3Text": "Reserve instantly and hit the road with confidence.",
+    "slide1Title": "Find your home",
+    "slide1Text": "Browse thousands of properties from trusted agents.",
+    "slide2Title": "Search with ease",
+    "slide2Text": "Filter by location, price and property type.",
+    "slide3Title": "Connect with agents",
+    "slide3Text": "Save listings and reach out to agents in minutes.",
     "getStarted": "Get started",
     "skip": "Skip"
   }
@@ -43,12 +43,12 @@ The slides are defined in `app/onboarding.tsx`. Each entry pairs a
 The defaults are:
 
 ```tsx
-import { CalendarCheck, Car, MapPin } from "lucide-react-native";
+import { Building2, Home, Search } from "lucide-react-native";
 
 const slides = [
-  { icon: Car,           title: t("onboarding.slide1Title", "Find your ride"), text: t("onboarding.slide1Text", "…") },
-  { icon: MapPin,        title: t("onboarding.slide2Title", "Pick up anywhere"), text: t("onboarding.slide2Text", "…") },
-  { icon: CalendarCheck, title: t("onboarding.slide3Title", "Book in minutes"),  text: t("onboarding.slide3Text", "…") },
+  { icon: Home,      title: t("onboarding.slide1Title", "Find your home"),      text: t("onboarding.slide1Text", "…") },
+  { icon: Search,    title: t("onboarding.slide2Title", "Search with ease"),    text: t("onboarding.slide2Text", "…") },
+  { icon: Building2, title: t("onboarding.slide3Title", "Connect with agents"), text: t("onboarding.slide3Text", "…") },
 ];
 ```
 

@@ -9,7 +9,7 @@ Common issues when setting up and running the Flex Home (Expo) app, and how to f
 The most common cause of empty screens is a bad backend URL.
 
 1. Open `.env` and confirm `API_BASE_URL` points at your running Flex Home (Botble) backend, e.g. `http://homzen.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
-2. Open `http://homzen.test/api/v1/real-estate/properties` in a browser. You should get JSON with a `data` array of properties.
+2. Open `http://homzen.test/api/v1/properties` in a browser. You should get JSON with a `data` array of properties.
 3. Restart with `npx expo start -c`.
 
 ## `401` / API key missing

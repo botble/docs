@@ -1,6 +1,15 @@
 # Flex Home: React Native Property Inquiry & Agent App
 
-A React Native (Expo SDK 54) mobile app for property inquiry and property agent businesses. It is the mobile client for a **Botble real-estate backend** with the `/api/v1` plugin enabled. The codebase is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` (app name, bundle ID, API URL, colors). One codebase builds both iOS and Android. Consumers browse properties, submit inquiries to agents, view favorites, and manage their account, all driven live from your Botble admin. Agents access a WebView-based dashboard for listings, leads, and packages.
+A React Native (Expo SDK 54) mobile app for real-estate businesses. It is the mobile client for a **Botble real-estate backend** with the `/api/v1` API enabled.
+
+::: warning This is a mobile app, not a standalone system
+Flex Home has no database and no admin panel of its own. It reads properties, projects, agents,
+consultations and accounts from a Laravel backend over that backend's REST API. You need one of
+our real-estate Laravel scripts, sold separately — [Homzen](https://1.envato.market/Vm1QmJ) or
+[Flex Home](https://1.envato.market/QrdYz). Both ship the real-estate plugin and expose the same
+API, so the app works with either. No other backend will work.
+:::
+ The codebase is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` (app name, bundle ID, API URL, colors). One codebase builds both iOS and Android. Consumers browse properties and projects, search on an interactive map, save and compare listings, and send consultation requests to agents, all driven live from your Botble admin. Agents get a full native portal for listings, leads, credit packages, invoices and reviews — only the package checkout runs in a WebView, so every Botble payment gateway works without a native SDK.
 
 <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:28px 0;">
   <img src="./images/flexhome-home-light.png" alt="Home" style="width:31%; max-width:240px; border-radius:18px;" />
@@ -10,18 +19,18 @@ A React Native (Expo SDK 54) mobile app for property inquiry and property agent 
 
 ## Demo video
 
-A full walkthrough of the app: home, search with filters, property detail gallery, inquiry form, saved properties,
-agent reviews, and dark mode.
+A full walkthrough of the app: home, search and filters, map search, property detail, projects,
+saved listings, the agent portal, and dark mode.
 
 <div style="position:relative; padding-bottom:56.25%; height:0; margin:24px 0; border-radius:14px; overflow:hidden;">
-  <iframe src="https://www.youtube-nocookie.com/embed/1S6liILg5ls?rel=0"
+  <iframe src="https://www.youtube-nocookie.com/embed/wKgCv2cl_Sg?rel=0"
           title="Flex Home React Native app demo"
           style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
 </div>
 
-[Watch on YouTube](https://youtu.be/1S6liILg5ls)
+[Watch on YouTube](https://youtu.be/wKgCv2cl_Sg)
 
 ## Get started
 

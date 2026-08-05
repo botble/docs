@@ -45,7 +45,7 @@ Read the [release notes](releases.md) first to see what changed.
 
    The `-c` flag clears the Metro cache, which avoids stale-bundle issues after an upgrade.
 
-7. Smoke test: log in, browse properties, open a property detail, run the inquiry flow, search, and check the Agents and Blog tabs.
+7. Smoke test: log in, browse properties, open a property detail, send a consultation request, search on the map, and check the Projects, Saved, and Profile tabs.
 
 ## Build new store releases
 

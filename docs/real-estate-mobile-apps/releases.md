@@ -1,37 +1,37 @@
 # Release Notes
 
-## 1.1.0
-
-**Added**
-
-- Notification inbox: a dedicated screen listing every notification sent from your Botble
-  backend, with unread badges, pull-to-refresh, infinite scroll, and mark-all-read. Reachable
-  from the bell in the home header and from an Inbox row in the profile tab.
-- Tapping a push notification now deep-links straight to the relevant screen (inquiry, car,
-  blog post), including when the app is launched from a cold start.
-- The app icon badge now reflects the unread notification count.
-- Write a review: customers can rate a property (1-5 stars) and leave a comment from the inquiry
-  detail screen, for inquiries that are confirmed or completed.
-
-**Fixed**
-
-- **Push notifications could never be delivered.** The app registered an Expo push token, but
-  the backend sends via Firebase Cloud Messaging (FCM HTTP v1), which only accepts an FCM
-  registration token. The app now mints a real FCM token via `@react-native-firebase/messaging`
-  and re-registers it when the token rotates. See [Push notifications](push_notifications.md)
-  for the Firebase setup this requires.
-- Signing out never unregistered the device token (it called a route that does not exist), so a
-  signed-out device kept receiving notifications intended for the previous account.
-- Review submissions that the server rejected (for example, reviewing a property you have not booked)
-  were reported to the user as successful even though nothing was created.
-
 ## 1.0.0
 
-- Real-estate mobile app for the Flex Home platform, built with Expo SDK 54 / React Native, connecting to a Botble backend running the real-estate API.
-- Browse properties, search and filter, view property details, agents, and blog.
-- Inquiry flow with guest inquiry and one-way rental support; WebView checkout against the backend's hosted payment page.
-- Customer auth via Laravel Sanctum, plus Google, Apple, and Facebook social login.
-- Localization in English, Vietnamese, Arabic (RTL), and French.
-- Favorites, reviews, profile management, and push notifications.
+Initial release. Flex Home is a real-estate mobile app built with Expo SDK 54 / React Native 0.81, connecting to a Botble backend running the real-estate plugin API. One codebase builds both iOS and Android.
+
+**Browsing & search**
+
+- Browse properties and projects, with search, filters (type, category, city, price, bedrooms, bathrooms, area) and sorting.
+- Interactive map search powered by MapLibre + OpenStreetMap — no Google Maps API key or billing account required. Optional Apple/Google Maps providers, pin clustering, price-bubble markers, and "locate me" nearest sort.
+- Property and project detail screens, agent directory and agent public profiles with their listings.
+- Side-by-side property compare and a mortgage calculator.
+- Blog reader and simple sliders driven by the backend.
+
+**Customer account**
+
+- Auth via Laravel Sanctum, plus Google, Apple, and Facebook social login, with optional biometric app lock.
+- Saved properties (favorites), sent consultation history, profile editing, avatar upload, password change, and account deletion.
+- Consultation (inquiry) requests to agents, including guest submissions and backend-defined custom fields.
+- Property reviews: rate 1–5 stars and leave a comment.
+- Referral program: share a code and earn listing credits.
+
+**Agent portal**
+
+- Agent dashboard with account status and activity log.
+- Listing management: create, edit, delete, renew, and upload images for your own properties.
+- Credit packages purchased through a secure WebView checkout against the backend's hosted payment page, so every Botble payment gateway works without a native SDK.
+- Transactions, invoices (with PDF download), incoming leads, and received reviews.
+
+**Platform**
+
+- Push notifications over Firebase Cloud Messaging (FCM HTTP v1), with a notification inbox, unread badges, app-icon badge count, and deep links into the relevant screen from a cold start.
+- Localization in English, Vietnamese, Arabic, and French, with full right-to-left (RTL) layout.
+- Complete light / dark / system theme.
+- Fully white-label: app name, bundle id, scheme, colors, and fonts are all environment-driven in `.env`, with neutral defaults in the source.
 
 For the latest changes, check the CodeCanyon portfolio: https://codecanyon.net/user/botble/portfolio

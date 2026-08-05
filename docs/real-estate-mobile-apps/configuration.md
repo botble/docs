@@ -79,8 +79,9 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `ENABLE_GUEST_BOOKING` | `true` / `false` | `true` | Allow inquiry without an account |
-| `ENABLE_ONE_WAY_RENTAL` | `true` / `false` | `true` | Allow a different return location from pickup |
+| `ENABLE_MAP_SEARCH` | `true` / `false` | `true` | Show the interactive map view in search |
+| `ENABLE_MORTGAGE_CALCULATOR` | `true` / `false` | `true` | Show the mortgage calculator on property detail |
+| `ENABLE_PROPERTY_COMPARE` | `true` / `false` | `true` | Enable the side-by-side property compare screen |
 
 ### Splash / launch
 
@@ -102,14 +103,44 @@ See [Profile links](11_profile_links.md).
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `CAR_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `large` | Image size in list cells. `large` = full-size (sharp); small/medium use the 150x150 thumbnail to save bandwidth |
+| `PROPERTY_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `large` | Image size in list cells. `large` = full-size (sharp); small/medium use the 150x150 thumbnail to save bandwidth |
+
+### Map
+
+The app ships with **MapLibre + OpenStreetMap** by default, so the map works out of the box with **no Google Maps API key and no billing account**. Switch providers only if you specifically want Apple/Google Maps.
+
+| Key | Values | Default | Description |
+|---|---|---|---|
+| `MAP_PROVIDER` | `osm` / `default` / `google` | `osm` | `osm` = MapLibre + free OSM vector tiles (no key). `default` = Apple Maps on iOS, Google Maps on Android. `google` = Google Maps on both |
+| `MAP_OSM_STYLE_URL` | URL | `https://tiles.openfreemap.org/styles/liberty` | MapLibre style/tile URL, used when `MAP_PROVIDER=osm` |
+| `GOOGLE_MAPS_ANDROID_API_KEY` | string | *(empty)* | Only for `default` / `google`. Build-time key, distinct from `API_KEY` |
+| `GOOGLE_MAPS_IOS_API_KEY` | string | *(empty)* | Only for `google` |
+| `MAP_PIN_LIMIT` | integer | `200` | Max pins fetched for the search map (cost/perf cap) |
+| `MAP_ENABLE_CLUSTERING` | `true` / `false` | `true` | Cluster nearby pins |
+| `MAP_CLUSTER_RADIUS` | integer | `50` | Cluster radius in pixels |
+| `MAP_SHOW_PRICE_MARKERS` | `true` / `false` | `true` | Price-bubble markers instead of plain pins |
+| `MAP_DEFAULT_LATITUDE` | float | *(empty)* | Fallback map center when a search returns no pins (empty → world view) |
+| `MAP_DEFAULT_LONGITUDE` | float | *(empty)* | Fallback map center longitude |
+| `MAP_DEFAULT_DELTA` | float | `0.05` | Default zoom span (region delta) for single-pin / fallback map |
+| `MAP_ENABLE_USER_LOCATION` | `true` / `false` | `false` | "Locate me" + nearest sort. Requests location permission when `true` |
+
+If you restrict a Google Maps key, allow only the **Maps SDK for Android/iOS** and set a Cloud budget alert.
+
+### Cache
+
+| Key | Values | Default | Description |
+|---|---|---|---|
+| `QUERY_CACHE_PERSIST` | `true` / `false` | `true` | Persist the React Query cache to AsyncStorage so lists/pins survive app restarts |
+| `QUERY_CACHE_MAX_AGE_HOURS` | integer | `24` | Max age of the persisted cache |
+| `MAP_PINS_STALE_MINUTES` | integer | `5` | `staleTime` for map/list property queries before background revalidation |
 
 ### Home section counts
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `HOME_FEATURED_COUNT` | integer | `6` | Featured properties on the home screen |
-| `HOME_DEALERS_COUNT` | integer | `2` | Agents shown on the home screen |
+| `HOME_FEATURED_PROPERTIES_COUNT` | integer | `6` | Featured properties on the home screen |
+| `HOME_FEATURED_PROJECTS_COUNT` | integer | `4` | Featured projects on the home screen |
+| `HOME_AGENTS_COUNT` | integer | `6` | Agents shown on the home screen |
 | `HOME_BLOG_COUNT` | integer | `5` | Blog posts shown on the home screen |
 
 ### Social authentication

@@ -1,6 +1,6 @@
 # API Integration
 
-The Flex Home app talks to a Botble backend running the **real-estate** plugin over its REST API. Every screen (property listings, inquiry flow, agents, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
+The Flex Home app talks to a Botble backend running the **real-estate** plugin over its REST API. Every screen (property listings, projects, agents, consultations, blog, the agent portal) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
 
 ## Base URL / environment
 
@@ -16,7 +16,7 @@ See [API Base URL](06_api_base_url.md) for the full configuration walkthrough.
 Open this URL in a browser (replace the host):
 
 ```
-http://homzen.test/api/v1/real-estate/properties
+http://homzen.test/api/v1/properties
 ```
 
 You should get a JSON response with a `data` array of properties. If not, check:
@@ -24,11 +24,11 @@ You should get a JSON response with a `data` array of properties. If not, check:
 - `404`: the real-estate API is not installed/enabled, or the API is turned off.
 - `401`: an API key is required but `API_KEY` is missing or wrong.
 - `503`: the API is disabled in admin or the site is in maintenance mode.
-- Empty `data`: no properties are published/available on the backend.
+- Empty `data`: no properties are published on the backend.
 
 ## Response envelope
 
-Every real-estate / plugin endpoint wraps its payload in the same envelope:
+Every endpoint wraps its payload in the same envelope:
 
 ```ts
 interface ApiResponse<T> {
@@ -49,7 +49,7 @@ interface PaginatedResponse<T> {
 }
 ```
 
-`src/services/apiClient.ts` (`api.get/post/put/patch/delete`) returns the raw parsed JSON body. Each `src/services/*.ts` function unwraps `res.data` (or `res.message` for confirmation-only endpoints) so screens and hooks work with plain domain types, not the envelope.
+`src/services/apiClient.ts` (`api.get/post/put/patch/delete/request`) returns the raw parsed JSON body. Each `src/services/*.ts` function unwraps `res.data` (or `res.message` for confirmation-only endpoints) so screens and hooks work with plain domain types, not the envelope.
 
 ## Auth headers
 
@@ -79,109 +79,177 @@ Changing the language or currency invalidates the React Query cache (see `Settin
 
 ## Endpoints → service functions
 
-Base path for real-estate endpoints: `/real-estate` (relative to `{API_BASE_URL}/api/v1`).
+All paths below are relative to `{API_BASE_URL}/api/v1`. There is **no** plugin path prefix — property endpoints live at `/properties`, not `/real-estate/properties`.
 
-### Auth & profile
+### Auth
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
-| `POST /real-estate/auth/login` | `login(payload)` | `src/services/auth.ts` |
-| `POST /real-estate/auth/register` | `register(payload)` | `src/services/auth.ts` |
-| `POST /real-estate/auth/forgot-password` | `forgotPassword(email)` | `src/services/auth.ts` |
-| `POST /real-estate/auth/reset-password` | `resetPassword(payload)` | `src/services/auth.ts` |
-| `POST /real-estate/auth/logout` | `logout(token?)` | `src/services/auth.ts` |
+| `POST /auth/login` | `login(payload)` | `src/services/auth.ts` |
+| `POST /auth/register` | `register(payload)` | `src/services/auth.ts` |
+| `POST /auth/forgot-password` | `forgotPassword(email)` | `src/services/auth.ts` |
+| `POST /auth/reset-password` | `resetPassword(payload)` | `src/services/auth.ts` |
+| `POST /auth/logout` | `logout(token?)` | `src/services/auth.ts` |
 | `POST /auth/{provider}` | `socialLogin(provider, payload)` | `src/services/auth.ts` |
-| `GET /real-estate/profile` | `getProfile(token?)` / `fetchProfile(token?)` | `src/services/auth.ts` · `profile.ts` |
-| `PUT /real-estate/profile` | `updateProfile(payload, token?)` | `src/services/profile.ts` |
-| `POST /real-estate/profile/change-password` | `changePassword(payload, token?)` | `src/services/profile.ts` |
-| `POST /real-estate/profile/avatar` (multipart) | `uploadAvatar(imageUri, token?)` | `src/services/profile.ts` |
+
+`resendVerificationEmail(email)` calls the backend's **web** confirmation route by absolute URL (not an `/api/v1` endpoint); `api.request` passes absolute URLs through unchanged.
+
+### Account & profile
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `GET /account/profile` | `getProfile(token?)` / `fetchProfile(token?)` | `src/services/auth.ts` · `profile.ts` |
+| `PUT /account/profile` | `updateProfile(payload, token?)` | `src/services/profile.ts` |
+| `PUT /account/password` | `changePassword(payload, token?)` | `src/services/profile.ts` |
+| `POST /account/avatar` (multipart) | `uploadAvatar(imageUri, token?)` | `src/services/profile.ts` |
+| `DELETE /account` | `deleteAccount(token?)` | `src/services/profile.ts` |
 
 ### Properties & search
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
-| `GET /real-estate/properties` | `fetchProperties(params?)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/search` | `searchProperties(params?)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/filters` | `fetchCarFilters()` | `src/services/properties.ts` |
-| `GET /real-estate/properties/{slug}` | `fetchCarBySlug(slug)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/id/{id}` | `fetchCarById(id)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/id/{id}/similar` | `fetchSimilarProperties(id)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/id/{id}/availability` | `checkAvailability(id, pickupDate, returnDate)` | `src/services/properties.ts` |
-| `GET /real-estate/properties/{carId}/reviews` | `fetchCarReviews(carId)` | `src/services/properties.ts` |
-| `POST /real-estate/reviews` | `createReview(payload, token?)` | `src/services/reviews.ts` |
+| `GET /properties` | `fetchProperties(params?)` | `src/services/properties.ts` |
+| `GET /properties/search?q=` | `searchProperties(query)` | `src/services/properties.ts` |
+| `GET /properties/filters` | `fetchPropertyFilters()` | `src/services/properties.ts` |
+| `GET /properties/{slug}` | `fetchPropertyBySlug(slug)` | `src/services/properties.ts` |
+| `GET /properties/id/{id}` | `fetchPropertyById(id)` | `src/services/properties.ts` |
 
-### Inquiries (incl. guest lookup)
+`fetchSimilarProperties(property, limit)` is **not** a dedicated endpoint — it is a client-side heuristic (same category, same city, excluding the current listing) layered on `fetchProperties()`.
 
-| Method + Endpoint | Service function | File |
-|---|---|---|
-| `GET /real-estate/inquiries` | `fetchInquirys(token?)` | `src/services/inquiries.ts` |
-| `POST /real-estate/inquiries` | `createInquiry(payload, token?)` | `src/services/inquiries.ts` |
-| `GET /real-estate/inquiries/{id}` | `fetchInquiry(id, token?)` | `src/services/inquiries.ts` |
-| `GET /real-estate/inquiries/lookup?inquiry_number=&email=` | `lookupGuestInquiry(inquiryNumber, email)` | `src/services/inquiries.ts` |
-| `PUT /real-estate/inquiries/{id}` | `updateInquiry(id, payload, token?)` | `src/services/inquiries.ts` |
-| `POST /real-estate/inquiries/{id}/cancel` | `cancelInquiry(id, token?)` | `src/services/inquiries.ts` |
-| `GET /real-estate/inquiries/{id}/invoice` | `fetchInquiryInvoice(id, token?)` | `src/services/inquiries.ts` |
-| `POST /real-estate/calculate-price` | `calculatePrice(payload)` | `src/services/pricing.ts` |
-| `POST /real-estate/coupons/validate` | `validateCoupon(code, totalAmount, carId?)` | `src/services/pricing.ts` |
+`searchProperties` / `searchProjects` return HTTP 200 with `error: true, data: null` on a zero-result search rather than throwing; both services normalize that to an empty result set.
 
-**Guest inquiry lookup:** the `/real-estate/inquiries/{id}` route is auth-scoped (a signed-in customer can only see their own inquiries). Guests who just checked out resolve their inquiry with `lookupGuestInquiry()`, which requires **both** the inquiry number and the email; the id alone is rejected. `getInquiryForViewer()` picks the authed path when a token is present and the guest path otherwise.
-
-### Favorites
+### Projects
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
-| `GET /real-estate/favorites` | `listFavorites(token?)` | `src/services/favorites.ts` |
-| `POST /real-estate/favorites/{carId}` | `addFavorite(carId, token?)` | `src/services/favorites.ts` |
-| `DELETE /real-estate/favorites/{carId}` | `removeFavorite(carId, token?)` | `src/services/favorites.ts` |
+| `GET /projects` | `fetchProjects(params?)` | `src/services/projects.ts` |
+| `GET /projects/search?q=` | `searchProjects(query)` | `src/services/projects.ts` |
+| `GET /projects/filters` | `fetchProjectFilters(params?)` | `src/services/projects.ts` |
+| `GET /projects/{slug}` | `fetchProjectBySlug(slug)` | `src/services/projects.ts` |
+| `GET /projects/id/{id}` | `fetchProjectById(id)` | `src/services/projects.ts` |
+| `GET /projects/{id}/properties` | `fetchProjectProperties(id, params?)` | `src/services/projects.ts` |
+
+Unlike `/properties/filters` (a facet payload), `/projects/filters` re-runs the filtered list.
+
+### Agents
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `GET /agents` | `fetchAgents(params?)` | `src/services/agents.ts` |
+| `GET /agents/{id}` | `fetchAgentById(id)` | `src/services/agents.ts` |
+| `GET /agents/{id}/properties` | `fetchAgentProperties(id, params?)` | `src/services/agents.ts` |
+| `GET /agents/{id}/projects` | `fetchAgentProjects(id, params?)` | `src/services/agents.ts` |
+
+### Saved properties (favorites)
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `GET /account/saved-properties` | `listSavedProperties(token, params?)` | `src/services/saved-properties.ts` |
+| `POST /properties/{id}/save` | `addSavedProperty(propertyId, token)` | `src/services/saved-properties.ts` |
+| `DELETE /properties/{id}/save` | `removeSavedProperty(propertyId, token)` | `src/services/saved-properties.ts` |
+
+### Consultations (inquiries)
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `POST /consults` | `submitConsult(payload)` | `src/services/consults.ts` |
+| `GET /consults/custom-fields` | `fetchConsultCustomFields()` | `src/services/consults.ts` |
+| `GET /account/consults?type=sent` | `fetchMyInquiries(token, params?)` | `src/services/consults.ts` |
+
+`POST /consults` accepts guest submissions (no token required). The signed-in customer's own sent consultations come from `/account/consults?type=sent`; the agent's received leads use the same route with `type=received`.
+
+### Reviews
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `GET /properties/{id}/reviews` | `fetchPropertyReviews(propertyId, params?)` | `src/services/reviews.ts` |
+| `POST /properties/{id}/reviews` | `submitReview(propertyId, payload, token)` | `src/services/reviews.ts` |
+| `PUT /reviews/{reviewId}` | `updateReview(reviewId, payload, token)` | `src/services/reviews.ts` |
+| `DELETE /reviews/{reviewId}` | `deleteReview(reviewId, token)` | `src/services/reviews.ts` |
 
 ### Taxonomy & locations
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
-| `GET /real-estate/car-makes` | `fetchCarMakes()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/car-types` | `fetchCarTypes()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/car-categories` | `fetchCarCategories()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/car-transmissions` | `fetchCarTransmissions()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/car-fuels` | `fetchCarFuels()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/car-amenities` | `fetchCarAmenities()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/locations` | `fetchLocations()` | `src/services/taxonomy.ts` |
-| `GET /real-estate/locations/search` | `searchLocations(query)` | `src/services/taxonomy.ts` |
+| `GET /categories` | `fetchCategories(params?)` | `src/services/taxonomy.ts` |
+| `GET /categories/filters` | `fetchCategoryFilters()` | `src/services/taxonomy.ts` |
+| `GET /categories/{slug}` | `fetchCategoryBySlug(slug)` | `src/services/taxonomy.ts` |
+| `GET /categories/id/{id}` | `fetchCategoryById(id)` | `src/services/taxonomy.ts` |
+| `GET /categories/{id}/properties` | `fetchCategoryProperties(id, params?)` | `src/services/taxonomy.ts` |
+| `GET /features` · `GET /features/all` | `fetchFeatures(params?)` · `fetchAllFeatures()` | `src/services/taxonomy.ts` |
+| `GET /facilities` · `GET /facilities/all` | `fetchFacilities(params?)` · `fetchAllFacilities()` | `src/services/taxonomy.ts` |
+| `GET /cities` | `fetchCities(params?)` | `src/services/taxonomy.ts` |
+| `GET /states` | `fetchStates(params?)` | `src/services/taxonomy.ts` |
 
-### Agents / vendors
-
-There is intentionally **no** public `/real-estate/vendors` (agent-list) endpoint. Agents are vendor customers that surface nested inside property and inquiry data, so the Agents tab derives its list from `fetchProperties()` on the client (see `src/hooks/use-agents.ts`). This is a known v1 limitation documented in the app's `docs/system-architecture.md`.
-
-### Blog, content & misc
+### App config, home feed & misc
 
 | Method + Endpoint | Service function | File |
 |---|---|---|
-| `GET /posts` | `fetchPosts(params?)` | `src/services/blog.ts` |
-| `GET /posts/{slug}` | `fetchPostBySlug(slug)` | `src/services/blog.ts` |
-| `GET /search` | `searchPosts(query)` | `src/services/blog.ts` |
-| `GET /categories` | `fetchBlogCategories()` | `src/services/blog.ts` |
-| `GET /simple-sliders` | `fetchSliders()` | `src/services/misc.ts` |
+| `GET /settings` | `fetchSettings()` | `src/services/config.ts` |
+| `GET /currencies` | `fetchCurrencies()` | `src/services/config.ts` |
+| `GET /home` | `fetchHomeFeed(limit?)` | `src/services/config.ts` |
 | `GET /languages` | `fetchLanguages()` | `src/services/misc.ts` |
-| `GET /real-estate/currencies` | `fetchCurrencies()` | `src/services/misc.ts` |
-| `POST /real-estate/inquiries` | `submitInquiry(payload)` | `src/services/misc.ts` |
+| `GET /simple-sliders` | `fetchSliders()` | `src/services/misc.ts` |
 | `POST /contacts` | `submitContact(payload)` | `src/services/misc.ts` |
-| `POST /device-tokens` | `registerDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
+| `GET /referral` | `fetchReferral(token?)` | `src/services/referral.ts` |
+| `GET /posts` · `GET /posts/{slug}` · `GET /search` | `fetchPosts` · `fetchPostBySlug` · `searchPosts` | `src/services/blog.ts` |
 
-Languages come from `GET /languages` and currencies from `GET /real-estate/currencies` (the currency picker). The active currency is sent as `X-CURRENCY` (default `USD`), and the API converts prices to it server-side. Both drive the localization headers described above.
+`GET /home` returns the composed home-screen feed in one request (featured properties, featured projects, agents, blog posts), sized by the `HOME_*_COUNT` env vars.
+
+### Push notifications
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `POST /device-tokens` | `registerDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
+| `DELETE /device-tokens/by-token` | `unregisterDeviceToken(...)` | `src/services/misc.ts` |
+| `GET /notifications` | `fetchNotifications(params?, token?)` | `src/services/notifications.ts` |
+| `GET /notifications/stats` | `fetchNotificationStats(token?)` | `src/services/notifications.ts` |
+| `POST /notifications/mark-all-read` | `markAllNotificationsRead(token?)` | `src/services/notifications.ts` |
+| `POST /notifications/{id}/read` | `markNotificationRead(id, token?)` | `src/services/notifications.ts` |
+| `POST /notifications/{id}/clicked` | `markNotificationClicked(id, token?)` | `src/services/notifications.ts` |
+
+### Agent portal
+
+All agent-portal routes are authenticated and live under `/account`. Services are in `src/services/agent/`.
+
+| Method + Endpoint | Service function | File |
+|---|---|---|
+| `GET /account/dashboard` | `fetchAgentDashboard(token)` | `agent/agent-dashboard.ts` |
+| `GET /account/status` | `fetchAgentStatus(token)` | `agent/agent-dashboard.ts` |
+| `GET /account/activity-logs` | `fetchAgentActivityLogs(token, params?)` | `agent/agent-dashboard.ts` |
+| `GET /account/properties` | `fetchAgentProperties(token, params?)` | `agent/agent-properties.ts` |
+| `GET /account/properties/{id}` | `fetchAgentProperty(id, token)` | `agent/agent-properties.ts` |
+| `POST /account/properties` | `createAgentProperty(payload, token)` | `agent/agent-properties.ts` |
+| `PUT /account/properties/{id}` | `updateAgentProperty(id, payload, token)` | `agent/agent-properties.ts` |
+| `DELETE /account/properties/{id}` | `deleteAgentProperty(id, token)` | `agent/agent-properties.ts` |
+| `POST /account/properties/{id}/renew` | `renewAgentProperty(id, token)` | `agent/agent-properties.ts` |
+| `POST /account/properties/{id}/images` | `addAgentPropertyImages(...)` | `agent/agent-properties.ts` |
+| `GET /account/properties/metadata` | `fetchAgentPropertyMetadata(token)` | `agent/agent-properties.ts` |
+| `POST /account/upload` (multipart) | `uploadAgentFile(...)` | `agent/agent-properties.ts` |
+| `GET /account/packages` | `fetchAgentPackages(token)` | `agent/agent-packages.ts` |
+| `POST /account/packages/{id}/subscribe` | `subscribeAgentPackage(id, token)` | `agent/agent-packages.ts` |
+| `GET /account/transactions` | `fetchAgentTransactions(token, params?)` | `agent/agent-finance.ts` |
+| `GET /account/invoices` | `fetchAgentInvoices(token, params?)` | `agent/agent-finance.ts` |
+| `GET /account/invoices/{id}` | `fetchAgentInvoice(id, token)` | `agent/agent-finance.ts` |
+| `GET /account/invoices/{id}/download` | `fetchAgentInvoiceDownloadUrl(id, token)` | `agent/agent-finance.ts` |
+| `GET /account/consults?type=received` | `fetchAgentLeads(token, params?)` | `agent/agent-leads.ts` |
+| `GET /account/consults/{id}` | `fetchAgentLead(id, token)` | `agent/agent-leads.ts` |
+| `GET /account/reviews` | `fetchAgentReviews(token, params?)` | `agent/agent-reviews.ts` |
 
 ## Query params
 
-List / search endpoints build their query string via `src/lib/query-string.ts#buildQueryString`. It skips `null` / `undefined` / `""` values, serializes arrays as CSV (`amenities=1,2,3`), and URL-encodes keys and values.
+List / search endpoints build their query string via `src/lib/query-string.ts#buildQueryString`. It skips `null` / `undefined` / `""` values, URL-encodes keys and values, and supports both CSV and `brackets` array formats (project filters use `brackets`).
 
 ## Client-side normalization
 
 The app normalizes two things the backend can return loosely:
 
-- Media URLs: image paths are resolved against `appConfig.api.siteUrl` so relative upload paths render correctly. The configured `CAR_IMAGE_THUMBNAIL_SIZE` (`small` | `medium` | `large`) selects the thumbnail variant used in list cells.
-- Null slugs: records with a missing/null slug fall back to their numeric id (e.g. `fetchCarById` / `GET /real-estate/properties/id/{id}`), so navigation and detail lookups don't break on unslugged content.
+- Media URLs: image paths are resolved against `appConfig.api.siteUrl` so relative upload paths render correctly. The configured `PROPERTY_IMAGE_THUMBNAIL_SIZE` (`small` | `medium` | `large`) selects the thumbnail variant used in list cells.
+- Null slugs: records with a missing/null slug fall back to their numeric id (e.g. `fetchPropertyById` / `GET /properties/id/{id}`), so navigation and detail lookups don't break on unslugged content.
 
-## Checkout
+## Checkout (agent credit packages)
 
-The inquiry-create API returns a **PENDING** inquiry without a payment URL. Checkout is handled by loading the backend's hosted payment page in a WebView (`app/checkout-webview.tsx`), built from `appConfig.api.siteUrl`. This keeps every backend payment gateway and shipping plugin working without app changes.
+`POST /account/packages/{id}/subscribe` returns a hosted **checkout URL** rather than completing payment in-app. The app opens it in a WebView (`buildCheckoutWebViewUrl`, `app/web-view.tsx`), built from `appConfig.api.siteUrl`, and detects completion with `isCheckoutReturnUrl` / `isCheckoutFailureUrl`. This keeps every backend payment gateway working without a native SDK.
 
 ## Common errors
 

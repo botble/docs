@@ -42,10 +42,10 @@ function Greeting() {
 }
 
 // With interpolation
-t("inquiry.pickupOn", "Pick-up on {{date}}", { date });
+t("search.resultsAvailable", "{{count}} results available", { count });
 ```
 
-Keys are dot-separated and nested (e.g. `home.title`, `inquiry.pickupOn`).
+Keys are dot-separated and nested (e.g. `home.title`, `search.resultsAvailable`).
 
 ## The app name (`{{appName}}`): white-labeling
 

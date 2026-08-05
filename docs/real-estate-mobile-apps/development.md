@@ -7,25 +7,34 @@ Flex Home is an Expo SDK 54 / React Native 0.81 app using **expo-router** for fi
 ```
 app/                          expo-router routes (thin screens that delegate to hooks/services)
   _layout.tsx                 root: providers + Stack + AppGate
-  (tabs)/                     Home, Search, Agents, Inquirys, Profile
-  (auth)/                     login, register, forgot/reset password
-  car/[slug].tsx              property detail
-  car/[slug]/book.tsx         4-step inquiry flow
-  inquiry/[id].tsx            inquiry detail/status
-  checkout-webview.tsx        hosted payment WebView
-  account/                    profile-edit, change-password, notifications, help, license
+  (tabs)/                     Home, Search, Projects, Saved, Profile
+  (auth)/                     login, register, forgot/reset password, verify-pending
+  property/[slug].tsx         property detail
+  project/[slug].tsx          project detail
+  agents.tsx, agent/[id].tsx  agent directory + agent public profile
+  consult.tsx                 consultation (inquiry) request form
+  inquiries/                  my sent consultations: index.tsx, [id].tsx
+  compare.tsx                 side-by-side property compare
+  agent/                      agent portal: index (dashboard), properties/, leads/,
+                              packages/, invoices/, transactions, reviews, status,
+                              checkout-webview.tsx
+  account/                    profile-edit, change-password, notifications, help, settings
   settings/                   language, currency, theme pickers
-  blog/, agent/[id].tsx, favorites.tsx, onboarding.tsx, ...
+  blog/, notifications.tsx, web-view.tsx, onboarding.tsx
 
 src/
   config/app.ts               env-driven config (reads expo-constants extra.appConfig)
   services/                   API layer: apiClient (fetch wrapper) + per-resource wrappers
-  context/                    React Context providers (auth, settings, favorites, toast, app-status)
+                              services/agent/ holds the agent-portal calls
+  context/                    Auth, Settings, SavedProperties, Compare, Notification,
+                              Toast, AppStatus (composed in AppProviders.tsx)
   types/                      domain types mirroring API resources
   lib/                        theme, storage, secure-storage, format, query-string, query-client
   components/ui/              shared UI kit (Button, Input, Card, Badge, StarRating, …)
-  components/{properties,home,search,inquiry,agents,account,auth,blog,inquiries}/
-  hooks/                      useDebounce, useBiometric, useSocialAuth, useAgents, usePushNotifications
+  components/{properties,property,projects,home,search,consult,agents,agent,account,auth,blog,compare,notifications,status}/
+  hooks/                      use-debounce, use-biometric-auth, use-social-auth,
+                              use-properties-query, use-properties-map-query,
+                              use-user-location, use-push-notifications, use-agent-*
   i18n/                       i18next setup (index.ts) + locale JSON (locales/*.json)
 
 app.config.js                 Expo dynamic config (env → extra.appConfig, plugins)
@@ -72,10 +81,13 @@ Auth tokens are persisted to **expo-secure-store**; preferences to **async-stora
 ```ts
 // src/services/properties.ts
 import { api } from "./apiClient";
-import type { Property } from "@/types/car";
+import type { ApiResponse } from "@/types/api";
+import type { Property } from "@/types/property";
 
-export async function fetchCarBySlug(slug: string): Promise<Car> {
-  const res = await api.get(`/real-estate/properties/${slug}`);
+const BASE = "/properties";
+
+export async function fetchPropertyBySlug(slug: string): Promise<Property> {
+  const res = await api.get<ApiResponse<Property>>(`${BASE}/${slug}`);
   return res.data;
 }
 ```
@@ -84,8 +96,8 @@ export async function fetchCarBySlug(slug: string): Promise<Car> {
 
 ```ts
 const { data: property } = useQuery({
-  queryKey: ["car", slug],
-  queryFn: () => fetchCarBySlug(slug),
+  queryKey: ["property", slug],
+  queryFn: () => fetchPropertyBySlug(slug),
 });
 ```
 
