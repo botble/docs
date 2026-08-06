@@ -57,8 +57,8 @@ The "Default" column below is the value **shipped in `.env.example`** (Botble Jo
 
 | Key | Default (`.env.example`) | Code fallback (no `.env`) | Description |
 |---|---|---|---|
-| `PRIMARY_COLOR` | `3C65F5` | `3C65F5` | Brand primary, applied to the whole theme (light + dark) |
-| `PRIMARY_DARK_COLOR` | `05264E` | `05264E` | Darker shade for pressed/active states |
+| `PRIMARY_COLOR` | `5749CD` | `5749CD` | Brand primary, applied to the whole theme (light + dark) |
+| `PRIMARY_DARK_COLOR` | `3C2FAA` | `3C2FAA` | Darker shade for pressed/active states |
 | `ON_PRIMARY_COLOR` | `FFFFFF` | `FFFFFF` | Foreground color on top of primary |
 
 ### Fonts
