@@ -21,12 +21,12 @@ file under `src/i18n/locales/` (`en.json`, `vi.json`, `ar.json`, `fr.json`):
 ```json
 {
   "onboarding": {
-    "slide1Title": "Find your home",
+    "slide1Title": "Find your next job",
     "slide1Text": "Browse thousands of openings from verified companies.",
     "slide2Title": "Search with ease",
     "slide2Text": "Filter by location, salary and job type.",
-    "slide3Title": "Connect with agents",
-    "slide3Text": "Save listings and reach out to agents in minutes.",
+    "slide3Title": "Apply in minutes",
+    "slide3Text": "Save jobs and send your application straight from your phone.",
     "getStarted": "Get started",
     "skip": "Skip"
   }
@@ -43,12 +43,12 @@ The slides are defined in `app/onboarding.tsx`. Each entry pairs a
 The defaults are:
 
 ```tsx
-import { Building2, Home, Search } from "lucide-react-native";
+import { Briefcase, Search, SendHorizonal } from "lucide-react-native";
 
 const slides = [
-  { icon: Home,      title: t("onboarding.slide1Title", "Find your home"),      text: t("onboarding.slide1Text", "…") },
-  { icon: Search,    title: t("onboarding.slide2Title", "Search with ease"),    text: t("onboarding.slide2Text", "…") },
-  { icon: Building2, title: t("onboarding.slide3Title", "Connect with agents"), text: t("onboarding.slide3Text", "…") },
+  { icon: Briefcase,     title: t("onboarding.slide1Title", "Find your next job"), text: t("onboarding.slide1Text", "…") },
+  { icon: Search,        title: t("onboarding.slide2Title", "Search with ease"),   text: t("onboarding.slide2Text", "…") },
+  { icon: SendHorizonal, title: t("onboarding.slide3Title", "Apply in minutes"),   text: t("onboarding.slide3Text", "…") },
 ];
 ```
 

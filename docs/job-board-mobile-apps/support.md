@@ -32,7 +32,7 @@ Do not send passwords, API keys, customer data, or your full Envato purchase cod
 ## Documentation index
 
 - [App Overview](overview.md)
-- [⭐ Complete Setup & Publishing Guide](complete-setup-and-publishing-guide.md)
+- [Complete Setup & Publishing Guide](complete-setup-and-publishing-guide.md)
 - [Installation](installation.md)
 - [Configuration](configuration.md)
 - [Development Guide](development.md)

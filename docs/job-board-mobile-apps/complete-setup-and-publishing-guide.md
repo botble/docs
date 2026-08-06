@@ -176,19 +176,20 @@ Your Botble Website (yoursite.com)
 
 | Data | How it syncs | Endpoint |
 |---|---|---|
-| **Jobs** | Real-time on each visit | `/api/v1/jobs` |
-| **Search / filters** | Real-time | `/api/v1/jobs/search`, `/jobs/filters` |
-| **Job detail** | Real-time | `/api/v1/jobs/{id}` |
-| **Projects** (developments) | Real-time | `/api/v1/projects` |
-| **Agents** | Real-time | `/api/v1/employers` |
+| **Jobs** | Real-time on each visit | `/api/v1/jobs`, `/jobs/featured`, `/jobs/recent`, `/jobs/popular` |
+| **Job detail** | Real-time | `/api/v1/jobs/{id}`, `/jobs/{id}/related` |
+| **Companies** | Real-time | `/api/v1/companies`, `/companies/{id}/jobs` |
+| **Candidates** | Real-time | `/api/v1/candidates` |
 | **My applications** | Real-time when the candidate views | `/api/v1/account/applications` |
 | **Saved jobs** | Synced with the account | `/api/v1/account/saved-jobs` |
-| **Taxonomy** (categories, features, facilities) | Real-time | `/api/v1/categories`, `/features`, `/facilities` |
+| **Resume** | Synced with the account | `/api/v1/account/educations`, `/experiences`, `/languages`, `/skills` |
+| **Employer portal** | Real-time | `/api/v1/account/dashboard`, `/account/jobs`, `/job-applications` |
+| **Taxonomy** | Real-time, one endpoint per taxonomy | `/api/v1/categories`, `/job-types`, `/job-skills`, `/career-levels`, `/functional-areas`, `/job-shifts` |
 | **Blog** | Real-time | `/api/v1/posts` |
 | **User accounts** | Shared login with the website | `/api/v1/auth/login` |
 
 - **Add a job on your website** → it appears in the app automatically
-- **Update a price** → the app shows it immediately
+- **Update a salary or job status** → the app shows it immediately
 - **A candidate applies in the app** → the application appears in your admin panel and in the employer portal
 
 See [API Integration](api-integration.md) for the full endpoint map.
