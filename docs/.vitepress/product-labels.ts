@@ -7,6 +7,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   hasa: 'HASA',
   'lara-mag': 'LaraMag',
   'bb-form-builder': 'BB Form Builder',
+  'bb-store-locator': 'BB Store Locator',
   'pos-pro': 'POS Pro',
   'ecommerce-back-in-stock': 'Back in Stock',
   kyc: 'KYC Verification',

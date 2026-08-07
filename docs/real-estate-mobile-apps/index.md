@@ -9,6 +9,17 @@ our real-estate Laravel scripts, sold separately — [Homzen](https://1.envato.m
 [Flex Home](https://1.envato.market/QrdYz). Both ship the real-estate plugin and expose the same
 API, so the app works with either. No other backend will work.
 :::
+
+::: warning Optional features need your own third-party accounts, and some cost money
+Social login, payment gateways and push notifications connect to services that are not ours and are
+not included in the purchase price. **Social login** needs your own Google, Apple or Meta developer
+accounts, and Sign in with Apple requires a paid Apple Developer Program membership. **Payment
+gateways** for agent credit packages run on your backend and need your own merchant account with the
+provider, who charges their own transaction fees. **Push notifications** need your own Firebase
+project. The app runs fine without any of them; each stays switched off until you supply credentials.
+See [Common Backend Configuration Errors](backend-configuration-errors.md) and
+[Social Login Configuration](16_social_login_configuration.md).
+:::
  The codebase is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` (app name, bundle ID, API URL, colors). One codebase builds both iOS and Android. Consumers browse properties and projects, search on an interactive map, save and compare listings, and send consultation requests to agents, all driven live from your Botble admin. Agents get a full native portal for listings, leads, credit packages, invoices and reviews — only the package checkout runs in a WebView, so every Botble payment gateway works without a native SDK.
 
 <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin:28px 0;">
@@ -100,6 +111,7 @@ saved listings, the agent portal, and dark mode.
 - [Development Guide](development.md)
 - [Upgrade Guide](upgrade.md)
 - [Troubleshooting](troubleshooting.md)
+- [Backend Configuration Errors](backend-configuration-errors.md)
 - [FAQ](faq.md)
 - [Support](support.md)
 - [Release notes](releases.md)

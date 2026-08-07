@@ -48,6 +48,7 @@ export default [
             { text: 'Support & Contact', link: '/real-estate-mobile-apps/support' },
             { text: 'FAQ', link: '/real-estate-mobile-apps/faq' },
             { text: 'Troubleshooting', link: '/real-estate-mobile-apps/troubleshooting' },
+            { text: 'Backend Configuration Errors', link: '/real-estate-mobile-apps/backend-configuration-errors' },
             { text: 'Upgrade Guide', link: '/real-estate-mobile-apps/upgrade' },
             { text: 'Release Notes', link: '/real-estate-mobile-apps/releases' },
         ],

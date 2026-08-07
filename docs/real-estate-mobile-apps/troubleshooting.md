@@ -4,6 +4,10 @@ Common issues when setting up and running the Flex Home (Expo) app, and how to f
 
 > After changing `.env`, fully stop and restart the dev server. `.env` values are baked in by `app.config.js` at start/build time and are **not** picked up by Fast Refresh.
 
+::: tip Backend problems have their own page
+This page covers the **app** side. If your screens are empty, images are broken, requests come back `401`/`403`/`503`, uploads fail or the package checkout misbehaves, the cause is usually on the Laravel backend. See [Common Backend Configuration Errors](backend-configuration-errors.md).
+:::
+
 ## Blank screens or no data
 
 The most common cause of empty screens is a bad backend URL.
