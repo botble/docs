@@ -7,7 +7,7 @@ The locator's CSS and JavaScript are published when the plugin is activated. If 
 Re-publish them:
 
 ```bash
-php artisan cms:plugin:assets bb-store-locator
+php artisan cms:plugin:assets:publish bb-store-locator
 php artisan cache:clear
 ```
 
