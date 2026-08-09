@@ -50,8 +50,8 @@ Geocoding converts a written address into coordinates. See [Geocoding](./usage/g
 | **Distance unit** | Kilometres or miles. |
 | **Default radius** / **Max radius** | The starting search distance and the furthest a visitor may set. |
 | **Results limit** | Maximum stores returned per search. |
-| **Geolocation mode** | `none`, `ask` or `auto`. Browsers only allow location lookup over HTTPS. |
-| **Enable directions** | Shows a Directions link that opens the visitor's map app. |
+| **Geolocation mode** | `none` (never ask), `dialog` (ask on request) or `onload` (ask on page load). Browsers only allow location lookup over HTTPS. |
+| **Enable directions** | Shows a Directions link that opens the route in Google Maps. |
 | **Search requires location** | Show nothing until the visitor searches or shares their location. Useful for very large networks. |
 
 ## Opening hours

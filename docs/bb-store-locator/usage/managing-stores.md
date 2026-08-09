@@ -29,7 +29,7 @@ Set a status per day - **Open**, **Open 24 hours** or **Closed** - and add one o
 - **Multiple slots** handle a lunchtime closure.
 - **Past midnight** works: a slot from `22:00` to `02:00` is understood as running overnight, so a late bar is not wrongly shown as closed at 1am.
 - **Copy Monday to all days** fills the week in one click.
-- The **Note** column adds a short remark such as "Bank holidays excepted".
+- The **Note** column records a short internal remark such as "Bank holidays excepted". It is stored with the store and shown back in this editor; it is not rendered on the storefront.
 
 ### Timezone
 

@@ -24,9 +24,24 @@ In the admin panel the shortcode also has a visual builder, so you do not have t
 | `categories` | Comma-separated category ids, e.g. `2,5` | all |
 | `default_radius` | A number | site setting |
 | `distance_unit` | `km` or `mi` | site setting |
-| `geolocation_mode` | `none`, `ask`, `auto` | site setting |
+| `geolocation_mode` | `none`, `dialog`, `onload` | site setting |
 | `results_limit` | A number | site setting |
-| `height` | Any CSS length, e.g. `620px` | `520px` |
+| `height` | Map height as a CSS length, e.g. `620px` | `560px` |
+| `max_radius` | A number. Clamped to the site maximum | site setting |
+| `radius_control` | `slider` or `select` | site setting |
+| `default_sort` | `distance`, `name`, `city`, `state`, `featured`, `random` | site setting |
+| `first_load` | `all` to list every store before a search, `none` to start empty | `all` |
+| `enable_directions` | `1` or `0` | site setting |
+| `direction_mode` | `driving`, `walking`, `bicycling`, `transit` | site setting |
+| `website_link_target` | `_blank` or `_self` | site setting |
+| `hide_fields` | Comma-separated: `phone`, `email`, `website`, `logo`, `categories`, `hours` | none |
+| `default_latitude` / `default_longitude` | Opening centre for this locator only | site setting |
+| `default_zoom` | Opening zoom level | site setting |
+| `enable_clustering` | `1` or `0` | site setting |
+| `time_format` | `24` or `12` | site setting |
+| `hours_style` | `today`, `week`, `grouped` | site setting |
+| `show_open_now` | `1` or `0` | site setting |
+| `map_type` | Google renderer map type, e.g. `roadmap` | site setting |
 
 ::: tip Unknown attributes are ignored
 Only the attributes above are accepted. Anything else is dropped rather than passed through, which keeps the shortcode's behaviour predictable.
@@ -67,6 +82,8 @@ Edge-to-edge map with the results floating over it. The most immersive option, a
 ### List
 
 No map at all - just the searchable, filterable list. Lightest to load, and the most accessible.
+
+![List layout](../images/18-locator-list.png)
 
 ## Choosing a layout
 

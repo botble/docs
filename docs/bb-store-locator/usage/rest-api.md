@@ -2,7 +2,7 @@
 
 A read-only JSON API for building your own front end, a mobile app, or feeding another system.
 
-Enable it at **Settings → Store Locator (Map) → Enable API**. It is off until you turn it on.
+Controlled by **Settings → Store Locator (Map) → Enable API**, which is on by default. Turn it off to close the endpoints entirely.
 
 ::: tip Your site's API switch matters too
 Botble has a global API toggle. If every endpoint answers `503 API is currently disabled`, that is the site-wide setting, not this plugin.
@@ -27,11 +27,11 @@ Botble has a global API toggle. If every endpoint answers `503 API is currently 
 | `lat`, `lng` | Search origin. Both are required together - half a pair is ignored |
 | `radius` | Distance from the origin. Clamped to your configured maximum |
 | `unit` | `km` or `mi` |
-| `q` | Free-text search over name, address and city |
+| `q` | Free-text search over name, address, city and postcode |
 | `categories` | Comma-separated category ids |
 | `country`, `state`, `city` | Region filters |
 | `open_now` | `true` to return only stores open at the time of the request |
-| `sort` | `distance`, `name`, `city`, `featured` |
+| `sort` | `distance`, `name`, `city`, `state`, `featured`, `random` |
 | `limit`, `page` | Pagination. `limit` is capped by the results-limit setting |
 | `facets` | `true` to include category and region counts |
 
@@ -72,7 +72,7 @@ curl "https://example.com/api/v1/store-locator/stores?lat=51.5074&lng=-0.1278&ra
 }
 ```
 
-`distance` only appears when the request supplies an origin.
+`distance` and `distance_label` are `null` unless the request supplies an origin.
 
 ## What is deliberately absent
 

@@ -76,4 +76,4 @@ Distance is calculated in SQL where the database supports the required maths and
 
 ## Can visitors get directions?
 
-Yes. Each store offers a Directions link that opens the visitor's own map application with the route preset.
+Yes. Each store offers a Directions link that opens Google Maps with the route preset. The travel mode (driving, walking, cycling, transit) is configurable.
