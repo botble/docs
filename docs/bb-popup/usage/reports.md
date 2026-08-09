@@ -18,7 +18,7 @@ description: What each metric counts, and when it is recorded
 | **Clicks** | The visitor clicks an element with the `bp-cta` class in the popup content. |
 | **Conversions** | The visitor completes the popup's goal: clicks a `bp-confirm` element, submits the built-in email capture form, or is marked converted through the [JS API](./shortcode-and-embed.md#javascript-api). |
 
-Derived figures: **conversion rate**, **close rate**, **click-through rate**, and **lift vs control** for A/B variants.
+Alongside the four counts, each row shows a **conversion rate**. Close rate, click-through rate and lift against the control are not columns in the table - work them out from the counts if you need them.
 
 ::: tip Why impressions are not page views
 Impressions count displays, not deliveries. Counting every delivery would inflate the denominator and make conversion rate decay as the popup got more selective - the opposite of what you want to measure.
@@ -26,7 +26,13 @@ Impressions count displays, not deliveries. Counting every delivery would inflat
 
 ## Date range and time zone
 
-Pick a date range at the top of the page. Daily buckets use the **site** time zone, which is shown beneath the table, not the visitor's.
+The report covers the **last 30 days** by default. There is no date picker on the page - set a different window with query parameters:
+
+```
+/admin/bb-popup/reports?start_date=2026-01-01&end_date=2026-01-31
+```
+
+Daily buckets use the **site** time zone, shown beneath the table, not the visitor's.
 
 ## Retention
 
@@ -45,5 +51,5 @@ php artisan bb-popup:prune-stats
 If the table is empty for a range you expect data in:
 
 - Check the popup is **Published** and inside its start and end dates
-- Check the range - daily buckets use the site time zone
+- Widen the window with `start_date` / `end_date` - the default is only the last 30 days
 - Confirm the popup is actually being displayed, using the checks in [Troubleshooting](../troubleshooting.md)

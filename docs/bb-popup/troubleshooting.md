@@ -25,7 +25,7 @@ BbPopup.reset(3)   // 3 = the popup id
 
 ### 3. Do the display rules exclude you?
 
-Use **Test against a URL** on the Display Rules tab for the server-side rules. Browser-side rules - device, login status, visitor history, referrer, UTM, cookie, page views - depend on the real visitor, so check them by hand:
+Re-read the rules on the Display Rules tab, remembering that `*` in a URL path also matches across slashes. Browser-side rules - device, login status, visitor history, referrer, UTM, cookie, page views - depend on the real visitor, so check them from the page itself:
 
 ```js
 BbPopup.has(3)   // false = the runtime never adopted this popup for you

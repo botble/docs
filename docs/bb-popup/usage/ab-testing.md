@@ -43,12 +43,12 @@ Both the control and each variant have a **traffic weight**. Weights are relativ
 
 ## Reading the result
 
-**Popups → Reports** splits impressions, closes, clicks and conversions by variant, with a conversion rate for each and lift against the control.
+**Popups → Reports** gives each variant its own row, with impressions, closes, clicks, conversions and a conversion rate. Compare the control's row against each variant's.
 
 ![Reports](../images/12-admin-reports.png)
 
 ::: warning Do not call it early
-The report flags a small sample rather than letting you read noise as a result. A few dozen impressions cannot separate a 6% conversion rate from a 7% one - let the test run.
+Nothing in the table warns you about sample size, so that judgement is yours. A few dozen impressions cannot separate a 6% conversion rate from a 7% one - let the test run.
 :::
 
 ## Removing a variant

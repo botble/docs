@@ -45,9 +45,15 @@ These vary with the person, so they are evaluated in the visitor's browser after
 | **Cookie** | exists, equals | By cookie name. |
 | **Page views** | at least | Page views by this visitor. |
 
-## Testing your rules
+## Checking your rules
 
-**Test against a URL** takes a path such as `/blog/my-post` and shows which rules pass. It only exercises the server-side rules - browser-side rules depend on a real visitor.
+There is no rule simulator in the admin - check a rule the way a visitor experiences it, by opening the page and asking the runtime:
+
+```js
+BbPopup.has(3)   // 3 = the popup id; false means the rules excluded you
+```
+
+`false` covers both cases: a server-side rule kept the popup out of the HTML, or a browser-side rule rejected this visitor. See [Troubleshooting](../troubleshooting.md).
 
 ## Caching
 
