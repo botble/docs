@@ -31,6 +31,10 @@ These vary with the page, not the person, so they can be decided before the HTML
 | **Language** | is, is not | A site language. |
 | **Schedule** | between | A weekly time window. |
 
+::: tip Multilingual sites
+Write URL rules without the language prefix. `/blog*` matches `/blog`, `/vi/blog` and `/ar/blog` alike - the active language's prefix is stripped before the glob is applied, so one rule covers every translation of the page.
+:::
+
 ### Browser-side rules
 
 These vary with the person, so they are evaluated in the visitor's browser after the page is delivered.
