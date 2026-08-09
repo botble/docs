@@ -103,7 +103,19 @@ DB_USERNAME=your_new_database_user
 DB_PASSWORD=your_new_database_password
 ```
 
-4. **Save** the file
+4. Look for a `FORCE_ROOT_URL` line. If it exists and is **not** commented out, either update it to the new domain or comment it out by putting `#` in front:
+
+```
+#FORCE_ROOT_URL=https://your-old-domain.com
+```
+
+5. **Save** the file
+
+::: warning Links still pointing to the old domain?
+`FORCE_ROOT_URL` forces every link on the site to a fixed address, so it overrides `APP_URL`. If you leave it set to the old domain, your homepage opens fine (you typed the new address yourself) but every menu item and link sends visitors back to the old domain. Older installs had this line written automatically, so always check for it.
+
+Only keep `FORCE_ROOT_URL` set if your site runs in a subfolder (for example `https://example.com/my-site`) or you need it to fix an SSL issue - in that case point it at the new address.
+:::
 
 ### Step 5: Update Old Domain URLs in the Database
 
@@ -237,7 +249,7 @@ If you built your site inside a subfolder (e.g. `https://example.com/new-web/pub
 4. **Move the files** from the subfolder to the document root (e.g. `public_html/`).
 5. **Point the document root** to the `public` folder of the moved site so the live URL becomes `https://example.com/` (without `/public`). See the [shared hosting installation guide](https://botble.com/the-best-way-to-install-our-script-on-a-shared-hosting) for instructions.
 6. **Import the modified `.sql` file** into the same (or a new) database.
-7. **Edit `.env`**: set `APP_URL=https://example.com` and update the database credentials if they changed.
+7. **Edit `.env`**: set `APP_URL=https://example.com` and update the database credentials if they changed. Also comment out `FORCE_ROOT_URL` (put `#` in front) - a subfolder install has it set to the old subfolder address, and it overrides `APP_URL`.
 8. **Clear the cache** at **Admin → Platform Administration → Cache Management → Clear all caches**.
 9. **Re-activate the license** at **Admin → Settings → General → License**.
 
@@ -257,6 +269,14 @@ If you prefer to start clean instead of moving your old site:
 This method is simpler but requires you to reconfigure all settings, menus, widgets, and theme options.
 
 ## Troubleshooting
+
+### Links Still Go to the Old Domain
+
+The homepage opens on the new domain, but clicking any menu item or link goes back to the old one.
+
+1. Open `.env` and check the `FORCE_ROOT_URL` line. If it is set to the old domain, comment it out with `#` or change it to the new domain, then save. See [Step 4](#step-4-update-the-env-configuration-file).
+2. Delete all `.php` files inside the `bootstrap/cache` folder and everything inside `storage/framework/cache/data`. The main menu is cached, so old links survive until that cache is cleared.
+3. If a few individual links are still wrong, they are stored in your content - run the URL replacement from [Step 5](#step-5-update-old-domain-urls-in-the-database) and check **Admin → Appearance → Menus** for custom links using the full old address.
 
 ### Images Not Showing
 
