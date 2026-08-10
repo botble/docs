@@ -9,6 +9,8 @@ description: What to check when a popup does not appear, or appears when it shou
 
 Work down this list in order - most reports end at one of the first three.
 
+If popups never render for anyone, or tracking and signups fail, the cause is usually a server or admin setting - see [Backend configuration errors](./backend-configuration-errors.md).
+
 ### 1. Is it published and in date?
 
 Draft popups never render. Check **Status** on the Detail tab, and that today falls inside **Starts at** / **Ends at** if you set them.

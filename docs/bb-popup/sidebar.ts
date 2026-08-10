@@ -33,6 +33,7 @@ export default [
         text: 'Support',
         items: [
             { text: 'Troubleshooting', link: '/bb-popup/troubleshooting' },
+            { text: 'Backend Configuration Errors', link: '/bb-popup/backend-configuration-errors' },
             { text: 'FAQ', link: '/bb-popup/faq' },
         ],
     },

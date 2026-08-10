@@ -57,6 +57,7 @@ Impressions, closes, clicks and conversions per popup and per day, plus A/B vari
 | [Shortcode & embed](./usage/shortcode-and-embed.md) | Placing popups by hand, the JS API, external sites |
 | [Import & export](./usage/import-export.md) | Moving popups between sites |
 | [Troubleshooting](./troubleshooting.md) | When a popup does not appear |
+| [Backend configuration errors](./backend-configuration-errors.md) | Server and admin settings that break popups, tracking or signups |
 | [FAQ](./faq.md) | Short answers to common questions |
 
 ## Requirements
