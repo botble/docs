@@ -29,7 +29,7 @@ Pick one from the visual picker. A preset is a starting point, not a lock: choos
 The **Appearance** selector has two positions:
 
 - **Use global defaults** - inherit everything from **Popups → Settings**. Restyling all your popups later is then a single edit.
-- **Customise for this popup** - unlocks the fields below for this popup only.
+- **Customise for this popup** - makes the fields below editable for this popup only.
 
 ## Colours
 
