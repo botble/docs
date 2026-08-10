@@ -9,7 +9,7 @@ No other plugin is required.
 
 ## Install the plugin
 
-1. Download the plugin from your CodeCanyon downloads page and extract the archive. Inside you will find `main.zip` - that is the plugin.
+1. Download the plugin from your [Botble Marketplace](https://marketplace.botble.com) account and extract the archive. Inside you will find `main.zip` - that is the plugin.
 2. In your admin panel go to **Plugins → Installed plugins → Add new**, upload `main.zip`, and click **Activate**.
 
 ::: tip Installing manually
@@ -53,7 +53,7 @@ If you already have your branches in a spreadsheet, do not add them by hand - se
 
 ## Updating
 
-1. Download the latest version from CodeCanyon
+1. Download the latest version from your [Botble Marketplace](https://marketplace.botble.com) account
 2. Go to **Plugins → Installed plugins**, find **BB Store Locator** and use **Update**, or upload the new `main.zip`
 3. Clear your browser cache
 

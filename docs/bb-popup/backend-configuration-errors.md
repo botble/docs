@@ -70,7 +70,7 @@ Open `https://your-site.com/vendor/core/plugins/bb-popup/css/popup-public.css` i
 **Fix:**
 
 1. Go to **Popups → Settings**.
-2. Enter your CodeCanyon purchase code in the **License Activation** panel.
+2. Enter the license key from your purchase in the **License Activation** panel.
 3. If activation fails, confirm the server can reach the licence endpoint over HTTPS. Outbound firewall rules on locked-down hosts commonly block it.
 
 One licence covers one domain at a time. Deactivate before moving the site to a new domain.

@@ -11,7 +11,7 @@ description: Site-wide defaults for popup appearance, behaviour and analytics
 
 ## License activation
 
-The panel at the top of the page holds your CodeCanyon purchase code. A license covers one domain at a time - use **Deactivate** before moving the site.
+The panel at the top of the page holds the license key from your purchase. A license covers one domain at a time - use **Deactivate** before moving the site.
 
 Creating and editing popups requires an active license. Existing popups keep rendering either way.
 
