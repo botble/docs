@@ -144,6 +144,62 @@ $schedule->command('cms:license-manager:download-log:clear')
     ->quarterly();
 ```
 
+## Generate a Signing Keypair
+
+Generates an Ed25519 keypair for signing update releases. See
+[Update Integrity](/license-manager/update-integrity).
+
+```bash
+php artisan cms:license-manager:keys:generate
+```
+
+| Option | Purpose |
+|--------|---------|
+| `--output=` | Path to write the private key to (default `./lm-signing.key`) |
+
+Writes the private key with mode `0600` and prints the public key and key ID. Refuses to overwrite
+an existing key file.
+
+::: danger Run this on your release machine, never the license server
+Only the public key belongs on the license server. A private key stored next to the update files
+lets anyone who can replace an update also re-sign it.
+:::
+
+## Sign a Release
+
+Signs an update archive and prints the manifest and detached signature to upload with it.
+
+```bash
+php artisan cms:license-manager:release:sign update-1.2.0.zip PROD-001 1.2.0
+```
+
+Arguments are positional - **file**, **product reference id**, **version string exactly as it will
+be stored**. `--version` could not be used as an option because Symfony reserves it for the console
+application itself.
+
+| Option | Purpose |
+|--------|---------|
+| `--key=` | Path to the private key (default `./lm-signing.key`) |
+| `--json` | Emit machine-readable JSON for CI |
+
+Touches no database and makes no network calls, so it runs on a machine that holds the private key
+and nothing else.
+
+## Backfill Version Checksums
+
+Computes SHA-256 digests for versions uploaded before checksums existed.
+
+```bash
+php artisan cms:license-manager:versions:backfill-checksums
+```
+
+| Option | Purpose |
+|--------|---------|
+| `--dry-run` | Report what would change without writing |
+
+Safe to re-run: only rows with no digest are touched, and a version whose archive is missing from
+disk is reported and left null rather than failing the run.
+
 ## Running Commands
 
 ### Via Terminal

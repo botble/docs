@@ -9,6 +9,8 @@ export default [
             { text: 'Integration Examples', link: '/license-manager/examples' },
             { text: 'Integration Guide', link: '/license-manager/integration' },
             { text: 'API Reference', link: '/license-manager/api' },
+            { text: 'Update Integrity', link: '/license-manager/update-integrity' },
+            { text: 'Filters, Actions & Events', link: '/license-manager/hooks' },
             { text: 'Demo Playground', link: '/license-manager/demo-playground' },
             { text: 'Webhooks', link: '/license-manager/webhooks' },
             { text: 'Gumroad Integration', link: '/license-manager/gumroad-integration' },

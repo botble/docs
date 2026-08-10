@@ -268,6 +268,34 @@ POST /api/external/update/check
 }
 ```
 
+**Response (Update Available, with update integrity enabled):**
+
+When [update integrity](/license-manager/update-integrity) is enabled, three further fields may be
+present. They are omitted entirely rather than sent as null when unknown, so presence means "this
+server offers integrity data".
+
+```json
+{
+  "update_available": true,
+  "version": "1.2.0",
+  "file_size": 2048,
+  "checksum": {
+    "algo": "sha256",
+    "value": "9b73b06f106459334a7ee3d62fd3e0bd80770609d398be693f8940c600fd822d"
+  },
+  "signature": {
+    "algo": "ed25519",
+    "key_id": "ebf6e384f670a282",
+    "value": "<base64 detached signature>",
+    "manifest": "lm-manifest-v1\nproduct=PROD-001\nversion=1.2.0\nsha256=9b73...\nsize=2048"
+  }
+}
+```
+
+`signature` is present only for versions that were uploaded signed. See
+[Update Integrity](/license-manager/update-integrity) for the manifest format and how to verify it
+in your client.
+
 **Response (No Update):**
 ```json
 {
@@ -307,6 +335,9 @@ POST /api/external/update/latest
 }
 ```
 
+With [update integrity](/license-manager/update-integrity) enabled, `data` also carries `file_size`,
+`checksum`, and `signature` in the same shape as `update/check`.
+
 ### Download Update
 
 Download update file.
@@ -329,6 +360,17 @@ POST /api/external/update/{version}/download/{type}
 
 ::: tip
 Returns the file as a binary download stream.
+:::
+
+**Response Headers (main archive, with update integrity enabled):**
+
+```
+X-LM-Checksum-SHA256: 9b73b06f106459334a7ee3d62fd3e0bd80770609d398be693f8940c600fd822d
+```
+
+::: warning
+This digest describes the **complete** file. On a `206 Partial Content` response to a Range request
+it does not describe the bytes in that response - verify the reassembled file, never a single chunk.
 :::
 
 ### Get Download Size
