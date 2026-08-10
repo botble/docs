@@ -36,6 +36,7 @@ export default [
         text: 'Support',
         items: [
             { text: 'Troubleshooting', link: '/bb-store-locator/troubleshooting' },
+            { text: 'Backend Configuration Errors', link: '/bb-store-locator/backend-configuration-errors' },
             { text: 'FAQ', link: '/bb-store-locator/faq' },
         ],
     },

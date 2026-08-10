@@ -56,6 +56,7 @@ Six templates - split, grid, list, compact, accordion and full map - all placed 
 | [Import & export](./usage/import-export.md) | Bulk loading a branch network from a spreadsheet |
 | [Geocoding](./usage/geocoding.md) | Turning addresses into coordinates |
 | [Troubleshooting](./troubleshooting.md) | When the map is blank or stores do not appear |
+| [Backend configuration errors](./backend-configuration-errors.md) | Server and admin settings that break setup, imports or geocoding |
 | [FAQ](./faq.md) | Short answers to common questions |
 
 ## Requirements

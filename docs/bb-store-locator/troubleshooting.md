@@ -92,6 +92,10 @@ php artisan view:clear
 
 Then hard-reload. If your host has OPcache, it may also need a moment.
 
+## Server and admin-side setup problems
+
+Assets not published, a rejected Google key, a disabled API switch, imports failing validation: see [Common backend configuration errors](./backend-configuration-errors.md).
+
 ## Still stuck
 
 Open a ticket at [botble.ticksy.com](https://botble.ticksy.com) with your Botble version, PHP version, plugin version, the theme you use, and a screenshot including the browser console (**F12 → Console**).
