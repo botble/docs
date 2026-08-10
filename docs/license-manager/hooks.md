@@ -17,7 +17,7 @@ class YourPluginServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        add_filter('lm_api_verification_response', function (array $response, $activation, $product) {
+        add_filter('lm_api_verification_response', function (array $response, $activation = null, $product = null) {
             // ...
             return $response;
         }, 20, 3);
@@ -34,6 +34,34 @@ is a "too few arguments" error, or a callback that quietly sees `null` where it 
 
 A filter **must return a value** - whatever it returns replaces the original. An action returns
 nothing.
+
+### Null arguments
+
+The hook dispatcher collects arguments with `isset()`, which is false for `null`. Two consequences,
+and both bite the filters below:
+
+- **A null argument is dropped, and every later argument shifts left.** `lm_api_verification_response`
+  is documented as `array $response, ?ProductActivation $activation, Product $product`, but on a
+  *failed* verification the activation is null, so your listener receives two arguments with the
+  product sitting in the activation position.
+- **A null starting value arrives as an empty string.** Every `lm_resolve_*_header` filter starts
+  from null, so `$value` reaches you as `''`, never `null`.
+
+Write listeners that tolerate both. Give trailing parameters defaults, leave them untyped, and test
+with `instanceof` rather than a type hint:
+
+```php
+add_filter('lm_api_verification_response', function (array $response, $activation = null, $product = null) {
+    if (! $activation instanceof ProductActivation) {
+        return $response; // failed verification, or a shifted argument list
+    }
+
+    return $response;
+}, 20, 3);
+```
+
+Signatures in the tables below describe what each hook *intends* to pass. A parameter that can be
+null may not arrive in the position shown.
 
 ## Worked example: per-license custom fields
 
@@ -57,9 +85,12 @@ Schema::create('my_license_features', function (Blueprint $table) {
 **2. Append them to the verify response:**
 
 ```php
-add_filter('lm_api_verification_response', function (array $response, $activation, $product) {
-    // $activation is null when verification failed - never add entitlements to a failed response.
-    if (! $activation) {
+use Botble\LicenseManager\Models\ProductActivation;
+
+// Note the defaults and the absent type hints - see "Null arguments" below for why they matter.
+add_filter('lm_api_verification_response', function (array $response, $activation = null, $product = null) {
+    // Never add entitlements to a failed verification.
+    if (! $activation instanceof ProductActivation) {
         return $response;
     }
 
@@ -160,13 +191,17 @@ Be aware this reuses the domain field: fingerprints appear in a column and a UI 
 
 Return the value when the standard header is absent - useful behind proxies that rewrite headers.
 
+`$value` is the value resolved so far. It starts as null and therefore reaches your listener as an
+**empty string** - see "Null arguments" above. Do not type-hint it as `?string` and do not compare
+it with `=== null`.
+
 | Filter | Arguments | Replaces |
 |--------|-----------|----------|
-| `lm_resolve_url_header` | `?string $value, Request $request` | `X-API-URL` |
-| `lm_resolve_ip_header` | `?string $value, Request $request` | `X-API-IP` |
-| `lm_resolve_api_key_header` | `?string $value, Request $request` | `X-API-KEY` |
-| `lm_resolve_language_header` | `?string $value, Request $request` | `X-API-LANGUAGE` |
-| `lm_resolve_rate_limit_key` | `?string $value, Request $request` | The rate-limit bucket key |
+| `lm_resolve_url_header` | `string $value, Request $request` | `X-API-URL` |
+| `lm_resolve_ip_header` | `string $value, Request $request` | `X-API-IP` |
+| `lm_resolve_api_key_header` | `string $value, Request $request` | `X-API-KEY` |
+| `lm_resolve_language_header` | `string $value, Request $request` | `X-API-LANGUAGE` |
+| `lm_resolve_rate_limit_key` | `string $value, Request $request` | The rate-limit bucket key |
 
 ## Admin and model filters
 
