@@ -13,7 +13,7 @@ You do not need the Expo Go app for a full build. This project uses native modul
 
 ### 1. Get the source
 
-Download the Botble JobBoard source from CodeCanyon and extract it, then open a terminal in the project folder:
+Download the JobHive source from CodeCanyon and extract it, then open a terminal in the project folder:
 
 ```bash
 cd path/to/jobboard-mobile-apps

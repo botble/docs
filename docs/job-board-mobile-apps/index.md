@@ -1,6 +1,14 @@
-# Botble JobBoard: React Native Job Search & Employer App
+# JobHive: React Native Job Search & Employer App
 
 A React Native (Expo SDK 54) mobile app for job search and recruitment businesses. It is the mobile client for a **Botble job-board backend** with the `/api/v1` plugin enabled. The codebase is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` (app name, bundle ID, API URL, colors). One codebase builds both iOS and Android. Candidates search and browse jobs on a list or an interactive map, apply for positions, save favorites, compare opportunities, build resumes, and manage their profile, all driven live from your Botble admin. Employers get a full native portal for job CRUD, applicants, packages, and finance.
+
+## Demo video
+
+Watch a walkthrough of home, search and map view, job detail, companies, saved jobs, the employer portal and dark mode:
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/2UNt5o8OHLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+[Watch on YouTube](https://youtu.be/2UNt5o8OHLM)
 
 ## Get started
 
@@ -74,6 +82,7 @@ A React Native (Expo SDK 54) mobile app for job search and recruitment businesse
 - [Development Guide](development.md)
 - [Upgrade Guide](upgrade.md)
 - [Troubleshooting](troubleshooting.md)
+- [Backend Configuration Errors](backend-configuration-errors.md)
 - [FAQ](faq.md)
 - [Support](support.md)
 - [Release notes](releases.md)

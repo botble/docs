@@ -1,6 +1,6 @@
 # Running the App
 
-Botble JobBoard is an Expo (SDK 54) React Native app. During development you run a Metro
+JobHive is an Expo (SDK 54) React Native app. During development you run a Metro
 bundler and load the app onto a simulator, emulator, or a physical device.
 
 Before you start, install dependencies once:

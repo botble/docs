@@ -2,7 +2,7 @@
 
 ## Overview
 
-Botble JobBoard's brand colors are configured through the `.env` file, so you can rebrand the app's primary color without touching code. The three env values flow through `app.config.js` (into `extra.appConfig`), are read by `src/config/app.ts`, and are ultimately consumed by the theme in `src/lib/theme.ts`.
+JobHive's brand colors are configured through the `.env` file, so you can rebrand the app's primary color without touching code. The three env values flow through `app.config.js` (into `extra.appConfig`), are read by `src/config/app.ts`, and are ultimately consumed by the theme in `src/lib/theme.ts`.
 
 ## Brand Colors Configuration
 
@@ -14,8 +14,8 @@ Open your `.env` file and set these three keys:
 
 ```bash
 # Primary Color: main brand color (buttons, active states, highlights, links)
-# Default: 161E2D (Botble JobBoard lime green)
-PRIMARY_COLOR=161E2D
+# Default: 5749CD (JobHive indigo)
+PRIMARY_COLOR=5749CD
 
 # Primary Dark Color: darker shade for pressed/active states
 # Default: 4d7c0f
@@ -38,7 +38,7 @@ ON_PRIMARY_COLOR=FFFFFF
 1. **`.env`**: You set `PRIMARY_COLOR`, `PRIMARY_DARK_COLOR`, `ON_PRIMARY_COLOR` (hex without `#`).
 2. **`app.config.js`**: Reads them and injects them into `extra.appConfig`:
    ```js
-   primaryColor: process.env.PRIMARY_COLOR || "161E2D",
+   primaryColor: process.env.PRIMARY_COLOR || "5749CD",
    primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "4d7c0f",
    onPrimaryColor: process.env.ON_PRIMARY_COLOR || "FFFFFF",
    ```
@@ -94,4 +94,4 @@ That's it. The primary color updates across both light and dark mode and both th
 Need help choosing colors? Try:
 - [Coolors](https://coolors.co/)
 - [Adobe Color](https://color.adobe.com/)
-- [Tailwind Color Reference](https://tailwindcss.com/docs/customizing-colors) (Botble JobBoard's palette is Tailwind-derived)
+- [Tailwind Color Reference](https://tailwindcss.com/docs/customizing-colors) (JobHive's palette is Tailwind-derived)

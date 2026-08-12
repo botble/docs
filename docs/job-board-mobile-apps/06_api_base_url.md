@@ -1,6 +1,6 @@
 # API Configuration
 
-Botble JobBoard connects to a Botble Laravel backend running the **job-board** plugin. Configure two values in your `.env` file at the project root: `API_BASE_URL` and `API_KEY`.
+JobHive connects to a Botble Laravel backend running the **job-board** plugin. Configure two values in your `.env` file at the project root: `API_BASE_URL` and `API_KEY`.
 
 ## API_BASE_URL
 

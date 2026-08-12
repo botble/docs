@@ -1,6 +1,6 @@
 # Social Login Configuration
 
-This document explains how the Botble JobBoard job-board app decides which social login providers appear on the login screen, and which environment keys each one needs.
+This document explains how the JobHive job-board app decides which social login providers appear on the login screen, and which environment keys each one needs.
 
 ## Overview
 

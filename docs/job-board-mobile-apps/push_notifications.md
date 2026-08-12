@@ -1,6 +1,6 @@
 # Push Notifications
 
-Botble JobBoard sends push through Firebase Cloud Messaging. The app registers an FCM registration
+JobHive sends push through Firebase Cloud Messaging. The app registers an FCM registration
 token with your Botble backend, and the backend sends messages to that token using the FCM
 HTTP v1 API.
 

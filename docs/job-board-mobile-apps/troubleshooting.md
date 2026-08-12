@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues when setting up and running the Botble JobBoard (Expo) app, and how to fix them.
+Common issues when setting up and running the JobHive (Expo) app, and how to fix them.
 
 > After changing `.env`, fully stop and restart the dev server. `.env` values are baked in by `app.config.js` at start/build time and are **not** picked up by Fast Refresh.
 
@@ -8,7 +8,7 @@ Common issues when setting up and running the Botble JobBoard (Expo) app, and ho
 
 The most common cause of empty screens is a bad backend URL.
 
-1. Open `.env` and confirm `API_BASE_URL` points at your running Botble JobBoard (Botble) backend, e.g. `http://jobcy.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
+1. Open `.env` and confirm `API_BASE_URL` points at your running Botble job-board backend, e.g. `http://jobcy.test`. No trailing slash and no `/api/v1` suffix (it is appended automatically).
 2. Open `http://jobcy.test/api/v1/jobs` in a browser. You should get JSON with a `data` array of jobs.
 3. Restart with `npx expo start -c`.
 
@@ -103,6 +103,13 @@ A provider only appears when its keys are set in `.env` (`GOOGLE_WEB_CLIENT_ID`,
 - **Colors:** `.env` (`PRIMARY_COLOR`, etc.) is read at start time. Stop and restart the dev server. See [Theme Colors](01_theme_colors.md).
 - **App name:** set `APP_NAME` in `.env`; a native rebuild (or `npx expo prebuild --clean`) is needed for it to appear under the icon. See [App Name](04_app_name.md).
 - **Logo / splash:** replace the files in `assets/`, then restart (rebuild for native icon/splash). See [App Logo](05_app_logo.md) and [Splash Screen](17_splash_screen.md).
+
+## Backend-side problems
+
+The page above covers problems in the app. If a screen is empty, images are broken, requests are
+rejected or the checkout WebView misbehaves, the cause is usually a setting on the Laravel
+backend rather than in the app. Those are catalogued separately, symptom by symptom, in
+[Backend Configuration Errors](backend-configuration-errors.md).
 
 ## When asking for support
 

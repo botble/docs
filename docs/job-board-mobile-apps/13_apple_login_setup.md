@@ -1,6 +1,6 @@
 # Apple Sign-In Setup
 
-This guide sets up **Sign in with Apple** in the Botble JobBoard React Native (Expo) job-board app. On the login screen it renders the **Apple** button in the "or continue with" row, next to Google and Facebook.
+This guide sets up **Sign in with Apple** in the JobHive React Native (Expo) job-board app. On the login screen it renders the **Apple** button in the "or continue with" row, next to Google and Facebook.
 
 ::: tip iOS-only feature
 Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig.auth.appleEnabled`, which is `Platform.OS === "ios" && ENABLE_APPLE_SIGN_IN !== "false"` (see `src/config/app.ts`). On Android the Apple button never appears, so no Android configuration is required.
@@ -21,7 +21,7 @@ Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig
 ## Prerequisites
 
 1. An [Apple Developer Program](https://developer.apple.com/programs/) membership ($99/year).
-2. Your app's bundle identifier registered in the Apple Developer portal. Botble JobBoard ships with `com.botble.jobboard` (`ios.bundleIdentifier` in `app.config.js`).
+2. Your app's bundle identifier registered in the Apple Developer portal. JobHive ships with `com.botble.jobboard` (`ios.bundleIdentifier` in `app.config.js`).
 3. Botble backend with the **job-board** plugin and Apple configured as a social-login provider.
 
 ## Step 1: Enable "Sign in with Apple" for your App ID

@@ -1,6 +1,6 @@
 # Overview
 
-Botble JobBoard is a React Native (Expo) app for job search and recruitment. It is the mobile client for a **Botble job-board backend** with the `/api/v1` plugin enabled. The app is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` with no code changes. One codebase builds both iOS and Android. Jobs, applications, employers, and blog posts are managed entirely from your Botble admin and appear in the app in real time.
+JobHive is a React Native (Expo) app for job search and recruitment. It is the mobile client for a **Botble job-board backend** with the `/api/v1` plugin enabled. The app is a zero-brand-literal whitelabel solution — rebrand entirely via `.env` with no code changes. One codebase builds both iOS and Android. Jobs, applications, employers, and blog posts are managed entirely from your Botble admin and appear in the app in real time.
 
 ## Features
 

@@ -48,6 +48,7 @@ export default [
             { text: 'Support & Contact', link: '/job-board-mobile-apps/support' },
             { text: 'FAQ', link: '/job-board-mobile-apps/faq' },
             { text: 'Troubleshooting', link: '/job-board-mobile-apps/troubleshooting' },
+            { text: 'Backend Configuration Errors', link: '/job-board-mobile-apps/backend-configuration-errors' },
             { text: 'Upgrade Guide', link: '/job-board-mobile-apps/upgrade' },
             { text: 'Release Notes', link: '/job-board-mobile-apps/releases' },
         ],

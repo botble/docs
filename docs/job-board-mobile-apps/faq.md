@@ -1,12 +1,12 @@
 # FAQ
 
-### What is Botble JobBoard?
+### What is JobHive?
 
 A job search and recruitment mobile app built with Expo (React Native). It is the mobile client for your Laravel backend, and lets candidates browse jobs, view companies, read the blog, and apply for positions. Employers get a full native portal to post jobs, manage applicants, and handle packages.
 
 ### Which backend do I need?
 
-[Botble JobBoard](https://jobcy.botble.com). A Laravel system that ships the **job-board** plugin and exposes the same REST API (jobs, companies, applications, saved jobs, reviews). No other backend will work. See [API Integration](api-integration.md).
+[Jobcy](https://jobcy.botble.com). A Laravel system that ships the **job-board** plugin and exposes the same REST API (jobs, companies, applications, saved jobs, reviews). No other backend will work. See [API Integration](api-integration.md).
 
 ### How is this licensed?
 

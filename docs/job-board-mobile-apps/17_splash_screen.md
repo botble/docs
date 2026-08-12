@@ -1,6 +1,6 @@
 # Splash Screen (JS Splash Hold)
 
-Botble JobBoard keeps the branded splash on screen a little longer than the OS would, so the first frame users see is your styled home screen. There's never a white flash of unstyled content while fonts and cached settings load.
+JobHive keeps the branded splash on screen a little longer than the OS would, so the first frame users see is your styled home screen. There's never a white flash of unstyled content while fonts and cached settings load.
 
 This page covers the **JavaScript splash hold** implemented with
 `expo-splash-screen` in `app/_layout.tsx`. For the underlying **native launch
@@ -62,12 +62,12 @@ splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
   // Native launch + JS splash background. Defaults to the brand primary.
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#5749CD",
 },
 ```
 
 - **Image**: `assets/splash-icon.png`.
-- **Background**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#161E2D`.
+- **Background**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#5749CD`.
 
 ### Changing the background color
 

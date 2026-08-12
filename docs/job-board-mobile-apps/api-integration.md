@@ -1,6 +1,6 @@
 # API Integration
 
-The Botble JobBoard app talks to a Botble backend running the **job-board** plugin over its REST API. Every screen (job listings, the companies directory, the apply flow, the candidate resume builder, the employer portal, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
+The JobHive app talks to a Botble backend running the **job-board** plugin over its REST API. Every screen (job listings, the companies directory, the apply flow, the candidate resume builder, the employer portal, blog) is fed by this API. This page documents the base URL, headers, response envelope, and the endpoints the app calls.
 
 ## Base URL / environment
 

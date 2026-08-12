@@ -1,6 +1,6 @@
 # Google Sign-In Setup
 
-This guide sets up **Google Sign-In** in the Botble JobBoard React Native (Expo) job-board app. On the login screen it renders the **Google** button in the "or continue with" row.
+This guide sets up **Google Sign-In** in the JobHive React Native (Expo) job-board app. On the login screen it renders the **Google** button in the "or continue with" row.
 
 ## How it works in the app
 
@@ -21,7 +21,7 @@ This guide sets up **Google Sign-In** in the Botble JobBoard React Native (Expo)
 2. Basic knowledge of Expo prebuild / native builds.
 3. Botble backend with Google enabled as a social-login provider.
 
-Botble JobBoard's native identifiers (needed below):
+JobHive's native identifiers (needed below):
 
 | Platform | Identifier | Source |
 |---|---|---|
@@ -35,7 +35,7 @@ In [Google Cloud Console](https://console.cloud.google.com) → **APIs & Service
 ### Web client ID (required: used by the app and backend)
 
 1. Application type: **Web application**.
-2. Name it (e.g. `Botble JobBoard Web Client`) and click **Create**.
+2. Name it (e.g. `JobHive Web Client`) and click **Create**.
 3. Copy the client ID. This is your **`GOOGLE_WEB_CLIENT_ID`**. The Android/iOS native SDKs use it as the `webClientId` to mint the ID token the backend verifies.
 
 ### iOS client ID (required for iOS)

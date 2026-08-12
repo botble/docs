@@ -1,6 +1,6 @@
 # Version Management
 
-Botble JobBoard uses Expo's versioning, not `pubspec.yaml`. There are two numbers to
+JobHive uses Expo's versioning, not `pubspec.yaml`. There are two numbers to
 keep in mind:
 
 - **`version`**: The public, human-readable version shown in the stores (Major.Minor.Patch, e.g. `1.2.0`).

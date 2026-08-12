@@ -1,6 +1,6 @@
 # Complete Setup & Publishing Guide
 
-A step-by-step guide covering everything from initial setup to publishing your Botble JobBoard React Native (Expo) app on the Apple App Store and Google Play Store, and connecting it to your Botble job-board website so jobs and applications sync automatically.
+A step-by-step guide covering everything from initial setup to publishing your JobHive React Native (Expo) app on the Apple App Store and Google Play Store, and connecting it to your Botble job-board website so jobs and applications sync automatically.
 
 ## Table of Contents
 
@@ -59,7 +59,7 @@ On a Mac, install Xcode (for the iOS Simulator) from the Mac App Store. For Andr
 ### Step 2: Get the app source code
 
 1. Go to [CodeCanyon](https://codecanyon.net/downloads)
-2. Find **"Botble JobBoard React Native"** in your purchases
+2. Find **"JobHive React Native"** in your purchases
 3. Click **Download** → **All files & documentation**
 4. Extract the ZIP and open a terminal in the folder:
 
@@ -165,7 +165,7 @@ Your Botble Website (yoursite.com)
         ↓
     REST API (/api/v1/job-board)
         ↓
-    Botble JobBoard app fetches data
+    JobHive app fetches data
         ↓
     Jobs, companies, applications, blog displayed
 ```
@@ -267,7 +267,7 @@ Guides: [Google](14_google_login_setup.md) · [Apple](13_apple_login_setup.md) �
 
 ## Part 5: Building with EAS
 
-Botble JobBoard builds and submits through **EAS** (Expo Application Services), a cloud build service. No local Xcode archiving is required.
+JobHive builds and submits through **EAS** (Expo Application Services), a cloud build service. No local Xcode archiving is required.
 
 ### Step 1: Install and log in
 

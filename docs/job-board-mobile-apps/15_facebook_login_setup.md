@@ -1,6 +1,6 @@
 # Facebook Login Setup
 
-This guide sets up **Facebook Login** in the Botble JobBoard React Native (Expo) job-board app. On the login screen it renders the **Facebook** button in the "or continue with" row.
+This guide sets up **Facebook Login** in the JobHive React Native (Expo) job-board app. On the login screen it renders the **Facebook** button in the "or continue with" row.
 
 ## How it works in the app
 
@@ -21,7 +21,7 @@ This guide sets up **Facebook Login** in the Botble JobBoard React Native (Expo)
 2. A Facebook App with the **Facebook Login** product added.
 3. Botble backend with Facebook enabled as a social-login provider.
 
-Botble JobBoard's native identifiers (needed below):
+JobHive's native identifiers (needed below):
 
 | Platform | Identifier |
 |---|---|

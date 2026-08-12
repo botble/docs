@@ -2,7 +2,7 @@
 
 ## Overview
 
-Botble JobBoard's app icon, adaptive icon, splash image, and web favicon are all configured in `app.config.js` and point at files in the `assets/` folder. To rebrand, replace the asset files (keeping the same filenames) and regenerate the native projects.
+JobHive's app icon, adaptive icon, splash image, and web favicon are all configured in `app.config.js` and point at files in the `assets/` folder. To rebrand, replace the asset files (keeping the same filenames) and regenerate the native projects.
 
 ## Configured assets
 
@@ -20,12 +20,12 @@ icon: "./assets/icon.png",
 splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#5749CD",
 },
 android: {
   adaptiveIcon: {
     foregroundImage: "./assets/adaptive-icon.png",
-    backgroundColor: "#161E2D",
+    backgroundColor: "#5749CD",
   },
 },
 web: { favicon: "./assets/favicon.png" },
@@ -52,4 +52,4 @@ web: { favicon: "./assets/favicon.png" },
    npm run ios     # or: npm run android
    ```
 
-The adaptive icon and splash backgrounds default to the Botble JobBoard primary (`#161E2D`). Override the splash background with `SPLASH_BACKGROUND_COLOR` in `.env` (hex **with** `#`); the adaptive icon background is set directly in `app.config.js`.
+The adaptive icon and splash backgrounds default to the JobHive primary (`#5749CD`). Override the splash background with `SPLASH_BACKGROUND_COLOR` in `.env` (hex **with** `#`); the adaptive icon background is set directly in `app.config.js`.

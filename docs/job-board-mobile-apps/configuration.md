@@ -53,7 +53,7 @@ Every key below is read by `app.config.js`. Keys not listed there have no effect
 
 Hex **without** `#`. Full guide: [Theme Colors](01_theme_colors.md).
 
-The "Default" column below is the value **shipped in `.env.example`** (Botble JobBoard blue). The **code fallback** in `app.config.js` when a key is absent from `.env` is the same. Set the value explicitly to avoid surprises.
+The "Default" column below is the value **shipped in `.env.example`** (JobHive indigo). The **code fallback** in `app.config.js` when a key is absent from `.env` is the same. Set the value explicitly to avoid surprises.
 
 | Key | Default (`.env.example`) | Code fallback (no `.env`) | Description |
 |---|---|---|---|
@@ -119,7 +119,7 @@ The search map ships with a **free, no-key** engine (`MAP_PROVIDER=osm`, MapLibr
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#161E2D` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
+| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#5749CD` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
 
 ### Support links (Profile screen)
 
