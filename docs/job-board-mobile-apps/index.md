@@ -10,6 +10,14 @@ Watch a walkthrough of home, search and map view, job detail, companies, saved j
 
 [Watch on YouTube](https://youtu.be/2UNt5o8OHLM)
 
+## Try the demo app
+
+Install the Android demo build on your own device and browse the live data from our demo backend:
+
+[Download the demo APK](https://drive.google.com/file/d/15XVb3MoOPdH-fhzgrgriWYZ35LpPkvjY/view?usp=sharing)
+
+Android only. Allow installs from unknown sources when your device prompts. The same APK ships inside the purchased package.
+
 ## Get started
 
 1. [Overview](overview.md)
