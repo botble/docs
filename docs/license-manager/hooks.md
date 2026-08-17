@@ -203,6 +203,96 @@ it with `=== null`.
 | `lm_resolve_language_header` | `string $value, Request $request` | `X-API-LANGUAGE` |
 | `lm_resolve_rate_limit_key` | `string $value, Request $request` | The rate-limit bucket key |
 
+## API scope filters
+
+Built-in scopes are a fixed list, so a plugin that adds its own API route cannot protect it with an
+API key out of the box. Two filters open that up: one makes the scope tickable on the API key form,
+the other binds a request path to it.
+
+| Filter | Arguments | Purpose |
+|--------|-----------|---------|
+| `lm_api_internal_scopes` | `array $scopes` | Register extra internal scopes |
+| `lm_api_external_scopes` | `array $scopes` | Register extra external scopes |
+| `lm_api_scope_from_path` | `string $scope, string $path, string $method, ApiKeyType $type` | Map a request path to a scope |
+
+Register the scope as `'value' => 'Label'`, or as a plain value when the label is the value. A custom
+scope cannot reuse a built-in value - those entries are ignored.
+
+```php
+use Botble\LicenseManager\Enums\ApiInternalScope;
+use Botble\LicenseManager\Http\Middleware\ApiKeyCheck;
+
+add_filter(ApiInternalScope::FILTER_CUSTOM_SCOPES, function (array $scopes): array {
+    return $scopes + ['crm:sync' => 'Sync CRM'];
+});
+
+add_filter(ApiKeyCheck::FILTER_SCOPE_FROM_PATH, function (string $scope, string $path, string $method): string {
+    return $path === 'crm/sync' && $method === 'POST' ? 'crm:sync' : $scope;
+}, 10, 3);
+```
+
+`$path` is the request path with the `api/internal/` or `api/external/` prefix already stripped, so
+a route registered at `/api/internal/crm/sync` arrives as `crm/sync`. `$scope` is the scope resolved
+so far and is an **empty string** when nothing matched - see "Null arguments" above. Return it
+unchanged for any path you do not handle, otherwise you strip protection from the built-in
+endpoints. The key still has to have the scope ticked in *Settings -> API keys*.
+
+## Extra version files
+
+A version ships one archive (`main`) and one optional database file (`sql`). If you release more
+than one build per version - a macOS and a Windows binary in the same release - store the extra
+files yourself and expose them as download types.
+
+| Hook | Arguments | Purpose |
+|------|-----------|---------|
+| `lm_product_version_form` | `FormAbstract $form, ?ProductVersion $version` | Add fields to the version form (action) |
+| `lm_product_version_request_rules` | `array $rules` | Validate those fields |
+| `lm_product_version_fillable` | `array $fields` | Make your columns mass-assignable |
+| `lm_version_file_types` | `array $types` | Register a download type |
+| `lm_version_file_name` | `string $name, ProductVersion $version, string $type` | Resolve the type to a stored file |
+
+`main` and `sql` are always available and cannot be removed. Store your files in the same place the
+built-in ones live, `storage/app/version-files/{product_reference_id}/`, and return the file name -
+a name that climbs out of that directory is refused.
+
+```php
+use Botble\LicenseManager\Models\ProductVersion;
+
+add_filter(ProductVersion::FILTER_FILE_TYPES, fn (array $types) => array_merge($types, ['mac', 'win']));
+
+add_filter(ProductVersion::FILTER_FILE_NAME, function (string $name, ProductVersion $version, string $type) {
+    return match ($type) {
+        'mac' => $version->mac_file,
+        'win' => $version->win_file,
+        default => $name,
+    };
+}, 10, 3);
+```
+
+The build is then served by every download path that takes a type:
+
+```
+POST /api/external/update/{version}/download/mac
+POST /api/internal/products/{product}/versions/{version}/download/mac
+POST /api/internal/products/{product}/download-tokens   {"type": "mac"}
+```
+
+A custom type is sent as `application/octet-stream` and keeps the stored file's extension. The
+checksum and signature belong to the main archive only, so they are not attached to a custom build.
+
+Nothing announces your types to the client: the update-check response carries `has_sql` and no
+equivalent for custom builds. Add that yourself so the client knows which target to ask for.
+
+```php
+add_filter('lm_api_update_check_response', function (array $response, $version) {
+    $response['targets'] = array_keys(array_filter(
+        ['mac' => $version->mac_file, 'win' => $version->win_file]
+    ));
+
+    return $response;
+}, 10, 2);
+```
+
 ## Admin and model filters
 
 | Filter | Arguments | Purpose |
