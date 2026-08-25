@@ -208,6 +208,10 @@ Customers can access their loyalty points information from their account dashboa
 - Complete transaction history
 - How to earn points guide
 - How to redeem points guide
+- Bonus earning rules that are enabled (registration, product review, photo review, referral, birthday)
+- Redemption limits (minimum/maximum points per order, maximum percentage of the order total, points expiry period)
+
+Bonus rules and limits only appear when the matching setting is greater than 0, so options you turn off stay hidden from customers. Referral points are listed only when the Affiliate Pro plugin is active.
 
 ### Customer Order Detail
 
