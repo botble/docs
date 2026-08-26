@@ -49,6 +49,12 @@ export default [
     ],
   },
   {
+    text: 'Marketplace',
+    items: [
+      { text: 'Vendor Subscriptions', link: '/nest/usage-marketplace-subscriptions' },
+    ],
+  },
+  {
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/nest/theme-rename' },

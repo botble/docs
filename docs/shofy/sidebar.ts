@@ -102,6 +102,7 @@ export default [
         text: 'Marketplace',
         items: [
             { text: 'Marketplace Setup', link: '/shofy/usage-marketplace-setup' },
+            { text: 'Vendor Subscriptions', link: '/shofy/usage-marketplace-subscriptions' },
             { text: 'Commissions', link: '/shofy/usage-marketplace-commissions' },
             { text: 'Vendor Withdrawals', link: '/shofy/usage-marketplace-withdrawals' },
         ],

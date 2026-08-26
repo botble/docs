@@ -44,6 +44,12 @@ export default [
     ],
   },
   {
+    text: 'Marketplace',
+    items: [
+      { text: 'Vendor Subscriptions', link: '/martfury/usage-marketplace-subscriptions' },
+    ],
+  },
+  {
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/martfury/theme-rename' },

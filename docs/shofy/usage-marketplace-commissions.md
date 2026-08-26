@@ -16,6 +16,10 @@ When a customer purchases from a vendor:
 
 Navigate to `Marketplace` -> `Settings` to configure commission rates.
 
+::: warning
+Commissions apply only while **Marketplace mode** is set to **Commission based**. In [subscription mode](./usage-marketplace-subscriptions.md) no commission is taken on orders or refunds — every setting on this page is ignored.
+:::
+
 ![Ecommerce settings](./images/ecommerce-settings.png)
 
 ### Default Commission Fee

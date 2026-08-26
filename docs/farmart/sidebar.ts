@@ -49,6 +49,12 @@ export default [
     ],
   },
   {
+    text: 'Marketplace',
+    items: [
+      { text: 'Vendor Subscriptions', link: '/farmart/usage-marketplace-subscriptions' },
+    ],
+  },
+  {
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/farmart/theme-rename' },

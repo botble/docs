@@ -12,6 +12,7 @@ The Marketplace plugin enables:
 4. **Verification system** - Optional admin approval for new vendors
 5. **Commission tracking** - Platform earns commission on vendor sales
 6. **Vendor dashboard** - Separate vendor panel for store management
+7. **Subscription mode** - Charge vendors a recurring plan instead of a commission
 
 ![Marketplace stores](./images/marketplace-stores.png)
 
@@ -26,6 +27,14 @@ The Marketplace plugin requires the **Ecommerce** plugin to be installed and act
 ## Marketplace Settings
 
 Navigate to `Marketplace` -> `Settings` to configure marketplace options.
+
+### Marketplace Mode
+
+| Setting | Description |
+|---------|-------------|
+| **Marketplace mode** | **Commission based** takes a percentage of every order. **Subscription based** has vendors buy a plan to publish listings and takes no commission. |
+
+See [Vendor Subscriptions](./usage-marketplace-subscriptions.md) for the subscription mode setup.
 
 ### Vendor Registration
 
