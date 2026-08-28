@@ -6,7 +6,8 @@ Before installing our script, ensure that your server meets the following requir
 
 - Apache, nginx, LiteSpeed, or another compatible web server
 - PHP >= 8.3 (PHP 8.4 is supported)
-- MySQL >= 5.7 or MariaDB >= 10.3
+- MySQL >= 5.7 or MariaDB >= 10.3 (PostgreSQL is **not** officially supported - see
+  [Database Support](/cms/database-support))
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
 - `mbstring` PHP extension

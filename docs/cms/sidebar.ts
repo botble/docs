@@ -15,6 +15,7 @@ export default [
         collapsed: false,
         items: [
           { text: 'Requirements', link: '/cms/installation-requirements' },
+          { text: 'Database Support', link: '/cms/database-support' },
           { text: 'Using web interface', link: '/cms/installation-web-interface' },
           { text: 'Using command line', link: '/cms/installation-command-line' },
           { text: 'Using Docker', link: '/cms/installation-using-docker' },
