@@ -243,6 +243,36 @@ theme isn't installed, a required plugin is missing, or assets couldn't be publi
 Deliberately does not assign plans — that's a separate pricing step. See
 [Adding a storefront theme](./adding-a-theme.md) for the full runbook.
 
+## The stock `tenants:*` commands you must not use
+
+`php artisan list` shows five commands from the underlying stancl/tenancy package that look like
+they belong to this product. They do not. This build configures them with
+`--path => database_path('migrations/tenant')` (`config/tenancy.php`), a directory that does not
+exist here, so none of them can reach the migrations this product actually uses. A store's schema is
+built at provisioning by Botble's own migrator instead.
+
+::: danger `tenants:migrate-fresh` destroys every store, silently
+It runs `db:wipe --force` against each tenant connection — dropping every table in that store's
+database — and then calls `tenants:migrate` to rebuild, which as configured migrates **nothing**.
+The rebuild is also invoked with `callSilent()`, so it reports no error. The command prints
+`Done.` and exits 0, having emptied every store on the platform with no way back but your backups.
+
+With no `--tenants` option it iterates **all** tenants. Its own description — *"Drop all tables and
+re-run all migrations"* — reads as reversible. It is not.
+:::
+
+| Command | What it actually does here |
+|---|---|
+| `tenants:migrate` | Nothing. Exits quietly having migrated no tables. |
+| `tenants:migrate-fresh` | **Wipes every store's database and restores nothing.** |
+| `tenants:rollback` | Nothing, for the same reason. |
+| `tenants:seed` | Not configured for this product's seeders. |
+| `tenants:list` | Harmless — lists tenant ids. |
+| `tenants:run` | Runs an arbitrary command in each tenant's context. Works, but you own the consequences. |
+
+Use the `tenancy:*` commands documented above instead. For upgrades affecting tenant tables, see
+[Upgrade guide](./upgrade.md) — there is currently no shipped command for migrating existing stores.
+
 ## A command not to run
 
 `php artisan list` also shows **`tenancy:install`**. That one belongs to the underlying

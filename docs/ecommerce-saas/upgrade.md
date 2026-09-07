@@ -97,6 +97,12 @@ verified path: migrate one store on a staging copy first, confirm the tables cha
 plan the rollout. Treat any release that touches tenant schema as requiring a maintenance window.
 :::
 
+::: danger Never reach for `tenants:migrate-fresh`
+It sits next to `tenants:migrate` in `php artisan list` and its description reads as reversible.
+It is not: it drops every table in every store's database and then calls the same no-op migrate to
+rebuild, silently. See [Artisan commands](./commands.md#the-stock-tenants-commands-you-must-not-use).
+:::
+
 Central migrations (step 4) are unaffected — those run normally.
 
 ### 6. Publish theme assets
