@@ -153,10 +153,11 @@ re-applying after an upgrade or a fresh clone. Two things worth knowing:
 
 ```bash
 php artisan tenancy:preflight
+composer install    # release zips ship without dev dependencies or tests/
 vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
 ```
 
-**Ten changes across thirteen files.** The test suite fails loudly if patch 1 (settings
+**Ten changes across thirteen files.** Working from a git clone, the test suite fails loudly if patch 1 (settings
 load order), patch 2 (mail config guard) or the `MacroableModels` singleton regresses
 — those three are silent data-leak bugs otherwise, so a green run is the confirmation
 an upgrade didn't quietly drop one.

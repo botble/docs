@@ -114,11 +114,11 @@ Check your Envato purchase page for update notifications. The product does not a
 
 ### Will an update break my stores?
 
-No, if you follow the upgrade steps. Central and tenant migrations are versioned and tested. The test suite (run during upgrade) catches breaking changes. Run upgrades during off-peak hours and keep a backup handy.
+Central migrations are cumulative and run with `php artisan migrate --force`. **Tenant schema changes are the risk** — there is currently no shipped command that migrates existing stores, so a release that alters tenant tables needs a verified path and a maintenance window. See [Upgrade guide](./upgrade.md). Always upgrade off-peak with a fresh backup.
 
 ### Can I skip a version (e.g., go from 1.0 to 1.2)?
 
-Yes. Migrations are cumulative. Running `php artisan migrate --force` and `php artisan tenants:migrate` applies all pending migrations in order.
+Central migrations are cumulative — `php artisan migrate --force` applies all pending ones in order. Existing tenant databases are a separate matter; see [Upgrade guide](./upgrade.md).
 
 ### Do I need to restart anything after an upgrade?
 

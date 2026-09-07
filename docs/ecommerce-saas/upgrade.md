@@ -81,17 +81,23 @@ This runs only central migrations. If it fails, rollback (see below).
 
 ### 5. Migrate every tenant database
 
-```bash
-php artisan tenants:migrate
-```
+::: danger `tenants:migrate` does not migrate this product's tables
+stancl/tenancy ships a `tenants:migrate` command, and this build configures it with
+`--path => database_path('migrations/tenant')` (`config/tenancy.php`). **That directory does not
+exist here.** The command runs, exits quietly, and migrates nothing — so it is easy to finish an
+upgrade believing every store's schema is current when none of them were touched.
 
-This runs every pending migration on every tenant in sequence. Tenants are locked during their migration (the store is unavailable for ~10 seconds per tenant, depending on migration count). On a platform with 100 stores, this takes 15–20 minutes.
+A store's schema is built at provisioning by Botble's own migrator
+(`TenantProvisioner` calls `Core::runMigrationFiles()` plus the plugin migrations), which walks the
+core and plugin migration paths — not the tenant path that command is pointed at.
 
-**Do not interrupt this command.** If it hangs, check your queue and Redis connection; if it truly hung, kill the process and check the last tenant's migration log:
+**There is currently no shipped command that applies pending migrations to existing stores.** If a
+release's notes say it changes tenant tables, do not upgrade a live platform until you have a
+verified path: migrate one store on a staging copy first, confirm the tables changed, and only then
+plan the rollout. Treat any release that touches tenant schema as requiring a maintenance window.
+:::
 
-```bash
-tail -100 storage/logs/laravel.log
-```
+Central migrations (step 4) are unaffected — those run normally.
 
 ### 6. Publish theme assets
 
@@ -134,13 +140,26 @@ sudo journalctl -u queue-worker -n 50
 
 ### 8. Verify upstream patches
 
-The platform applies non-destructive Botble patches. Verify they survived the upgrade by running the package test suite:
+The platform applies non-destructive Botble patches. The package ships a test suite that covers
+them, but **it is not in the release zip** — the build excludes `tests/` and installs with
+`composer install --no-dev`, so neither `vendor/bin/phpunit` nor the tests are present on a customer
+install. (The `phpunit.xml` you may notice in the zip is an orphan.)
+
+Verify the patches by hand instead — each is a small, greppable change:
 
 ```bash
-vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
+php artisan tenancy:preflight
 ```
 
-All tests must pass. If any fail, see [Upstream patches](./upstream-patches.md).
+Preflight asserts the conditions the patches exist to guarantee. For the patches themselves, see
+[Upstream patches](./upstream-patches.md), which lists each one with the file and what to look for.
+
+If you are working from a git clone rather than the release zip, the suite is available:
+
+```bash
+composer install            # restores dev dependencies
+vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
+```
 
 ### 9. Run the preflight check
 

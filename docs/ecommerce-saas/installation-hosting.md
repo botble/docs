@@ -21,7 +21,7 @@ Shared hosting **panels** (cPanel, Plesk, DirectAdmin, Hestia) are routinely run
 
 Before signing up, confirm your provider can give you ALL of these:
 
-- [ ] **Root shell access** — you must run `apt install`, `systemctl enable`, `php artisan tenants:migrate` yourself
+- [ ] **Root shell access** — you must run `apt install`, `systemctl enable`, `php artisan migrate` yourself
 - [ ] **Global database grants** — your MySQL app user can run `CREATE DATABASE` and `DROP DATABASE` on `*.*` (test: `mysql -u app_user -p -e "GRANT CREATE, DROP ON *.* TO 'app_user'@'localhost';"`), never a per-database grant
 - [ ] **Process manager** — systemd or Supervisor installed, so you can create a long-lived queue worker (e.g., `php artisan queue:work --queue=default,webhooks`)
 - [ ] **Wildcard server block** — your web server (nginx or Caddy) has a server block for `*.yourdomain.com` that routes requests through PHP

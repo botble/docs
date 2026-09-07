@@ -23,6 +23,6 @@ Initial release of Ecommerce SaaS — a multi-tenant platform built on Botble CM
 - **Theme presets** — one bundled theme (Amerce) with 21 homepage presets; any Botble ecommerce theme can be added
 - **Operator console** — dedicated admin panel for managing stores, plans, subscriptions, coupons, operators, API keys and webhooks
 - **Store impersonation** — operators can enter a store as an admin with a 60-second single-use token, audited for compliance
-- **Upstream patches** — Botble core updates are applied non-destructively; a full test suite verifies patches survive upgrades
+- **Upstream patches** — Botble core changes are additive and documented one by one, so a core upgrade carries them along
 - **183 tables per tenant** — optimized schema for store isolation and performance at scale
 

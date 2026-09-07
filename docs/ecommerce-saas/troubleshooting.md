@@ -194,6 +194,7 @@ specifically to stop state from one tenant surviving into the next request.
 regressed:
 
 ```bash
+composer install    # release zips ship without dev dependencies or tests/
 vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
 ```
 
