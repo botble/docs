@@ -27,7 +27,7 @@ When enabled, the feature listens to Laravel's `RequestHandled` event (after all
 ### Cache headers applied when ALL conditions are met:
 
 - Feature is enabled via config
-- Request method is safe (GET or HEAD)
+- Request method is `GET` (a `HEAD` response has its body cleared before these checks run, so it is never advertised as publicly cacheable)
 - Response status is 2xx (successful)
 - Request is NOT for the admin panel
 - User is NOT authenticated
