@@ -1,9 +1,14 @@
 ---
-title: Installation
+title: Installing from the CLI
 description: Configure the environment, migrate the database, sign in to the operator console and create your first store.
 ---
 
 # Installation
+
+::: tip There is also a browser installer
+This page is the command-line path. If you would rather not use a shell, the
+[browser installer](./installation-browser.md) runs the same steps as a five-screen wizard.
+:::
 
 Before you start, check [Requirements](./installation-requirements.md). Once the steps
 below are done, preflight verifies the server can run the SaaS:
@@ -48,8 +53,9 @@ SESSION_DRIVER=database
 # Optional: hostname customers point their CNAME at (defaults to CENTRAL_DOMAINS)
 TENANCY_CNAME_HOST=
 
-# The seeded operator account. SET THESE — the shipped defaults are
-# operator@botble.com / operator / 12345678, which must never reach production.
+# Optional. The CLI seeder derives the email from APP_URL's host and generates
+# a one-time password when OPERATOR_ADMIN_PASSWORD is unset. Set them to choose
+# your own instead.
 OPERATOR_ADMIN_EMAIL=you@yourdomain.com
 OPERATOR_ADMIN_USERNAME=youroperator
 OPERATOR_ADMIN_PASSWORD=<a long random password>
@@ -97,10 +103,16 @@ alongside Botble's own and seeds three starter plans; the seeder creates the
 operator account from `OPERATOR_ADMIN_EMAIL` / `OPERATOR_ADMIN_USERNAME` /
 `OPERATOR_ADMIN_PASSWORD`.
 
-::: danger Set the operator credentials before seeding
-Omit those variables and the seeder falls back to `operator@botble.com`,
-username `operator`, password `12345678` — the shipped demo values. The
-operator console can create, suspend and delete every store on the platform.
+::: tip The seeder no longer ships a fixed password
+There is no published default login. Omit `OPERATOR_ADMIN_PASSWORD` and the
+seeder generates a 16-character password and prints it **once**, in the command
+output — copy it before you clear the screen. The email defaults to `operator@`
+plus your own `APP_URL` host rather than a brand address, so two installs of
+this product never share a login.
+
+Earlier releases did default to a fixed, documented password. If you installed
+one of those, change that account's password now: the operator console can
+create, suspend and delete every store on the platform.
 :::
 
 ::: warning migrate:fresh drops the control plane too
@@ -114,6 +126,20 @@ php artisan db:seed --class="Botble\Tenancy\Database\Seeders\RebuildTenantRegist
 ```
 
 It only re-registers databases that already exist; it never creates one.
+
+`admins` and the theme catalog are emptied as well, so the console has nobody to
+sign in as and signup has no design to offer. Restore both:
+
+```bash
+php artisan db:seed --class="Botble\Tenancy\Database\Seeders\OperatorAdminSeeder" --force
+php artisan tenancy:register-theme amerce --publish
+```
+
+The command's output is alarming but accurate: `migrate:fresh` prints ~300
+migrations including ecommerce, marketplace and blog, because Botble registers
+core and plugin migrations globally and they all build into the default
+connection, which is central. Only the last 28 — `create_tenants_table` onward —
+are the control plane. No tenant database is touched.
 :::
 
 ### Fonts for the public pages

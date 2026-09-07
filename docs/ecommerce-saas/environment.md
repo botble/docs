@@ -149,12 +149,18 @@ The operator admin account seeded at install. These variables are **not** in `.e
 
 | Variable | Default | What it does |
 |---|---|---|
-| `OPERATOR_ADMIN_EMAIL` | `operator@botble.com` | Email address of the seeded operator |
+| `OPERATOR_ADMIN_EMAIL` | `operator@` + `APP_URL`'s host | Email address of the seeded operator |
 | `OPERATOR_ADMIN_USERNAME` | `operator` | Login username for the seeded operator |
-| `OPERATOR_ADMIN_PASSWORD` | `12345678` | Initial password (should be long and random in production) |
+| `OPERATOR_ADMIN_PASSWORD` | *generated per run* | Initial password. Left unset, a 16-character password is generated and printed once |
 
-::: danger Change operator defaults before going live
-The shipped defaults (`operator@botble.com` / `operator` / `12345678`) are public. Change them in your `.env` before running `php artisan migrate`.
+::: tip No published default password
+Neither default is a fixed value shipped to every install. The email derives from
+your own `APP_URL` host, and an unset password is generated per run and printed
+once in the seeder's output. Set these variables only if you want to choose them
+yourself.
+
+The **browser installer does not use this seeder at all** — it takes a real name,
+email and password from you during setup. These variables are the CLI path.
 :::
 
 ## Variables you must NOT set

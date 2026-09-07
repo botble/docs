@@ -15,7 +15,8 @@ export default [
     items: [
       { text: 'Requirements', link: '/ecommerce-saas/installation-requirements' },
       { text: 'Choosing a server', link: '/ecommerce-saas/installation-hosting' },
-      { text: 'Installation', link: '/ecommerce-saas/installation' },
+      { text: 'Installing from the browser', link: '/ecommerce-saas/installation-browser' },
+      { text: 'Installing from the CLI', link: '/ecommerce-saas/installation' },
       { text: 'Wildcard DNS and TLS', link: '/ecommerce-saas/installation-dns-tls' },
       { text: 'Queue worker and cron', link: '/ecommerce-saas/cronjob' },
       { text: 'Environment reference', link: '/ecommerce-saas/environment' },
