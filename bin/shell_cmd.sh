@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# CRITICAL: ecommerce-saas must NEVER be added to this array. That product has hand-written
+# documentation in docs/ecommerce-saas/, and adding it here would destroy it by syncing
+# over generic docs from the cms folder.
 projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "travlla" "infinia" "isak" "qore" "orisa" "amerce" "velura" "auxero" "jobzilla" "restoria")
 
 function sync_doc_files() {

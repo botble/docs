@@ -1,0 +1,28 @@
+---
+title: Release Notes
+description: Version history and feature releases.
+---
+
+# Release Notes
+
+## Version 1.0.0 - September 2026
+
+Initial release of Ecommerce SaaS — a multi-tenant platform built on Botble CMS.
+
+### Features
+
+- **Database-per-tenant isolation** — each store gets its own MySQL database; cache, filesystem, mail and settings are re-bootstrapped per tenant so nothing leaks between stores
+- **Self-serve provisioning** — public signup imports a chosen theme's demo preset into a fresh database in seconds
+- **Plans and quotas** — define subscription tiers with limits on products, orders per month, storage, staff users, custom domains and app/theme access; plan terms are frozen at purchase
+- **Billing integration** — Stripe Checkout and Billing Portal via Laravel Cashier, or bank transfer for platforms with no Stripe
+- **Custom domains** — store owners attach their own domain, verified over DNS
+- **Apps and themes catalog** — control which apps and themes each plan includes; store owners toggle them on and off per store
+- **Control-plane REST API** — versioned API at `/api/platform/v1` for managing stores, subscriptions, domains, apps and webhooks
+- **Webhooks** — 27 signed outbound events plus test delivery, tracking store lifecycle, subscriptions, domains, apps and orders
+- **Multi-language** — 42 locales plus English for operator, store owner and shopper interfaces; every string is translatable
+- **Theme presets** — one bundled theme (Amerce) with 21 homepage presets; any Botble ecommerce theme can be added
+- **Operator console** — dedicated admin panel for managing stores, plans, subscriptions, coupons, operators, API keys and webhooks
+- **Store impersonation** — operators can enter a store as an admin with a 60-second single-use token, audited for compliance
+- **Upstream patches** — Botble core updates are applied non-destructively; a full test suite verifies patches survive upgrades
+- **183 tables per tenant** — optimized schema for store isolation and performance at scale
+

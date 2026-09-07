@@ -59,7 +59,7 @@ export default defineConfig({
     build: { chunkSizeWarningLimit: 1500 },
   },
   markdown: {
-    languageAlias: { env: 'bash' },
+    languageAlias: { env: 'bash', cron: 'bash', caddyfile: 'nginx' },
   },
   head: [
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],

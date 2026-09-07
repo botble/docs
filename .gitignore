@@ -109,3 +109,12 @@ docs/*/images/social-login-settings.png
 !docs/snapcart/usage-multi-language.md
 !docs/snapcart/usage-newsletter.md
 !docs/snapcart/usage-social-login.md
+
+# ecommerce-saas is a standalone multi-tenant product (deliberately NOT in the
+# `projects` sync array in bin/shell_cmd.sh — adding it there would rm -rf these
+# hand-written pages) and ships its own install/api/license/upgrade docs.
+!docs/ecommerce-saas/api.md
+!docs/ecommerce-saas/cronjob.md
+!docs/ecommerce-saas/installation-requirements.md
+!docs/ecommerce-saas/license.md
+!docs/ecommerce-saas/upgrade.md

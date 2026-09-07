@@ -16,6 +16,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   'sms-gateways': 'SMS Gateways',
   snapcart: 'SnapCart',
   'e-wallet': 'E-Wallet',
+  'ecommerce-saas': 'Ecommerce SaaS',
   'carento-react-native': 'Carento (Mobile)',
   'real-estate-mobile-apps': 'FlexHome (Mobile)',
   'job-board-mobile-apps': 'Botble JobBoard (Mobile)',
