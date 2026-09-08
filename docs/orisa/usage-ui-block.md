@@ -142,7 +142,7 @@ Each of the 5 homepage demos uses different shortcode style variants. For exampl
 - **Home 4 – AI & Tech Agency** uses `hero-banner` style 4, process content blocks, case-study projects
 - **Home 5 – Personal Creative** uses `hero-banner` style 5, minimal layout, gallery-style projects
 
-Switching homepage demos via theme options or the demo importer automatically configures the correct shortcode styles.
+Each demo preset ships with these shortcode styles already configured. See [Homepage](./usage-homepage.md#homepage-demo-presets) for how demos are selected.
 
 ## Creating shortcodes
 
