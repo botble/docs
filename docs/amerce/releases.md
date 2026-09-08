@@ -2,6 +2,45 @@
 
 This page contains the release notes for Amerce, detailing the changes and improvements in each version.
 
+## Version 1.0.9 - September 6, 2026
+
+### New Features
+
+- **External products**: A product can be marked as sold on an external store and given its own link. Its cards, quick shop, cross-sell blocks, wishlist and the product page all show **Buy on External Store** in place of the cart button. In catalog mode (shopping cart disabled) any product with an external URL links out automatically.
+- **Bulk delete for menu items**, translated into all languages.
+- **Prefill the login email from a link**, for password-reset and invitation flows.
+- **New filters** to customize the `robots.txt` and custom CSS file paths.
+- **Many new icons** added to the icon library.
+
+### Improvements
+
+- Faster pages overall, including one repeated database lookup removed from every request.
+- Language flag images are no longer inlined at full size.
+- Forms skip server-side validation checks that could never fail.
+
+### Bug Fixes
+
+- Fixed the most expensive product disappearing from the shop grid when prices include tax.
+- Fixed shop pagination and the result count not matching the active filters.
+- Fixed category pages leaking category IDs into pagination and filter links.
+- Fixed empty price values appearing in filter and pagination links.
+- Fixed the product video field missing from the product form.
+- Fixed the vendor store address not linking to Google Maps.
+- Fixed the sticky add-to-cart bar showing when the cart is disabled.
+- Fixed the parallax banner ignoring its height setting on the full width layout.
+- Fixed the widget tabs quantity not being saved, and widget rows being ignored in the payment methods, sidebar bullets and blog about me widgets.
+- Fixed footer columns still showing demo links when their widget area is emptied.
+- Fixed icons disappearing on the account settings page cards.
+- Fixed memory exhaustion when processing very large images in the media manager.
+- Fixed public page caching for visitors with a session, cookies, or flash messages.
+- Fixed front-end forms containing a field named `language` returning a 404 error.
+- Fixed `robots.txt` and other root files being redirected to a language prefix.
+- Fixed the blog categories widget counting unpublished posts.
+- Fixed the dial code being duplicated in phone number fields, and phone fields when several forms appear on the same page.
+- Fixed contact messages not being marked as read when opened.
+- Fixed plugin cards not displaying correctly in dark mode.
+- Fixed sub-folder installations writing an incorrect site URL setting.
+
 ## Version 1.0.8 - August 7, 2026
 
 ### New Features

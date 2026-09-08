@@ -88,6 +88,7 @@ export default [
             { text: 'Order Management', link: '/amerce/usage-order-management' },
             { text: 'Order Returns', link: '/amerce/usage-order-returns' },
             { text: 'Shipping Methods', link: '/amerce/usage-shipping-methods' },
+            { text: 'Catalog Mode & External Products', link: '/amerce/usage-catalog-mode' },
             { text: 'Invoices', link: '/amerce/usage-invoices' },
             { text: 'Webhooks', link: '/amerce/usage-webhooks' },
             { text: 'Reset Test Data', link: '/amerce/usage-reset-test-data' },
