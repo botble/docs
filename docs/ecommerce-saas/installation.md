@@ -36,6 +36,10 @@ CENTRAL_DOMAINS=yourdomain.com
 # `central` is the application's default connection; see config/database.php.
 DB_CONNECTION=central
 DB_DATABASE=saas_central
+# .env.example ships CACHE_STORE=file and QUEUE_CONNECTION=sync — the only
+# values that work before this database exists and with no queue worker
+# running. Shown here as database/redis because this walkthrough assumes the
+# fuller production setup; switch only after `migrate` below has run.
 CACHE_STORE=database
 QUEUE_CONNECTION=redis
 
@@ -48,6 +52,8 @@ TENANCY_DB_PREFIX=tenant_
 # MUST stay empty. A cookie scoped to the parent domain is shared by every
 # store subdomain, which means one store's session id is valid on another's.
 SESSION_DOMAIN=
+# .env.example ships `file` for the same before-the-database-exists reason as
+# CACHE_STORE above; switch to database once the tables above exist.
 SESSION_DRIVER=database
 
 # Optional: hostname customers point their CNAME at (defaults to CENTRAL_DOMAINS)
@@ -70,7 +76,8 @@ leak. Each store must get its own, host-scoped session cookie.
 
 ### Redis configuration (if you use it)
 
-If you upgrade from the shipped `CACHE_STORE=database` to Redis later:
+If you move to Redis later — from the shipped install-time `CACHE_STORE=file` or
+from `database`:
 
 - **`maxmemory-policy noeviction`.** Under an LRU policy Redis can evict any tenant's
   keys independently of any other's, so one busy store can push a quiet one's cache

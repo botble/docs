@@ -13,7 +13,7 @@ These must be set before the platform starts.
 
 | Variable | Default | What it does |
 |---|---|---|
-| `APP_KEY` | (empty) | Encryption key for the application. Generate with `php artisan key:generate` |
+| `APP_KEY` | (empty) | Encryption key for the application. Left empty on purpose — the browser installer generates it on the first request to `/install` and writes it to `.env` (which must be writable). On the CLI path, generate it yourself with `php artisan key:generate` |
 | `APP_URL` | `http://localhost` | The public URL of your control-plane domain (e.g., `https://saas.yourdomain.com`) |
 | `APP_ENV` | `production` | Set to `production` on live; `local` or `development` for testing |
 | `CENTRAL_DOMAINS` | `your-domain.com` | Control-plane host(s), comma-separated. **Never** a store's host |
@@ -22,8 +22,8 @@ These must be set before the platform starts.
 | `DB_DATABASE` | `laravel` | Central database name (e.g., `saas_central`) |
 | `DB_USERNAME` | `root` | MySQL user (must have `GRANT CREATE, DROP ON *.*`) |
 | `DB_PASSWORD` | `your_db_password` | MySQL password |
-| `CACHE_STORE` | `database` | Cache store for the control plane and all stores. `file`, `database`, `redis`, or `memcached` — see below |
-| `QUEUE_CONNECTION` | `redis` | Any connection except `sync` (provisioning and mail are queued, and must not block) |
+| `CACHE_STORE` | `file` | Cache store for the control plane and all stores. Shipped as `file` so the installer runs before a database exists; switch to `database` or `redis` after install. `file`, `database`, `redis`, or `memcached` — see below |
+| `QUEUE_CONNECTION` | `sync` | Shipped as `sync` so the wizard completes with no worker running. Switch to `database` or `redis` (with a worker) before opening signups — `tenancy:preflight` flags a `sync` queue |
 
 ::: danger APP_KEY and DB_PASSWORD
 Never share these. Store them in a secret manager, not in version control or logs.
@@ -32,8 +32,10 @@ Never share these. Store them in a secret manager, not in version control or log
 ## Redis (optional, but recommended for production)
 
 Redis is optional — the platform works with `file`, `database`, `redis`, or `memcached`.
-Use `CACHE_STORE=database` (shipped default) for small installs without Redis, or
-set `CACHE_STORE=redis` once you have real traffic. If you use Redis, configure it carefully:
+`CACHE_STORE=file` is the shipped install-time default (it's the only store that works
+before the database exists). Once installed, use `CACHE_STORE=database` for small
+installs without Redis, or set `CACHE_STORE=redis` once you have real traffic. If you
+use Redis, configure it carefully:
 
 | Variable | Default | What it does |
 |---|---|---|
@@ -55,7 +57,7 @@ If both point to db 0, `Clear cache` (via `FLUSHDB`) deletes all queued jobs for
 | `TENANCY_DEFAULT_THEME` | `amerce` | Theme preset on signup if none is chosen |
 | `TENANCY_MAX_CUSTOM_DOMAINS` | `5` | Max custom domains per store (plan can lower this) |
 | `SESSION_DOMAIN` | (empty) | **MUST stay empty** — a cookie scoped to parent domain leaks sessions between stores |
-| `SESSION_DRIVER` | `database` | Where sessions are stored; `database` is recommended |
+| `SESSION_DRIVER` | `file` | Where sessions are stored. Shipped as `file` so the installer works before the database exists; `database` is recommended after install |
 | `SESSION_LIFETIME` | `120` | Minutes until a session expires (2 hours) |
 | `ADMIN_DIR` | `admin` | URL path for the operator console and store admin (e.g., `/admin` or `/saas-admin`) |
 
@@ -171,6 +173,11 @@ email and password from you during setup. These variables are the CLI path.
 | `LOG_CHANNEL=stack` | Can cause file handle exhaustion when logs pile up across many stores; use `single` or `daily` instead |
 
 ## Example `.env` for production
+
+`.env.example` ships `CACHE_STORE=file`, `SESSION_DRIVER=file` and `QUEUE_CONNECTION=sync`
+so the installer runs before a database or queue worker exists. The block below is the
+recommended **post-install** production configuration — switch to it once the wizard
+has finished and (for the queue) a worker is running.
 
 ```env
 APP_NAME="My Platform"

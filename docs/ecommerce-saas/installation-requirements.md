@@ -55,9 +55,10 @@ proves whichever one you pick actually isolates tenants — it writes a
 probe value under one simulated tenant and asserts a second cannot read
 it — rather than checking a driver capability.
 
-`database` needs nothing beyond the MySQL you already have and is the shipped
-default (`CACHE_STORE=database` in `.env.example`); it is the right choice for a
-small or shared-hosting install with no Redis available. Set `CACHE_STORE=redis`
+`.env.example` ships `CACHE_STORE=file` — it's the only store that works before the
+database exists, so the installer can run before you've created one. `database`
+needs nothing beyond the MySQL you already have; switch to it after install for a
+small or shared-hosting deploy with no Redis available. Set `CACHE_STORE=redis`
 once you have real traffic — it is faster and takes the cache load off MySQL — but
 nothing about installing or serving stores requires it.
 

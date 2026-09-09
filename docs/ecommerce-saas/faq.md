@@ -15,7 +15,7 @@ description: Frequently asked questions about hosting, licensing, billing, store
 - a **real queue connection and a long-lived worker** — without one, a new store stays `pending` forever;
 - **wildcard DNS and a wildcard TLS certificate** — stores are subdomains, and Let's Encrypt wildcards are DNS-01 only.
 
-**Redis is not a blocker.** Cache isolation is prefix-based, and `CACHE_STORE=database` is the shipped default, so no extra service is required.
+**Redis is not a blocker.** Cache isolation is prefix-based, and the shipped install-time default is `CACHE_STORE=file` (switch to `database` or `redis` once installed), so no extra service is required.
 
 Note this is about *shared hosting*, not about control panels. aaPanel, CloudPanel, cPanel/WHM, Plesk and DirectAdmin all run fine on a VPS where you hold root and the three capabilities above — though we have no tested installs on them. See [Choosing a server](./installation-hosting.md).
 

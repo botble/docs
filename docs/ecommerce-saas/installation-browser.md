@@ -25,6 +25,11 @@ The wizard does not remove the [server requirements](./installation-requirements
 machine that already meets them. In particular it cannot create wildcard DNS, issue a wildcard
 certificate, or grant your MySQL user `CREATE DATABASE` — see [Choosing a server](./installation-hosting.md).
 
+One thing it does do for you: the shipped `.env` has no `APP_KEY`, and the first request to `/install`
+generates one and writes it there. That only works if the web server can write `.env`; if it cannot,
+the welcome page keeps reloading instead of moving on (each request signs its links with a key that
+was never saved).
+
 ## The five steps
 
 ### 1. Control-plane domain
@@ -110,5 +115,8 @@ Then read [Operating the platform](./operator-console.md).
 - **Storefronts render unstyled.** Theme assets were not published. Run
   `php artisan tenancy:publish-theme-assets`, and add it to your deploy script.
 - **A new store stays on "Preparing…".** No queue worker is running. See [step 4](#_4-queue-and-cron).
+- **The welcome page reloads every time you press Continue.** `.env` is not writable, so the key the
+  wizard generated was never saved. `chmod 664 .env` (owned by the web server's user) and open
+  `/install` again.
 
 More in [Troubleshooting](./troubleshooting.md).
