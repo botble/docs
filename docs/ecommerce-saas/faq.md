@@ -65,7 +65,7 @@ Unlimited. Drop any Botble ecommerce theme into `platform/themes/`, register it,
 
 ### How many themes are included?
 
-One: **Amerce**, with **21 homepage presets**. Each preset is a different demo layout — fashion, sneaker, furniture, decor and so on — that a customer picks at signup. They are presets of a single theme rather than 21 separate themes, which is exactly why they all stay upgradable together.
+One: **Amerce**, with **20 homepage presets**. Each preset is a different demo layout — fashion, sneaker, furniture, decor and so on — that a customer picks at signup. They are presets of a single theme rather than 21 separate themes, which is exactly why they all stay upgradable together.
 
 ### Can customers use their own domains?
 

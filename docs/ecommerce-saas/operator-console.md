@@ -42,6 +42,7 @@ links straight into the console dashboard. You can also go directly to
 | Operators | Platform super-admin accounts for the console itself — see below |
 | [API keys](./api.md) | Bearer credentials for the control-plane REST API |
 | [Webhooks](./webhooks.md) | Outbound event endpoints and their delivery logs |
+| [License](./license.md) | Activate this platform's CodeCanyon purchase code — see below |
 
 ## Dashboard
 
@@ -83,6 +84,27 @@ cannot be back-filled.
 The **by-plan table** lists subscriber count and monthly revenue per plan; subscribers
 paying in a different currency are excluded from the MRR figure and called out with a
 count. **Recent stores** lists the newest signups with a link to the full Stores list.
+
+## License
+
+Activates the CodeCanyon purchase code for the platform. This is the path this product documents and
+supports; Botble's stock **Settings → License** screen still works as a fallback and writes the same
+activation.
+
+The licence covers the **whole platform**, not a store. Store subdomains and customer custom domains
+consume no activations, and store owners never see a licence screen — the route is blocked for them.
+
+Three things worth knowing before you use it:
+
+- **It stays reachable when the platform is not activated.** Deliberate: an unlicensed install must
+  still be fixable from the console rather than locking you out of the page you need.
+- **Opening the screen does not call the licence server.** It reads local state only, so the page
+  cannot hang on a slow or unreachable licence server.
+- **Deactivate is not an undo.** It releases the activation slot so you can move to another domain or
+  server, and re-activating needs your purchase code again.
+
+Activation is tied to the control-plane domain, never a store subdomain. See
+[License](./license.md) for the licence tiers themselves and what each permits.
 
 ## Operators
 

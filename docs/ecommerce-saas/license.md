@@ -48,17 +48,46 @@ The license is per-installation, not per-store. You buy once, and every store yo
 
 ## Activating your license
 
-The platform checks your license once against the **control-plane domain** at install time.
+Activate from the **operator console** — that is the platform owner's own control panel, and the
+path this product documents and supports.
 
-1. During setup, `php artisan tenancy:publish-theme-assets` (or later commands) will prompt you to activate
-2. Enter your license key and Envato username at the license check screen
-3. Activation is tied to your **control-plane domain** (e.g., `saas.yourdomain.com`), not a store subdomain
-4. Never activate against `store1.yourdomain.com` or a customer's custom domain — activation will fail and warn you
+1. Sign in to the operator console at `/<admin-dir>/operator` (the demo uses `/saas-admin/operator`;
+   your `ADMIN_DIR` sets the prefix).
+2. Open **License** in the sidebar.
+3. Enter the purchase code from your CodeCanyon downloads page and your Envato username, tick the
+   agreement, and activate.
 
-Store subdomains and customer custom domains do **not** consume activations. A store owner sees no license check on their admin panel or storefront.
+The screen shows the current activation state, so you can confirm it took effect without leaving the
+console.
 
-::: warning Activation is one-time per codebase
-If you move the installation to a new server or change your central domain, you will need to re-activate. Support the process: save your license key in a secure location separate from your `.env` file.
+::: tip Why here rather than the stock Settings panel
+The licence covers the **whole platform**, not a store. The operator console is where every other
+platform-level decision is made, so activation lives alongside them. Botble's stock screen at
+**Settings → License** still works and is a fine fallback if you ever cannot reach the console — both
+write the same activation, so use whichever you can get to.
+:::
+
+Activation is tied to your **control-plane domain** (for example `saas.yourdomain.com`), not to a
+store subdomain. Never activate against `store1.yourdomain.com` or a customer's custom domain.
+
+Store subdomains and customer custom domains do **not** consume activations. A store owner sees no
+licence check on their admin panel or storefront.
+
+### If the licence is not active yet
+
+The License screen stays reachable whether or not the platform is activated — that is deliberate, so
+an unlicensed install can still be fixed from the console rather than locking you out of the one page
+you need.
+
+### If the licence server cannot be reached
+
+Activation talks to `license.botble.com`. If that call fails you get a readable message and can
+retry; nothing is left half-applied. Retry before assuming your code is wrong.
+
+::: warning Deactivating releases your activation slot
+The screen can also **deactivate**, which frees the slot on the licence server so you can move the
+platform to another domain or server. It is not an undo — re-activating needs your purchase code
+again. Keep that code somewhere safe and separate from your `.env`.
 :::
 
 ## Store owners never see the License screen
