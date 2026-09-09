@@ -22,6 +22,7 @@ Optional brand overrides applied on top of every funnel's selected style. Empty 
 
 | Setting | Format | Effect |
 |---|---|---|
+| **Funnel logo** | Image (PNG/SVG, transparent background recommended) | Shown in the sticky top nav of every funnel page, replacing the site-title wordmark. Rendered up to 40px tall (28px on mobile), aspect ratio preserved, and scaled down further on narrow viewports so it never crowds the CTA. Leave empty to keep the text wordmark. |
 | **Primary brand color** | Hex (e.g. `#0ea5e9`) | Replaces the style's `--lf-accent`, used for primary CTAs, focus rings, accent surfaces. Hover/soft/ring variants are auto-derived via `color-mix()`. |
 | **Sale / urgency color** | Hex | Replaces `--lf-sale`, used for sale badges, urgency kicker, discount tags. |
 | **Heading font** | Google Font family name | Applied to hero title, product title, and section headings. Auto-loaded from Google Fonts. |
