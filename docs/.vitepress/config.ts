@@ -48,6 +48,8 @@ const nav: DefaultTheme.NavItem[] = [
   },
   { text: 'Support', link: 'https://botble.ticksy.com' },
   { text: 'Our Products', link: 'https://codecanyon.net/user/botble/portfolio' },
+  // Paid customization service. `from=docs` is whitelisted for lead attribution on the marketplace.
+  { text: 'Hire us', link: 'https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=nav' },
   { text: 'Contact', link: 'https://botble.com/contact' },
 ]
 

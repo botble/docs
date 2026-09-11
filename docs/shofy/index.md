@@ -19,6 +19,8 @@ Thank you for purchasing our product. If you have any questions that are beyond 
 free to email via our user page contact form [here](https://codecanyon.net/user/botble) for quickly support. Thank you
 so much!
 
+Support covers questions and bug fixes. For custom features, theme changes, server setup, migrations or upgrades, [hire the Botble team](https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=index&utm_content=shofy) - quick fixes from $99, fixed quote within 1 business day.
+
 ## Features Overview
 
 * Buy One Time & Get Free Updates Forever ![](https://camo.envatousercontent.com/52b4b2d88711b53d045902611cf52d0c1eb23dcd/68747470733a2f2f7374617469632e6172636869656c6974652e636f6d2f73746f726167652f323032332f30392f61396664323362332d633866332d346336662d613466352d3361363037363632316535662e706e67)

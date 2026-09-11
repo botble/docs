@@ -14,6 +14,8 @@ Thank you for purchasing this product. If you have any questions that are beyond
 please feel free to create a ticket on our support center [https://botble.ticksy.com](https://botble.ticksy.com) for
 quickly support. Thank you so much!
 
+Support covers questions and bug fixes. For custom features, theme changes, server setup, migrations or upgrades, [hire the Botble team](https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=index&utm_content=jobzilla) - quick fixes from $99, fixed quote within 1 business day.
+
 ## Demo
 
 Homepage: [https://jobzilla.botble.com](https://jobzilla.botble.com)

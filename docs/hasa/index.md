@@ -15,6 +15,8 @@ please feel free to email via my user page contact form [here](https://codecanyo
 		
 ## Demo
 
+Support covers questions and bug fixes. For custom features, theme changes, server setup, migrations or upgrades, [hire the Botble team](https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=index&utm_content=hasa) - quick fixes from $99, fixed quote within 1 business day.
+
 Homepage: [http://hasa.botble.com](http://hasa.botble.com)
 
 Admin Area: [http://hasa.botble.com/admin](http://hasa.botble.com/admin)

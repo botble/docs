@@ -20,6 +20,8 @@ Thank you for purchasing our product. If you have any questions that are beyond 
 free to email via our user page contact form [here](https://codecanyon.net/user/botble) for quick support. Thank you
 so much!
 
+Support covers questions and bug fixes. For custom features, theme changes, server setup, migrations or upgrades, [hire the Botble team](https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=index&utm_content=velura) - quick fixes from $99, fixed quote within 1 business day.
+
 ## Features Overview
 
 * Buy One Time & Get Free Updates Forever
