@@ -94,7 +94,6 @@ asset publishing and no effect on any other store.
 
 - **Laravel Octane.** Botble caches identity in statics that are per-request
   under FPM but cross-tenant under Octane.
-- **`php artisan route:cache`** while stores could differ in routes.
 - **Per-store plugin sets.** Plugins are activated platform-wide; the plugin
   manifest is one file for the whole install, and the Plugins screen is
   hidden from store admins by design.
