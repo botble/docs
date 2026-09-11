@@ -10,9 +10,9 @@ description: Run many independent online stores from one Botble CMS codebase, ea
 Ecommerce SaaS turns [Botble CMS](https://botble.com) into a multi-tenant store platform.
 One codebase serves many independent online stores. Each store gets its own **isolated
 MySQL database**, its own storage, its own domain, its own storefront theme and its own
-admin panel — provisioned in seconds from a central control plane.
+admin panel — provisioned in about a minute from a central control plane.
 
-Themes are a **catalog, not a hardcoded choice**. You drop any Botble ecommerce theme into
+Themes are a **catalog, not a hardcoded choice**. You drop any Botble-published ecommerce theme into
 `platform/themes/`, register it, and assign it to plans. Store owners pick their theme at
 signup and the platform imports that theme's demo data. Amerce ships in the box.
 
@@ -65,9 +65,10 @@ follows.
   re-bootstrapped on every tenant switch, so nothing leaks between stores.
 - **Self-serve provisioning** — public signup imports the chosen theme's demo preset into a
   fresh database, seeds one admin, and the store is live.
-- **Plans and quotas** — products, orders per month, storage, staff users, custom domains and
-  the apps and themes a store may use. Plan terms are **frozen at purchase**, so editing a
-  plan never re-prices or re-limits the stores already on it.
+- **Plans and quotas** — products, storage, staff users, custom domains and the apps and
+  themes a store may use (orders per month are tracked for the dashboard, not capped). Pricing
+  and limits are **frozen at purchase**, so editing a plan never re-prices or re-limits the
+  stores already on it; apps and themes added to a plan do reach them.
 - **Billing** — [Laravel Cashier](https://laravel.com/docs/billing) with Stripe Checkout and
   the Billing Portal, or bank transfer for platforms with no Stripe. Operators can also
   assign, change, extend, cancel and reactivate a plan by hand, with a full audit trail.
@@ -76,7 +77,7 @@ follows.
   apps on and off for their own store.
 - **Control-plane API and webhooks** — a versioned REST API and 27 signed outbound events, so
   the platform fits into whatever you already run.
-- **42 locales** — every string a store owner, shopper or operator sees is translatable.
+- **43 locales** — every string a store owner, shopper or operator sees is translatable.
 
 ## Where to start
 

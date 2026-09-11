@@ -175,21 +175,22 @@ a freshly provisioned store can list `ecommerce` in its settings and still have 
 code loaded.
 
 ```bash
-php artisan cms:plugin:activate ecommerce
+php artisan tenancy:activate-plugins
 ```
 
-Activate every plugin your themes and plans rely on. Order matters wherever a plugin declares
-`require` in its `plugin.json`: `payment` before `stripe`, `ecommerce` before `marketplace`,
-`language` before `language-advanced`.
+This activates every plugin a new store can be seeded with — each theme's `required_plugins`
+plus every plugin the preset dumps switch on — in `plugin.json` `require` order (`payment`
+before `stripe`, `ecommerce` before `marketplace`, `language` before `language-advanced`). It
+is the same step the browser installer runs, skips plugins that are already active, and is
+safe to repeat on every deploy. Activating `ecommerce` alone is **not** enough.
 
-::: danger Skipping this breaks every storefront
-Storefronts return 500 with `Call to undefined function get_all_currencies()` while the
-operator console keeps working and `tenancy:preflight` reports all checks passed — preflight
-does not inspect the activated set. Verify with:
-
-```bash
-mysql saas_central -e "SELECT value FROM settings WHERE \`key\`='activated_plugins'"
-```
+::: danger Skipping this breaks the first store
+Provisioning migrates every plugin on disk, so it fails with
+`Tenant [...] has unresolved migrations (location, marketplace, payment)` and
+`Class "Botble\Location\Models\City" not found`. A store that gets past that returns 500 with
+`Call to undefined function get_all_currencies()` while the operator console keeps working.
+`tenancy:preflight` fails its **store baseline plugins active platform-wide** check and lists
+the missing plugins.
 :::
 
 ## Sign in to the operator console

@@ -14,9 +14,9 @@ files, point a browser at your domain, and it takes you from there.
 
 ::: tip Same commands either way
 The wizard is not a reimplementation. It calls the same artisan commands this documentation asks you
-to type — `cms:plugin:activate`, `tenancy:publish-theme-assets`, `tenancy:preflight` — through
-`Artisan::call()`, so preflight answers exactly what `php artisan tenancy:preflight` answers on the
-same host.
+to type — `tenancy:activate-plugins`, `tenancy:publish-theme-assets`, `tenancy:preflight` — so the
+plugin set it activates is the one the command activates, and preflight answers exactly what
+`php artisan tenancy:preflight` answers on the same host.
 :::
 
 ## Before you start
@@ -55,12 +55,13 @@ path only — see [Environment reference](./environment.md).
 
 Runs three things and reports the result:
 
-1. `cms:plugin:activate` for every plugin each installed theme declares in its `required_plugins`.
-   Skipping this is the single most common broken install: the control plane looks healthy while
-   every storefront returns 500.
+1. Plugin activation, platform-wide — the same set `tenancy:activate-plugins` activates: every
+   theme's `required_plugins` plus every plugin the preset dumps switch on, in dependency order.
+   Skipping this is the single most common broken install: the first store fails to provision, and
+   the control plane looks healthy while every storefront returns 500.
 2. `tenancy:publish-theme-assets` — `public/themes` is gitignored, so a fresh copy has no theme CSS
    or JS until this runs.
-3. `tenancy:preflight` — the same eleven assertions the command makes, shown as a pass/fail report.
+3. `tenancy:preflight` — the same assertions the command makes, shown as a pass/fail report.
 
 The result is stored in the session, so refreshing the page re-shows the last run rather than
 re-running commands that have side effects.
@@ -111,7 +112,7 @@ Then read [Operating the platform](./operator-console.md).
 - **Every page 404s after install.** `CENTRAL_DOMAINS` does not match the host you are browsing.
   This is step 1's whole purpose; if it was filled in wrongly, correct it in `.env` directly.
 - **Storefronts 500 while the console works.** The plugin activation in step 3 did not complete. Run
-  `php artisan cms:plugin:activate ecommerce` and check the preflight report again.
+  `php artisan tenancy:activate-plugins` and check the preflight report again.
 - **Storefronts render unstyled.** Theme assets were not published. Run
   `php artisan tenancy:publish-theme-assets`, and add it to your deploy script.
 - **A new store stays on "Preparing…".** No queue worker is running. See [step 4](#_4-queue-and-cron).

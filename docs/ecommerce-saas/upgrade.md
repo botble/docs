@@ -62,48 +62,47 @@ git pull origin main
 unzip ecommerce-saas-1.x.x.zip
 ```
 
-**Never overwrite your `.env` file.** The updater will exit if you try. If you do overwrite it, restore from backup and repeat.
+**Never overwrite your `.env` file** — the zip ships only `.env.example`, so unzipping over your install leaves it alone. If you do overwrite it, restore it from the backup above.
 
-### 3. Install dependencies
+### 3. Install dependencies (git clones only)
+
+The release zip ships `vendor/` and the compiled assets, so a zip upgrade has nothing to install.
+From a git clone:
 
 ```bash
 composer install --no-dev
-npm install && npm run build
 ```
 
-### 4. Migrate the central database
+### 4. Migrate the central database and activate plugins
 
 ```bash
 php artisan migrate --force
+php artisan tenancy:activate-plugins
 ```
 
-This runs only central migrations. If it fails, rollback (see below).
+`migrate` runs only central migrations. If it fails, roll back (see below).
+`tenancy:activate-plugins` activates any plugin the new release adds to what a store can be seeded
+with; plugins already active are skipped, so on most upgrades it changes nothing. It must run
+before step 5: a store's migrations call into plugin code, which only loads once the plugin is
+active platform-wide.
 
 ### 5. Migrate every tenant database
 
-::: danger `tenants:migrate` does not migrate this product's tables
-stancl/tenancy ships a `tenants:migrate` command, and this build configures it with
-`--path => database_path('migrations/tenant')` (`config/tenancy.php`). **That directory does not
-exist here.** The command runs, exits quietly, and migrates nothing — so it is easy to finish an
-upgrade believing every store's schema is current when none of them were touched.
+```bash
+php artisan tenancy:migrate-tenants --pretend   # see what each store would get, writes nothing
+php artisan tenancy:migrate-tenants             # apply
+```
 
-A store's schema is built at provisioning by Botble's own migrator
-(`TenantProvisioner` calls `Core::runMigrationFiles()` plus the plugin migrations), which walks the
-core and plugin migration paths — not the tenant path that command is pointed at.
+This applies the release's pending migrations to every existing store, running the same set
+provisioning runs, inside each store's own database. A store that fails is reported and skipped —
+the others still migrate — so read the summary and re-run with `--tenants=<id>` once you have fixed
+the one it names. See [Artisan commands](./commands.md#tenancy-migrate-tenants).
 
-**There is currently no shipped command that applies pending migrations to existing stores.** If a
-release's notes say it changes tenant tables, do not upgrade a live platform until you have a
-verified path: migrate one store on a staging copy first, confirm the tables changed, and only then
-plan the rollout. Treat any release that touches tenant schema as requiring a maintenance window.
+::: warning Not `tenants:migrate`
+stancl/tenancy's own `tenants:migrate`, `tenants:migrate-fresh` and `tenants:rollback` point at a
+migration path this build does not have. They are refused on this platform — they print an error and
+touch nothing. See [Artisan commands](./commands.md#the-stock-tenants-commands-you-must-not-use).
 :::
-
-::: danger Never reach for `tenants:migrate-fresh`
-It sits next to `tenants:migrate` in `php artisan list` and its description reads as reversible.
-It is not: it drops every table in every store's database and then calls the same no-op migrate to
-rebuild, silently. See [Artisan commands](./commands.md#the-stock-tenants-commands-you-must-not-use).
-:::
-
-Central migrations (step 4) are unaffected — those run normally.
 
 ### 6. Publish theme assets
 
@@ -111,7 +110,8 @@ Central migrations (step 4) are unaffected — those run normally.
 php artisan tenancy:publish-theme-assets
 ```
 
-Theme CSS, JS and images are copied to each tenant's public folder. This is fast (seconds) but critical — without it, storefronts have broken styling.
+Copies each theme's CSS, JS and images into the shared `public/themes` directory. Fast, but
+critical — without it, storefronts have broken styling.
 
 ### 7. Restart the queue worker
 
@@ -173,11 +173,12 @@ vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
 php artisan tenancy:preflight
 ```
 
-This asserts:
+Among other things, this asserts:
 - Central control-plane tables exist
-- Tenant cache isolation is working (writes a probe value under one tenant, asserts another cannot read it)
+- Every plugin a new store can be seeded with is active platform-wide
+- The configured cache store can keep two keyspaces apart
 - Theme assets are published
-- The queue worker is running
+- The queue is on a real connection, not `sync`
 
 If any check fails, fix it before going live.
 
@@ -191,21 +192,23 @@ Visitors can now access the platform and all stores.
 
 ## Rollback plan
 
-If anything fails after step 4, **do not continue**. Rollback:
+If anything fails after step 4, **do not continue**. There is no rollback command for store
+databases — stancl's `tenants:rollback` is refused here — so the backups you took above are the
+rollback:
 
 ```bash
 php artisan down
-git reset --hard HEAD@{1}
-# OR restore your backed-up source
-composer install --no-dev
-php artisan migrate:rollback --force
-php artisan tenants:rollback
+# restore the previous source (git reset --hard HEAD@{1}, or your backed-up files)
+mysql -u root -p saas_central < central-<timestamp>.sql
+# restore each store that step 5 had reached, from its backup-tenant_<id>-<timestamp>.sql
+php artisan optimize:clear
 php artisan up
 ```
 
-This rolls back the central and all tenant databases to their pre-migration state. Tenant user sessions are unaffected; they log back in normally.
+Tenant user sessions are unaffected; they log back in normally.
 
-The queue worker does not need to be restarted for a rollback — it will re-process any failed jobs.
+Restart the queue worker after a rollback too (step 7) — it keeps running whichever code it booted
+with until it is restarted.
 
 ## Timing
 

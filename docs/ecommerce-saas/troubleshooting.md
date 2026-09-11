@@ -14,6 +14,23 @@ time. `pending`/`provisioning` both serve a 503 "being prepared" page.
 `TENANCY_PROVISION_SYNC=true` to provision inline while you diagnose the worker. A
 `failed` store cannot be resumed — it has no schema; reprovision it.
 
+### Provisioning failed with "has unresolved migrations … Class … not found"
+
+```text
+Tenant [acme] has unresolved migrations (location, marketplace, payment); refusing to mark it
+ready. First error: Class "Botble\Location\Models\City" not found (plugin [location]'s classes
+are not loaded: …)
+```
+
+**Cause:** those plugins are not activated platform-wide. Provisioning migrates every plugin
+on disk, but plugin code is loaded only from the central activated list, so a plugin whose
+migrations call its own classes fails. Typical after activating only `ecommerce` by hand.
+A queue worker started before the plugins were activated shows the same error until restarted.
+
+**Fix:** `php artisan tenancy:activate-plugins`, restart the queue worker, then
+`php artisan tenancy:create-tenant acme --reprovision`. `tenancy:preflight` lists any plugin
+still missing.
+
 ### Provisioning failed with a sanitizer error
 
 **Cause:** working as intended. The store's seeded content still referenced the demo

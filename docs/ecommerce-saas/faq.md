@@ -61,7 +61,7 @@ Yes. Store owners can configure Stripe Connect, PayPal, Mollie, Razorpay and oth
 
 ### How many themes can I add to the platform?
 
-Unlimited. Drop any Botble ecommerce theme into `platform/themes/`, register it, and assign it to plans. Store owners pick their theme at signup. See [Adding a storefront theme](./adding-a-theme.md).
+Unlimited. Drop any Botble-published ecommerce theme into `platform/themes/`, register it, and assign it to plans. Store owners pick their theme at signup. See [Adding a storefront theme](./adding-a-theme.md).
 
 ### How many themes are included?
 
@@ -114,7 +114,7 @@ Check your Envato purchase page for update notifications. The product does not a
 
 ### Will an update break my stores?
 
-Central migrations are cumulative and run with `php artisan migrate --force`. **Tenant schema changes are the risk** — there is currently no shipped command that migrates existing stores, so a release that alters tenant tables needs a verified path and a maintenance window. See [Upgrade guide](./upgrade.md). Always upgrade off-peak with a fresh backup.
+Central migrations are cumulative and run with `php artisan migrate --force`. Existing stores are brought up to date with `php artisan tenancy:migrate-tenants` (run `--pretend` first to see what each store would get). See [Upgrade guide](./upgrade.md). Always upgrade off-peak with a fresh backup.
 
 ### Can I skip a version (e.g., go from 1.0 to 1.2)?
 

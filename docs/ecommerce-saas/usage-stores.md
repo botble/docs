@@ -63,7 +63,7 @@ provisioner would overwrite the change the moment it lands.
 **Log in as owner** is the highest-privilege action in the console — it crosses from
 the central control plane into a customer's own data, so every step is deliberate: only
 an operator can mint the token, the token lives 60 seconds and is deleted on use, and
-both minting and use are written to the store's audit trail. It signs you in as the
+both minting and use are written to the platform log (operator, store, IP, time). It signs you in as the
 store's own admin (preferring the account matching `owner_email`), not as an arbitrary
 user id.
 

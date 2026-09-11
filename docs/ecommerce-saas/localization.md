@@ -30,7 +30,7 @@ Every other locale under `resources/lang/` mirrors these same file and key names
 
 ## Locale coverage
 
-The package ships the same 42 locales as the ecommerce plugin, plus the English source
+The package ships the same 43 locales as the ecommerce plugin, English source included
 — 43 locale directories in total under `resources/lang/`. A store's admin language
 switch follows the same locale Botble already uses for the rest of the admin, so
 switching it also switches every tenancy screen (Apps, Billing, Domains, Themes) to

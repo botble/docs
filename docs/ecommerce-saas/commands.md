@@ -13,6 +13,8 @@ All commands live under `platform/packages/tenancy/src/Console/` and share the
 | Command | Purpose | Scheduled |
 |---|---|---|
 | `tenancy:preflight` | Check the server can run the SaaS | No — run after any config change |
+| `tenancy:activate-plugins` | Activate every plugin a new store can be seeded with, platform-wide | Every deploy |
+| `tenancy:migrate-tenants` | Apply a release's pending migrations to every existing store | Every upgrade |
 | `tenancy:create-tenant` | Create and provision a store | No — manual, or via signup / the API |
 | `tenancy:billing-maintenance` | Suspend past-due stores, purge cancelled ones past retention | Daily |
 | `tenancy:send-lifecycle-emails` | Trial-ending reminders and pre-purge warnings | Daily, `0 8 * * *` |
@@ -36,9 +38,47 @@ php artisan tenancy:preflight
 Checks this server can run Ecommerce SaaS. No arguments or options. Run it after any
 config change — before creating stores, and again after a Botble upgrade to confirm the
 [upstream patches](./upstream-patches.md) are still intact. It also fails if signup
-email verification is on but mail goes nowhere (`log`/`array` mailer), and turns any
-theme the catalog actively offers into a hard failure if its assets or required plugins
-are missing.
+email verification is on but mail goes nowhere (`log`/`array` mailer), fails when any
+plugin a new store can be seeded with is not active platform-wide (and names it), and
+turns any theme the catalog actively offers into a hard failure if its assets or required
+plugins are missing.
+
+## `tenancy:activate-plugins`
+
+```bash
+php artisan tenancy:activate-plugins
+```
+
+Activates, platform-wide, every plugin a new store can be seeded with: each theme's
+`required_plugins` plus every plugin the preset dumps switch on, in `plugin.json` `require`
+order. No arguments or options. It is the same step the browser installer's automated setup
+runs, so a CLI deploy and a browser install end up with the same set.
+
+Plugin code is loaded only from the central activated list, and provisioning migrates every
+plugin on disk — so a platform that activated only `ecommerce` fails its first store with
+`Class "Botble\Location\Models\City" not found`. Plugins that are already active are skipped
+(re-activating one would clear the whole cache), so it is safe on every deploy. Exits non-zero,
+naming the plugin, if any activation fails.
+
+## `tenancy:migrate-tenants`
+
+```bash
+php artisan tenancy:migrate-tenants --pretend      # report only, writes nothing
+php artisan tenancy:migrate-tenants --pretend -v   # + per-directory counts
+php artisan tenancy:migrate-tenants                # apply to every provisioned store
+php artisan tenancy:migrate-tenants --tenants=acme # one store (repeatable)
+```
+
+| Option | Meaning |
+|---|---|
+| `--tenants=` | Limit to specific store ids; defaults to every provisioned store |
+| `--pretend` | Report what would run without applying anything |
+
+**The** way to apply a release's pending migrations to stores that already exist. It runs the
+same migration set provisioning runs — core, packages, the theme's own migrations and every
+plugin — inside each store's own database, so a store created today and a store upgraded
+tomorrow end up with the same schema. One broken store is reported and skipped; it does not
+abort the sweep for the others.
 
 ## `tenancy:create-tenant`
 
@@ -245,33 +285,25 @@ Deliberately does not assign plans — that's a separate pricing step. See
 
 ## The stock `tenants:*` commands you must not use
 
-`php artisan list` shows five commands from the underlying stancl/tenancy package that look like
-they belong to this product. They do not. This build configures them with
-`--path => database_path('migrations/tenant')` (`config/tenancy.php`), a directory that does not
-exist here, so none of them can reach the migrations this product actually uses. A store's schema is
-built at provisioning by Botble's own migrator instead.
+`php artisan list` shows `tenants:*` commands from the underlying stancl/tenancy package that look
+like they belong to this product. They do not: stancl configures them with
+`--path => database_path('migrations/tenant')`, a directory this build does not have, so they cannot
+reach the migrations this product uses. A store's schema is built by Botble's own migrator instead.
 
-::: danger `tenants:migrate-fresh` destroys every store, silently
-It runs `db:wipe --force` against each tenant connection — dropping every table in that store's
-database — and then calls `tenants:migrate` to rebuild, which as configured migrates **nothing**.
-The rebuild is also invoked with `callSilent()`, so it reports no error. The command prints
-`Done.` and exits 0, having emptied every store on the platform with no way back but your backups.
+This build therefore **replaces the dangerous ones with a refusal**. Running any of them prints an
+error, points at the right command and exits non-zero — nothing is touched:
 
-With no `--tenants` option it iterates **all** tenants. Its own description — *"Drop all tables and
-re-run all migrations"* — reads as reversible. It is not.
-:::
-
-| Command | What it actually does here |
+| Command | What happens here |
 |---|---|
-| `tenants:migrate` | Nothing. Exits quietly having migrated no tables. |
-| `tenants:migrate-fresh` | **Wipes every store's database and restores nothing.** |
-| `tenants:rollback` | Nothing, for the same reason. |
-| `tenants:seed` | Not configured for this product's seeders. |
-| `tenants:list` | Harmless — lists tenant ids. |
-| `tenants:run` | Runs an arbitrary command in each tenant's context. Works, but you own the consequences. |
+| `tenants:migrate` | Refused — use `tenancy:migrate-tenants` |
+| `tenants:migrate-fresh` | Refused. Stock, it wipes every store's database and restores nothing |
+| `tenants:rollback` | Refused — it would roll back from the same missing path, undoing nothing |
+| `tenants:seed` | Refused — not configured for this product's seeders |
+| `tenants:run` | Refused |
+| `tenants:list` | Harmless — lists tenant ids |
 
-Use the `tenancy:*` commands documented above instead. For upgrades affecting tenant tables, see
-[Upgrade guide](./upgrade.md) — there is currently no shipped command for migrating existing stores.
+Use the `tenancy:*` commands documented above instead. For upgrades, see
+[Upgrade guide](./upgrade.md) — `tenancy:migrate-tenants` is the step that migrates existing stores.
 
 ## A command not to run
 

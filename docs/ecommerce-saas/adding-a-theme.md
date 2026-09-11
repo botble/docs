@@ -6,7 +6,7 @@ description: The five-step runbook for adding another Botble ecommerce theme so 
 # Adding a storefront theme
 
 The platform ships with **Amerce**. This is how you add another one — Shofy, Farmart,
-Hasa, or any Botble ecommerce theme — so customers can pick it at signup and get that
+Hasa, or any Botble-published ecommerce theme — so customers can pick it at signup and get that
 theme's demo content.
 
 A theme is one self-contained directory. Its storefront, screenshots and demo data all
