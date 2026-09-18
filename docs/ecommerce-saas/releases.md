@@ -12,7 +12,7 @@ Initial release of Ecommerce SaaS — a multi-tenant platform built on Botble CM
 ### Features
 
 - **Database-per-tenant isolation** — each store gets its own MySQL database; cache, filesystem, mail and settings are re-bootstrapped per tenant so nothing leaks between stores
-- **Self-serve provisioning** — public signup imports a chosen theme's demo preset into a fresh database in seconds
+- **Self-serve provisioning** — public signup imports a chosen theme's demo preset into a fresh database, usually within a minute
 - **Plans and quotas** — define subscription tiers with limits on products, storage, staff users, custom domains and app/theme access (orders per month are tracked, not capped); pricing and limits are frozen at purchase
 - **Billing integration** — Stripe Checkout and Billing Portal via Laravel Cashier, or bank transfer for platforms with no Stripe
 - **Custom domains** — store owners attach their own domain, verified over DNS

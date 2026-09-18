@@ -48,12 +48,13 @@ stores you expect, not the number of databases.
 
 ## Cache: pick any store, Redis is a recommendation
 
-Tenant cache isolation is **prefix-based** (a directory, on `file`) via
-`PrefixCacheTenancyBootstrapper`, not tag-based, so every cache store
-Laravel ships works: `file`, `database`, `redis`, `memcached`. `tenancy:preflight`
-proves whichever one you pick actually isolates tenants — it writes a
-probe value under one simulated tenant and asserts a second cannot read
-it — rather than checking a driver capability.
+Tenant cache isolation is handled by `PrefixCacheTenancyBootstrapper`, which
+picks the mechanism per store: **cache tags** on stores that support them
+(`redis`, `memcached`) and a **prefix** on those that don't (a directory on
+`file`, a key prefix on `database`). Every cache store Laravel ships works. `tenancy:preflight`
+runs a live probe against your store rather than checking a driver
+capability — it writes a value under one simulated tenant prefix and asserts
+a second cannot read it.
 
 `.env.example` ships `CACHE_STORE=file` — it's the only store that works before the
 database exists, so the installer can run before you've created one. `database`
@@ -125,7 +126,7 @@ See [Choosing a server](./installation-hosting.md) for deployment guidance.
   and operator-created stores both provision through the queue. In dev, set
   `TENANCY_PROVISION_SYNC=true` to provision inline.
 - Wildcard DNS and TLS are required from day one, not an optional add-on.
-- Cache isolation is prefix-based, so all stores work, but only `file`'s flush
+- Cache isolation works on every store (tags or prefix), but only `file`'s flush
   stays scoped to a single tenant — see [Cache](#cache-pick-any-store-redis-is-a-recommendation)
   above for the tradeoff.
 

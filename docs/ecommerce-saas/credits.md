@@ -38,7 +38,7 @@ Cashier handles recurring subscriptions, payment method management, and invoice 
 | **Predis** | 3.0+ | MIT | Pure-PHP Redis client; no extension required |
 | **Redis** | (external) | BSD | Cache store and job queue backend (optional; recommended for production) |
 
-Predis is the Redis client, used when Redis is the configured cache or queue driver. Tenant cache isolation is prefix-based, so any cache store works; Redis is recommended for performance once you have real traffic.
+Predis is the Redis client, used when Redis is the configured cache or queue driver. Tenant cache is isolated on every cache store (by tag on Redis and Memcached, by prefix on `file` and `database`), so any cache store works; Redis is recommended for performance once you have real traffic.
 
 ## HTTP and data
 

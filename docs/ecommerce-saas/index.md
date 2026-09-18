@@ -108,4 +108,4 @@ marketplace, SEO and everything else behave exactly as documented in the
 [Botble CMS docs](/cms/) — store owners can follow those guides directly.
 
 Thank you for purchasing our product. If you have a question beyond the scope of these docs,
-contact us through our [user page](https://codecanyon.net/user/botble) and we will help.
+open a ticket at [botble.ticksy.com](https://botble.ticksy.com) and we will help.

@@ -15,7 +15,7 @@ description: Frequently asked questions about hosting, licensing, billing, store
 - a **real queue connection and a long-lived worker** — without one, a new store stays `pending` forever;
 - **wildcard DNS and a wildcard TLS certificate** — stores are subdomains, and Let's Encrypt wildcards are DNS-01 only.
 
-**Redis is not a blocker.** Cache isolation is prefix-based, and the shipped install-time default is `CACHE_STORE=file` (switch to `database` or `redis` once installed), so no extra service is required.
+**Redis is not a blocker.** Tenant cache is isolated on every cache store (by tag on `redis`/`memcached`, by prefix on `file`/`database`), and the shipped install-time default is `CACHE_STORE=file` (switch to `database` or `redis` once installed), so no extra service is required.
 
 Note this is about *shared hosting*, not about control panels. aaPanel, CloudPanel, cPanel/WHM, Plesk and DirectAdmin all run fine on a VPS where you hold root and the three capabilities above — though we have no tested installs on them. See [Choosing a server](./installation-hosting.md).
 
@@ -100,11 +100,11 @@ The **product as shipped** — configuration, operation, troubleshooting, and th
 
 ### How long is support included?
 
-Support and updates are provided for the period stated at purchase (usually 1 year). After that, you can renew or manage the platform yourself.
+Every license includes **6 months of support** and **lifetime free updates**. After the support period you can renew it, or keep running the platform and installing updates without it.
 
 ### Where do I contact support?
 
-Through your [Envato user page](https://codecanyon.net) — Botble replies to support requests there. Include your domain, what you tried, and the exact error message or symptom.
+Open a ticket at [botble.ticksy.com](https://botble.ticksy.com). Include your domain, what you tried, and the exact error message or symptom.
 
 ## Updates
 
