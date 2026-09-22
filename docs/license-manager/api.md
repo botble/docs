@@ -224,7 +224,9 @@ POST /api/external/license/deactivate
 
 ### Check License
 
-Check license status without activating.
+Check whether a code is valid without activating it. No activation slot is used and no domain is bound.
+
+Envato purchase codes are verified live with Envato (requires the Envato add-on). Any other code is matched against the licenses stored on this server: licenses you create in the admin, and Lemon Squeezy or Gumroad orders synced by webhook. A license must be valid and not expired to pass.
 
 ```http
 POST /api/external/license/check
@@ -233,7 +235,33 @@ POST /api/external/license/check
 **Body:**
 ```json
 {
-  "license_code": "LICENSE-CODE-HERE"
+  "purchase_code": "LICENSE-OR-PURCHASE-CODE",
+  "product_id": "PROD-001"
+}
+```
+
+`product_id` is optional. When sent, a license issued by this server must belong to that product.
+
+**Response (Valid, license issued by this server):**
+```json
+{
+  "message": "Verified.",
+  "data": {
+    "product_id": "PROD-001",
+    "license": "Regular License",
+    "expires_at": null,
+    "updates_until": null,
+    "support_until": "2027-03-22"
+  }
+}
+```
+
+For an Envato purchase code, `data` holds the Envato sale details instead.
+
+**Response (Invalid, HTTP 400):**
+```json
+{
+  "message": "License is invalid."
 }
 ```
 
