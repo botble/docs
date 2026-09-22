@@ -13,6 +13,7 @@ export default [
         text: 'Admin Guide',
         items: [
             { text: 'Conversations', link: '/live-chat/conversations' },
+            { text: 'Visitor Location', link: '/live-chat/visitor-location' },
             { text: 'Webhooks', link: '/live-chat/webhooks' },
             { text: 'Settings', link: '/live-chat/settings' },
             { text: 'Email Notifications', link: '/live-chat/email-notifications' },

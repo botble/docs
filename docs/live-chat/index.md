@@ -15,6 +15,7 @@ A floating Ajax live chat widget for Botble CMS that enables real-time visitor s
 - **Webhooks** — Send event data to external services (Slack, Discord, CRM, n8n, Zapier) with HMAC signing
 - **Email Notifications** — Notify admins via email when new conversations start
 - **Customizable Widget** — Colors, position, avatar, title, welcome message, and mobile visibility
+- **Visitor Location** — Country flag avatar for each visitor out of the box, plus city names with the free MaxMind GeoLite2 City database. See [Visitor Location](/live-chat/visitor-location)
 - **Visitor Fields** — Configurable name/email/phone fields with optional/required settings
 - **Auto-linkify** — URLs in messages become clickable links
 - **Emoji Conversion** — Text emoticons like `:)` `:D` `;)` automatically convert to emoji

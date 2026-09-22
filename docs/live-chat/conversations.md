@@ -8,7 +8,7 @@ Manage visitor conversations at **Admin → Live Chat → Conversations**.
 
 The conversations page uses a three-panel messenger layout:
 
-- **Left sidebar** — Conversation list with filter tabs (All / Open / Closed), unread badges, and last message preview
+- **Left sidebar** — Conversation list with filter tabs (All / Open / Closed), unread badges, and last message preview. Each visitor's avatar is their profile photo or Gravatar, then their country flag, then their initials
 - **Center panel** — Chat messages with reply input, close and date dividers
 - **Right panel** — Visitor information, timeline, and delete action
 
@@ -63,6 +63,7 @@ The right panel shows:
 | Phone | If phone field was enabled |
 | IP Address | Visitor's IP |
 | Current Page | The page where the visitor started the chat |
+| Location | Country, plus city when the GeoLite2 City database is installed. See [Visitor Location](/live-chat/visitor-location) |
 | Browser | Detected from user agent (Chrome, Firefox, Safari, Edge) |
 | Device | Desktop, Mobile, or Tablet |
 | Created At | When the conversation started |
