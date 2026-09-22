@@ -78,7 +78,11 @@ Local and private IP addresses (such as `127.0.0.1` or `192.168.x.x`) are not in
 
 **All chats show the same IP address and location**
 
-Your site is behind a proxy or CDN (for example Cloudflare or a load balancer), and the plugin sees the proxy's IP instead of the visitor's. Configure your server or Laravel's trusted proxies so the visitor's real IP reaches the application. Your hosting provider can help with this.
+Your site is behind a proxy or load balancer, and the plugin sees the proxy's IP instead of the visitor's. Configure your server or Laravel's trusted proxies so the visitor's real IP reaches the application. Your hosting provider can help with this.
+
+Cloudflare is handled automatically: when a request comes from a Cloudflare address, Live Chat reads the visitor's IP from the header Cloudflare adds. Requests that do not come from Cloudflare cannot use that header to fake a location.
+
+On a local development site every chat shows `127.0.0.1`. This is expected, because your browser and the site run on the same computer.
 
 **The city is wrong but the country is right**
 
