@@ -81,6 +81,9 @@ plugin — inside each store's own database, so a store created today and a stor
 tomorrow end up with the same schema. One broken store is reported and skipped; it does not
 abort the sweep for the others.
 
+The command exits non-zero when any store is `FAILED` or `PARTIAL` (migrations left unresolved),
+so a deploy script stops before it ends the maintenance window with a store half-migrated.
+
 ## `tenancy:create-tenant`
 
 ```bash

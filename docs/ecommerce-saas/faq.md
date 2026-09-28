@@ -110,7 +110,7 @@ Open a ticket at [botble.ticksy.com](https://botble.ticksy.com). Include your do
 
 ### How do I know when a new version is released?
 
-Check your Envato purchase page for update notifications. The product does not auto-update. You pull the new version, run migrations, and restart the queue worker. See [Upgrade Guide](./upgrade.md).
+Open **Console → System update**: it shows the installed and the latest version, and installs an update from the browser, including every store's database (from version 1.0.2). You can also upgrade from the command line. See [Upgrade Guide](./upgrade.md).
 
 ### Will an update break my stores?
 

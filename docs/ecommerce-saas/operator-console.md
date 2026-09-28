@@ -49,6 +49,7 @@ copy, brand images, pages — lives in the console itself.
 | Operators | Platform super-admin accounts for the console itself — see below |
 | [API keys](./api.md) | Bearer credentials for the control-plane REST API |
 | [Webhooks](./webhooks.md) | Outbound event endpoints and their delivery logs |
+| [System update](./upgrade.md#update-from-the-operator-console) | Install a new release from the browser: files, central and store databases, assets |
 | [License](./license.md) | Activate this platform's CodeCanyon purchase code — see below |
 
 ## Dashboard

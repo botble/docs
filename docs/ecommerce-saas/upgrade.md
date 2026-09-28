@@ -43,6 +43,44 @@ Back up your `.env` file:
 cp .env .env.backup-$(date +%Y%m%d-%H%M%S)
 ```
 
+## Update from the operator console
+
+From version 1.0.2, **Console → System update** installs a new release from the browser. It
+shows the installed and latest version and, when an update exists, runs the same steps as the
+command-line upgrade below, one at a time with a live log:
+
+1. Download the release from the licence server (your licence must be active)
+2. Replace the platform files
+3. Migrate the central database, including the platform's own control-plane tables
+4. Activate plugins the release adds (`tenancy:activate-plugins`)
+5. Migrate every store database, one store at a time in 20-second slices (`tenancy:migrate-tenants`)
+6. Publish core, package and theme assets
+7. Clear caches and restart the queue workers (`queue:restart`)
+
+A store that fails, or is left with unresolved migrations, is named in the log and skipped; the
+others still update. Fix it and run `php artisan tenancy:migrate-tenants --tenants=<id>`.
+
+Storefronts stay online during the update (the console does not switch on maintenance mode, which
+would also lock you out of it). Run it in a quiet hour. If a step fails, **Retry this step**
+continues from where it stopped; only one update can run at a time.
+
+Take the backups in [Before you upgrade](#before-you-upgrade) first, and keep the page open until
+it says the update finished. If a step fails, the page names it: fix the cause and finish the
+remaining steps from the command line below.
+
+::: tip Store admins cannot update
+Botble's own updater (Admin → System → Updater) is blocked for store admins, because an update
+replaces the code under every store. Only operators can update, from the console.
+:::
+
+::: warning Updating to 1.0.2 itself
+Installs on 1.0.0 or 1.0.1 do not have this screen yet. Install 1.0.2 with the command-line steps
+below once; every later release can then be installed from the console.
+:::
+
+The screen honours `CMS_ENABLE_SYSTEM_UPDATER=false` and is disabled in demo mode. It needs PHP
+memory of 256 MB or more and a max execution time of 300 s or more; the screen shows both.
+
 ## Upgrade steps
 
 ### 1. Enable maintenance mode
