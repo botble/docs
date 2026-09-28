@@ -37,8 +37,8 @@ homepage:
 - **Closing section**, **footer line**, and a **meta description** for SEO.
 
 Overrides are plain text: an overridden headline loses the shipped accent styling
-(the italic `<em>` part). Every field is per language when the marketing site runs in
-more than one.
+(the italic `<em>` part). When the marketing site runs in more than one language, every
+copy field is set per language; the Brand fields are shared by all languages.
 
 ![Landing-page settings form](./images/operator-landing.png)
 
