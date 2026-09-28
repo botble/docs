@@ -134,6 +134,33 @@ at the same moment* — not just the control plane. Always use a DNS API token s
 renewal is unattended.
 :::
 
+## CloudPanel
+
+CloudPanel manages nginx for you and issues certificates over HTTP-01 only, so it cannot
+get a wildcard certificate itself. The shortest working setup keeps the domain on
+Cloudflare with both records **proxied**:
+
+1. **Cloudflare → SSL/TLS → Origin Server → Create Certificate** for `yourdomain.com`
+   and `*.yourdomain.com`, then set **SSL/TLS → Overview** to **Full (strict)**.
+2. **CloudPanel → Sites → your site → SSL/TLS → Actions → Import Certificate** and paste
+   the private key and certificate from step 1.
+3. **CloudPanel → Sites → your site → Vhost**: change every `server_name` line to
+   `server_name yourdomain.com *.yourdomain.com;` and add the tenant-media block
+   **above** CloudPanel's static-file location (`location ~* ^.+\.(css|js|jpg|…)$`):
+
+   ```nginx
+   location ^~ /tenancy/assets/ {
+       try_files $uri /index.php?$args;
+   }
+   ```
+
+   Without it every store image 404s — see the warning under
+   [Serving with nginx](#serving-with-nginx).
+
+The Origin Certificate is only trusted by Cloudflare, so the store records must stay
+proxied. For DNS-only records, issue a real wildcard with `acme.sh` as above and import
+that instead.
+
 ## Behind Cloudflare
 
 Two things bite specifically here.

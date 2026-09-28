@@ -45,6 +45,12 @@ store return nothing.
 Your name, email and password for the platform operator — the account that can create, suspend and
 delete every store.
 
+This is the account you sign in to the operator console with — not the admin user
+Botble's own `accounts` screen asked for earlier in the installer. That Botble user has
+no role in running the platform: on the central domain `/admin` always opens the
+operator login. Keep these credentials; if they are lost, reset them with
+[`tenancy:operator-password`](./commands.md#tenancy-operator-password).
+
 ::: tip This is not the CLI seeder
 The wizard does **not** call `OperatorAdminSeeder`, and none of the `OPERATOR_ADMIN_*` environment
 variables apply here. You type real credentials and they are used as-is. Those variables are the CLI

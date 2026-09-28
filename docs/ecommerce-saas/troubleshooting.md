@@ -226,6 +226,26 @@ domain, check that `BotbleStateBootstrapper` is registered **after**
 
 **Fix:** this is a known regression; see [Cache: pick any store, Redis is a recommendation](./installation-requirements.md#cache-pick-any-store-redis-is-a-recommendation) in Requirements. The only exception is `file` cache, which flushes only that tenant's own directory and stays scoped. If this behavior is unacceptable on production, use `CACHE_STORE=file` or avoid using the admin "Clear cache" action.
 
+### Locked out of the operator console
+
+The console has no "forgot password" email. From a shell on the server:
+
+```bash
+php artisan tenancy:operator-password you@example.com --activate
+```
+
+See [`tenancy:operator-password`](./commands.md#tenancy-operator-password). Note the
+console login is the operator account from the setup wizard, not a Botble admin user.
+
+### Uploaded logo or favicon shows a broken image
+
+**Cause:** the media disk is not reachable over HTTP. Botble keeps the local media disk
+at `public/storage`; if yours was moved to `storage/app/public`, the `public/storage`
+link is missing. `php artisan tenancy:preflight` reports this as
+`uploaded media is reachable over HTTP`.
+
+**Fix:** `php artisan storage:link`, or point the media disk back under `public/`.
+
 ## Related
 
 - [Upstream Botble changes](./upstream-patches.md) — the patches most of these failures trace back to

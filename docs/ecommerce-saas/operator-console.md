@@ -18,9 +18,16 @@ rather than redirecting. Visit `/admin/operator` on a store's own domain and you
 plain 404 — the console does not exist there.
 :::
 
-From the regular Botble central admin, a **Stores** sidebar entry (`ti ti-server-cog`)
-links straight into the console dashboard. You can also go directly to
-`/admin/operator/login`.
+Sign in at `/admin/operator/login` (or just `/admin` — on the central domain it
+redirects there) with the operator account from step 2 of the
+[setup wizard](./installation-browser.md#_2-operator-account).
+
+::: warning Operators do not get the Botble admin
+The console signs in the `admins` guard only. Central Botble admin screens such as
+**Media** or **Other Translations** need the `web` guard, so they are out of an
+operator's reach on the central domain. Everything the platform owner edits — landing
+copy, brand images, pages — lives in the console itself.
+:::
 
 ![Branded operator-console sign-in screen](./images/operator-login.png)
 
@@ -115,5 +122,14 @@ password unchanged unless you fill it in.
 
 You cannot delete your own account, and you cannot delete the last remaining operator
 — the console refuses both rather than locking everyone out.
+
+Forgot the password? There is no reset email; from a shell on the server run
+
+```bash
+php artisan tenancy:operator-password you@example.com
+```
+
+It prompts for the new password twice. Add `--activate` if the account was also
+deactivated. See [`tenancy:operator-password`](./commands.md#tenancy-operator-password).
 
 ![Operator accounts list](./images/operator-operators.png)

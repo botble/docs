@@ -28,6 +28,7 @@ All commands live under `platform/packages/tenancy/src/Console/` and share the
 | `tenancy:themes` | List installed themes: presets, assets, plugins, catalog, stores | No — run to verify |
 | `tenancy:publish-theme-assets` | Publish theme assets into `public/themes` | Every deploy |
 | `tenancy:register-theme` | Validate an installed theme and add it to the catalog | No — one-off per theme |
+| `tenancy:operator-password` | Set a new password for an operator console account | No — run when locked out |
 
 ## `tenancy:preflight`
 
@@ -202,6 +203,23 @@ php artisan tenancy:repair-storage [--tenant=*]
 Recreates missing per-tenant storage directories under `storage/tenants/tenant<id>/`.
 `--tenant=` limits the run to specific tenant ids. Not scheduled — run it when a store's
 uploads or generated assets start 404ing after a lost storage directory.
+
+## `tenancy:operator-password`
+
+```bash
+php artisan tenancy:operator-password [login] [--password=] [--activate]
+```
+
+Sets a new password for a platform operator — the recovery path when the password
+chosen in the setup wizard is lost (the console has no reset email). `login` is the
+operator's email or username; omit it when there is only one operator, or pick from a
+list when there are several. Without `--password` it prompts twice (hidden input);
+pass `--password` in non-interactive shells. Minimum 8 characters.
+
+`--activate` also re-enables a deactivated account. Every browser still signed in as
+that operator is sent back to the login on its next request, including "keep me signed
+in" ones. The same happens when a password is changed in **Console → Operators**
+(except the browser that made the change).
 
 ## `tenancy:backfill-plugins`
 

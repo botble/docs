@@ -19,17 +19,45 @@ that path on every storefront instead.
 **Operator console → Landing page** edits the copy and brand assets shown on the
 homepage:
 
-- **Brand** — logo URL, favicon URL, accent colour (hex), social-sharing (OG) image,
-  support email. These are plain URL and hex fields on purpose — the console ships no
-  media picker, because Botble's image component needs the `web` guard, which
-  operators do not hold.
-- **Hero** — headline, subheadline, an optional "Watch demo" video URL, and the header
-  button label.
+- **Brand** — logo, favicon, accent colour (hex), social-sharing (OG) image, support
+  email. Each image takes either a pasted `https://` URL or an **uploaded file**
+  (PNG, JPG, WebP or GIF up to 2 MB; ICO too for the favicon). Uploads are stored
+  through Botble's media system like any other upload — on the local disk under
+  `public/storage`, or your cloud disk if one is configured. SVG is refused: served
+  from the central domain it could run script in the operator's session. Replacing or
+  clearing an uploaded image deletes the old file.
+- **Hero** — headline, subheadline, an optional "Watch demo" video URL, the two
+  floating badge labels, and the header button label.
+- **Section headings** — the label and headline of "What you get", and the label,
+  headline and intro of "What you can sell".
+- **"What you can sell" cards** — title and text of each of the nine numbered cards
+  (collapsed in the form; each empty box shows the shipped text as its placeholder).
 - **Testimonials** — up to a handful of name / role / quote slots. The section stays
   hidden until at least one slot has both a name and a quote.
 - **Closing section**, **footer line**, and a **meta description** for SEO.
 
+Overrides are plain text: an overridden headline loses the shipped accent styling
+(the italic `<em>` part). Every field is per language when the marketing site runs in
+more than one.
+
 ![Landing-page settings form](./images/operator-landing.png)
+
+### Text the console does not cover
+
+Everything else on the page — the "What you get" columns, "How it works", FAQ — comes
+from `platform/packages/tenancy/resources/lang/{locale}/marketing.php`. Override single
+lines without touching the package by creating
+`lang/vendor/packages/tenancy/{locale}/marketing.php` with only the keys you change:
+
+```php
+<?php
+
+return [
+    'how_it_works' => 'Three steps to launch',
+];
+```
+
+Laravel merges this over the shipped file key by key, and updates never overwrite it.
 
 The **stats** section (stores launched, orders processed, designs available) is real
 data pulled from the control plane, and appears only once the platform has passed
