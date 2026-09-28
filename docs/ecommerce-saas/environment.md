@@ -71,7 +71,7 @@ A cookie scoped to `.yourdomain.com` is sent to every store subdomain (`store1.y
 |---|---|---|
 | `TENANCY_PROVISION_QUEUE` | `default` | Queue name for provisioning jobs (usually `default`) |
 | `TENANCY_PROVISION_TIMEOUT` | `900` | Provisioning job timeout in seconds (15 minutes) |
-| `TENANCY_PROVISION_SYNC` | `false` | If `true`, provision stores synchronously (no queue) — for testing only |
+| `TENANCY_PROVISION_SYNC` | `false` | If `true`, provision stores inline during the signup request even when the queue is `database` or `redis`. Use it on a host with no worker. It has no extra effect on a `sync` queue, which already runs provisioning inline |
 
 Note: `provisioning.tries` is hard-coded to 1 in the source; there is no env var for it.
 

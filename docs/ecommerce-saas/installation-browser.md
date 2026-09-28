@@ -76,6 +76,9 @@ re-running commands that have side effects.
 Preflight is the only thing standing between you and a platform that looks installed but cannot
 provision a store. If it reports a failure here, fix it before continuing — the next step tries to
 build a real store and will fail for the same reason.
+
+The two failures most panel installs hit, the database grant and the `sync` queue, are covered
+step by step in [Troubleshooting](./troubleshooting.md#preflight-database-grants).
 :::
 
 ### 4. Queue and cron

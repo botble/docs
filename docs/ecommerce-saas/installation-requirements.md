@@ -41,6 +41,10 @@ GRANT ALL PRIVILEGES ON `tenant\_%`.* TO 'saas_central'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
+Using a user your control panel created? Run the grants as the MySQL admin, and use the
+user's exact host (`'shop'@'%'` or `'shop'@'localhost'`) as it appears in the preflight error. See
+[Troubleshooting](./troubleshooting.md#preflight-database-grants).
+
 Each store has 183 tables (the count depends on which plugins are active when a
 store is provisioned), so plan `table_open_cache`,
 `table_definition_cache` and the process open-files limit against the number of

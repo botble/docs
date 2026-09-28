@@ -5,6 +5,62 @@ description: Symptom, cause and fix for the most common operational problems on 
 
 # Troubleshooting
 
+### Preflight: `database user can CREATE/DROP DATABASE` fails {#preflight-database-grants}
+
+```text
+database user can CREATE/DROP DATABASE ................ FAIL
+  → SQLSTATE[42000]: ... 1044 Access denied for user 'shop'@'%' to database
+    'tenancy_preflight_447c9de3' ... SQL: CREATE DATABASE IF NOT EXISTS ...
+```
+
+**Cause:** the MySQL user in `DB_USERNAME` only has rights on its own database. Every store
+gets its own database, so the user must be able to create and drop databases. Panels create
+per-database users by default, so this failure is normal on a fresh CloudPanel, Plesk, cPanel
+or aaPanel install.
+
+**Fix:** the app user cannot grant itself rights. Connect as the MySQL administrator:
+
+| Server | How to get an admin MySQL session |
+|---|---|
+| Plain VPS (Ubuntu/Debian) | `sudo mysql` |
+| CloudPanel | `clpctl db:show:master-credentials`, then connect with the user and password it prints |
+| Plesk | `plesk db` |
+| cPanel/WHM | `mysql` as root in a root shell |
+
+Then grant the rights, using the **exact user and host from the error message**. MySQL
+treats `'shop'@'%'` and `'shop'@'localhost'` as two different accounts. Granting the wrong
+one changes nothing and preflight keeps failing:
+
+```sql
+GRANT CREATE, DROP ON *.* TO 'shop'@'%';
+GRANT ALL PRIVILEGES ON `tenant\_%`.* TO 'shop'@'%';
+FLUSH PRIVILEGES;
+```
+
+`tenant\_%` matches store databases under the default `TENANCY_DB_PREFIX`. If you changed
+the prefix, change the pattern to match. Run `php artisan tenancy:preflight` again. The
+line must say `OK` before you create a store, because the first store fails the same way.
+
+### Preflight: `queue connection [sync] is asynchronous` fails {#preflight-sync-queue}
+
+**Cause:** `.env` ships with `QUEUE_CONNECTION=sync` so the installer works with no worker.
+On `sync`, jobs run inside the web request that dispatched them.
+
+**This does not break signup.** On a `sync` queue a store is provisioned inline during the
+signup request (about 1-2s), and mail is sent inline too. It does **not** sit on
+"Preparing..." waiting for a worker. That only happens when the queue is `database` or
+`redis` and no worker is running. The check fails to flag production risk. A slow dump import
+or mail server then holds the visitor's request open, and a failure surfaces as an error page
+instead of a retried job.
+
+**Fix:** pick one.
+
+- **Small install or testing:** leave it on `sync` and accept the failed line.
+- **Production:** set `QUEUE_CONNECTION=database` (the `jobs` table already exists) or
+  `redis`, then run a worker under a process manager as the PHP-FPM user. See
+  [Queue worker and cron](./cronjob.md). Once you switch, the worker is mandatory, because
+  without it new stores stay in `pending`.
+
 ### Store stuck in `pending` or `provisioning`
 
 **Cause:** no queue worker is running — this is the cause the vast majority of the

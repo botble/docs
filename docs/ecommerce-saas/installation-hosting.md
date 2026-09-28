@@ -12,7 +12,7 @@ Before you buy hosting, know this plainly: **Ecommerce SaaS cannot run on shared
 Shared hosting cannot run this platform because:
 
 1. **You need global database grants** — each store gets its own database, so your app user needs `CREATE DATABASE` and `DROP DATABASE` on `*.*`. Shared hosting does not grant these, full stop.
-2. **A queue worker must run forever** — provisioning and mail are queued. Without a long-lived worker, stores stay `pending` forever. Shared hosting cron runs short commands only; it cannot keep a process alive.
+2. **A queue worker must run forever** — in production, provisioning and mail are queued. Without a long-lived worker, stores stay `pending` forever. (The shipped `QUEUE_CONNECTION=sync` runs them inline instead, which is fine for testing but not for real traffic.) Shared hosting cron runs short commands only; it cannot keep a process alive.
 3. **Wildcard DNS and certificates** — stores are subdomains (`store1.yourdomain.com`, `store2.yourdomain.com`). You need `*.yourdomain.com` pointing to your server and a wildcard TLS certificate. Most shared hosting panels do not support wildcard DNS records, and **Let's Encrypt wildcards require DNS-01 ACME**, which means your DNS provider (not your hosting panel) must support automated DNS record updates. Many panels' bundled ACME (e.g., cPanel's `acmetool.sh`) only supports HTTP-01 and cannot issue wildcards at all.
 
 Shared hosting **panels** (cPanel, Plesk, DirectAdmin, Hestia) are routinely run on a VPS with root access, where this platform works fine — the blockers above are inherent to shared hosting (multi-tenant hosting), not the control panel itself. aaPanel and CloudPanel are panel software, not hosting providers; they too work fine on a VPS where you own root.
@@ -22,8 +22,8 @@ Shared hosting **panels** (cPanel, Plesk, DirectAdmin, Hestia) are routinely run
 Before signing up, confirm your provider can give you ALL of these:
 
 - [ ] **Root shell access** — you must run `apt install`, `systemctl enable`, `php artisan migrate` yourself
-- [ ] **Global database grants** — your MySQL app user can run `CREATE DATABASE` and `DROP DATABASE` on `*.*` (test: `mysql -u app_user -p -e "GRANT CREATE, DROP ON *.* TO 'app_user'@'localhost';"`), never a per-database grant
-- [ ] **Process manager** — systemd or Supervisor installed, so you can create a long-lived queue worker (e.g., `php artisan queue:work --queue=default,webhooks`)
+- [ ] **Global database grants** — your MySQL app user can run `CREATE DATABASE` and `DROP DATABASE` on `*.*` (test as the app user: `mysql -u app_user -p -e "CREATE DATABASE tenancy_probe; DROP DATABASE tenancy_probe;"`), never a per-database grant. If the test fails, grant the rights as the MySQL admin. See [Troubleshooting](./troubleshooting.md#preflight-database-grants)
+- [ ] **Process manager** — systemd or Supervisor installed, so you can create a long-lived queue worker (e.g., `php artisan queue:work --queue=default --tries=1 --timeout=900`)
 - [ ] **Wildcard server block** — your web server (nginx or Caddy) has a server block for `*.yourdomain.com` that routes requests through PHP
 - [ ] **Wildcard DNS and TLS** — your DNS provider supports API-driven updates (DNS-01), and you can issue a Let's Encrypt wildcard cert via Certbot with a DNS provider plugin
 - [ ] **A cache store** — any of `file`, `database`, `redis`, or `memcached` (all work; Redis is recommended for production)
