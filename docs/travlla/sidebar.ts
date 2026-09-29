@@ -45,4 +45,11 @@ export default [
             { text: 'Newsletter', link: '/travlla/usage-newsletter' },
         ],
     },
+    {
+        text: 'Developers',
+        items: [
+            { text: 'API', link: '/travlla/api' },
+            { text: 'API Reference', link: '/travlla/api-reference' },
+        ],
+    },
 ] satisfies DefaultTheme.SidebarItem[]

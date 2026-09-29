@@ -1,0 +1,3125 @@
+{
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-domain.com",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "info": {
+    "name": "Travlla Tour Manager API",
+    "_postman_id": "b04438da-7eda-4cb7-b7f3-d3a39b243c8d",
+    "description": "REST API for the Travlla tour booking script: tours, availability, pricing, bookings, customer accounts and vendor endpoints.\n\nSetup: set the baseUrl variable to your site URL. Run \"Login\" (or \"Register\") once; the returned token is saved to the token variable automatically. If you set an API key in Admin > Settings > API, put it in the apiKey variable and enable the X-API-KEY header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Tour Manager",
+      "description": "",
+      "item": [
+        {
+          "name": "List tours",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours",
+              "query": [
+                {
+                  "key": "destination_id",
+                  "value": "",
+                  "description": "Filter by destination ID (see GET /destinations).",
+                  "disabled": true
+                },
+                {
+                  "key": "type_id",
+                  "value": "",
+                  "description": "Filter by tour type ID (see GET /tour-types).",
+                  "disabled": true
+                },
+                {
+                  "key": "min_price",
+                  "value": "",
+                  "description": "Minimum price.",
+                  "disabled": true
+                },
+                {
+                  "key": "max_price",
+                  "value": "",
+                  "description": "Maximum price.",
+                  "disabled": true
+                },
+                {
+                  "key": "location",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "amenities",
+                  "value": "",
+                  "description": "Comma-separated amenity IDs (see GET /tour-amenities).",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "sort_by",
+                  "value": "",
+                  "description": "Sort field, e.g. price, created_at, name.",
+                  "disabled": true
+                },
+                {
+                  "key": "sort_order",
+                  "value": "",
+                  "description": "asc or desc.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours?destination_id=&type_id=&min_price=&max_price=&location=&amenities=&search=&sort_by=&sort_order=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"description\":\"Golden temples, emerald jungles and palm-fringed island beaches.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16-150x150.jpg\"}],\"price\":899,\"price_text\":\"$899\",\"location\":null,\"is_featured\":1,\"avg_review\":4,\"reviews_count\":null,\"destination\":{\"id\":4,\"name\":\"Thailand\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"description\":\"Gilded temples, floating markets and world-famous street eats.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20-150x150.jpg\"}],\"price\":749,\"price_text\":\"$749\",\"location\":null,\"is_featured\":1,\"avg_review\":5,\"reviews_count\":null,\"destination\":{\"id\":5,\"name\":\"Bangkok\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"description\":\"Neon city lights, ancient shrines and unbeatable cuisine.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24-150x150.jpg\"}],\"price\":1499,\"price_text\":\"$1,499\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":6,\"name\":\"Tokyo\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"description\":\"Gaud\\u00ed architecture, Moorish palaces and sun-soaked plazas.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28-150x150.jpg\"}],\"price\":1299,\"price_text\":\"$1,299\",\"location\":null,\"is_featured\":0,\"avg_review\":4.5,\"reviews_count\":null,\"destination\":{\"id\":7,\"name\":\"Spain\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":8,\"name\":\"California Coast Road Trip\",\"description\":\"Pacific highways, redwood forests and glittering coastal cities.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32-150x150.jpg\"}],\"price\":1599,\"price_text\":\"$1,599\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":8,\"name\":\"California\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4-150x150.jpg\"}],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":2,\"name\":\"Maldives Overwater Retreat\",\"description\":\"Barefoot luxury in an overwater villa above a private lagoon.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8-150x150.jpg\"}],\"price\":2199,\"price_text\":\"$2,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":2,\"name\":\"Maldives\"},\"type\":{\"id\":5,\"name\":\"Cruise\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"description\":\"Dazzling skyline, harbour views and legendary dim sum.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12-150x150.jpg\"}],\"price\":999,\"price_text\":\"$999\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":3,\"name\":\"Hong Kong\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours\",\"per_page\":10,\"to\":8,\"total\":8},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Search tours",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/search",
+              "query": [
+                {
+                  "key": "date",
+                  "value": "",
+                  "description": "Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "from_date",
+                  "value": "",
+                  "description": "Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "to_date",
+                  "value": "",
+                  "description": "Must be a valid date. Must be a date after or equal to from_date.",
+                  "disabled": true
+                },
+                {
+                  "key": "travelers",
+                  "value": "",
+                  "description": "Must be at least 1.",
+                  "disabled": true
+                },
+                {
+                  "key": "location",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "pickup_date",
+                  "value": "",
+                  "description": "Legacy date params kept for backward compatibility with existing clients. Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "return_date",
+                  "value": "",
+                  "description": "Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/search?date=&from_date=&to_date=&travelers=&location=&pickup_date=&return_date=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":{\"data\":[{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"description\":\"Golden temples, emerald jungles and palm-fringed island beaches.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16-150x150.jpg\"}],\"price\":899,\"price_text\":\"$899\",\"location\":null,\"is_featured\":1,\"avg_review\":4,\"reviews_count\":null,\"destination\":{\"id\":4,\"name\":\"Thailand\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"description\":\"Gilded temples, floating markets and world-famous street eats.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20-150x150.jpg\"}],\"price\":749,\"price_text\":\"$749\",\"location\":null,\"is_featured\":1,\"avg_review\":5,\"reviews_count\":null,\"destination\":{\"id\":5,\"name\":\"Bangkok\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4-150x150.jpg\"}],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":2,\"name\":\"Maldives Overwater Retreat\",\"description\":\"Barefoot luxury in an overwater villa above a private lagoon.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8-150x150.jpg\"}],\"price\":2199,\"price_text\":\"$2,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":2,\"name\":\"Maldives\"},\"type\":{\"id\":5,\"name\":\"Cruise\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"description\":\"Dazzling skyline, harbour views and legendary dim sum.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12-150x150.jpg\"}],\"price\":999,\"price_text\":\"$999\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":3,\"name\":\"Hong Kong\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"description\":\"Neon city lights, ancient shrines and unbeatable cuisine.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24-150x150.jpg\"}],\"price\":1499,\"price_text\":\"$1,499\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":6,\"name\":\"Tokyo\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"description\":\"Gaud\\u00ed architecture, Moorish palaces and sun-soaked plazas.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28-150x150.jpg\"}],\"price\":1299,\"price_text\":\"$1,299\",\"location\":null,\"is_featured\":0,\"avg_review\":4.5,\"reviews_count\":null,\"destination\":{\"id\":7,\"name\":\"Spain\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":8,\"name\":\"California Coast Road Trip\",\"description\":\"Pacific highways, redwood forests and glittering coastal cities.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32-150x150.jpg\"}],\"price\":1599,\"price_text\":\"$1,599\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":8,\"name\":\"California\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"}],\"meta\":{\"current_page\":1,\"per_page\":10,\"total\":8,\"last_page\":1}},\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get tour filters",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/filters",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/filters"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":{\"destinations\":[{\"id\":1,\"name\":\"Paris\"},{\"id\":2,\"name\":\"Maldives\"},{\"id\":3,\"name\":\"Hong Kong\"},{\"id\":4,\"name\":\"Thailand\"},{\"id\":5,\"name\":\"Bangkok\"},{\"id\":6,\"name\":\"Tokyo\"},{\"id\":7,\"name\":\"Spain\"},{\"id\":8,\"name\":\"California\"}],\"types\":[{\"id\":1,\"name\":\"Adventure\"},{\"id\":2,\"name\":\"Sightseeing\"},{\"id\":3,\"name\":\"Trekking\"},{\"id\":4,\"name\":\"Safari\"},{\"id\":5,\"name\":\"Cruise\"},{\"id\":6,\"name\":\"Diving\"}],\"amenities\":[{\"id\":1,\"name\":\"WiFi\"},{\"id\":2,\"name\":\"Meals\"},{\"id\":3,\"name\":\"Guide\"},{\"id\":4,\"name\":\"Transport\"},{\"id\":5,\"name\":\"Insurance\"},{\"id\":6,\"name\":\"Hotel\"}],\"categories\":[{\"id\":1,\"name\":\"Adventure\"},{\"id\":2,\"name\":\"Wildlife\"},{\"id\":3,\"name\":\"Cultural\"},{\"id\":4,\"name\":\"Beach\"},{\"id\":5,\"name\":\"Mountain\"},{\"id\":6,\"name\":\"City\"},{\"id\":7,\"name\":\"Cruise\"},{\"id\":8,\"name\":\"Honeymoon\"}],\"price_range\":{\"min\":749,\"max\":2199}},\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Find tour by slug",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/:slug",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/:slug",
+              "variable": [
+                {
+                  "id": "slug",
+                  "key": "slug",
+                  "value": "paris-city-of-light-break",
+                  "description": "The slug of the tour."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"content\":\"<p>Fall under the spell of Paris on this five-day city break. Ascend the Eiffel Tower for sweeping views, wander the masterpiece-filled halls of the Louvre and stroll the grand boulevards from the Arc de Triomphe to Notre-Dame.<\\/p><p>Sip coffee in a Left Bank caf\\u00e9, cruise the Seine at dusk and lose yourself in the artistic lanes of Montmartre. Elegant, romantic and endlessly inspiring, Paris is a city made to be savoured.<\\/p>\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\",\"icon\":null},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"tags\":[],\"reviews\":[{\"id\":1,\"star\":4,\"comment\":null,\"created_at\":\"2026-02-04T15:43:40.000000Z\",\"customer\":{\"id\":5,\"name\":\"Golden Compass Travel\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/16-150x150.jpg\"}},{\"id\":2,\"star\":5,\"comment\":null,\"created_at\":\"2026-04-27T15:43:40.000000Z\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"}},{\"id\":3,\"star\":4,\"comment\":null,\"created_at\":\"2025-12-11T15:43:40.000000Z\",\"customer\":{\"id\":27,\"name\":\"Christopher Anderson\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/7-150x150.jpg\"}}],\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get tour details",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/id/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/id/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the id."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"content\":\"<p>Fall under the spell of Paris on this five-day city break. Ascend the Eiffel Tower for sweeping views, wander the masterpiece-filled halls of the Louvre and stroll the grand boulevards from the Arc de Triomphe to Notre-Dame.<\\/p><p>Sip coffee in a Left Bank caf\\u00e9, cruise the Seine at dusk and lose yourself in the artistic lanes of Montmartre. Elegant, romantic and endlessly inspiring, Paris is a city made to be savoured.<\\/p>\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\",\"icon\":null},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"tags\":[],\"reviews\":[{\"id\":1,\"star\":4,\"comment\":null,\"created_at\":\"2026-02-04T15:43:40.000000Z\",\"customer\":{\"id\":5,\"name\":\"Golden Compass Travel\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/16-150x150.jpg\"}},{\"id\":2,\"star\":5,\"comment\":null,\"created_at\":\"2026-04-27T15:43:40.000000Z\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"}},{\"id\":3,\"star\":4,\"comment\":null,\"created_at\":\"2025-12-11T15:43:40.000000Z\",\"customer\":{\"id\":27,\"name\":\"Christopher Anderson\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/7-150x150.jpg\"}}],\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Check tour availability",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/id/:id/availability",
+              "query": [
+                {
+                  "key": "travelers",
+                  "value": "",
+                  "description": "Must be at least 1.",
+                  "disabled": true
+                },
+                {
+                  "key": "departure_id",
+                  "value": "",
+                  "description": "Departure ID from GET /tours/id/{id}/availability.",
+                  "disabled": true
+                },
+                {
+                  "key": "from_date",
+                  "value": "",
+                  "description": "Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "to_date",
+                  "value": "",
+                  "description": "Must be a valid date. Must be a date after or equal to from_date.",
+                  "disabled": true
+                },
+                {
+                  "key": "pickup_date",
+                  "value": "",
+                  "description": "Legacy date params kept for backward compatibility with existing clients. Must be a valid date.",
+                  "disabled": true
+                },
+                {
+                  "key": "return_date",
+                  "value": "",
+                  "description": "Must be a valid date.",
+                  "disabled": true
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/id/:id/availability?travelers=&departure_id=&from_date=&to_date=&pickup_date=&return_date=",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the id."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":{\"available\":true,\"tour_id\":1,\"departures\":[{\"id\":1,\"start_date\":\"2026-09-02\",\"end_date\":\"2026-09-06\",\"price\":\"1199.00\",\"capacity\":17,\"booked_count\":0,\"remaining\":17},{\"id\":2,\"start_date\":\"2026-10-03\",\"end_date\":\"2026-10-07\",\"price\":\"1199.00\",\"capacity\":17,\"booked_count\":0,\"remaining\":17},{\"id\":3,\"start_date\":\"2026-11-19\",\"end_date\":\"2026-11-23\",\"price\":\"1199.00\",\"capacity\":19,\"booked_count\":0,\"remaining\":19}]},\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get similar tours",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/id/:id/similar",
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "",
+                  "description": "Maximum number of tours returned.",
+                  "disabled": true
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/id/:id/similar?limit=",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the id."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"description\":\"Neon city lights, ancient shrines and unbeatable cuisine.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24-150x150.jpg\"}],\"price\":1499,\"price_text\":\"$1,499\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":6,\"name\":\"Tokyo\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"description\":\"Gaud\\u00ed architecture, Moorish palaces and sun-soaked plazas.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28-150x150.jpg\"}],\"price\":1299,\"price_text\":\"$1,299\",\"location\":null,\"is_featured\":0,\"avg_review\":4.5,\"reviews_count\":null,\"destination\":{\"id\":7,\"name\":\"Spain\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"description\":\"Dazzling skyline, harbour views and legendary dim sum.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12-150x150.jpg\"}],\"price\":999,\"price_text\":\"$999\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":3,\"name\":\"Hong Kong\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"description\":\"Gilded temples, floating markets and world-famous street eats.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20-150x150.jpg\"}],\"price\":749,\"price_text\":\"$749\",\"location\":null,\"is_featured\":1,\"avg_review\":5,\"reviews_count\":null,\"destination\":{\"id\":5,\"name\":\"Bangkok\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"}],\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List destinations",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/destinations",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/destinations?search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":[{\"id\":5,\"name\":\"Bangkok\",\"logo\":\"destinations\\/bangkok.jpg\",\"website\":null,\"tours_count\":1},{\"id\":8,\"name\":\"California\",\"logo\":\"destinations\\/california.jpg\",\"website\":null,\"tours_count\":1},{\"id\":3,\"name\":\"Hong Kong\",\"logo\":\"destinations\\/hong-kong.jpg\",\"website\":null,\"tours_count\":1},{\"id\":2,\"name\":\"Maldives\",\"logo\":\"destinations\\/maldives.jpg\",\"website\":null,\"tours_count\":1},{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\",\"website\":null,\"tours_count\":1},{\"id\":7,\"name\":\"Spain\",\"logo\":\"destinations\\/spain.jpg\",\"website\":null,\"tours_count\":1},{\"id\":4,\"name\":\"Thailand\",\"logo\":\"destinations\\/thailand.jpg\",\"website\":null,\"tours_count\":1},{\"id\":6,\"name\":\"Tokyo\",\"logo\":\"destinations\\/tokyo.jpg\",\"website\":null,\"tours_count\":1}],\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List tour types",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tour-types",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tour-types?search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":[{\"id\":1,\"name\":\"Adventure\",\"icon\":null,\"tours_count\":2},{\"id\":5,\"name\":\"Cruise\",\"icon\":null,\"tours_count\":1},{\"id\":6,\"name\":\"Diving\",\"icon\":null,\"tours_count\":0},{\"id\":4,\"name\":\"Safari\",\"icon\":null,\"tours_count\":0},{\"id\":2,\"name\":\"Sightseeing\",\"icon\":null,\"tours_count\":5},{\"id\":3,\"name\":\"Trekking\",\"icon\":null,\"tours_count\":0}],\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List tour categories",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tour-categories",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tour-categories?search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":[{\"id\":1,\"name\":\"Adventure\",\"description\":\"Adrenaline-fuelled trips for travellers who want to push their limits.\",\"tours_count\":2},{\"id\":4,\"name\":\"Beach\",\"description\":\"Sun, sand and crystal-clear water at the world's best coastlines.\",\"tours_count\":2},{\"id\":6,\"name\":\"City\",\"description\":\"Discover iconic skylines, landmarks and vibrant urban life.\",\"tours_count\":2},{\"id\":7,\"name\":\"Cruise\",\"description\":\"Sail in comfort and wake up in a new destination each morning.\",\"tours_count\":2},{\"id\":3,\"name\":\"Cultural\",\"description\":\"Immerse yourself in local heritage, history and traditions.\",\"tours_count\":2},{\"id\":8,\"name\":\"Honeymoon\",\"description\":\"Romantic getaways designed for unforgettable celebrations.\",\"tours_count\":2},{\"id\":5,\"name\":\"Mountain\",\"description\":\"Breathtaking peaks, alpine villages and high-altitude trails.\",\"tours_count\":2},{\"id\":2,\"name\":\"Wildlife\",\"description\":\"Get close to nature with guided safaris and wildlife encounters.\",\"tours_count\":2}],\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List tour amenities",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tour-amenities",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tour-amenities?search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":[{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\",\"tours_count\":8},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\",\"tours_count\":2},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\",\"tours_count\":5},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\",\"tours_count\":8},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\",\"tours_count\":5},{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\",\"tours_count\":8}],\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List locations",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/locations",
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/locations?search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":9,\"name\":\"Austin, Texas\"},{\"id\":18,\"name\":\"Berlin, Berlin\"},{\"id\":5,\"name\":\"Buffalo, New York\"},{\"id\":10,\"name\":\"Chicago, Illinois\"},{\"id\":13,\"name\":\"Edinburgh, Scotland\"},{\"id\":8,\"name\":\"Houston, Texas\"},{\"id\":11,\"name\":\"London, England\"},{\"id\":1,\"name\":\"Los Angeles, California\"},{\"id\":12,\"name\":\"Manchester, England\"},{\"id\":22,\"name\":\"Melbourne, Victoria\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=3\",\"prev\":null,\"next\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":3,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=2\",\"label\":\"2\",\"page\":2,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=3\",\"label\":\"3\",\"page\":3,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations?page=2\",\"label\":\"Next &raquo;\",\"page\":2,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/locations\",\"per_page\":10,\"to\":10,\"total\":26},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Search locations",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/locations/search",
+              "query": [
+                {
+                  "key": "q",
+                  "value": "paris",
+                  "description": "Must be at least 2 characters.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/locations/search?q=paris"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":[{\"type\":\"city\",\"id\":19,\"name\":\"Paris, \\u00cele-de-France, France\",\"city\":\"Paris\",\"state\":\"\\u00cele-de-France\",\"country\":\"France\",\"latitude\":null,\"longitude\":null}],\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get tour reviews",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/tours/:tour_id/reviews",
+              "query": [
+                {
+                  "key": "star",
+                  "value": "",
+                  "description": "Rating from 1 to 5.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/tours/:tour_id/reviews?star=&per_page=10",
+              "variable": [
+                {
+                  "id": "tour_id",
+                  "key": "tour_id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":2,\"star\":5,\"comment\":\"Exceeded every expectation. Smooth transfers, friendly staff and unforgettable moments at every stop. Worth every penny.\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"},\"created_at\":\"2026-04-27T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":1,\"star\":4,\"comment\":\"Really enjoyed this tour. Great value and beautiful locations. A little more free time would have made it perfect, but I would still recommend it.\",\"customer\":{\"id\":5,\"name\":\"Golden Compass Travel\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/16-150x150.jpg\"},\"created_at\":\"2026-02-04T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":3,\"star\":4,\"comment\":\"A wonderful experience overall. The highlights were amazing and the guide was great. Only minor issue was a slightly rushed schedule on one day.\",\"customer\":{\"id\":27,\"name\":\"Christopher Anderson\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/7-150x150.jpg\"},\"created_at\":\"2025-12-11T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours\\/1\\/reviews?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours\\/1\\/reviews?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours\\/1\\/reviews?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/tours\\/1\\/reviews\",\"per_page\":10,\"to\":3,\"total\":3},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Validate coupon code (alias for check)",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/coupons/validate",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/coupons/validate"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"code\":\"SUMMER10\",\"total_amount\":1200}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List bookings (authenticated users only see their own, guest access requires booking code + email)",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings",
+              "query": [
+                {
+                  "key": "booking_code",
+                  "value": "BK-000001",
+                  "description": "Guest lookup: the booking number from the confirmation email. Not needed when a Bearer token is sent.",
+                  "disabled": false
+                },
+                {
+                  "key": "email",
+                  "value": "emily.johnson@example.com",
+                  "description": "Email the booking was made with (guest lookup). Not needed when a Bearer token is sent.",
+                  "disabled": false
+                },
+                {
+                  "key": "status",
+                  "value": "",
+                  "description": "pending, processing, completed or cancelled.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings?booking_code=BK-000001&email=emily.johnson%40example.com&status=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "20"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "19"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":1,\"booking_number\":\"BK-000001\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":7553.7,\"sub_total\":7194,\"tax_amount\":359.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":1,\"persons\":6,\"unit_price\":\"1199.00\",\"hotel_rating\":5,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-06T00:00:00.000000Z\",\"tour_price\":\"7194.00\",\"tour_name\":\"Paris City of Light Break\",\"note\":null,\"tour\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"destination\":{\"id\":1,\"name\":\"Paris\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":1,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"7553.70\"},\"created_at\":\"2026-07-07T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/bookings?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/bookings?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/bookings?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/bookings\",\"per_page\":10,\"to\":1,\"total\":1},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Create a new booking (supports both guest and authenticated users)",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tour_id\":1,\"departure_id\":1,\"persons\":2,\"hotel_rating\":4,\"coupon_code\":\"SUMMER10\",\"note\":\"Vegetarian meals for both travelers, please.\"}"
+            },
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get booking details",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings/:id",
+              "query": [
+                {
+                  "key": "email",
+                  "value": "emily.johnson@example.com",
+                  "description": "Email the booking was made with (guest lookup). Not needed when a Bearer token is sent.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings/:id?email=emily.johnson%40example.com",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "20"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "18"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"booking_number\":\"BK-000001\",\"customer_name\":\"Emily Johnson\",\"customer_email\":\"emily.johnson@example.com\",\"customer_phone\":\"+15862215780\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":7553.7,\"sub_total\":7194,\"tax_amount\":359.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":1,\"persons\":6,\"unit_price\":\"1199.00\",\"hotel_rating\":5,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-06T00:00:00.000000Z\",\"tour_price\":\"7194.00\",\"tour_name_saved\":\"Paris City of Light Break\",\"note\":null,\"completion_notes\":null,\"completed_at\":null,\"tour\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"destination\":{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"location\":null,\"persons\":6,\"hotel_rating\":5,\"unit_price\":\"1199.00\"},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\",\"is_default\":true,\"exchange_rate\":1},\"payment\":{\"id\":1,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"7553.70\",\"refunded_amount\":null,\"charge_id\":\"TOUR-6A9C38AD39A75\",\"created_at\":\"2026-09-05T15:43:41.000000Z\"},\"invoice\":{\"id\":null,\"code\":null,\"created_at\":null},\"created_at\":\"2026-07-07T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Update booking",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"note\":\"Vegetarian meals for both travelers, please.\"}"
+            },
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel booking",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings/:id/cancel",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings/:id/cancel",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"reason\":\"Change of travel plans.\"}"
+            },
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get booking invoice",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/bookings/:id/invoice",
+              "query": [
+                {
+                  "key": "email",
+                  "value": "emily.johnson@example.com",
+                  "description": "Email the booking was made with (guest lookup). Not needed when a Bearer token is sent.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/bookings/:id/invoice?email=emily.johnson%40example.com",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": "Works for guests and signed-in customers: send the Bearer token to act as the customer, or pass the guest lookup fields (booking_code / email) without a token.",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "20"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "17"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 404,
+              "body": "{\"error\":true,\"data\":null,\"message\":\"Invoice not found\"}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Create a review",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/reviews",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/reviews"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tour_id\":1,\"star\":5,\"comment\":\"Wonderful guides and a well-paced itinerary.\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Authentication",
+      "description": "",
+      "item": [
+        {
+          "name": "Register a new customer",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/auth/register",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/auth/register"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Emily Johnson\",\"email\":\"emily.johnson@example.com\",\"password\":\"Secret12345!\",\"phone\":\"+15551234567\",\"dob\":\"1990-05-14\",\"is_vendor\":true}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res && res.data && res.data.token) { pm.collectionVariables.set(\"token\", res.data.token); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login customer",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/auth/login",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/auth/login"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"emily.johnson@example.com\",\"password\":\"Secret12345!\"}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res && res.data && res.data.token) { pm.collectionVariables.set(\"token\", res.data.token); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Send password reset link",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/auth/forgot-password",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/auth/forgot-password"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"emily.johnson@example.com\"}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset password",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/auth/reset-password",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/auth/reset-password"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"token\":\"{reset-token-from-email}\",\"email\":\"emily.johnson@example.com\",\"password\":\"Secret12345!\"}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout customer",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/auth/logout",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/auth/logout"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Favorites",
+      "description": "",
+      "item": [
+        {
+          "name": "List user's favorite tours",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/favorites",
+              "query": [
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/favorites?per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/favorites?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/favorites?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/favorites?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/favorites\",\"per_page\":10,\"to\":null,\"total\":0},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Add tour to favorites",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/favorites/:tour_id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/favorites/:tour_id",
+              "variable": [
+                {
+                  "id": "tour_id",
+                  "key": "tour_id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Remove tour from favorites",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/favorites/:tour_id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/favorites/:tour_id",
+              "variable": [
+                {
+                  "id": "tour_id",
+                  "key": "tour_id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Inquiries",
+      "description": "",
+      "item": [
+        {
+          "name": "Submit an inquiry",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/inquiries",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/inquiries"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Emily Johnson\",\"email\":\"emily.johnson@example.com\",\"phone\":\"+15551234567\",\"subject\":\"Group discount\",\"message\":\"Do you offer discounts for groups of 10?\",\"tour_id\":1,\"inquiry_type\":\"tour_inquiry\"}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Pricing",
+      "description": "",
+      "item": [
+        {
+          "name": "Calculate tour pricing (per-person, per departure).",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/calculate-price",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/calculate-price"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tour_id\":1,\"departure_id\":1,\"persons\":2,\"hotel_rating\":4,\"coupon_code\":\"SUMMER10\"}"
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Profile",
+      "description": "",
+      "item": [
+        {
+          "name": "Get customer profile",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/profile",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/profile"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"name\":\"Wanderlust Travel Co.\",\"email\":\"wanderlust-travel-co@example.com\",\"phone\":\"+15396264157\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/12-150x150.jpg\",\"dob\":null,\"gender\":null,\"description\":null},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Update customer profile",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/profile",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/profile"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Emily Johnson\",\"email\":\"emily.johnson@example.com\",\"phone\":\"+15551234567\",\"dob\":\"1990-05-14\",\"current_password\":\"OldSecret123!\",\"password\":\"Secret12345!\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Update customer avatar",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/profile/avatar",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/profile/avatar"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "src": [],
+                  "type": "file"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Change customer password",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/profile/change-password",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/profile/change-password"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"current_password\":\"OldSecret123!\",\"password\":\"Secret12345!\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tour Manager - Vendor",
+      "description": "",
+      "item": [
+        {
+          "name": "Get vendor profile",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/profile",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/profile"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"name\":\"Wanderlust Travel Co.\",\"email\":\"wanderlust-travel-co@example.com\",\"phone\":\"+15396264157\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/12-150x150.jpg\",\"dob\":null,\"gender\":null,\"description\":null},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Update vendor profile",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/profile",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/profile"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"first_name\":\"Emily\",\"last_name\":\"Johnson\",\"company_name\":\"Wanderlust Travel Co.\",\"phone\":\"+15551234567\",\"address\":\"12 Rue de Rivoli\",\"city\":\"Paris\",\"state\":\"Ile-de-France\",\"country\":\"France\",\"postal_code\":\"75001\",\"website\":\"https:\\/\\/example.com\",\"description\":\"Dolores enim non facere tempora.\",\"business_license\":\"BL-2026-0042\",\"tax_id\":\"FR12345678901\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List vendor tours",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours",
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "description": "pending, processing, completed or cancelled.",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours?status=&search=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"description\":\"Golden temples, emerald jungles and palm-fringed island beaches.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/13-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/14-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/15-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/16-150x150.jpg\"}],\"price\":899,\"price_text\":\"$899\",\"location\":null,\"is_featured\":1,\"avg_review\":4,\"reviews_count\":null,\"destination\":{\"id\":4,\"name\":\"Thailand\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"description\":\"Gilded temples, floating markets and world-famous street eats.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/17-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/18-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/19-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/20-150x150.jpg\"}],\"price\":749,\"price_text\":\"$749\",\"location\":null,\"is_featured\":1,\"avg_review\":5,\"reviews_count\":null,\"destination\":{\"id\":5,\"name\":\"Bangkok\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"description\":\"Neon city lights, ancient shrines and unbeatable cuisine.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/21-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/22-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/23-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/24-150x150.jpg\"}],\"price\":1499,\"price_text\":\"$1,499\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":6,\"name\":\"Tokyo\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"description\":\"Gaud\\u00ed architecture, Moorish palaces and sun-soaked plazas.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/25-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/26-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/27-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/28-150x150.jpg\"}],\"price\":1299,\"price_text\":\"$1,299\",\"location\":null,\"is_featured\":0,\"avg_review\":4.5,\"reviews_count\":null,\"destination\":{\"id\":7,\"name\":\"Spain\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":8,\"name\":\"California Coast Road Trip\",\"description\":\"Pacific highways, redwood forests and glittering coastal cities.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/29-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/30-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/31-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/32-150x150.jpg\"}],\"price\":1599,\"price_text\":\"$1,599\",\"location\":null,\"is_featured\":0,\"avg_review\":4.67,\"reviews_count\":null,\"destination\":{\"id\":8,\"name\":\"California\"},\"type\":{\"id\":1,\"name\":\"Adventure\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:39.000000Z\",\"updated_at\":\"2026-09-05T15:43:39.000000Z\"},{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/1-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/2-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/3-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/4-150x150.jpg\"}],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":2,\"name\":\"Maldives Overwater Retreat\",\"description\":\"Barefoot luxury in an overwater villa above a private lagoon.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/5-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/6-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/7-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/8-150x150.jpg\"}],\"price\":2199,\"price_text\":\"$2,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":2,\"name\":\"Maldives\"},\"type\":{\"id\":5,\"name\":\"Cruise\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"description\":\"Dazzling skyline, harbour views and legendary dim sum.\",\"images\":[{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/9-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/10-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/11-150x150.jpg\"},{\"url\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12.jpg\",\"thumb\":\"https:\\/\\/your-domain.com\\/storage\\/tours\\/12-150x150.jpg\"}],\"price\":999,\"price_text\":\"$999\",\"location\":null,\"is_featured\":1,\"avg_review\":4.83,\"reviews_count\":null,\"destination\":{\"id\":3,\"name\":\"Hong Kong\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/tours?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/tours?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/tours?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/tours\",\"per_page\":10,\"to\":8,\"total\":8},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Create a new tour",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Kyoto Temples & Tea Houses",
+                  "type": "text",
+                  "description": "Must not be greater than 255 characters."
+                },
+                {
+                  "key": "description",
+                  "value": "Five days of temples, gardens and tea ceremonies in Kyoto.",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "content",
+                  "value": "<p>Day 1: Arrival and Gion evening walk...</p>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "destination_id",
+                  "value": "1",
+                  "type": "text",
+                  "description": "Must match an existing stored value."
+                },
+                {
+                  "key": "tour_type_id",
+                  "value": "1",
+                  "type": "text",
+                  "description": "Must match an existing stored value."
+                },
+                {
+                  "key": "price",
+                  "value": "1199",
+                  "type": "text",
+                  "description": "Must be at least 0."
+                },
+                {
+                  "key": "location",
+                  "value": "Paris, France",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "images[]",
+                  "src": [],
+                  "type": "file"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Get tour details",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"content\":\"<p>Fall under the spell of Paris on this five-day city break. Ascend the Eiffel Tower for sweeping views, wander the masterpiece-filled halls of the Louvre and stroll the grand boulevards from the Arc de Triomphe to Notre-Dame.<\\/p><p>Sip coffee in a Left Bank caf\\u00e9, cruise the Seine at dusk and lose yourself in the artistic lanes of Montmartre. Elegant, romantic and endlessly inspiring, Paris is a city made to be savoured.<\\/p>\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"price_text\":\"$1,199\",\"location\":null,\"is_featured\":1,\"avg_review\":4.33,\"reviews_count\":null,\"destination\":{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\",\"icon\":null},\"amenities\":[{\"id\":1,\"name\":\"WiFi\",\"icon\":\"ti ti-wifi\"},{\"id\":2,\"name\":\"Meals\",\"icon\":\"ti ti-tools-kitchen-2\"},{\"id\":3,\"name\":\"Guide\",\"icon\":\"ti ti-user-star\"},{\"id\":4,\"name\":\"Transport\",\"icon\":\"ti ti-bus\"},{\"id\":5,\"name\":\"Insurance\",\"icon\":\"ti ti-shield-check\"},{\"id\":6,\"name\":\"Hotel\",\"icon\":\"ti ti-bed\"}],\"city\":{\"id\":null,\"name\":null,\"state\":null,\"country\":null},\"reviews\":[{\"id\":1,\"star\":4,\"comment\":null,\"created_at\":\"2026-02-04T15:43:40.000000Z\",\"customer\":{\"id\":5,\"name\":\"Golden Compass Travel\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/16-150x150.jpg\"}},{\"id\":2,\"star\":5,\"comment\":null,\"created_at\":\"2026-04-27T15:43:40.000000Z\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"}},{\"id\":3,\"star\":4,\"comment\":null,\"created_at\":\"2025-12-11T15:43:40.000000Z\",\"customer\":{\"id\":27,\"name\":\"Christopher Anderson\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/7-150x150.jpg\"}}],\"created_at\":\"2026-09-05T15:43:38.000000Z\",\"updated_at\":\"2026-09-05T15:43:38.000000Z\"},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Update tour",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Kyoto Temples & Tea Houses\",\"description\":\"Five days of temples, gardens and tea ceremonies in Kyoto.\",\"content\":\"<p>Day 1: Arrival and Gion evening walk...<\\/p>\",\"destination_id\":1,\"tour_type_id\":1,\"price\":1199,\"location\":\"Paris, France\",\"status\":\"processing\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Delete tour",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Upload tour images",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/tours/:id/images",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/tours/:id/images",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the tour."
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "images[]",
+                  "src": [],
+                  "type": "file"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "List vendor bookings",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/bookings",
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "description": "pending, processing, completed or cancelled.",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Keyword filter on name.",
+                  "disabled": true
+                },
+                {
+                  "key": "date_from",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date_to",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/bookings?status=&search=&date_from=&date_to=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":6,\"booking_number\":\"BK-000006\",\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"amount\":6293.7,\"sub_total\":5994,\"tax_amount\":299.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":8,\"persons\":6,\"unit_price\":\"999.00\",\"hotel_rating\":3,\"departure_start\":\"2026-10-03T00:00:00.000000Z\",\"departure_end\":\"2026-10-06T00:00:00.000000Z\",\"tour_price\":\"5994.00\",\"tour_name\":\"Hong Kong City Highlights\",\"note\":null,\"tour\":{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"images\":[\"tours\\/9.jpg\",\"tours\\/10.jpg\",\"tours\\/11.jpg\",\"tours\\/12.jpg\"],\"price\":999,\"destination\":{\"id\":3,\"name\":\"Hong Kong\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":6,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"6293.70\"},\"created_at\":\"2026-09-03T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":7,\"booking_number\":\"BK-000007\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":1887.9,\"sub_total\":1798,\"tax_amount\":89.9,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":12,\"persons\":2,\"unit_price\":\"899.00\",\"hotel_rating\":3,\"departure_start\":\"2026-11-19T00:00:00.000000Z\",\"departure_end\":\"2026-11-25T00:00:00.000000Z\",\"tour_price\":\"1798.00\",\"tour_name\":\"Thailand Beaches & Temples\",\"note\":null,\"tour\":{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"images\":[\"tours\\/13.jpg\",\"tours\\/14.jpg\",\"tours\\/15.jpg\",\"tours\\/16.jpg\"],\"price\":899,\"destination\":{\"id\":4,\"name\":\"Thailand\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":7,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"1887.90\"},\"created_at\":\"2026-08-26T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":3,\"booking_number\":\"BK-000003\",\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"amount\":11544.75,\"sub_total\":10995,\"tax_amount\":549.75,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":5,\"persons\":5,\"unit_price\":\"2199.00\",\"hotel_rating\":4,\"departure_start\":\"2026-10-03T00:00:00.000000Z\",\"departure_end\":\"2026-10-07T00:00:00.000000Z\",\"tour_price\":\"10995.00\",\"tour_name\":\"Maldives Overwater Retreat\",\"note\":null,\"tour\":{\"id\":2,\"name\":\"Maldives Overwater Retreat\",\"images\":[\"tours\\/5.jpg\",\"tours\\/6.jpg\",\"tours\\/7.jpg\",\"tours\\/8.jpg\"],\"price\":2199,\"destination\":{\"id\":2,\"name\":\"Maldives\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":3,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"11544.75\"},\"created_at\":\"2026-08-15T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":2,\"booking_number\":\"BK-000002\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":6294.75,\"sub_total\":5995,\"tax_amount\":299.75,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":1,\"persons\":5,\"unit_price\":\"1199.00\",\"hotel_rating\":4,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-06T00:00:00.000000Z\",\"tour_price\":\"5995.00\",\"tour_name\":\"Paris City of Light Break\",\"note\":null,\"tour\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"destination\":{\"id\":1,\"name\":\"Paris\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":2,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"6294.75\"},\"created_at\":\"2026-08-06T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":9,\"booking_number\":\"BK-000009\",\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"amount\":4721.85,\"sub_total\":4497,\"tax_amount\":224.85,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":16,\"persons\":3,\"unit_price\":\"1499.00\",\"hotel_rating\":4,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-07T00:00:00.000000Z\",\"tour_price\":\"4497.00\",\"tour_name\":\"Tokyo Modern & Traditional\",\"note\":null,\"tour\":{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"images\":[\"tours\\/21.jpg\",\"tours\\/22.jpg\",\"tours\\/23.jpg\",\"tours\\/24.jpg\"],\"price\":1499,\"destination\":{\"id\":6,\"name\":\"Tokyo\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":9,\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"4721.85\"},\"created_at\":\"2026-08-01T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":1,\"booking_number\":\"BK-000001\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":7553.7,\"sub_total\":7194,\"tax_amount\":359.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":1,\"persons\":6,\"unit_price\":\"1199.00\",\"hotel_rating\":5,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-06T00:00:00.000000Z\",\"tour_price\":\"7194.00\",\"tour_name\":\"Paris City of Light Break\",\"note\":null,\"tour\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"destination\":{\"id\":1,\"name\":\"Paris\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":1,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"7553.70\"},\"created_at\":\"2026-07-07T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":13,\"booking_number\":\"BK-000013\",\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"amount\":10073.7,\"sub_total\":9594,\"tax_amount\":479.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":24,\"persons\":6,\"unit_price\":\"1599.00\",\"hotel_rating\":3,\"departure_start\":\"2026-11-19T00:00:00.000000Z\",\"departure_end\":\"2026-11-25T00:00:00.000000Z\",\"tour_price\":\"9594.00\",\"tour_name\":\"California Coast Road Trip\",\"note\":null,\"tour\":{\"id\":8,\"name\":\"California Coast Road Trip\",\"images\":[\"tours\\/29.jpg\",\"tours\\/30.jpg\",\"tours\\/31.jpg\",\"tours\\/32.jpg\"],\"price\":1599,\"destination\":{\"id\":8,\"name\":\"California\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":13,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"10073.70\"},\"created_at\":\"2026-06-25T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":12,\"booking_number\":\"BK-000012\",\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"amount\":8183.7,\"sub_total\":7794,\"tax_amount\":389.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":21,\"persons\":6,\"unit_price\":\"1299.00\",\"hotel_rating\":4,\"departure_start\":\"2026-11-19T00:00:00.000000Z\",\"departure_end\":\"2026-11-26T00:00:00.000000Z\",\"tour_price\":\"7794.00\",\"tour_name\":\"Spain Mediterranean Discovery\",\"note\":null,\"tour\":{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"images\":[\"tours\\/25.jpg\",\"tours\\/26.jpg\",\"tours\\/27.jpg\",\"tours\\/28.jpg\"],\"price\":1299,\"destination\":{\"id\":7,\"name\":\"Spain\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":12,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"8183.70\"},\"created_at\":\"2026-06-19T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":11,\"booking_number\":\"BK-000011\",\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"amount\":6819.75,\"sub_total\":6495,\"tax_amount\":324.75,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":19,\"persons\":5,\"unit_price\":\"1299.00\",\"hotel_rating\":4,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-09T00:00:00.000000Z\",\"tour_price\":\"6495.00\",\"tour_name\":\"Spain Mediterranean Discovery\",\"note\":null,\"tour\":{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"images\":[\"tours\\/25.jpg\",\"tours\\/26.jpg\",\"tours\\/27.jpg\",\"tours\\/28.jpg\"],\"price\":1299,\"destination\":{\"id\":7,\"name\":\"Spain\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":11,\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"6819.75\"},\"created_at\":\"2026-06-12T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},{\"id\":8,\"booking_number\":\"BK-000008\",\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"amount\":1572.9,\"sub_total\":1498,\"tax_amount\":74.9,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":13,\"persons\":2,\"unit_price\":\"749.00\",\"hotel_rating\":4,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-05T00:00:00.000000Z\",\"tour_price\":\"1498.00\",\"tour_name\":\"Bangkok Culture & Street Food\",\"note\":null,\"tour\":{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"images\":[\"tours\\/17.jpg\",\"tours\\/18.jpg\",\"tours\\/19.jpg\",\"tours\\/20.jpg\"],\"price\":749,\"destination\":{\"id\":5,\"name\":\"Bangkok\"}},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\"},\"payment\":{\"id\":8,\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"1572.90\"},\"created_at\":\"2026-06-08T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=2\",\"prev\":null,\"next\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=2\",\"label\":\"2\",\"page\":2,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings?page=2\",\"label\":\"Next &raquo;\",\"page\":2,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/bookings\",\"per_page\":10,\"to\":10,\"total\":13},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get booking details",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/bookings/:id",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/bookings/:id",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"id\":1,\"booking_number\":\"BK-000001\",\"customer_name\":\"Emily Johnson\",\"customer_email\":\"emily.johnson@example.com\",\"customer_phone\":\"+15862215780\",\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"amount\":7553.7,\"sub_total\":7194,\"tax_amount\":359.7,\"coupon_amount\":0,\"coupon_code\":null,\"departure_id\":1,\"persons\":6,\"unit_price\":\"1199.00\",\"hotel_rating\":5,\"departure_start\":\"2026-09-02T00:00:00.000000Z\",\"departure_end\":\"2026-09-06T00:00:00.000000Z\",\"tour_price\":\"7194.00\",\"tour_name_saved\":\"Paris City of Light Break\",\"note\":null,\"completion_notes\":null,\"completed_at\":null,\"tour\":{\"id\":1,\"name\":\"Paris City of Light Break\",\"description\":\"Iconic monuments, world-class art and timeless Parisian romance.\",\"images\":[\"tours\\/1.jpg\",\"tours\\/2.jpg\",\"tours\\/3.jpg\",\"tours\\/4.jpg\"],\"price\":1199,\"destination\":{\"id\":1,\"name\":\"Paris\",\"logo\":\"destinations\\/paris.jpg\"},\"type\":{\"id\":2,\"name\":\"Sightseeing\"},\"location\":null,\"persons\":6,\"hotel_rating\":5,\"unit_price\":\"1199.00\"},\"services\":[],\"currency\":{\"id\":1,\"title\":\"USD\",\"symbol\":\"$\",\"is_default\":true,\"exchange_rate\":1},\"payment\":{\"id\":1,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"payment_channel\":{\"value\":\"cod\",\"label\":\"Cash on delivery (COD)\"},\"amount\":\"7553.70\",\"refunded_amount\":null,\"charge_id\":\"TOUR-6A9C38AD39A75\",\"created_at\":\"2026-09-05T15:43:41.000000Z\"},\"invoice\":{\"id\":null,\"code\":null,\"created_at\":null},\"created_at\":\"2026-07-07T15:43:41.000000Z\",\"updated_at\":\"2026-09-05T15:43:41.000000Z\"},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Update booking status",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/bookings/:id/status",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/bookings/:id/status",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\":\"processing\",\"note\":\"Vegetarian meals for both travelers, please.\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Complete booking",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/bookings/:id/complete",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/bookings/:id/complete",
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": 1,
+                  "description": "The ID of the booking."
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"completion_notes\":\"Tour completed as scheduled.\"}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Get vendor dashboard data",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/dashboard",
+              "query": [],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/dashboard"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":{\"statistics\":{\"total_tours\":8,\"active_tours\":8,\"total_bookings\":13,\"pending_bookings\":5,\"confirmed_bookings\":4,\"completed_bookings\":4,\"total_reviews\":35,\"average_rating\":4.6},\"recent_bookings\":[{\"id\":6,\"booking_number\":\"BK-000006\",\"customer_name\":\"Demo Customer\",\"tour_name\":\"Hong Kong City Highlights\",\"amount\":6293.7,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"created_at\":\"2026-09-03T15:43:41.000000Z\"},{\"id\":7,\"booking_number\":\"BK-000007\",\"customer_name\":\"Michael Brown\",\"tour_name\":\"Thailand Beaches & Temples\",\"amount\":1887.9,\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"created_at\":\"2026-08-26T15:43:41.000000Z\"},{\"id\":3,\"booking_number\":\"BK-000003\",\"customer_name\":\"Sarah Davis\",\"tour_name\":\"Maldives Overwater Retreat\",\"amount\":11544.75,\"status\":{\"value\":\"pending\",\"label\":\"Pending\"},\"created_at\":\"2026-08-15T15:43:41.000000Z\"},{\"id\":2,\"booking_number\":\"BK-000002\",\"customer_name\":\"Michael Brown\",\"tour_name\":\"Paris City of Light Break\",\"amount\":6294.75,\"status\":{\"value\":\"processing\",\"label\":\"Processing\"},\"created_at\":\"2026-08-06T15:43:41.000000Z\"},{\"id\":9,\"booking_number\":\"BK-000009\",\"customer_name\":\"Christopher Anderson\",\"tour_name\":\"Tokyo Modern & Traditional\",\"amount\":4721.85,\"status\":{\"value\":\"completed\",\"label\":\"Completed\"},\"created_at\":\"2026-08-01T15:43:41.000000Z\"}],\"monthly_revenue\":[{\"month\":\"Jan\",\"revenue\":0},{\"month\":\"Feb\",\"revenue\":0},{\"month\":\"Mar\",\"revenue\":0},{\"month\":\"Apr\",\"revenue\":0},{\"month\":\"May\",\"revenue\":0},{\"month\":\"Jun\",\"revenue\":0},{\"month\":\"Jul\",\"revenue\":0},{\"month\":\"Aug\",\"revenue\":0},{\"month\":\"Sep\",\"revenue\":0},{\"month\":\"Oct\",\"revenue\":0},{\"month\":\"Nov\",\"revenue\":0},{\"month\":\"Dec\",\"revenue\":0}]},\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "List vendor reviews",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/reviews",
+              "query": [
+                {
+                  "key": "star",
+                  "value": "",
+                  "description": "Rating from 1 to 5.",
+                  "disabled": true
+                },
+                {
+                  "key": "tour_id",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/reviews?star=&tour_id=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":[{\"id\":12,\"star\":5,\"comment\":\"Exceeded every expectation. Smooth transfers, friendly staff and unforgettable moments at every stop. Worth every penny.\",\"customer\":{\"id\":8,\"name\":\"Paradise Island Holidays\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/19-150x150.jpg\"},\"tour\":{\"id\":3,\"name\":\"Hong Kong City Highlights\",\"images\":[\"tours\\/9.jpg\",\"tours\\/10.jpg\",\"tours\\/11.jpg\",\"tours\\/12.jpg\"]},\"created_at\":\"2026-08-28T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":19,\"star\":4,\"comment\":\"Fantastic trip with stunning views. The hotels were comfortable and the team was professional. Lost a star only because one transfer ran late.\",\"customer\":{\"id\":28,\"name\":\"Amanda Taylor\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/8-150x150.jpg\"},\"tour\":{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"images\":[\"tours\\/13.jpg\",\"tours\\/14.jpg\",\"tours\\/15.jpg\",\"tours\\/16.jpg\"]},\"created_at\":\"2026-08-22T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":6,\"star\":5,\"comment\":\"Exceeded every expectation. Smooth transfers, friendly staff and unforgettable moments at every stop. Worth every penny.\",\"customer\":{\"id\":10,\"name\":\"Sunset Cruises & Tours\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/21-150x150.jpg\"},\"tour\":{\"id\":2,\"name\":\"Maldives Overwater Retreat\",\"images\":[\"tours\\/5.jpg\",\"tours\\/6.jpg\",\"tours\\/7.jpg\",\"tours\\/8.jpg\"]},\"created_at\":\"2026-08-13T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":17,\"star\":4,\"comment\":\"Really enjoyed this tour. Great value and beautiful locations. A little more free time would have made it perfect, but I would still recommend it.\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"},\"tour\":{\"id\":4,\"name\":\"Thailand Beaches & Temples\",\"images\":[\"tours\\/13.jpg\",\"tours\\/14.jpg\",\"tours\\/15.jpg\",\"tours\\/16.jpg\"]},\"created_at\":\"2026-08-07T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":21,\"star\":5,\"comment\":\"An incredible journey with memories that will last forever. The guide went above and beyond to make sure everyone felt looked after.\",\"customer\":{\"id\":1,\"name\":\"Wanderlust Travel Co.\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/12-150x150.jpg\"},\"tour\":{\"id\":5,\"name\":\"Bangkok Culture & Street Food\",\"images\":[\"tours\\/17.jpg\",\"tours\\/18.jpg\",\"tours\\/19.jpg\",\"tours\\/20.jpg\"]},\"created_at\":\"2026-08-05T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":33,\"star\":5,\"comment\":\"An incredible journey with memories that will last forever. The guide went above and beyond to make sure everyone felt looked after.\",\"customer\":{\"id\":24,\"name\":\"Sarah Davis\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/4-150x150.jpg\"},\"tour\":{\"id\":8,\"name\":\"California Coast Road Trip\",\"images\":[\"tours\\/29.jpg\",\"tours\\/30.jpg\",\"tours\\/31.jpg\",\"tours\\/32.jpg\"]},\"created_at\":\"2026-07-25T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":30,\"star\":4,\"comment\":\"Really enjoyed this tour. Great value and beautiful locations. A little more free time would have made it perfect, but I would still recommend it.\",\"customer\":{\"id\":8,\"name\":\"Paradise Island Holidays\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/19-150x150.jpg\"},\"tour\":{\"id\":8,\"name\":\"California Coast Road Trip\",\"images\":[\"tours\\/29.jpg\",\"tours\\/30.jpg\",\"tours\\/31.jpg\",\"tours\\/32.jpg\"]},\"created_at\":\"2026-07-12T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":32,\"star\":4,\"comment\":\"Really enjoyed this tour. Great value and beautiful locations. A little more free time would have made it perfect, but I would still recommend it.\",\"customer\":{\"id\":2,\"name\":\"Horizon Expeditions\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/13-150x150.jpg\"},\"tour\":{\"id\":8,\"name\":\"California Coast Road Trip\",\"images\":[\"tours\\/29.jpg\",\"tours\\/30.jpg\",\"tours\\/31.jpg\",\"tours\\/32.jpg\"]},\"created_at\":\"2026-06-19T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":24,\"star\":5,\"comment\":\"Exceeded every expectation. Smooth transfers, friendly staff and unforgettable moments at every stop. Worth every penny.\",\"customer\":{\"id\":26,\"name\":\"Jessica Martinez\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/6-150x150.jpg\"},\"tour\":{\"id\":6,\"name\":\"Tokyo Modern & Traditional\",\"images\":[\"tours\\/21.jpg\",\"tours\\/22.jpg\",\"tours\\/23.jpg\",\"tours\\/24.jpg\"]},\"created_at\":\"2026-06-09T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"},{\"id\":28,\"star\":5,\"comment\":\"Absolutely the trip of a lifetime. Every detail was taken care of and our guide was incredibly knowledgeable. I cannot recommend this tour enough!\",\"customer\":{\"id\":20,\"name\":\"Serengeti Safari Group\",\"avatar\":\"https:\\/\\/your-domain.com\\/storage\\/customers\\/31-150x150.jpg\"},\"tour\":{\"id\":7,\"name\":\"Spain Mediterranean Discovery\",\"images\":[\"tours\\/25.jpg\",\"tours\\/26.jpg\",\"tours\\/27.jpg\",\"tours\\/28.jpg\"]},\"created_at\":\"2026-06-07T15:43:40.000000Z\",\"updated_at\":\"2026-09-05T15:43:40.000000Z\"}],\"links\":{\"first\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=1\",\"last\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=4\",\"prev\":null,\"next\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":4,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=2\",\"label\":\"2\",\"page\":2,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=3\",\"label\":\"3\",\"page\":3,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=4\",\"label\":\"4\",\"page\":4,\"active\":false},{\"url\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews?page=2\",\"label\":\"Next &raquo;\",\"page\":2,\"active\":false}],\"path\":\"https:\\/\\/your-domain.com\\/api\\/v1\\/tour-manager\\/vendor\\/reviews\",\"per_page\":10,\"to\":10,\"total\":35},\"error\":false,\"message\":null}",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "name": "Get vendor earnings list",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "api/v1/tour-manager/vendor/earnings",
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "end_date",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Items per page.",
+                  "disabled": false
+                }
+              ],
+              "raw": "{{baseUrl}}/api/v1/tour-manager/vendor/earnings?start_date=&end_date=&type=&per_page=10"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Api-Version",
+                "value": "v1"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "{{apiKey}}",
+                "disabled": true
+              }
+            ],
+            "body": null,
+            "description": ""
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                }
+              ],
+              "code": 200,
+              "body": "{\"error\":false,\"data\":{\"earnings\":[],\"pagination\":{\"current_page\":1,\"last_page\":1,\"per_page\":10,\"total\":0,\"has_more\":false}},\"message\":null}",
+              "name": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  }
+}

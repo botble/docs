@@ -118,7 +118,7 @@ php artisan list
 # Clear application cache
 php artisan cache:clear
 
-# Generate API documentation
+# Generate API documentation (requires: composer require --dev knuckleswtf/scribe)
 php artisan cms:api:generate-docs
 
 # Update the CMS to the latest version

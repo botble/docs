@@ -504,15 +504,22 @@ class YourPluginServiceProvider extends ServiceProvider
 
 ## API Documentation Generation
 
-Generate browsable API documentation with the built-in command:
+Generate browsable API documentation from your API routes with [Scribe](https://scribe.knuckles.wtf/).
+Scribe is not bundled with the product, so install it once as a development dependency:
+
+```bash
+composer require --dev knuckleswtf/scribe
+```
+
+Then run the built-in command:
 
 ```bash
 php artisan cms:api:generate-docs
 ```
 
-This enables the API setting if it is off, then generates the documentation from your API routes using
-[Scribe](https://scribe.knuckles.wtf/), which ships as a dependency of the API package. Access the result at
-`https://your-domain.com/docs`.
+This enables the API setting if it is off, then generates the documentation. Access the result at
+`https://your-domain.com/docs`. Scribe also writes a Postman collection (`/docs.postman`) and an OpenAPI
+spec (`/docs.openapi`).
 
 ## API Versioning
 
