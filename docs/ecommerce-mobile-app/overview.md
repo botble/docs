@@ -14,7 +14,7 @@ Botble Ecommerce Mobile App is a React Native (Expo) mobile e-commerce app that 
 - Cart, coupons, wishlist (synced via API)
 - WebView-based checkout (compatible with all backend payment gateways and shipping plugins)
 - Order history and tracking
-- 8 built-in languages: en, vi, zh, es, fr, de, ja, ar
+- 30 built-in languages (en, vi, zh, es, fr, de, ja, ar and more), with RTL support
 - Light / dark / system theme
 
 <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">
@@ -26,7 +26,7 @@ Botble Ecommerce Mobile App is a React Native (Expo) mobile e-commerce app that 
 ## Requirements
 
 - A Botble e-commerce website with the API plugin enabled
-- Node.js 18 or higher
+- Node.js 20.19 or higher
 - Expo CLI
 - Google Play Developer account ($25 one-time) for Android publishing
 - Apple Developer account ($99/year) for iOS publishing

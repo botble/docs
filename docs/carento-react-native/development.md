@@ -101,7 +101,7 @@ Add a key to `en.json` first, then to the other locales, and use it in code:
 import { useTranslation } from "react-i18next";
 
 const { t } = useTranslation();
-<Text>{t("cars.book_now")}</Text>
+<Text>{t("home.title", "Good morning")}</Text>
 ```
 
 Tooling:

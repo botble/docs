@@ -39,7 +39,7 @@ JobHive is a React Native (Expo) app for job search and recruitment. It is the m
 ## Requirements
 
 - **Backend**: A Botble job-board installation with the `/api/v1` plugin enabled
-- **Dev environment**: Node.js 18+ LTS and Expo CLI (see [Installation](installation.md))
+- **Dev environment**: Node.js 20.19+ (LTS) and npm; the Expo CLI runs via `npx expo` (see [Installation](installation.md))
 - **iOS builds**: Mac with Xcode Command Line Tools; Apple Developer account ($99/year) for App Store
 - **Android builds**: Android Studio + SDK; Google Play Developer account ($25 one-time) for Play Store
 - **Push Notifications** (optional): Firebase project with Android + iOS apps configured

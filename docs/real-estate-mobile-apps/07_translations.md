@@ -20,7 +20,7 @@ At startup `src/i18n/index.ts` resolves the initial language from the device loc
 
 ## Supported Languages
 
-The app ships with four locales (500 keys each), all registered in `src/i18n/index.ts`:
+The app ships with four locales (553 keys each), all registered in `src/i18n/index.ts`:
 
 | Language | Code | File | Direction |
 |----------|------|------|-----------|
@@ -64,7 +64,7 @@ interpolation: {
 t("auth.loginTitle", "Sign in to {{appName}}");   // → "Sign in to <APP_NAME>"
 ```
 
-So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToFlex Home`).
+So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToFlexHome`).
 
 This is enforced: `npm run i18n:check` (run in CI) fails if the brand literal appears
 in any locale key or value, pointing you to use `{{appName}}`.
@@ -118,7 +118,7 @@ To add, for example, Spanish (`es`):
    ```bash
    npm run i18n:check
    ```
-   Fix any reported missing/extra keys until it prints `All locales match en.json (473 keys).`
+   Fix any reported missing/extra keys until it prints `All locales match en.json (553 keys).`
 
 ## RTL (Right-to-Left) Support
 

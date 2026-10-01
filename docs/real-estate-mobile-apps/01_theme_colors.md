@@ -14,12 +14,12 @@ Open your `.env` file and set these three keys:
 
 ```bash
 # Primary Color: main brand color (buttons, active states, highlights, links)
-# Default: 161E2D (Flex Home lime green)
-PRIMARY_COLOR=161E2D
+# Default: db1d23 (Flex Home red)
+PRIMARY_COLOR=db1d23
 
 # Primary Dark Color: darker shade for pressed/active states
-# Default: 4d7c0f
-PRIMARY_DARK_COLOR=4d7c0f
+# Default: af171c
+PRIMARY_DARK_COLOR=af171c
 
 # On Primary Color: text/icons shown on top of the primary color (button labels)
 # Use FFFFFF (white) for dark primaries, 000000 (black) for light primaries
@@ -38,8 +38,8 @@ ON_PRIMARY_COLOR=FFFFFF
 1. **`.env`**: You set `PRIMARY_COLOR`, `PRIMARY_DARK_COLOR`, `ON_PRIMARY_COLOR` (hex without `#`).
 2. **`app.config.js`**: Reads them and injects them into `extra.appConfig`:
    ```js
-   primaryColor: process.env.PRIMARY_COLOR || "161E2D",
-   primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "4d7c0f",
+   primaryColor: process.env.PRIMARY_COLOR || "db1d23",
+   primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "af171c",
    onPrimaryColor: process.env.ON_PRIMARY_COLOR || "FFFFFF",
    ```
 3. **`src/config/app.ts`**: Exposes them on `appConfig.primaryColor`, `appConfig.primaryDarkColor`, `appConfig.onPrimaryColor` (falling back to the same defaults if unset).

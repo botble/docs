@@ -31,13 +31,13 @@ splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
   // Native launch + JS splash background. Defaults to the brand primary.
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#db1d23",
 },
 ```
 
 - **`image`**: `assets/splash-icon.png`, shown centered.
 - **`resizeMode: "contain"`**: The entire image is fitted inside the screen without cropping (as opposed to `cover`, which fills and may crop).
-- **`backgroundColor`**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#161E2D`.
+- **`backgroundColor`**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#db1d23`.
 
 Expo applies this single `splash` block to **both** iOS and Android during prebuild, so the two platforms stay consistent automatically. There's no separate `colors.xml` or `LaunchScreen.storyboard` to maintain.
 

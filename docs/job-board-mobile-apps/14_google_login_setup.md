@@ -9,7 +9,7 @@ This guide sets up **Google Sign-In** in the JobHive React Native (Expo) job-boa
 
   ```
   POST {API_BASE_URL}/api/v1/auth/google
-  { "id_token": "<Google idToken>" }
+  { "identityToken": "<Google idToken>", "guard": "account" }
   ```
 
   The backend returns a customer + Sanctum token and the app signs the user in.
@@ -75,7 +75,7 @@ GOOGLE_SERVICES_FILE=./google-services.json
 
 ## Step 3: Configure the Botble backend
 
-Enable **Google** as a social-login provider in Botble admin and set the Google **web client ID / secret**. The backend verifies the incoming `id_token` against the same web client ID, so `GOOGLE_WEB_CLIENT_ID` in the app and the backend must match. It must issue the same customer token for `POST /api/v1/auth/google` as email login does.
+Enable **Google** as a social-login provider in Botble admin and set the Google **web client ID / secret**. The backend verifies the incoming `identityToken` against the same web client ID, so `GOOGLE_WEB_CLIENT_ID` in the app and the backend must match. It must issue the same customer token for `POST /api/v1/auth/google` as email login does.
 
 ## Step 4: Configure the app
 

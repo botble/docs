@@ -26,7 +26,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 
 | Software | Version | Download |
 |---|---|---|
-| **Node.js** | LTS (18+) | [nodejs.org](https://nodejs.org) |
+| **Node.js** | LTS (20.19+) | [nodejs.org](https://nodejs.org) |
 | **Xcode** (Mac only) | Latest | Mac App Store |
 | **Android Studio** | Latest | [developer.android.com/studio](https://developer.android.com/studio) |
 | **EAS CLI** | Latest | `npm i -g eas-cli` |
@@ -50,7 +50,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 Install Node.js LTS, then the EAS CLI:
 
 ```bash
-node --version        # should print v18.x or newer
+node --version        # should print v20.19 or newer
 npm i -g eas-cli
 ```
 

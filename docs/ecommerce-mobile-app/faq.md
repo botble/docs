@@ -130,7 +130,7 @@ Native changes require a new build and store submission.
 ## Tech
 
 - React Native 0.81+ with Expo SDK 54
-- Node.js 18+
+- Node.js 20.19+
 - TypeScript (strict)
 - npm (default; yarn also works)
 

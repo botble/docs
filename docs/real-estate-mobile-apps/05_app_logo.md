@@ -20,12 +20,12 @@ icon: "./assets/icon.png",
 splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#db1d23",
 },
 android: {
   adaptiveIcon: {
     foregroundImage: "./assets/adaptive-icon.png",
-    backgroundColor: "#161E2D",
+    backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#db1d23",
   },
 },
 web: { favicon: "./assets/favicon.png" },
@@ -52,4 +52,4 @@ web: { favicon: "./assets/favicon.png" },
    npm run ios     # or: npm run android
    ```
 
-The adaptive icon and splash backgrounds default to the Flex Home primary (`#161E2D`). Override the splash background with `SPLASH_BACKGROUND_COLOR` in `.env` (hex **with** `#`); the adaptive icon background is set directly in `app.config.js`.
+The adaptive icon and splash backgrounds default to the Flex Home primary (`#db1d23`). Override the splash background with `SPLASH_BACKGROUND_COLOR` in `.env` (hex **with** `#`); the adaptive icon background follows the same value.

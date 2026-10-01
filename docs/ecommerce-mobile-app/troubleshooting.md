@@ -69,7 +69,7 @@ Move it under `expo.extra` (not directly under `expo`), then run `eas init` agai
 | Error | Fix |
 |---|---|
 | `npm: command not found` | Install Node.js LTS from [nodejs.org](https://nodejs.org), restart terminal. |
-| `expo: command not found` | `npm install -g expo-cli` |
+| `expo: command not found` | Use `npx expo` or the npm scripts (`npm start`); run `npm install` first |
 | `Cannot find module` | `rm -rf node_modules package-lock.json && npm install` |
 | Metro crash / port conflict | `npm start -- --clear` or `npm start -- --port 8082` |
 

@@ -51,14 +51,14 @@ Hex **without** `#`. Full guide: [Theme Colors](01_theme_colors.md).
 
 | Key | Default | Description |
 |---|---|---|
-| `PRIMARY_COLOR` | `161E2D` | Brand primary, applied to the whole theme (light + dark) |
-| `PRIMARY_DARK_COLOR` | `4d7c0f` | Darker shade for pressed/active states |
+| `PRIMARY_COLOR` | `db1d23` | Brand primary, applied to the whole theme (light + dark) |
+| `PRIMARY_DARK_COLOR` | `af171c` | Darker shade for pressed/active states |
 | `ON_PRIMARY_COLOR` | `FFFFFF` | Foreground color on top of primary |
 
 ### Fonts
 
 Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
-`Inter`, `InstrumentSans`). Full guide: [App Font](02_app_font.md).
+`DMSans`, `JosefinSans`, `Inter`, `InstrumentSans`). Full guide: [App Font](02_app_font.md).
 
 | Key | Default | Description |
 |---|---|---|
@@ -69,8 +69,8 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Default | Description |
 |---|---|---|
-| `APP_CONTACT_PHONE` | `+1 (800) 227-3686` | Support phone shown in the app |
-| `APP_CONTACT_EMAIL` | `support@yoursite.com` | Support email |
+| `APP_CONTACT_PHONE` | `+1 (800) 000-0000` | Support phone shown in the app |
+| `APP_CONTACT_EMAIL` | (empty) | Support email |
 | `APP_SOCIAL_FACEBOOK` | `https://facebook.com` | Facebook profile link |
 | `APP_SOCIAL_X` | `https://x.com` | X (Twitter) profile link |
 | `APP_SOCIAL_INSTAGRAM` | `https://instagram.com` | Instagram profile link |
@@ -87,7 +87,7 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#161E2D` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
+| `SPLASH_BACKGROUND_COLOR` | hex **with** `#` | `#db1d23` | Native launch + JS splash background. Full guide: [Splash screen](17_splash_screen.md) |
 
 ### Support links (Profile screen)
 
@@ -111,8 +111,8 @@ The app ships with **MapLibre + OpenStreetMap** by default, so the map works out
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `MAP_PROVIDER` | `osm` / `default` / `google` | `osm` | `osm` = MapLibre + free OSM vector tiles (no key). `default` = Apple Maps on iOS, Google Maps on Android. `google` = Google Maps on both |
-| `MAP_OSM_STYLE_URL` | URL | `https://tiles.openfreemap.org/styles/liberty` | MapLibre style/tile URL, used when `MAP_PROVIDER=osm` |
+| `MAP_PROVIDER` | `osm` / `default` / `google` | `osm` | `osm` = MapLibre + free OpenStreetMap-based raster tiles (no key). `default` = Apple Maps on iOS, Google Maps on Android. `google` = Google Maps on both |
+| `MAP_RASTER_TILE_URL` / `MAP_RASTER_TILE_DARK_URL` | URL template | `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png` / `.../dark_all/{z}/{x}/{y}.png` | Raster basemap tiles for light / dark mode, used when `MAP_PROVIDER=osm` |
 | `GOOGLE_MAPS_ANDROID_API_KEY` | string | *(empty)* | Only for `default` / `google`. Build-time key, distinct from `API_KEY` |
 | `GOOGLE_MAPS_IOS_API_KEY` | string | *(empty)* | Only for `google` |
 | `MAP_PIN_LIMIT` | integer | `200` | Max pins fetched for the search map (cost/perf cap) |

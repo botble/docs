@@ -62,12 +62,12 @@ splash: {
   image: "./assets/splash-icon.png",
   resizeMode: "contain",
   // Native launch + JS splash background. Defaults to the brand primary.
-  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#161E2D",
+  backgroundColor: process.env.SPLASH_BACKGROUND_COLOR || "#db1d23",
 },
 ```
 
 - **Image**: `assets/splash-icon.png`.
-- **Background**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#161E2D`.
+- **Background**: The `SPLASH_BACKGROUND_COLOR` environment variable, defaulting to the brand primary `#db1d23`.
 
 ### Changing the background color
 

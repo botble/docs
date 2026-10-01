@@ -12,13 +12,13 @@ In `app.config.js` this single value drives both:
 
 - the Expo project `name`:
   ```js
-  name: process.env.APP_NAME || "Flex Home",
+  name: process.env.APP_NAME || "Real Estate",
   ```
 - the iOS home-screen name via `CFBundleDisplayName`:
   ```js
   ios: {
     infoPlist: {
-      CFBundleDisplayName: process.env.APP_NAME || "Flex Home",
+      CFBundleDisplayName: process.env.APP_NAME || "Real Estate",
     },
   },
   ```

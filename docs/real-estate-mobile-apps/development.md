@@ -62,13 +62,13 @@ If anything fails to start, clear caches: `npm start -- --clear`. If native conf
 ## State management
 
 - **Server state** goes through `@tanstack/react-query`. All reads/writes use `useQuery` / `useMutation` calling `src/services/*` functions. Never call a service directly from a component body. The shared `queryClient` (`src/lib/query-client.ts`) uses `staleTime: 5min`, `gcTime: 10min`, and only retries `5xx` errors (4xx never retries).
-- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` in this order: `QueryClient → Toast → Settings → AppStatus → Auth → Favorites`.
+- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` in this order: `QueryClient → Toast → Settings → AppStatus → Auth → Notification → SavedProperties → Compare`.
 
 | Context | Provides |
 |---|---|
 | `AuthContext` | `customer`, `token`, `isAuthenticated`, session bootstrap/persist/logout |
 | `SettingsContext` | `language`, `currency`, `themeMode`/`isDarkMode`, `themeColors`, RTL flag |
-| `FavoritesContext` | Server-backed wishlist with optimistic toggle |
+| `SavedPropertiesContext` | Server-backed wishlist with optimistic toggle |
 | `ToastContext` | `success` / `error` / `info` banners |
 | `AppStatusContext` | `isMaintenance` / `isServerError` (driven by apiClient status pub/sub) |
 
@@ -113,7 +113,7 @@ Add a key to `en.json` first, then to the other locales, and use it in code:
 import { useTranslation } from "react-i18next";
 
 const { t } = useTranslation();
-<Text>{t("properties.book_now")}</Text>
+<Text>{t("home.title", "Good morning")}</Text>
 ```
 
 Tooling:

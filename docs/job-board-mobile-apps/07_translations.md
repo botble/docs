@@ -20,7 +20,7 @@ At startup `src/i18n/index.ts` resolves the initial language from the device loc
 
 ## Supported Languages
 
-The app ships with four locales (500 keys each), all registered in `src/i18n/index.ts`:
+The app ships with four locales (598 keys each), all registered in `src/i18n/index.ts`:
 
 | Language | Code | File | Direction |
 |----------|------|------|-----------|
@@ -118,7 +118,7 @@ To add, for example, Spanish (`es`):
    ```bash
    npm run i18n:check
    ```
-   Fix any reported missing/extra keys until it prints `All locales match en.json (473 keys).`
+   Fix any reported missing/extra keys until it prints `All locales match en.json (598 keys).`
 
 ## RTL (Right-to-Left) Support
 

@@ -16,7 +16,7 @@ Flex Home is a React Native (Expo) app for property inquiry and property agent b
 - **Notifications Inbox**: In-app inbox with unread badges, push notifications deep-link to relevant content (FCM via Firebase)
 - **Profile & Account**: Profile edit, change password, avatar upload, notifications, language/theme preferences
 - **Reviews & Ratings**: Consumers can rate agents 1-5 stars and leave comments
-- **Agent Portal**: WebView-based dashboard for agent property management, inquiry tracking, packages, and financial overview
+- **Agent Portal**: Native dashboard for agent property management, lead tracking, packages, and financial overview (only package checkout runs in a WebView)
 - **Localization**: 4 languages (English, Vietnamese, Arabic, French) with full RTL support
 - **Dark Mode**: Light / dark / system theme
 - **Auth**: Email/password, social login (Google, Apple, Facebook), biometric unlock
@@ -37,7 +37,7 @@ Flex Home is a React Native (Expo) app for property inquiry and property agent b
 ## Requirements
 
 - **Backend**: A Botble real-estate installation with the `/api/v1` plugin enabled
-- **Dev environment**: Node.js 18+ LTS and Expo CLI (see [Installation](installation.md))
+- **Dev environment**: Node.js 20.19+ (LTS) and npm; the Expo CLI runs via `npx expo` (see [Installation](installation.md))
 - **iOS builds**: Mac with Xcode Command Line Tools; Apple Developer account ($99/year) for App Store
 - **Android builds**: Android Studio + SDK; Google Play Developer account ($25 one-time) for Play Store
 - **Push Notifications** (optional): Firebase project with Android + iOS apps configured

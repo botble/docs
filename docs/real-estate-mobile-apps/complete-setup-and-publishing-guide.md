@@ -26,7 +26,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 
 | Software | Version | Download |
 |---|---|---|
-| **Node.js** | LTS (18+) | [nodejs.org](https://nodejs.org) |
+| **Node.js** | LTS (20.19+) | [nodejs.org](https://nodejs.org) |
 | **Xcode** (Mac only) | Latest | Mac App Store |
 | **Android Studio** | Latest | [developer.android.com/studio](https://developer.android.com/studio) |
 | **EAS CLI** | Latest | `npm i -g eas-cli` |
@@ -50,7 +50,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 Install Node.js LTS, then the EAS CLI:
 
 ```bash
-node --version        # should print v18.x or newer
+node --version        # should print v20.19 or newer
 npm i -g eas-cli
 ```
 
@@ -222,13 +222,13 @@ Before publishing, apply your branding. Each step takes 5–15 minutes:
 
 ### App identifiers
 
-The defaults in `app.config.js` are `com.realestate.mobile` (both iOS `bundleIdentifier` and Android `package`) and the slug `flexhome-mobile`. Change them to your own before publishing:
+The bundle ID, URL scheme and slug are read from `.env` by `app.config.js` (shipped defaults: `APP_BUNDLE_ID=com.realestate.mobile` for both iOS `bundleIdentifier` and Android `package`, and `APP_SLUG=realestate-mobile`). Change them to your own before publishing:
 
-```js
-// app.config.js
-ios:     { bundleIdentifier: "com.yourcompany.yourapp" },
-android: { package:          "com.yourcompany.yourapp" },
-slug: "your-app-slug",
+```bash
+# .env
+APP_BUNDLE_ID=com.yourcompany.yourapp
+APP_SCHEME=yourapp
+APP_SLUG=your-app-slug
 ```
 
 ::: warning Identifiers are permanent

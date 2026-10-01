@@ -170,7 +170,7 @@ Work through these in order:
 
 1. **Nothing is published.** Properties must be **Published** *and* approved. Draft, pending or expired listings are excluded from the API.
 2. **Required relations are missing.** A property needs a type, category, location and at least one image to render fully. A listing with no location never appears on the map.
-3. **Agents are missing.** Agents are vendor customers on the backend. If none are approved, the agents directory is empty by design.
+3. **Agents are missing.** Agents are agent accounts on the backend. If none are approved, the agents directory is empty by design.
 4. **The requested language has no translation.** See the next section.
 5. **The requested currency is not configured.** See section 9.
 
@@ -225,7 +225,7 @@ Compare the output against the same call with `X-LANGUAGE: en`.
 
 - **Email not verified.** If email verification is enabled on the backend, an unverified account cannot sign in. Check **Admin → Settings → General** and make sure the backend can actually send mail, otherwise nobody ever receives the verification link.
 - **Outgoing mail is broken.** Verification, password-reset and consultation-notification emails all depend on a working mail driver. Send a test message from **Admin → Settings → Email** before blaming the app.
-- **Sanctum tokens are being dropped.** The app authenticates with Laravel Sanctum personal access tokens against the customer guard. If the `personal_access_tokens` table was never migrated, or is cleared by a cron job or a cache-clearing deploy script, every token dies. Confirm rows survive:
+- **Sanctum tokens are being dropped.** The app authenticates with Laravel Sanctum personal access tokens against the account guard. If the `personal_access_tokens` table was never migrated, or is cleared by a cron job or a cache-clearing deploy script, every token dies. Confirm rows survive:
 
   ```sql
   SELECT COUNT(*) FROM personal_access_tokens;

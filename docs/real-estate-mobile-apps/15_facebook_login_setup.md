@@ -9,7 +9,7 @@ This guide sets up **Facebook Login** in the Flex Home React Native (Expo) real-
 
   ```
   POST {API_BASE_URL}/api/v1/auth/facebook
-  { "access_token": "<Facebook accessToken>" }
+  { "accessToken": "<Facebook accessToken>", "guard": "account" }
   ```
 
   The backend returns a customer + Sanctum token and the app signs the user in.
@@ -73,7 +73,7 @@ Copy the **Client Token**, never the App Secret. The App Secret must never ship 
 
 ## Step 5: Configure the Botble backend
 
-Enable **Facebook** as a social-login provider in Botble admin and set the Facebook **App ID / App Secret**. The backend validates the incoming `access_token` and must issue the same customer token for `POST /api/v1/auth/facebook` as email login does.
+Enable **Facebook** as a social-login provider in Botble admin and set the Facebook **App ID / App Secret**. The backend validates the incoming `accessToken` and must issue the same customer token for `POST /api/v1/auth/facebook` as email login does.
 
 ## Step 6: Configure the app
 

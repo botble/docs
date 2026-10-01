@@ -89,7 +89,7 @@ saved listings, the agent portal, and dark mode.
 - **Saved properties**: Compare multiple properties side-by-side
 - **Agents directory**: Browse agents, agent detail (listings, reviews)
 - **Blog**: Articles and news from Botble blog plugin
-- **Agent portal**: WebView-based dashboard for agent listings, inquiries, packages, and commissions
+- **Agent portal**: Native dashboard for agent listings, leads, credit packages, invoices and reviews (only package checkout runs in a WebView)
 - **Notifications**: Push notifications (FCM), in-app inbox with unread badges
 - **Localization**: 4 languages (English, Vietnamese, Arabic, French) with RTL support
 - **Dark mode**: Light / dark / system theme

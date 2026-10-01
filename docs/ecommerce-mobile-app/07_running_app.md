@@ -52,9 +52,9 @@ Opens the app in your default browser.
    - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
    - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
-2. Start the development server:
+2. Start the development server in Expo Go mode (plain `npm start` targets a development build, because the project includes `expo-dev-client`):
    ```bash
-   npm start
+   npm run start:go
    ```
 
 3. Scan the QR code with:

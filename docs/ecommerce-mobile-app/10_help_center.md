@@ -76,7 +76,7 @@ Use icon names from Lucide React Native:
 
 ### Contact Methods
 
-Update the `contactMethods` array:
+Phone and email come from `.env` (`APP_CONTACT_PHONE`, `APP_CONTACT_EMAIL`); the `contactMethods` array reads them from `appConfig`:
 
 ```typescript
 const contactMethods: ContactMethod[] = [
@@ -84,27 +84,30 @@ const contactMethods: ContactMethod[] = [
     icon: Phone,
     title: t("customerService.contact.phoneTitle"),
     description: t("customerService.contact.phoneDesc"),
-    value: "+1 (800) 123-4567",        // Your phone number
-    action: "tel:+18001234567",
+    value: appConfig.contact.phone,     // from APP_CONTACT_PHONE in .env
+    action: appConfig.contact.phoneUrl,
   },
   {
     icon: Mail,
     title: t("customerService.contact.emailTitle"),
     description: t("customerService.contact.emailDesc"),
-    value: "support@yourstore.com",     // Your email
-    action: "mailto:support@yourstore.com",
+    value: appConfig.contact.email,     // from APP_CONTACT_EMAIL in .env
+    action: appConfig.contact.emailUrl,
   },
 ];
 ```
 
 ### Business Hours
 
+Business hours are set in `src/config/app.ts` (`operatingHours`):
+
 ```typescript
-const businessHours = [
-  { day: "Monday - Friday", time: "9:00 AM - 6:00 PM" },
-  { day: "Saturday", time: "10:00 AM - 4:00 PM" },
-  { day: "Sunday", time: "Closed" },
-];
+operatingHours: {
+  weekdays: "9:00 AM - 6:00 PM",
+  saturday: "10:00 AM - 4:00 PM",
+  sunday: "",
+  sundayClosed: true,
+},
 ```
 
 ### Office Address
@@ -132,8 +135,8 @@ Then access via `appConfig.contact.phone` and `appConfig.contact.email`.
 ## Quick Customization Checklist
 
 - [ ] Edit FAQ categories and questions in `src/data/faq.json`
-- [ ] Update phone number and email in customer-service.tsx
-- [ ] Change business hours
+- [ ] Update `APP_CONTACT_PHONE` / `APP_CONTACT_EMAIL` in `.env`
+- [ ] Change business hours in `src/config/app.ts`
 - [ ] Update office address
 - [ ] Update translations for all supported languages
 

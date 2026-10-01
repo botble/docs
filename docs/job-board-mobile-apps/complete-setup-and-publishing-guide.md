@@ -26,7 +26,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 
 | Software | Version | Download |
 |---|---|---|
-| **Node.js** | LTS (18+) | [nodejs.org](https://nodejs.org) |
+| **Node.js** | LTS (20.19+) | [nodejs.org](https://nodejs.org) |
 | **Xcode** (Mac only) | Latest | Mac App Store |
 | **Android Studio** | Latest | [developer.android.com/studio](https://developer.android.com/studio) |
 | **EAS CLI** | Latest | `npm i -g eas-cli` |
@@ -50,7 +50,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 Install Node.js LTS, then the EAS CLI:
 
 ```bash
-node --version        # should print v18.x or newer
+node --version        # should print v20.19 or newer
 npm i -g eas-cli
 ```
 
@@ -149,7 +149,7 @@ Test these to confirm the app is connected to your website:
 - [ ] Job detail shows the description, company and requirements
 - [ ] You can log in with an account from your website
 - [ ] Applying to a job submits successfully
-- [ ] Checkout opens the hosted payment page in a WebView
+- [ ] Employer package checkout opens the hosted payment page in a WebView
 - [ ] Favorites save
 
 **If jobs appear, your app is connected to your website.**
@@ -199,11 +199,9 @@ See [API Integration](api-integration.md) for the full endpoint map.
 Tune how many items each home section shows via `.env`:
 
 ```bash
-HOME_FEATURED_PROPERTIES_COUNT=6   # featured jobs
-HOME_FEATURED_PROJECTS_COUNT=4     # featured projects
-HOME_AGENTS_COUNT=6                # employers
+HOME_FEATURED_JOBS_COUNT=6         # featured jobs
 HOME_BLOG_COUNT=5                  # blog posts
-PROPERTY_IMAGE_THUMBNAIL_SIZE=large  # small | medium | large (large = full-size, sharp)
+JOB_IMAGE_THUMBNAIL_SIZE=large     # small | medium | large (large = full-size, sharp)
 ```
 
 ---
@@ -223,13 +221,13 @@ Before publishing, apply your branding. Each step takes 5–15 minutes:
 
 ### App identifiers
 
-The defaults in `app.config.js` are `com.botble.jobboard` (both iOS `bundleIdentifier` and Android `package`) and the slug `jobboard-mobile`. Change them to your own before publishing:
+The bundle ID, URL scheme and slug are read from `.env` by `app.config.js` (shipped defaults: `APP_BUNDLE_ID=com.botble.jobboard` for both iOS `bundleIdentifier` and Android `package`, and `APP_SLUG=botble-jobboard`). Change them to your own before publishing:
 
-```js
-// app.config.js
-ios:     { bundleIdentifier: "com.yourcompany.yourapp" },
-android: { package:          "com.yourcompany.yourapp" },
-slug: "your-app-slug",
+```bash
+# .env
+APP_BUNDLE_ID=com.yourcompany.yourapp
+APP_SCHEME=yourapp
+APP_SLUG=your-app-slug
 ```
 
 ::: warning Identifiers are permanent

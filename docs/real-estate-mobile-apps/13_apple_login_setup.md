@@ -13,7 +13,7 @@ Apple Sign-In is only offered on iOS. The app gates the button behind `appConfig
 
   ```
   POST {API_BASE_URL}/api/v1/auth/apple
-  { "id_token": "<Apple identityToken>" }
+  { "identityToken": "<Apple identityToken>", "guard": "account" }
   ```
 
   The backend returns a customer + Sanctum token, and the app signs the user in.

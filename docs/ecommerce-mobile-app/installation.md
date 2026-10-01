@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Node.js 18 or higher
+- Node.js 20.19 or higher
 - Expo CLI
 - iOS Simulator (Xcode, Mac only) or Android Emulator (Android Studio), or the Expo Go app on a physical device
 
@@ -17,11 +17,9 @@ node --version
 npm --version
 ```
 
-### 2. Install Expo CLI
+### 2. Expo CLI
 
-```bash
-npm install -g expo-cli
-```
+No global install needed. The Expo CLI ships with the project and runs via `npx expo` / the npm scripts; the legacy global `expo-cli` package does not support Expo SDK 54.
 
 ### 3. Extract the source
 
@@ -50,7 +48,7 @@ See [API Base URL](05_api_base_url.md) for `API_KEY` details.
 npm start
 ```
 
-Then either scan the QR code with Expo Go, or run on a target:
+Then run on a target (to use the Expo Go app instead, start with `npm run start:go` and scan the QR code):
 
 ```bash
 npm run ios       # iOS Simulator (macOS)
@@ -87,7 +85,7 @@ ecommerce-mobile-app/
 | Error | Fix |
 |---|---|
 | `npm: command not found` | Re-install Node.js, restart terminal. |
-| `expo: command not found` | `npm install -g expo-cli` |
+| `expo: command not found` | Use `npx expo` or the npm scripts (`npm start`); run `npm install` first |
 | `Cannot find module` | `rm -rf node_modules && npm install` |
 | Build / cache errors | `npm start -- --clear` |
 | No devices | Start an emulator, or install Expo Go on a physical device. |

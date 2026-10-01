@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- **Node.js LTS** (18 or newer) and npm
+- **Node.js LTS** (20.19 or newer) and npm
 - **Xcode** + an iOS Simulator (Mac only, for iOS)
 - **Android Studio** + an emulator or a connected device (for Android)
 - **Watchman** (optional, macOS): improves file-watching. Install with `brew install watchman`

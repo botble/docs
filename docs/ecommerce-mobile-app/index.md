@@ -49,7 +49,7 @@ A React Native (Expo) mobile e-commerce app that connects to a [Botble e-commerc
 - Cart, coupons, wishlist (server-synced), product comparison
 - WebView checkout (compatible with all backend payment gateways)
 - Order history, tracking, cancellation, returns
-- 15+ built-in languages, RTL support
+- 30 built-in languages, RTL support
 - Light / dark / system theme
 
 <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 24px 0;">

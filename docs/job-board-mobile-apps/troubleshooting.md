@@ -82,7 +82,7 @@ Plain `http://` traffic is only allowed for local development. `app.config.js` s
 
 If the app connects but a section is empty, the data (or its relations) is missing on the backend, not in the app:
 
-1. Confirm the backend has published/available jobs, employers (vendor customers), locations, and blog posts.
+1. Confirm the backend has published/available jobs, companies (employer accounts), locations, and blog posts.
 2. Confirm the job-board API is installed and enabled.
 3. Confirm required relations are set (a job needs a type/category, images, and a location to render fully).
 4. Pull to refresh on the affected screen.

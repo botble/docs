@@ -4,17 +4,17 @@
 
 JobHive's fonts are **`.env`-driven**. Two roles are configured independently:
 
-- **`APP_FONT_BODY`**: body text (default `Inter`)
-- **`APP_FONT_HEADING`**: display / headings (default `InstrumentSans`)
+- **`APP_FONT_BODY`**: body text (default `DMSans`)
+- **`APP_FONT_HEADING`**: display / headings (default `JosefinSans`)
 
 ```bash
 # .env
-APP_FONT_BODY=Inter
-APP_FONT_HEADING=InstrumentSans
+APP_FONT_BODY=DMSans
+APP_FONT_HEADING=JosefinSans
 ```
 
-Each value must name a font **registered** in `src/lib/fonts.ts`. Two families ship
-bundled: `Inter` and `InstrumentSans`. Because Expo bundles fonts at build time (it
+Each value must name a font **registered** in `src/lib/fonts.ts`. Four families ship
+bundled: `DMSans`, `JosefinSans`, `Inter` and `InstrumentSans`. Because Expo bundles fonts at build time (it
 can't fetch an arbitrary font by name at runtime), adding a new typeface means adding
 its package to the registry once. After that it is only an `.env` value.
 

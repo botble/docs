@@ -75,8 +75,8 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Default | Description |
 |---|---|---|
-| `APP_CONTACT_PHONE` | `+1 (800) 227-3686` | Support phone shown in the app |
-| `APP_CONTACT_EMAIL` | `support@yoursite.com` | Support email |
+| `APP_CONTACT_PHONE` | `+1 (800) 000-0000` | Support phone shown in the app |
+| `APP_CONTACT_EMAIL` | (empty) | Support email |
 | `APP_SOCIAL_FACEBOOK` | `https://facebook.com` | Facebook profile link |
 | `APP_SOCIAL_X` | `https://x.com` | X (Twitter) profile link |
 | `APP_SOCIAL_INSTAGRAM` | `https://instagram.com` | Instagram profile link |
@@ -85,7 +85,7 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `ENABLE_PROPERTY_COMPARE` | `true` / `false` | `true` | Enable side-by-side job opportunity comparison |
+| `ENABLE_JOB_COMPARE` | `true` / `false` | `true` | Enable side-by-side job opportunity comparison |
 | `ENABLE_MAP_SEARCH` | `true` / `false` | `true` | Enable the interactive map view for job search (jobs near me) |
 
 ### Maps
@@ -95,7 +95,7 @@ The search map ships with a **free, no-key** engine (`MAP_PROVIDER=osm`, MapLibr
 | Key | Values | Default | Description |
 |---|---|---|---|
 | `MAP_PROVIDER` | `osm` / `default` / `google` | `osm` | Map engine. `osm` = MapLibre + OpenStreetMap (free, no key). `default` = Apple Maps (iOS) / Google Maps (Android). `google` = Google Maps on both |
-| `MAP_OSM_STYLE_URL` | URL | `https://tiles.openfreemap.org/styles/liberty` | MapLibre vector-tile style (used when `MAP_PROVIDER=osm`) |
+| `MAP_RASTER_TILE_URL` / `MAP_RASTER_TILE_DARK_URL` | URL template | `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png` / `.../dark_all/{z}/{x}/{y}.png` | Raster basemap tiles for light / dark mode (used when `MAP_PROVIDER=osm`) |
 | `GOOGLE_MAPS_ANDROID_API_KEY` | key | *(empty)* | Google Maps key for Android (required for `default`/`google`). Restrict to "Maps SDK for Android" |
 | `GOOGLE_MAPS_IOS_API_KEY` | key | *(empty)* | Google Maps key for iOS (required only for `google`). Restrict to "Maps SDK for iOS" |
 | `MAP_PIN_LIMIT` | integer | `200` | Max job pins fetched for the search map |
@@ -135,13 +135,13 @@ See [Profile links](11_profile_links.md).
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `PROPERTY_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `large` | Image size in list cells. `large` = full-size (sharp); small/medium use the 150x150 thumbnail to save bandwidth |
+| `JOB_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `large` | Image size in list cells. `large` = full-size (sharp); small/medium use the 150x150 thumbnail to save bandwidth |
 
 ### Home section counts
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `HOME_FEATURED_PROPERTIES_COUNT` | integer | `6` | Featured jobs on the home screen. The name is historical — it sizes the featured-jobs feed |
+| `HOME_FEATURED_JOBS_COUNT` | integer | `6` | Featured jobs on the home screen |
 | `HOME_BLOG_COUNT` | integer | `5` | Blog posts shown on the home screen |
 
 ### Social authentication

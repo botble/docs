@@ -66,7 +66,7 @@ interface PaginatedResponse<T> {
 
 Changing the language or currency invalidates the React Query cache (see `SettingsContext`) so every request re-issues with the new header.
 
-**Auth model:** Laravel Sanctum personal access tokens (customer guard). Login / register / social-login return an `AuthResponse.token`, which is persisted in `expo-secure-store` and sent as a Bearer token on every authenticated request.
+**Auth model:** Laravel Sanctum personal access tokens (real-estate `account` guard). Login / register / social-login return an `AuthResponse.token`, which is persisted in `expo-secure-store` and sent as a Bearer token on every authenticated request.
 
 ## Error handling
 
@@ -249,7 +249,7 @@ The app normalizes two things the backend can return loosely:
 
 ## Checkout (agent credit packages)
 
-`POST /account/packages/{id}/subscribe` returns a hosted **checkout URL** rather than completing payment in-app. The app opens it in a WebView (`buildCheckoutWebViewUrl`, `app/web-view.tsx`), built from `appConfig.api.siteUrl`, and detects completion with `isCheckoutReturnUrl` / `isCheckoutFailureUrl`. This keeps every backend payment gateway working without a native SDK.
+`POST /account/packages/{id}/subscribe` returns a hosted **checkout URL** rather than completing payment in-app. The app opens it in a WebView (`buildCheckoutWebViewUrl`, `app/agent/checkout-webview.tsx`), built from `appConfig.api.siteUrl`, and detects completion with `isCheckoutReturnUrl` / `isCheckoutFailureUrl`. This keeps every backend payment gateway working without a native SDK.
 
 ## Common errors
 

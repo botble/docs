@@ -38,11 +38,7 @@
 
 ## Expo SDK upgrades
 
-If the new version bumps the Expo SDK, follow the [Expo SDK upgrade walkthrough](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/) for SDK-specific migration steps. Update the Expo CLI:
-
-```bash
-npm install -g expo-cli
-```
+If the new version bumps the Expo SDK, follow the [Expo SDK upgrade walkthrough](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/) for SDK-specific migration steps. The Expo CLI is a local project dependency, so `npm install` updates it (no global `expo-cli` needed).
 
 ## API changes
 

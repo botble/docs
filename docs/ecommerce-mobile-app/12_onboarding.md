@@ -6,7 +6,7 @@ The onboarding screens introduce first-time users to your app's features. You ca
 
 ## Translation Keys
 
-Onboarding text is fully translated in all 15 supported languages.
+Onboarding text is fully translated in all supported languages.
 
 ### Location
 `src/i18n/locales/[lang].json`

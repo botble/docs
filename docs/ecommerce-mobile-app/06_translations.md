@@ -171,7 +171,7 @@ function LanguageSwitcher() {
 ## Best Practices
 
 1. **Use consistent keys**: Follow the existing naming convention
-2. **Keep translations in sync**: Update all 8 languages when adding keys
+2. **Keep translations in sync**: Update all language files when adding keys
 3. **Test RTL layouts**: Arabic text should flow correctly
 4. **Fallback handling**: Missing keys fall back to English
 

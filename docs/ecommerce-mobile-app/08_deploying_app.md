@@ -241,7 +241,7 @@ This method builds the APK locally on your machine without requiring an Expo acc
 
 ### Prerequisites
 
-- **Node.js** (v18 or higher)
+- **Node.js** (v20.19 or higher)
 - **Java JDK** (v17 recommended)
 - **Android SDK** (via Android Studio or standalone)
 

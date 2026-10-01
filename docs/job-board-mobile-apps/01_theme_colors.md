@@ -18,8 +18,8 @@ Open your `.env` file and set these three keys:
 PRIMARY_COLOR=5749CD
 
 # Primary Dark Color: darker shade for pressed/active states
-# Default: 4d7c0f
-PRIMARY_DARK_COLOR=4d7c0f
+# Default: 3C2FAA
+PRIMARY_DARK_COLOR=3C2FAA
 
 # On Primary Color: text/icons shown on top of the primary color (button labels)
 # Use FFFFFF (white) for dark primaries, 000000 (black) for light primaries
@@ -39,7 +39,7 @@ ON_PRIMARY_COLOR=FFFFFF
 2. **`app.config.js`**: Reads them and injects them into `extra.appConfig`:
    ```js
    primaryColor: process.env.PRIMARY_COLOR || "5749CD",
-   primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "4d7c0f",
+   primaryDarkColor: process.env.PRIMARY_DARK_COLOR || "3C2FAA",
    onPrimaryColor: process.env.ON_PRIMARY_COLOR || "FFFFFF",
    ```
 3. **`src/config/app.ts`**: Exposes them on `appConfig.primaryColor`, `appConfig.primaryDarkColor`, `appConfig.onPrimaryColor` (falling back to the same defaults if unset).

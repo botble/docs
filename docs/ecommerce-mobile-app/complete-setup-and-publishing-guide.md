@@ -54,7 +54,7 @@ Before starting, make sure you have:
 
 ```bash
 node --version
-# Should show v18.x.x or higher
+# Should show v20.19.x or higher
 
 npm --version
 # Should show 9.x.x or higher
@@ -169,7 +169,7 @@ Install the **Expo Go** app on your phone ([iOS](https://apps.apple.com/app/expo
 ::: info `npm run ios` / `npm run android` vs `npm run ios:go` / `npm run android:go`
 - `npm run ios` and `npm run android` run **native builds** (`expo run:ios` / `expo run:android`) — these require a full native development setup (Xcode for iOS, Android Studio + SDK for Android) and generate a development build on the simulator/emulator.
 - `npm run ios:go` and `npm run android:go` launch the app using **Expo Go** — easier to get started, no native tooling required beyond the simulator/emulator.
-- For beginners, **Expo Go** (via `npm start` + QR code) is the simplest option.
+- For beginners, **Expo Go** (via `npm run start:go` + QR code) is the simplest option.
 :::
 
 ### Step 9: Verify Everything Works

@@ -57,7 +57,7 @@ If anything fails to start, clear caches: `npm start -- --clear`. If native conf
 ## State management
 
 - **Server state** goes through `@tanstack/react-query`. All reads/writes use `useQuery` / `useMutation` calling `src/services/*` functions. Never call a service directly from a component body. The shared `queryClient` (`src/lib/query-client.ts`) uses `staleTime: 5min`, `gcTime: 10min`, and only retries `5xx` errors (4xx never retries).
-- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` (outer → inner): `Toast → Settings → AppStatus → Auth → Notification → SavedJobs → Compare → QueryClient`.
+- **App state** lives in React Context (`src/context/`), mounted by `AppProviders.tsx` (outer → inner): `QueryClient → Toast → Settings → AppStatus → Auth → Notification → SavedJobs → Compare`.
 
 | Context | Provides |
 |---|---|

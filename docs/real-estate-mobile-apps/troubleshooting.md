@@ -86,7 +86,7 @@ Plain `http://` traffic is only allowed for local development. `app.config.js` s
 
 If the app connects but a section is empty, the data (or its relations) is missing on the backend, not in the app:
 
-1. Confirm the backend has published/available properties, agents (vendor customers), locations, and blog posts.
+1. Confirm the backend has published/available properties, agents (agent accounts), locations, and blog posts.
 2. Confirm the real-estate API is installed and enabled.
 3. Confirm required relations are set (a property needs a type/category, images, and a location to render fully).
 4. Pull to refresh on the affected screen.
