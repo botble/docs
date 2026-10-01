@@ -70,7 +70,8 @@ follows.
   and limits are **frozen at purchase**, so editing a plan never re-prices or re-limits the
   stores already on it; apps and themes added to a plan do reach them.
 - **Billing** — [Laravel Cashier](https://laravel.com/docs/billing) with Stripe Checkout and
-  the Billing Portal, or bank transfer for platforms with no Stripe. Operators can also
+  the Billing Portal, or bank transfer and (from 1.0.2) PayPal, Razorpay, Paystack or Mollie for
+  platforms with no Stripe. Operators can also
   assign, change, extend, cancel and reactivate a plan by hand, with a full audit trail.
 - **Custom domains** — store owners attach their own domain, verified over DNS.
 - **Apps and themes catalog** — you decide what each plan may use; store owners turn those

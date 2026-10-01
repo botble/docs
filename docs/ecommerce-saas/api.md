@@ -312,7 +312,7 @@ capi "$API/stores?status=ready&per_page=2&include=usage"
 
 `access_state` answers "what does a visitor get right now?" and mirrors the storefront
 gate exactly: `serving`, `preparing` (still provisioning), `suspended` (billing), or
-`unavailable`. `billing_provider` is `stripe`, `local` (operator/offline-managed) or
+`unavailable`. `billing_provider` is `stripe`, `local` (operator-managed, bank transfer, or a PayPal / Razorpay / Paystack / Mollie plan payment) or
 `none`.
 
 **`POST /stores`** · scope `write` → `202 Accepted`. The row exists; provisioning is

@@ -39,18 +39,22 @@ copy, brand images, pages — lives in the console itself.
 | [Stores](./usage-stores.md) | Create, edit, suspend, impersonate and delete stores; export the listing to CSV |
 | [Plans](./usage-plans.md) | Define subscription tiers: price, interval, trial, quotas, entitlements |
 | [Coupons](./usage-coupons.md) | Signup promo codes that grant extra trial days |
-| [Plan orders](./usage-bank-transfer.md) | Bank-transfer requests awaiting approval or rejection |
+| [Plan orders](./usage-bank-transfer.md) | Plan orders awaiting approval (bank transfer) or needing review (a gateway payment that could not be confirmed, from 1.0.2) |
 | [Bank transfer](./usage-bank-transfer.md) | Turn offline payment on, set the account details and receipt prefix |
+| [Plan billing gateways](./payment-gateways.md#plan-billing-gateways) | Offer PayPal, Razorpay, Paystack or Mollie for plan payments and enter their keys (from 1.0.2) |
 | [Apps & Themes](./usage-apps-themes.md) | Curate the catalog of plugins and themes stores may use, and assign it to plans |
+| [Add-ons](./addons-overview.md) | Licence each installed add-on once for the whole platform |
 | [Subscriptions](./usage-subscriptions.md) | Assign, change, extend, cancel or reactivate a store's plan by hand |
 | [Domains](./usage-domains.md) | Oversight of every custom domain and its verification state |
 | [Pages](./usage-marketing-site.md) | Central pages — Terms, Privacy, About — published on the marketing site |
+| Languages | Which languages the public marketing site is published in, and its default |
 | [Landing page](./usage-marketing-site.md) | Hero copy, testimonials, brand assets and the marketing sections |
+| Legal & cookies | Company details for the legal templates, which page each legal role points at, and cookie consent settings (the banner wording is on Landing page) |
 | Operators | Platform super-admin accounts for the console itself — see below |
 | [API keys](./api.md) | Bearer credentials for the control-plane REST API |
 | [Webhooks](./webhooks.md) | Outbound event endpoints and their delivery logs |
-| [System update](./upgrade.md#update-from-the-operator-console) | Install a new release from the browser: files, central and store databases, assets |
 | [License](./license.md) | Activate this platform's CodeCanyon purchase code — see below |
+| [System update](./upgrade.md#update-from-the-operator-console) | Install a new release from the browser: files, central and store databases, assets |
 
 ## Dashboard
 

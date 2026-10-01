@@ -43,18 +43,19 @@ Each production installation needs its own license. You can run **dev and stagin
 
 ### Is Stripe required?
 
-**No.** Leave `STRIPE_KEY`, `STRIPE_SECRET` and `STRIPE_WEBHOOK_SECRET` empty in your `.env`, and the platform works perfectly. Stores sign up, start their free trial (if any), and serve traffic. Entitlement is tracked locally in the `tenant_subscriptions` table. You can also accept bank transfers (a built-in Botble feature) or manage subscriptions entirely by hand from the operator console.
+**No.** Leave `STRIPE_KEY`, `STRIPE_SECRET` and `STRIPE_WEBHOOK_SECRET` empty in your `.env`, and the platform works perfectly. Stores sign up, start their free trial (if any), and serve traffic. Entitlement is tracked locally in the `tenant_subscriptions` table. You can also accept bank transfers, PayPal, Razorpay, Paystack or Mollie (from 1.0.2), or manage subscriptions entirely by hand from the operator console.
 
 With Stripe configured, you get automated checkout and billing portal. See [Billing with Stripe](./usage-billing-stripe.md) to set it up.
 
 ### Can customers use payment gateways other than Stripe?
 
-Yes. Store owners can configure Stripe Connect, PayPal, Mollie, Razorpay and other payment methods in their store's **Payment Methods** admin. These are independent of the billing integration — a store's subscription plan is separate from what payment methods its shoppers use at checkout.
+Yes. Store owners can configure Stripe, PayPal, Mollie, Razorpay, Paystack, SSLCommerz, cash on delivery and bank transfer in their store's **Payment Methods** admin. These are independent of the billing integration — a store's subscription plan is separate from what payment methods its shoppers use at checkout.
 
 ### What payment methods does the platform support for subscriptions?
 
 - **Stripe** — Checkout and Billing Portal (recommended for high volume)
 - **Bank transfer** — offline, operator-approved
+- **PayPal, Razorpay, Paystack, Mollie** (from 1.0.2) — one period at a time, approved automatically once the gateway confirms; nothing renews by itself
 - **Manual** — operator assigns, extends, changes or cancels a plan from the console with no payment integration
 
 ## Stores and themes
@@ -65,7 +66,7 @@ Unlimited. Drop any Botble-published ecommerce theme into `platform/themes/`, re
 
 ### How many themes are included?
 
-One: **Amerce**, with **20 homepage presets**. Each preset is a different demo layout — fashion, sneaker, furniture, decor and so on — that a customer picks at signup. They are presets of a single theme rather than 21 separate themes, which is exactly why they all stay upgradable together.
+One: **Amerce**, with **20 homepage presets**. Each preset is a different demo layout — fashion, sneaker, furniture, decor and so on — that a customer picks at signup. They are presets of a single theme rather than 20 separate themes, which is exactly why they all stay upgradable together.
 
 ### Can customers use their own domains?
 
@@ -73,20 +74,25 @@ Yes, if the plan permits it. Each plan has an **Allows custom domain** checkbox.
 
 ### Can I help a store owner get into their store?
 
-Yes. The operator console has **Store → Impersonate** — it generates a 60-second single-use token that logs you into their admin. Every login is audited in the audit log. Never share the store owner's actual password; always impersonate instead.
+Yes. On the operator console's **Stores** list, **Log in as owner** generates a 60-second single-use token that logs you into their admin. Minting and using the token are both written to the application log. Never share the store owner's actual password; always impersonate instead.
 
 ### What's NOT included in Ecommerce SaaS?
 
 **Not shipped:**
-- POS (point-of-sale) system
-- Mobile app
 - Storefront drag-and-drop page builder (you can add custom pages; builders require setup)
-- Wallet or store credit features
-- Affiliate, loyalty or gift card systems
-- Live chat or WhatsApp/SMS notifications
-- Per-tenant backup/restore (you manage backups for the whole platform)
+- Mobile app
+- Per-tenant backup/restore screen (you back up the platform yourself — see [Backup and restore](./backup-restore.md))
+- Per-tenant S3 / R2 credentials (cloud storage, if configured, is global)
 
-These can be added as Botble plugins if you write them or hire a developer. The platform does not block them.
+**Available as add-ons** (sold separately, installed and licensed once by the platform owner):
+- [POS Pro](./addons-pos-pro.md) — point-of-sale system
+- [E-Wallet](./addons-e-wallet.md) — customer wallets and gift cards
+- [Affiliate Pro](./addons-affiliate.md) — affiliate and referral programs
+- [Loyalty Points](./addons-loyalty-points.md) — points and member levels
+- [Live Chat](./addons-live-chat.md) — storefront chat widget
+- [SMS Gateways](./addons-sms-gateways.md) — SMS and OTP
+
+See [Add-ons](./addons-overview.md) for installation, licensing, and per-store setup. Platform-side add-on support ships in 1.0.2.
 
 ## Support
 

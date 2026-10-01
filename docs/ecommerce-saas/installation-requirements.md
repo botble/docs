@@ -122,6 +122,17 @@ When planning your infrastructure, keep these scale limits in mind:
 
 See [Choosing a server](./installation-hosting.md) for deployment guidance.
 
+## What is not supported
+
+Being explicit here saves support time:
+
+| Feature | Reason |
+|---|---|
+| **Laravel Octane** | Botble caches identity data in static variables that are per-request under FPM but cross-tenant under Octane, causing data leaks between stores |
+| **Per-store plugin sets** | Plugins are activated platform-wide; the plugin manifest is a single file shared by all stores. The Plugins screen is hidden from store admins by design. Stores switch on only the apps you offer in the catalog and their plan includes |
+| **`php artisan config:cache` without checking** | Cached config pins the central database credentials. If you cache config, verify afterwards that stores still switch to their own databases |
+| **Per-store S3 credentials** | Cloud storage (S3, R2, etc.) is one platform-wide setting; all stores use the same credentials and bucket, each under its own path prefix. See [Cloud storage](./cloud-storage.md) |
+
 ## What differs from a normal Botble install
 
 - The MySQL app user needs **CREATE DATABASE / DROP**, not just access to one

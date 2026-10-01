@@ -76,10 +76,14 @@ stored anywhere you can read back later.
 | `domain.removed` | A domain was detached | `domain` |
 | `app.enabled` | A store turned an app on | `app{slug}` |
 | `app.disabled` | A store turned an app off | `app{slug}` |
-| `order.requested` | A bank-transfer order was raised | `order{}` |
-| `order.paid` | An offline order was approved | `order{}`, `subscription` |
-| `order.rejected` | An offline order was rejected | `order{}` |
+| `order.requested` | A plan order was raised (bank transfer, or PayPal / Razorpay / Paystack / Mollie from 1.0.2) | `order{}` |
+| `order.paid` | A plan order was approved (by the operator, or automatically once a gateway confirms) | `order{}`, `subscription` |
+| `order.rejected` | A plan order was rejected by the operator | `order{}` |
 | `ping` | The test button / `POST /webhooks/{id}/test` | `message`, `endpoint_id` (no `store`) |
+
+`order{}` carries `code`, `number`, `status`, `plan`, `amount_cents`, `currency`, `interval`,
+`reference`, `gateway` (`null` for bank transfer and Stripe; set from 1.0.2), `reason`,
+`requested_at` and `paid_at`.
 
 ## Payload
 
