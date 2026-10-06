@@ -10,7 +10,7 @@ store's own products, stock and customers, and take payment at the counter.
 
 ## SaaS setup
 
-**Minimum version:** POS Pro 1.2.20+
+**Minimum version:** POS Pro 1.2.21+
 
 ### Installation
 

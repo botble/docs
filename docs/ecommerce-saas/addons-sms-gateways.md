@@ -12,7 +12,7 @@ drivers.
 
 ## SaaS setup
 
-**Minimum version:** SMS Gateways 1.0.35+
+**Minimum version:** SMS Gateways 1.0.36+
 
 ### Installation
 
