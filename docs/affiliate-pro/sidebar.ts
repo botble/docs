@@ -10,10 +10,23 @@ export default [
         ],
     },
     {
-        text: 'User Guide',
+        text: 'Admin Guide',
         items: [
-            { text: 'Complete Usage Guide', link: '/affiliate-pro/usage-guide' },
+            { text: 'Overview', link: '/affiliate-pro/usage-guide' },
+            { text: 'Managing Affiliates', link: '/affiliate-pro/usage-affiliates' },
+            { text: 'Commissions', link: '/affiliate-pro/usage-commissions' },
+            { text: 'Withdrawals', link: '/affiliate-pro/usage-withdrawals' },
+            { text: 'Member Levels', link: '/affiliate-pro/usage-member-levels' },
+            { text: 'Coupons & Short Links', link: '/affiliate-pro/usage-coupons-short-links' },
+            { text: 'Reports', link: '/affiliate-pro/usage-reports' },
+            { text: 'Email Notifications', link: '/affiliate-pro/usage-email-notifications' },
             { text: 'Marketplace Integration', link: '/affiliate-pro/marketplace-integration' },
+        ],
+    },
+    {
+        text: 'Affiliate Guide',
+        items: [
+            { text: 'Affiliate Dashboard', link: '/affiliate-pro/affiliate-dashboard' },
         ],
     },
     {

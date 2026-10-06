@@ -1,208 +1,73 @@
-# Troubleshooting Affiliate Pro
+---
+title: Troubleshooting
+description: Fix common Affiliate Pro problems — tracking, commissions, withdrawals and emails.
+---
 
-This guide will help you resolve common issues that may arise when using the Affiliate Pro plugin.
+# Troubleshooting
 
-## Common Issues
+## Plugin Not Working After a CMS Update
 
-### Plugin Not Working After CMS Update
+1. Go to **Plugins → Installed Plugins**.
+2. **Deactivate** Affiliate Pro, then **Activate** it again.
+3. Clear cache in **Platform Administration → Cache Management**.
 
-If the Affiliate Pro plugin stops working or shows errors after updating Botble CMS:
+This re-registers the plugin and runs any new migrations. It fixes most post-update issues.
 
-1. Go to **Admin → Plugins → Installed plugins**
-2. **Deactivate** the Affiliate Pro plugin
-3. **Activate** it again
+## Clicks Are Not Tracked
 
-This re-registers the plugin's service providers and resolves most post-update issues.
+| Check | How |
+|-------|-----|
+| The link uses `aff`, not `ref` | Correct: `https://your-store.com/?aff=AFF0001` |
+| The affiliate is **Approved** | Pending, rejected and banned affiliates are not tracked |
+| The affiliate code is correct | Compare with the code in **Affiliate → All Affiliates** |
+| A full-page cache is not serving the page | Exclude URLs containing `aff=` from page caching (Cloudflare, LiteSpeed, Varnish…), otherwise the request never reaches the site and no cookie is set |
 
-### Affiliate Links Not Tracking
+Test in a private browser window: open the link, then check that the `affiliate_code` cookie exists (browser DevTools → Application → Cookies) and that a click appears on the affiliate's detail page.
 
-If affiliate links are not tracking properly:
+## No Commission Was Created for an Order
 
-1. **Check Cookie Settings**:
-   - Ensure cookies are enabled in the visitor's browser
-   - Verify that the cookie lifetime is set correctly in the affiliate settings
-   - Check if third-party cookies are blocked by the visitor's browser
+- The order was placed in the **same browser** that opened the affiliate link, **within the cookie lifetime** — or it used the affiliate's coupon code.
+- The buyer is not the affiliate. Orders placed with the affiliate's own customer account never earn a commission.
+- The products are not excluded — **Enable Affiliate** is on for each product.
+- The rate is above zero — check the product, category and default rates.
+- The affiliate was **Approved** when the order was placed.
 
-2. **Link Format Issues**:
-   - Verify that the affiliate links are correctly formatted
-   - Check if the affiliate code is properly included in the URL
-   - Try using the short link generator to create valid links
+Commissions are only created at checkout. An order placed before the visitor clicked the link will not get one later.
 
-3. **Refresh and Clear Cache**:
-   - Sometimes a simple page refresh can resolve tracking issues
-   - Clear your browser cache if necessary
-   - Try using a different browser to test the links
+## Commission Is Still Pending
 
-### Commissions Not Being Generated
+Commissions are approved automatically on order completion when **Auto Approve Commissions** is on (the default). If you turned it off, approve them in **Affiliate → Commissions**.
 
-If commissions are not being generated for orders:
+If auto-approval is on, check that the order status is **Completed** in **Ecommerce → Orders**.
 
-1. **Check Affiliate Settings**:
-   - Go to **Settings** > **Affiliate Settings**
-   - Ensure that the default commission percentage is set correctly
-   - Verify that the auto-approve commissions setting is configured as expected
+If cancelled orders do not reverse their commissions, make sure your queue worker is running (or `QUEUE_CONNECTION=sync` in `.env`) — the cancellation handler runs as a queued job.
 
-2. **Order Status**:
-   - Check if the order status is eligible for commission generation
-   - Verify that the order was placed through a valid affiliate link
-   - Ensure that the cookie was still active when the order was placed
+## Withdrawal Problems
 
-3. **Product Eligibility**:
-   - Check if the products in the order are eligible for commissions
-   - Verify that the category-based commission settings are correctly configured
-   - Ensure there are no exclusions or restrictions in place for the affiliate
+| Message / problem | Fix |
+|-------------------|-----|
+| "The minimum withdrawal amount is …" | The affiliate must request at least the minimum set in settings |
+| "You do not have enough balance for this withdrawal." | Pending withdrawals are already deducted from the balance |
+| A payment method is missing | Enable it in **Affiliate Settings → Withdrawal Payment Methods**; Stripe also needs the Stripe Connect plugin |
+| PayPal payout stays Pending | Check the PayPal gateway credentials and your PayPal balance, then approve manually |
 
-### Withdrawal Issues
+## Emails Are Not Sent
 
-If there are problems with withdrawal requests:
+1. Send a test email from **Settings → Email** to confirm the mail settings work.
+2. Check the template in **Settings → Email templates → Affiliate Pro Emails**.
+3. Admin notifications go to the **Admin email** address set in **Settings → General**.
+4. For the weekly digest, the [cron job](/cms/cronjob) must be running.
 
-1. **Minimum Amount**:
-   - Check if the affiliate has reached the minimum withdrawal amount
-   - Verify that the minimum withdrawal amount is set correctly in the settings
+## Affiliate Program Menu Missing on the Storefront
 
-2. **Payment Details**:
-   - Ensure that the affiliate has provided complete payment information
-   - Check if the payment method selected is available and properly configured
+- The customer must be logged in.
+- **Enable Affiliate Registration** must be on. When it is off, the menu is hidden for everyone, including existing affiliates.
+- If your theme uses a custom account menu, add a link to `/customer/affiliate`.
 
-3. **Account Status**:
-   - Verify that the affiliate account is active and in good standing
-   - Check if there are any restrictions or holds on the affiliate's account
+## Still Stuck?
 
-### Affiliate Dashboard Access Problems
+Check `storage/logs/laravel.log` for errors, then contact [support@botble.com](mailto:support@botble.com) with:
 
-If affiliates cannot access their dashboard:
-
-1. **Account Status**:
-   - Ensure the affiliate account is approved and active
-   - Check if the user has completed the registration process
-
-2. **Permissions**:
-   - Verify that the user has the necessary permissions to access the affiliate dashboard
-   - Check if there are any role or permission issues in the system
-
-3. **Technical Issues**:
-   - Check for any JavaScript errors in the browser console
-   - Look at the server logs for PHP errors
-   - Ensure your server meets the minimum requirements
-
-### Email Notification Issues
-
-If email notifications are not being sent or received:
-
-1. **Email Configuration**:
-   - Check if the email service is properly configured in your application
-   - Verify SMTP settings if you're using an external email service
-   - Test the email functionality using the built-in email testing tool
-
-2. **Notification Settings**:
-   - Ensure that the specific notification type is enabled in the affiliate settings
-   - Check if the email templates are properly configured
-   - Verify that the recipient email addresses are correct
-
-3. **Email Delivery**:
-   - Check spam folders for missed notifications
-   - Verify that your email server is not blacklisted
-   - Consider using a transactional email service for better deliverability
-
-### API Integration Problems
-
-If you're experiencing issues with the API:
-
-1. **Authentication Issues**:
-   - Verify that the API key is valid and has not expired
-   - Check if the API key has the necessary permissions
-   - Ensure that the authentication headers are correctly formatted
-
-2. **Request Format**:
-   - Verify that the API request format matches the documentation
-   - Check if all required parameters are included
-   - Ensure that parameter values are properly encoded
-
-3. **Response Handling**:
-   - Check if your application correctly handles API responses
-   - Look for error messages in the API response
-   - Verify that your application can handle different response codes
-
-## Advanced Troubleshooting
-
-### Clearing Cache
-
-Clearing the application cache can resolve many issues:
-
-```bash
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-```
-
-### Checking Logs
-
-Check the Laravel logs for any errors:
-
-1. Look in `storage/logs/laravel.log`
-2. Check for any errors related to the Affiliate Pro plugin
-3. Pay attention to timestamps to identify recent issues
-
-### Database Issues
-
-If you suspect database issues:
-
-1. Verify that all migrations have run successfully
-2. Check if the required tables exist and have the correct structure
-3. Ensure there are no corrupted records in the database
-
-### Performance Issues
-
-If the plugin is causing performance problems:
-
-1. **Database Optimization**:
-   - Check for missing indexes on affiliate tables
-   - Clean up old click data periodically
-   - Monitor database query performance
-
-2. **Caching**:
-   - Enable Redis or Memcached for better performance
-   - Configure appropriate cache lifetimes
-   - Clear cache regularly
-
-3. **Server Resources**:
-   - Monitor CPU and memory usage
-   - Increase PHP memory limits if needed
-   - Consider upgrading server resources
-
-### Security Concerns
-
-If you notice suspicious affiliate activity:
-
-1. **Monitor Activity**:
-   - Review click patterns and sources
-   - Check for unusual conversion rates
-   - Monitor geographic distribution of traffic
-
-2. **Fraud Detection**:
-   - Set up automated alerts for suspicious activity
-   - Review affiliate registration information
-   - Implement click validation mechanisms
-
-3. **Account Investigation**:
-   - Review affiliate marketing practices
-   - Check for policy violations
-   - Suspend accounts if necessary pending investigation
-
-## Getting Support
-
-If you're unable to resolve the issue using this troubleshooting guide, please contact our support team:
-
-- **Documentation**: [https://docs.botble.com/affiliate-pro](https://docs.botble.com/affiliate-pro)
-- **Support Email**: [support@botble.com](mailto:support@botble.com)
-- **Support Forum**: [https://forums.botble.com](https://forums.botble.com)
-
-When contacting support, please provide:
-
-1. A detailed description of the issue
-2. Steps to reproduce the problem
-3. Screenshots if applicable
-4. Your Botble CMS version
-5. Your PHP version
-6. Any error messages you're seeing
+- Botble CMS and Affiliate Pro versions,
+- PHP version,
+- steps to reproduce and the error message or screenshot.

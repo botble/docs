@@ -1,209 +1,108 @@
+---
+title: Release Notes
+description: Changelog for Affiliate Pro.
+---
+
 # Release Notes
 
-This page contains the release notes for Affiliate Pro, detailing the changes and improvements in each version.
+Before updating, read the [Upgrade Guide](./upgrade.md).
 
-## Version 1.2.0 – December 15, 2024
+## Version 1.2.11 – Oct 06, 2026
 
-### New Features
-- **PayPal Payout Integration**: Added automated PayPal payout support for affiliate withdrawals
-  - Seamless integration with PayPal Payout API
-  - Automated withdrawal processing for approved requests
-  - Real-time payment status tracking
-- **Stripe Connect Integration**: Added Stripe Connect support for direct payments to affiliates
-  - Instant payments to affiliate Stripe accounts
-  - Automated onboarding process for affiliates
-  - Comprehensive transaction tracking
-- **QR Code Generation**: Added QR code support for affiliate marketing
-  - Automatic QR code generation for affiliate links
-  - Downloadable QR codes for offline marketing
-  - Mobile-optimized scanning experience
+- Added rejection reason when rejecting an affiliate application, shown to the customer, who can now re-apply
+- Added affiliate coupon attribution: orders using an affiliate's coupon are credited to that affiliate
+- Added commission reversal for cancelled orders and completed (including partial) returns
+- Added Stripe account connection on the affiliate withdrawal form (with the Stripe Connect plugin)
+- Added conversion tracking for short links
+- Added separate permissions for approving commissions and withdrawals
+- Commission is now calculated on the price after discounts, and rates are capped at 100%
+- Affiliates no longer earn commission on their own orders
+- The Auto Approve Commissions setting is now respected (on by default)
+- Marketplace: the affiliate commission is charged to the vendor as a separate revenue entry and refunded when the commission is reversed
+- Product affiliate settings can only be changed by admins
+- Email templates can now be turned off for every affiliate email
+- PayPal withdrawals now require a valid email address
+- Short links count each visit once, set the referral cookie directly, only point to your store and only work for approved affiliates
+- Fixed the affiliate link shown on the admin affiliate detail page
+- Fixed the withdrawal form scripts not running on some themes
+- Fixed balance updates to prevent double payouts and overdrafts
+- Fixed admin menu and table permissions, report date ranges and customer totals
+- Fixed custom payout methods not being saved on withdrawal requests
+- Replaced CDN chart libraries with bundled copies
+- Completed translations for all languages
 
-### Improvements
-- **Enhanced Dashboard Analytics**: Improved affiliate dashboard with better performance metrics
-  - Real-time conversion tracking
-  - Advanced traffic source analysis
-  - Geographic performance data
-  - Mobile-responsive charts and graphs
-- **Email Template System**: Redesigned email notification system
-  - Modern, responsive email templates
-  - Customizable branding options
-  - Multi-language email support
-  - Improved deliverability
+## Version 1.2.9 – Jun 01, 2026
 
-### Bug Fixes
-- **Commission Calculation**: Fixed edge cases in commission calculation for complex orders
-  - Proper handling of partial refunds
-  - Accurate calculation for bundled products
-  - Fixed rounding issues in percentage calculations
-- **Cookie Tracking**: Improved cookie-based tracking reliability
-  - Better cross-domain tracking support
-  - Enhanced cookie lifetime management
-  - Fixed tracking issues with cached pages
+- Upgraded to Laravel 13
+- Improved caching and database performance
+- Improved overall stability and compatibility
 
-## Version 1.1.5 – October 28, 2024
+## Version 1.2.8 – Jan 28, 2026
 
-### New Features
-- **Short Link System**: Added comprehensive short link generation and management
-  - Custom short URLs for easier sharing
-  - Click tracking and analytics
-  - Bulk link generation tools
-  - QR code integration
-- **Advanced Reporting**: Enhanced reporting system with new metrics
-  - Top affiliate leaderboards
-  - Conversion funnel analysis
-  - Revenue attribution reports
-  - Export functionality for all reports
+- Added affiliate commission deduction into marketplace revenue calculations
+- Added Enable Affiliate toggle per product with custom commission percentage option
+- Added default commission rate info display in product settings
+- Fixed commission tracking issue when using Redis queue connection
+- Fixed report display issues
+- Improved migrations to be idempotent with table/column existence checks
+- Improved reporting functionality
 
-### Improvements
-- **Performance Optimization**: Significant performance improvements
-  - Database query optimization
-  - Improved caching mechanisms
-  - Faster dashboard loading times
-  - Reduced server resource usage
-- **Mobile Experience**: Enhanced mobile affiliate dashboard
-  - Improved responsive design
-  - Touch-optimized interface
-  - Mobile-specific features
-  - Better performance on mobile devices
+## Version 1.2.5 – Jan 09, 2026
 
-### Bug Fixes
-- **Withdrawal Processing**: Fixed issues with withdrawal request processing
-  - Improved validation for payment details
-  - Better error handling for failed payments
-  - Fixed notification timing issues
-- **Commission Attribution**: Resolved attribution conflicts in multi-channel scenarios
-  - Better handling of direct vs. affiliate traffic
-  - Improved last-click attribution
-  - Fixed duplicate commission issues
+- New "Period Commission" display — shows commissions earned during selected time periods in reports
+- New "Products Enabled Affiliate" widget — shows how many products have affiliate tracking turned on
+- Order affiliate info section — easily see which affiliate referred each order
+- Fixed long URL tracking — very long referral URLs are now saved correctly without being cut off
+- Improved database stability — plugin installs and updates more reliably without errors
+- Fixed report display issues — enhanced reports widget now displays correctly
+- Updated all plugin screenshots
 
-## Version 1.1.0 – September 10, 2024
+## Version 1.2.3 – Dec 08, 2025
 
-### New Features
-- **Category-Specific Commissions**: Added support for different commission rates by product category
-  - Flexible commission structure configuration
-  - Multiple category groups with different rates
-  - Product-level commission overrides
-  - Automatic rate application based on product categories
-- **Affiliate Coupon System**: Introduced affiliate-specific coupon creation and management
-  - Affiliates can create their own discount coupons
-  - Automatic tracking and attribution
-  - Usage analytics and reporting
-  - Admin approval workflow for coupons
-- **Marketing Materials Library**: Added promotional materials management
-  - Banner upload and management system
-  - Multiple banner sizes and formats
-  - HTML embed codes for affiliates
-  - Version control for marketing materials
+- Added member levels to reward top-performing affiliates
+- Added short links management to create and track custom affiliate links
+- Affiliate balance is updated automatically when a withdrawal request is rejected
+- Email notification sent to affiliates when their account is banned or unbanned
+- Fixed commission not recorded for some orders
+- Fixed short links not working correctly
+- Fixed product affiliate settings could not be saved
+- Fixed affiliate rules not displaying correctly
+- Fixed coupon page not loading properly
+- Improved translation system for better multi-language support
 
-### Improvements
-- **Enhanced Security**: Improved security measures for affiliate tracking
-  - Better fraud detection algorithms
-  - IP-based validation
-  - Click validation mechanisms
-  - Suspicious activity monitoring
-- **API Enhancements**: Expanded API functionality
-  - RESTful API for affiliate data
-  - Webhook support for real-time notifications
-  - Better authentication and rate limiting
-  - Comprehensive API documentation
+## Version 1.2.2 – Nov 03, 2025
 
-### Bug Fixes
-- **Email Notifications**: Fixed various email notification issues
-  - Improved template rendering
-  - Better error handling for failed emails
-  - Fixed duplicate notification problems
-  - Enhanced email queue processing
-- **Dashboard Performance**: Resolved performance issues in affiliate dashboard
-  - Optimized database queries
-  - Improved caching strategies
-  - Faster report generation
-  - Better pagination for large datasets
+- Fully translated to 40+ languages: Arabic, Bengali, Chinese, Dutch, French, German, Hindi, Italian, Japanese, Korean, Persian, Portuguese, Russian, Spanish, Turkish, Vietnamese and more
+- Improved UI of the customer affiliate dashboard
 
-## Version 1.0.5 – July 22, 2024
+## Version 1.2.0 – Sep 01, 2025
 
-### New Features
-- **UTM Parameter Tracking**: Added support for UTM parameters in affiliate links
-  - Campaign tracking capabilities
-  - Traffic source identification
-  - Marketing channel attribution
-  - Detailed analytics for UTM-tagged links
-- **Bulk Operations**: Added bulk management tools for administrators
-  - Bulk affiliate approval/rejection
-  - Bulk commission processing
-  - Bulk email notifications
-  - Export/import functionality
+- Added option to configure the commission rate for each affiliate
+- Added affiliate detail page in the admin panel with stats for each affiliate
+- Added option to block (ban) an affiliate account
+- Added option to enable/disable payout methods
+- Fixed UI issues on mobile devices
+- Fixed some translation issues
+- Improved performance with more efficient database queries
+- Compatible with the latest version of Botble E-commerce scripts
 
-### Improvements
-- **User Interface**: Enhanced user interface across all components
-  - Modern, clean design
-  - Better navigation structure
-  - Improved accessibility
-  - Consistent styling throughout
-- **Localization**: Expanded multi-language support
-  - Additional language packs
-  - Improved translation management
-  - RTL language support
-  - Currency localization
+## Version 1.1.0 – Jun 08, 2025
 
-### Bug Fixes
-- **Tracking Accuracy**: Fixed tracking issues in certain browser configurations
-  - Better cookie handling
-  - Improved JavaScript compatibility
-  - Fixed tracking on cached pages
-  - Enhanced cross-domain tracking
-- **Commission Timing**: Resolved timing issues with commission generation
-  - Better order status handling
-  - Improved event listener reliability
-  - Fixed delayed commission processing
-  - Enhanced error recovery
+- Improved short links
+- Improved affiliate reports page
+- Correct commission calculation when an order is placed
+- Added commission info to the product detail page
+- Improved UI
 
-## Version 1.0.0 – May 15, 2024
+## Version 1.0.0 – May 2025
 
-### Initial Release
-- **Core Affiliate Management**:
-  - Customer registration as affiliates
-  - Admin approval workflow
-  - Unique affiliate codes and tracking links
-  - Comprehensive affiliate profiles
-
-- **Commission System**:
-  - Percentage-based commission calculation
-  - Automatic commission generation on order completion
-  - Manual commission approval workflow
-  - Real-time balance tracking
-
-- **Tracking and Analytics**:
-  - Cookie-based affiliate tracking
-  - Click tracking and conversion analytics
-  - Traffic source monitoring
-  - Performance reporting dashboard
-
-- **Withdrawal Management**:
-  - Withdrawal request system
-  - Multiple payment method support
-  - Admin approval workflow
-  - Transaction history tracking
-
-- **Dashboard Features**:
-  - Affiliate performance dashboard
-  - Commission history and reporting
-  - Marketing tools and link generation
-  - Account management interface
-
-- **Email Notifications**:
-  - Automated email notifications for key events
-  - Customizable email templates
-  - Multi-language email support
-  - Admin and affiliate notification system
-
-- **Integration Capabilities**:
-  - Seamless Botble E-commerce integration
-  - Event-driven architecture
-  - Middleware-based tracking
-  - Extensible plugin system
-
-- **Security and Compliance**:
-  - Secure tracking mechanisms
-  - Data protection features
-  - Fraud prevention measures
-  - GDPR compliance tools
+- Core affiliate marketing functionality
+- Affiliate registration and approval system
+- Commission tracking and management
+- Withdrawal processing with multiple payment methods
+- Comprehensive affiliate dashboard
+- Marketing tools and promotional materials
+- Click and conversion tracking
+- Performance reports and analytics
+- Multi-language support
+- Email notification system

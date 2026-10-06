@@ -1,80 +1,98 @@
-# Frequent Questions
+---
+title: FAQ
+description: Frequently asked questions about Affiliate Pro.
+---
 
-## General Questions
+# FAQ
 
-### What is Affiliate Pro?
+## General
 
-Affiliate Pro is a comprehensive affiliate marketing system designed for e-commerce stores built with Botble CMS. It enables store owners to create and manage an affiliate program where users can earn commissions by referring customers to the store.
+### What does Affiliate Pro need to run?
 
-### What are the system requirements for Affiliate Pro?
+Botble CMS 7.5.0+, PHP 8.3+, the E-commerce plugin, and MySQL 5.7+ / MariaDB 10.3+.
 
-- Botble CMS version 7.5.0 or higher
-- PHP version 8.2 or higher
-- Active E-commerce plugin
-- MySQL 5.7+ or MariaDB 10.3+
+### Is it compatible with the Marketplace plugin?
 
-### How does the affiliate tracking work?
+Yes. The affiliate commission is deducted from the vendor's revenue for the referred order. Per-product affiliate settings are managed by admins. See [Marketplace Integration](./marketplace-integration.md).
 
-Affiliate Pro uses cookie-based tracking to attribute sales to affiliates. When a visitor clicks on an affiliate link, a cookie is stored in their browser. If they make a purchase within the cookie lifetime, the affiliate receives a commission for the sale.
+### Can customers become affiliates without my approval?
 
-## Features and Functionality
+Yes — turn on **Auto Approve Affiliates** in [Configuration](./configuration.md#registration-approval). Otherwise applications wait in **Affiliate → Pending Requests**.
 
-### Can I set different commission rates for different products?
+## Tracking & Commissions
 
-Yes, Affiliate Pro allows you to set category-based commission rates. You can create category groups with specific commission percentages, giving you flexibility in your commission structure.
+### How is a sale attributed to an affiliate?
 
-### How do affiliates get paid?
+By the referral cookie first: when a visitor opens a link with `?aff=CODE` (or a `/go/...` short link), the `affiliate_code` cookie is saved for the configured number of days, and orders placed in that browser are credited to the affiliate. If there is no valid cookie, an order that uses an affiliate's coupon code is credited to the coupon's owner.
 
-Affiliates can request withdrawals through their dashboard once they reach the minimum withdrawal amount. Store owners can then process these requests through the admin panel and pay affiliates using their preferred payment method (bank transfer, PayPal, etc.).
+### What if two affiliates refer the same visitor?
 
-### Can affiliates create their own discount coupons?
+The **last** link clicked wins — each click replaces the cookie.
 
-Yes, Affiliate Pro allows you to create affiliate-specific coupon codes. These coupons can be used by the affiliate's referrals to get discounts, and the system will track these sales and attribute them to the correct affiliate.
+### Does using an affiliate's coupon credit the affiliate?
 
-### How are commissions calculated?
+Yes. An order that uses an affiliate coupon is credited to that affiliate, unless the customer has a referral cookie from another affiliate's link — the cookie wins. See [Coupons & Short Links](./usage-coupons-short-links.md#affiliate-coupons).
 
-Commissions are calculated based on the order subtotal (excluding taxes and shipping) and the commission rate set for the affiliate or product category. The system automatically calculates the commission amount when an order is placed through an affiliate link.
+### Can affiliates earn commission on their own orders?
 
-## Technical Questions
+No. Orders placed with the affiliate's own customer account never earn a commission, whether they use their link or their coupon.
 
-### How do I update Affiliate Pro to the latest version?
+### How is the commission calculated?
 
-To update Affiliate Pro:
-1. Download the latest version from CodeCanyon
-2. Extract the files
-3. Replace the files in the `platform/plugins/affiliate-pro` directory
-4. Clear the application cache using `php artisan cache:clear`
+`(product price × quantity − the product's share of the order discount) × rate` for each product, summed per order. Shipping and tax are excluded. The rate is chosen in this order: product rate → category rate → affiliate's custom rate or default rate (× member level multiplier). See [Which Rate Is Used?](./configuration.md#which-rate-is-used).
 
-### Can I customize the affiliate dashboard?
+### Can I set different rates per product or category?
 
-Yes, you can customize the affiliate dashboard by modifying the view files located in the `platform/plugins/affiliate-pro/resources/views` directory. You can add or remove sections, change the layout, or modify the styling to match your brand.
+Yes. Per product on the product edit page, per category group in settings, and per affiliate on the affiliate edit page.
 
-### Is Affiliate Pro compatible with other Botble plugins?
+### When does an affiliate get paid?
 
-Yes, Affiliate Pro is designed to work seamlessly with other Botble plugins, especially the E-commerce plugin which is required for Affiliate Pro to function.
+The commission is **Pending** when the order is placed. It becomes **Approved** (added to the balance) when the order is completed — automatically by default, or manually in **Affiliate → Commissions** if you turned **Auto Approve Commissions** off. The affiliate can then request a withdrawal. See [Commissions](./usage-commissions.md).
 
-### How does the traffic source tracking work?
+### What happens if an order is cancelled or refunded?
 
-Affiliate Pro tracks the source of traffic by capturing referrer information when a visitor clicks on an affiliate link. It can identify traffic from different sources such as social media platforms, search engines, direct visits, and referring websites. This data is stored and made available in detailed reports, allowing both affiliates and administrators to analyze which traffic sources are most effective.
+When the order is cancelled, a pending commission is rejected and an approved one is reversed from the affiliate's balance. When an order return is completed, the returned share of the commission is reversed.
 
-### Can I integrate Affiliate Pro with external systems?
+## Payouts
 
-Yes, Affiliate Pro provides a RESTful API that allows you to integrate with external systems. You can access affiliate data, commission information, and other metrics programmatically. The plugin also supports webhooks for real-time notifications of important events like new registrations, commissions earned, and withdrawal requests.
+### Which payout methods are supported?
 
-## Troubleshooting
+Bank Transfer, PayPal, Stripe and Other. Automatic payouts are available with the PayPal Payout and Stripe Connect plugins. See [Withdrawals](./usage-withdrawals.md).
 
-### Affiliate links are not tracking properly
+### Can I change the minimum withdrawal amount?
 
-If affiliate links are not tracking properly:
-- Check if cookies are enabled in the visitor's browser
-- Verify that the cookie lifetime is set correctly in the affiliate settings
-- Ensure that the affiliate's account is active and approved
-- Check for any JavaScript errors in the browser console
+Yes — **Minimum Withdrawal Amount** in [Configuration](./configuration.md#withdrawals).
 
-### Commissions are not being generated for orders
+## Customization
 
-If commissions are not being generated for orders:
-- Check if the order was placed through a valid affiliate link
-- Verify that the cookie was still active when the order was placed
-- Ensure that the products in the order are eligible for commissions
-- Check if there are any exclusions or restrictions in place for the affiliate
+### Can I change the affiliate dashboard design?
+
+Yes. Copy the view you want to change from `platform/plugins/affiliate-pro/resources/views/themes/customers/` to `resources/views/vendor/plugins/affiliate-pro/themes/customers/` (same file name) and edit the copy. Your changes survive plugin updates.
+
+### Can I translate the plugin?
+
+Yes. Translations for 40+ languages are included. Edit them in **Settings → Localization → Other Translations** (requires the Translation plugin), group `plugins/affiliate-pro`. See [Translation](/cms/plugin-translation).
+
+### Can I add my own payout method?
+
+Yes, with the `affiliate_pro_payout_methods` filter (for example in your theme's `functions.php`):
+
+```php
+add_filter('affiliate_pro_payout_methods', function (array $methods) {
+    $methods['wise'] = [
+        'is_enabled' => true,
+        'key' => 'wise',
+        'label' => 'Wise',
+        'fields' => [
+            'payment_details' => [
+                'title' => 'Wise email',
+                'rules' => 'email|max:120',
+            ],
+        ],
+    ];
+
+    return $methods;
+});
+```
+
+The method appears in the affiliate's withdrawal form. Affiliates enter their account details in the **payment details** field, which is validated with the `rules` of the method's first `fields` entry (its `title` is used in error messages). You pay them manually and approve the request.
