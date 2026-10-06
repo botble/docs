@@ -60,9 +60,11 @@ None.
 
 ### Wallet payment doesn't appear at checkout
 
-**Cause:** The store has not switched on **Enable E-Wallet**.
+**Cause:** The store has not switched on **Enable E-Wallet**, or the E-Wallet payment method
+is not enabled.
 
-**Fix:** Have the store owner turn it on in **E-Wallet → Settings**.
+**Fix:** Have the store owner turn on **Enable E-Wallet** in **E-Wallet → Settings** and
+enable the E-Wallet method in **Payments → Payment methods**.
 
 ### A store can't save a webhook URL
 

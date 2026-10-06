@@ -11,7 +11,7 @@ for new messages (Ajax), so no websocket server is needed.
 
 ## SaaS setup
 
-**Minimum version:** Live Chat 1.0.9+
+**Minimum version:** Live Chat 1.0.10+
 
 ### Installation
 

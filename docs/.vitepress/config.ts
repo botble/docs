@@ -76,6 +76,7 @@ export default defineConfig({
     editLink: {
       pattern: ({ filePath }) => `https://github.com/botble/docs/edit/master/docs/${filePath}`,
     },
+    search: { provider: 'local' },
     nav,
     sidebar,
     socialLinks: [{ icon: 'github', link: 'https://github.com/botble' }],

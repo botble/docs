@@ -35,8 +35,9 @@ whose plan does not include POS Pro.
 ### Per-store configuration
 
 Once a store switches POS Pro on from its **Apps** screen, the store admin gets a **POS**
-menu with **POS**, **POS Orders**, **POS Devices**, **POS Reports**, **Register History**
-and **POS Settings**. Each store configures its own POS settings.
+menu with **POS**, **POS Orders**, **POS Reports**, **Register History** and **POS Settings**.
+Each store configures its own POS settings. **POS Devices** (local network printers and
+devices) is hidden on the platform, because the server cannot reach a shop's LAN.
 
 ### Scheduled tasks
 

@@ -10,7 +10,7 @@ links, earn commissions on referred orders and request withdrawals.
 
 ## SaaS setup
 
-**Minimum version:** Affiliate Pro 1.2.10+
+**Minimum version:** Affiliate Pro 1.2.11+
 
 ### Installation
 

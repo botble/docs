@@ -294,7 +294,7 @@ Current list:
 | POS Pro | `pos_pro_stripe_terminal_env_fallback` | `true` | `false` - no shared `.env` Stripe keys |
 | POS Pro | `pos_pro_local_device_enabled` | `true` | `false` - the server cannot reach a shop's LAN |
 | Loyalty Points | `loyalty_points_custom_page_slug_enabled` | `true` | `false` - fixed customer page slug |
-| Live Chat | `live_chat_geoip_database_path` | plugin storage path | `storage/app/geoip/GeoLite2-City.mmdb` in central storage, one file for all stores |
+| Live Chat | `live_chat_geoip_database_path` | `storage/app/geoip/GeoLite2-City.mmdb` in the store's storage | `storage/app/geoip/GeoLite2-City.mmdb` in central storage, one file for all stores |
 | Live Chat | `live_chat_poll_interval` | store setting | never below 5000 ms |
 | SMS Gateways | `sms_heartbeat_stale_after_seconds` | `['warn' => 120, 'fail' => 600]` | `['warn' => 660, 'fail' => 1800]` - fits the five-minute cadence |
 

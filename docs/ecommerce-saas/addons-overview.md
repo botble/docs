@@ -63,10 +63,10 @@ switches off apps a store's plan no longer includes.
 ## Minimum versions for SaaS mode
 
 - **POS Pro 1.2.20+**
-- **Affiliate Pro 1.2.10+**
+- **Affiliate Pro 1.2.11+**
 - **E-Wallet 1.1.3+**
 - **Loyalty Points 1.0.20+**
-- **Live Chat 1.0.9+**
+- **Live Chat 1.0.10+**
 - **SMS Gateways 1.0.35+**
 
 Older builds do not ask the platform the contract's questions, so they keep showing
