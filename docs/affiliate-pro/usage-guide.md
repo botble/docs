@@ -13,7 +13,7 @@ Pick the task you need. Each page is short and shows the matching screen.
 |------|------------------|
 | [Managing Affiliates](./usage-affiliates.md) | Review applications, approve or reject, ban, set a custom commission rate |
 | [Commissions](./usage-commissions.md) | Understand when commissions are created, approve or reject them |
-| [Withdrawals](./usage-withdrawals.md) | Pay affiliates and approve or reject requests |
+| [Withdrawals](./usage-withdrawals.md) | Pay affiliates (manually or automatically) and approve or reject requests |
 | [Member Levels](./usage-member-levels.md) | Reward top affiliates with higher commission tiers |
 | [Coupons & Short Links](./usage-coupons-short-links.md) | Give affiliates discount codes and trackable short URLs |
 | [Reports](./usage-reports.md) | Track revenue, top affiliates and payouts |

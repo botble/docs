@@ -27,7 +27,7 @@ Affiliate Pro turns your customers into a sales team. Customers apply to become 
 | **Member levels** | Tiers (e.g. Bronze → Platinum) unlocked by total commission earned, each with a commission multiplier and benefit list |
 | **Tracking** | Click tracking, conversion rate, referrer and landing URL, short links (`/go/{code}`) with their own click and conversion stats |
 | **Marketing tools** | Affiliate coupon codes (credited to the affiliate), short links, up to 3 promotional banners with embed code, QR code, product-page link box |
-| **Withdrawals** | Bank transfer, PayPal, Stripe and "Other" methods, minimum amount, approve/reject (with reason) and balance refund, Stripe account connection for Stripe payouts |
+| **Withdrawals** | Bank transfer, PayPal, Stripe and "Other" methods, minimum amount, approve/reject (with reason) and balance refund, automatic PayPal / Stripe payouts on approval (with the PayPal Payout / Stripe Connect plugins) |
 | **Reports** | Admin reports with commission and withdrawal charts, top affiliates; affiliate-side reports with clicks, conversions and earnings trend |
 | **Emails** | 10 email templates, including a weekly performance digest |
 | **Marketplace** | Commission is deducted from the vendor's revenue for the referred order |

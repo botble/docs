@@ -29,7 +29,8 @@ Before updating, read the [Upgrade Guide](./upgrade.md).
 - Fixed admin menu and table permissions, report date ranges and customer totals
 - Fixed custom payout methods not being saved on withdrawal requests
 - Replaced CDN chart libraries with bundled copies
-- Commissions are reversed when an order is refunded from the admin order page; a return and the refund of the same goods are reversed only once
+- Commissions are reversed when an order is refunded (admin refund or gateway refund such as the Stripe dashboard); a return and the refund of the same goods are reversed only once, and a returned item reverses its own line's commission
+- Automatic PayPal / Stripe payouts now run when you approve a withdrawal (PayPal Payout / Stripe Connect plugins), with protection against double payouts
 - Products that stored a 0% rate in older versions are reset to use the default rate
 - Commissions are approved only when the order status is Completed, and are not credited to banned or suspended affiliates
 - Referrals are saved on the order at checkout, so they are kept when the payment gateway confirms the order by webhook

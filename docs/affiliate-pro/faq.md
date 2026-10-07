@@ -57,7 +57,7 @@ When the order is cancelled, a pending commission is rejected and an approved on
 
 ### Which payout methods are supported?
 
-Bank Transfer, PayPal, Stripe and Other. You pay each request yourself and then approve it — affiliate payouts are not sent automatically. See [Withdrawals](./usage-withdrawals.md).
+Bank Transfer, PayPal, Stripe and Other. With the PayPal Payout or Stripe Connect plugin, approving a PayPal or Stripe request sends the money automatically; other methods are paid manually. See [Withdrawals](./usage-withdrawals.md).
 
 ### Can I change the minimum withdrawal amount?
 
