@@ -27,7 +27,7 @@ Test in a private browser window: open the link, then check that the `affiliate_
 ## No Commission Was Created for an Order
 
 - The order was placed in the **same browser** that opened the affiliate link, **within the cookie lifetime** — or it used the affiliate's coupon code.
-- The buyer is not the affiliate. Orders placed with the affiliate's own customer account never earn a commission.
+- The buyer is not the affiliate. Orders placed with the affiliate's own customer account, or as a guest with the affiliate's email, never earn a commission.
 - The products are not excluded — **Enable Affiliate** is on for each product.
 - The rate is above zero — check the product, category and default rates.
 - The affiliate was **Approved** when the order was placed.
@@ -49,7 +49,6 @@ If cancelled orders do not reverse their commissions, make sure your queue worke
 | "The minimum withdrawal amount is …" | The affiliate must request at least the minimum set in settings |
 | "You do not have enough balance for this withdrawal." | Pending withdrawals are already deducted from the balance |
 | A payment method is missing | Enable it in **Affiliate Settings → Withdrawal Payment Methods**; Stripe also needs the Stripe Connect plugin |
-| PayPal payout stays Pending | Check the PayPal gateway credentials and your PayPal balance, then approve manually |
 
 ## Emails Are Not Sent
 
@@ -61,7 +60,7 @@ If cancelled orders do not reverse their commissions, make sure your queue worke
 ## Affiliate Program Menu Missing on the Storefront
 
 - The customer must be logged in.
-- **Enable Affiliate Registration** must be on. When it is off, the menu is hidden for everyone, including existing affiliates.
+- New customers only see the apply entry when **Enable Affiliate Registration** is on. Existing affiliates always see their menu.
 - If your theme uses a custom account menu, add a link to `/customer/affiliate`.
 
 ## Still Stuck?

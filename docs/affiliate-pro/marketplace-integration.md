@@ -31,7 +31,7 @@ When the order is completed, Marketplace credits the vendor as usual. Affiliate 
 
 The vendor's balance and total revenue go down by the commission. The deduction never exceeds what the vendor earned on the order.
 
-If the commission is later reversed — the order is cancelled or a return is completed — the vendor gets the same share back as an *Affiliate commission refunded for order …* entry.
+If the commission is later reversed — the order is cancelled, refunded or returned, or you reject the commission — the vendor gets the same share back as an *Affiliate commission refunded for order …* entry.
 
 ## Product Affiliate Settings
 

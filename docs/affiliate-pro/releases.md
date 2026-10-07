@@ -29,6 +29,20 @@ Before updating, read the [Upgrade Guide](./upgrade.md).
 - Fixed admin menu and table permissions, report date ranges and customer totals
 - Fixed custom payout methods not being saved on withdrawal requests
 - Replaced CDN chart libraries with bundled copies
+- Commissions are reversed when an order is refunded from the admin order page
+- Commissions are approved only when the order status is Completed, and are not credited to banned or suspended affiliates
+- Referrals are saved on the order at checkout, so they are kept when the payment gateway confirms the order by webhook
+- Product affiliate settings now apply to all variations, and a custom rate of 0% is supported
+- Guest orders placed with the affiliate's own email no longer earn commission
+- Member levels move down when reversed commissions drop the total below the level's minimum
+- Rejecting a Marketplace commission refunds the vendor's charge
+- Re-applications always go to manual review
+- Affiliates keep their dashboard menu when registration is turned off
+- Withdrawal amounts always use the store's default currency; rejecting a withdrawal can include a reason
+- Balances, totals and status can no longer be edited directly on the affiliate form; affiliates with a balance or open withdrawals cannot be deleted, and deleting an affiliate removes their coupons
+- Removed status bulk-change on affiliates, commissions and withdrawals to protect balances
+- Security: escaped user-supplied text in reports, admin tables and emails; restricted settings saving to known fields; added CSRF protection to Stripe connect/disconnect links; rate-limited withdrawal, short link and application requests; ignored invalid and bot referral visits
+- Fixed the short link form reporting validation errors as success, and withdrawal page notifications
 - Completed translations for all languages
 
 ## Version 1.2.9 – Jun 01, 2026

@@ -35,7 +35,7 @@ Yes. An order that uses an affiliate coupon is credited to that affiliate, unles
 
 ### Can affiliates earn commission on their own orders?
 
-No. Orders placed with the affiliate's own customer account never earn a commission, whether they use their link or their coupon.
+No. Orders placed with the affiliate's own customer account, or as a guest with the affiliate's email address, never earn a commission — whether they use their link or their coupon.
 
 ### How is the commission calculated?
 
@@ -51,13 +51,13 @@ The commission is **Pending** when the order is placed. It becomes **Approved** 
 
 ### What happens if an order is cancelled or refunded?
 
-When the order is cancelled, a pending commission is rejected and an approved one is reversed from the affiliate's balance. When an order return is completed, the returned share of the commission is reversed.
+When the order is cancelled, a pending commission is rejected and an approved one is reversed from the affiliate's balance. When an order return is completed, or the order is refunded from the admin order page, the returned or refunded share of the commission is reversed.
 
 ## Payouts
 
 ### Which payout methods are supported?
 
-Bank Transfer, PayPal, Stripe and Other. Automatic payouts are available with the PayPal Payout and Stripe Connect plugins. See [Withdrawals](./usage-withdrawals.md).
+Bank Transfer, PayPal, Stripe and Other. You pay each request yourself and then approve it — affiliate payouts are not sent automatically. See [Withdrawals](./usage-withdrawals.md).
 
 ### Can I change the minimum withdrawal amount?
 

@@ -15,7 +15,7 @@ Open **Affiliate → Affiliate Settings** (also reachable from **Settings → E-
 |---------|---------|-------------|
 | Default Commission Percentage | 10 | Percentage of the product price paid to the affiliate when no product or category rate applies |
 | Enable Commission for Each Category | Off | Set different rates for groups of categories (see below) |
-| Cookie Lifetime (days) | 30 | How long a referral is remembered after a visitor clicks an affiliate link |
+| Cookie Lifetime (days) | 30 | How long a referral is remembered after a visitor clicks an affiliate link (max 3650) |
 
 ### Category Commission Groups
 
@@ -45,7 +45,7 @@ Default rate 10%, affiliate is at level **Gold** (multiplier 1.25). A $200 produ
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| Enable Affiliate Registration | On | Show the **Affiliate Program** menu in the customer account. Turning it off hides the menu for everyone, including existing affiliates |
+| Enable Affiliate Registration | On | Let customers apply. When off, the apply entry is hidden; existing affiliates keep their **Affiliate Program** menu |
 | Auto Approve Affiliates | Off | Approve applications instantly instead of sending them to **Pending Requests** |
 | Auto Approve Commissions | On | Approve commissions automatically when the order is completed. Turn off to review and approve each commission yourself in **Affiliate → Commissions** |
 | Affiliate Program Rules & Terms | Sample text | Terms shown on the application form. Customers must accept them to apply. Editable per language when multiple languages are active |
@@ -60,7 +60,7 @@ Default rate 10%, affiliate is at level **Gold** (multiplier 1.25). A $200 produ
 | Stripe | Off | Available when the Stripe Connect plugin (included in Botble E-commerce scripts) is active. Affiliates connect their Stripe account from the withdrawal form |
 | Other | On | Free-text payment details |
 
-See [Withdrawals](./usage-withdrawals.md) for automatic payouts via PayPal Payout and Stripe Connect.
+See [Withdrawals](./usage-withdrawals.md) for how requests are paid.
 
 ## Promotional Banners
 
@@ -73,7 +73,9 @@ Each product has an **Affiliate Settings** box on its edit page (**Ecommerce →
 ![Affiliate settings on product edit page](./images/affiliate-pro-admin-product-affiliate-settings.png)
 
 - **Enable Affiliate** — turn off to pay no commission for this product.
-- **Customize commission percentage for this product** — tick and enter a rate to override category and default rates.
+- **Customize commission percentage for this product** — tick and enter a rate (0–100, `0` means no commission) to override category and default rates.
+
+For products with variations, the settings of the main product apply to all its variations.
 
 Only admins with the `products.edit` permission can change these settings. See [Marketplace Integration](./marketplace-integration.md) for vendor products.
 

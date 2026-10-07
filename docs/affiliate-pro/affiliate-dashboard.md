@@ -15,7 +15,7 @@ This page explains the program from the affiliate's side. Everything is under **
 
 ![Affiliate application form](./images/affiliate-pro-customer-affiliate-register.png)
 
-Your application is reviewed by the store (or approved instantly if auto-approval is on). You get an email either way. If it is rejected, the email and the Affiliate Program page show the reason, and you can **re-apply**.
+Your application is reviewed by the store (or approved instantly if auto-approval is on). You get an email either way. If it is rejected, the email and the Affiliate Program page show the reason, and you can **re-apply** — the store reviews every re-application.
 
 ## Dashboard Overview
 
@@ -46,7 +46,7 @@ When you browse the store while logged in, every product page shows your commiss
 
 **Promotional Materials** has everything you need to promote the store:
 
-- your main link with a **Copy** button and one-click sharing to social networks,
+- your main link with a **Copy** button and one-click sharing to social networks (links only start tracking once your application is approved),
 - a **QR code** for print and offline use,
 - **banners** with ready-to-paste HTML code for your website or blog.
 
@@ -89,10 +89,10 @@ Create short, clean links such as `https://your-store.com/go/x7K2pQ`. Each short
 ## Request a Withdrawal
 
 1. Open **Withdrawal Request**.
-2. Enter the amount — at least the minimum shown on the page and no more than your balance.
+2. Enter the amount in the store's default currency — at least the minimum shown on the page and no more than your balance.
 3. Choose a payment method and enter your payment details (bank account, PayPal email…). For **Stripe**, click **Connect with Stripe** first and finish Stripe's onboarding.
 4. Submit. The amount is reserved from your balance until the store processes it.
 
 ![Withdrawal request](./images/affiliate-pro-customer-withdrawals.png)
 
-You get an email when the withdrawal is approved or rejected. A rejected amount goes back to your balance.
+You get an email when the withdrawal is approved or rejected. A rejected amount goes back to your balance, and the store's reason is shown in your withdrawal history.

@@ -38,7 +38,7 @@ Level names and benefits can be translated when multiple languages are active.
 ## How Upgrades Work
 
 - The level is recalculated every time a commission is approved.
-- Affiliates only move **up**, never down — even if a later order is cancelled.
+- Approving commissions only ever moves an affiliate **up**. When a commission is reversed (cancelled order, return or refund) and their total commission drops below their level's minimum, they move down to the highest level they still qualify for.
 - The multiplier applies to the **base rate** only (the default rate or the affiliate's custom rate). Product and category rates are not multiplied.
 - You can set an affiliate's level by hand on the affiliate edit page.
 

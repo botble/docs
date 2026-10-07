@@ -22,12 +22,12 @@ Affiliate Pro turns your customers into a sales team. Customers apply to become 
 
 | Area | What you get |
 |------|--------------|
-| **Affiliates** | Application form with your own terms, manual or automatic approval, rejection reason, re-apply, ban/unban, per-affiliate commission rate |
+| **Affiliates** | Application form with your own terms, manual or automatic approval, rejection reason, re-apply (always reviewed), ban/unban, per-affiliate commission rate |
 | **Commissions** | Global rate, per-category rates, per-product rates, per-product opt-out, calculated after discounts, auto-approval on order completion (can be turned off), automatic reversal on cancellation and returns, self-referral protection |
 | **Member levels** | Tiers (e.g. Bronze → Platinum) unlocked by total commission earned, each with a commission multiplier and benefit list |
 | **Tracking** | Click tracking, conversion rate, referrer and landing URL, short links (`/go/{code}`) with their own click and conversion stats |
 | **Marketing tools** | Affiliate coupon codes (credited to the affiliate), short links, up to 3 promotional banners with embed code, QR code, product-page link box |
-| **Withdrawals** | Bank transfer, PayPal, Stripe and "Other" methods, minimum amount, approve/reject with balance refund, optional automatic payouts via the PayPal Payout / Stripe Connect plugins included in Botble E-commerce scripts |
+| **Withdrawals** | Bank transfer, PayPal, Stripe and "Other" methods, minimum amount, approve/reject (with reason) and balance refund, Stripe account connection for Stripe payouts |
 | **Reports** | Admin reports with commission and withdrawal charts, top affiliates; affiliate-side reports with clicks, conversions and earnings trend |
 | **Emails** | 10 email templates, including a weekly performance digest |
 | **Marketplace** | Commission is deducted from the vendor's revenue for the referred order |

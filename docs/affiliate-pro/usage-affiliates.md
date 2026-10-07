@@ -16,7 +16,7 @@ Click **View** to open an application:
 ![Pending request detail](./images/affiliate-pro-admin-pending-request-detail.png)
 
 - **Approve** — the customer becomes an active affiliate and receives the *Application Approved* email.
-- **Reject** — enter a reason (required, up to 400 characters). The customer receives the *Application Rejected* email with your reason, sees it on their Affiliate Program page, and can **re-apply** after fixing the issue.
+- **Reject** — enter a reason (required, up to 400 characters). The customer receives the *Application Rejected* email with your reason, sees it on their Affiliate Program page, and can **re-apply** after fixing the issue. A re-application always comes back to **Pending Requests** for review, even when **Auto Approve Affiliates** is on.
 
 ## Affiliate List
 
@@ -42,19 +42,25 @@ Click **Edit** on the detail page (or the pencil icon in the list) to change:
 - **Affiliate code** — the value used in `?aff=` links. Changing it breaks links already shared.
 - **Commission rate** — a personal base rate for this affiliate. Leave empty to use the default rate. Product and category rates still take priority — see [Which Rate Is Used?](./configuration.md#which-rate-is-used).
 - **Member level** — assign a level manually (levels also upgrade automatically, see [Member Levels](./usage-member-levels.md)).
-- **Balance, totals and status** — adjust manually if needed.
 
-You can also create an affiliate for an existing customer with **Create** on the list page.
+Balance, total commission and total withdrawn are shown read-only — they are maintained automatically from commissions and withdrawals. The status cannot be changed here either: use **Approve**, **Reject**, **Ban** and **Unban** so the right emails and checks run.
+
+You can also create an affiliate for an existing customer with **Create** on the list page. Each customer can have only one affiliate account.
+
+## Delete an Affiliate
+
+An affiliate can be deleted only when their balance is zero and they have no pending or processing withdrawals — settle those first. Deleting an affiliate also removes their coupons, so the coupon codes stop working at checkout. To stop an affiliate without losing their history, **Ban** them instead.
 
 ## Ban and Unban
 
 **Ban** an affiliate who breaks your terms, from the detail page or the row actions in the list. A banned affiliate:
 
 - cannot open their affiliate dashboard (they see a "banned" page),
-- no longer earns new commissions — their links, short links and coupons stop crediting them (commissions already pending can still be approved or rejected by you),
-- receives the *Affiliate Banned* email.
+- no longer earns new commissions — their links, short links and coupons stop crediting them,
+- is not credited for commissions that were still pending: they stay **Pending** (you can reject them) and are only credited if you unban the affiliate,
+- receives the *Affiliate Account Banned* email.
 
-Click **Unban** to restore the account. The affiliate receives the *Affiliate Unbanned* email.
+Click **Unban** to restore the account. The affiliate receives the *Affiliate Account Reinstated* email.
 
 ## Affiliate Status Reference
 

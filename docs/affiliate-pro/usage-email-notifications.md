@@ -17,7 +17,7 @@ Affiliate Pro sends emails for every important event. Edit them in **Settings â†
 | New Commission Earned | Affiliate | A commission is approved (automatically or by you) |
 | New Withdrawal Request | Admin | An affiliate requests a payout |
 | Withdrawal Request Approved | Affiliate | You approve a payout |
-| Withdrawal Request Rejected | Affiliate | You reject a payout |
+| Withdrawal Request Rejected | Affiliate | You reject a payout â€” includes your reason, if given |
 | Affiliate Account Banned | Affiliate | You ban the affiliate |
 | Affiliate Account Reinstated | Affiliate | You unban the affiliate |
 | Weekly Affiliate Performance Digest | Affiliate | Weekly summary (see below) |

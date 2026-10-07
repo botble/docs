@@ -19,7 +19,7 @@ Go to **Affiliate → Affiliate Coupons → Create**:
 
 | Field | Description |
 |-------|-------------|
-| Affiliate | Who owns the coupon |
+| Affiliate | Who owns the coupon (approved affiliates only) |
 | Discount Type | Percentage or fixed amount |
 | Discount Amount | Value of the discount |
 | Description | Shown to the affiliate |
