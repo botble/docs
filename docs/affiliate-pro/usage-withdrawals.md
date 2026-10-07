@@ -53,10 +53,14 @@ With the **PayPal Payout** or **Stripe Connect** plugin active (both ship with B
 | **PayPal Payout** | Sends the amount to the affiliate's PayPal email through the PayPal Payouts API (your PayPal gateway credentials). |
 | **Stripe Connect** | Transfers the amount to the affiliate's connected Stripe account. |
 
-If the payout succeeds, the request is approved and the payout ID is stored as its transaction ID. If it fails, the request goes back to **Pending**, nothing is deducted twice, and you see an error — fix the cause (credentials, balance, account) and approve again, or pay manually. A request cannot be paid twice, and it cannot be rejected while its payout is being sent.
+If the payout succeeds, the request is approved and the payout ID (Stripe `tr_…` transfer or PayPal batch ID) is stored as its transaction ID. If it fails, the request goes back to **Pending** and the error shows the reason given by PayPal or Stripe (for example *insufficient available funds*). Fix the cause and click **Approve** again, or pay manually.
+
+A request is never paid twice: approving it again, or retrying after a timeout where the payment actually went through, reuses the existing transfer or batch instead of sending a new one. A request cannot be rejected while its payout is being sent.
 
 Requests for Bank Transfer and Other are always paid manually.
 
-::: tip
-Test with your PayPal/Stripe sandbox first. Your PayPal or Stripe account must have enough balance to cover payouts.
+::: tip Before going live
+- Test with your PayPal/Stripe sandbox first.
+- **Stripe:** transfers are paid from your Stripe **available** balance in the withdrawal's currency. If your store currency differs from your Stripe account's currency (e.g. a USD store on an Australian Stripe account), the platform needs an available balance in that currency, otherwise the transfer fails. The affiliate's Stripe account must be connected and active.
+- **PayPal:** a successful approval means PayPal accepted the payout batch. PayPal finishes it in the background — check the batch in your PayPal dashboard if a payment is reported as unclaimed or returned.
 :::
