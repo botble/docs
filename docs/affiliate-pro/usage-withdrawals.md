@@ -42,7 +42,7 @@ Enable the methods you support in [Configuration → Withdrawals](./configuratio
 
 When an affiliate selects **Stripe** on the withdrawal form, a **Connect with Stripe** button appears (requires the Stripe Connect plugin, which ships with Botble E-commerce scripts such as Shofy, and a configured Stripe payment gateway). It opens Stripe's onboarding and brings the affiliate back to the withdrawal page when done. Affiliates who are also Marketplace vendors can use the account they already connected in their vendor payout settings. A Stripe withdrawal cannot be submitted until an account is connected.
 
-You then pay the request to that connected account (for example from your Stripe dashboard) and approve it.
+The request page shows the affiliate's connected **Stripe account** ID. Pay that account (for example from your Stripe dashboard), then approve the request.
 
 ::: info Automatic payouts
 Affiliate withdrawals are paid manually in this version: approve each request after you have sent the money. The PayPal Payout and Stripe Connect plugins do not send affiliate payouts automatically.

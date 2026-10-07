@@ -73,7 +73,7 @@ Each product has an **Affiliate Settings** box on its edit page (**Ecommerce →
 ![Affiliate settings on product edit page](./images/affiliate-pro-admin-product-affiliate-settings.png)
 
 - **Enable Affiliate** — turn off to pay no commission for this product.
-- **Customize commission percentage for this product** — tick and enter a rate (0–100, `0` means no commission) to override category and default rates.
+- **Customize commission percentage for this product** — tick and enter a rate (0–100, `0` means no commission) to override category and default rates. When upgrading from an older version, products that stored `0` without this box ticked are reset to use the default rate.
 
 For products with variations, the settings of the main product apply to all its variations.
 

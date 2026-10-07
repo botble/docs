@@ -49,7 +49,7 @@ You can also create an affiliate for an existing customer with **Create** on the
 
 ## Delete an Affiliate
 
-An affiliate can be deleted only when their balance is zero and they have no pending or processing withdrawals — settle those first. Deleting an affiliate also removes their coupons, so the coupon codes stop working at checkout. To stop an affiliate without losing their history, **Ban** them instead.
+An affiliate can be deleted only when their balance is zero and they have no pending or processing withdrawals — settle those first. Deleting an affiliate also removes their coupons, so the coupon codes stop working at checkout. Bulk delete in the list skips affiliates that cannot be deleted and tells you how many were skipped. To stop an affiliate without losing their history, **Ban** them instead.
 
 ## Ban and Unban
 

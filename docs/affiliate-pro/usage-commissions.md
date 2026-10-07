@@ -25,7 +25,9 @@ The affiliate must be **Approved**. Self-referrals are always blocked: an affili
 | You approve it in **Affiliate → Commissions** | **Approved** |
 | Order **Cancelled** | Pending → **Rejected**. Approved → reversed (amount taken back from the balance) |
 | Order **return completed** | The returned share of the commission is reversed. A partial return reverses only that part |
-| Order **refunded** from the admin order page | The refunded share of the commission is reversed |
+| Order **refunded** from the admin order page | The refunded share (refunded money ÷ amount paid) of the commission is reversed |
+
+A return and the refund of the same goods are reversed only once: the commission is reduced by the larger of the returned share and the refunded share, never both.
 
 When a commission is approved, the amount is added to the affiliate's balance and total commission, the affiliate may move up a [member level](./usage-member-levels.md), and the *New Commission Earned* email is sent. Commissions of banned or suspended affiliates are not credited; they stay **Pending**.
 
