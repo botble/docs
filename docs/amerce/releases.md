@@ -2,6 +2,27 @@
 
 This page contains the release notes for Amerce, detailing the changes and improvements in each version.
 
+## Version 1.0.10 - September 30, 2026
+
+### New Features
+
+- **Tabs layout for the Products block**: pick it in the UI block picker, with editable tab labels, sources, categories and an optional left banner. A Tabs block without labels now defaults to New / Popular / Sale.
+- **Split layout for the Newsletter CTA block**: text, heading and signup form on the left, cover image on the right, stacking on mobile.
+- **Optional countdown on the split Newsletter CTA**: set a target date and a countdown appears above the heading.
+- **Without Layout page template** is now available for pages, with its content centered.
+- **New checkout filters** (`ecommerce_checkout_order_total`, `ecommerce_order_amount`, `ecommerce_shipping_data`) so plugins can adjust checkout totals and shipping data, including per-vendor totals.
+
+### Bug Fixes
+
+- Fixed the sticky desktop header not reappearing when scrolling back up.
+- Fixed the vendor store logo showing as an empty circle until it loaded, by loading it immediately.
+- Fixed flash sale and promotion prices not showing on product cards (no strikethrough price) while the cart already applied the discount.
+- Fixed the selected shipping method not being saved when switching providers at checkout, including on vendor orders.
+- Fixed the Product groups block not reading the groups saved in the admin.
+- Fixed the FAQ section making the homepage overflow on mobile, which also hid the mobile bottom bar.
+- Fixed the external store link in the sticky add-to-cart bar showing an "added to cart" message.
+- Fixed the topbar social icons in the style 3 topbar being cramped together with no spacing.
+
 ## Version 1.0.9 - September 6, 2026
 
 ### New Features
