@@ -60,14 +60,17 @@ fi
 
 REL="releases/$(date +%Y%m%d-%H%M%S)"
 echo "==> Uploading to $SITE/$REL"
-remote "mkdir -p $SITE/releases"
-PREV=$(remote "readlink -f $SITE/public 2>/dev/null || true")
+# Seed the new release as hardlinks to the live one, so unchanged files cost nothing and rsync
+# only has to write what changed. This used to be rsync's --link-dest, but macOS ships openrsync,
+# which lists the flag and does not implement it: three docs releases sat on the server as three
+# full copies, 2.1 GB where they should have been about 0.8 GB, with zero multiply-linked files.
+remote "set -e; cd $SITE; mkdir -p releases
+  prev=\$(readlink public 2>/dev/null || true)
+  if [ -n \"\$prev\" ] && [ -d \"\$prev\" ]; then cp -al \"\$prev\" \"$REL\"; else mkdir -p \"$REL\"; fi"
 
-# --link-dest hardlinks unchanged files against the live release: fast and disk-cheap.
 RSYNC_SSH="${SSH[*]}"
-# No --chown: macOS ships openrsync, which lacks it. Ownership is fixed remotely below.
-rsync -az --delete -e "$RSYNC_SSH" \
-  ${PREV:+--link-dest="$PREV"} "$DIST/" "$HOST:$SITE/$REL/"
+# No --chown: openrsync lacks it. Ownership is fixed remotely below.
+rsync -az --delete -e "$RSYNC_SSH" "$DIST/" "$HOST:$SITE/$REL/"
 
 echo "==> Switching public -> $REL"
 remote "set -e; cd $SITE
