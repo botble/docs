@@ -25,7 +25,14 @@ Open a request with the eye icon to see the amount, payment method and the payme
 - **Approve** — after you have sent the money.
 - **Reject** — optionally enter a reason, then confirm. The amount is returned to the affiliate's balance; the reason is shown in the affiliate's withdrawal history and included in the *Withdrawal Request Rejected* email.
 
-Approving and rejecting requires the `affiliate.withdrawals.edit` permission.
+For PayPal and Stripe requests (see [Automatic Payouts](#automatic-payouts)) the page also has:
+
+- **Mark as paid** — approves the request **without** sending money through PayPal/Stripe. Use it when you paid the affiliate yourself, or when you confirmed in PayPal/Stripe that a payout reported as *unconfirmed* did go out. You can enter the payment reference; it is stored as the transaction ID.
+- **Change PayPal email** — fixes the PayPal address of a pending PayPal request (for example after PayPal returned a payout sent to a wrong address). The next approval pays the new address.
+
+The **Payout history** on the request lists every automatic payout problem (failed, unconfirmed, returned by PayPal) and every manual action, with its date — it stays after the request is reopened or approved.
+
+Approving, rejecting, marking as paid and changing the PayPal email require the `affiliate.withdrawals.edit` permission.
 
 ## Payment Methods
 
@@ -56,7 +63,9 @@ With the **PayPal Payout** or **Stripe Connect** plugin active (both ship with B
 If the payout succeeds, the request is approved and the payout ID (Stripe `tr_…` transfer or PayPal batch ID) is stored as its transaction ID. If it fails, the request goes back to **Pending** and the error shows the reason given by PayPal or Stripe (for example *insufficient available funds*). Fix the cause and click **Approve** again, or **Reject** it to return the amount to the affiliate.
 
 ::: warning
-While PayPal Payout or Stripe Connect is active, **Approve** always sends the money through PayPal/Stripe — do not pay the affiliate yourself and then approve. If PayPal does not answer (timeout), the error says the payout *may* have been sent: click **Approve** again to check it with PayPal, and do not reject the request until then.
+While PayPal Payout or Stripe Connect is active, **Approve** always sends the money through PayPal/Stripe. If you paid the affiliate yourself, use **Mark as paid** instead.
+
+If PayPal or Stripe does not answer (timeout), the error says the payout *may* have been sent and the request shows an *unconfirmed payout* notice: click **Approve** again to check it with the gateway, and do not reject the request until then. PayPal can only detect a repeated payout for 30 days: after that, **Approve** refuses to resend it — check the payout in your PayPal account, then use **Mark as paid** if it was paid, or **Reject** if it was not.
 :::
 
 A request is never paid twice: approving it again, or retrying after a timeout where the payment actually went through, reuses the existing transfer or batch instead of sending a new one. A request cannot be rejected while its payout is being sent.

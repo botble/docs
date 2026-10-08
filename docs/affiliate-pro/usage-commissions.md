@@ -27,7 +27,9 @@ The affiliate must be **Approved**. Self-referrals are always blocked: an affili
 | Order **return completed** | The returned share of the commission is reversed. A partial return reverses only that part |
 | Order **refunded** (admin refund or gateway refund) | The refunded share of the commission is reversed; a full refund reverses it completely |
 
-Returned items reverse the commission they earned (each order line's own commission, so returning a 0% item reverses nothing). A refund that only pays back returned items reverses nothing more; only money refunded beyond the returned items reduces the rest of the commission. Refunds made directly at the payment gateway (for example in the Stripe dashboard) are picked up too when the gateway reports them.
+Returned items reverse the commission they earned (each order line's own commission, so returning a 0% item reverses nothing). A refund that only pays back returned items reverses nothing more; only money refunded beyond the returned items reduces the rest of the commission. Refunds made directly at the payment gateway are picked up too when the gateway reports them — including partial refunds made in the Stripe Dashboard, whose refunded amount is now recorded on the payment.
+
+If a payment is marked **Refunding** without a refunded amount (set by hand, or by a gateway that does not report the amount), the commission cannot be adjusted automatically: it is **not** approved automatically, and admins get a notification to review it and approve, adjust or reject it.
 
 When a commission is approved, the amount is added to the affiliate's balance and total commission, the affiliate may move up a [member level](./usage-member-levels.md), and the *New Commission Earned* email is sent. Commissions of banned or suspended affiliates are not credited; they stay **Pending**.
 
