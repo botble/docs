@@ -53,7 +53,7 @@ Each style is a CSS-variable variant applied via a `body.lf-style-{key}` class. 
 
 ### Indigo Bold
 **Palette:** Deep indigo `#4f46e5` + amber `#f59e0b` on white.
-**Vibe:** Premium / SaaS — best for digital products, software, premium services.
+**Vibe:** Premium / SaaS — best for digital products, software, premium services. Digital products are fully supported; see [Checkout & COD](/landing-funnel/usage/checkout-and-cod#digital-products).
 
 ### Emerald Fresh
 **Palette:** Emerald `#059669` + coral `#ef4444` on mint cream `#f7fdf9`.

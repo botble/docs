@@ -52,11 +52,23 @@ This page covers the issues that come up most often when working with Landing Fu
 
 The funnel form auto-renders email as required-or-optional based on the store config.
 
-## "Digital products are not supported on this funnel"
+## Digital product: no download links on the thank-you page
 
-**Cause:** The product linked to the funnel is digital. Digital products force a customer login at checkout (Ecommerce constraint), which is incompatible with the funnel UX.
+**Cause:** Downloads and license codes unlock only after payment is confirmed. Offline methods (bank transfer) stay pending until you mark the payment as completed.
 
-**Fix:** Use a physical product. For selling digital products, set up a normal Botble product page with the standard add-to-cart flow.
+**Fix:** Confirm the payment in **Admin > Ecommerce > Orders**. The links then appear on the thank-you page and in the order email. For instant delivery, set the funnel's **Payment method** to an online gateway.
+
+## Digital product: customer is asked to log in at checkout
+
+**Cause:** Digital products are not enabled in your store, so the funnel falls back to the standard rules.
+
+**Fix:** Enable digital products in **Admin > Ecommerce > Settings**. The funnel then lets guests check out digital products without logging in.
+
+## "Cash on delivery is not available for digital products"
+
+**Cause:** The funnel sells a digital product. Botble Ecommerce never offers cash on delivery for digital-only carts, so COD is hidden and rejected if forced.
+
+**Fix:** Enable at least one other payment method (an online gateway is best) and choose it in the funnel's **Checkout** tab. If COD is your only enabled method, digital funnels have no way to pay. See [Checkout & COD](/landing-funnel/usage/checkout-and-cod#digital-products).
 
 ## Country / state asks for input on the checkout page
 

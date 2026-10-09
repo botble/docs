@@ -60,20 +60,30 @@ If `email` is optional in your store, the funnel form shows it as optional too â
 
 ## Digital Products
 
-The funnel flow does **not** support digital products. Digital products in Botble force a login at the standard checkout (`EcommerceHelper::canCheckoutForDigitalProducts()` requires an authenticated customer).
+Funnels support digital products (downloads and license codes).
 
-If the funnel's product is digital, the `prepare` endpoint returns:
+**Requirements**
 
-```json
-{
-  "message": "This funnel is not available for digital products. Please contact support."
-}
-```
+- Enable digital products in **Admin > Ecommerce > Settings**.
+- Link the digital product to the funnel as usual. Marketplace vendors can use digital products when the store allows them.
 
-with HTTP 422. Visitors see an inline error on the form.
+**What changes for the visitor**
 
-::: warning
-Plan ahead: if you want to sell a digital product, set up a normal Botble product page with the standard add-to-cart flow. Landing Funnel is for physical, COD-friendly products.
+- **Guest checkout:** no login is required. The funnel overrides the store's login rule for digital-only carts.
+- **Form:** the embedded form asks for name and email (phone optional) and hides address and shipping fields.
+- **Copy:** bundled templates show instant-access wording (badges, trust strip, FAQ) instead of delivery and returns.
+
+**Payment**
+
+- Cash on delivery is never offered for digital-only carts (a Botble Ecommerce rule), and a forced COD request is rejected with a validation message. Enable at least one other payment method - ideally an online gateway, so downloads unlock right after payment.
+- Set the funnel's **Payment method** (Checkout tab) to an online gateway.
+
+**Downloads**
+
+Download links and license codes appear on the thank-you page and in the order email only after payment is confirmed. For offline methods, they unlock once you mark the payment completed.
+
+::: tip
+Copy you author in the funnel content always overrides the built-in digital wording.
 :::
 
 ## Attribution Cache
