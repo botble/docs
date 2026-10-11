@@ -300,5 +300,5 @@ Current list:
 
 ## Examples
 
-POS Pro, Affiliate Pro, E-Wallet, Loyalty Points, Live Chat and SMS Gateways implement
+POS Pro, Affiliate Pro, E-Wallet, Loyalty Points, Live Chat, SMS Gateways, Product Gifts (1.0.7+) and Wholesale (1.0.17+) implement
 this contract — see [Add-ons](./addons-overview.md).

@@ -44,6 +44,8 @@ for a store whose plan includes nothing from the catalog.
 - **Loyalty Points** — points and member levels
 - **Live Chat** — storefront chat widget
 - **SMS Gateways** — SMS and OTP
+- **Product Gifts** — free gifts with purchase
+- **Wholesale** — B2B customer groups and pricing
 
 See [Add-ons Overview](./addons-overview.md) for more details on each add-on.
 

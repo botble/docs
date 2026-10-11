@@ -65,6 +65,8 @@ export default [
       { text: 'Loyalty Points', link: '/ecommerce-saas/addons-loyalty-points' },
       { text: 'Live Chat', link: '/ecommerce-saas/addons-live-chat' },
       { text: 'SMS Gateways', link: '/ecommerce-saas/addons-sms-gateways' },
+      { text: 'Product Gifts', link: '/ecommerce-saas/addons-product-gifts' },
+      { text: 'Wholesale', link: '/ecommerce-saas/addons-wholesale' },
       { text: 'Developer Contract', link: '/ecommerce-saas/addons-developer-contract' },
       { text: 'Payment Gateways', link: '/ecommerce-saas/payment-gateways' },
     ],

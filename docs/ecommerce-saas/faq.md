@@ -91,6 +91,8 @@ Yes. On the operator console's **Stores** list, **Log in as owner** generates a 
 - [Loyalty Points](./addons-loyalty-points.md) — points and member levels
 - [Live Chat](./addons-live-chat.md) — storefront chat widget
 - [SMS Gateways](./addons-sms-gateways.md) — SMS and OTP
+- [Product Gifts](./addons-product-gifts.md) — free gifts with purchase
+- [Wholesale](./addons-wholesale.md) — B2B customer groups and pricing
 
 See [Add-ons](./addons-overview.md) for installation, licensing, and per-store setup. Platform-side add-on support ships in 1.0.2.
 

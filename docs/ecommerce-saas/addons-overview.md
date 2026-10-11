@@ -5,10 +5,10 @@ description: Extend your platform with add-on plugins such as POS Pro, E-Wallet 
 
 # Add-ons
 
-An add-on is a Botble plugin sold separately from the platform. Six add-ons implement the
+An add-on is a Botble plugin sold separately from the platform. Eight add-ons implement the
 platform's [add-on contract](./addons-developer-contract.md), so they behave correctly on
-a multi-store install: POS Pro, Affiliate Pro, E-Wallet, Loyalty Points, Live Chat and
-SMS Gateways.
+a multi-store install: POS Pro, Affiliate Pro, E-Wallet, Loyalty Points, Live Chat,
+SMS Gateways, Product Gifts and Wholesale.
 
 ::: info Requires Ecommerce SaaS 1.0.2 or later
 Platform-side add-on support (the **Add-ons** console screen, per-store add-on cron, the
@@ -59,6 +59,8 @@ switches off apps a store's plan no longer includes.
 | [Loyalty Points](./addons-loyalty-points.md) | Points on purchases, redemption, member levels | Loyalty settings and levels, per store |
 | [Live Chat](./addons-live-chat.md) | Storefront chat widget with agents | Chat settings and agents, per store |
 | [SMS Gateways](./addons-sms-gateways.md) | SMS and OTP through several providers | Provider credentials and templates, per store |
+| [Product Gifts](./addons-product-gifts.md) | Free gifts with purchase on products, carts and checkout | Gift rules and display settings, per store |
+| [Wholesale](./addons-wholesale.md) | B2B customer groups, tiered pricing and minimum order quantities | Wholesale settings and groups, per store |
 
 ## Minimum versions for SaaS mode
 
@@ -68,6 +70,8 @@ switches off apps a store's plan no longer includes.
 - **Loyalty Points 1.0.20+**
 - **Live Chat 1.0.10+**
 - **SMS Gateways 1.0.36+**
+- **Product Gifts 1.0.7+**
+- **Wholesale 1.0.17+**
 
 Older builds do not ask the platform the contract's questions, so they keep showing
 licence screens to stores and register their cron on the central scheduler.

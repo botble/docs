@@ -92,13 +92,15 @@ The platform's screens ship in 43 languages:
 
 ### Marketplace add-ons
 
-Six add-ons implement the platform's add-on contract:
+Eight add-ons implement the platform's add-on contract:
 - **POS Pro** — point of sale in the store admin
 - **E-Wallet** — customer wallets and gift cards
 - **Affiliate Pro** — affiliate programs
 - **Loyalty Points** — points and member levels
 - **Live Chat** — chat widget on the storefront
 - **SMS Gateways** — SMS and OTP
+- **Product Gifts** — free gifts with purchase
+- **Wholesale** — B2B customer groups, tiered pricing and minimum order quantities
 
 The operator licenses each once, centrally. Each store toggles it on/off within its plan. The platform side of this ships in 1.0.2. See [Add-ons](./addons-overview.md).
 
