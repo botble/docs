@@ -80,7 +80,7 @@ Funnels support digital products (downloads and license codes).
 
 **Downloads**
 
-Download links and license codes appear on the thank-you page and in the order email only after payment is confirmed. For offline methods, they unlock once you mark the payment completed.
+Download links only work once payment is confirmed, and they are also sent in the order email. For offline methods, they unlock once you mark the payment completed. The funnel's custom thank-you page shows the links and license codes only after confirmation; a funnel without custom thank-you content sends buyers to the standard order success page, which may show the buttons earlier, so set thank-you content on digital funnels.
 
 ::: tip
 Copy you author in the funnel content always overrides the built-in digital wording.
