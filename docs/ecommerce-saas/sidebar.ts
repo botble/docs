@@ -22,6 +22,7 @@ export default [
       { text: 'Installing from the CLI', link: '/ecommerce-saas/installation' },
       { text: 'Wildcard DNS and TLS', link: '/ecommerce-saas/installation-dns-tls' },
       { text: 'Queue worker and cron', link: '/ecommerce-saas/cronjob' },
+      { text: 'Outgoing email (SMTP)', link: '/ecommerce-saas/email' },
       { text: 'Environment reference', link: '/ecommerce-saas/environment' },
       { text: 'How it works', link: '/ecommerce-saas/architecture' },
     ],

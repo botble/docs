@@ -44,7 +44,8 @@ request costs real, unrecoverable resources.
 ::: warning Check mail before disabling verification
 `tenancy:preflight` fails if verification is on and mail goes nowhere (`log` or
 `array` mailer) — otherwise every signup stops at "check your email" and no store can
-ever be created. Run it after any mail configuration change.
+ever be created. Preflight does not connect to your SMTP server, so also send a real test
+email. See [Outgoing email (SMTP)](./email.md).
 :::
 
 Set `TENANCY_SIGNUP_VERIFY_EMAIL=false` to provision immediately on submit instead —

@@ -165,6 +165,18 @@ The **browser installer does not use this seeder at all** — it takes a real na
 email and password from you during setup. These variables are the CLI path.
 :::
 
+## Mail
+
+Full setup and testing steps: [Outgoing email (SMTP)](./email.md).
+
+| Variable | Default | Description |
+|---|---|---|
+| `CMS_ENABLE_EMAIL_CONFIGURATION_FROM_ADMIN_PANEL` | `true` (`.env.example` sets `false`) | **Set to `false`.** Otherwise Botble reads mail settings from an admin screen nobody on the platform can open, and replaces `MAIL_MAILER` with `sendmail` |
+| `MAIL_MAILER` | `log` (`.env.example` sets `sendmail`) | `smtp` for real delivery. `sendmail` only works if the server has a local mail server |
+| `MAIL_HOST` / `MAIL_PORT` | `127.0.0.1` / `2525` | Your SMTP server. Port 587 uses STARTTLS and port 465 uses SSL, both automatically |
+| `MAIL_USERNAME` / `MAIL_PASSWORD` | (empty) | SMTP login |
+| `MAIL_FROM_ADDRESS` / `MAIL_FROM_NAME` | `hello@example.com` / `APP_NAME` | Sender for every email, including the ones stores send |
+
 ## Variables you must NOT set
 
 | Variable | Why not |
@@ -210,6 +222,15 @@ CASHIER_CURRENCY=usd
 
 TENANCY_API_ENABLED=true
 TENANCY_WEBHOOK_TIMEOUT=10
+
+CMS_ENABLE_EMAIL_CONFIGURATION_FROM_ADMIN_PANEL=false
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.yourprovider.com
+MAIL_PORT=587
+MAIL_USERNAME=info@yourdomain.com
+MAIL_PASSWORD=<secure>
+MAIL_FROM_ADDRESS=info@yourdomain.com
+MAIL_FROM_NAME="My Platform"
 
 OPERATOR_ADMIN_EMAIL=you@yourdomain.com
 OPERATOR_ADMIN_USERNAME=yourusername
