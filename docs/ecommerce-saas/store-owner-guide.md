@@ -145,7 +145,9 @@ permissions alone:
   files (only its own **Themes** screen, scoped to the catalog).
 - **No platform-owner Settings sections** — SMTP email, Media, Cache and License
   settings stay with the platform owner; the store keeps its own general, appearance,
-  phone-number and (after 1.0.2) email template settings.
+  phone-number settings and, after 1.0.2, their email templates and a Google Analytics
+  (GA4) measurement ID under **Settings → Website Tracking**. Tag Manager and custom
+  tracking code are not available in stores.
 
 ## Everything else is stock Botble
 
