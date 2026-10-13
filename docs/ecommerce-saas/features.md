@@ -54,7 +54,7 @@ Store owners log into their own **Store admin** (not the central console) and ru
 | **Domains** | Connect and verify custom domains; the platform subdomain always keeps working |
 | **Billing** | Subscribe, change plan, download invoices, manage card details in the Stripe Billing Portal, or pay by bank transfer or (from 1.0.2) PayPal, Razorpay, Paystack or Mollie |
 | **Payment Methods** | Configure Stripe, PayPal, Mollie, Razorpay, and other checkout gateways for their storefront |
-| **Settings** | Store details, appearance and shipping settings (email, media and cache settings stay with the platform owner) |
+| **Settings** | Store details, appearance and shipping settings (SMTP email, media and cache settings stay with the platform owner; email templates are per store) |
 
 ![Operator console API keys](./images/operator-api-keys.png)
 

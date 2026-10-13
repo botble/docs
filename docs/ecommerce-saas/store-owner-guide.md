@@ -143,9 +143,9 @@ permissions alone:
   the shared server, not a single store's data.
 - **No Theme code screen** — cannot install, remove or switch a theme's underlying
   files (only its own **Themes** screen, scoped to the catalog).
-- **No platform-owner Settings sections** — Email, Media, Cache and License settings
-  stay with the platform owner; the store keeps its own general, appearance and
-  phone-number settings.
+- **No platform-owner Settings sections** — SMTP email, Media, Cache and License
+  settings stay with the platform owner; the store keeps its own general, appearance,
+  phone-number and (after 1.0.2) email template settings.
 
 ## Everything else is stock Botble
 
@@ -168,7 +168,7 @@ ships in the box).
 
 **What they cannot access:**
 - Platform owner console (Operator screens)
-- System administration (plugins, cache, backups), and the Email and Media settings
+- System administration (plugins, cache, backups), and the SMTP email and Media settings
 - License management
 - Platform-wide settings
 

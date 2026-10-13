@@ -16,10 +16,29 @@ server, so until this is done:
 ## One mailbox for the whole platform
 
 Every email goes through the SMTP account you set in `.env`. That covers the platform's own emails
-and every email any store sends. Store owners cannot set their own SMTP server. The Email settings
+and every email any store sends. Store owners cannot set their own SMTP server. The SMTP settings
 screen is removed from every store's admin.
 
 Each store's emails use your `MAIL_FROM_ADDRESS` and `MAIL_FROM_NAME` as the sender.
+
+## Order emails in each store
+
+In releases after 1.0.2, every store starts with these emails switched on:
+
+- order confirmation to the buyer
+- new order alert to the store owner
+- order delivered
+- order cancelled by the buyer (alert to the store owner)
+
+The store owner's alerts go to the email they signed up with. They can change it under
+**Settings → General → Admin Email**.
+
+Store owners can switch each email on or off and edit its subject and wording under
+**Settings → Email templates**. Changes only affect their own store.
+
+Stores created before this change get the same defaults once, when you run the platform update
+(**Console → System update**, or `php artisan tenancy:migrate-tenants`). An admin email the owner
+already entered is kept.
 
 ## 1. Add the SMTP settings to `.env`
 
@@ -95,6 +114,13 @@ tail -n 50 storage/logs/*.log
 ```
 
 Fix the cause, then send the failed emails again with `php artisan queue:retry all`.
+
+::: warning Emails that failed before you switched to SMTP
+A queued email keeps the name of the mailer that was active when it was queued. If emails failed
+while the platform was still on `sendmail`, `queue:retry` sends them through `sendmail` again and
+they fail again. Retry only works for emails that failed after the SMTP settings were in place,
+for example after a password change.
+:::
 
 ::: tip Preflight does not prove delivery
 `php artisan tenancy:preflight` shows the mailer actually in use. It fails when mail is set to
