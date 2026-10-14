@@ -22,7 +22,7 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
 
 * **3 Homepage Presets** - Creative Studio, Modern Agency and Digital Startup, selected during installation
 * **25 UI Blocks (Shortcodes) with 85 Style Variants** - page heroes, about, features, portfolio projects, services, team, testimonials, FAQs, pricing, process steps, calls to action, blog, careers and contact
-* **8 Project Layouts** - including a full-screen showcase, three WebGL layouts and a filterable grid
+* **9 Project Layouts** - including a full-screen showcase, three WebGL layouts and a filterable grid
 * **5 Header Styles + 3 Footer Styles** - set site-wide in Theme Options and overridden per page
 * **Overlay Menu** - full-screen navigation with a preview image per link
 * **Dark Mode / Light Mode** - default mode set in Theme Options, optional visitor switcher
@@ -56,6 +56,7 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
 - [Team](./usage-team.md)
 - [Careers](./usage-careers.md)
 - [Widgets](./usage-widgets.md)
+- [FAQ & Troubleshooting](./faq.md)
 - [Upgrade Guide](./upgrade.md)
 - [Release Notes](./releases.md)
 

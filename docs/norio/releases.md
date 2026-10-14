@@ -5,7 +5,7 @@
 - Initial release
 - 3 homepage presets: Creative Studio, Modern Agency, Digital Startup
 - 25 UI blocks (shortcodes) with 85 style variants
-- 8 project layouts, including WebGL showcase layouts
+- 9 project layouts, including WebGL showcase layouts
 - 5 header styles and 3 footer styles, with a per-page override
 - Overlay menu with a preview image per link
 - Dark mode / light mode (system, light or dark default) with optional visitor switcher

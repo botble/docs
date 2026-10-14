@@ -33,10 +33,10 @@ Norio has **25 shortcodes with 85 style variants**.
 | `process-steps` | 6 | Numbered process or how-we-work steps | - |
 | `service-cards` | 3 | Grid of linked cards | - |
 | `content-block` | 3 | Numbered rules, clauses or policy text | - |
-| `content-checklist` | 1 | Headline with a checked list | - |
-| `call-to-action` | 10 | Call to action sections | - |
-| `faqs` | 3 | FAQ accordion, filtered by FAQ category | FAQ |
-| `projects` | 8 | Portfolio projects in grid, list, slider and WebGL layouts | Portfolio |
+| `content-checklist` | 3 | Headline with a checked list | - |
+| `call-to-action` | 11 | Call to action sections | - |
+| `faqs` | 4 | FAQ accordion, filtered by FAQ category | FAQ |
+| `projects` | 9 | Portfolio projects in grid, list, slider and WebGL layouts | Portfolio |
 | `services` | 4 | Services list | Portfolio |
 | `pricing-plans` | 3 | Pricing plans (repeater based) | - |
 | `testimonials` | 3 | Client testimonials | Testimonial |
@@ -60,6 +60,7 @@ Blocks that show a section heading share four title fields: **Section number** (
 | 6 | WebGL gallery |
 | 7 | WebGL rail |
 | 8 | Filterable grid by category and year |
+| 9 | Two-column project cards without a button (used for a team member's selected work) |
 
 ::: warning
 The WebGL styles (5 to 7) load project images as textures. Use images from the media library on your own server. Remote images need CORS headers, or they will not show.
@@ -153,25 +154,25 @@ Numbered rules, clauses or policy text (3 styles).
 
 ### content-checklist
 
-Headline with a checked list (1 style).
+Headline with a checked list (3 styles).
 
 ![content-checklist](./images/ui-blocks/content-checklist.png)
 
 ### call-to-action
 
-Call to action sections (10 styles).
+Call to action sections (11 styles).
 
 ![call-to-action](./images/ui-blocks/call-to-action.png)
 
 ### faqs
 
-FAQ accordion, filtered by FAQ category (3 styles).
+FAQ accordion, filtered by FAQ category (4 styles).
 
 ![faqs](./images/ui-blocks/faqs.png)
 
 ### projects
 
-Portfolio projects in grid, list, slider and WebGL layouts (8 styles).
+Portfolio projects in grid, list, slider and WebGL layouts (9 styles).
 
 ![projects](./images/ui-blocks/projects.png)
 

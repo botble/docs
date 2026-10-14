@@ -7,6 +7,7 @@ export default [
     items: [
       { text: 'Release Notes', link: '/norio/releases' },
       { text: 'Upgrade Guide', link: '/norio/upgrade' },
+      { text: 'FAQ', link: '/norio/faq' },
     ],
   },
   {
