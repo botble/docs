@@ -131,7 +131,7 @@ Contact us via email at contact@botble.com if you have any questions about licen
 
 If your business model changes and you start charging users, you'll need to upgrade from a Regular License to an Extended License:
 
-1. Purchase an Extended License from [CodeCanyon](https://codecanyon.net/item/botble-cms-php-platform-based-on-laravel-framework/16928182)
+1. Purchase an Extended License from [CodeCanyon](https://codecanyon.net/item/norio-creative-digital-agency-portfolio-laravel-script/65532946)
 2. Contact us at contact@botble.com with both your Regular and Extended License purchase codes
 3. We'll help you transition to the Extended License
 
