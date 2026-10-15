@@ -45,6 +45,16 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
 | Digital Startup | <https://norio-home-3.botble.com> |
 | Admin Panel | <https://norio.botble.com/admin> |
 
+## Video Overview
+
+A 4-minute tour of the three homepages, inner pages, dark mode, RTL, mobile layout, the Visual Page Builder and Theme Options.
+
+<div style="position: relative; aspect-ratio: 16 / 9; margin: 16px 0;">
+  <iframe style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" src="https://www.youtube-nocookie.com/embed/IDVng0W99Os?rel=0" title="Norio overview video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+
+Watch on YouTube: <https://youtu.be/IDVng0W99Os>
+
 ## Quick Links
 
 - [Homepage setup](./usage-homepage.md)
