@@ -33,7 +33,7 @@ If you are using the sample data of **Orisa**, the homepage is already created a
 
 ## Homepage Demo Presets
 
-Orisa ships with **5 homepage demo presets**. You choose one when installing the script.
+Orisa ships with **15 homepage demo presets**. You choose one when installing the script.
 
 | # | Preset Name | Description |
 |---|-------------|-------------|
@@ -42,6 +42,16 @@ Orisa ships with **5 homepage demo presets**. You choose one when installing the
 | 3 | **Marketing Agency** | CTA-focused design with pricing plans and blog posts |
 | 4 | **AI & Tech** | Futuristic style with gradient accents and skills carousel |
 | 5 | **Personal Creative** | Minimal portfolio layout with social links and about section |
+| 6 | **Branding Studio** | Giant wordmark hero, stacking philosophy cards, case studies and brand awards |
+| 7 | **Startup Agency** | Split-color hero, hamburger inline menu, service accordion with physics capsules |
+| 8 | **Interactive Studio** | Parallax photo hero, keyword marquee, pinned testimonial stage |
+| 9 | **Modern Agency** | Oversized type hero, filterable work grid, team list with hover previews |
+| 10 | **3D Studio** | Video hero with cursor image trail, pinned services and staggered team |
+| 11 | **Motion Studio** | Full-bleed video hero with reel modal, depth service cards, scroll-driven CTA |
+| 12 | **Minimal Portfolio** | Centered hero with tile marquee, stacking projects, pricing and FAQ |
+| 13 | **Architecture Studio** | Slider hero with service thumbs, project spec sheets, process timeline |
+| 14 | **Photography Studio** | Editorial hero, filterable gallery archive, press & awards ticker |
+| 15 | **Fashion Agency** | Ripple hero card, 3D sticky project stack, flipping team cards |
 
 ### Choosing a Demo
 
@@ -57,6 +67,22 @@ Each demo is a complete database dump shipped in the `database/sample/` folder o
 | **Marketing Agency** | `database-orisa-marketing-agency.sql` |
 | **AI & Tech** | `database-orisa-ai-tech-agency.sql` |
 | **Personal Creative** | `database-orisa-personal-creative.sql` |
+| **Branding Studio** | `database-orisa-branding-studio.sql` |
+| **Startup Agency** | `database-orisa-startup-agency.sql` |
+| **Interactive Studio** | `database-orisa-interactive-studio.sql` |
+| **Modern Agency** | `database-orisa-modern-agency.sql` |
+| **3D Studio** | `database-orisa-3d-studio.sql` |
+| **Motion Studio** | `database-orisa-motion-studio.sql` |
+| **Minimal Portfolio** | `database-orisa-minimal-portfolio.sql` |
+| **Architecture Studio** | `database-orisa-architecture-studio.sql` |
+| **Photography Studio** | `database-orisa-photography-studio.sql` |
+| **Fashion Agency** | `database-orisa-fashion-agency.sql` |
+
+::: tip
+Every preset is built from the same UI Blocks. Each new preset adds styles to existing blocks (for example
+**Hero Banner** styles 7–16), so you can mix sections from different presets on any page. Header and footer
+layouts are chosen in `Appearance` -> `Theme Options` -> `Header` / `Footer`.
+:::
 
 ### Switching to a Different Demo
 
