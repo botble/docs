@@ -35,23 +35,23 @@ If you are using the sample data of **Orisa**, the homepage is already created a
 
 Orisa ships with **15 homepage demo presets**. You choose one when installing the script.
 
-| # | Preset Name | Description |
-|---|-------------|-------------|
-| 1 | **Creative Agency** | Bold hero with video background, service tags, and portfolio grid |
-| 2 | **Digital Agency** | Clean layout with animated stats and team showcase |
-| 3 | **Marketing Agency** | CTA-focused design with pricing plans and blog posts |
-| 4 | **AI & Tech** | Futuristic style with gradient accents and skills carousel |
-| 5 | **Personal Creative** | Minimal portfolio layout with social links and about section |
-| 6 | **Branding Studio** | Giant wordmark hero, stacking philosophy cards, case studies and brand awards |
-| 7 | **Startup Agency** | Split-color hero, hamburger inline menu, service accordion with physics capsules |
-| 8 | **Interactive Studio** | Parallax photo hero, keyword marquee, pinned testimonial stage |
-| 9 | **Modern Agency** | Oversized type hero, filterable work grid, team list with hover previews |
-| 10 | **3D Studio** | Video hero with cursor image trail, pinned services and staggered team |
-| 11 | **Motion Studio** | Full-bleed video hero with reel modal, depth service cards, scroll-driven CTA |
-| 12 | **Minimal Portfolio** | Centered hero with tile marquee, stacking projects, pricing and FAQ |
-| 13 | **Architecture Studio** | Slider hero with service thumbs, project spec sheets, process timeline |
-| 14 | **Photography Studio** | Editorial hero, filterable gallery archive, press & awards ticker |
-| 15 | **Fashion Agency** | Ripple hero card, 3D sticky project stack, flipping team cards |
+| # | Preset Name | Description | Demo |
+|---|-------------|-------------|------|
+| 1 | **Creative Agency** | Bold hero with video background, service tags, and portfolio grid | [View](https://orisa.botble.com) |
+| 2 | **Digital Agency** | Clean layout with animated stats and team showcase | [View](https://orisa-home-2.botble.com) |
+| 3 | **Marketing Agency** | CTA-focused design with pricing plans and blog posts | [View](https://orisa-home-3.botble.com) |
+| 4 | **AI & Tech** | Futuristic style with gradient accents and skills carousel | [View](https://orisa-home-4.botble.com) |
+| 5 | **Personal Creative** | Minimal portfolio layout with social links and about section | [View](https://orisa-home-5.botble.com) |
+| 6 | **Branding Studio** | Giant wordmark hero, stacking philosophy cards, case studies and brand awards | [View](https://orisa-home-6.botble.com) |
+| 7 | **Startup Agency** | Split-color hero, hamburger inline menu, service accordion with physics capsules | [View](https://orisa-home-7.botble.com) |
+| 8 | **Interactive Studio** | Parallax photo hero, keyword marquee, pinned testimonial stage | [View](https://orisa-home-8.botble.com) |
+| 9 | **Modern Agency** | Oversized type hero, filterable work grid, team list with hover previews | [View](https://orisa-home-9.botble.com) |
+| 10 | **3D Studio** | Video hero with cursor image trail, pinned services and staggered team | [View](https://orisa-home-10.botble.com) |
+| 11 | **Motion Studio** | Full-bleed video hero with reel modal, depth service cards, scroll-driven CTA | [View](https://orisa-home-11.botble.com) |
+| 12 | **Minimal Portfolio** | Centered hero with tile marquee, stacking projects, pricing and FAQ | [View](https://orisa-home-12.botble.com) |
+| 13 | **Architecture Studio** | Slider hero with service thumbs, project spec sheets, process timeline | [View](https://orisa-home-13.botble.com) |
+| 14 | **Photography Studio** | Editorial hero, filterable gallery archive, press & awards ticker | [View](https://orisa-home-14.botble.com) |
+| 15 | **Fashion Agency** | Ripple hero card, 3D sticky project stack, flipping team cards | [View](https://orisa-home-15.botble.com) |
 
 ### Choosing a Demo
 

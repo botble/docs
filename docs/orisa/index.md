@@ -50,6 +50,16 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
 | Home 3 – Marketing Agency | <https://orisa-home-3.botble.com> |
 | Home 4 – AI & Tech Agency | <https://orisa-home-4.botble.com> |
 | Home 5 – Personal Creative | <https://orisa-home-5.botble.com> |
+| Home 6 – Branding Studio | <https://orisa-home-6.botble.com> |
+| Home 7 – Startup Agency | <https://orisa-home-7.botble.com> |
+| Home 8 – Interactive Studio | <https://orisa-home-8.botble.com> |
+| Home 9 – Modern Agency | <https://orisa-home-9.botble.com> |
+| Home 10 – 3D Studio | <https://orisa-home-10.botble.com> |
+| Home 11 – Motion Studio | <https://orisa-home-11.botble.com> |
+| Home 12 – Minimal Portfolio | <https://orisa-home-12.botble.com> |
+| Home 13 – Architecture Studio | <https://orisa-home-13.botble.com> |
+| Home 14 – Photography Studio | <https://orisa-home-14.botble.com> |
+| Home 15 – Fashion Agency | <https://orisa-home-15.botble.com> |
 | Admin Panel | <https://orisa.botble.com/admin> |
 
 Admin account: `admin` / `12345678` (username & password are autofilled)
