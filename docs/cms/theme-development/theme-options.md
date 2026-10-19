@@ -130,6 +130,35 @@ Theme::setOption('option_name', 'option_value');
 Theme::saveOptions(); // Save to database
 ```
 
+### Conditional Fields (show / hide)
+
+A field can be shown only while another option has a given value. In the admin it is hidden on page load when the condition fails, and it shows or hides immediately as the controlling field changes, before saving. A hidden field keeps its saved value; hiding only affects the screen.
+
+```php
+// Object-oriented
+NumberFieldOption::make()
+    ->name('lazy_load_skip_first')
+    ->label('Load first N listing images immediately')
+    ->showWhen('lazy_load_images', '1');
+
+// Array-based
+ThemeOption::setField([
+    'id' => 'lazy_load_type',
+    'section_id' => 'opt-text-subsection-general',
+    'type' => 'customSelect',
+    'label' => 'Lazy load type',
+    'show_when' => ['lazy_load_images' => '1'],
+    'attributes' => [/* ... */],
+]);
+```
+
+Rules:
+
+- The key is the controlling option's **name**; the value is the expected value. An on/off toggle is `'1'` (on) or `'0'` (off).
+- Pass an array to accept several values: `'show_when' => ['lazy_load_type' => ['balanced', 'max_savings']]`.
+- Several keys must **all** match: `['lazy_load_images' => '1', 'lazy_load_type' => 'max_savings']`. Calling `->showWhen()` more than once does the same.
+- Works with toggles, selects, radios and text/number inputs, across sections. If the controlling option has never been saved, its default value is used.
+
 ## Supported Fields
 
 Botble CMS supports various field types for theme options. You can use either the object-oriented approach (recommended) or the array-based approach.

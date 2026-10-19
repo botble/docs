@@ -33,6 +33,25 @@ Toggle the page-load spinner in the **Miscellaneous** subsection (`preloader_ena
 
 ![Preloader](./images/theme-option-preloader.png)
 
+### Lazy load images
+
+**General → Lazy load images** delays off-screen images until the visitor scrolls near them. While an image is loading, its box shows an animated skeleton at the image's real size, so nothing jumps when the photo arrives.
+
+| Field | Default | Notes |
+|---|---|---|
+| Lazy load images | off | Master switch. |
+| Lazy load type | Balanced | **Balanced:** images load just before they scroll into view. **Maximum savings:** same, plus the hover (second) image of a product card only loads when a mouse moves over that card; touch screens never download it. **Browser native:** keeps the real image address and lets the browser decide (safest, smallest savings). |
+| Load first N listing images immediately | 4 | The first products of a shop/category page load right away, the very first with high priority, so the page's main image is never delayed. |
+| Lazy load placeholder image | empty | Optional. Shows a static image on the loading box instead of the skeleton. |
+
+Good to know:
+
+- Product grids loaded with AJAX (filters, sorting, **Load more**, infinite scroll, quick shop, the cart sidebar) get the same lazy loading and skeleton automatically.
+- Slider images load as a group when the slider comes near the screen, so changing slides never shows an empty box.
+- If the lazy-load script is blocked (an ad blocker or a strict security policy), images still load normally.
+- Search engines that run JavaScript (Google, Bing) see every image. If you rely on crawlers that do not run JavaScript, choose **Browser native**.
+- If you use **Settings → Cache** for shortcodes or widgets, cached sections refresh automatically when you change these options.
+
 ## Header
 
 14 layouts. Each `header_style` value maps to a Blade partial under `partials/header/styles/style-<n>.blade.php`.
