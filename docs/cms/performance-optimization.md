@@ -130,10 +130,13 @@ Images are usually the heaviest part of a page. Options, in order of effort:
 - Turn on **Convert image to WebP** on the same page to shrink new uploads.
 - Turn on **Reduce large image size** and set a max width/height so oversized originals are resized on upload.
 
-## 9. Cache full pages at the edge
+## 9. Cache full pages
 
-If your traffic is mostly anonymous visitors, full-page caching gives the largest win. See
-[Public Cache Control](/cms/usage-public-cache-control).
+If your traffic is mostly anonymous visitors, full-page caching gives the largest win.
+
+- **No CDN or server access (shared hosting):** turn on the built-in [Page Cache (Beta)](/cms/usage-page-cache). It
+  stores whole pages on disk and serves guests without rendering. Forms on cached pages keep working.
+- **With a CDN or Varnish:** see [Public Cache Control](/cms/usage-public-cache-control).
 
 Note that a page containing a CSRF-protected form (contact, inquiry, newsletter) emits a `Set-Cookie` header, and most
 CDNs refuse to cache such a response. Loading those forms over AJAX after the initial render lets the HTML stay
@@ -152,6 +155,7 @@ cacheable.
 ## Related
 
 - [Cache Management](/cms/cache-management)
+- [Page Cache (Beta)](/cms/usage-page-cache)
 - [Public Cache Control](/cms/usage-public-cache-control)
 - [Setup cronjob](/cms/cronjob)
 - [Troubleshooting](/cms/troubleshooting)

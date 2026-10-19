@@ -37,6 +37,7 @@ sets the cache driver — that is `CACHE_STORE` in `.env`.
 | Plugin cache | `On` | Cache the activated-plugin list. Leave on. |
 | Cache sitemap | `On` | Cache generated sitemap XML. Shown only when the sitemap is enabled. |
 | Sitemap cache time | `60` | Sitemap cache duration in minutes. |
+| Page cache (server-side) - Beta | `Off` | Store whole pages for guests and serve them without rendering. See [Page Cache](./usage-page-cache.md). |
 
 ::: warning Shortcode and widget caching hold stale output
 Once enabled, an edit to a shortcode or widget does not show on the frontend until its TTL expires or you clear the

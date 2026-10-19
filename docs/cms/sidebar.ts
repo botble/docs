@@ -39,6 +39,7 @@ export default [
           { text: 'Setup cronjob', link: '/cms/cronjob' },
           { text: 'Security Settings', link: '/cms/security-cookies' },
           { text: 'Setup CDN', link: '/cms/usage-setup-cdn' },
+          { text: 'Page Cache (Beta)', link: '/cms/usage-page-cache' },
           { text: 'Public Cache Control', link: '/cms/usage-public-cache-control' },
           { text: 'Cache Management', link: '/cms/cache-management' },
           { text: 'Performance Optimization', link: '/cms/performance-optimization' },
