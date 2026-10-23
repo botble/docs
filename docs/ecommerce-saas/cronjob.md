@@ -158,7 +158,7 @@ the catalog offers whose assets are missing.
 |---|---|---|
 | `tenancy:schedule --frequency=everyFiveMinutes` | every 5 min | Per-store scheduled tasks registered at that frequency never run for any store. |
 | `tenancy:schedule --frequency=hourly` | hourly | Per-store hourly maintenance never runs. |
-| `tenancy:schedule --frequency=daily` | daily | Per-store daily maintenance never runs. |
+| `tenancy:schedule --frequency=daily` | daily | Per-store daily maintenance never runs, and the platform licence is never re-checked, so Console -> License shows "Not verified" a week after activation. |
 | `tenancy:collect-usage` | daily | Dashboard usage counters (`tenant_usage`) go stale. |
 | `tenancy:billing-maintenance` | daily | Past-due stores are never suspended, cancelled stores are never purged past retention, and the daily MRR history point is never captured — the MRR chart cannot be back-filled. |
 | `tenancy:verify-domains` | every 10 min | Pending custom domains never become verified — they stay unroutable and get no TLS certificate. |
