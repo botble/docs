@@ -16,7 +16,7 @@ Click a conversation in the sidebar to load it. On mobile, the sidebar and chat 
 
 ## Replying
 
-Type your message in the input at the bottom of the chat panel and press **Enter** or click the send button. Messages appear instantly for both you and the visitor.
+Type your message in the box at the bottom of the chat panel and press **Enter** or click the send button. Press **Shift+Enter** to start a new line; the box grows as you type, and line breaks are kept in the sent message. Inserted snippets keep their line breaks too. Messages appear instantly for both you and the visitor.
 
 ## Closing Conversations
 

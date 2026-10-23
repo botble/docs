@@ -30,6 +30,23 @@ To populate sample conversations and webhooks for testing:
 php artisan db:seed --class="Botble\LiveChat\Database\Seeders\LiveChatSeeder"
 ```
 
+## Update
+
+Update from **Admin → Plugins** when a new version is available, or upload the new zip over the existing plugin. Then publish the new assets and clear the cache:
+
+```bash
+php artisan cms:publish:assets
+php artisan optimize:clear
+```
+
+If your site runs a queue worker (`QUEUE_CONNECTION` is not `sync`), restart it so it loads the new plugin code:
+
+```bash
+php artisan queue:restart
+```
+
+A queue worker is a long-running process and keeps the code it started with. Without a restart, queued jobs that need the updated code can fail until the worker is restarted. `queue:restart` lets each worker finish its current job and exit; your process manager (Supervisor, systemd, etc.) then starts it again with the new code.
+
 ## Uninstall
 
 Go to **Admin → Plugins**, find Live Chat, and click **Deactivate** then **Remove**. All data and settings will be deleted.

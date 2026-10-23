@@ -80,4 +80,5 @@ This works in all three interfaces: the visitor widget, admin messenger, and age
 | Key | Action |
 |-----|--------|
 | Enter | Send message |
+| Shift+Enter | New line in the message |
 | Escape | Close chat window |
