@@ -247,16 +247,20 @@ Before publishing, customize the app with your branding. Each step takes 5-15 mi
 
 You **must** change the default package identifiers before publishing. The defaults are `com.example.martfury` — these must be unique to your app.
 
-**Android** — edit `android/app/build.gradle.kts`:
+**Android** — edit `android/app/build.gradle.kts` and change **only** `applicationId`:
 
 ```kotlin
 android {
-    namespace = "com.yourcompany.yourstore"    // ← Change this
+    namespace = "com.example.martfury"    // ← Leave this unchanged
     defaultConfig {
         applicationId = "com.yourcompany.yourstore"  // ← Change this
     }
 }
 ```
+
+`applicationId` is the ID Google Play and Firebase use. `namespace` is internal and is never shown to users. Do **not** change `namespace`: `MainActivity.kt` lives in the `com.example.martfury` package, so a different namespace makes the app crash on launch (`ClassNotFoundException`).
+
+If you use Firebase, the Android package name you register there must match `applicationId`.
 
 **iOS** — open `ios/Runner.xcodeproj` in Xcode:
 1. Select the **Runner** target
