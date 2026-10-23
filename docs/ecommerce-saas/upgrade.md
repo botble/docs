@@ -94,13 +94,13 @@ Visitors see a 503 page. The queue worker continues to run, so avoid this during
 ### 2. Replace the source code
 
 ```bash
-# Pull from your repository or download the new version
+# Pull from your repository
 git pull origin main
-# OR
-unzip ecommerce-saas-1.x.x.zip
+# OR, from the downloaded package (main.zip is inside it), in your install folder
+unzip -o main.zip -x .env
 ```
 
-**Never overwrite your `.env` file** — the zip ships only `.env.example`, so unzipping over your install leaves it alone. If you do overwrite it, restore it from the backup above.
+**Never overwrite your `.env` file.** The zip includes a placeholder `.env` for fresh installs, so always extract with `-x .env` as shown. Without it, `unzip` replaces your live settings with the placeholder. If that happens, restore `.env` from the backup above.
 
 ### 3. Install dependencies (git clones only)
 
