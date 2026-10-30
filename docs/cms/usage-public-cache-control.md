@@ -8,7 +8,10 @@ The Public Cache Control feature overrides these headers for anonymous public pa
 
 ## Configuration
 
-Add the following to your `.env` file:
+Turn it on at **Admin → Settings → Cache → Public cache headers (CDN / reverse proxy)** and set **Public cache duration
+(seconds)**. Once saved there, the admin setting takes precedence over `.env`.
+
+Alternatively, set the defaults in your `.env` file:
 
 ```bash
 CMS_PUBLIC_CACHE_CONTROL_ENABLED=true
@@ -97,9 +100,17 @@ If using Cloudflare, you may need additional configuration since Cloudflare only
    - Cache eligibility: **Eligible for cache**
    - Edge TTL: **Use origin cache-control header**
 
-2. Or create a **Page Rule**:
-   - URL: `example.com/*`
-   - Cache Level: **Cache Everything**
+2. Add a cache **bypass** for requests carrying the `botble_session` cookie (or your `CMS_SESSION_COOKIE_KEY_NAME`
+   value). Without it, a logged-in customer can be served a guest's cached page.
+
+::: danger Never ignore Set-Cookie
+Do not configure Cloudflare, Varnish, or nginx (`fastcgi_ignore_headers Set-Cookie`) to ignore `Set-Cookie` or
+`Cache-Control`. The proxy would store one visitor's session cookie with the page and serve it to everyone else. This
+feature already removes cookies from pages that are safe to share.
+:::
+
+For an nginx FastCGI cache example and real-visitor-IP setup behind Cloudflare, see
+[Performance Optimization](/cms/performance-optimization).
 
 ## Performance Impact
 
