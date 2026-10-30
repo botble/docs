@@ -8,28 +8,52 @@
    ```
 
 2. **Configure Keystore**
-   Create/update `android/key.properties`:
+   Create/update `android/key.properties` (in `android/`, not `android/app/`):
    ```properties
    storePassword=<password>
    keyPassword=<password>
    keyAlias=upload
    storeFile=<path to keystore>
    ```
+   On Windows, use forward slashes in `storeFile` (e.g. `C:/Users/you/upload-keystore.jks`); backslashes are escape characters in a properties file.
 
-3. **Update build.gradle**
-   In `android/app/build.gradle`:
-   ```groovy
-   def keystoreProperties = new Properties()
-   def keystorePropertiesFile = rootProject.file('key.properties')
-   keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+3. **Update build.gradle.kts**
+   The app uses the Kotlin DSL. Edit `android/app/build.gradle.kts` in place; do not rename it to `build.gradle`, and do not paste Groovy syntax into it.
 
+   Add the imports at the top of the file (keep any that already exist):
+   ```kotlin
+   import java.io.FileInputStream
+   import java.util.Properties
+   ```
+
+   Load the keystore just above the `android {` block:
+   ```kotlin
+   val keystoreProperties = Properties()
+   val keystorePropertiesFile = rootProject.file("key.properties")
+   if (keystorePropertiesFile.exists()) {
+       keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+   }
+   ```
+
+   Inside `android { }`, add `signingConfigs` before `buildTypes`, and point the release build at it:
+   ```kotlin
    android {
+       // ... existing config ...
+
        signingConfigs {
+           create("release") {
+               keyAlias = keystoreProperties["keyAlias"] as String?
+               keyPassword = keystoreProperties["keyPassword"] as String?
+               storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+               storePassword = keystoreProperties["storePassword"] as String?
+           }
+       }
+
+       buildTypes {
            release {
-               keyAlias keystoreProperties['keyAlias']
-               keyPassword keystoreProperties['keyPassword']
-               storeFile file(keystoreProperties['storeFile'])
-               storePassword keystoreProperties['storePassword']
+               isMinifyEnabled = false
+               isShrinkResources = false
+               signingConfig = signingConfigs.getByName("release") // was "debug"
            }
        }
    }
