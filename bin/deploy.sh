@@ -47,10 +47,10 @@ if [ "${1:-}" = "--rollback" ]; then
 fi
 
 if [ "${1:-}" != "--no-build" ]; then
-  # Deploy exactly what is on origin/master, nothing uncommitted.
-  git fetch -q origin master
-  if [ -n "$(git status --porcelain --untracked-files=no)" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]; then
-    echo "Working tree must be clean and at origin/master (git pull / commit first)." >&2
+  # Deploy exactly what is on origin/develop, nothing uncommitted.
+  git fetch -q origin develop
+  if [ -n "$(git status --porcelain --untracked-files=no)" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/develop)" ]; then
+    echo "Working tree must be clean and at origin/develop (git pull / commit first)." >&2
     exit 1
   fi
   npm run docs:build
