@@ -29,3 +29,10 @@ bin/deploy.sh --rollback  # point the site back at the previous release
 ```
 
 Never build on the server: it has too little RAM and the build takes every site on it down.
+
+## Redirects
+
+Redirects for removed or renamed pages live in `bin/nginx/redirects-docs.botble.com.conf`.
+On the server it is `/usr/local/nginx/conf/redirects-docs.botble.com.conf`, included from
+`conf.d/docs.botble.com.ssl.conf`. `bin/deploy.sh` does not upload it: after editing, copy it to
+the server, then run `nginx -t && nginx -s reload`.
