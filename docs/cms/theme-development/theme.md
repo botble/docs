@@ -48,7 +48,7 @@ platform/themes/your-theme/
 ├── config.php           # Theme configuration
 ├── screenshot.png       # Theme preview image
 ├── theme.json           # Theme metadata
-└── webpack.mix.js       # Asset compilation config (optional)
+└── vite.build.mjs       # Asset compilation config (optional)
 ```
 
 ::: warning

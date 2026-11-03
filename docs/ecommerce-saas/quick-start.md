@@ -9,7 +9,7 @@ Get the platform running locally with the essentials. This guide is the CLI path
 
 ## Prerequisites
 
-- PHP 8.3+ or 8.4, Laravel 13
+- PHP 8.3.36+ or 8.4, Laravel 13
 - MySQL 8+ or MariaDB 10.6+, with a user that can `CREATE` / `DROP` databases (one per store)
 - Composer installed
 

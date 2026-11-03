@@ -297,14 +297,11 @@ SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost'
 (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: laravel)
 ```
 
-The credentials in the error message (`root`, `laravel`, `127.0.0.1`) are Laravel's stock `.env` defaults. This means
-your real `.env` file has been overwritten by the default `.env` shipped inside the CodeCanyon package.
+The credentials in the error message (`root`, `laravel`, `127.0.0.1`) match Laravel's default configuration. They suggest that your real database settings are not being loaded. A missing or overwritten `.env` is one possible cause; stale configuration cache is another. Check both before changing credentials.
 
 ### Why It Happens
 
-When you extract a fresh CodeCanyon package on top of your live install with a tool that does not skip `.env`, the
-default `.env` from the package overwrites your real one. Your database credentials, `APP_KEY`, mail settings, and
-everything else in `.env` are lost.
+Current download packages use `.env.example` for new installations. An older or repackaged archive may include `.env`; copying it over a live install can replace the database credentials, `APP_KEY`, mail settings, and other configuration. Creating a new `.env` from the example during an upgrade can cause the same problem.
 
 The in-app updater and `php artisan cms:update` both explicitly refuse to apply any update zip that contains a `.env`
 file, exactly to prevent this. Manual extraction has no such guard.
@@ -394,7 +391,7 @@ composer install
 Without SSH, use **Admin → Platform Administration → System Updater → Re-install the latest version**, which ships an
 updated `vendor` folder.
 
-Do not downgrade PHP as a workaround — current versions require PHP 8.3 or higher, and the updater will keep refusing
+Do not downgrade PHP as a workaround — current versions require PHP 8.3.36 or higher, and the updater will keep refusing
 to run.
 
 ## Update Fails with a Generic "Update error"

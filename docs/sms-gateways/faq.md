@@ -17,7 +17,7 @@ The plugin itself is a one-time purchase on CodeCanyon. SMS delivery costs depen
 
 ### Does SMS Gateways work on shared hosting?
 
-Yes. It works on cPanel, Plesk, and any shared host with PHP 8.2+ and HTTPS. See [Shared Hosting](./shared-hosting/overview.md).
+Yes. It works on cPanel, Plesk, and any shared host with PHP 8.3.36+ and HTTPS. See [Shared Hosting](./shared-hosting/overview.md).
 
 ### Can I use multiple SMS drivers at the same time?
 

@@ -1,6 +1,8 @@
 # Install using command line.
 
-- Open `.env` file and set up your credentials.
+- Extract the purchased source package and open a terminal in the project root. If the `vendor/` directory is missing, run `composer install` first.
+
+- For a new installation, create `.env` from `.env.example` if it does not exist, then set `APP_URL` and your database credentials. Run `php artisan key:generate` if `APP_KEY` is empty. Never overwrite an existing site's `.env` or regenerate its key during an upgrade.
 
 - Run `php artisan migrate` to create the database structure.
 

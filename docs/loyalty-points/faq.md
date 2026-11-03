@@ -9,7 +9,7 @@ Loyalty Points is a comprehensive loyalty program and rewards system designed fo
 ### What are the system requirements for Loyalty Points?
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.2 or higher
+- PHP version 8.3.36 or higher
 - Active E-commerce plugin (required)
 - MySQL 5.7+ or MariaDB 10.3+
 

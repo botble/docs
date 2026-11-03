@@ -170,8 +170,8 @@ description: Debug common SMS issues on cPanel and Plesk.
 **Fixes**:
 
 1. Select correct PHP version:
-   - cPanel: **Software → PHP Selector** (select 8.2+)
-   - Plesk: **Hosting & Resources** (select 8.2+)
+   - cPanel: **Software → PHP Selector** (select 8.3.36+)
+   - Plesk: **Hosting & Resources** (select 8.3.36+)
 2. Enable required extensions:
    - `openssl`, `curl`, `json`, `mbstring`
    - Usually enabled by default; if not, contact hosting support

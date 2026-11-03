@@ -62,6 +62,6 @@ Six templates - split, grid, list, compact, accordion and full map - all placed 
 ## Requirements
 
 - Botble CMS 7.4.0 or higher
-- PHP 8.3 or higher
+- PHP 8.3.36 or higher
 
 No other plugin is required. If **Location** or **Language Advanced** happen to be installed, the locator uses them automatically - see [Integration](./integration.md).

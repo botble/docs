@@ -18,7 +18,7 @@ Yes. Ecommerce Back in Stock works with all Botble e-commerce themes including S
 ### What are the system requirements?
 
 - Botble CMS 7.5.0+
-- PHP 8.2+
+- PHP 8.3.36+
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 

@@ -71,10 +71,10 @@ export default defineConfig({
   ],
   lastUpdated: false,
   themeConfig: {
-    logo: 'logo.png',
+    logo: { src: '/logo.png', alt: 'Botble' },
     siteTitle: false,
     editLink: {
-      pattern: ({ filePath }) => `https://github.com/botble/docs/edit/master/docs/${filePath}`,
+      pattern: ({ filePath }) => `https://github.com/botble/docs/edit/develop/docs/${filePath}`,
     },
     search: { provider: 'local' },
     nav,

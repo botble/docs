@@ -18,7 +18,7 @@ Both paths use the same code. The only difference is `QUEUE_CONNECTION` in `.env
 
 ## What you need
 
-- **PHP 8.2+** with extensions: `openssl`, `curl`, `json`, `mbstring`
+- **PHP 8.3.36+** with extensions: `openssl`, `curl`, `json`, `mbstring`
 - **MySQL 5.7+**
 - **HTTPS** (most SMS providers require it)
 - **Cron jobs** (optional, for cleanup and retries)

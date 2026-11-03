@@ -18,6 +18,9 @@ npm run docs:dev
 `npm run docs:dev` and `npm run docs:build` automatically run `bin/shell_cmd.sh` first
 to sync shared CMS docs into each theme.
 
+`npm run docs:build` also checks sidebar links and local assets before building,
+then checks anchors against the generated HTML. Any detected error fails the build.
+
 ## Deploy
 
 ```bash

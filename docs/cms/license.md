@@ -151,7 +151,7 @@ For more information on license transfers, please refer to [Envato's License FAQ
 
 If you see the error "Could not connect to the license server. Please site IP: x.x.x.x" or "cURL error 28: Connection timed out", your server cannot reach our license server (`license.botble.com`).
 
-**Common cause:** Your server's firewall is blocking outbound HTTPS (port 443) connections. This is common on servers from Hetzner, DigitalOcean, OVH, and other hosting providers that have strict default firewall rules.
+**Possible causes:** DNS resolution problems, blocked outbound HTTPS (port 443), a proxy or routing problem, or a slow/unavailable endpoint. A timeout alone does not identify which of these caused the failure.
 
 **How to diagnose:**
 
@@ -159,14 +159,13 @@ Run these commands via SSH on your server:
 
 ```bash
 # Test connectivity to the license server
-curl -v --max-time 15 https://license.botble.com/api/health-check
+curl -v --connect-timeout 5 --max-time 15 https://license.botble.com/api/health-check
 
-# Test TCP connection to Cloudflare IPs
-nc -zv 104.21.76.15 443
-nc -zv 172.67.185.15 443
+# Test TCP connectivity using the current DNS result
+nc -zv -w 5 license.botble.com 443
 ```
 
-If these commands hang or time out, your server's outbound connections are blocked.
+If these commands fail, record the exact error. A name-resolution error points to DNS; a certificate error points to TLS/CA configuration; a connection timeout can involve firewall rules, routing, or the endpoint. Reaching port 443 does not by itself verify TLS or license validity.
 
 **How to fix:**
 
@@ -186,9 +185,9 @@ ufw status
 # If using UFW
 ufw allow out 443/tcp
 
-# If using iptables
-iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
 ```
+
+For iptables, have your administrator check the rule order and add the allow rule in the appropriate place. Appending an allow rule after an earlier matching DROP or REJECT rule will not override that rule.
 
 3. **Check hosting provider firewall:** If you use a cloud hosting provider (Hetzner, DigitalOcean, etc.), check their cloud console for firewall settings. Ensure outbound TCP port 443 is allowed.
 
@@ -212,50 +211,45 @@ $ch = curl_init("https://www.google.com");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 $response = curl_exec($ch);
+$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 if (curl_errno($ch)) {
-    echo 'Error: ' . curl_error($ch);
+    echo 'Error: ' . htmlspecialchars(curl_error($ch), ENT_QUOTES, 'UTF-8');
 } else {
-    echo 'Connection to Google is OK';
+    echo 'Google returned HTTP ' . $code;
 }
 curl_close($ch);
 ```
 
-Open this file in your browser (e.g., `https://yourdomain.com/test-connection.php`). If it shows "Connection to Google is OK", PHP cURL is working.
+Open this file in your browser (e.g., `https://yourdomain.com/test-connection.php`). An HTTP response confirms PHP cURL can reach that endpoint. It does not prove connectivity to the license server.
 
 **Step 2: Test license server connectivity**
 
-Create a file called `test-license.php` in your web root:
+Create a file called `test-license.php` in the site's public document root (normally `public/`):
 
 ```php
 <?php
-$urls = [
-    'https://license.botble.com/api/health-check',
-    'https://104.21.76.15',
-    'https://172.67.185.15',
-];
-
-foreach ($urls as $url) {
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $response = curl_exec($ch);
-    $error = curl_error($ch);
-    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    echo "$url => HTTP $code | " . ($error ?: 'OK') . "<br>";
-}
+$url = 'https://license.botble.com/api/health-check';
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+// Keep certificate and hostname verification enabled.
+$response = curl_exec($ch);
+$error = curl_error($ch);
+$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+echo 'HTTP ' . $code . ' | ' . htmlspecialchars($error ?: 'Request completed', ENT_QUOTES, 'UTF-8') . '<br>';
 
 // DNS check
 $ip = gethostbyname('license.botble.com');
-echo "<br>DNS: license.botble.com => $ip";
+echo 'IPv4 DNS result: ' . htmlspecialchars($ip, ENT_QUOTES, 'UTF-8');
 ```
 
 Open this file in your browser. Expected results:
 
-- `license.botble.com/api/health-check` → **HTTP 200 | OK** — this means activation should work
-- Direct IPs (104.21.x.x, 172.67.x.x) → **SSL errors are expected** — Cloudflare requires the domain name for SSL, so direct IP connections will always show SSL handshake failures. This is normal.
-- DNS may resolve to a different IP than expected — this is normal with Cloudflare Anycast.
+- **HTTP 200 with no cURL error** confirms this health-check endpoint is reachable over HTTPS. License activation may still fail for purchase-code, domain, or account reasons.
+- **HTTP 403/5xx or a cURL error** needs investigation; include the status and error when contacting your hosting provider or Botble support.
+- DNS addresses can change. Test the hostname instead of a hardcoded Cloudflare IP. If the IPv4 lookup returns the hostname unchanged, it did not find an IPv4 address; ask your host to check DNS, including IPv6 where applicable.
 
 If the health-check returns HTTP 200, try activating your license again.
 

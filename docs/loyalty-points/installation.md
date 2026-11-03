@@ -7,7 +7,7 @@ This guide will walk you through the process of installing the Loyalty Points pl
 Before installing Loyalty Points, ensure your system meets the following requirements:
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.2 or higher
+- PHP version 8.3.36 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - Botble E-commerce plugin (required)
 

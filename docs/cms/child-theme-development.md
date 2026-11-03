@@ -212,7 +212,7 @@ platform/themes/shofy-beauty/
 ├── config.php                  # Theme configuration
 ├── screenshot.png              # 1200x900px recommended
 ├── theme.json                  # Theme metadata
-└── webpack.mix.js              # Asset compilation (optional)
+└── vite.build.mjs              # Asset compilation (optional)
 ```
 
 **config.php:**

@@ -31,12 +31,14 @@ The plugin works with any Botble script:
 
 | Component | Minimum version |
 |---|---|
-| PHP | **8.1** (8.2 / 8.3 supported) |
+| PHP | **8.3.36** (PHP 8.4 is supported) |
 | Extensions | `openssl`, `fileinfo`, `gd` or `imagick`, `pdo`, `mbstring` |
 | Database | MySQL 5.7+, MariaDB 10.3+, or PostgreSQL 10+ |
 | Writable | `storage/app/private/` (where KYC documents are stored) |
 | Queue worker | Recommended — webhooks and emails are dispatched to the queue |
 | Task scheduler | **Required** — nightly cleanup + expiry commands run via `schedule:run` |
+
+The host CMS officially supports MySQL and MariaDB. PostgreSQL compatibility in the plugin does not imply official PostgreSQL support for the full site; see [Database Support](/cms/database-support).
 
 ## Cron / Task scheduler
 

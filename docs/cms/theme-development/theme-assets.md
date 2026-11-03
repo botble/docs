@@ -238,13 +238,10 @@ Theme assets are automatically published when:
 If your theme uses a build process (SCSS, TypeScript, etc.), run:
 
 ```bash
-# Navigate to theme directory
-cd platform/themes/your-theme
-
-# Build assets (compiles assets/ → public/)
+# Run from the project root, where vite-build.mjs and package.json live
 npm run prod
-# or for development with watch mode
-npm run watch
+# Or run a development build
+npm run dev
 ```
 
 Then publish the compiled assets:
@@ -252,6 +249,8 @@ Then publish the compiled assets:
 ```bash
 php artisan cms:theme:assets:publish your-theme
 ```
+
+Declare your theme's JS and SCSS entries in `platform/themes/your-theme/vite.build.mjs`. The production build writes compiled files to both `public/themes/your-theme/` and the theme's own `public/` directory. See [Asset Compilation (Vite)](/cms/asset-compilation) for the descriptor format.
 
 ## Asset Structure
 
@@ -279,7 +278,7 @@ platform/themes/your-theme/
 │   │   └── font.woff
 │   └── plugins/               # Third-party libraries
 │       └── bootstrap/
-├── webpack.mix.js             # Compiles assets/ → public/
+├── vite.build.mjs             # Declares JS/SCSS entries for the root build runner
 └── ...
 ```
 

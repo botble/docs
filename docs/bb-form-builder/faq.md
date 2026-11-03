@@ -9,7 +9,7 @@ BB Form Builder is an advanced form builder plugin for websites built with Botbl
 ### What are the system requirements for BB Form Builder?
 
 - Botble CMS version 7.5.0 or higher (or any script based on Botble CMS)
-- PHP version 8.2 or higher
+- PHP version 8.3.36 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 
 ### Is BB Form Builder compatible with other Botble products?

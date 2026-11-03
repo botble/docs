@@ -31,25 +31,26 @@ Minifying and combining CSS and JavaScript files reduces file size and HTTP requ
 },
 ```
 
-#### Using Laravel Mix
+#### Using Vite
 
-You can use Laravel Mix to compile, minify, and version your assets:
+Declare your theme's source files in its build descriptor:
 
 ```javascript
-// webpack.mix.js
-const mix = require('laravel-mix');
-
-mix.js('platform/themes/your-theme/assets/js/app.js', 'public/themes/your-theme/js')
-   .sass('platform/themes/your-theme/assets/sass/app.scss', 'public/themes/your-theme/css')
-   .version();
+// platform/themes/your-theme/vite.build.mjs
+export default {
+    js: [{ src: 'assets/js/app.js', out: 'app.js' }],
+    sass: [{ src: 'assets/sass/app.scss', out: 'app.css' }],
+}
 ```
 
-Then in your theme:
+Run `npm run prod` from the project root, then `php artisan cms:theme:assets:publish your-theme`. Load the compiled files through the theme asset manager:
 
-```blade
-<link rel="stylesheet" href="{{ mix('themes/your-theme/css/app.css') }}">
-<script src="{{ mix('themes/your-theme/js/app.js') }}"></script>
+```php
+$theme->asset()->usePath()->add('app-css', 'css/app.css');
+$theme->asset()->container('footer')->usePath()->add('app-js', 'js/app.js');
 ```
+
+Vite minifies production output without adding a `.min` suffix. Use the filenames declared in your descriptor. See [Asset Compilation (Vite)](/cms/asset-compilation) for the full build workflow.
 
 ### Optimize Loading Order
 
@@ -76,14 +77,13 @@ Load critical CSS inline and defer non-critical CSS and JavaScript:
 
 ### Use Modern Image Formats
 
-Use modern image formats like WebP with fallbacks for older browsers:
+Enable **Convert image to WebP** in the media settings for new uploads, then use the URL returned by the media library:
 
 ```blade
-<picture>
-    <source srcset="{{ RvMedia::getImageUrl($image, null, false, RvMedia::getDefaultImage()) }}.webp" type="image/webp">
-    <img src="{{ RvMedia::getImageUrl($image, null, false, RvMedia::getDefaultImage()) }}" alt="{{ $alt }}">
-</picture>
+<img src="{{ RvMedia::getImageUrl($image, null, false, RvMedia::getDefaultImage()) }}" alt="{{ $alt }}">
 ```
+
+Do not append `.webp` to an existing URL: that does not create a converted file. Existing uploads need to be converted separately.
 
 ### Implement Lazy Loading
 
@@ -326,17 +326,7 @@ body .container .row .col .card .card-body .card-title span { color: red; }
 
 ### Page Cache
 
-Use page caching for static or semi-static pages:
-
-```php
-// In your controller
-public function index()
-{
-    return cache()->remember('home-page', 60 * 60, function () {
-        return Theme::scope('index')->render();
-    });
-}
-```
+Use the CMS [Page Cache](/cms/usage-page-cache) for eligible public pages. Follow its exclusion rules for authenticated sessions, carts, checkout, and other personalized responses. A shared cache key such as `home-page` does not distinguish users, languages, or currencies and can serve the wrong content.
 
 ### Fragment Cache
 
@@ -390,8 +380,10 @@ Regularly test your site with Google PageSpeed Insights to get performance recom
 
 Monitor Core Web Vitals metrics:
 - Largest Contentful Paint (LCP): measures loading performance
-- First Input Delay (FID): measures interactivity
+- Interaction to Next Paint (INP): measures responsiveness
 - Cumulative Layout Shift (CLS): measures visual stability
+
+See Google's [Core Web Vitals guide](https://web.dev/articles/vitals) for the current metrics and thresholds.
 
 ## Performance Checklist
 

@@ -8,7 +8,7 @@ For the end-user field-by-field walkthrough, see **[Theme options](./usage-theme
 
 | Layer | Used |
 |---|---|
-| Framework | **Botble CMS 7.x** on **Laravel 13** (PHP 8.3+ / 8.4) |
+| Framework | **Botble CMS 7.x** on **Laravel 13** (PHP 8.3.36+ / 8.4) |
 | Templating | Blade (`platform/themes/amerce/views`, `partials`, `layouts`) |
 | Front-end CSS | **Bootstrap 5.3** + custom **SCSS** (Dart Sass) |
 | Front-end JS | jQuery 4 + Bootstrap 5 bundle + Swiper + theme `script.js` |

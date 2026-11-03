@@ -19,7 +19,7 @@ php artisan tenancy:preflight
 
 | Component | Requirement | Why it is not optional |
 |---|---|---|
-| PHP | `8.3+` (`^8.3 \| ^8.4`) with `pdo_mysql`, `gd`, `zip`, `curl`, `json` | Botble baseline |
+| PHP | `8.3.36+` (`^8.3.36 \| ^8.4`) with `pdo_mysql`, `gd`, `zip`, `curl`, `json` | Botble baseline |
 | MySQL | `8.0+` (MariaDB `10.6+` also works), app user with **CREATE DATABASE / DROP** | each store gets its own database |
 | Cache | any of `file`, `database`, `redis`, `memcached` | see below — all drivers work; choose by scale |
 | Queue | a real connection (not `sync`) + a running worker | provisioning and mail are queued |

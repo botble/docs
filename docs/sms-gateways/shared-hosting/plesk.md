@@ -46,7 +46,7 @@ Plesk offers **free Let's Encrypt SSL**. Enable it to ensure SMS providers can r
 If SMS tests fail, verify your PHP version:
 
 1. Go to **Subscriptions → (your domain) → Hosting & Resources**
-2. Select **PHP 8.2 or higher** from the PHP version dropdown
+2. Select **PHP 8.3.36 or higher** from the PHP version dropdown
 3. Verify these PHP extensions are enabled:
    - `openssl`
    - `curl`

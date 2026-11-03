@@ -81,7 +81,7 @@ E-Wallet is a comprehensive digital wallet system designed for e-commerce stores
 ## Requirements
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.2 or higher
+- PHP version 8.3.36 or higher
 - Active E-commerce plugin (required)
 - MySQL 5.7+ or MariaDB 10.3+
 - At least one payment gateway configured (for top-ups)

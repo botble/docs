@@ -1,11 +1,12 @@
 # Asset Compilation (Vite)
 
-Botble CMS compiles plugin and theme assets through **[Vite](https://vite.dev)**. The build pipeline replaces the legacy Laravel Mix setup — it is faster, has no security advisories, and ships zero webpack in the dependency tree.
+Botble CMS compiles plugin and theme assets through **[Vite](https://vite.dev)**. The build pipeline replaces the legacy Laravel Mix setup with per-module build descriptors and a shared runner.
 
 This guide explains how to ship JS/SCSS assets from your own plugins, themes, and packages so they plug into the pipeline automatically.
 
 ## TL;DR
 
+- Use Node.js `20.19+` or `22.12+` for the current Vite build pipeline. Node.js is needed for asset compilation, not for serving the PHP application.
 - Each project has one **runner**: `vite-build.mjs` at the repo root. You never edit it.
 - Each **module** (plugin, package, theme) ships one **descriptor**: `vite.build.mjs` inside the module directory. You edit this when your module's asset list changes.
 - The runner discovers every descriptor via `platform/*/*/vite.build.mjs` and builds them all in parallel.

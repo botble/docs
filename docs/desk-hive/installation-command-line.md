@@ -7,6 +7,8 @@ For developers who prefer command-line installation over the web installer.
 1. Download the package from CodeCanyon
 2. Extract to your server's web directory (e.g., `/var/www/desk-hive`)
 
+Run the following commands from the project root. If the package does not include `vendor/`, run `composer install --no-dev` before using any `php artisan` command. These steps are for a fresh installation; preserve `.env` and `APP_KEY` when upgrading an existing site.
+
 ## Step 2: Set Permissions
 
 ```bash
@@ -40,8 +42,9 @@ DB_PASSWORD=your_password
 
 ```bash
 composer install --no-dev
-npm install && npm run prod
 ```
+
+The download package includes compiled assets. If you modify JS or SCSS, rebuild from the project root with `npm install` and `npm run prod`, then run `php artisan cms:publish:assets`. See [Asset Compilation](/cms/asset-compilation) for Node.js requirements.
 
 ## Step 5: Run Migrations and Seeders
 

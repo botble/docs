@@ -27,6 +27,15 @@ DIST="docs/.vitepress/dist"
 
 cd "$(dirname "$0")/.."
 
+if [ "$#" -gt 1 ]; then
+  echo "Usage: bin/deploy.sh [--no-build|--rollback]" >&2
+  exit 2
+fi
+case "${1:-}" in
+  ""|--no-build|--rollback) ;;
+  *) echo "Usage: bin/deploy.sh [--no-build|--rollback]" >&2; exit 2 ;;
+esac
+
 SSH_OPTS=(-p "$PORT" -o ConnectTimeout=15 -o LogLevel=ERROR -o StrictHostKeyChecking=accept-new)
 if ssh "${SSH_OPTS[@]}" -o BatchMode=yes "$HOST" true 2>/dev/null; then
   SSH=(ssh "${SSH_OPTS[@]}")
@@ -49,7 +58,7 @@ fi
 if [ "${1:-}" != "--no-build" ]; then
   # Deploy exactly what is on origin/develop, nothing uncommitted.
   git fetch -q origin develop
-  if [ -n "$(git status --porcelain --untracked-files=no)" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/develop)" ]; then
+  if [ -n "$(git status --porcelain --untracked-files=normal)" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/develop)" ]; then
     echo "Working tree must be clean and at origin/develop (git pull / commit first)." >&2
     exit 1
   fi
@@ -79,5 +88,12 @@ remote "set -e; cd $SITE
   ln -sfn $REL public.tmp && chown -h root:nginx public.tmp && mv -Tf public.tmp public
   ls -1d releases/*/ | sed 's#/\$##' | head -n -$KEEP | grep -vx \"\$(readlink public)\" | xargs -r rm -rf"
 
-code=$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (Macintosh) Chrome/130.0' https://docs.botble.com/ecommerce-saas/ || true)
-echo "==> Live check https://docs.botble.com/ecommerce-saas/ -> HTTP $code"
+for path in / /cms/ /ecommerce-saas/ /logo.png; do
+  url="https://docs.botble.com$path"
+  code=$(curl -sS --connect-timeout 5 --max-time 20 -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (Macintosh) Chrome/130.0' "$url" || true)
+  echo "==> Live check $url -> HTTP $code"
+  if [ "$code" != "200" ]; then
+    echo "Live check failed. The new release is active; inspect it or run bin/deploy.sh --rollback." >&2
+    exit 1
+  fi
+done

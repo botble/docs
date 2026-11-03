@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Botble CMS is a modern PHP platform based on Laravel Framework 12.x, designed to provide a robust foundation for building websites and web applications. With a focus on developer experience, performance, and flexibility, Botble CMS offers a comprehensive set of features for content management and website development.
+Botble CMS is a modern PHP platform based on Laravel Framework 13.x, designed to provide a robust foundation for building websites and web applications. With a focus on developer experience, performance, and flexibility, Botble CMS offers a comprehensive set of features for content management and website development.
 
 Created: `07/06/2016`
 
-Current Version: `7.5.5`
+Installed version: check **Admin → Platform Administration → System Information**, or run `php artisan about`. Check **System Updater** for available updates.
 
-Minimum PHP Version: `8.2.0`
+Minimum PHP Version: `8.3.36`
 
 By: [Botble Technologies](https://botble.com)
 
@@ -30,10 +30,11 @@ Password: `12345678`
 
 ## System Requirements
 
-- PHP >= 8.3.0
+- PHP >= 8.3.36
 - MySQL >= 5.7 (or MariaDB >= 10.3)
 - BCMath PHP Extension
 - Ctype PHP Extension
+- cURL PHP Extension
 - Fileinfo PHP Extension
 - JSON PHP Extension
 - Mbstring PHP Extension
@@ -55,25 +56,23 @@ Botble CMS offers multiple installation methods:
 3. Set up your database connection and administrator account
 4. Complete the installation
 
-### Using Composer
-
-```bash
-composer create-project botble/cms your-project-name
-cd your-project-name
-php artisan cms:install
-```
-
 ### Using the CLI Installer
 
+Extract your purchased source package, install its Composer dependencies if needed, and configure `.env` with a dedicated empty database before running:
+
 ```bash
 php artisan cms:install
 ```
+
+::: danger Fresh installations only
+`cms:install` drops all existing tables in the configured database. Use it only for a new installation. For an existing site, follow the [Upgrade Guide](upgrade.md).
+:::
 
 For detailed installation instructions, please refer to the [Installation Guide](installation-web-interface.md).
 
 ## Why choose us
 
-- **Modern Architecture**: Built on Laravel 13.x with PHP 8.3+ support, following PSR-12 coding standards and best practices.
+- **Modern Architecture**: Built on Laravel 13.x with PHP 8.3.36+ support, following PSR-12 coding standards and best practices.
 - **Fully Responsive**: Compatible with all screen resolutions for a seamless experience across devices.
 - **Powerful Permission System**: Comprehensive user, team, and role management with granular permissions.
 - **Modular Design**: Core modules like Page, Blog, Menu, and Contact use components to avoid boilerplate code.

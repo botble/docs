@@ -26,7 +26,7 @@ Yes. Norio is responsive on desktop, tablet and mobile. Heavy effects such as th
 
 ### What are the hosting requirements?
 
-- PHP 8.3 or higher (PHP 8.4 is supported)
+- PHP 8.3.36 or higher (PHP 8.4 is supported)
 - MySQL 5.7+ or MariaDB 10.3+
 - Apache or Nginx with URL rewriting enabled
 - PHP extensions: PDO, OpenSSL, mbstring, exif, fileinfo, XML, Ctype, JSON, Tokenizer, cURL, GD, Zip
@@ -59,7 +59,7 @@ The preset only decides which sample data is imported. After installation you ca
 
 ### Can I install Norio on localhost?
 
-Yes. Use Laravel Herd, Valet, XAMPP, MAMP, WAMP or Docker with PHP 8.3+.
+Yes. Use Laravel Herd, Valet, XAMPP, MAMP, WAMP or Docker with PHP 8.3.36+.
 
 ## Customization Questions
 
@@ -125,7 +125,7 @@ The loading screen is released by the theme's JavaScript. If a script is blocked
 ### I see "500 Internal Server Error"
 
 - Make sure `storage` and `bootstrap/cache` are writable by the web server (permission 775).
-- Check the PHP version is 8.3 or higher.
+- Check the PHP version is 8.3.36 or higher.
 - Read the latest error in `storage/logs/laravel.log`.
 - Turn on debug temporarily: set `APP_DEBUG=true` in `.env`, reload the page, then set it back to `false`.
 

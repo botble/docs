@@ -11,7 +11,7 @@
     "check:links": "npm run sync && node bin/check-docs-links.mjs",
     "check:links:anchors": "node bin/check-docs-links.mjs --anchors",
     "docs:dev": "npm run sync && vitepress dev docs",
-    "docs:build": "npm run sync && NODE_OPTIONS='--max-old-space-size=8192' vitepress build docs",
+    "docs:build": "npm run sync && node bin/check-docs-links.mjs && NODE_OPTIONS='--max-old-space-size=8192' vitepress build docs && node bin/check-docs-links.mjs --anchors",
     "docs:preview": "vitepress preview docs"
   }
 }

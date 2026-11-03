@@ -48,7 +48,7 @@ Most shared hosts offer **free Let's Encrypt SSL**. Enable it to ensure SMS prov
 If SMS tests fail, verify your PHP version:
 
 1. Go to **Home → Select PHP Version** (or **Software → PHP Selector** in newer cPanel)
-2. Ensure you're running **PHP 8.2 or higher**
+2. Ensure you're running **PHP 8.3.36 or higher**
 3. Verify these extensions are enabled:
    - `openssl`
    - `curl`

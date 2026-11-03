@@ -7,7 +7,7 @@ This guide will walk you through the process of installing the BB Form Builder p
 Before installing BB Form Builder, ensure your system meets the following requirements:
 
 - Botble CMS version 7.5.0 or higher (or any script based on Botble CMS from our [CodeCanyon portfolio](https://codecanyon.net/user/botble/portfolio))
-- PHP version 8.2 or higher
+- PHP version 8.3.36 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - Sufficient disk space for plugin files and uploaded form attachments
 

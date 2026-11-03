@@ -7,7 +7,7 @@ description: System requirements for SMS Gateways plugin.
 
 ## Server
 
-- **PHP**: 8.2 or higher
+- **PHP**: 8.3.36 or higher
 - **Laravel**: 10 or higher (via Botble 7.3+)
 - **Botble CMS**: 7.3 or higher
 - **MySQL/MariaDB**: 5.7 or higher

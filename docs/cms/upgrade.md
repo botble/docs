@@ -28,7 +28,7 @@ for more details.
 ## Command Line Update
 
 If you have SSH access to your server, this is the most reliable way to update. The CLI command bypasses every web-tier
-timeout (Cloudflare's 100-second connection cap, nginx and php-fpm proxy timeouts, browser request limits) that
+timeout (Cloudflare's proxy timeout, nginx and php-fpm proxy timeouts, browser request limits) that
 typically causes the in-app updater to fail mid-progress on slower connections or behind a reverse proxy. It also
 retries the update download up to 3 times automatically and bumps PHP execution time and memory limits at runtime.
 
@@ -55,7 +55,7 @@ browser.
 :::
 
 ::: warning
-Increasing `max_execution_time` in `php.ini` does **not** help against Cloudflare's 100-second connection cap or
+Increasing `max_execution_time` in `php.ini` does **not** raise Cloudflare's proxy timeout or
 upstream proxy timeouts in nginx / php-fpm — those limits live above PHP. Use the command line method when you hit
 those.
 :::
@@ -63,10 +63,7 @@ those.
 ## Manual Update
 
 ::: danger Warning: Backup `.env` first
-The CodeCanyon package contains a default `.env` file. If you extract the package on top of your live install with a
-tool that does not skip `.env`, your real database credentials, `APP_KEY`, and other settings **will be overwritten**
-and your site will go down with a database connection error. Always back up your `.env` before extracting, or extract
-to a temporary directory first and copy files manually.
+The current download package uses `.env.example` for new installations. When upgrading, preserve your existing `.env` regardless of the package contents: an older or repackaged archive may contain a `.env` file. Extracting that file over your live `.env` replaces your database credentials, `APP_KEY`, and other settings. Back up `.env` first, extract to a temporary directory, and exclude `.env` when copying files.
 
 The in-app updater and `php artisan cms:update` both refuse to apply any update that contains a `.env` file, exactly
 to prevent this. Manual extraction has no such guard. If you have already overwritten `.env`, see

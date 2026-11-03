@@ -2,7 +2,7 @@
 
 Install SnapCart from the terminal if you have SSH access to your server.
 
-1. Open the `.env` file and set up your database credentials and `APP_URL`.
+1. From the project root, run `composer install` if `vendor/` is missing. For a new installation, copy `.env.example` to `.env` if needed, set your database credentials and `APP_URL`, then run `php artisan key:generate` if `APP_KEY` is empty. Do not overwrite an existing site's `.env` or regenerate its key during an upgrade.
 
 2. Run `php artisan migrate` to create the database structure.
 

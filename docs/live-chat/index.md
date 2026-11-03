@@ -28,7 +28,7 @@ A floating Ajax live chat widget for Botble CMS that enables real-time visitor s
 ## Requirements
 
 - Botble CMS 7.3.0 or later
-- PHP 8.2 or later
+- PHP 8.3.36 or later
 
 ## Quick Start
 

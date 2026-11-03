@@ -85,8 +85,8 @@ No. The plugin attaches methods via `MacroableModels::addMacro()` at runtime. Ne
 ### Can I deactivate and re-activate without losing data?
 Yes. Migrations are idempotent and no cleanup runs on deactivation. Submissions, lockout state, and webhook endpoints survive.
 
-### Does it work with PHP 8.3?
-Yes. Tested on PHP 8.1, 8.2, and 8.3.
+### Does it work with PHP 8.3.36?
+Yes. PHP 8.3.36 or higher is required.
 
 ### Does it work with Laravel Octane?
 Yes — the plugin is stateless at the request level. Macros are registered in `boot()` which runs once per Octane worker.

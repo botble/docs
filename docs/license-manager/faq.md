@@ -55,7 +55,7 @@ The API handles activation, verification, and deactivation across sites.
 
 ### Can I install it as a Botble CMS plugin?
 
-Yes. If you want to install License Manager as a plugin inside an existing Botble CMS site (instead of as a standalone app), it requires **Botble CMS v7.5.0+** running on Laravel 13.x with PHP 8.3 or higher. Upload the zip through the admin panel or extract it to `platform/plugins/license-manager`. Note: the standalone deployment is recommended for most use cases — see [Subdomain vs Plugin](#subdomain-vs-plugin-which-deployment-should-i-choose).
+Yes. If you want to install License Manager as a plugin inside an existing Botble CMS site (instead of as a standalone app), it requires **Botble CMS v7.5.0+** running on Laravel 13.x with PHP 8.3.36 or higher. Upload the zip through the admin panel or extract it to `platform/plugins/license-manager`. Note: the standalone deployment is recommended for most use cases — see [Subdomain vs Plugin](#subdomain-vs-plugin-which-deployment-should-i-choose).
 
 ## Licensing & Activation
 

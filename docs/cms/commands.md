@@ -2,6 +2,8 @@
 
 Botble CMS provides a variety of Artisan commands to help you manage your application. This page lists all available commands and their usage.
 
+Generator commands such as `cms:package:create`, `cms:plugin:create`, `cms:theme:create`, and `cms:widget:create` require the `botble/dev-tool` development dependency. They may be absent from production packages installed without development dependencies. Run `php artisan list` to see the commands available in your installation.
+
 ## Command Categories
 
 - [Installation & Setup](#installation-setup)
@@ -19,7 +21,11 @@ Botble CMS provides a variety of Artisan commands to help you manage your applic
 
 ### CMS Installation
 
-Installs the CMS by running migrations, creating a super user, activating plugins, and publishing assets.
+Installs a fresh CMS database, with optional admin-user creation, plugin activation, and sample data, then publishes assets.
+
+::: danger Fresh installations only
+This command runs `migrate:fresh`, which drops all tables in the configured database before recreating them. Do not run it on an existing site or use it to upgrade. Follow the [Upgrade Guide](/cms/upgrade) for updates.
+:::
 
 ```bash
 php artisan cms:install
@@ -28,7 +34,7 @@ php artisan cms:install
 ![Install CMS](./images/install-command.png)
 
 This interactive command will:
-1. Run database migrations
+1. Drop existing tables and run database migrations (`migrate:fresh`)
 2. Optionally create a super user
 3. Optionally activate all plugins
 4. Optionally seed the database with sample data
@@ -381,10 +387,10 @@ php artisan cms:google-fonts:update
 
 ### Create Backup
 
-Creates a backup of the database and uploaded files.
+Creates a backup of the database and uploaded files. Supply a name, or the interactive command will prompt for one.
 
 ```bash
-php artisan cms:backup:create [name] --description=[description]
+php artisan cms:backup:create "before-upgrade" --description="Before updating the CMS"
 ```
 
 ### Restore Backup

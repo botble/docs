@@ -117,7 +117,7 @@ If the POS interface displays incorrectly:
 If you see errors:
 
 1. Check `/storage/logs/laravel.log` for details
-2. Verify PHP version meets requirements (8.2+)
+2. Verify PHP version meets requirements (8.3.36+)
 3. Ensure all dependencies are up to date
 4. Restore from backup if necessary
 

@@ -5,7 +5,7 @@ Before installing SnapCart, make sure your server meets the following requiremen
 ## Server
 
 - Apache, nginx, LiteSpeed, or another compatible web server
-- PHP >= 8.3 (PHP 8.4 is supported)
+- PHP >= 8.3.36 (PHP 8.4 is supported)
 - MySQL >= 5.7 or MariaDB >= 10.3
 - `mod_rewrite` enabled (Apache)
 

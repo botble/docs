@@ -47,7 +47,7 @@ To use E-Wallet, you need:
 |-------------|---------|
 | Botble CMS | 7.5.0 or newer |
 | E-commerce Plugin | Must be installed |
-| PHP | 8.2 or newer |
+| PHP | 8.3.36 or newer |
 
 ---
 

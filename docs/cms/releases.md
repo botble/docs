@@ -18,13 +18,15 @@ Botble CMS typically follows these release patterns:
 
 ## Latest Version
 
-The current stable version of Botble CMS is displayed in your admin dashboard. You can also check the version in the `composer.json` file or by running:
+To check the version installed on your site, open **Admin → Platform Administration → System Information** or run:
 
 ```bash
 php artisan about
 ```
 
-This command will show you the Botble CMS version, not just the Laravel version (which would be shown by `php artisan --version`).
+Look for **CMS Version** in the **Core Information** section. `php artisan --version` reports the Laravel version instead. The root `composer.json` describes dependency constraints and is not a reliable source for the installed CMS release.
+
+Your installed version may be older than the latest release. Open **Admin → Platform Administration → System Updater** to check for available updates, and refer to your product's release notes.
 
 ## Staying Updated
 

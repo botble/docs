@@ -198,7 +198,9 @@ Faq::query()->create([
 
 ## FAQ Schema and SEO
 
-The FAQ plugin automatically generates structured data in the JSON-LD format for pages and posts that have FAQs attached to them. This structured data helps search engines understand your content and can lead to rich search results.
+When FAQ schema is enabled, the plugin generates JSON-LD structured data for supported pages and posts with attached FAQs. This describes the questions and answers in a machine-readable format.
+
+Google Search stopped displaying FAQ rich results on May 7, 2026, as documented in its [Search documentation updates](https://developers.google.com/search/updates#may-2026). Enabling FAQ schema does not restore that feature or guarantee a ranking improvement.
 
 ### Example of Generated Schema
 
@@ -256,6 +258,6 @@ To translate FAQ content:
 
 5. **Use Rich Formatting**: Take advantage of the rich text editor to format your answers with headings, lists, and links for better readability.
 
-6. **Enable Schema Markup**: Always enable the FAQ schema markup to improve your SEO and chances of appearing in rich search results.
+6. **Review Schema Markup**: If you enable FAQ schema, keep it consistent with the visible questions and answers. Do not promise Google FAQ rich results.
 
 7. **Consider User Experience**: Design your FAQ display with user experience in mind, using accordions or collapsible sections to make long lists of FAQs more manageable.

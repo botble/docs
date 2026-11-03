@@ -63,6 +63,6 @@ Impressions, closes, clicks and conversions per popup and per day, plus A/B vari
 ## Requirements
 
 - Botble CMS 7.5.0 or higher
-- PHP 8.3 or higher
+- PHP 8.3.36 or higher
 
 No other plugin is required. BB Form Builder and Language Advanced are used automatically if they happen to be installed.
