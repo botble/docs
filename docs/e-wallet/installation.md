@@ -7,7 +7,7 @@ This guide will walk you through the process of installing the E-Wallet plugin f
 Before installing E-Wallet, ensure your system meets the following requirements:
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - Botble E-commerce plugin (required)
 - At least one payment gateway configured (for top-ups)
@@ -73,7 +73,7 @@ php artisan view:clear
 
 ### 6. Configure Basic Settings
 
-- Navigate to **Settings** > **E-Wallet**
+- Navigate to **E-Wallet** > **Settings**
 - Enable the e-wallet functionality
 - Set minimum and maximum top-up amounts
 - Configure withdrawal settings
@@ -95,6 +95,7 @@ Assign permissions to admin roles:
 3. Grant the following permissions as needed:
    - `e-wallet.index` - Access E-Wallet menu
    - `e-wallet.wallets.index` - View wallets
+   - `e-wallet.wallets.create` - Create wallets
    - `e-wallet.wallets.adjust` - Adjust wallet balances
    - `e-wallet.transactions.index` - View transactions
    - `e-wallet.topups.index` - View top-ups
@@ -103,6 +104,8 @@ Assign permissions to admin roles:
    - `e-wallet.withdrawals.index` - View withdrawals
    - `e-wallet.withdrawals.approve` - Approve withdrawals
    - `e-wallet.withdrawals.reject` - Reject withdrawals
+   - `e-wallet.transfers.*` - View / delete wallet transfers
+   - `e-wallet.gift-cards.*` - Manage gift cards
    - `e-wallet.settings` - Manage settings
 
 ## Verifying Installation
@@ -117,8 +120,11 @@ To verify that the plugin has been installed correctly:
    - Wallets
    - Transactions
    - Top-ups
+   - Withdrawals
+   - Transfers
+   - Gift Cards
    - Settings
-5. Go to **Settings** > **E-Wallet** and verify settings are accessible
+5. Go to **E-Wallet** > **Settings** and verify settings are accessible
 
 ### Customer Verification
 

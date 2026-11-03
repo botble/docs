@@ -13,7 +13,7 @@ Before installing, verify your environment:
 
 - **Botble CMS** version 7.5.0 or higher
 - **Botble Ecommerce** plugin activated (Landing Funnel uses Ecommerce models, cart, checkout, and order pipeline)
-- **PHP** 8.3.36+
+- **PHP** 8.3.0+
 - At least one **published product** to attach to your first funnel
 
 ## Activate the Plugin

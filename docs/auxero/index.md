@@ -44,7 +44,7 @@ Password: `12345678`
 - **REST API**: 50+ endpoints with Sanctum authentication for mobile app integration.
 - **Map integration**: Leaflet maps with location-based car search and half-map listing layout.
 - **Dark mode & light mode** with theme switcher.
-- **38 UI blocks/shortcodes** for page building.
+- **36 UI blocks/shortcodes** for page building.
 - Multi-language, 44+ languages support.
 - Full RTL support.
 - Page, blog, menu, contact, newsletter, slider... modules are provided with the use of components to avoid boilerplate code.
@@ -63,7 +63,7 @@ Password: `12345678`
 **Getting Started**
 
 - [Setup Homepage](/auxero/usage-homepage)
-- [UI Blocks (38 shortcodes)](/auxero/usage-ui-block)
+- [UI Blocks (36 shortcodes)](/auxero/usage-ui-block)
 - [Setup Menus](/auxero/usage-menus)
 - [Theme Options](/auxero/usage-theme-options)
 - [Widgets](/auxero/usage-widgets)

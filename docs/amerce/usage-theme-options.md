@@ -8,16 +8,17 @@ Theme Options let you customize Amerce without touching code — colors, typogra
 The full tech stack, file map, SCSS architecture, and "how to extend Theme Options from a plugin" recipe live in **[Theme Customization (Developer Guide)](./developer-theme-customization.md)**.
 :::
 
-The panel is grouped into six subsections plus the standalone **Font Picker** tab.
+The panel is grouped into seven theme-specific subsections, alongside the shared core sections (Logo, Page, Breadcrumb, **Typography**, etc.).
 
 | # | Section | Icon | Purpose |
 |---|---------|------|---------|
 | 1 | **General** | settings | Default light/dark/system mode |
-| 2 | **Header** | layout-navbar | 14 header styles, topbar, sticky, transparent overlay, special-offer banner |
+| 2 | **Header** | layout-navbar | 14 header styles, topbar, sticky, transparent overlay, special-offer banner, search keywords |
 | 3 | **Colors** | palette | Brand colors, link, border, success/danger |
-| 4 | **Footer** | layout-bottombar | 4 footer styles, container width, contact, socials, payment icons, marquee |
+| 4 | **Footer** | layout-bottombar | 9 footer styles, container width, contact, socials, payment icons, marquee |
 | 5 | **Ecommerce** *(visible only when ecommerce plugin is active)* | shopping-cart | Card style, hover effect, shop layout, gallery layout, quick-view, mini-cart, compare |
-| 6 | **Miscellaneous** | tools | Preloader, scroll-to-top, sidebar, **homepage body class** (preset switcher) |
+| 6 | **Store & Contact** | map-pin | Contact phone/email, hotline, store address & hours, Our Stores locations |
+| 7 | **Miscellaneous** | tools | Preloader, scroll-to-top, sidebar, **homepage body class** (preset switcher) |
 
 ## General
 
@@ -63,10 +64,15 @@ Good to know:
 | Top bar slides | textarea | — | One slide text per line. Empty = no slides. |
 | Transparent on homepage | on/off | false | Adds `header-transparent` body class on `/` only. Pair with styles 3/13/14. |
 | Sticky header | on/off | true | JS-driven sticky behavior (`script.js`). |
+| Hide sticky header on scroll down | on/off | true | Off keeps the header pinned at all times. Requires **Sticky header**. |
 | Bottom offer text / URL / target | text | — | Optional CTA strip below the main bar (specific styles only). |
 | Special offers text / URL | text | "Special Offers!" / — | Pill rendered by header style-10. |
 | Top bar background / text | color | `#010F1C` / `#FFFFFF` | Top bar palette. |
-| Main bar background / text | color | `#FFFFFF` / `#1E1E1E` | Main bar palette. |
+| Override main bar colors | on/off | false | Off keeps the header preset colors. Turn on to apply the two colors below. |
+| Main bar background / text | color | `#FFFFFF` / `#1E1E1E` | Main bar palette (applied only when **Override main bar colors** is on). |
+| Announcement slides (Header 13) | textarea | — | One announcement per line. Header style 13 only. |
+| Account button label | text | — | Overrides the "Account" label. |
+| Popular search keywords | text | — | Comma-separated. Shown as quick chips in the search popup. Blank hides them. |
 
 ### Header style previews
 
@@ -96,13 +102,13 @@ Under the core **Logo** subsection (not Header):
 
 ## Colors
 
-CSS custom properties emitted by `Theme::renderCssVariables()` at runtime. Override-friendly — they win over `_variables.scss` defaults.
+CSS custom properties written into `:root` by `layouts/base.blade.php` at runtime. Override-friendly — they win over `_variables.scss` defaults.
 
 | Field | Default | CSS var |
 |---|---|---|
 | Primary | `#DC4646` | `--primary` |
 | Secondary | `#70857A` | `--secondary` |
-| Heading | `#101010` | `--heading` |
+| Heading | `#101010` | `--text` |
 | Body text | `#696E73` | `--text-2` |
 | Link / Link hover | `#DC4646` / `#C93A0B` | `--link`, `--link-hover` |
 | Border | `#E9E9E9` | `--line` |
@@ -110,21 +116,22 @@ CSS custom properties emitted by `Theme::renderCssVariables()` at runtime. Overr
 
 ## Footer
 
-4 layouts (`style-1` light, `style-2` dark, `style-3` dark variant, `style-4` stacked). Each maps to `partials/footer/styles/style-<n>.blade.php`.
+9 layouts (`style-1` light, `style-2` dark, `style-3` dark variant, `style-4` stacked, `style-5` dark brand hero, `style-6` cream features, `style-7` light 4-column, `style-8` white features, `style-9` minimal). Each maps to `partials/footer/styles/style-<n>.blade.php`.
 
 | Field | Type | Default | Notes |
 |---|---|---|---|
-| Footer style | UI selector | `style-1` | 4 layouts. |
+| Footer style | UI selector | `style-1` | 9 layouts. |
 | Footer container width | radio | `container-full` | `container` (1440px), `container-2` (1320px), `container-full` (1800px). |
-| Payment icons | text | — | Comma-separated **storage paths** uploaded via Media (e.g. `payment/visa.png,payment/master-card.png`). |
+| Payment icons | media images | — | Pick the icons from the Media library. Leave empty to hide the row. |
 | Company / Customer / Newsletter column titles | text | — | Fall back to `COMPANY` / `CUSTOMER` / `NEWSLETTER`. |
 | Newsletter description | text | — | Helper text under the newsletter input. |
 | Marquee text *(style-2 only)* | text | — | Marquee strip rendered only by Footer Style 2. |
+| Hero brand text *(style-5 only)* | text | — | Large brand wordmark rendered by Footer Style 5. |
 | Address / Map URL / Email / Phone | text | — | Contact block. Map URL auto-derived from address if empty. |
 | Facebook / Twitter / Instagram / TikTok / Snapchat URL | text | — | Empty value hides the icon. |
 
 ::: info Footer menus
-Footer columns 1–3 (Shop, Help, Company) are managed under **Appearance → Menus** at locations `footer-1`, `footer-2`, `footer-3`. The Theme Options field set above only controls headings, contact rows, and socials.
+The theme registers only the `main-menu` location. Footer link columns come from the **Footer Menu** widget placed in the **Footer Company Menu** / **Footer Customer Menu** sidebars (**Appearance → Widgets**), each pointing at a menu built in **Appearance → Menus**. The Theme Options field set above only controls headings, contact rows, and socials.
 :::
 
 ## Ecommerce
@@ -136,7 +143,6 @@ Visible only when the ecommerce plugin is active.
 | Field | Type | Default | Notes |
 |---|---|---|---|
 | Product card style | UI selector | `style-1` | 5 variants: Standard, Slide-up, Image overlay, 3D flip, Icon spread. |
-| Card hover effect | UI selector | `hover-01` | 6 hover effects on the product image. |
 | Show color swatches on product card | on/off | false | Surfaces variant color swatches under price. Requires attribute sets with `display_layout='visual'` and `is_use_in_product_listing=1`. |
 
 #### Product item display style previews
@@ -155,6 +161,7 @@ Visible only when the ecommerce plugin is active.
 | Product item layout | radio | `grid` | Grid or list. Visitors can override per-request with `?layout=grid|list`. |
 | Products per page | number | 12 | Products per page on shop archive. |
 | Filter position | radio | `sidebar` | Sidebar / Drawer / Dropdown / Hidden. |
+| Sticky shop toolbar | on/off | true | Keeps the sorting/view toolbar pinned under the header while scrolling. |
 | Pagination style | radio | `numbered` | Numbered / Load more / Infinite scroll. |
 | Products per row (desktop / tablet / mobile) | radio | 4 / 3 / 2 | Responsive column counts on the shop grid. |
 
@@ -177,6 +184,10 @@ Left sidebar / right sidebar / no sidebar:
 | Enable Quick View | on/off | true | Renders the "eye" action button + AJAX modal. |
 | Enable Quick Shop | on/off | true | "Select options" button for variable products. |
 | Enable Product Size Guide | on/off | true | Show the size-guide CTA on PDP. |
+| Size guide URL | text | — | Size-guide link target. Blank hides the link. |
+| Show "Ask A Question" link | on/off | true | Link on product pages that opens an email to the admin email address. |
+| Live viewers count | number | 0 | Shown as "N people are viewing this". 0 hides it. |
+| Sold-count window (hours) | number | 32 | Window for the "sold in last N hours" urgency text. |
 
 ### Cart, mini-cart, compare
 
@@ -187,11 +198,23 @@ Left sidebar / right sidebar / no sidebar:
 
 ![Ecommerce other options](./images/theme-option-ecommerce-other-options.png)
 
+## Store & Contact
+
+| Field | Type | Notes |
+|---|---|---|
+| Contact phone | text | Shown in header styles 5 and 6. |
+| Contact email | text | Used by the "contact for price" link on product pages. Falls back to the admin email. |
+| Contact page URL | text | e.g. `/contact`. |
+| Hotline / Our store URL (top bar) | text | Top bar links. |
+| Store address / phone / email / Map address | text | Contact page details. Map address falls back to the store address. |
+| Business hours (weekday / weekend) | text | e.g. `Mon - Fri: 9:00 - 18:00`. |
+| Store locations | repeater | Name, address, phone, email, hours, map URL, image — cards on the Our Stores page. |
+
 ## Miscellaneous
 
 | Field | Type | Default | Notes |
 |---|---|---|---|
-| Show preloader | on/off | true | Initial page-load spinner. |
+| Show preloader | on/off | false | Initial page-load spinner. |
 | Scroll-to-top | on/off | true | Floating ↑ button. |
 | Page sidebar (default template) | on/off | false | Render the blog sidebar on Default-template Pages. |
 | Homepage body class | text | — | **Master preset switcher.** Adds the value (e.g. `home-fashion`) as a CSS class on `<body>` on `/`. Drives demo SCSS overrides + per-preset shortcode styles. |
@@ -214,7 +237,7 @@ Each preset comes with its own demo data seeder — see **[Installation](./insta
 Configure social URLs in **Footer** (above) — the same values feed:
 
 - The footer social icon row
-- The **Site Information** widget — see **[Widgets](./usage-widgets.md#_12-footer-primary-sidebar)**
+- The **Site Information** widget — see **[Widgets](./usage-widgets.md#_12-footer-company-menu-footer-customer-menu-sidebars)**
 - The **Contact Form** shortcode
 
 ![Social Links](./images/theme-option-social-links.png)
@@ -223,9 +246,9 @@ Configure social URLs in **Footer** (above) — the same values feed:
 A blank `facebook_url` (etc.) hides that icon entirely. No fallback URL is used.
 :::
 
-## Font Picker
+## Typography
 
-Path: **Appearance → Theme Options → Font Picker** (separate tab beside Theme Options).
+Path: **Appearance → Theme Options → Typography**.
 
 Five typography "roles" are registered with sensible defaults:
 

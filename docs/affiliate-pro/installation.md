@@ -8,7 +8,7 @@ description: Install and activate the Affiliate Pro plugin on Botble E-commerce.
 ## Requirements
 
 - Botble CMS 7.5.0 or higher
-- PHP 8.3.36 or higher
+- PHP 8.3.0 or higher
 - Botble **E-commerce** plugin activated
 - MySQL 5.7+ or MariaDB 10.3+
 

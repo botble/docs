@@ -12,14 +12,13 @@ To manage UI blocks on a page, go to `Pages` in the admin panel, edit your desir
 
 ### Hero Carousel
 
-Display a banner slider at the top of the homepage. Supports multiple slides with images, titles, and call-to-action
-buttons.
+Display a banner slider at the top of the homepage. Slides (images, titles, and call-to-action buttons) are managed
+in the **Simple Slider** plugin (`Simple Sliders` in the admin panel).
 
 To configure, click on the shortcode and set:
 
-- **Title**: The slide heading text
-- **Image**: The banner image
-- **Link**: The destination URL when clicked
+- **Slider Key** (`slider_key`): The key of the Simple Slider to display
+- **Show Newsletter Form** (`show_newsletter_form`): Show a newsletter subscription form instead of the Shop Now button
 
 ### Featured Products
 
@@ -27,7 +26,7 @@ Display a grid, slider, or list of featured products. Products are pulled from t
 
 - **Title**: Section heading
 - **Number of products**: How many products to display
-- **Style** (`style`): Display style — `grid` (default), or `list`. The `list` style renders horizontal cards with
+- **Style** (`style`): Display style — `grid` (default), `slider`, or `list`. The `list` style renders horizontal cards with
   product image, title, a 2-line description (HTML stripped), price, and an add-to-cart button.
 
 ### Product Categories
@@ -55,7 +54,9 @@ Display customer testimonials and reviews on the homepage. Each review card show
 5-star rating, and the review text.
 
 - **Title**: Section heading
-- **Reviews**: Select reviews to display
+- **Number of Reviews** (`limit`): How many reviews to display
+- **Minimum Stars** (`min_stars`): Only show reviews with this rating or higher
+- **Display Style** (`style`): `grid` or `slider`
 
 ### Ecommerce Categories
 

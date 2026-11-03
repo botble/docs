@@ -75,10 +75,11 @@ Sometimes you need to revoke a previously-approved submission — e.g. the custo
 
 This:
 
-- Flips `status` back to `rejected`.
-- Purges the files from disk immediately (the audit trail row stays).
-- Increments the rejection counter — triggering auto-lock if the threshold is reached.
-- Dispatches `KycRejected` with a `unverified: true` flag on the event.
+- Deletes the subject's approved submission(s) of that type, together with their files.
+- Clears the mirrored verified flag on host models (real-estate account, job-board company).
+- Dispatches `KycUnverified` (no webhook is sent for it) and writes an audit log entry.
+
+The subject can then submit a new verification.
 
 Requires permission: `kyc.submissions.unverify`.
 

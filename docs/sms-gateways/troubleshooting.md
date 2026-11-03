@@ -18,7 +18,7 @@ description: Common SMS Gateways issues and solutions.
 **Fixes**:
 
 1. Check driver is configured:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - Verify at least one driver is checked under **Active Drivers**
    - Verify credentials are filled in (not empty)
 
@@ -87,7 +87,7 @@ description: Common SMS Gateways issues and solutions.
 **Fixes**:
 
 1. Configure inbound webhook URL:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - Set **Inbound Webhook URL** to your endpoint
    - Example: `https://yoursite.com/api/sms/inbound`
 
@@ -129,7 +129,7 @@ description: Common SMS Gateways issues and solutions.
 **Fixes**:
 
 1. Verify SMS driver works:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - Click **Send test SMS** to your personal phone
    - You should receive SMS within 10 seconds
 
@@ -217,7 +217,7 @@ description: Common SMS Gateways issues and solutions.
    - See [SMS Templates](./usage/templates.md)
 
 3. Reduce retry frequency:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - Adjust retry policy (default: 3 retries)
 
 ## Queue jobs stuck

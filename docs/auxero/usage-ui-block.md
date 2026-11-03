@@ -27,7 +27,7 @@ There are many more shortcodes available. The setup is similar for all shortcode
 
 ## Available Shortcodes
 
-Auxero provides **38 shortcodes** organized by category. Each shortcode supports multiple style variants and configurable attributes through the admin panel.
+Auxero provides **36 shortcodes** organized by category. Each shortcode supports multiple style variants and configurable attributes through the admin panel.
 
 ### Car Manager Shortcodes
 
@@ -203,6 +203,26 @@ Advanced search form with tab support.
 #### Branch Locations
 
 ![Branch Locations](./images/ui-blocks/branch-locations.png)
+
+#### Content Columns
+
+Multi-column content section.
+
+#### Content Images
+
+Content section with images.
+
+#### Trusted Expertise
+
+Trusted expertise / highlights section.
+
+#### Sell Your Car
+
+Call-to-action section inviting visitors to sell their car.
+
+#### Financing
+
+Car financing information section.
 
 ### Blog Shortcodes
 

@@ -15,7 +15,7 @@ SnapCart supports multiple payment gateways to accept payments from customers wo
 
 ## Setup a Payment Gateway
 
-1. In admin panel, go to `Ecommerce` -> `Payment Methods`
+1. In admin panel, go to `Payments` -> `Payment methods`
 2. Find the payment gateway you want to enable
 3. Click `Activate` and fill in the required credentials
 4. Click `Save`
@@ -39,5 +39,5 @@ Always test payment gateways in sandbox/test mode before going live. Never share
 
 ## Managing Payments
 
-All payments are tracked in `Ecommerce` -> `Payments` in the admin panel. You can view payment status, refund
+All payments are tracked in `Payments` -> `Transactions` in the admin panel. You can view payment status, refund
 payments, and manage transaction details.

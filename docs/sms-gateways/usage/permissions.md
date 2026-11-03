@@ -21,16 +21,19 @@ The plugin registers these permission flags in **Admin → Settings → Roles & 
 | `sms-gateways.templates.test-send` | Send a template preview to a phone |
 | `sms-gateways.consents.index` | View consent records |
 | `sms-gateways.consents.update` | Override opt-in / opt-out status |
-| `sms-gateways.drivers.configure` | Enter driver credentials |
 | `sms-gateways.country-routes.index` | View country routing rules |
 | `sms-gateways.country-routes.create` | Add a new country route |
 | `sms-gateways.country-routes.edit` | Edit an existing country route |
 | `sms-gateways.country-routes.destroy` | Delete country routes |
+| `sms-gateways.custom-drivers.index` | View custom HTTP drivers |
+| `sms-gateways.custom-drivers.create` | Add a custom HTTP driver |
+| `sms-gateways.custom-drivers.edit` | Edit a custom HTTP driver |
+| `sms-gateways.custom-drivers.destroy` | Delete custom HTTP drivers |
 | `sms-gateways.webhooks.index` | View outbound webhooks |
 | `sms-gateways.webhooks.create` | Add a new webhook |
 | `sms-gateways.webhooks.edit` | Edit a webhook |
 | `sms-gateways.webhooks.destroy` | Delete a webhook |
-| `sms-gateways.settings.edit` | Edit plugin-wide settings (OTP, rate limits, license) |
+| `sms-gateways.settings.edit` | Edit plugin-wide settings and driver credentials (OTP, rate limits, license) |
 | `sms-gateways.test-send` | Use the Test SMS tool |
 
 ## Assign permissions to a role
@@ -50,8 +53,7 @@ Allow support staff to view logs and handle opt-outs:
 - ✓ `sms-gateways.logs.view`
 - ✓ `sms-gateways.consents.index`
 - ✓ `sms-gateways.consents.update`
-- ✗ `sms-gateways.drivers.configure` (prevent credential access)
-- ✗ `sms-gateways.settings.edit`
+- ✗ `sms-gateways.settings.edit` (prevent credential access)
 
 ### Marketing Manager Role
 Allow marketing to manage templates and see deliverability:
@@ -61,7 +63,7 @@ Allow marketing to manage templates and see deliverability:
 - ✓ `sms-gateways.templates.index`
 - ✓ `sms-gateways.templates.edit`
 - ✓ `sms-gateways.templates.test-send`
-- ✗ `sms-gateways.drivers.configure`
+- ✗ `sms-gateways.settings.edit`
 - ✗ `sms-gateways.webhooks.index`
 
 ### SMS Admin Role
@@ -75,7 +77,7 @@ The **Super Admin** role has all permissions by default and cannot be restricted
 
 ## Edit permission enforcement
 
-When an admin without `sms-gateways.settings.edit` views **Admin → Settings → SMS Gateways**, they see:
+When an admin without `sms-gateways.settings.edit` views **Admin → SMS Gateways → Settings**, they see:
 
 - Credentials are hidden (asterisks)
 - All form inputs are read-only

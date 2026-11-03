@@ -16,7 +16,7 @@ When an event happens (e.g., a new order is placed), the system sends an HTTP **
 
 ## Configuration
 
-Navigate to **Settings** -> **Ecommerce** -> **Webhook** in the admin panel.
+Navigate to **Settings** -> **Ecommerce** -> **Webhooks** in the admin panel.
 
 You will see input fields for each webhook event. Paste a valid HTTPS URL into the field for each event you want to track, then click **Save**.
 
@@ -53,7 +53,7 @@ All webhooks send a JSON payload via HTTP POST with `Content-Type: application/j
 
 ### Order Webhooks
 
-The following structure applies to **Order Placed**, **Order Updated**, **Order Completed**, and **Order Cancelled** events:
+The following structure applies to **Order Placed**, **Order Updated**, **Order Completed**, **Order Cancelled**, **Shipping Status Updated** and **Payment Status Updated** events:
 
 ```json
 {
@@ -63,8 +63,8 @@ The following structure applies to **Order Placed**, **Order Updated**, **Order 
     "text": "Pending"
   },
   "shipping_status": {
-    "value": "not_shipped",
-    "text": "Not shipped"
+    "value": "pending",
+    "text": "Pending"
   },
   "payment_method": {
     "value": "stripe",
@@ -101,6 +101,8 @@ The following structure applies to **Order Placed**, **Order Updated**, **Order 
 }
 ```
 
+`shipping_status`, `payment_method` and `payment_status` are empty arrays (`[]`) when the order has no shipment or payment record yet. `customer.id` is only included for registered customers.
+
 **Additional fields by event:**
 
 - **Order Cancelled** - includes `cancellation_reason`
@@ -132,7 +134,7 @@ The following structure applies to **Order Placed**, **Order Updated**, **Order 
   "abandoned_at": "2025-01-15T10:30:00Z",
   "hours_since_abandoned": 2,
   "reminders_sent": 0,
-  "recovery_url": "https://example.com/cart/recover?token=abc123"
+  "recovery_url": "https://example.com/cart?token=eyJpdiI6..."
 }
 ```
 

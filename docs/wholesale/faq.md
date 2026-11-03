@@ -24,7 +24,7 @@ Yes. Wholesale works with all Botble e-commerce themes including Farmart, Martfu
 ### What are the system requirements?
 
 - Botble CMS 7.6.0+
-- PHP 8.3.36+
+- PHP 8.3.0+
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 
@@ -32,7 +32,7 @@ Yes. Wholesale works with all Botble e-commerce themes including Farmart, Martfu
 
 ### Can a customer be in multiple groups?
 
-Yes, if you enable it in **Wholesale > Settings > Allow Customers in Multiple Groups**. When enabled, the [discount resolution strategy](/wholesale/configuration#discount-resolution-strategy) determines which discount applies.
+Yes, if you enable it in **Wholesale > Settings > Allow Customers in Multiple Groups**. When groups give different discounts, the customer gets the largest one (see [Discount Resolution](/wholesale/configuration#discount-resolution)).
 
 ### What's the difference between Percentage and Fixed Amount discounts?
 
@@ -41,7 +41,7 @@ Yes, if you enable it in **Wholesale > Settings > Allow Customers in Multiple Gr
 
 ### What does the Priority field do?
 
-Priority is only used when **Discount Resolution Strategy** is set to "Priority" and a customer is in multiple groups. Lower priority number = higher importance. A group with priority 1 takes precedence over priority 2.
+Priority orders groups (lower number first). It does not change which discount a customer in multiple groups gets: they always get the largest one. When guest wholesale pricing is on and no default group is set, the published group with the lowest priority number is used for guests.
 
 ## Pricing Rules
 

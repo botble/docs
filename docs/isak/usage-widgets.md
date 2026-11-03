@@ -21,6 +21,14 @@ This sidebar is suitable for displaying:
 - Copyright text
 - Custom HTML content
 
+### Panel Sidebar
+
+Widgets in the sidebar panel area.
+
+### Top Footer Sidebar
+
+Widgets in the top footer area.
+
 ## Available Widgets
 
 Isak supports the following widgets:

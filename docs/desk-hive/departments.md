@@ -27,7 +27,7 @@ Departments let you route tickets to the right team. Each ticket can belong to o
 
 Only one department can be marked as default. When a customer submits a ticket without selecting a department (or when a department is not required), the default department is used.
 
-You can also set the default department in **Admin → Support Desk → Settings → General → Default department**.
+You can also set the default department in **Admin → Settings → Support Desk Settings → General → Default department**.
 
 ## Assigning Agents to Departments
 
@@ -42,7 +42,7 @@ Agents only see tickets from departments they are assigned to in the agent porta
 
 By default, agents only see tickets assigned directly to them. You can optionally enable **department-based visibility** so that agents see all tickets in their assigned departments.
 
-Enable this in **Admin → Support Desk → Settings → General → Enable department-based ticket visibility**. See [Agents](agents.md#department-based-visibility) for details.
+Enable this in **Admin → Settings → Support Desk Settings → General → Enable department-based ticket visibility**. See [Agents](agents.md#department-based-visibility) for details.
 
 ## Assigning Tickets to Departments
 

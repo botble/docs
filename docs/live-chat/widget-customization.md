@@ -18,11 +18,11 @@ The widget uses CSS custom properties that you can override in your theme:
 
 ```css
 #live-chat-widget {
-    --lc-primary: #5A5EB9;        /* Main color */
-    --lc-primary-hover: #4a4ea0;  /* Hover color */
+    --lc-primary: #82b541;        /* Main color */
+    --lc-primary-hover: #6a9a35;  /* Hover color */
     --lc-status-color: #22c55e;   /* Online indicator color */
-    --lc-offset-x: 20px;          /* Horizontal offset */
-    --lc-offset-y: 20px;          /* Vertical offset */
+    --lc-offset-x: 40px;          /* Horizontal offset */
+    --lc-offset-y: 40px;          /* Vertical offset */
 }
 ```
 

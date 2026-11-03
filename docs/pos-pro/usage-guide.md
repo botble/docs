@@ -214,7 +214,6 @@ The receipt includes:
 - Shipping (if applicable)
 - Total amount
 - Payment method
-- Custom footer text
 
 For printer setup instructions, see [Printer Setup](usage-printer-setup.md).
 

@@ -63,7 +63,7 @@ CRUD
 
 ![CRUD](https://botble.com/storage/uploads/1/docs/screenshots/edit-page.png)
 
-2 themes ready now
+Theme ready to use
 ![Theme](https://botble.com/storage/uploads/1/docs/screenshots/theme.png)
 
 Roles and Permissions

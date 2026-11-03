@@ -108,17 +108,11 @@ The customer reverts to retail pricing immediately.
 
 If **Allow Customers in Multiple Groups** is enabled in [Settings](/wholesale/configuration#allow-customers-in-multiple-groups), a customer can belong to more than one group.
 
-When a customer is in multiple groups with different discounts, the [Discount Resolution Strategy](/wholesale/configuration#discount-resolution-strategy) determines which applies:
-
-| Strategy | Example: Customer in Gold (20% off) + Silver (15% off) |
-|----------|--------------------------------------------------------|
-| **Highest** | Gets 20% off (the better discount) |
-| **Lowest** | Gets 15% off |
-| **Priority** | Group with lower priority number wins |
+When a customer is in multiple groups with different discounts, they always get the largest one. Example: a customer in Gold (20% off) and Silver (15% off) gets 20% off. See [Discount Resolution](/wholesale/configuration#discount-resolution).
 
 ### Priority field
 
-The **Priority** field on each group is only used when the resolution strategy is set to "Priority". Lower numbers mean higher priority:
+The **Priority** field orders groups (lower number first). It does not change which discount wins for a customer in multiple groups. When guest wholesale pricing is on and no default group is set, the group with the lowest priority number is used for guests:
 
 | Group | Priority | Discount |
 |-------|----------|----------|
@@ -158,7 +152,7 @@ If a customer is in both Gold (priority 2) and Silver (priority 3), Gold wins be
 ### Wrong discount is applied
 
 1. Check if the customer is in multiple groups: **Ecommerce > Customers > Edit customer**
-2. Check which resolution strategy is active: **Wholesale > Settings > Discount Resolution Strategy**
+2. Remember that a customer in multiple groups always gets the largest group discount
 3. Check if there are [pricing rules](/wholesale/usage/pricing-rules) on the product that override the group discount
 
 ### Group discount doesn't apply to a specific product

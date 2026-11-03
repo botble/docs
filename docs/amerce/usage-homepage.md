@@ -15,8 +15,7 @@ In the `Create new page` page, fill in the following fields:
 - **Content**: The content of the homepage is usually customized using shortcodes (we will discuss
   in [UI Block](./usage-ui-block.md)). You can
   leave it empty for now.
-- **Template**: Select `Full width`.
-- **Breadcrumb style**: Select `None`.
+- **Template**: Select `Homepage` (or `Full Width`).
 - Other fields are optional, you can fill them if you want.
 
 ## Setup Homepage
@@ -53,7 +52,7 @@ Each preset ships as a SQL dump in the source code at `database/sample/database-
 
 For example, the Wellness preset is `database/sample/database-home-mental.sql`.
 
-The default **Fashion Store** preset lives at `database.sql` in the project root.
+The default **Fashion Store** preset lives at `database.sql` in the project root (also available as `database/sample/database-home-fashion.sql`).
 
 Steps:
 

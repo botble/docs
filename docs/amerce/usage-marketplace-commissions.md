@@ -14,7 +14,7 @@ When a customer purchases from a vendor:
 
 ## Commission Settings
 
-Navigate to `Marketplace` -> `Settings` to configure commission rates.
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace` to configure commission rates.
 
 ![Ecommerce settings](./images/ecommerce-settings.png)
 
@@ -22,7 +22,10 @@ Navigate to `Marketplace` -> `Settings` to configure commission rates.
 
 | Setting | Description |
 |---------|-------------|
-| **Default commission fee** | Percentage charged on all vendor sales (0-100%) |
+| **Default commission fee (%)** | Percentage charged on all vendor sales (0-100%) |
+| **Fixed commission fee (per order)** | Flat amount charged once per vendor order on top of the percentage (e.g. to cover a gateway's fixed €0.25). `0` disables |
+
+These settings apply when **Marketplace mode** is **Commission based** or **Subscription + commission** (other modes: **Subscription based**, where vendors buy a plan and no commission is taken).
 
 This is the global commission rate applied to all products unless overridden by category-specific rates.
 
@@ -63,7 +66,7 @@ Category commissions override the default commission rate. If a product belongs 
 ### Per-Vendor Commission Rates
 
 ::: warning
-Per-vendor commission rates are not currently supported through the UI. The system uses default and category-based rates only.
+There is no per-vendor commission field on the store form. In **Subscription + commission** mode, a vendor's subscription plan can override the commission rates for that vendor; otherwise default and category-based rates apply.
 :::
 
 ## Commission Calculation
@@ -108,7 +111,7 @@ Total Vendor Revenue = Order Total - Total Platform Fee
 
 ### Admin Revenue Reports
 
-Navigate to `Marketplace` -> `Revenues`
+Navigate to `Marketplace` -> `Stores`, then open a store to see its revenue list.
 
 The revenue table shows:
 
@@ -121,17 +124,16 @@ The revenue table shows:
 | **Amount** | Net amount credited to vendor |
 | **Current Balance** | Vendor balance after transaction |
 | **Currency** | Transaction currency |
-| **Type** | Revenue type (order commission, adjustment, etc.) |
+| **Type** | Revenue type (add amount, subtract amount, order return, subscription fee) |
 | **Description** | Transaction notes |
 | **User** | Admin who created the record (if manual) |
 | **Created At** | Transaction date |
 
 ### Viewing Vendor Revenues
 
-**Filter by vendor:**
-1. Go to `Marketplace` -> `Revenues`
-2. Use the customer filter to view specific vendor's revenue
-3. Export to CSV for reporting
+**Per vendor:**
+1. Go to `Marketplace` -> `Stores`
+2. Open the store to view its revenue history
 
 ### Vendor Revenue Dashboard
 
@@ -189,10 +191,9 @@ Shipping fee commission depends on marketplace settings:
 
 Track total marketplace earnings:
 
-1. Navigate to `Marketplace` -> `Revenues`
-2. View total fees collected from all vendors
+1. Navigate to `Marketplace` -> `Reports`
+2. View fees collected from all vendors
 3. Filter by date range for period reports
-4. Export data for accounting purposes
 
 **Key Metrics:**
 - Total commissions earned
@@ -286,11 +287,11 @@ Never edit `mp_vendor_info` table directly. Always use admin panel or proper API
 
 ### Can I charge a flat fee instead of percentage?
 
-Currently, the system supports percentage-based commissions only. Fixed fees per order are not supported.
+Yes. Set **Fixed commission fee (per order)** in the marketplace settings. It is charged once per vendor order on top of the percentage commission (set the percentage to `0` for a flat fee only).
 
 ### Can I set different rates for different vendors?
 
-Not through the UI. All vendors follow the default commission rate unless overridden by category-specific rates.
+Not on the store itself. All vendors follow the default commission rate unless overridden by category-specific rates, or, in **Subscription + commission** mode, by the vendor's subscription plan.
 
 ### Do shipping fees have commission?
 

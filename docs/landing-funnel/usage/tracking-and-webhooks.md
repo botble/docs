@@ -183,6 +183,6 @@ The `landing_funnel_visits` table grows quickly under heavy ad traffic. Schedule
 0 3 * * * php /var/www/your-app/artisan landing-funnel:purge-visits
 ```
 
-Set retention days to `0` in **Settings** to disable auto-purge entirely. The conversion data in `landing_funnel_orders` is never auto-purged — only visit-level analytics get pruned.
+An empty or `0` retention setting makes the command keep the last 90 days; to stop purging, remove the cron entry. Use `--days=N` to override once, or `--dry-run` to preview. The conversion data in `landing_funnel_orders` is never auto-purged — only visit-level analytics get pruned.
 
 [Back to usage overview &rarr;](/landing-funnel/usage/)

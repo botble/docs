@@ -5,7 +5,7 @@ description: Configure SMS drivers, defaults, and settings.
 
 # Configuration
 
-After installation, wire up your SMS drivers in **Admin → Settings → SMS Gateways**.
+After installation, wire up your SMS drivers in **Admin → SMS Gateways → Settings**.
 
 ## Step 1 — Pick your driver(s)
 
@@ -77,10 +77,10 @@ All webhooks are signed with HMAC-SHA256. See [Outbound Webhooks](./usage/outbou
 
 ## Step 6 — Retention policy
 
-Auto-purge logs older than **90 days** (configurable):
+Auto-purge logs older than **30 days** (`smsg_log_retention_days` setting):
 
 ```bash
-php artisan sms:purge --days=90
+php artisan sms:purge
 ```
 
 This runs nightly via scheduler if configured.

@@ -30,6 +30,7 @@ Travlla ships with travel-focused UI blocks you can drop into any page:
 
 | Shortcode | Description |
 |-----------|-------------|
+| `hero-search` | Homepage hero banner with an optional tour search form. |
 | `popular-tours` | Carousel of featured tours. |
 | `tour-list` | Grid/list of tours with filters. |
 | `tour-categories` | Showcase of tour categories. |

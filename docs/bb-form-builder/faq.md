@@ -9,7 +9,7 @@ BB Form Builder is an advanced form builder plugin for websites built with Botbl
 ### What are the system requirements for BB Form Builder?
 
 - Botble CMS version 7.5.0 or higher (or any script based on Botble CMS)
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 
 ### Is BB Form Builder compatible with other Botble products?
@@ -64,7 +64,7 @@ Yes! BB Form Builder offers extensive customization:
 
 ### How do I add conditional logic to forms?
 
-Currently, BB Form Builder focuses on straightforward form building. For complex conditional logic, consider using the multi-step wizard feature to logically group related fields.
+Use step conditions on a multi-step form. Open a step's **Step Condition** and choose **Show this step if** a checkbox, radio or select field from an earlier step is checked / not checked, equals or does not equal a value. When the condition is not met, the step is skipped. See [Multi-Step Forms](./multi-step-forms.md#step-conditions).
 
 ## Embedding Questions
 

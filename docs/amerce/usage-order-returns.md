@@ -17,19 +17,21 @@ The return system includes:
 
 ## Enabling Returns
 
-Navigate to `Ecommerce` -> `Settings` -> `Return Settings`.
+Navigate to `Settings` -> `Ecommerce` -> `Return`.
 
 ![Order return settings](./images/order-return-settings.png)
 
-Toggle **Enable order returns** to activate the feature.
+Toggle **Is enabled order return** to activate the feature.
 
 ## Return Settings
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Enable order returns** | Off | Master switch for return feature |
+| **Is enabled order return** | On | Master switch for return feature |
+| **Allow partial return** | Off | Customer can return some products instead of the whole order |
 | **Returnable days** | 30 | Days after order completion to allow returns |
-| **Returnable statuses** | Completed | Order statuses eligible for returns |
+| **Allow customer to upload images** | Off | Customers can attach photos to return requests |
+| **Maximum file size (MB)** / **Maximum number of images** | - | Limits for return request images |
 
 ::: tip
 Only orders with "Completed" status can be returned. Orders must be within the returnable days window.
@@ -263,11 +265,8 @@ Always complete the return before processing refunds to maintain accurate tracki
 
 The system sends emails for:
 
-- **Return request received** - Confirms customer's request
-- **Return approved** - Provides return shipping instructions
-- **Return completed** - Confirms receipt of items
-- **Return rejected** - Explains rejection reason
-- **Refund processed** - Confirms refund (from order refund system)
+- **Order return request** - Sent when a customer submits a return request
+- **Order return request status updated** - Sent when the return status changes (approved/processing, completed, canceled)
 
 Configure email templates at `Settings` -> `Email` -> `Ecommerce` section.
 

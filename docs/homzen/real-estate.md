@@ -1,14 +1,14 @@
 # Real Estate
 
 ::: tip INFO
-Go to **Admin** -> **Real Estate** -> **Settings**
+Go to **Admin** -> **Settings** -> **Real Estate**
 :::
 
 ![Real Estate](./images/real-estate-1.png)
 
 ## General
 
-In general tab, you can see there have some settings: **Unit of square**, **Display view count**, **Review**, ...
+In general tab, you can see there have some settings: **Unit of square**, **Display views count in the detail page**, **Enable review**, ...
 
 ![General](./images/real-estate-2.png)
 

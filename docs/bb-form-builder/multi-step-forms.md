@@ -16,6 +16,22 @@ Create wizard-style forms with multiple steps to improve user experience for lon
   - Vertical: Steps displayed on the left side
 - **Step Titles**: Name each step clearly
 - **Step Validation**: Each step validates before proceeding
+- **Hide step numbers and names**: Hide the step progress bar (numbers and step titles). Steps still work; only the indicator is hidden
+
+## Step Conditions
+
+Show a step only when a condition is met. Otherwise the step is skipped.
+
+1. Open a step (not the first one) and click **Add condition**
+2. In **Show this step if**, pick a checkbox, radio or select field from a previous step
+3. Choose the condition: **Is checked / selected**, **Is not checked / not selected**, **Equals value** or **Does not equal value**
+4. For the equals conditions, pick the value from the field's options (or type it)
+
+The first step cannot have a condition.
+
+## Saved Progress
+
+Visitors' answers (and, for a wizard, the current step) are kept in the browser while they fill the form. When they come back, the form shows "Your previous progress has been restored." with a **Start Fresh** button to clear it.
 
 ## Navigation
 

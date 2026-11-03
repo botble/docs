@@ -97,7 +97,7 @@ stored anywhere you can read back later.
     "store": {"id": "acme", "name": "Acme Supply", "status": "ready",
               "access_state": "serving", "root_url": "https://acme.example.com",
               "billing_provider": "local"},
-    "provisioning": {"preset": "fashion", "theme": "amerce",
+    "provisioning": {"preset": "home-fashion", "theme": "amerce",
                      "apps": ["ecommerce", "payment"], "plugin_migration_paths": 21}
   },
   "meta": {"actor": {"type": "api_key", "id": 3, "name": "Billing sync"}}
@@ -119,7 +119,8 @@ stored anywhere you can read back later.
 | `Content-Type` | `application/json` |
 | `User-Agent` | `<App name>-Webhooks/2026-09-02` |
 | `X-Tenancy-Event` | the event name, e.g. `store.ready` |
-| `X-Tenancy-Delivery` | the delivery id — same as the payload's `id` |
+| `X-Tenancy-Delivery` | the event id — same as the payload's `id`; stable across retries and identical for every endpoint subscribed to the event (de-duplicate on this) |
+| `X-Tenancy-Delivery-Id` | the delivery row id — unique per endpoint; the `{id}` the retry endpoint takes |
 | `X-Tenancy-Signature` | `t=<unix seconds>,v1=<hex hmac-sha256>` |
 
 ## Verifying the signature

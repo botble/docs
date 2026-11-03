@@ -1,5 +1,13 @@
 # Release Notes
 
+## 1.0.1
+
+**Added**
+- Support for Botble marketplace (direct purchase) license codes alongside Envato purchase codes in the development license check.
+
+**Fixed**
+- The app closing on Android when opening the sign-in screen without Facebook login set up.
+
 ## 1.0.0
 
 Initial release — a whitelabel job-board mobile app built with Expo SDK 54 / React Native, connecting to a Botble backend running the job-board API.

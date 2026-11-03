@@ -18,7 +18,7 @@ Both paths use the same code. The only difference is `QUEUE_CONNECTION` in `.env
 
 ## What you need
 
-- **PHP 8.3.36+** with extensions: `openssl`, `curl`, `json`, `mbstring`
+- **PHP 8.3.0+** with extensions: `openssl`, `curl`, `json`, `mbstring`
 - **MySQL 5.7+**
 - **HTTPS** (most SMS providers require it)
 - **Cron jobs** (optional, for cleanup and retries)
@@ -42,7 +42,7 @@ If SSH access isn't available, use a web-based command runner or ask hosting sup
 
 ### 3. Configure SMS drivers
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Enter your SMS provider credentials (Twilio, Vonage, etc.)
 3. Test with a test SMS
 
@@ -88,10 +88,10 @@ If your site gets high SMS volume (100+/minute), consider a VPS with queue worke
 
 ## Database backups
 
-Before enabling SMS, ensure your host backs up the database regularly. SMS logs can grow large; you may need to archive or purge logs older than 90 days.
+Before enabling SMS, ensure your host backs up the database regularly. SMS logs can grow large; you may need to archive or purge old logs. The retention window comes from the `smsg_log_retention_days` setting (default 30 days); the command has no `--days` option.
 
 ```bash
-php artisan sms:purge --days=90
+php artisan sms:purge
 ```
 
 ## Next step

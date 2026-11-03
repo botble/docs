@@ -73,7 +73,7 @@ Per-funnel webhook URL with optional HMAC-SHA256 signing secret. Failed deliveri
 
 - Botble CMS version 7.5.0 or higher
 - Botble Ecommerce plugin activated
-- PHP 8.3.36+
+- PHP 8.3.0+
 - At least one published product in your store
 
 ## Security Model

@@ -48,7 +48,7 @@ Integrate license protection into your software:
 $client = new LicenseClient($apiKey, $serverUrl, $productId);
 
 // Activate (user does this once)
-$result = $client->activate($licenseCode);
+$result = $client->activate($licenseCode, $clientName);
 file_put_contents('license.dat', $result['lic_response']);
 
 // Verify (on every app start)
@@ -81,6 +81,8 @@ Set up your own License Manager server:
 - **Customer Portal** - Self-service license management
 - **Envato Integration** - Verify Envato purchase codes
 - **Gumroad Integration** - Verify [Gumroad](gumroad-integration.md) license keys
+- **Lemon Squeezy Integration** - Auto-generate licenses from Lemon Squeezy purchases (webhook)
+- **Signed Updates** - Ed25519-signed update archives and SHA-256 checksums ([Update Integrity](update-integrity.md))
 - **Webhooks** - Real-time event notifications
 - **REST API** - Full programmatic access
 - **Platform Agnostic** - Integrate with any language: PHP, Python, Node.js, .NET, Java, Ruby, and more

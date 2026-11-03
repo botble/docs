@@ -61,14 +61,13 @@ GET /api/v1/ecommerce/products
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `page` | integer | Page number (default: 1) |
-| `per_page` | integer | Items per page (default: 10, max: 100) |
-| `sort_by` | string | Sort field (`name`, `created_at`, `price`, etc.) |
-| `order` | string | `asc` or `desc` |
+| `per_page` | integer | Items per page (1-100; default: theme option `number_of_products_per_page`, 12) |
+| `sort_by` | string | `default_sorting`, `date_asc`, `date_desc`, `price_asc`, `price_desc`, `name_asc`, `name_desc`, `rating_asc`, `rating_desc` |
 | `categories[]` | array | Filter by category IDs |
 | `brands[]` | array | Filter by brand IDs |
 | `min_price` | number | Minimum price |
 | `max_price` | number | Maximum price |
-| `keyword` | string | Search keyword |
+| `q` | string | Search keyword (`keyword` is also accepted) |
 
 ### Search Products
 
@@ -76,7 +75,12 @@ GET /api/v1/ecommerce/products
 GET /api/v1/ecommerce/products/search
 ```
 
-Same query parameters as listing, optimized for search.
+Lightweight name search (published products only).
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `q` | string | **Required.** Search keyword (max 255) |
+| `limit` | integer | Number of results (1-20, default 8) |
 
 ### Get Product Details
 
@@ -580,12 +584,12 @@ curl -X POST https://your-domain.com/api/v1/ecommerce/addresses \
 
 ### Order Tracking (Public)
 
-Track orders without authentication using order ID and email.
+Track orders without authentication using the order code (and optionally the email).
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/orders/tracking/settings` | Get tracking page settings |
-| POST | `/orders/tracking` | Track order by ID and email |
+| POST | `/orders/tracking` | Track order by `code` (+ optional `email`) |
 | GET | `/orders/token/{token}` | Get order by token |
 
 ### Order Proof of Payment

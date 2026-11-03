@@ -24,7 +24,7 @@ Go to `Admin Panel` -> `Car Manager` -> `Reviews` to manage all reviews.
 
 ## Enabling Reviews
 
-Reviews are controlled by a single feature toggle. Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `Review` and enable **Enable review**.
+Reviews are controlled by a single feature toggle. Go to `Admin Panel` -> `Settings` -> `Car Manager` -> `Review` and enable **Enable review?**.
 
 Customers can only review cars they have actually booked, and only after the booking is `Completed`.
 
@@ -60,7 +60,7 @@ Auxero includes an in-platform messaging system that allows customers to send qu
 
 ### Managing Messages in Admin
 
-Go to `Admin Panel` -> `Car Manager` -> `Messages`.
+Go to `Admin Panel` -> `Messages`.
 
 Admin can view all conversations across all vendors and customers.
 

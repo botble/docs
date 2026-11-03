@@ -29,15 +29,13 @@ assets/
 
 ### Configuration
 
-Update `app.json`:
+The icon path is set in `app.config.js`:
 
-```json
-{
-  "expo": {
-    "icon": "./assets/icon.png"
-  }
-}
+```js
+icon: "./assets/icon.png",
 ```
+
+Replace `assets/icon.png` with your own file (same name) or change the path.
 
 ## Splash Screen
 
@@ -47,6 +45,8 @@ Update `app.json`:
 - **Design**: Center your logo, use solid background
 
 ### Configuration
+
+All asset paths below live in `app.config.js` (there is no `app.json`); the JSON snippets show the keys inside the exported object.
 
 ```json
 {
@@ -106,6 +106,8 @@ iOS automatically generates all required sizes from your main icon.
 ## App Bar Logo
 
 The home screen header displays `assets/icon.png` in the avatar area for unauthenticated users. Authenticated users see their profile avatar or name initials instead.
+
+To show your store logo in the header instead, set `HEADER_STYLE=logo` in `.env`. The header then shows `HEADER_LOGO_URL` (a full URL, or a path resolved against `API_BASE_URL`).
 
 ## Web Favicon
 
@@ -181,7 +183,7 @@ After updating assets:
 ### Icon not updating
 - Clear app cache on device
 - Rebuild the app
-- Check file paths in app.json
+- Check file paths in `app.config.js`
 
 ### Splash screen stretched
 - Use `resizeMode: "contain"`

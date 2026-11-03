@@ -29,7 +29,7 @@ JobHive is a React Native (Expo) app for job search and recruitment. It is the m
 - **expo-router**: file-based navigation
 - **@tanstack/react-query**: server state, caching, retries
 - **react-i18next** + **expo-localization**: internationalization with RTL
-- **NativeWind v4 + Tailwind**: responsive styling with env-driven theme colors
+- **React Native `StyleSheet`** + a `theme.ts` design system: styling with env-driven theme colors
 - **expo-secure-store** (auth token) + **async-storage** (user preferences)
 - **Firebase Cloud Messaging**: push notifications (optional, FCM tokens)
 - **react-native-webview**: embedded WebView for employer package checkout

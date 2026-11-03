@@ -16,12 +16,12 @@ There are two main components to the localization system:
 
 To translate your theme's text to different languages, you can use JSON translation files. These files should be placed in one of these locations:
 
-- `resources/lang/`
+- `lang/` (project root)
 - `platform/themes/your-theme/lang/`
 
 #### Example
 
-Create a file `resources/lang/es.json` for Spanish translations:
+Create a file `lang/es.json` for Spanish translations:
 
 ```json
 {
@@ -53,9 +53,9 @@ echo __('Welcome to our website');
 
 The admin panel uses Laravel's localization with PHP arrays. To add a new language:
 
-1. **Manual Method**: Copy the entire `resources/lang/en` directory to your language code, e.g., `resources/lang/es`, and translate all the files.
+1. **Manual Method**: Copy the entire `lang/en` directory to your language code, e.g., `lang/es`, and translate all the files.
 
-2. **Using Artisan Command**: Run the following command to quickly create a new locale:
+2. **Using Artisan Command** (requires the `botble/dev-tool` dev dependency): Run the following command to quickly create a new locale:
 
 ```bash
 php artisan cms:locale:create <locale>
@@ -71,7 +71,7 @@ php artisan cms:locale:create es
 
 To remove a locale, you can either:
 
-1. Delete the locale directory in `resources/lang`
+1. Delete the locale directory in `lang`
 2. Run the command:
 
 ```bash
@@ -97,12 +97,13 @@ Go to **Admin Panel > Plugins** and activate the **Language** plugin.
 
 In **Settings > Languages > Settings**, you can configure:
 
-- **Default language**: The default language for your website
-- **Hide default language from URL**: Whether to hide the default language code from URLs
-- **Use language switcher**: Enable/disable the language switcher
-- **Hide languages from switcher**: Select languages to hide from the language switcher
-- **Language display**: How to display languages in the switcher (flag, name, or both)
-- **Language switcher display**: Where to display the language switcher
+- **Hide default language from URL?**: Whether to hide the default language code from URLs
+- **Language display**: How to display languages in the switcher (flag only, name only, or both)
+- **Switcher language display**: Show the switcher as a dropdown or a list
+- **Hide languages**: Hide content in selected languages from visitors and search engines
+- **Auto detect user language?**: Detect the visitor's language from the browser
+
+The default language is set in the languages table (the **Is default?** column), not in this settings tab.
 
 ### Using the Language Switcher
 

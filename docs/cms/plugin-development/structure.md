@@ -47,6 +47,7 @@ Example:
 
 ```json
 {
+    "id": "botble/foo",
     "name": "Foo",
     "namespace": "Botble\\Foo\\",
     "provider": "Botble\\Foo\\Providers\\FooServiceProvider",
@@ -60,6 +61,7 @@ Example:
 
 The fields in the plugin.json file are:
 
+- `id`: Unique plugin ID in `vendor/plugin` format (required for marketplace plugins and by the strict validator)
 - `name`: The display name of your plugin
 - `namespace`: The PHP namespace of your plugin (must end with a double backslash)
 - `provider`: The fully qualified class name of your plugin's service provider
@@ -67,7 +69,8 @@ The fields in the plugin.json file are:
 - `url`: The website URL of the plugin or author
 - `version`: The version number of the plugin
 - `description`: A brief description of what the plugin does
-- `minimum_core_version`: The minimum version of Botble CMS required to run this plugin
+- `minimum_core_version`: The minimum version of Botble CMS required to run this plugin (format `x.y.z`)
+- `require`: (Optional) Array of plugin IDs that must be activated first, e.g. `["botble/language"]`
 
 ### Plugin.php
 

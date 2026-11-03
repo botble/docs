@@ -17,7 +17,7 @@ The plugin itself is a one-time purchase on CodeCanyon. SMS delivery costs depen
 
 ### Does SMS Gateways work on shared hosting?
 
-Yes. It works on cPanel, Plesk, and any shared host with PHP 8.3.36+ and HTTPS. See [Shared Hosting](./shared-hosting/overview.md).
+Yes. It works on cPanel, Plesk, and any shared host with PHP 8.3.0+ and HTTPS. See [Shared Hosting](./shared-hosting/overview.md).
 
 ### Can I use multiple SMS drivers at the same time?
 
@@ -49,7 +49,7 @@ See the [Drivers](./drivers/twilio.md) section for step-by-step setup per provid
 
 ### How long is the OTP code valid?
 
-Default: 300 seconds (5 minutes). Configure in **Admin → Settings → SMS Gateways → OTP TTL**.
+Default: 300 seconds (5 minutes). Configure in **Admin → SMS Gateways → Settings → OTP TTL**.
 
 ### Can customers resend OTP?
 
@@ -57,7 +57,7 @@ Yes, up to **10 requests per phone per hour** by default (`smsg_otp_max_phone_at
 
 ### What happens after 5 wrong OTP attempts?
 
-The code is marked exhausted and can't be reused. The customer must request a new OTP — the previous code is dead. Configure the cap via `smsg_otp_default_max_attempts` (default `5`).
+The code is marked exhausted and can't be reused. The customer must request a new OTP — the previous code is dead. Configure the cap via `otp_default_max_attempts` (default `5`).
 
 ### Can I customize the OTP message?
 
@@ -69,7 +69,7 @@ Yes. Go to **Admin → SMS Gateways → Templates** and edit the per-event templ
 
 Check these in order:
 
-1. Is the SMS driver configured? (Admin → Settings → SMS Gateways)
+1. Is the SMS driver configured? (Admin → SMS Gateways → Settings)
 2. Is the subject enabled? (e.g., "Ecommerce" checked)
 3. Is the customer opted out? (Admin → SMS Gateways → Consents)
 4. Is there an error in Delivery Logs? (Admin → SMS Gateways → Delivery Logs)
@@ -123,7 +123,7 @@ Yes. If your site offers data export, customers can download their SMS history i
 
 ### How long are SMS logs retained?
 
-Default: 90 days. Configure in **Admin → Settings → SMS Gateways → Retention Days**. Auto-purged nightly via scheduler.
+Default: 30 days, read from the `smsg_log_retention_days` setting (there is no admin field for it). Auto-purged daily at 03:00 via the scheduler.
 
 ## Troubleshooting
 
@@ -140,7 +140,7 @@ See [Troubleshooting](./troubleshooting.md).
 
 Purge old logs:
 ```bash
-php artisan sms:purge --days=90
+php artisan sms:purge
 ```
 
 Or configure cron job to auto-purge nightly. See [Commands](./usage/commands.md).

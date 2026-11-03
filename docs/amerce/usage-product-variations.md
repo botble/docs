@@ -17,7 +17,7 @@ The variation system consists of:
 
 Before adding variations, create reusable attribute sets.
 
-Navigate to `Ecommerce` -> `Attributes` in the admin panel.
+Navigate to `Ecommerce` -> `Product Attributes` in the admin panel.
 
 1. Click **Create**
 2. Enter attribute set details:
@@ -161,7 +161,7 @@ Variations must reference an existing parent product. Import parent products fir
 
 You can limit which attribute sets are available for specific product categories:
 
-1. Navigate to `Ecommerce` -> `Attributes`
+1. Navigate to `Ecommerce` -> `Product Attributes`
 2. Open an attribute set
 3. Scroll to **Categories** section
 4. Select categories where this attribute applies

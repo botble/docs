@@ -101,7 +101,7 @@ BB Form Builder is fully compatible with all scripts based on Botble CMS, includ
 ## Requirements
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 
 ## Botble Team

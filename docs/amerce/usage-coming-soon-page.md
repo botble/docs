@@ -8,7 +8,7 @@ There are two different things people mean by "coming soon", and Amerce handles 
 | **One page** that announces something not launched yet, with the rest of the site open | A normal page using the Landing template |
 
 ::: warning
-Amerce does not ship a `[coming-soon]` shortcode, and it has no "Without layout" page template. If you have seen those referenced elsewhere, they belong to a different theme.
+Amerce does not ship a `[coming-soon]` shortcode. If you have seen one referenced elsewhere, it belongs to a different theme.
 :::
 
 ## Hiding the whole site
@@ -27,7 +27,7 @@ If the shop is live and you only want one page to announce a launch:
 1. Go to `Pages` -> `Create` in the admin panel.
 2. Give the page a title, for example `Coming soon`.
 3. Build the content with UI blocks - a hero banner, a countdown, and a newsletter form are the usual combination. See [UI Block & Shortcodes](./usage-ui-block.md) for how to add them.
-4. Set **Template** to **Landing**. This renders the page content without the shop sidebar and page heading, which suits a standalone announcement.
+4. Set **Template** to **Landing**. This renders the page content full width without the page heading and breadcrumb, which suits a standalone announcement. To also hide the site header and footer, choose **Without Layout** instead.
 5. Publish.
 
 ### Making it the homepage

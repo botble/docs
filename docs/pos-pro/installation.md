@@ -7,7 +7,7 @@ This guide walks you through installing the POS Pro plugin for your Botble E-com
 Before installing POS Pro, ensure your system meets these requirements:
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 
@@ -136,7 +136,7 @@ platform/plugins/pos-pro/
 
 POS Pro requires license activation:
 
-1. Go to **POS** > **License**
+1. Go to **POS** > **License Activation**
 2. Enter your purchase code from CodeCanyon
 3. Click **Activate**
 

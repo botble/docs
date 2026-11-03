@@ -46,7 +46,7 @@ description: Debug common SMS issues on cPanel and Plesk.
 
 ## Cron jobs not running (logs not being cleaned)
 
-**Symptom**: `php artisan sms:purge --days=90` never runs automatically; logs grow indefinitely.
+**Symptom**: `php artisan sms:purge` never runs automatically; logs grow indefinitely.
 
 **Causes**:
 
@@ -79,7 +79,7 @@ description: Debug common SMS issues on cPanel and Plesk.
 **Fixes**:
 
 1. Configure inbound webhook:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - Set **Inbound Webhook URL** to your endpoint (e.g., `https://yoursite.com/api/sms/inbound`)
 2. Test webhook:
    - Click **Test Inbound Webhook** in SMS Settings
@@ -107,10 +107,10 @@ description: Debug common SMS issues on cPanel and Plesk.
 **Fixes**:
 
 1. Verify queue is not required:
-   - Go to **Admin → Settings → SMS Gateways**
+   - Go to **Admin → SMS Gateways → Settings**
    - SMS should send immediately (synchronous) without a queue worker
 2. If SMS is queued but not processing:
-   - Try manually processing the queue: `php artisan queue:work --queue=sms --once`
+   - Try manually processing the queue: `php artisan queue:work --queue=sms-gateways,default --once`
    - Most shared hosts don't allow background queue workers; contact support if you need queue support
 
 ## High SMS latency (slow delivery)
@@ -170,8 +170,8 @@ description: Debug common SMS issues on cPanel and Plesk.
 **Fixes**:
 
 1. Select correct PHP version:
-   - cPanel: **Software → PHP Selector** (select 8.3.36+)
-   - Plesk: **Hosting & Resources** (select 8.3.36+)
+   - cPanel: **Software → PHP Selector** (select 8.3.0+)
+   - Plesk: **Hosting & Resources** (select 8.3.0+)
 2. Enable required extensions:
    - `openssl`, `curl`, `json`, `mbstring`
    - Usually enabled by default; if not, contact hosting support

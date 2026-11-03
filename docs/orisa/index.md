@@ -22,9 +22,9 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
 
 * **Buy Once & Get Free Updates Forever**
 * **Free Theme Installation** – if you face any problem during installation, we will help you and it's **FREE**
-* **5 Homepage Demos** – Creative Agency, Digital Agency, Marketing Agency, AI & Tech Agency, Personal Creative
-* **21+ Shortcodes with 57+ Style Variants** – hero, services, portfolio, testimonials, team, pricing, FAQ, CTA, and more
-* **3 Header Styles + 5 Footer Styles** – mix and match for each homepage
+* **15 Homepage Demos** – Creative Agency, Digital Agency, Marketing Agency, AI & Tech Agency, Personal Creative, Branding Studio, Startup Agency, Interactive Studio, Modern Agency, 3D Studio, Motion Studio, Minimal Portfolio, Architecture Studio, Photography Studio, Fashion Agency
+* **29+ Shortcodes with 170+ Style Variants** – hero, services, portfolio, testimonials, team, pricing, FAQ, CTA, and more
+* **6 Header Styles + 15 Footer Styles** – mix and match for each homepage
 * **Dark Mode / Light Mode** toggle with system preference auto-detection
 * **RTL (Right To Left)** language support, fully tested with Arabic
 * **Ecommerce Ready** – product archive, product detail, cart, wishlist, compare, checkout pages included

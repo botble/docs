@@ -5,7 +5,7 @@
 Before installing our script, ensure that your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.3.36 or higher
+- PHP >= 8.3.0 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -18,6 +18,7 @@ Before installing our script, ensure that your server meets the following requir
 - `Tokenizer` PHP extension
 - `cURL` PHP extension
 - `zip` PHP extension
+- `GD` PHP extension
 - `iconv` PHP extension
 - Ensure the `mod_rewrite` Apache module is enabled
 

@@ -23,6 +23,7 @@ All commands live under `platform/packages/tenancy/src/Console/` and share the
 | `tenancy:schedule` | Per-store scheduled maintenance | Cron per `--frequency` (hourly/daily/everyFiveMinutes) |
 | `tenancy:verify-domains` | Re-check pending custom domains via DNS | Every 10 min, `*/10 * * * *` |
 | `tenancy:repair-storage` | Recreate missing per-tenant storage directories | No — run when storage goes missing |
+| `tenancy:install-preset-media` | Download preset demo images a store is missing | No — run when the automatic download failed |
 | `tenancy:backfill-plugins` | Align stores' enabled apps with their plan | No — run after curating the catalog |
 | `tenancy:webhooks-deliver` | Deliver due webhook retries, prune history | **Every minute** — required |
 | `tenancy:themes` | List installed themes: presets, assets, plugins, catalog, stores | No — run to verify |
@@ -94,6 +95,7 @@ php artisan tenancy:create-tenant {subdomain}
     [--theme=]
     [--preset=]
     [--sync]
+    [--reprovision]
 ```
 
 | Argument/Option | Meaning |
@@ -105,6 +107,7 @@ php artisan tenancy:create-tenant {subdomain}
 | `--theme=` | Storefront theme slug; defaults to the platform default theme |
 | `--preset=` | Theme preset to seed, e.g. `home-fashion`; omit for a bare store |
 | `--sync` | Provision inline instead of queueing |
+| `--reprovision` | Re-run provisioning for an **existing** `failed`, `provisioning` or `pending` store (re-imports its database; asks for confirmation) |
 
 Creates and provisions a store. Without `--sync`, provisioning is queued —
 `TENANCY_PROVISION_SYNC=true` (or a `sync` queue driver) makes any invocation inline
@@ -187,7 +190,7 @@ php artisan tenancy:verify-domains [--domain=] [--all]
 
 | Option | Meaning |
 |---|---|
-| `--domain=` | Verify a single hostname only (repeatable to verify multiple) |
+| `--domain=` | Verify a single hostname only |
 | `--all` | Also re-check domains already verified |
 
 Re-checks pending custom domains via DNS. Cron it every 10 minutes so a customer's DNS
@@ -206,6 +209,18 @@ php artisan tenancy:repair-storage [--tenant=*]
 Recreates missing per-tenant storage directories under `storage/tenants/tenant<id>/`.
 `--tenant=` limits the run to specific tenant ids. Not scheduled — run it when a store's
 uploads or generated assets start 404ing after a lost storage directory.
+
+## `tenancy:install-preset-media`
+
+```bash
+php artisan tenancy:install-preset-media [--tenant=*]
+```
+
+Downloads each ready, preset-based store's demo images, replacing the placeholder images it
+shows when the automatic post-provisioning download failed (no outbound HTTPS at the time,
+CDN unreachable). Safe to run repeatedly — files a store already has are never overwritten.
+`--tenant=` limits the run to specific tenant ids. Controlled by `TENANCY_PRESET_MEDIA*`
+(see [Environment variables](./environment.md)).
 
 ## `tenancy:operator-password`
 

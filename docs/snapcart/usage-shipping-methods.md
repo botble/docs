@@ -4,7 +4,7 @@ Configure shipping options and rates for your store.
 
 ## Managing Shipping Methods
 
-Go to `Ecommerce` -> `Shipping` in the admin panel.
+Go to `Settings` -> `Ecommerce` -> `Shipping` in the admin panel.
 
 ## Available Methods
 

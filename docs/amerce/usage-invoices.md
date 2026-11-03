@@ -6,12 +6,12 @@ The invoice system generates professional, branded invoices for orders with cust
 
 Amerce's invoice system includes:
 
-- **Automatic generation** - Create invoices when orders are completed
+- **Automatic generation** - Create invoices when orders are placed
 - **Manual generation** - Generate invoices on-demand for any order
 - **Customizable templates** - Multiple invoice layouts with theme customization
 - **PDF export** - Download and print invoices
 - **Company branding** - Add logo, company details, and tax information
-- **Invoice numbering** - Unique invoice codes with custom prefix/suffix
+- **Invoice numbering** - Unique invoice codes with a custom prefix
 - **Multi-currency support** - Display amounts in order currency
 - **Tax breakdown** - Detailed tax components by rate
 
@@ -34,18 +34,10 @@ The invoices table displays:
 
 ### Automatic Generation
 
-Configure automatic invoice generation:
-
-1. Navigate to `Ecommerce` -> `Settings` -> `Invoice`
-2. Enable **Generate invoice automatically after order is created**
-3. Save settings
-
-When enabled:
-- Invoices generated immediately when order is created
-- Or generated when order status changes to "Completed" (depends on configuration)
+Invoices are generated automatically when an order is placed at checkout or created by an admin. There is no setting to turn this off.
 
 ::: tip
-Automatic generation ensures all completed orders have invoices without manual intervention.
+Automatic generation ensures every order has an invoice without manual intervention.
 :::
 
 ### Manual Generation
@@ -60,7 +52,7 @@ To manually generate an invoice for an order:
 **Method 2: Bulk Generation**
 1. Navigate to `Ecommerce` -> `Invoices`
 2. Click **Generate Invoices** button
-3. System generates invoices for all completed orders without invoices
+3. System generates invoices for all finished (checked-out) orders without invoices
 4. Confirmation shows number of invoices created
 
 ::: warning
@@ -77,9 +69,9 @@ Invoices are available to customers when:
 
 ### Invoice Until Confirmed Setting
 
-At `Ecommerce` -> `Settings` -> `Invoice`:
+At `Settings` -> `Ecommerce` -> `Invoices`:
 
-**Disable invoice until order is confirmed**
+**Disable order invoice until order confirmed**
 - When enabled: Customers cannot view invoices until admin confirms order
 - When disabled: Customers can view invoices immediately after generation
 
@@ -171,7 +163,7 @@ Every invoice includes:
 
 ## Invoice Configuration
 
-Navigate to `Ecommerce` -> `Settings` -> `Invoice` to configure:
+Navigate to `Settings` -> `Ecommerce` -> `Invoices` to configure:
 
 ![Invoice settings](./images/invoice-settings.png)
 
@@ -180,33 +172,32 @@ Navigate to `Ecommerce` -> `Settings` -> `Invoice` to configure:
 | Setting | Description | Example |
 |---------|-------------|---------|
 | **Invoice code prefix** | Text before invoice number | "INV-" |
-| **Invoice code suffix** | Text after invoice number | "-2024" |
-| **Generate automatically** | Auto-create invoices | Enabled |
-| **Disable until confirmed** | Hide until order confirmed | Enabled |
+| **Disable order invoice until order confirmed** | Hide until order confirmed | Enabled |
+| **Using custom font for invoice** / **Invoice font family** | Google Font for PDF invoices (Latin only) | Off |
+| **Add language support** | Extra character sets: Only Latin languages, Arabic, Bengali, Chinese | Only Latin languages |
+| **Invoice processing library** | PDF engine: DomPDF (faster) or mPDF (more languages) | DomPDF |
+| **Enable invoice stamp** | Add a "PAID" stamp when the order payment is completed | Off |
+| **Date format** | How dates show on invoices | `F d, Y` |
 
 **Invoice Code Format:**
 ```
-[PREFIX][NUMBER][SUFFIX]
+[PREFIX][NUMBER]
 
 Examples:
 INV-000123
-INVOICE-000456-2024
 2024-001
 ```
 
 ### Company Information
 
-Configure your store's information shown on invoices:
+Configure your store's information shown on invoices at `Settings` -> `Ecommerce` -> `Invoices`:
 
-At `Settings` -> `General`:
 - **Company name**
-- **Company logo**
-- **Company phone**
+- **Company address** (with country, state, city and zipcode)
 - **Company email**
-- **Company address**
-
-At `Ecommerce` -> `Settings` -> `Tax`:
-- **Company tax code/VAT**
+- **Company phone**
+- **Company tax ID**
+- **Company logo**
 
 ::: tip Logo Recommendations
 - Format: PNG or JPG
@@ -219,15 +210,15 @@ At `Ecommerce` -> `Settings` -> `Tax`:
 
 ### Available Templates
 
-Amerce includes multiple invoice templates:
+The template editor lists one template per document type:
 
-1. **Default** - Clean, professional layout
-2. **Compact** - Space-efficient design
-3. **Detailed** - Comprehensive information display
+1. **Order Invoice** - Invoices for customer orders
+2. **Subscription invoice** - Vendor subscription invoices (Marketplace)
+3. **Payout Invoice** - Vendor withdrawal invoices (Marketplace)
 
-Navigate to `Ecommerce` -> `Settings` -> `Invoice Templates` to:
-- Preview templates
-- Select active template
+Navigate to `Settings` -> `Ecommerce` -> `Invoice Template` to:
+- Preview a template
+- Switch between templates
 - Customize template HTML
 - Add custom CSS
 
@@ -235,7 +226,7 @@ Navigate to `Ecommerce` -> `Settings` -> `Invoice Templates` to:
 
 To customize invoice appearance:
 
-1. Navigate to `Ecommerce` -> `Settings` -> `Invoice Templates`
+1. Navigate to `Settings` -> `Ecommerce` -> `Invoice Template`
 2. Select template to customize
 3. Edit template:
    - **HTML Content** - Modify layout and structure
@@ -248,22 +239,18 @@ To customize invoice appearance:
 
 | Variable | Description |
 |----------|-------------|
-| `invoice.code` | Invoice code |
-| `invoice.created_at` | Invoice date |
-| `order.code` | Order code |
-| `order.created_at` | Order date |
-| `customer.name` | Customer name |
-| `customer.email` | Customer email |
-| `customer.phone` | Customer phone |
-| `customer.address` | Shipping address |
-| `items` | Order items list |
-| `subtotal` | Order subtotal |
-| `tax_amount` | Tax total |
-| `shipping_amount` | Shipping cost |
-| `discount_amount` | Discount total |
-| `total` | Grand total |
-| `company.*` | Company information |
-| `payment.*` | Payment details |
+| `invoice.*` | Invoice data from the database, e.g. `invoice.code`, `invoice.amount`, `invoice.items` |
+| `logo_full_path` | Site logo full URL |
+| `company_logo_full_path` | Company logo full URL |
+| `site_title` | Site title |
+| `company_name`, `company_address`, `company_country`, `company_state`, `company_city`, `company_zipcode` | Company name and address |
+| `company_phone`, `company_email`, `company_tax_id` | Company contact and tax ID |
+| `customer_name`, `customer_email`, `customer_phone` | Customer contact |
+| `customer_address`, `customer_address_line`, `customer_country`, `customer_state`, `customer_city`, `customer_zip_code` | Customer address |
+| `payment_method`, `payment_status`, `payment_description` | Payment details |
+| `html_attributes`, `body_attributes` | HTML and body tag attributes |
+
+The editor shows the full variable list next to the template content.
 
 For complete template customization, edit the invoice template in the admin settings as described above.
 
@@ -273,7 +260,7 @@ To restore default template:
 
 1. Navigate to invoice templates
 2. Select customized template
-3. Click **Reset to Default**
+3. Click **Reset to default**
 4. Confirm reset
 5. Customizations removed, original template restored
 
@@ -288,7 +275,8 @@ Invoice status tracks payment state:
 | Status | Description |
 |--------|-------------|
 | **Pending** | Payment not yet received |
-| **Paid** | Payment completed |
+| **Processing** | Payment is being processed |
+| **Completed** | Payment completed |
 | **Canceled** | Invoice/order canceled |
 
 Status is synchronized with:
@@ -374,25 +362,16 @@ To regenerate an invoice:
 
 Invoices can be sent to customers via email:
 
-### Order Confirmation Email
+### Invoice Payment Created Email
 
-Include invoice in order confirmation:
+Amerce ships an **Invoice payment created** email template (disabled by default):
 
 1. Navigate to `Settings` -> `Email`
-2. Find **Order Confirmation** template
-3. Edit template
-4. Add invoice link using the `invoice_url` variable
-5. Or attach PDF using the `invoice_pdf` attachment
+2. Find **Invoice payment created** in the Ecommerce templates
+3. Enable it and edit the content if needed
+4. Available variables: `customer_name`, `invoice_code`, `invoice_link`
 
-### Invoice Email Template
-
-Create dedicated invoice email:
-
-1. Create new email template
-2. Subject: "Invoice for Order #`order.code`"
-3. Body: Invoice details and download link
-4. Attach PDF invoice
-5. Send manually or via automation
+When the payment is completed, the invoice PDF is attached to this email automatically.
 
 ## Printing Invoices
 
@@ -440,7 +419,7 @@ Invoices include security features:
 Check:
 - Order is finished (`is_finished = true`)
 - Invoice doesn't already exist for order
-- Automatic generation is enabled (if expecting automatic)
+- Queue worker is running (invoice generation runs as a queued listener)
 - No errors in Laravel logs
 
 ### Invoice Not Visible to Customer
@@ -454,8 +433,7 @@ Verify:
 ### Wrong Company Information
 
 Update:
-- Check `Settings` -> `General` for basic info
-- Check `Ecommerce` -> `Settings` -> `Tax` for tax ID
+- Check `Settings` -> `Ecommerce` -> `Invoices` for company info and tax ID
 - Regenerate invoice after updating
 - Clear application cache
 
@@ -470,7 +448,7 @@ Ensure:
 ### PDF Download Failing
 
 Check:
-- DomPDF library is installed
+- The selected **Invoice processing library** (DomPDF or mPDF) works on your server
 - PHP memory limit is sufficient
 - Temp directory is writable
 - No logo image loading errors
@@ -510,14 +488,11 @@ InvoiceHelper::streamInvoice($invoice);
 
 Send invoice data to external systems:
 
-Configure at `Ecommerce` -> `Settings` -> `Webhooks`:
-- Trigger: Invoice created
-- Payload: Invoice data JSON
-- Endpoint: Your integration URL
+There is no invoice webhook. `Settings` -> `Ecommerce` -> `Webhooks` offers order-level URLs (order placed, order updated, shipping status updated, order completed, order cancelled, payment status updated, abandoned cart). Use **Order placed** to react to new orders, which is when invoices are created.
 
 ## Best Practices
 
-1. **Enable automatic generation** - Ensures all orders have invoices
+1. **Run a queue worker** - Automatic invoice generation is queued
 
 2. **Customize company info** - Complete all company fields for professional appearance
 
@@ -553,7 +528,7 @@ No. Invoices are always linked to orders. Create an order first, then generate i
 
 ### How do I add my tax ID to invoices?
 
-Add it at `Ecommerce` -> `Settings` -> `Tax`. It will appear in the company information section.
+Add it in **Company tax ID** at `Settings` -> `Ecommerce` -> `Invoices`. It will appear in the company information section.
 
 ### Can customers print invoices?
 
@@ -565,7 +540,7 @@ Invoices are stored as database records. PDFs are generated on-demand when viewe
 
 ### Can I change invoice numbers?
 
-Invoice numbers are auto-generated and cannot be changed after creation. Set prefix/suffix before generating.
+Invoice numbers are auto-generated and cannot be changed after creation. Set the prefix before generating.
 
 ### How long are invoices kept?
 

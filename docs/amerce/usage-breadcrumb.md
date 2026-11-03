@@ -4,12 +4,8 @@ Breadcrumb is a navigation aid that helps users to know where they are on a webs
 
 ![Overview](./images/breadcrumb.png)
 
-## Breadcrumb background image
+## Enable or disable the breadcrumb
 
-You can change it in Appearance → Theme options → Breadcrumb
+Go to **Appearance → Theme Options → Breadcrumb** and toggle **Enable breadcrumb?**. When it is off, the breadcrumb trail is hidden on every page.
 
-![Image](./images/breadcrumb-1.png)
-
-If you want to set that image for a specific page, such as Contact page, you can go to Admin → Pages → Contact and set breadcrumb image.
-
-![Image](./images/breadcrumb-2.png)
+Amerce renders the page title and breadcrumb on a plain background (no background image option). The homepage never shows a breadcrumb, and product, blog post and vendor store pages render their own title bar with the breadcrumb built in.

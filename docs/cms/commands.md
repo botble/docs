@@ -16,6 +16,7 @@ Generator commands such as `cms:package:create`, `cms:plugin:create`, `cms:theme
 - [Backup & Restore](#backup-restore)
 - [Logging & Monitoring](#logging-monitoring)
 - [Miscellaneous](#miscellaneous)
+- [Other Commands](#other-commands)
 
 ## Installation & Setup
 
@@ -488,3 +489,35 @@ This command:
 3. Updates the core and packages
 4. Runs migrations
 5. Publishes assets
+
+## Other Commands
+
+More commands shipped with the core, packages, and plugins. Commands from `botble/dev-tool` are marked with *(dev)*. Run `php artisan help <command>` to see all arguments and options.
+
+| Command | Description |
+|---------|-------------|
+| `cms:user:password:change` | Change an admin user's password |
+| `cms:user:rebuild-permissions` | Rebuild user permissions from their roles *(dev)* |
+| `cms:cache:warm` | Warm up application caches for faster boot |
+| `cms:cache:auto-clear` | Clear framework cache when its size exceeds the configured threshold |
+| `cms:page-cache:clear` / `cms:page-cache:prune` | Invalidate all page-cache entries / delete expired ones |
+| `cms:page-cache:report` | Summarise page cache shadow-mode results |
+| `cms:menu:clear-cache` | Clear cached menu URLs |
+| `cms:cronjob:test` | Run a test cronjob (used to verify the [cronjob](/cms/cronjob) setup) |
+| `cms:mail:test` | Send a test email *(dev)* |
+| `cms:media:thumbnail:generate` | Generate thumbnails for images (`--override`, `--batch-size`, `--start-offset`) |
+| `cms:media:thumbnail:delete` | Delete thumbnails for all images |
+| `cms:media:insert-watermark` | Insert watermark into existing images |
+| `cms:media:image:crop` | Crop images |
+| `cms:media:chunks:clear` | Clear the chunked-upload temp directory |
+| `cms:theme:rename <name> <newName>` | Rename a theme |
+| `cms:plugin:install-from-marketplace <name>` | Install a plugin from marketplace.botble.com |
+| `cms:plugin:make:crud` | Create a CRUD module inside a plugin *(dev)* |
+| `cms:package:remove <package>` | Remove a package from `/platform/packages` *(dev)* |
+| `cms:plugin:clear-compiled` | Remove the compiled plugins file |
+| `cms:language:add <language_id>` | Add a language (Language plugin, e.g. `en_US`, `--default`, `--order`) |
+| `cms:translations:download-locale` | Download translation files from github.com/botble/translations |
+| `cms:icons:update` | Update the bundled icon set |
+| `sitemap:indexnow` | Submit URLs to IndexNow |
+| `cms:api:generate-docs` | Generate API documentation with Scribe (see [API](/cms/api)) |
+| `cms:push-notification:send` / `cms:push-notification:process-scheduled` | Send push notifications / send due scheduled ones (see [API](/cms/api)) |

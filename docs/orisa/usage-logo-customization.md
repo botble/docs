@@ -9,21 +9,21 @@ custom CSS.
 
 The main logo shown in the header on light backgrounds and on the homepage hero.
 
-`Admin` -> `Settings` -> `General` -> upload to the **Logo** field.
+`Appearance` -> `Theme Options` -> `Logo` -> upload to the **Logo** field.
 
 ### Dark-coloured logo (offcanvas / search panels)
 
 Used on light surfaces inside the offcanvas drawer and the search overlay. Falls back to the primary logo
 if not set.
 
-`Appearance` -> `Theme Options` -> upload to the **Logo (dark variant)** field.
+`Appearance` -> `Theme Options` -> `Logo` -> upload to the **Alternative logo (for light backgrounds)** field.
 
 ### Dark-mode logo
 
 A light/white-coloured variant of your logo, swapped in automatically when the visitor enables dark mode.
 Without this, a dark-coloured primary logo loses contrast on the dark header background.
 
-`Appearance` -> `Theme Options` -> upload to the **Logo (dark mode)** field.
+`Appearance` -> `Theme Options` -> `Logo` -> upload to the **Dark mode logo** field.
 
 ::: tip
 Recolour your logo to white (or near-white) in any image editor (Figma, Photoshop, Canva, GIMP) before
@@ -32,11 +32,11 @@ uploading — the theme does **not** invert colours automatically.
 
 ### Favicon
 
-`Admin` -> `Settings` -> `General` -> upload to the **Favicon** field. Recommended size: **32 × 32 px** ICO or PNG.
+`Appearance` -> `Theme Options` -> `Logo` -> upload to the **Favicon** field. Recommended size: **32 × 32 px** ICO or PNG.
 
 ## Logo size controls
 
-`Appearance` -> `Theme Options` -> `Header` provides four numeric fields. All are optional — leave empty
+`Appearance` -> `Theme Options` -> `Logo` provides four numeric fields. All are optional — leave empty
 to use the theme default.
 
 | Field | What it controls |

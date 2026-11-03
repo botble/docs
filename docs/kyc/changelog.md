@@ -7,9 +7,28 @@ description: Release history of the KYC Verification plugin for Botble CMS.
 
 All notable changes to the KYC Verification plugin. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] — pending
+## [1.0.3] — 2026-09-02
 
 ### Added
+- `KycUnverified` event, fired when an admin revokes an approval (Unverify). The real-estate / job-board revert listeners now clear `is_verified` on unverify. Not sent as a webhook.
+
+### Fixed
+- Approving a submission no longer returns a 500 error when a webhook endpoint fails on the `sync` queue driver.
+- Checkout / listing gates, dashboard banner and manual verify now recognise approved subjects (verified customers were redirected to the KYC form after their grace allowance).
+- Vendor KYC form no longer answers 403 on Marketplace stores; the vendor listing gate works again.
+- `KycExpired` is dispatched after the expiry transaction commits.
+- Uninstalling the plugin drops all three plugin tables.
+
+## [1.0.2] — 2026-06-01
+
+### Added
+- Optional business categories on vendor / employer / agent submissions, from an admin-managed list in the KYC settings. Shown as badges on the review page and included in the webhook payload.
+
+## [1.0.1] — 2026-05-02
+
+### Added
+- Customisable dashboard banner messages.
+- Account-guard routes (kebab-case URLs) for real-estate and job-board scripts.
 - **Real-estate agent scope** (`realestate_account`) — works with Homzen, Hasa, and Flex-Home themes. Eloquent macros on `Botble\RealEstate\Models\Account`, settings toggles, optional publishing gate.
 - **Job-board employer scope** (`jobboard_company`) — works with Jobcy and Jobzilla. Walks the `Account → Company` many-to-many pivot; default picks `->first()`, optional `?company_id=N` query param targets a specific company (verified against the authenticated account's owned set).
 - **Job-board candidate scope** (`jobboard_candidate`) — optional identity verification for job seekers. Shares the Account model with the employer scope but disambiguates via a declarative `type_filter` on the subject definition (`type === JOB_SEEKER`).

@@ -18,7 +18,7 @@ Yes. Ecommerce Back in Stock works with all Botble e-commerce themes including S
 ### What are the system requirements?
 
 - Botble CMS 7.5.0+
-- PHP 8.3.36+
+- PHP 8.3.0+
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 
@@ -58,11 +58,11 @@ Export functionality depends on your Botble CMS version and any additional expor
 
 ### Can I customize the notification email template?
 
-Yes. Go to **Admin > Email Templates** and find the `back_in_stock_notification` template. You can edit the subject line, body content, and HTML layout. The available variables are: `{{ customer_name }}`, `{{ product_name }}`, `{{ product_url }}`, `{{ product_image }}`, and `{{ unsubscribe_url }}`.
+Yes. Go to **Settings > Email** and find the **Customer back-in-stock notification** template. You can edit the subject line, body content, and HTML layout. The available variables are: <code v-pre>{{ customer_name }}</code>, <code v-pre>{{ product_name }}</code>, <code v-pre>{{ product_url }}</code>, <code v-pre>{{ product_image }}</code>, and <code v-pre>{{ unsubscribe_url }}</code>.
 
 ### Do customers receive a confirmation email when they subscribe?
 
-No. The plugin sends only one email: the notification when the product is back in stock. There is no subscription confirmation email in the current version.
+No. Subscribers get only one email: the notification when the product is back in stock. There is no subscription confirmation email in the current version. (Admins can optionally get a summary email - see **Notify Admin** in [Configuration](/ecommerce-back-in-stock/configuration).)
 
 ### What email address sends the notifications?
 
@@ -86,7 +86,7 @@ Customers can cancel their subscription via the unsubscribe link in the notifica
 
 ### Does it work with product variations?
 
-Yes. When a customer subscribes from a product page that has variations, the subscription is associated with the parent product. The notification triggers when the parent product's stock changes, regardless of which variant was out of stock.
+Yes. When a customer subscribes from a product page that has variations, the subscription is associated with the parent product. The notification triggers when the parent product or any of its variations is restocked.
 
 ### Does it work with the Marketplace plugin (vendors)?
 

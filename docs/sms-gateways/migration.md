@@ -66,7 +66,7 @@ php artisan sms:import-fob --delete-after
 ```
 
 ::: warning
-`--delete-after` is irreversible. Only run it after verifying the migrated data in **Admin → SMS Gateways → Delivery Logs** and **Admin → Settings → SMS Gateways**.
+`--delete-after` is irreversible. Only run it after verifying the migrated data in **Admin → SMS Gateways → Delivery Logs** and **Admin → SMS Gateways → Settings**.
 :::
 
 ## Status mapping
@@ -115,7 +115,7 @@ After importing, verify in the admin panel:
 
 1. **Admin → SMS Gateways → Delivery Logs** — check row count and filter by driver
 2. **Admin → SMS Gateways → OTP History** — confirm OTP rows are present (codes are hashed)
-3. **Admin → Settings → SMS Gateways** — verify driver credentials are populated
+3. **Admin → SMS Gateways → Settings** — verify driver credentials are populated
 4. Send a **Test SMS** to confirm credentials decrypt correctly under the new encryption key
 
 ## Next step

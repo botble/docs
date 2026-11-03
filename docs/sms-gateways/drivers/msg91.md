@@ -30,7 +30,7 @@ Msg91's UI walks you through DLT onboarding if your account is new.
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**.
+1. Go to **Admin → SMS Gateways → Settings**.
 2. Check **Msg91** under **Active Drivers**.
 3. Expand the **Msg91** section and fill in:
    - **Auth Key**: your Msg91 auth key.

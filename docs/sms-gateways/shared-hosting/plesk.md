@@ -36,7 +36,7 @@ Plesk offers **free Let's Encrypt SSL**. Enable it to ensure SMS providers can r
 ## Verify installation
 
 1. Log in to your Botble admin panel
-2. Go to **Admin → Settings → SMS Gateways**
+2. Go to **Admin → SMS Gateways → Settings**
 3. Enter SMS driver credentials
 4. Click **Send test SMS**
 5. You should receive an SMS within 10 seconds
@@ -46,7 +46,7 @@ Plesk offers **free Let's Encrypt SSL**. Enable it to ensure SMS providers can r
 If SMS tests fail, verify your PHP version:
 
 1. Go to **Subscriptions → (your domain) → Hosting & Resources**
-2. Select **PHP 8.3.36 or higher** from the PHP version dropdown
+2. Select **PHP 8.3.0 or higher** from the PHP version dropdown
 3. Verify these PHP extensions are enabled:
    - `openssl`
    - `curl`
@@ -88,7 +88,7 @@ SMS Gateways uses your existing Botble database. No additional setup needed.
 ### SMS logs growing too large
 
 1. Manually purge via Plesk file manager (File Manager → storage/logs)
-2. Or use the command: `php artisan sms:purge --days=90`
+2. Or use the command: `php artisan sms:purge` (deletes logs older than the retention window, default 30 days)
 3. Ensure the scheduled task (above) is running to auto-purge nightly
 
 ## Next step

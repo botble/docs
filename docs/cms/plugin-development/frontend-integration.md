@@ -289,13 +289,14 @@ To add a custom widget area:
 Example widget area registration:
 
 ```php
-if (is_plugin_active('widget')) {
-    app(WidgetInterface::class)->registerSidebar([
+// The widget system is a core package, so no is_plugin_active() check is needed
+app()->booted(function (): void {
+    register_sidebar([
         'id' => 'foo_sidebar',
         'name' => trans('plugins/foo::foo.widgets.sidebar_name'),
         'description' => trans('plugins/foo::foo.widgets.sidebar_description'),
     ]);
-}
+});
 ```
 
 To display the widget area in your theme:

@@ -6,7 +6,7 @@ Integrate Google Tag Manager (GTM) for advanced tracking and marketing tag manag
 
 1. Create a GTM account at [tagmanager.google.com](https://tagmanager.google.com)
 2. Create a new container for your website
-3. In admin panel, go to `Settings` -> `General`
+3. In admin panel, go to `Settings` -> `Website Tracking` and select **Google Tag Manager (Recommended)**
 4. Enter your GTM Container ID (e.g., `GTM-XXXXXX`)
 5. Click `Save`
 

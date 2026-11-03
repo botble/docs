@@ -5,7 +5,7 @@ product pages.
 
 ## Enabling Reviews
 
-Reviews are enabled by default. Toggle in `Appearance` -> `Theme Options` -> `Features` -> **Product Reviews**.
+Reviews are enabled by default. Toggle in `Appearance` -> `Theme Options` -> `Features` -> **Enable product reviews**.
 
 ## Managing Reviews
 
@@ -27,10 +27,10 @@ On product pages, reviews show:
 
 ## Review Settings
 
-Configure review settings in `Ecommerce` -> `Settings`:
+Configure review settings in `Settings` -> `Ecommerce` -> `Product Reviews`:
 
-- **Auto-approve reviews**: Automatically publish reviews without admin approval
-- **Only verified purchasers**: Only allow customers who purchased the product to leave reviews
+- **Review need to be approved before showing on the product page**: When enabled, new reviews stay hidden until an admin approves them
+- **Only customers who have purchased the product can review the product**: Only allow customers with a completed order containing the product to leave reviews
 
 ::: tip
 Encourage customers to leave reviews by sending a follow-up email after delivery. Authentic reviews significantly

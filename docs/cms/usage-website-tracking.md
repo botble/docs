@@ -27,9 +27,9 @@ The page offers three mutually exclusive modes. Pick one with the radio buttons 
 
 | Mode | When to use | What you enter |
 | --- | --- | --- |
-| **Google Tag Manager** | You want one container that manages GA4, Meta Pixel, Ads, and everything else. Recommended. | GTM container ID (`GTM-XXXXXXX`) |
-| **Google Tag ID** | You only need GA4 and do not want a tag manager. | Measurement ID (`G-XXXXXXXXXX`) |
-| **Custom tracking** | Any other vendor, or several snippets at once. | Raw HTML/JS for the `<head>` and for the top of `<body>` |
+| **Google Tag Manager (Recommended)** | You want one container that manages GA4, Meta Pixel, Ads, and everything else. Recommended. | GTM container ID (`GTM-XXXXXXX`) |
+| **Google Analytics Only** | You only need GA4 and do not want a tag manager. | Measurement ID (`G-XXXXXXXXXX`) |
+| **Custom Tracking Code** | Any other vendor, or several snippets at once. | Raw HTML/JS for the `<head>` and for the top of `<body>` |
 
 ### Google Tag Manager mode
 
@@ -39,23 +39,23 @@ Two extra toggles are available in this mode:
 
 | Toggle | Default | Purpose |
 | --- | --- | --- |
-| **GTM debug mode** | Off | Emits extra console output so you can trace the dataLayer while building tags. Turn it off in production. |
-| **Send user data** | Off | Includes user data in the dataLayer for GTM tags that consume it. Review your privacy policy before enabling. |
+| **Enable GTM Debug Mode** | Off | Emits extra console output so you can trace the dataLayer while building tags. Turn it off in production. |
+| **Include customer data on purchase (Enhanced Conversions)** | Off | Adds a `user_data` object (email, phone, name, address) to the `purchase` dataLayer event for Google Ads Enhanced Conversions and Meta Advanced Matching. Values are sent unhashed for your GTM tags to hash. Review your privacy policy and consent setup before enabling. |
 
 The page also embeds setup, "add GA4 to your container", and verification guides inline — follow them in order.
 
-### Google Tag ID mode
+### Google Analytics Only mode
 
 Enter only the GA4 measurement ID (`G-` prefix). The CMS renders the standard `gtag.js` loader. Use this when you have
 no other vendor to manage.
 
-### Custom tracking mode
+### Custom Tracking Code mode
 
 Two code boxes:
 
-- **Header JavaScript** — injected just before `</head>`. Use it for loader scripts (Meta Pixel, TikTok Pixel, Hotjar,
+- **Step 1: Header tracking script** — injected just before `</head>`. Use it for loader scripts (Meta Pixel, TikTok Pixel, Hotjar,
   Clarity, Ahrefs, etc.).
-- **Body HTML** — injected right after `<body>` opens. Use it for `<noscript>` fallbacks and pixel `<img>` tags.
+- **Step 2: Body tracking code (Optional)** — injected right after `<body>` opens. Use it for `<noscript>` fallbacks and pixel `<img>` tags.
 
 Paste the vendor's snippet verbatim, including the `<script>` tags.
 
@@ -70,9 +70,9 @@ Two things to be aware of:
 - **There is no built-in TikTok pixel.** TikTok events are expected to be configured as a tag inside *your own* GTM
   container, reading from the dataLayer that the CMS publishes. If TikTok reports "Content ID missing" or an empty
   `contents` array, the mapping in your GTM tag is incomplete — it is not a CMS-side setting.
-- **No server-side conversions API and no hashed PII.** Events fire client-side with product data only. Meta CAPI,
-  TikTok Events API, and GA4 Enhanced Conversions (`user_data` with hashed email/phone) are not part of core and
-  require custom development.
+- **No server-side conversions API.** Events fire client-side. Meta CAPI and TikTok Events API are not part of core
+  and require custom development. Customer data for Enhanced Conversions is only added to the `purchase` event when
+  **Include customer data on purchase (Enhanced Conversions)** is on, and it is sent unhashed — hash it in your GTM tag.
 
 ## Verifying your setup
 
@@ -86,7 +86,7 @@ Two things to be aware of:
 
 ### The snippet disappears after saving
 
-You pasted it into **Appearance → Custom HTML**. Move it to **Settings → Website Tracking → Custom tracking**. See the
+You pasted it into **Appearance → Custom HTML**. Move it to **Settings → Website Tracking → Custom Tracking Code**. See the
 warning at the top of this page.
 
 ### The tag does not appear in the page source

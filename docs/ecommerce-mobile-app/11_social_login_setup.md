@@ -86,6 +86,9 @@ Create or update your `.env` file with credentials:
 ```bash
 # Google Sign-In
 GOOGLE_WEB_CLIENT_ID=your-client-id.apps.googleusercontent.com
+# iOS only: needed unless you ship GoogleService-Info.plist (GOOGLE_SERVICES_FILE_IOS)
+GOOGLE_IOS_CLIENT_ID=your-ios-client-id.apps.googleusercontent.com
+GOOGLE_IOS_URL_SCHEME=com.googleusercontent.apps.your-ios-client-id
 
 # Facebook Login
 FACEBOOK_APP_ID=123456789
@@ -97,6 +100,12 @@ TWITTER_CONSUMER_SECRET=your-consumer-secret
 
 # Android (optional - for production builds)
 GOOGLE_SERVICES_FILE=./google-services.json
+
+# Feature toggles: set to false to hide a provider's button
+ENABLE_GOOGLE_SIGN_IN=true
+ENABLE_APPLE_SIGN_IN=true
+ENABLE_FACEBOOK_SIGN_IN=true
+ENABLE_TWITTER_SIGN_IN=true
 ```
 
 ::: tip
@@ -120,22 +129,24 @@ module.exports = ({ config }) => ({
   ios: {
     usesAppleSignIn: true,  // Enables Apple Sign-In capability
     bundleIdentifier: "com.botble.ecommerce",
+    // googleServicesFile added only when GOOGLE_SERVICES_FILE_IOS is set
   },
   android: {
-    googleServicesFile: process.env.GOOGLE_SERVICES_FILE || "./google-services.json",
     package: "com.botble.ecommerce",
+    // googleServicesFile added only when GOOGLE_SERVICES_FILE is set
   },
   plugins: buildPlugins(),  // Dynamically built based on env vars
   extra: {
     appConfig: {
       auth: {
         googleWebClientId: process.env.GOOGLE_WEB_CLIENT_ID,
-        googleEnabled: !!process.env.GOOGLE_WEB_CLIENT_ID,
-        appleEnabled: true,
+        googleIosClientId: process.env.GOOGLE_IOS_CLIENT_ID,
+        googleEnabled: process.env.ENABLE_GOOGLE_SIGN_IN !== "false" && !!process.env.GOOGLE_WEB_CLIENT_ID,
+        appleEnabled: process.env.ENABLE_APPLE_SIGN_IN !== "false",
         facebookAppId: process.env.FACEBOOK_APP_ID,
-        facebookEnabled: !!process.env.FACEBOOK_APP_ID,
+        facebookEnabled: process.env.ENABLE_FACEBOOK_SIGN_IN !== "false" && !!process.env.FACEBOOK_APP_ID,
         twitterConsumerKey: process.env.TWITTER_CONSUMER_KEY,
-        twitterEnabled: !!process.env.TWITTER_CONSUMER_KEY,
+        twitterEnabled: process.env.ENABLE_TWITTER_SIGN_IN !== "false" && !!process.env.TWITTER_CONSUMER_KEY,
       },
     },
   },
@@ -152,10 +163,10 @@ Social login buttons are **automatically shown/hidden** based on configuration:
 
 | Provider | Shown When |
 |----------|------------|
-| Google | `GOOGLE_WEB_CLIENT_ID` is set |
-| Apple | iOS platform + `usesAppleSignIn: true` |
-| Facebook | `FACEBOOK_APP_ID` is set |
-| Twitter | `TWITTER_CONSUMER_KEY` is set |
+| Google | `GOOGLE_WEB_CLIENT_ID` is set and `ENABLE_GOOGLE_SIGN_IN` is not `false` |
+| Apple | iOS platform and `ENABLE_APPLE_SIGN_IN` is not `false` |
+| Facebook | `FACEBOOK_APP_ID` is set and `ENABLE_FACEBOOK_SIGN_IN` is not `false` |
+| Twitter | `TWITTER_CONSUMER_KEY` is set and `ENABLE_TWITTER_SIGN_IN` is not `false` |
 
 ## Step 4: Create Development Build
 

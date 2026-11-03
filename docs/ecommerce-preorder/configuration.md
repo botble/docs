@@ -23,6 +23,12 @@ Controls whether customers can add both regular products and preorder products t
 If disabled and a customer tries to add a preorder item to a cart that already has regular items, they'll see an error message asking them to complete the current order first.
 :::
 
+### Disable Cash on Delivery for pre-order carts
+
+When enabled, Cash on Delivery is hidden at checkout whenever the cart contains a pre-order item, so the pre-order deposit is always collected online. Regular carts keep COD as normal.
+
+**Default:** Disabled
+
 ### Default Price Type
 
 Sets the default pricing strategy when creating new preorder products. You can override this per product.

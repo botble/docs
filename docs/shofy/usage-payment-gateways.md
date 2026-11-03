@@ -167,8 +167,9 @@ Webhooks notify your store of payment events (success, failure, refunds).
 
 1. Go to Stripe Dashboard -> Developers -> Webhooks
 2. Click **Add endpoint**
-3. Endpoint URL: `https://yourstore.com/stripe/webhook`
+3. Endpoint URL: `https://yourstore.com/payment/stripe/webhook`
 4. Select events:
+   - `checkout.session.completed`
    - `payment_intent.succeeded`
    - `payment_intent.payment_failed`
    - `charge.refunded`

@@ -16,7 +16,7 @@ build:
 image: 'sail-8.4/app'
 ```
 
-Update the existing `build.context` and `image` values while keeping the other service settings. After starting Sail, run `sail php -v` and `sail composer check-platform-reqs` to verify PHP 8.3.36 or higher and the required extensions. The bootstrap command's `--ignore-platform-reqs` flag does not verify runtime compatibility.
+Update the existing `build.context` and `image` values while keeping the other service settings. After starting Sail, run `sail php -v` and `sail composer check-platform-reqs` to verify PHP 8.3.0 or higher and the required extensions. The bootstrap command's `--ignore-platform-reqs` flag does not verify runtime compatibility.
 
 ## Installation steps
 

@@ -391,7 +391,7 @@ To remind customer to complete their order:
 ### Generating Invoices
 
 Invoices can be generated:
-- **Automatically** - When order is completed (configurable)
+- **Automatically** - When the order is placed (always on)
 - **Manually** - By clicking "Generate Invoice" on order details
 
 To manually generate invoice:
@@ -409,7 +409,7 @@ Once generated, invoice actions appear:
 - **Print** - Opens print dialog
 
 ::: tip
-Configure invoice settings at `Ecommerce` -> `Settings` -> `Invoice`.
+Configure invoice settings at `Settings` -> `Ecommerce` -> `Invoices`.
 :::
 
 ## Payment Proof
@@ -449,23 +449,22 @@ Export includes all order details, products, customer info, and amounts.
 
 Configure webhooks to send order data to external systems:
 
-Navigate to `Ecommerce` -> `Settings` -> `Webhooks`
+Navigate to `Settings` -> `Ecommerce` -> `Webhooks`
 
 ## Configuration
 
 ### Order Settings
 
-Configure order behavior at `Ecommerce` -> `Settings` -> `Orders`:
+There is no single "Orders" settings page. Order-related options live in several `Settings` -> `Ecommerce` sections:
 
-| Setting | Description |
-|---------|-------------|
-| **Order code prefix** | Prefix for order codes (e.g., "ORD-") |
-| **Order code suffix** | Suffix for order codes |
-| **Minimum order amount** | Minimum cart total to place order |
-| **Enable order deletion** | Allow admins to delete orders |
-| **Invoice generation** | Auto-generate invoices when order is completed |
-| **Disable invoice until confirmed** | Hide invoice until order is confirmed |
-| **Order tracking via phone/email** | Choose identifier for order tracking |
+| Setting | Location | Description |
+|---------|----------|-------------|
+| **Edit order code format** (**Start with** / **End with**) | Standard & Format | Prefix/suffix for order codes (e.g., "ORD-") |
+| **Minimum order amount to place an order** | Checkout | Minimum cart total to place order |
+| **Enable order deletion** | Shopping | Allow admins to delete orders |
+| **Order tracking method** | Shopping | Track orders by email or phone |
+| **Disable order invoice until order confirmed** | Invoices | Hide invoice until order is confirmed |
+| **Enable auto-cancel for pending orders** | Pending Orders | Cancel unpaid online-payment orders after **Cancel after (minutes)** (needs cronjob; COD and Bank Transfer excluded) |
 
 ## Troubleshooting
 

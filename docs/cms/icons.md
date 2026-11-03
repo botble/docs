@@ -166,7 +166,7 @@ $this->add(
     CoreIconField::class,
     CoreIconFieldOption::make()
         ->label('Custom Icon Label')
-        ->help('Select an icon for this item')
+        ->helperText('Select an icon for this item')
         ->placeholder('Search for an icon...')
         ->defaultValue('ti ti-star')
 );

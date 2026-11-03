@@ -19,7 +19,7 @@ For example, to add a Blog posts to a page, use the following shortcode:
 
 You can set attributes:
 
-`style`: There are seven style display
+`style`: There are six style display
 
 `title`: Title section
 

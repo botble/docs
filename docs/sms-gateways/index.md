@@ -36,7 +36,7 @@ The **SMS Gateways** plugin lets you send SMS notifications from any Botble host
 
 ## How it works
 
-1. Admin picks one or more SMS drivers in **Admin → Settings → SMS Gateways**.
+1. Admin picks one or more SMS drivers in **Admin → SMS Gateways → Settings**.
 2. Host plugins (ecommerce, marketplace, etc.) fire their own events; SMS Gateways's `HandleHostEventListener` resolves the matching subject + template and calls `Sms::send()` internally.
 3. SMS is queued and delivered through the selected driver(s).
 4. Admin reviews delivery logs in **Admin → SMS Gateways → Delivery Logs**.

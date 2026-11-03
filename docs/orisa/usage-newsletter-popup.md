@@ -19,9 +19,9 @@ Three separate slots so you can ship optimised images per breakpoint:
 
 | Slot | Recommended size |
 |---|---|
-| **Popup image** (desktop) | ~600 × 700 px |
-| **Popup tablet image** | ~500 × 600 px |
-| **Popup mobile image** | ~400 × 400 px |
+| **Desktop Image** | ~600 × 700 px |
+| **Tablet Image** | ~500 × 600 px |
+| **Mobile Image** | ~400 × 400 px |
 
 If a breakpoint slot is empty, the popup falls back to the next-larger one.
 

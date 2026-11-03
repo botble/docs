@@ -16,7 +16,7 @@ This section typically includes options for setting your site name, description,
 
 ## Header
 
-The **Header** tab allowing users to adjust header visibility, text and background colors, choose between four different header styles, enable a transparent header, and configure action buttons with custom labels, URLs, and icons..
+The **Header** tab allowing users to show or hide the header top bar, adjust its text and background colors, enable a transparent header, and enable a sticky header.
 
 ![Header](./images/theme-options/header.png)
 
@@ -36,7 +36,7 @@ Demo when `disabled`:
 
 ## Footer
 
-The **Footer** tab allowing users to adjust the background color, bottom background color, border color, text heading color, text color, and background image.
+The **Footer** tab allowing users to adjust the background color, border color, text heading color, text color, and background image.
 
 ![Footer](./images/theme-options/footer.png)
 

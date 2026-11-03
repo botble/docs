@@ -135,5 +135,5 @@ Default credentials:
 Then navigate to **Admin → Support Desk → Tickets** to confirm everything is working.
 
 ::: tip
-After installation, configure DeskHive at **Admin → Support Desk → Settings**.
+After installation, configure DeskHive at **Admin → Settings → Support Desk Settings**.
 :::

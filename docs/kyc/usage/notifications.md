@@ -56,7 +56,7 @@ All three notifications render via Botble's `EmailHandler` pipeline so you can e
    - `submission-received`
    - `submission-approved`
    - `submission-rejected`
-4. Use template variables such as `{{ subject_name }}`, `{{ document_type }}`, `{{ review_note }}`, `{{ submission_url }}`, `{{ dashboard_url }}`.
+4. Use template variables such as <code v-pre>{{ subject_name }}</code>, <code v-pre>{{ document_type }}</code>, <code v-pre>{{ review_note }}</code>, <code v-pre>{{ submission_url }}</code>, <code v-pre>{{ dashboard_url }}</code>.
 
 Changes are persisted to `config/kyc.php`'s `email_templates` section and loaded on every render.
 

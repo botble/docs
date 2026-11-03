@@ -51,7 +51,7 @@ We have **zero tested installs** on aaPanel, CloudPanel, cPanel-WHM, DirectAdmin
 | **Disk** | 50 GB SSD baseline. Every store's database and uploads live here. Size depends on catalog volume and media — plan for growth |
 | **Bandwidth** | No cap; overage fees are common. Stores need to serve product images |
 | **MySQL version** | 8.0+ (5.7 reached end-of-life in October 2023) |
-| **PHP version** | 8.3.36+ with `pdo_mysql`, `gd`, `zip`, `curl`, `json` extensions |
+| **PHP version** | 8.3.0+ with `pdo_mysql`, `gd`, `zip`, `curl`, `json` extensions |
 
 Stores are independent. One store's spike in traffic does not affect another. But if your server runs out of disk or RAM, *all* stores slow down or fail together. Monitor free disk and plan for growth.
 

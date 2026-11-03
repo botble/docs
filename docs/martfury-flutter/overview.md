@@ -8,8 +8,10 @@ MartFury is a Flutter mobile e-commerce app that connects to a Botble e-commerce
 - Authentication: email/password and social login (Google, Facebook, Apple, Twitter)
 - Cart, coupons, wishlist, recently viewed
 - WebView-based checkout (full payment-gateway compatibility with the Botble backend)
-- Order history and tracking
-- 29 built-in languages
+- Order history and tracking, invoices (PDF), order returns, payment-proof upload
+- Product compare, reviews, product videos, marketplace store pages
+- Biometric unlock, account deletion
+- 30 built-in languages
 - Theme: light, dark, system
 - Push notifications via Firebase
 

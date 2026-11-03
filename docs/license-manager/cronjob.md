@@ -10,14 +10,20 @@ Check our Cronjob set up instruction in Admin -> Platform administration -> Cron
 
 ## Available Commands
 
-The scheduler will run these License Manager commands automatically:
+The plugin registers these schedules itself, so the single `schedule:run` cron entry above runs them — you do not
+need to add them to `routes/console.php` or a separate crontab line:
 
 | Command | Frequency | Purpose |
 |---------|-----------|---------|
-| `process-expirations` | Daily | Check and notify expirations |
+| `process-expirations` | Daily at 02:00 | Check and notify expirations |
 | `process-auto-blacklist` | Hourly | Block abusive clients |
-| `activity-log:clear` | Monthly | Cleanup old logs |
-| `download-log:clear` | Quarterly | Cleanup download history |
+| `activity-log:clear` | Weekly | Empties the activity log table |
+| `download-log:clear` | Weekly | Empties the update download history table |
+
+::: warning Log tables are emptied weekly
+`activity-log:clear` and `download-log:clear` truncate their whole table (not only old rows). Export anything you
+need to keep before the weekly run.
+:::
 
 ## For cPanel hosting
 
@@ -72,8 +78,5 @@ php artisan cms:license-manager:download-log:clear
 
 ## Via Admin Panel
 
-Navigate to **License Manager → Manual Cron** to run commands manually:
-
-1. Select command to run
-2. Click **Run**
-3. View output in interface
+Navigate to **License Manager → Run Manual Cron** and click **Run**. It runs the license expiration check and the
+auto-blacklist check together and shows the result of each (the log-clear commands are not run from here).

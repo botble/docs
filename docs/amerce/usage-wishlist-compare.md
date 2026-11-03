@@ -168,7 +168,7 @@ The compare table shows attribute sets that exist across the selected products:
 - Missing attributes show as empty cells
 
 ::: tip
-To maximize comparison usefulness, ensure product attributes are properly configured in `Ecommerce` -> `Attributes`.
+To maximize comparison usefulness, ensure product attributes are properly configured in `Ecommerce` -> `Product Attributes`.
 :::
 
 ### Managing Comparison
@@ -202,17 +202,19 @@ Guest wishlists are stored in browser sessions and will be **lost** if the custo
 
 ### Wishlist Settings
 
-Navigate to `Ecommerce` -> `Settings` to configure:
+Navigate to `Settings` -> `Ecommerce` -> `Shopping` to configure:
 
 | Setting | Description |
 |---------|-------------|
+| **Enable wishlist** | Show or remove the wishlist button and page |
+| **Enable compare** | Show or remove the compare button and page |
 | **Enable wishlist sharing** | Allow customers to generate public wishlist links |
-| **Shared wishlist lifetime** | Days before shared wishlist links expire (default: varies) |
+| **Shared wishlist lifetime (days)** | Days before shared wishlist links expire (default: 7) |
 
 ### Compare Settings
 
 Compare attributes are automatically detected from:
-- Product attribute sets configured in `Ecommerce` -> `Attributes`
+- Product attribute sets configured in `Ecommerce` -> `Product Attributes`
 - Product specifications (if using product specification plugin)
 
 **No additional configuration required** - the compare feature works out-of-the-box once products have attributes assigned.
@@ -306,7 +308,7 @@ Yes. Simply don't display compare buttons in your theme. The backend supports bo
 
 ### How do I customize compare attributes shown?
 
-Attributes are auto-detected from product attribute sets. Configure these in `Ecommerce` -> `Attributes` and assign them to products.
+Attributes are auto-detected from product attribute sets. Configure these in `Ecommerce` -> `Product Attributes` and assign them to products.
 
 ## Best Practices
 

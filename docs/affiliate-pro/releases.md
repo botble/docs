@@ -7,6 +7,20 @@ description: Changelog for Affiliate Pro.
 
 Before updating, read the [Upgrade Guide](./upgrade.md).
 
+## Version 1.2.13 – Nov 03, 2026
+
+- Added payout history on each withdrawal (failed, unconfirmed and returned payouts, and manual actions)
+- Added **Mark as paid** (approve without a PayPal/Stripe call) and **Change PayPal email** for pending PayPal requests
+- PayPal refuses a blind resend of an unconfirmed payout once its 30-day duplicate check has expired
+- Stripe Dashboard (partial) refunds now adjust commissions; a refund with an unknown amount holds auto-approval and notifies admins
+- Email templates are translated and sent in the store's default email language; the weekly digest hides empty highlight cards
+- Fixed broken icons in emails and multi-line payment details shown on one line
+
+## Version 1.2.12 – Oct 08, 2026
+
+- Added PayPal Payouts webhook: payouts PayPal denies, blocks or returns reopen the withdrawal and notify admins
+- Fixed approving withdrawals failing while PayPal Payout was active; PayPal and Stripe payouts are now safe to retry and show the gateway's error reason
+
 ## Version 1.2.11 – Oct 06, 2026
 
 - Added rejection reason when rejecting an affiliate application, shown to the customer, who can now re-apply

@@ -18,7 +18,7 @@ If a single store is missing or the hours look wrong, start with [Troubleshootin
 | Map opens in the middle of the ocean | Default latitude and longitude left at `0, 0` |
 | Google map is a grey box | Map provider set to Google with no JavaScript key, or the key is referrer-restricted |
 | Stores are listed but never on the map | Those stores have no coordinates |
-| Nothing appears until the visitor searches | **Search requires location** is on, or `first_load` is `none` |
+| Nothing appears until the visitor searches | **Require a search before showing results** is on, or `first_load` is `none` |
 | "Use my location" does nothing | Site is not served over HTTPS |
 | "Fetch from address" returns nothing | Geocoding provider is Manual, has no credentials, or Nominatim consent is unticked |
 | Imported rows are rejected | Column headings or values do not match the example file |
@@ -26,7 +26,7 @@ If a single store is missing or the hours look wrong, start with [Troubleshootin
 | Re-importing created duplicates | No `external_id` column in the file |
 | Address autocomplete never suggests | Public suggestions disabled, or the visitor hit the rate limit |
 | REST API returns `503` | The site-wide API switch is off |
-| Store detail pages 404 | Slug prefix changed without clearing the cache |
+| Store detail pages 404 | URL prefix changed without clearing the cache |
 | Changes do not show on the front end | Page or view cache still holding the old output |
 
 ## Map area is blank or unstyled
@@ -80,7 +80,7 @@ If your deployment ships a pre-built `public/` directory, make sure that folder 
 - Open the browser console (**F12**) and read Google's error. `RefererNotAllowedMapError` means your domain is not in the key's HTTP referrer allowlist. `ApiNotActivatedMapError` means the Maps JavaScript API is not enabled on the Cloud project. `BillingNotEnabledMapError` means the project has no billing account.
 - Fix the key in the Google Cloud console, or switch **Map provider** back to Leaflet, which needs no key at all.
 
-Remember the two Google keys are different: the **Maps JavaScript key** is public and belongs in the Map section; the **geocoding key** is server-side only and belongs in the Geocoding section. Do not paste the same unrestricted key into both.
+Remember the two Google keys are different: the **Google Maps browser key** is public and belongs in the Map section; the **geocoding key** is server-side only and belongs in the Geocoding section. Do not paste the same unrestricted key into both.
 
 ## Stores are listed but never on the map
 
@@ -96,9 +96,9 @@ Also confirm the store is **Published**, and that any category filter on that lo
 
 **Symptom.** The locator loads with an empty result list even though stores exist.
 
-**Cause.** This is deliberate on large networks. Either **Search requires location** is enabled in settings, or the shortcode carries `first_load="none"`.
+**Cause.** This is deliberate on large networks. Either **Require a search before showing results** is enabled in settings, or the shortcode carries `first_load="none"`.
 
-**Fix.** Turn off **Search requires location** under **Settings → Store Locator (Map)**, or remove `first_load="none"` from the shortcode.
+**Fix.** Turn off **Require a search before showing results** under **Settings → Store Locator (Map)**, or remove `first_load="none"` from the shortcode.
 
 ## "Use my location" does nothing
 
@@ -160,17 +160,17 @@ php artisan cms:store-locator:geocode --limit=200
 
 **Symptom.** Typing in the visitor-facing search box produces no suggestions.
 
-**Cause.** Either **Enable public suggestions** is off, the geocoding provider is Manual, or the visitor has exceeded the rate limit.
+**Cause.** Either **Enable address autocomplete on the storefront** is off, the geocoding provider is Manual, or the visitor has exceeded the rate limit.
 
-**Fix.** Turn on **Enable public suggestions** and select a geocoding provider. The public suggestion endpoint is limited to 60 requests per minute per visitor so it cannot be used to drain your quota; that limit is deliberate and not configurable.
+**Fix.** Turn on **Enable address autocomplete on the storefront** and select a geocoding provider. The public suggestion endpoint is limited to 60 requests per minute per visitor so it cannot be used to drain your quota; that limit is deliberate and not configurable.
 
 ## REST API returns 503
 
 **Symptom.** Every `/api/v1/store-locator/...` endpoint answers `503 API is currently disabled`.
 
-**Cause.** Botble has a **site-wide** API switch that is separate from this plugin's own **Enable API** setting. A `503` is the site-wide one.
+**Cause.** Botble has a **site-wide** API switch that is separate from this plugin's own **Enable the REST API** setting. A `503` is the site-wide one.
 
-**Fix.** Enable the API in your site's API settings, then confirm **Enable API** is also on under **Settings → Store Locator (Map)**. A `404` from those endpoints means the plugin-level switch is off.
+**Fix.** Enable the API in your site's API settings, then confirm **Enable the REST API** is also on under **Settings → Store Locator (Map)**. A `404` from those endpoints means the plugin-level switch is off.
 
 ## Store detail pages 404
 

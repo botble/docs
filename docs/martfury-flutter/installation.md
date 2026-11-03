@@ -35,7 +35,7 @@ Open `.env` and set:
 API_BASE_URL=https://your-domain.com
 API_KEY=<from Admin → Settings → API Settings>
 APP_NAME=Your Store Name
-LICENSE_CODE=<your Envato purchase code>
+LICENSE_CODE=<your Envato purchase code or license.botble.com license code>
 ```
 
 See [API Configuration](06_api_base_url.md) for `API_KEY` details, [License activation](license-activation.md) for `LICENSE_CODE`, and [Theme Colors](01_theme_colors.md) for color overrides.

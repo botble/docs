@@ -26,7 +26,7 @@ The Shippo integration plugin provides multi-carrier shipping rates and address 
 
 1. **API Keys Setup**:
    - Get your API keys from Shippo dashboard
-   - Navigate to Admin → Plugins → Ecommerce → Shipping → Shippo
+   - Navigate to Admin → Ecommerce → Settings → Shipping, Shippo section
    - Enter your Test API Key and Production API Key
    - Enable/disable Sandbox mode
 

@@ -22,6 +22,6 @@ Or import them in bulk from a CSV file.
 
 ## Enable location in the checkout page
 
-In the admin panel, go to `Settings` -> `Ecommerce` -> `Checkout` and enable **Load countries, states, cities from plugin location?**.
+In the admin panel, go to `Settings` -> `Ecommerce` -> `Checkout` and enable **Load countries, states, cities from plugin location**.
 
 ![Checkout settings](./images/location-5.png)

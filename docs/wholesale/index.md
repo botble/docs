@@ -58,7 +58,7 @@ That's it for basic wholesale pricing. For tiered quantity discounts, continue t
 ## Requirements
 
 - Botble CMS version 7.6.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin (required dependency)
 - MySQL 5.7+ or MariaDB 10.3+
 

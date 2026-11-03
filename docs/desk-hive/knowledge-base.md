@@ -64,7 +64,7 @@ Authenticated customers can vote on articles once per article. Use these metrics
 
 Admins can hide the knowledge base from the customer portal entirely.
 
-Navigate to **Admin → Support Desk → Settings → Customer Portal** and toggle **Show Knowledge Base**. When disabled:
+Navigate to **Admin → Settings → Support Desk Settings → Customer Portal** and toggle **Show Knowledge Base**. When disabled:
 
 - Knowledge base links are removed from the portal navigation
 - KB search is hidden from the homepage

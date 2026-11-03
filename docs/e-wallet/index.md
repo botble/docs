@@ -27,7 +27,7 @@ E-Wallet is a comprehensive digital wallet system designed for e-commerce stores
    - Balance verification before payment
 
 4. **Automatic Refunds**
-   - All refunds automatically credited to wallet
+   - Refunds credited to wallet (or to the original payment method, configurable)
    - Instant refund processing
    - Full audit trail for refund transactions
    - Customer notifications
@@ -81,7 +81,7 @@ E-Wallet is a comprehensive digital wallet system designed for e-commerce stores
 ## Requirements
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin (required)
 - MySQL 5.7+ or MariaDB 10.3+
 - At least one payment gateway configured (for top-ups)

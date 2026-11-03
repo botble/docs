@@ -9,7 +9,7 @@ E-Wallet is a comprehensive digital wallet system designed for e-commerce stores
 ### What are the system requirements for E-Wallet?
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin (required)
 - MySQL 5.7+ or MariaDB 10.3+
 - At least one payment gateway configured
@@ -69,11 +69,11 @@ Yes. Wallet payments are protected by the customer's account password and the pl
 
 ### How do refunds work with E-Wallet?
 
-When E-Wallet is enabled, ALL refunds are automatically credited to the customer's wallet. This behavior is mandatory when the plugin is active.
+By default (**Refund Destination** = **Refund to Wallet**), refunds are credited to the customer's wallet. You can switch it to **Refund to Original Payment Method** in **E-Wallet** > **Settings**.
 
 ### Can customers get refunds to their original payment method?
 
-No, when E-Wallet is enabled, refunds go to the wallet. However, customers can request a withdrawal to get the money back to their bank account or PayPal.
+Yes, if you set **Refund Destination** to **Refund to Original Payment Method**. With **Refund to Wallet**, customers can still request a withdrawal to get the money back to their bank account or PayPal.
 
 ### How quickly do refunds appear in the wallet?
 

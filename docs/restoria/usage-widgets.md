@@ -32,7 +32,7 @@ It is displayed at the footer of the page and includes 1 site-information widget
 
 ![Widget footer bottom sidebar](./images/widgets/info-bar-sidebar.png)
 
-It is displayed at the footer of the page and includes 1 site-information widget and 3 simple menu widgets.
+It is displayed in the info bar and shows the logo, about text, contact info and social links (Info Bar widget).
 
 ![Widget footer sidebar admin](./images/widgets/info-bar-sidebar-admin.png)
 
@@ -41,7 +41,7 @@ It is displayed at the footer of the page and includes 1 site-information widget
 
 ![Widget footer bottom sidebar](./images/widgets/blog-sidebar.png)
 
-It is displayed at the footer of the page and includes 1 site-information widget and 3 simple menu widgets.
+It is displayed alongside blog posts and archives and includes Recent Posts, Blog Categories and Tags widgets.
 
 ![Widget footer sidebar admin](./images/widgets/blog-sidebar-admin.png)
 

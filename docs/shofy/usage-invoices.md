@@ -34,19 +34,7 @@ The invoices table displays:
 
 ### Automatic Generation
 
-Configure automatic invoice generation:
-
-1. Navigate to `Ecommerce` -> `Settings` -> `Invoice`
-2. Enable **Generate invoice automatically after order is created**
-3. Save settings
-
-When enabled:
-- Invoices generated immediately when order is created
-- Or generated when order status changes to "Completed" (depends on configuration)
-
-::: tip
-Automatic generation ensures all completed orders have invoices without manual intervention.
-:::
+An invoice is generated automatically when an order is placed (no setting is required).
 
 ### Manual Generation
 
@@ -77,9 +65,9 @@ Invoices are available to customers when:
 
 ### Invoice Until Confirmed Setting
 
-At `Ecommerce` -> `Settings` -> `Invoice`:
+At `Ecommerce` -> `Settings` -> `Invoices`:
 
-**Disable invoice until order is confirmed**
+**Disable order invoice until order confirmed**
 - When enabled: Customers cannot view invoices until admin confirms order
 - When disabled: Customers can view invoices immediately after generation
 
@@ -171,7 +159,7 @@ Every invoice includes:
 
 ## Invoice Configuration
 
-Navigate to `Ecommerce` -> `Settings` -> `Invoice` to configure:
+Navigate to `Ecommerce` -> `Settings` -> `Invoices` to configure:
 
 ![Invoice settings](./images/invoice-settings.png)
 
@@ -180,33 +168,34 @@ Navigate to `Ecommerce` -> `Settings` -> `Invoice` to configure:
 | Setting | Description | Example |
 |---------|-------------|---------|
 | **Invoice code prefix** | Text before invoice number | "INV-" |
-| **Invoice code suffix** | Text after invoice number | "-2024" |
-| **Generate automatically** | Auto-create invoices | Enabled |
-| **Disable until confirmed** | Hide until order confirmed | Enabled |
+| **Disable order invoice until order confirmed** | Hide until order confirmed | Enabled |
+| **Date format** | Date format used on invoices | `F d, Y` |
+| **Enable invoice stamp** | Add a "PAID" stamp when payment is completed | Enabled |
+| **Using custom font for invoice** / **Invoice font family** | Use a Google Font in invoice PDFs (Latin only) | - |
+| **Add language support** | Extra character set support for non-Latin languages | - |
+| **Invoice processing library** | PDF library: DomPDF or mPDF | DomPDF |
 
 **Invoice Code Format:**
 ```
-[PREFIX][NUMBER][SUFFIX]
+[PREFIX][NUMBER]
 
 Examples:
 INV-000123
-INVOICE-000456-2024
-2024-001
+INVOICE-000456
 ```
 
 ### Company Information
 
 Configure your store's information shown on invoices:
 
-At `Settings` -> `General`:
+At `Ecommerce` -> `Settings` -> `Invoices`:
 - **Company name**
-- **Company logo**
-- **Company phone**
-- **Company email**
 - **Company address**
-
-At `Ecommerce` -> `Settings` -> `Tax`:
-- **Company tax code/VAT**
+- **Company zipcode**
+- **Company email**
+- **Company phone**
+- **Company logo**
+- **Company tax ID**
 
 ::: tip Logo Recommendations
 - Format: PNG or JPG
@@ -219,27 +208,17 @@ At `Ecommerce` -> `Settings` -> `Tax`:
 
 ### Available Templates
 
-Shofy includes multiple invoice templates:
-
-1. **Default** - Clean, professional layout
-2. **Compact** - Space-efficient design
-3. **Detailed** - Comprehensive information display
-
-Navigate to `Ecommerce` -> `Settings` -> `Invoice Templates` to:
-- Preview templates
-- Select active template
-- Customize template HTML
-- Add custom CSS
+Navigate to `Ecommerce` -> `Settings` -> `Invoice Template`. Use the **Template** selector to pick which template to edit — **Order Invoice**, plus templates registered by other plugins (e.g. marketplace payout and subscription invoices).
 
 ### Customizing Templates
 
 To customize invoice appearance:
 
-1. Navigate to `Ecommerce` -> `Settings` -> `Invoice Templates`
+1. Navigate to `Ecommerce` -> `Settings` -> `Invoice Template`
 2. Select template to customize
 3. Edit template:
-   - **HTML Content** - Modify layout and structure
-   - **Custom CSS** - Add styling rules
+   - **Content** - Modify layout and structure
+   - **Custom CSS** - Add styling rules (appended to the default invoice styles)
 4. Use template variables for dynamic content
 5. Click **Preview** to test changes
 6. Save customization
@@ -248,22 +227,15 @@ To customize invoice appearance:
 
 | Variable | Description |
 |----------|-------------|
-| `invoice.code` | Invoice code |
-| `invoice.created_at` | Invoice date |
-| `order.code` | Order code |
-| `order.created_at` | Order date |
-| `customer.name` | Customer name |
-| `customer.email` | Customer email |
-| `customer.phone` | Customer phone |
-| `customer.address` | Shipping address |
-| `items` | Order items list |
-| `subtotal` | Order subtotal |
-| `tax_amount` | Tax total |
-| `shipping_amount` | Shipping cost |
-| `discount_amount` | Discount total |
-| `total` | Grand total |
-| `company.*` | Company information |
-| `payment.*` | Payment details |
+| `invoice.*` | Invoice data from database, e.g. `invoice.code`, `invoice.amount` |
+| `site_logo`, `site_title` | Site logo (full URL) and title |
+| `company_logo`, `company_name`, `company_phone`, `company_email` | Company details |
+| `company_address`, `company_country`, `company_state`, `company_city`, `company_zipcode`, `company_tax_id` | Company address & tax ID |
+| `payment_method`, `payment_status`, `payment_description` | Payment details |
+| `customer_name`, `customer_email`, `customer_phone` | Customer details |
+| `customer_address`, `customer_address_line`, `customer_country`, `customer_state`, `customer_city`, `customer_zipcode` | Customer address |
+
+The full list is shown next to the editor in `Ecommerce` -> `Settings` -> `Invoice Template`.
 
 For complete template customization, edit the invoice template in the admin settings as described above.
 
@@ -273,7 +245,7 @@ To restore default template:
 
 1. Navigate to invoice templates
 2. Select customized template
-3. Click **Reset to Default**
+3. Click **Reset to default**
 4. Confirm reset
 5. Customizations removed, original template restored
 
@@ -288,7 +260,8 @@ Invoice status tracks payment state:
 | Status | Description |
 |--------|-------------|
 | **Pending** | Payment not yet received |
-| **Paid** | Payment completed |
+| **Processing** | Payment in progress |
+| **Completed** | Payment completed |
 | **Canceled** | Invoice/order canceled |
 
 Status is synchronized with:

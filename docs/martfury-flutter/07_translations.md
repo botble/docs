@@ -16,7 +16,7 @@ DEFAULT_LANGUAGE_DIRECTION=ltr
 
 ## Supported Languages
 
-The app supports 29 languages, all registered in `main.dart`:
+The app supports 30 languages, all registered in `main.dart`:
 
 | Language | Code | Direction |
 |----------|------|-----------|
@@ -42,6 +42,7 @@ The app supports 29 languages, all registered in `main.dart`:
 | Portuguese | `pt` | LTR |
 | Brazilian Portuguese | `pt_BR` | LTR |
 | Russian | `ru` | LTR |
+| Albanian | `sq` | LTR |
 | Swedish | `sv` | LTR |
 | Thai | `th` | LTR |
 | Turkish | `tr` | LTR |

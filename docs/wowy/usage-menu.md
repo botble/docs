@@ -16,7 +16,7 @@ Drag and drop to change menu items.
 
 ![Image](./images/menu-4.jpeg)
 
-- Go to Admin -> Appearance -> Menus (modify Footer menu & Information)
+- Go to Admin -> Appearance -> Menus (modify menu Product categories & Information)
 
 ![Image](./images/menu-5.jpeg)
 

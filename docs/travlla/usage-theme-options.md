@@ -21,8 +21,9 @@ The **Logo** tab allows you to set the logo, dark logo, favicon, and logo height
 
 ## Header
 
-The **Header** tab lets you adjust header visibility, text and background colors, choose between header styles, enable a
-transparent header, and configure action buttons with custom labels, URLs, and icons.
+The **Header** tab lets you choose the header style (`Style 1 (Transparent)`, `Style 2 (Social Nav)`, `Style 3 (Top Bar)`),
+show or hide the header top bar, set the top bar announcement, phone, email and address, enable a transparent header on the
+homepage, enable the sticky header, and upload a dark logo.
 
 ![Header](./images/theme-options/header.png)
 
@@ -40,19 +41,19 @@ Demo when `disabled` (inner pages use a solid header):
 
 ## Styles
 
-The **Styles** tab lets you adjust the primary color, secondary color, heading color, and text color.
+The **Styles** tab lets you set the default color mode, hide the theme mode switcher, adjust the primary color (and hover), secondary color, heading color, and text color, and toggle on-scroll animations and the custom cursor effect.
 
 ![Styles](./images/theme-options/styles.png)
 
 ## Footer
 
-The **Footer** tab lets you adjust the background color, bottom background color, border color, text colors, and background image.
+The **Footer** tab lets you adjust the background color, border color, heading and text colors, background image and color variant, and set the footer connect title, about text, phone, email, address, and Facebook / Instagram / LinkedIn / X (Twitter) URLs.
 
 ![Footer](./images/theme-options/footer.png)
 
 ## Breadcrumb
 
-The **Breadcrumb** tab lets you adjust breadcrumb visibility, text and background colors, and choose between breadcrumb styles.
+The **Breadcrumb** tab lets you set the breadcrumb background image, background color, text color, height (px), and enable the simple breadcrumb style.
 
 ![Breadcrumb](./images/theme-options/breadcrumb.png)
 
@@ -70,22 +71,29 @@ The **Typography** tab lets you adjust the font family.
 
 ## Blog
 
-The **Blog** tab lets you adjust the number of posts, categories, and tags per page, the display style, post item style, and more.
+The **Blog** tab lets you set the blog list page title and description, the blog post layout, and the blog sidebar position.
 
 ![Blog](./images/theme-options/blog.png)
 
 ## Tour Manager
 
-The **Tour Manager** tab lets you configure tour-specific display options — tours per page, listing layouts, booking
-behavior, and related settings for the tour booking experience.
+The **Tour Manager** tab lets you configure tour-specific display options: checkout page logo, tour detail style
+(`Standard` or `Package`), tour listing layout (`Default`, `Sidebar left`, `Sidebar right`, `Top filter`), listing style
+(`Grid` or `List`), listing columns, and number of tours per page.
 
 ![Tour Manager](./images/theme-options/tour-manager.png)
 
-## Map Settings
+## Destination Page
 
-The **Map Settings** tab lets you configure the map provider and API key used to display destination and tour locations.
+The **Destination Page** tab lets you configure the destination features and destination pricing plans (title, price, items) shown on destination pages.
 
-![Map Settings](./images/theme-options/map.png)
+## Side Panel
+
+The **Side Panel** tab lets you set the side panel subtitle, title, description, and up to 3 plan names and prices.
+
+## Miscellaneous
+
+The **Miscellaneous** tab lets you toggle the preloader and set the coming soon launch date and description, and the under maintenance description.
 
 ## Social Links
 

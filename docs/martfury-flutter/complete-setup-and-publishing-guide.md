@@ -25,8 +25,8 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 
 | Software | Version | Download |
 |----------|---------|----------|
-| **Flutter SDK** | 3.7.2 or higher | [flutter.dev](https://flutter.dev/docs/get-started/install) |
-| **Dart SDK** | 3.7.2 or higher | Included with Flutter |
+| **Flutter SDK** | 3.29 or higher (CI uses 3.35.5) | [flutter.dev](https://flutter.dev/docs/get-started/install) |
+| **Dart SDK** | 3.7.2 or higher (`pubspec.yaml`: `sdk: ">=3.7.2 <4.0.0"`) | Included with Flutter |
 | **Android Studio** | Latest | [developer.android.com/studio](https://developer.android.com/studio) |
 | **Xcode** (Mac only) | Latest | Mac App Store |
 | **VS Code** (optional) | Latest | [code.visualstudio.com](https://code.visualstudio.com) |
@@ -38,7 +38,7 @@ Before starting, make sure you have:
 - A **Botble e-commerce website** up and running (e.g., `https://yourstore.com`)
 - Products, categories, and brands already added to your website
 - An **API key** generated in your Botble admin panel at **Settings → API Settings** (this is sent in the `X-API-KEY` header — it is **not** your Envato purchase code)
-- Your **Envato purchase code** (from CodeCanyon — used only for development license validation)
+- Your **Envato purchase code** (from CodeCanyon) or direct-purchase license code from license.botble.com (used only for development license validation)
 - Your **brand assets**: logo (1024x1024 PNG), app icon, brand colors
 
 ---
@@ -105,7 +105,7 @@ Open `.env` and set:
 API_BASE_URL=https://yourstore.com
 API_KEY=<from Admin → Settings → API Settings>
 APP_NAME=Your Store Name
-LICENSE_CODE=<your Envato purchase code>
+LICENSE_CODE=<your Envato purchase code or license.botble.com license code>
 ```
 
 `API_BASE_URL` must use `https://` and must not end with `/`.
@@ -386,10 +386,11 @@ The file is already in `.gitignore` by default. Never remove it from `.gitignore
 Next, update `android/app/build.gradle.kts` to use this keystore for release builds. Replace the existing `buildTypes` block:
 
 ```kotlin
+// Imports at the top of the file (java.util.Properties is already there; add FileInputStream):
 import java.util.Properties
 import java.io.FileInputStream
 
-// Add at the top of the android {} block, before defaultConfig:
+// Add just above the android { } block:
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {

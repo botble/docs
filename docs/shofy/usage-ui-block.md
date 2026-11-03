@@ -35,7 +35,7 @@ Display simple information about your shop, company, or organization.
 
 ### Ads
 
-Display advertisements on your website. There are 4 different styles available.
+Display advertisements on your website. There are 5 different styles available (Style 4 is a slider, Style 5 is full width).
 
 For example:
 
@@ -99,7 +99,7 @@ The above shortcode will display the latest 3 blog posts.
 Display a coming soon page with a countdown timer and newsletter subscription form.
 
 ```html
-[coming-soon title="Coming Soon" subtitle="Our website is under construction" date="2025-12-31" image="path_to_media_image"][/coming-soon]
+[coming-soon title="Get Notified When We Launch" countdown_time="2026-12-31 00:00" address="Sample address" hotline="+123456789" business_hours="Mon – Sat: 8 am – 5 pm" show_social_links="1" image="path_to_media_image"][/coming-soon]
 ```
 
 This shortcode is useful for launching a coming soon page while your website is still being developed.
@@ -132,7 +132,7 @@ Display a list of specific product categories.
 [ecommerce-categories style="slider" category_ids="1,2,3,4,5"][/ecommerce-categories]
 ```
 
-We have 2 styles available for the Ecommerce Categories shortcode:
+There are 5 styles available for the Ecommerce Categories shortcode: Grid, Compact Grid, Slider, List and Table. Grid and Slider are shown below:
 
 #### Grid style
 
@@ -214,7 +214,7 @@ collection, or specific products to display.
 [ecommerce-products style="grid" category_ids="20" limit="12"][/ecommerce-products]
 ```
 
-The above example will display 20 products in the category with the ID of 20.
+The above example will display 12 products in the category with the ID of 20.
 
 You also can control the left side of product list to display the category detail, and ads banners.
 
@@ -231,6 +231,10 @@ You also can control the left side of product list to display the category detai
 #### Simple style
 
 ![Ecommerce Products Simple](./images/shortcode-ecommerce-products-3.png)
+
+#### Slider full width style
+
+A full-width product slider.
 
 ### FAQ
 
@@ -302,7 +306,7 @@ Usually used to display a list of images in a slider on the hero section of the 
 
 First, you need to create a slider in the admin panel. Go to `Simple Slider` on the admin menu dashboard to create a slider.
 
-There are 5 styles for different purposes:
+There are 6 styles for different purposes (Style 1-5 and Full width):
 
 #### Style 1
 
@@ -323,6 +327,10 @@ There are 5 styles for different purposes:
 #### Style 5
 
 ![Simple Slider](./images/shortcode-simple-slider-5.png)
+
+#### Full width
+
+A full-width hero slider.
 
 ::: tip
 Activate the **Simple Slider** plugin to use this shortcode.

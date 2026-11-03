@@ -98,10 +98,10 @@ Select multiple logs:
 
 ## Purge old logs
 
-To auto-delete logs older than 90 days, run:
+To delete logs older than the retention window (`smsg_log_retention_days`, default 30 days), run:
 
 ```bash
-php artisan sms:purge --days=90
+php artisan sms:purge
 ```
 
 This also runs nightly via scheduler. Purged logs cannot be recovered, so export first if needed for compliance.

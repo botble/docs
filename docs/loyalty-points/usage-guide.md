@@ -33,7 +33,7 @@ The main dashboard displays:
 
 ### Viewing Customer Points
 
-1. Navigate to **Loyalty Points** > **Customer Points**
+1. Navigate to **Loyalty Points** > **Members**
 2. View all customers with their:
    - Current balance
    - Lifetime points earned
@@ -60,7 +60,7 @@ The main dashboard displays:
 
 To manually add or deduct points:
 
-1. Navigate to **Loyalty Points** > **Customer Points**
+1. Navigate to **Loyalty Points** > **Members**
 2. Find the customer you want to adjust
 3. Click **Adjust Points** button
 4. Fill in the adjustment form:
@@ -125,8 +125,8 @@ Deleting a level will not affect customers' points, but they may be reassigned t
 
 ### Transaction List
 
-1. Navigate to **Loyalty Points** > **Transactions**
-2. View all point transactions with:
+1. Navigate to **Loyalty Points** > **Members** and click the **Points History** action on a member row to see that member's transactions
+2. View point transactions with:
    - Customer name
    - Transaction type
    - Points amount
@@ -137,12 +137,10 @@ Deleting a level will not affect customers' points, but they may be reassigned t
 
 | Type | Description |
 |------|-------------|
-| **Earned** | Points earned from purchases |
+| **Earned** | Points earned from purchases and bonus activities (registration, reviews, referrals, birthdays) |
 | **Redeemed** | Points used for discounts |
-| **Adjusted** | Manual admin adjustments |
-| **Reversed** | Points taken back from cancelled orders |
-| **Expired** | Points removed due to expiration |
-| **Bonus** | Points from activities (registration, reviews, etc.) |
+| **Adjustment** | Manual admin adjustments |
+| **Reversed** | Points taken back from cancelled orders, deleted reviews, or expired points (the note says "expired") |
 
 ### Filtering Transactions
 

@@ -28,7 +28,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     ->label(__('Copyright'))
                     ->defaultValue('© ' . now()->year . ' Your Company. All rights reserved.')
                     ->placeholder(__('Change copyright'))
-                    ->maxLength(120)
+                    ->attributes(['maxlength' => 120])
                     ->helperText(__('Copyright on footer of site')),
             ])
     );
@@ -175,7 +175,7 @@ TextField::make()
     ->label(__('Field label'))
     ->defaultValue('Default value')
     ->placeholder(__('Placeholder (optional)'))
-    ->maxLength(120)
+    ->attributes(['maxlength' => 120])
     ->helperText(__('Helper text (optional)'))
 ```
 
@@ -271,18 +271,7 @@ MediaImageField::make()
 
 ### Editor Field
 
-#### Object-Oriented Approach
-
-```php
-use Botble\Theme\ThemeOption\Fields\EditorField;
-
-EditorField::make()
-    ->name('field_name')
-    ->label(__('Field label'))
-    ->defaultValue('<p>Default content</p>')
-    ->rows(10)
-    ->helperText(__('Helper for this field (optional)'))
-```
+There is no object-oriented `EditorField` class for theme options; use the array-based definition.
 
 #### Array-Based Approach
 
@@ -441,7 +430,7 @@ RepeaterField::make()
         TextField::make()
             ->name('text')
             ->label(__('Text'))
-            ->maxLength(255),
+            ->attributes(['maxlength' => 255]),
 
         MediaImageField::make()
             ->name('image')
@@ -451,7 +440,7 @@ RepeaterField::make()
             ->name('textarea')
             ->label(__('Textarea'))
             ->rows(3)
-            ->maxLength(255),
+            ->attributes(['maxlength' => 255]),
     ])
 ```
 

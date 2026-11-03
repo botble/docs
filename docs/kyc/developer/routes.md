@@ -21,6 +21,7 @@ All admin routes live under the admin prefix (configured in Botble `core/base` s
 | POST | `kyc/submissions/{id}/unlock` | `kyc.submissions.unlock` | `kyc.submissions.unlock` |
 | GET | `kyc/settings` | `kyc.settings.edit` | `kyc.settings.edit` |
 | PUT | `kyc/settings` | `kyc.settings.update` | `kyc.settings.edit` |
+| POST | `kyc/settings/manual-verify` | `kyc.settings.manual-verify` | `kyc.submissions.approve` |
 | POST | `kyc/license/activate` | `kyc.license.activate` | `kyc.settings.edit` |
 | POST | `kyc/license/deactivate` | `kyc.license.deactivate` | `kyc.settings.edit` |
 | GET | `kyc/webhooks` | `kyc.webhooks.index` | `kyc.webhooks.index` |
@@ -44,13 +45,15 @@ Customer-facing routes live under the `/account/kyc/{subjectKey}` prefix with th
 | GET | `account/kyc/{subjectKey}/locked` | `kyc.submission.locked` | `web`, `customer`, `throttle:30,1`, `kyc.enabled` |
 | GET | `account/kyc/{subjectKey}/export` | `kyc.submission.export` | `web`, `customer`, `throttle:10,60`, `kyc.enabled` |
 
+Real-estate and job-board subjects (the `account` guard) use the same four routes under `account/kyc/{plugin}/{role}` (`{plugin}` = `job-board` or `real-estate`, `{role}` = `company`, `candidate` or `account`), named `kyc.account.submission.index` / `.store` / `.locked` / `.export`, with the `web` + `account` middleware.
+
 ## Private file route
 
 Accessible from both admin and customer guards. Authorisation is performed inside `KycFileController::canAccess()`.
 
 | Method | URI | Route name | Middleware |
 |---|---|---|---|
-| GET | `kyc/file/{id}/{field}` | `kyc.file.show` | `web`, `kyc.enabled`, `throttle:60,1`, `signed` |
+| GET | `kyc/file/{id}/{field}` | `kyc.file.show` | `web`, `kyc.enabled`, `throttle:60,1` (signature checked in the controller) |
 
 - `{id}` — `kyc_submissions.id`
 - `{field}` — one of `front_image`, `back_image`, `selfie_image`, or `extra_files.{index}`
@@ -60,7 +63,7 @@ Accessible from both admin and customer guards. Authorisation is performed insid
 | Alias | Class | Purpose |
 |---|---|---|
 | `kyc.enabled` | `EnsureKycEnabled` | Abort 404 when no subject is enabled, or the given scope is disabled |
-| `kyc.required` | `KycRequiredMiddleware` | Gate route on `hasApprovedKyc()` for a given scope and context — see [Gates](../integration/gates.md) |
+| `kyc.required` | `EnsureKycRequired` | Gate route on `hasApprovedKyc()` for a given scope and context — see [Gates](../integration/gates.md) |
 
 ## Viewing registered routes
 

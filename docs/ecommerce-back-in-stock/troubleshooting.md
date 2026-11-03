@@ -40,7 +40,7 @@ If subscriptions remain Pending after a product's stock is updated:
    tail -f storage/logs/laravel.log
    ```
 
-5. **Verify the email template exists:** Go to **Admin > Email Templates** and confirm the `back_in_stock_notification` template is present and not empty.
+5. **Verify the email template exists:** Go to **Settings > Email** and confirm the **Customer back-in-stock notification** template is present and not empty.
 
 ## Unsubscribe Link Not Working
 

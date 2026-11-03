@@ -19,24 +19,26 @@ Product options allow customers to customize products beyond variations. While v
 
 | Type | Description | Use Case |
 |------|-------------|----------|
-| **Text** | Single-line text input | Custom text (engraving, name) |
-| **Textarea** | Multi-line text input | Long messages, instructions |
+| **Field** | Text input | Custom text (engraving, name, gift message) |
 | **Dropdown** | Select one option | Single choice (warranty plans) |
 | **Checkbox** | Select multiple | Multiple add-ons (gift wrap, card) |
 | **Radio** | Select one option | Exclusive choices (size upgrades) |
-| **File Upload** | Customer uploads file | Custom designs, logos |
+
+::: info
+Only these four types are available. There is no textarea or file upload option type.
+:::
 
 ## Creating Global Options
 
 Global options are reusable across multiple products.
 
-Navigate to `Ecommerce` -> `Product Options` -> `Global Options`.
+Navigate to `Ecommerce` -> `Product Options`.
 
 1. Click **Create**
 2. Fill in option details:
    - **Name** - Option label (e.g., "Gift Wrapping")
-   - **Option Type** - Select field type
-   - **Required** - Check if customer must select
+   - **Type** - Select field type
+   - **Is required?** - Check if customer must select
 3. Click **Save**
 
 ### Adding Option Values (Dropdown/Checkbox/Radio)
@@ -44,12 +46,12 @@ Navigate to `Ecommerce` -> `Product Options` -> `Global Options`.
 For dropdown, checkbox, and radio types:
 
 1. Open the global option
-2. Scroll to **Option Values** section
-3. Click **Add new value**
+2. Scroll to the option values section
+3. Click **Add new row**
 4. Fill in:
-   - **Option Value** - Display text (e.g., "Premium Gift Wrap")
-   - **Affect Price** - Amount to add/subtract
-   - **Affect Type** - Fixed amount or percentage
+   - **Label** - Display text (e.g., "Premium Gift Wrap")
+   - **Price** - Amount to add/subtract
+   - **Price Type** - Fixed or Percent
    - **Order** - Display order
 5. Repeat for all values
 6. Click **Save**
@@ -57,14 +59,14 @@ For dropdown, checkbox, and radio types:
 ### Price Adjustments
 
 **Fixed Amount:**
-- Set **Affect Type** = "Fixed"
-- **Affect Price** = `5.00` (adds $5.00)
-- **Affect Price** = `-2.00` (subtracts $2.00)
+- Set **Price Type** = "Fixed"
+- **Price** = `5.00` (adds $5.00)
+- **Price** = `-2.00` (subtracts $2.00)
 
 **Percentage:**
-- Set **Affect Type** = "Percentage"
-- **Affect Price** = `10` (adds 10% of product price)
-- **Affect Price** = `-5` (subtracts 5% of product price)
+- Set **Price Type** = "Percent"
+- **Price** = `10` (adds 10% of product price)
+- **Price** = `-5` (subtracts 5% of product price)
 
 ::: tip
 Use percentage pricing for options that should scale with product value, like warranties or insurance.
@@ -77,8 +79,8 @@ Navigate to `Ecommerce` -> `Products` and open a product.
 ### Method 1: Assign Global Options
 
 1. Scroll to **Product Options** section
-2. Click **Assign Global Option**
-3. Select global option(s)
+2. Choose an option in **Select Global Option**
+3. Click **Add Global Option**
 4. Click **Save**
 
 Global option values and pricing apply automatically.
@@ -88,11 +90,11 @@ Global option values and pricing apply automatically.
 1. In **Product Options** section, click **Add new option**
 2. Fill in option details:
    - **Name** - Option label
-   - **Option Type** - Field type
-   - **Required** - Make mandatory
+   - **Type** - Field type
+   - **Is required?** - Make mandatory
    - **Order** - Display sequence
 3. For dropdown/checkbox/radio, add values:
-   - Click **Add value**
+   - Click **Add new row**
    - Enter value text and pricing
 4. Click **Save**
 
@@ -104,10 +106,10 @@ Product-specific options only apply to that product. Changes don't affect other 
 
 ### Example 1: Text Engraving
 
-**Option Type:** Text
+**Option Type:** Field
 ```
 Name: Personalized Engraving
-Type: Text
+Type: Field
 Required: No
 Affect Price: $5.00 (Fixed)
 ```
@@ -146,24 +148,12 @@ Values:
 
 Customer selects one plan, percentage based on product price.
 
-### Example 4: Custom Design Upload
+### Example 4: Gift Message
 
-**Option Type:** File
-```
-Name: Upload Your Design
-Type: File
-Required: Yes
-Affect Price: $0.00
-```
-
-Customer uploads file, required for order processing.
-
-### Example 5: Gift Message
-
-**Option Type:** Textarea
+**Option Type:** Field
 ```
 Name: Gift Message
-Type: Textarea
+Type: Field
 Required: No
 Affect Price: $0.00
 ```
@@ -190,30 +180,11 @@ Control option sequence on product pages:
 3. Lower numbers display first
 4. Update and save
 
-## File Upload Options
-
-For file type options:
-
-**Settings:**
-- Accepts common file formats (images, PDFs, etc.)
-- Maximum file size controlled by server settings
-- Files stored in `storage/app/uploads`
-
-**Use Cases:**
-- Custom logo design
-- Artwork for printing
-- Measurement photos
-- Assembly instructions
-
-::: warning
-Configure server `upload_max_filesize` and `post_max_size` in `php.ini` for large file uploads.
-:::
-
 ## Managing Global Options
 
 ### Editing Global Options
 
-1. Navigate to `Ecommerce` -> `Product Options` -> `Global Options`
+1. Navigate to `Ecommerce` -> `Product Options`
 2. Click option name
 3. Modify settings
 4. Changes apply to all products using this option
@@ -260,7 +231,6 @@ Options appear in order items with selected values and price adjustments.
 - Add-ons and customizations
 - Price adjustments
 - Text input from customers
-- File uploads
 - Same base product with extras
 
 **Can Combine Both:**
@@ -278,7 +248,7 @@ If language plugin is active:
 
 ### Translating Global Options
 
-1. Navigate to `Product Options` -> `Global Options`
+1. Navigate to `Ecommerce` -> `Product Options`
 2. Open option
 3. Switch language
 4. Translate option **Name**
@@ -296,7 +266,7 @@ If language plugin is active:
 
 ### Option prices not calculating correctly
 
-1. **Check Affect Type** - Verify "Fixed" vs "Percentage"
+1. **Check Price Type** - Verify "Fixed" vs "Percent"
 2. **Verify base price** - Percentage applies to product price
 3. **Check for negative values** - Use minus sign for discounts
 4. **Clear cache** - Run `php artisan cache:clear`
@@ -306,13 +276,6 @@ If language plugin is active:
 1. **Check "Required" checkbox** - Must be enabled
 2. **Clear browser cache** - Frontend may cache old form
 3. **Check JavaScript** - Ensure no JS errors in browser console
-
-### File upload not working
-
-1. **Check file size** - Verify server upload limits
-2. **Check permissions** - Ensure `storage/app` is writable
-3. **Review allowed types** - System may block certain file types
-4. **Check error logs** - Review Laravel logs for upload errors
 
 ### Global option changes not reflecting on products
 
@@ -329,7 +292,7 @@ If language plugin is active:
 5. **Show price impact** - Display price changes clearly
 6. **Group related options** - Use similar order numbers
 7. **Test checkout flow** - Verify options work in cart and checkout
-8. **Consider mobile users** - Keep file upload sizes reasonable
+8. **Consider mobile users** - Keep option lists short
 9. **Validate required fields** - Ensure critical options are required
 10. **Document for staff** - Create guides for custom options handling
 
@@ -343,7 +306,7 @@ If language plugin is active:
 
 **Options:**
 1. **Text Engraving (Required):**
-   - Type: Text
+   - Type: Field
    - Price: +$5.00
 
 2. **Gift Options (Optional):**

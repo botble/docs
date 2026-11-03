@@ -37,7 +37,7 @@ Yes! Velura is 100% responsive and mobile-optimized:
 ### What are the hosting requirements?
 
 **Minimum Requirements:**
-- PHP 8.3.36 or higher
+- PHP 8.3.0 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - 256MB PHP memory limit
 - Apache/Nginx web server
@@ -65,7 +65,7 @@ Yes, perfect for development and testing:
 - Use XAMPP, WAMP, or MAMP
 - Laravel Valet for Mac
 - Docker for any platform
-- Ensure PHP 8.3.36+ is installed
+- Ensure PHP 8.3.0+ is installed
 
 ### How long does installation take?
 
@@ -159,7 +159,7 @@ Multiple methods:
 ### How do I backup my website?
 
 Multiple backup methods:
-1. **Built-in Backup**: Admin → Tools → Backup
+1. **Built-in Backup**: Admin → Platform Administration → Backup
 2. **Hosting Backup**: cPanel/hosting provider
 3. **Manual Backup**: Database + files
 

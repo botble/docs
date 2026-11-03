@@ -1,6 +1,6 @@
 # Widgets
 
-Carento provides five pre-made widget areas to help you customize the user interface and organize content strategically.
+Carento provides seven pre-made widget areas to help you customize the user interface and organize content strategically.
 
 These sidebars offer flexibility in placement and functionality, allowing you to tailor the user experience on different
 sections of your website.
@@ -15,7 +15,7 @@ To add a widget to a sidebar, drag and drop the widget from the left side to the
 
 ## Footer
 
-In footer, you can use there widgets: **Site Information**, **Custom Menu** and **Contact Information**.
+In footer, you can use there widgets: **Site Information**, **Simple Menu** and **Contact Information**.
 
 ![Footer](./images/widgets/footer.png)
 

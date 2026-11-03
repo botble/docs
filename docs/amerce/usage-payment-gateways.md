@@ -22,7 +22,7 @@ Payment gateways enable customers to complete purchases using various payment me
 
 ## Accessing Payment Settings
 
-Navigate to `Settings` -> `Payment` -> `Payment methods`.
+Navigate to `Payments` -> `Payment methods`.
 
 This page shows all available payment methods with:
 - Status (Enabled/Disabled)
@@ -48,7 +48,7 @@ The base "Payment" plugin must be activated first. Other payment gateways depend
 
 After plugin activation:
 
-1. Go to `Settings` -> `Payment` -> `Payment methods`
+1. Go to `Payments` -> `Payment methods`
 2. Find the payment gateway
 3. Toggle **Enable** to ON
 4. Configure required settings (see gateway-specific sections below)
@@ -77,8 +77,9 @@ Optional text displayed below the payment option at checkout.
 
 Add a fee for using this payment method:
 
-- **Type**: Percentage or Fixed Amount
+- **Processing fee type**: Percentage or Fixed Amount
 - **Value**: Fee amount (e.g., `3` for 3% or `2.50` for $2.50 fee)
+- **Additional fixed fee** (percentage type only): flat amount added on top, e.g. "2.9% + $0.30"
 - Automatically added to order total at checkout
 - Shows as separate line item
 
@@ -122,14 +123,14 @@ Stripe processes credit cards, Apple Pay, Google Pay, and more.
 
 ### Configuration Fields
 
-Navigate to `Settings` -> `Payment` -> `Payment methods` -> **Stripe**.
+Navigate to `Payments` -> `Payment methods` -> **Stripe**.
 
 | Field | Description | Where to Find |
 |-------|-------------|---------------|
-| **Publishable key** | Public API key (starts with `pk_`) | Stripe Dashboard -> Developers -> API keys |
-| **Secret key** | Private API key (starts with `sk_`) | Stripe Dashboard -> Developers -> API keys |
-| **Payment type** | Stripe API Charge or Stripe Checkout | Choose integration method |
-| **Webhook secret** | Webhook signing secret (starts with `whsec_`) | Stripe Dashboard -> Developers -> Webhooks |
+| **Stripe Public Key** | Public API key (starts with `pk_`) | Stripe Dashboard -> Developers -> API keys |
+| **Stripe Private Key** | Private API key (starts with `sk_`) | Stripe Dashboard -> Developers -> API keys |
+| **Payment Type** | Stripe API Charge or Stripe Checkout | Choose integration method |
+| **Webhook Secret** | Webhook signing secret (starts with `whsec_`) | Stripe Dashboard -> Developers -> Webhooks |
 
 ### Payment Type Options
 
@@ -167,8 +168,9 @@ Webhooks notify your store of payment events (success, failure, refunds).
 
 1. Go to Stripe Dashboard -> Developers -> Webhooks
 2. Click **Add endpoint**
-3. Endpoint URL: `https://yourstore.com/stripe/webhook`
+3. Endpoint URL: `https://yourstore.com/payment/stripe/webhook`
 4. Select events:
+   - `checkout.session.completed` (when using Stripe Checkout)
    - `payment_intent.succeeded`
    - `payment_intent.payment_failed`
    - `charge.refunded`
@@ -203,7 +205,7 @@ PayPal allows customers to pay with PayPal accounts or credit cards.
 |-------|-------------|---------------|
 | **Client ID** | PayPal REST API client ID | PayPal Developer -> My Apps & Credentials |
 | **Client Secret** | PayPal REST API secret | PayPal Developer -> My Apps & Credentials |
-| **Mode** | Live Mode (ON) or Sandbox (OFF) | Toggle for testing vs production |
+| **Live mode** | Live (ON) or Sandbox (OFF) | Toggle for testing vs production |
 
 ### Getting PayPal API Credentials
 
@@ -246,8 +248,10 @@ Razorpay is popular in India for UPI, cards, net banking, and wallets.
 
 | Field | Description | Where to Find |
 |-------|-------------|---------------|
-| **Key ID** | Razorpay API key | Razorpay Dashboard -> Settings -> API Keys |
-| **Key Secret** | Razorpay API secret | Razorpay Dashboard -> Settings -> API Keys |
+| **Key** | Razorpay API key ID | Razorpay Dashboard -> Settings -> API Keys |
+| **Secret** | Razorpay API secret | Razorpay Dashboard -> Settings -> API Keys |
+| **Payment Type** | Embedded Checkout or Standard Checkout (supports UPI QR code) | Choose integration method |
+| **Webhook Secret** | Webhook signing secret | Razorpay Dashboard -> Settings -> Webhooks |
 
 ### Getting Razorpay Credentials
 
@@ -277,8 +281,8 @@ Mollie supports European payment methods including iDEAL, Bancontact, and more.
 
 | Field | Description | Where to Find |
 |-------|-------------|---------------|
-| **API Key** | Mollie API key | Mollie Dashboard -> Developers -> API keys |
-| **Mode** | Test or Live | Toggle based on API key type |
+| **API Key** | Mollie API key (test or live key decides the mode) | Mollie Dashboard -> Developers -> API keys |
+| **Webhook Secret (Optional)** | Webhook signing secret | Mollie Dashboard |
 
 ### Getting Mollie API Key
 
@@ -304,6 +308,7 @@ Paystack is widely used in Nigeria and other African countries.
 |-------|-------------|---------------|
 | **Public Key** | Paystack public key | Paystack Dashboard -> Settings -> API Keys & Webhooks |
 | **Secret Key** | Paystack secret key | Paystack Dashboard -> Settings -> API Keys & Webhooks |
+| **Webhook Secret** | Webhook secret | Paystack Dashboard -> Settings -> API Keys & Webhooks |
 
 ### Getting Paystack Credentials
 
@@ -328,8 +333,8 @@ SSLCommerz is the leading payment gateway in Bangladesh.
 | Field | Description | Where to Find |
 |-------|-------------|---------------|
 | **Store ID** | Merchant store ID | SSLCommerz merchant panel |
-| **Store Password** | API store password | SSLCommerz merchant panel |
-| **Mode** | Sandbox or Live | Toggle for testing |
+| **Store Password (API/Secret key)** | API store password | SSLCommerz merchant panel |
+| **Live mode** | Sandbox (OFF) or Live (ON) | Toggle for testing |
 
 ### Sandbox Testing
 
@@ -341,7 +346,7 @@ COD allows customers to pay when they receive the order.
 
 ### Configuration
 
-Navigate to `Settings` -> `Payment` -> `Payment methods` -> **Cash on Delivery**.
+Navigate to `Payments` -> `Payment methods` -> **Cash on Delivery**.
 
 - **Method name** - Display name (e.g., "Pay on Delivery")
 - **Description** - Instructions (e.g., "Pay cash to courier when you receive your order")
@@ -367,7 +372,7 @@ Bank transfer allows customers to manually transfer payment to your bank account
 
 ### Configuration
 
-Navigate to `Settings` -> `Payment` -> `Payment methods` -> **Bank Transfer**.
+Navigate to `Payments` -> `Payment methods` -> **Bank Transfer**.
 
 - **Method name** - Display name (e.g., "Direct Bank Transfer")
 - **Description** - Bank details and instructions
@@ -408,8 +413,8 @@ Use order notes to track when payment is received. Consider automated email remi
 
 Control the order payment methods appear at checkout:
 
-1. Methods are sorted by activation order
-2. Use drag-and-drop to reorder (if theme supports)
+1. Go to `Payments` -> `Payment methods`
+2. Drag and drop the payment method cards to reorder them on the checkout page
 3. Most common method should appear first
 
 Recommended order:
@@ -426,7 +431,7 @@ Recommended order:
 Navigate to `Payments` -> `Transactions` to view:
 - Transaction ID
 - Amount
-- Status (success, pending, failed)
+- Status (pending, completed, refunding, refunded, fraud, failed, canceled)
 - Customer information
 - Gateway used
 - Date/time
@@ -457,13 +462,13 @@ When a payment fails:
 
 To set a default payment method:
 
-1. Go to `Settings` -> `Payment` -> `Payment methods`
+1. Go to `Payments` -> `Payment methods`
 2. Enable your preferred method
-3. It automatically becomes available at checkout
-4. Customers choose their preferred method
+3. Click its **Set as default** button
+4. The default method is preselected at checkout; customers can still choose another method
 
 ::: tip
-You cannot force a specific default. Customers always choose at checkout. Consider using payment fees to encourage preferred methods.
+Consider using payment fees to encourage preferred methods.
 :::
 
 ## Testing Payment Integration

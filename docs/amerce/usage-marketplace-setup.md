@@ -25,7 +25,7 @@ The Marketplace plugin requires the **Ecommerce** plugin to be installed and act
 
 ## Marketplace Settings
 
-Navigate to `Marketplace` -> `Settings` to configure marketplace options.
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace` to configure marketplace options.
 
 ### Vendor Registration
 
@@ -34,7 +34,7 @@ Navigate to `Marketplace` -> `Settings` to configure marketplace options.
 | **Enable vendor registration** | Allow customers to become vendors |
 | **Hide become vendor menu in customer dashboard** | Hide "Become Vendor" link from customer dashboard menu |
 | **Show vendor registration form at registration page** | Display vendor registration fields on the customer registration page |
-| **Verify vendor** | Require admin approval before vendors can start selling |
+| **Vendor verification** | Require admin approval before vendors can post product listings |
 | **Requires vendor documentations verification** | Vendors must upload certificate and government ID documents |
 
 ::: tip
@@ -46,7 +46,7 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 | Setting | Description |
 |---------|-------------|
 | **Enable product approval** | Vendor products require admin approval before going live |
-| **Allow vendor digital products** | Vendors can sell digital/downloadable products (requires Digital Products enabled in Ecommerce) |
+| **Allow vendors to sell digital products** | Vendors can sell digital/downloadable products (requires Digital Products enabled in Ecommerce) |
 | **Max upload filesize** | Maximum file size vendors can upload (MB) |
 | **Max product images upload by vendor** | Maximum number of images per product |
 | **Low stock threshold** | When product quantity drops to or below this number, vendor receives a low stock email notification (default: 5) |
@@ -56,7 +56,7 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 
 | Setting | Description |
 |---------|-------------|
-| **Allow vendor manage shipping** | Vendors can create their own shipping rules |
+| **Allow vendor manage shipping** | Vendors can change shipment status (delivering, delivered, ...) and tracking info |
 | **Charge shipping per vendor** | Calculate shipping separately for each vendor in cart |
 | **Allow vendor manage product currency** | Vendors can set product prices in different currencies |
 | **Allow vendor delete their orders** | Vendors can delete their own orders (not recommended for production) |
@@ -82,7 +82,7 @@ Disabling the stores listing page does **not** disable individual store pages. C
 
 | Setting | Description |
 |---------|-------------|
-| **Single vendor checkout** | Customers can only checkout with products from one vendor at a time |
+| **Limit to One Vendor per Order** | Customers can only checkout with products from one vendor at a time |
 | **Enable messaging system** | Allow customers to message vendors directly |
 
 ## Vendor Registration Process
@@ -111,12 +111,12 @@ If "Verify vendor" is enabled:
 1. Vendor submits registration
 2. Vendor sees "Pending Approval" page
 3. Admin receives email notification and dashboard alert
-4. Admin reviews vendor at `Marketplace` -> `Unverified Vendors`
+4. Admin reviews vendor at `Marketplace` -> `Unverified vendors`
 5. Admin approves or rejects with optional note
 6. Vendor receives email notification
 7. Approved vendors gain access to vendor dashboard
 
-Navigate to: `Marketplace` -> `Unverified Vendors`
+Navigate to: `Marketplace` -> `Unverified vendors`
 
 ## Store Setup
 
@@ -163,7 +163,7 @@ Navigate to `Marketplace` -> `Stores` -> `Create`
 
 **Social Links:**
 
-Configure allowed social platforms at `Marketplace` -> `Settings`
+Configure allowed social platforms at `Settings` -> `Ecommerce` -> `Marketplace`
 
 ::: warning
 When a store status is changed to "Blocked", all published products from that store are automatically blocked as well.
@@ -245,12 +245,12 @@ Deleting a store will:
 - Orders can contain products from multiple vendors
 - Each vendor has their own revenue tracking
 
-### Single-Vendor Mode (Single Vendor Checkout)
+### Single-Vendor Mode (Limit to One Vendor per Order)
 
-Enable "Single vendor checkout" in settings:
+Enable "Limit to One Vendor per Order" in settings:
 
 - Customers can only add products from one vendor at a time
-- Adding a product from a different vendor clears the cart
+- Adding a product from a different vendor is blocked with an error message (the cart is not cleared)
 - Simpler checkout experience
 - Reduces shipping complexity
 
@@ -260,7 +260,7 @@ Enable "Single vendor checkout" in settings:
 
 The stores listing page is accessible at: `https://your-site.com/stores`
 
-This page shows all published stores with search functionality. You can disable it entirely in `Marketplace` -> `Settings` by turning off **Enable stores listing page**. When disabled:
+This page shows all published stores with search functionality. You can disable it entirely in `Settings` -> `Ecommerce` -> `Marketplace` by turning off **Enable stores listing page**. When disabled:
 - The `/stores` URL redirects to the homepage
 - The stores URL is removed from the sitemap
 - The "Stores" breadcrumb link is removed from individual store pages
@@ -298,7 +298,7 @@ Vendors can manage their tax information from the vendor dashboard.
 
 ### Vendor Tax Information Tab
 
-Navigate to: `Vendor Dashboard` -> `Settings` -> `Tax Information`
+Navigate to: `Vendor Dashboard` -> `Settings` -> `Tax info`
 
 Vendors can configure:
 
@@ -337,7 +337,7 @@ For full tax configuration details, see: [Tax Configuration](usage-tax.md)
 
 ### Shipping Settings
 
-Navigate to `Marketplace` -> `Settings`:
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace`:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
@@ -390,13 +390,7 @@ Customers see tracking info in their order details on the frontend.
 
 ### Vendor Shipping Rules
 
-When **Allow vendor manage shipping** is enabled, vendors can create their own shipping rules from their dashboard, following the same rule types as admin:
-
-- **Based on Price** - Shipping cost by order subtotal
-- **Based on Weight** - Shipping cost by total weight
-- **Based on Location** - City/state-specific rates
-- **Based on Zip Code** - Zip code range pricing
-- **Based on Zip Code and Weight** - Combined calculation
+Vendors cannot create shipping rules. Shipping rules (based on price, weight, location, zip code, zip code and weight) are managed by the admin only.
 
 For full shipping configuration details, see: [Shipping Methods](usage-shipping-methods.md)
 
@@ -413,7 +407,7 @@ Vendors automatically receive email notifications when their product inventory d
 
 ### Configuration
 
-Navigate to `Marketplace` -> `Settings` and set the **Low stock threshold** value. The default is `5`.
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace` and set the **Low stock threshold** value. The default is `5`.
 
 This threshold also controls the vendor dashboard's inventory status widget, which categorizes products as "In Stock", "Low Stock", or "Out of Stock".
 
@@ -425,11 +419,11 @@ Available template variables:
 
 | Variable | Description |
 |----------|-------------|
-| `{{ store_name }}` | Vendor's store name |
-| `{{ product_name }}` | Product name |
-| `{{ product_url }}` | Link to the product |
-| `{{ product_quantity }}` | Current remaining quantity |
-| `{{ low_stock_threshold }}` | The configured threshold value |
+| <code v-pre>{{ store_name }}</code> | Vendor's store name |
+| <code v-pre>{{ product_name }}</code> | Product name |
+| <code v-pre>{{ product_url }}</code> | Link to the product |
+| <code v-pre>{{ product_quantity }}</code> | Current remaining quantity |
+| <code v-pre>{{ low_stock_threshold }}</code> | The configured threshold value |
 
 ::: tip
 The notification can be disabled per email template. Navigate to `Settings` -> `Email` -> `Marketplace` and toggle off the "Low stock notification" template.

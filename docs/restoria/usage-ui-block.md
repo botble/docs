@@ -25,3 +25,22 @@ To modify an existing UI block:
 4. Click **Update** to save changes
 
 ![Edit Shortcode](./images/ui-blocks/edit-block.png)
+
+## Available Shortcodes
+
+Restoria ships with 12 UI Block shortcodes:
+
+| Shortcode | Description |
+|-----------|-------------|
+| **Hero Banner** | Hero banner with slider and content |
+| **About Section** | Restaurant about section |
+| **Services Section** | Restaurant services with icons and descriptions |
+| **Why Choose Us** | Features and statistics |
+| **Restaurant Menu** | Restaurant menu categories (6 styles: Card Style with Corners, Grid with Images, Side by Side, Tabbed Menu, Two Columns, Menu Categories with Icons) |
+| **Special Offer** | Special dishes (3 styles: Carousel, Split Layout with Side Image, Grid Layout) |
+| **Reserve Section** | Reservation form (3 styles: Split Screen with Video, Centered with Background, Form with Side Images) |
+| **Chef Section** | Chef information with images |
+| **Gallery Section** | Gallery images |
+| **Testimonials Section** | Customer testimonials with ratings |
+| **News Section** | Latest blog posts |
+| **Contact Section** | Contact information with contact form |

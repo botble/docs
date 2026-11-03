@@ -4,28 +4,24 @@ Webhooks allow you to send real-time notifications to external services when eve
 
 ## Managing Webhooks
 
-Go to `Settings` -> `Webhooks` in the admin panel.
+Go to `Settings` -> `Ecommerce` -> `Webhooks` in the admin panel.
 
-## Creating a Webhook
+## Configuring Webhooks
 
-1. Click `Create`
-2. Fill in the details:
-
-- **Name**: A descriptive name for the webhook
-- **URL**: The endpoint URL that will receive the webhook payload
-- **Events**: Select which events trigger the webhook (e.g., order created, payment completed)
-- **Secret**: A secret key to verify webhook authenticity
-
-3. Click `Save`
+Each event has its own webhook URL field. Enter the endpoint URL that should receive the `POST` request with the JSON
+payload, then click `Save`. Leave a field empty to disable that webhook.
 
 ## Available Events
 
-- Order created
+- Order placed
+- Order updated
+- Shipping status updated
 - Order completed
 - Order cancelled
-- Payment completed
-- Customer registered
+- Payment status updated
+- Abandoned cart
 
 ::: warning
-Ensure your webhook endpoint responds with a `200` status code within 30 seconds to avoid retries.
+Webhooks are sent once and are not retried. Failed requests are only written to the application log, so make sure
+your endpoint is reachable and responds quickly.
 :::

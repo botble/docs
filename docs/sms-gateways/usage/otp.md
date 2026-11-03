@@ -19,7 +19,7 @@ An OTP (one-time password) is a 6-digit code sent via SMS. The customer enters t
 
 ## Default settings
 
-Configure OTP defaults in **Admin → Settings → SMS Gateways**:
+Configure OTP defaults in **Admin → SMS Gateways → Settings**:
 
 | Setting | Default | Range |
 |---------|---------|-------|
@@ -58,14 +58,14 @@ Template rendering also supports `{if_present variable}...{endif}` conditional b
 The plugin enforces **per-phone limits** through `RateLimiter`:
 
 1. **Per-phone hourly cap**: Max 10 OTP requests per phone number per hour (`smsg_otp_max_phone_attempts_per_hour`)
-2. **Per-recipient dispatch cap**: 5 SMS per phone per hour across all events (`smsg_per_recipient_per_hour`)
-3. **Global dispatch cap**: 60 SMS per minute plugin-wide (`smsg_global_per_minute`)
+2. **Per-recipient dispatch cap**: 10 SMS per phone per hour across all events until you save a value (`smsg_per_recipient_per_hour`, 0 = unlimited)
+3. **Global dispatch cap**: 60 SMS per minute plugin-wide until you save a value (`smsg_global_per_minute`, 0 = unlimited)
 
 Exceeding any limit short-circuits the send and writes a `rejected` row to the delivery log.
 
 ## Lockout
 
-After 5 wrong verify attempts on the same code (configurable via `smsg_otp_default_max_attempts`), the code is exhausted. The user must request a new one — the previous code cannot be retried. Codes also expire after the TTL (default 5 minutes).
+After 5 wrong verify attempts on the same code (configurable via `otp_default_max_attempts`), the code is exhausted. The user must request a new one — the previous code cannot be retried. Codes also expire after the TTL (default 5 minutes).
 
 ## OTP storage
 

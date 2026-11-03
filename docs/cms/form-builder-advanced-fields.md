@@ -6,12 +6,12 @@ The multi check list field provides a list of checkboxes for selecting multiple 
 
 ```php
 use Botble\Base\Forms\Fields\MultiCheckListField;
-use Botble\Base\Forms\FieldOptions\MultiCheckListFieldOption;
+use Botble\Base\Forms\FieldOptions\MultiChecklistFieldOption;
 
 $this->add(
     'permissions', 
     MultiCheckListField::class, 
-    MultiCheckListFieldOption::make()
+    MultiChecklistFieldOption::make()
         ->label(__('Permissions'))
         ->choices([
             'create' => __('Create'),
@@ -92,11 +92,16 @@ use Botble\Base\Forms\Fields\TreeCategoryField;
 use Botble\Base\Forms\FieldOptions\TreeCategoryFieldOption;
 
 $this->add(
-    'categories', 
-    TreeCategoryField::class, 
+    'categories[]',
+    TreeCategoryField::class,
     TreeCategoryFieldOption::make()
         ->label(__('Categories'))
-        ->model(Category::class)
-        ->selectedCategories($this->model ? $this->model->categories()->pluck('category_id')->all() : [])
+        ->choices(fn () => Category::query()
+            ->wherePublished()
+            ->select(['id', 'name', 'parent_id'])
+            ->with('activeChildren')
+            ->where('parent_id', 0)
+            ->get())
+        ->selected($this->getModel()->getKey() ? $this->getModel()->categories()->pluck('category_id')->all() : [])
 );
 ```

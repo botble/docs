@@ -5,7 +5,7 @@ This guide will walk you through the process of configuring the E-Wallet plugin 
 ## Accessing E-Wallet Settings
 
 1. Log in to your admin panel
-2. Navigate to **Settings** > **E-Wallet**
+2. Navigate to **E-Wallet** > **Settings**
 3. You will see the E-Wallet configuration page
 
 ![E-Wallet Settings](./images/e-wallet-settings-page.png)
@@ -48,6 +48,10 @@ The minimum amount customers can add in a single top-up transaction.
 The maximum amount customers can add in a single top-up transaction.
 
 **Example**: Set to 10000 to limit top-ups to $10,000 maximum.
+
+### Top-up Code Prefix
+
+Prefix for top-up codes. Use `TU-` for `TU-ABC12345` or `TU` for `TUABC12345`.
 
 ### Allowed Payment Methods for Top-ups
 
@@ -98,13 +102,47 @@ The wallet can be used as a payment method at checkout. This is configured separ
 
 ## Refund Behavior
 
-::: warning Important
-When E-Wallet is enabled, ALL refunds are automatically credited to the customer's wallet. This behavior is mandatory and cannot be changed.
-:::
+**Refund Destination** chooses where order refunds go:
 
-Customers can:
-- Use the refunded balance for future purchases
-- Request a withdrawal to get the money back
+| Option | Behavior |
+|--------|----------|
+| **Refund to Wallet** (default) | Refunds are credited to the customer's wallet balance. Customers can use it for future purchases or request a withdrawal |
+| **Refund to Original Payment Method** | Refunds work as without E-Wallet (handled by the payment gateway or manually) |
+
+## Wallet Transfer
+
+Let customers send wallet balance to other registered customers.
+
+| Setting | Description |
+|---------|-------------|
+| **Enable wallet transfer** | Turn customer-to-customer transfers on or off |
+| **Minimum transfer amount** | Smallest amount per transfer (`0` = no minimum) |
+| **Maximum transfer amount** | Largest amount per transfer (`0` = unlimited) |
+| **Daily transfer limit** | Max total sent per rolling 24 hours (`0` = unlimited) |
+| **Monthly transfer limit** | Max total sent per rolling 30 days (`0` = unlimited) |
+| **Transfer fee type** | No fee, Fixed amount or Percentage |
+| **Transfer fee value** | Fee amount, or percent for a percentage fee |
+| **Who pays the fee** | Deduct the fee from the sender (on top of the amount) or from the amount the receiver gets |
+
+Admins see all transfers under **E-Wallet** > **Transfers**.
+
+## Gift Cards
+
+Gift cards add funds to a customer's wallet when redeemed. Manage them under **E-Wallet** > **Gift Cards** (create, bulk create, cancel, export).
+
+| Setting | Description |
+|---------|-------------|
+| **Enable Gift Cards** | Allow customers to redeem gift cards |
+| **Code Prefix** | Prefix for generated codes (2-4 characters, e.g. `GC`) |
+| **Default Expiry (Days)** | Days until a gift card expires. Empty = no expiry |
+| **Minimum Value** / **Maximum Value** | Allowed gift card value range |
+| **Public Balance Check** | Let guests check a gift card balance without logging in |
+| **Allow Partial Use** | Allow a gift card at checkout even when its balance is less than the order total |
+| **Merge discount code & gift card input** | Show one "Discount code or gift card" field at checkout; the code type is detected automatically |
+
+## Webhook Settings
+
+Turn on **Enable Webhooks** and enter URLs for **Top-up Created**, **Top-up Completed**, **Top-up Failed** and **Top-up Cancelled** events. Each request is an HTTP POST with JSON data and a signature header (HMAC-SHA256 of the payload, signed with the **Webhook Signing Secret** shown on the page). URLs pointing to private or internal networks are rejected.
 
 ## Permissions
 
@@ -116,6 +154,7 @@ E-Wallet includes comprehensive permissions that can be assigned to user roles:
 |------------|-------------|
 | `e-wallet.index` | Access to E-Wallet menu |
 | `e-wallet.wallets.index` | View wallets |
+| `e-wallet.wallets.create` | Create wallets for customers |
 | `e-wallet.wallets.adjust` | Adjust wallet balances manually |
 | `e-wallet.transactions.index` | View transaction history |
 
@@ -134,6 +173,22 @@ E-Wallet includes comprehensive permissions that can be assigned to user roles:
 | `e-wallet.withdrawals.index` | View withdrawal requests |
 | `e-wallet.withdrawals.approve` | Approve withdrawals |
 | `e-wallet.withdrawals.reject` | Reject withdrawals |
+
+### Transfer Permissions
+
+| Permission | Description |
+|------------|-------------|
+| `e-wallet.transfers.index` | View wallet transfers |
+| `e-wallet.transfers.destroy` | Delete wallet transfers |
+
+### Gift Card Permissions
+
+| Permission | Description |
+|------------|-------------|
+| `e-wallet.gift-cards.index` | View gift cards |
+| `e-wallet.gift-cards.create` / `edit` / `destroy` | Create, edit, delete gift cards |
+| `e-wallet.gift-cards.cancel` | Cancel gift cards |
+| `e-wallet.gift-cards.export` | Export gift cards |
 
 ### Settings Permission
 

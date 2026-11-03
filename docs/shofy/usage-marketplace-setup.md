@@ -32,7 +32,7 @@ Navigate to `Marketplace` -> `Settings` to configure marketplace options.
 
 | Setting | Description |
 |---------|-------------|
-| **Marketplace mode** | **Commission based** takes a percentage of every order. **Subscription based** has vendors buy a plan to publish listings and takes no commission. |
+| **Marketplace mode** | **Commission based** takes a percentage of every order. **Subscription based** has vendors buy a plan to publish listings and takes no commission. **Subscription + commission** (hybrid) charges both a plan and a per-order commission. |
 
 See [Vendor Subscriptions](./usage-marketplace-subscriptions.md) for the subscription mode setup.
 
@@ -43,7 +43,7 @@ See [Vendor Subscriptions](./usage-marketplace-subscriptions.md) for the subscri
 | **Enable vendor registration** | Allow customers to become vendors |
 | **Hide become vendor menu in customer dashboard** | Hide "Become Vendor" link from customer dashboard menu |
 | **Show vendor registration form at registration page** | Display vendor registration fields on the customer registration page |
-| **Verify vendor** | Require admin approval before vendors can start selling |
+| **Vendor verification** | Require admin approval before vendors can start selling |
 | **Requires vendor documentations verification** | Vendors must upload certificate and government ID documents |
 
 ::: tip
@@ -55,9 +55,9 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 | Setting | Description |
 |---------|-------------|
 | **Enable product approval** | Vendor products require admin approval before going live |
-| **Allow vendor digital products** | Vendors can sell digital/downloadable products (requires Digital Products enabled in Ecommerce) |
-| **Max upload filesize** | Maximum file size vendors can upload (MB) |
-| **Max product images upload by vendor** | Maximum number of images per product |
+| **Allow vendors to sell digital products** | Vendors can sell digital/downloadable products (requires Digital Products enabled in Ecommerce) |
+| **Max upload filesize (MB)** | Maximum file size vendors can upload (MB) |
+| **Max number of images for each product** | Maximum number of images per product |
 | **Low stock threshold** | When product quantity drops to or below this number, vendor receives a low stock email notification (default: 5) |
 | **Media file types can be uploaded by vendor** | Allowed MIME types for vendor uploads |
 
@@ -65,22 +65,22 @@ When "Verify vendor" is enabled, new vendors see a pending approval message unti
 
 | Setting | Description |
 |---------|-------------|
-| **Allow vendor manage shipping** | Vendors can create their own shipping rules |
-| **Charge shipping per vendor** | Calculate shipping separately for each vendor in cart |
-| **Allow vendor manage product currency** | Vendors can set product prices in different currencies |
-| **Allow vendor delete their orders** | Vendors can delete their own orders (not recommended for production) |
+| **Allow vendor manage shipping?** | Vendors can change the shipping status of their orders (e.g. to delivering/delivered) |
+| **Charge shipping per vendor?** | Calculate shipping separately for each vendor in cart |
+| **Allow vendors to manage product currency** | Vendors can set product prices in different currencies |
+| **Allow vendors to delete their orders** | Vendors can delete their own orders (not recommended for production) |
 
 ### Store Pages & Display Settings
 
 | Setting | Description |
 |---------|-------------|
-| **Enable stores listing page** | Show the stores listing page (e.g. `/stores`). When disabled, the page redirects to the homepage and is excluded from the sitemap |
-| **Hide store phone number** | Don't display vendor phone on store pages |
-| **Hide store email** | Don't display vendor email on store pages |
-| **Hide store address** | Don't display vendor address on store pages |
-| **Hide store social links** | Don't display vendor social media links |
-| **Enable vendor categories filter** | Show category filter on vendors listing page |
-| **Show vendor info at checkout** | Display vendor information during checkout |
+| **Enable stores listing page?** | Show the stores listing page (e.g. `/stores`). When disabled, the page redirects to the homepage and is excluded from the sitemap |
+| **Hide store phone number?** | Don't display vendor phone on store pages |
+| **Hide store email?** | Don't display vendor email on store pages |
+| **Hide store address?** | Don't display vendor address on store pages |
+| **Hide store social links?** | Don't display vendor social media links |
+| **Enable vendor categories filter** | Show categories filter on the vendor store page |
+| **Show vendor information at checkout** | Display vendor information during checkout |
 | **Display order total info for each store** | Show subtotals per vendor in cart/checkout |
 
 ::: tip
@@ -91,7 +91,7 @@ Disabling the stores listing page does **not** disable individual store pages. C
 
 | Setting | Description |
 |---------|-------------|
-| **Single vendor checkout** | Customers can only checkout with products from one vendor at a time |
+| **Limit to One Vendor per Order** | Customers can only checkout with products from one vendor at a time |
 | **Enable messaging system** | Allow customers to message vendors directly |
 
 ## Vendor Registration Process
@@ -256,7 +256,7 @@ Deleting a store will:
 
 ### Single-Vendor Mode (Single Vendor Checkout)
 
-Enable "Single vendor checkout" in settings:
+Enable "Limit to One Vendor per Order" in settings:
 
 - Customers can only add products from one vendor at a time
 - Adding a product from a different vendor clears the cart
@@ -350,8 +350,8 @@ Navigate to `Marketplace` -> `Settings`:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Allow vendor manage shipping** | OFF | Let vendors update shipment status and tracking |
-| **Charge shipping per vendor** | ON | Calculate shipping separately per vendor in cart |
+| **Allow vendor manage shipping?** | OFF | Let vendors update shipment status and tracking |
+| **Charge shipping per vendor?** | ON | Calculate shipping separately per vendor in cart |
 
 ### Per-Vendor Shipping
 
@@ -434,11 +434,11 @@ Available template variables:
 
 | Variable | Description |
 |----------|-------------|
-| `{{ store_name }}` | Vendor's store name |
-| `{{ product_name }}` | Product name |
-| `{{ product_url }}` | Link to the product |
-| `{{ product_quantity }}` | Current remaining quantity |
-| `{{ low_stock_threshold }}` | The configured threshold value |
+| <code v-pre>{{ store_name }}</code> | Vendor's store name |
+| <code v-pre>{{ product_name }}</code> | Product name |
+| <code v-pre>{{ product_url }}</code> | Link to the product |
+| <code v-pre>{{ product_quantity }}</code> | Current remaining quantity |
+| <code v-pre>{{ low_stock_threshold }}</code> | The configured threshold value |
 
 ::: tip
 The notification can be disabled per email template. Navigate to `Settings` -> `Email` -> `Marketplace` and toggle off the "Low stock notification" template.

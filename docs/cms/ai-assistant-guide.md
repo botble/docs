@@ -16,7 +16,7 @@ Botble CMS is a modular Laravel CMS with the following structure:
 
 ### Tech Stack
 
-- **Backend**: Laravel 13+, PHP 8.3.36+ / 8.4
+- **Backend**: Laravel 13+, PHP 8.3.0+ (8.4 and 8.5 supported)
 - **Frontend**: Vue.js 3.5, Bootstrap 5.3, jQuery
 - **Build**: Vite (per-module `vite.build.mjs` descriptors, shared `vite-build.mjs` runner), npm workspaces. Applies to **core, packages, plugins AND themes** — `webpack.mix.js` is legacy. See [Asset Compilation](/cms/asset-compilation).
 - **Database**: MySQL (SQLite for tests)
@@ -1302,14 +1302,14 @@ A large share of reported Botble "bugs" are stale caches or unpublished assets, 
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| Blade/shortcode edit has no effect | Shortcode cache | Admin → Settings → Cache → disable "Enable shortcode cache" |
+| Blade/shortcode edit has no effect | Shortcode cache | Admin → Settings → Cache → disable "Cache shortcodes (UI blocks)" |
 | Widget content stale | Widget cache | Same settings page |
 | Any admin/frontend staleness | CMS cache | Platform Administration → Cache Management, or `php artisan cache:clear` |
 | CSS/JS edit not applied | Assets not published | `npm run prod` **then** `php artisan cms:publish:assets` |
 | Theme option/asset changes ignored | Theme cache | `php artisan cms:theme:clear-cache` |
 | New route 404s | Cached routes | `php artisan route:clear` |
 | New plugin class not found | Stale plugin manifest | `php artisan cms:plugin:discover` |
-| Images wrong size after changing `theme.json` / `config/image_sizes.php` | Old thumbnails still on disk | Admin → Settings → Media → Regenerate thumbnails |
+| Images wrong size after changing `theme.json` / `config/image_sizes.php` | Old thumbnails still on disk | Admin → Settings → Media → Generate thumbnails |
 | Session-dependent output (currency, locale) never changes | Host-level cache ignores session cookies | Check LiteSpeed / Cloudflare / hPanel cache outside the CMS |
 
 Also note: `plugin.json` `version` reflects the plugin's own tag, **not** the core CMS version — a "low" number there is by design, not a stale install.

@@ -33,8 +33,8 @@ Both retention and expiry run through Artisan commands registered with Laravel's
 
 | Command | Schedule | What it does |
 |---|---|---|
-| `kyc:cleanup` | Daily at 02:00 | Two-pass: delete rejected row+files past retention, then purge approved files past retention |
-| `kyc:expire` | Daily at 02:15 | Flip approved → expired when `expires_at` has passed |
+| `kyc:cleanup` | Daily at 00:00 | Two-pass: delete rejected row+files past retention, then purge approved files past retention |
+| `kyc:expire` | Daily at 02:00 | Flip approved → expired when `expires_at` has passed |
 
 The scheduler invokes them automatically as long as you have the standard Laravel cron entry in place:
 

@@ -190,7 +190,7 @@ Example (`resources/views/create.blade.php`):
 
                     <div class="form-group mb-3">
                         <label for="content">{{ trans('core/base::forms.content') }}</label>
-                        {!! Form::customEditor('content', old('content')) !!}
+                        {!! Form::editor('content', old('content')) !!}
                     </div>
                 </div>
             </div>

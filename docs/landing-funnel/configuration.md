@@ -15,6 +15,7 @@ Defaults applied when creating a new funnel — admins can still override per fu
 |---|---|
 | **Default template** | The template pre-selected on the new-funnel form. Options: `single-product-hero`, `video-hero-cod`, `variation-grid-checkout`, `minimal-product-ads`. |
 | **Default page style** | Visual style pre-selected on the new-funnel form. Picker shows SVG previews of all 8 styles. |
+| **Show sold count on funnel product pages** | Shows a "Sold: N" line under the price - real units from completed orders plus the optional "Custom sold count" set on the product edit page. |
 
 ## Branding
 
@@ -44,7 +45,7 @@ Controls how funnels behave in search engines, manage visit-log retention, and f
 |---|---|---|
 | **Hide new funnels from search engines by default** | ON | Sets `noindex,nofollow` on all new funnels so paid-ad pages don't compete with your main store in organic search. Override per funnel in the SEO tab. |
 | **Disable per-funnel Custom CSS + JS site-wide** | OFF | Kill-switch — when ON, neither `custom_css` nor `custom_js` is rendered on any public funnel page, regardless of per-funnel content. |
-| **Visit log retention (days)** | 90 | Number of days `landing-funnel:purge-visits` retains visit records. Set to 0 to disable auto-purge. |
+| **Visit log retention (days)** | empty (90) | Number of days `landing-funnel:purge-visits` retains visit records. Empty or `0` falls back to 90 days. The plugin does not schedule the command itself - add it to cron (see [Visit Log Retention](/landing-funnel/usage/tracking-and-webhooks#visit-log-retention)); without that cron entry nothing is purged. |
 | **Bot user-agent keywords** | (preset list) | Newline-separated user-agent substrings excluded from visit logs. Defaults cover Google, Bing, Facebook, TikTok, ahrefs, semrush. |
 
 ::: warning

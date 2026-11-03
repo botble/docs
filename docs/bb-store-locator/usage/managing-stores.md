@@ -33,7 +33,7 @@ Set a status per day - **Open**, **Open 24 hours** or **Closed** - and add one o
 
 ### Timezone
 
-With **Multi timezone** enabled in settings, each store gets its own timezone, so the open/closed badge is correct for an international network. Without it, every store uses the site timezone.
+With **Stores are in different timezones** enabled in settings, each store gets its own timezone, so the open/closed badge is correct for an international network. Without it, every store uses the site timezone.
 
 ### Logo and gallery
 

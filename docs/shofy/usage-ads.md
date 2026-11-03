@@ -22,7 +22,7 @@ Ad images should NOT contain ‘ads’, ‘advert’, etc., in the name to avoid
 
 ![Ads](./images/ads-2.png)
 
-The Ads block comes with four styles:
+The Ads block comes with five styles (Style 4 is a slider, Style 5 is full width):
 
 ### Style 1
 
@@ -39,6 +39,10 @@ The Ads block comes with four styles:
 ### Style 4
 
 ![Ads Style 4](./images/ads-style-4.png)
+
+### Style 5
+
+Full-width banner.
 
 ## Google Adsense
 

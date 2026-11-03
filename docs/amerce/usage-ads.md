@@ -22,26 +22,10 @@ Ad images should NOT contain ‘ads’, ‘advert’, etc., in the name to avoid
 
 ![Ads](./images/ads-2.png)
 
-The Ads block comes with four styles:
-
-### Style 1
-
-![Ads Style 1](./images/ads-style-1.png)
-
-### Style 2
-
-![Ads Style 2](./images/ads-style-2.png)
-
-### Style 3
-
-![Ads Style 3](./images/ads-style-3.png)
-
-### Style 4
-
-![Ads Style 4](./images/ads-style-4.png)
+The Ads block has a single option: pick the ad (by its key) to display. The ad renders its own image (with optional tablet and mobile images) and link.
 
 ## Google Adsense
 
-To set up Google Adsense, go to **Admin** -> **Ads** -> **Ads Settings**, enter your Adsense code, and save.
+To set up Google Adsense, go to **Admin** -> **Ads** -> **Ads Settings**. Choose a **Google AdSense Mode** (**Disabled**, **Auto Ads** - paste the Auto Ads snippet, or **Unit Ads** - enter your client ID and set a slot ID per ad), optionally upload your `ads.txt` file, and save.
 
 ![Google Adsense](./images/ads-3.png)

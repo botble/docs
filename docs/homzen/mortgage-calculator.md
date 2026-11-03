@@ -105,11 +105,10 @@ Go to **Admin** -> **Appearance** -> **Widgets**
 | `default_down_payment_type` | string | `percent` | Down payment type: `percent` or `amount` |
 | `default_down_payment_value` | number | `20` | Down payment value (% or fixed amount) |
 | `show_extra_costs` | boolean | `false` | Enable extra cost fields (taxes, insurance, HOA) |
-| `currency` | string | `$` | Currency symbol |
+| `currency` | string | `$` | Currency symbol (fallback only; the site's default currency symbol is used when available) |
 | `price_from` | string | `none` | Price source: `none` or `property` |
 | `primary_color` | string | `#e31837` | Primary UI color (hex) |
 | `background_color` | string | - | Background color (hex) |
-| `enable_lazy_loading` | string | `no` | Enable lazy loading: `yes` or `no` |
 
 ## Form Styles
 
@@ -169,7 +168,6 @@ Users can switch between these methods using the tabs in the calculator interfac
 - **Chart Visualization** - Visual representation of principal vs interest
 - **Responsive Design** - Works on all screen sizes
 - **RTL Support** - Right-to-left language support
-- **Lazy Loading** - Optional lazy loading for better page performance
 
 ## Example Configurations
 
@@ -187,7 +185,6 @@ Users can switch between these methods using the tabs in the calculator interfac
     form_description="Calculate your monthly mortgage payments"
     primary_color="#1d5f6f"
     background_color="#f7f7f7"
-    enable_lazy_loading="yes"
 ][/mortgage-calculator]
 ```
 
@@ -224,7 +221,7 @@ $pages = [
         'name' => 'Home',
         'content' =>
             Html::tag('div', '[search-box ...][/search-box]') .
-            Html::tag('div', '[mortgage-calculator style="default" layout="horizontal" form_style="modern" form_size="xl" form_alignment="center" form_margin="50px 0" form_title="Mortgage Calculator" form_description="Calculate your monthly mortgage payments" primary_color="#1d5f6f" background_color="#f7f7f7" enable_lazy_loading="yes"][/mortgage-calculator]'),
+            Html::tag('div', '[mortgage-calculator style="default" layout="horizontal" form_style="modern" form_size="xl" form_alignment="center" form_margin="50px 0" form_title="Mortgage Calculator" form_description="Calculate your monthly mortgage payments" primary_color="#1d5f6f" background_color="#f7f7f7"][/mortgage-calculator]'),
         'template' => 'homepage',
     ],
 ];
@@ -240,7 +237,7 @@ $pages = [
 
 ### Styles not loading
 
-1. Publish plugin assets: `php artisan vendor:publish --tag=public`
+1. Publish plugin assets: `php artisan cms:publish:assets`
 2. Clear browser cache
 3. Run `npm run prod` if using custom builds
 

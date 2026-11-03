@@ -97,7 +97,7 @@ You cannot split payment between wallet and another method. The wallet must cove
 
 ## Getting Refunds
 
-If you return an item or cancel an order:
+If you return an item or cancel an order (and the store refunds to wallets, the default):
 
 1. Refund goes directly to your wallet
 2. You'll see a "Refund" transaction

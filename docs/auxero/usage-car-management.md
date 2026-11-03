@@ -70,7 +70,7 @@ Set exterior and interior colors. These appear in the car detail page and can be
 
 ### Amenities
 
-Select the amenities available with the vehicle (e.g. GPS, Bluetooth, Child Seat). Manage the amenity list under `Car Manager` -> `Amenities`.
+Select the amenities available with the vehicle (e.g. GPS, Bluetooth, Child Seat). Manage the amenity list under `Car Attributes` -> `Amenities`.
 
 ### Availability
 
@@ -93,25 +93,25 @@ Each car has its own SEO tab. Set a custom meta title, description, and Open Gra
 
 ## Managing Makes
 
-Go to `Admin Panel` -> `Car Manager` -> `Makes`.
+Go to `Admin Panel` -> `Car Attributes` -> `Makes`.
 
 Create and organize car brands (Toyota, BMW, Ford, etc.). Each make can have a logo image.
 
 ## Managing Types
 
-Go to `Admin Panel` -> `Car Manager` -> `Types`.
+Go to `Admin Panel` -> `Car Attributes` -> `Types`.
 
 Types group cars by body style: SUV, Sedan, Convertible, Van, Truck, etc. Types appear in the homepage filter bar.
 
 ## Managing Categories
 
-Go to `Admin Panel` -> `Car Manager` -> `Categories`.
+Go to `Admin Panel` -> `Car Attributes` -> `Categories`.
 
 Categories group cars by tier or purpose: Economy, Standard, Luxury, Sport. Categories support parent/child hierarchy.
 
 ## Managing Amenities
 
-Go to `Admin Panel` -> `Car Manager` -> `Amenities`.
+Go to `Admin Panel` -> `Car Attributes` -> `Amenities`.
 
 Add amenities like GPS, Bluetooth, Heated Seats, etc. Each amenity can have an icon. Amenities are selected per vehicle when creating or editing a car.
 

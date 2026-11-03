@@ -43,7 +43,7 @@ Before migrating, take note of:
 
 1. Purchase or set up hosting for your new domain
 2. Make sure the hosting meets these requirements:
-    - **PHP 8.3.36** or higher
+    - **PHP 8.3.0** or higher
     - **MySQL 8.0+** or **MariaDB 10.3+**
 3. Point your new domain's DNS to the new hosting server (your hosting provider can help with this)
 
@@ -164,7 +164,7 @@ WHERE content LIKE '%old-domain.com%';
 ```
 
 ```sql
-UPDATE meta_box_metas SET meta_value = REPLACE(meta_value, 'old-domain.com', 'new-domain.com')
+UPDATE meta_boxes SET meta_value = REPLACE(meta_value, 'old-domain.com', 'new-domain.com')
 WHERE meta_value LIKE '%old-domain.com%';
 ```
 
@@ -250,7 +250,7 @@ If you built your site inside a subfolder (e.g. `https://example.com/new-web/pub
 5. **Point the document root** to the `public` folder of the moved site so the live URL becomes `https://example.com/` (without `/public`). See the [shared hosting installation guide](https://botble.com/the-best-way-to-install-our-script-on-a-shared-hosting) for instructions.
 6. **Import the modified `.sql` file** into the same (or a new) database.
 7. **Edit `.env`**: set `APP_URL=https://example.com` and update the database credentials if they changed. Also comment out `FORCE_ROOT_URL` (put `#` in front) - a subfolder install has it set to the old subfolder address, and it overrides `APP_URL`.
-8. **Clear the cache** at **Admin → Platform Administration → Cache Management → Clear all caches**.
+8. **Clear the cache** at **Admin → Platform Administration → Cache Management → Clear all CMS cache**.
 9. **Re-activate the license** at **Admin → Settings → General → License**.
 
 ::: tip

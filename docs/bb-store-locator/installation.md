@@ -3,7 +3,7 @@
 ## Requirements
 
 - Botble CMS 7.4.0 or higher
-- PHP 8.3.36 or higher
+- PHP 8.3.0 or higher
 
 No other plugin is required.
 

@@ -5,8 +5,8 @@ Track customer behavior and optimize Facebook/Meta advertising with the Facebook
 ## Setup
 
 1. Create a Facebook Pixel in your [Meta Business Suite](https://business.facebook.com)
-2. In admin panel, go to `Settings` -> `General`
-3. Enter your Facebook Pixel ID
+2. In admin panel, go to `Settings` -> `Ecommerce` -> `Tracking` (Website Tracking page)
+3. Turn on **Enable Facebook Pixel (Meta Pixel)** and enter your **Facebook Pixel ID**
 4. Click `Save`
 
 ## Tracked Events

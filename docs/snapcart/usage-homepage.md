@@ -16,7 +16,6 @@ In the `Create new page` page, fill in the following fields:
 - **Content**: The content of the homepage is customized using shortcodes (see [UI Block](./usage-ui-block.md)). You can
   leave it empty for now.
 - **Template**: Select `Homepage (Full Width)`.
-- **Breadcrumb style**: Select `None`.
 - Other fields are optional.
 
 ## Setup Homepage

@@ -19,7 +19,7 @@ Whatever you have configured on your Botble backend. Checkout runs in a WebView,
 
 ### What languages are included?
 
-29 languages, registered out of the box. See [Translations](07_translations.md).
+30 languages, registered out of the box. See [Translations](07_translations.md).
 
 ### How do I connect the app to my website?
 

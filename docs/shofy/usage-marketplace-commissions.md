@@ -1,6 +1,6 @@
 # Marketplace Commissions
 
-The commission system allows the marketplace platform to earn a percentage or fixed fee from vendor sales. Commissions can be set globally, per category, or per vendor.
+The commission system allows the marketplace platform to earn a percentage or fixed fee from vendor sales. Commissions can be set globally or per category (and per subscription plan in hybrid mode).
 
 ## Overview
 
@@ -26,7 +26,8 @@ Commissions apply only while **Marketplace mode** is set to **Commission based**
 
 | Setting | Description |
 |---------|-------------|
-| **Default commission fee** | Percentage charged on all vendor sales (0-100%) |
+| **Default commission fee (%)** | Percentage charged on all vendor sales (0-100%) |
+| **Fixed commission fee (per order)** | Flat amount added to the commission, charged once per vendor order |
 
 This is the global commission rate applied to all products unless overridden by category-specific rates.
 
@@ -41,7 +42,7 @@ This is the global commission rate applied to all products unless overridden by 
 Enable category-specific commission rates to charge different percentages for different product categories.
 
 1. **Enable commission fee for each category** - Toggle ON
-2. **Add category commission rules** - Click "Add new fee"
+2. **Add category commission rules** - Click "Add new"
 3. **Select categories** - Choose one or more product categories
 4. **Set commission percentage** - Enter rate for those categories
 
@@ -221,7 +222,7 @@ The system includes signature verification to prevent unauthorized balance manip
 
 | Setting | Description |
 |---------|-------------|
-| **Check valid signature** | Verify signature on vendor balance changes (recommended: ON) |
+| **Check valid signature in vendor's earnings** | Verify signature on vendor balance changes (recommended: ON) |
 
 ::: tip
 Keep "Check valid signature" enabled in production to prevent fraud and data tampering.
@@ -290,11 +291,11 @@ Never edit `mp_vendor_info` table directly. Always use admin panel or proper API
 
 ### Can I charge a flat fee instead of percentage?
 
-Currently, the system supports percentage-based commissions only. Fixed fees per order are not supported.
+Yes. Set **Fixed commission fee (per order)** in `Marketplace` -> `Settings`. It is a flat amount added on top of the percentage, charged once per vendor order (useful to cover the fixed part of payment gateway fees). Set the percentage to `0` for a flat fee only.
 
 ### Can I set different rates for different vendors?
 
-Not through the UI. All vendors follow the default commission rate unless overridden by category-specific rates.
+Not per vendor. All vendors follow the default commission rate unless overridden by category-specific rates. In **Subscription + commission** (hybrid) mode, each subscription plan can override the commission for the vendors on that plan.
 
 ### Do shipping fees have commission?
 

@@ -51,7 +51,7 @@ A Flutter mobile app that connects to a [Botble e-commerce backend](https://code
 - Cart, coupons, wishlist, product comparison
 - WebView checkout (compatible with all backend payment gateways: Stripe, PayPal, Razorpay, Mollie, SSLCommerz, COD, etc.)
 - Order history and tracking
-- 29 built-in languages, RTL support
+- 30 built-in languages, RTL support
 - Light / dark / system theme
 - Push notifications via Firebase
 - Maintenance mode

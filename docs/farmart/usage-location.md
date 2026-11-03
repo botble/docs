@@ -23,6 +23,6 @@ Or you can import from file CSV
 ## Enable location in checkout page
 
 In admin panel, go to `Settings` -> `Ecommerce` -> `Checkout` and enable **Load countries, states, cities from plugin
-location?**.
+location**.
 
 ![Checkout settings](../farmart/images/location-5.png)

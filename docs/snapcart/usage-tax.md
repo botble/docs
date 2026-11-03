@@ -4,7 +4,7 @@ Configure tax rates for your products based on location and product type.
 
 ## Managing Tax Rules
 
-Go to `Ecommerce` -> `Tax` in the admin panel.
+Go to `Ecommerce` -> `Taxes` in the admin panel.
 
 ## Creating a Tax Rule
 
@@ -20,7 +20,7 @@ Go to `Ecommerce` -> `Tax` in the admin panel.
 
 ## Tax Display
 
-SnapCart can display prices with or without tax. Configure this in `Ecommerce` -> `Settings` -> `General` -> **Tax display**.
+SnapCart can display prices with or without tax. Configure this in `Settings` -> `Ecommerce` -> `Tax` -> **Add tax to displayed prices**.
 
 ::: tip
 Consult your local tax authority for the correct tax rates applicable to your products and region.

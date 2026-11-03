@@ -69,7 +69,7 @@ The customer portal is accessible at `/support`. Customers can log in, register,
 
 ### Registration
 
-If **Customer registration** is enabled in settings, customers can self-register at `/register`. To disable self-registration and require admin-created accounts, turn off **Customer registration** in **Admin → Support Desk → Settings → Customer Portal**.
+If **Customer registration** is enabled in settings, customers can self-register at `/register`. To disable self-registration and require admin-created accounts, turn off **Customer registration** in **Admin → Settings → Support Desk Settings → Customer Portal**.
 
 ### Portal Pages
 
@@ -121,4 +121,4 @@ Customers receive email notifications for:
 - Agent reply on their ticket
 - Ticket status change
 
-Configure notification behaviour in **Admin → Support Desk → Settings → Notifications**.
+Configure notification behaviour in **Admin → Settings → Support Desk Settings → Notifications**.

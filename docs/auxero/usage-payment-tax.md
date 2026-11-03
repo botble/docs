@@ -88,7 +88,7 @@ Taxes are calculated on the booking subtotal before coupon discounts are applied
 
 ## Invoice Settings
 
-Go to `Admin Panel` -> `Car Manager` -> `Settings` -> `Invoice`.
+Go to `Admin Panel` -> `Settings` -> `Car Manager` -> `Invoice`.
 
 | Setting | Description |
 |---|---|
@@ -102,7 +102,7 @@ Invoices are generated automatically when a booking is created. They can be down
 
 ## Currency Management
 
-Go to `Admin Panel` -> `Settings` -> `Currency`.
+Go to `Admin Panel` -> `Settings` -> `Car Manager` -> `Currency`.
 
 - Set the default currency (symbol, code, position).
 - Enable currency switcher if you support multiple currencies.

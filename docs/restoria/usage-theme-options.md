@@ -4,22 +4,42 @@ Theme options allow you to customize every aspect of your Restoria restaurant we
 
 ![Theme Options Overview](./images/theme-options/theme-option-overview.png)
 
+## Header
+
+- **Show Header Top**: Show or hide the top info bar
+- **Show Book Table Button**: Toggle the reservation button in the header
+- **Header Background Color** / **Header Text Color**
+- **Menu Background / Text / Hover Color**: Navigation menu colors
+
+## Footer
+
+- **Footer Background Color**, **Footer Text Color**, **Footer Link Color**, **Footer Link Hover Color**, **Footer Text Muted Color**
+
+## General
+
+Restaurant details used across the site: **Site Title**, **Restaurant Address**, **Email Address**, **Opening Hours**, **Booking Phone**, **Book Table URL**, **Hotline**, plus **404 Page Image**, **Enable Back to Top Button**, **Preloader Text** and **Enable Preloader Split Text Animation**.
+
 ## Styles
 
 Customize the visual appearance of your restaurant website.
 
 ### Color Scheme
 - **Primary Color**: Main brand color
-- **Secondary Color**: Accent color
-- **Text Color**: Body text color
+- **Secondary Color**: Secondary brand color
+- **Accent Color**: Accent/highlight color
 - **Heading Color**: Titles and headings
-- **Link Color**: Hyperlink color
+- **Text Color**: Body text color
+- **Link Color** and **Link Hover Color**: Hyperlink colors
+- **Button Background / Text / Hover Colors**: Button styling
+- **Border Color**: Borders and dividers
 
 ![Styles Settings](./images/theme-options/styles.png)
 
 ## Typography
 
 Control fonts and text styling throughout your website.
+
+Default fonts: `Urbanist` (primary) and `Fraunces` (heading).
 
 ### Font Families
 - **Primary Font**: Main body text font

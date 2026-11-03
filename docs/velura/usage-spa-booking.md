@@ -77,8 +77,9 @@ manage your daily schedule at a glance.
 
 ## Settings
 
-Go to `Spa Booking` -> `Settings` to configure global booking behavior such as working hours, notification emails,
-and booking rules.
+Go to `Spa Booking` -> `Settings` to configure global booking behavior: appointment time format (12/24 hours),
+appointment time interval, and the optional multi-vendor mode (vendor verification, commission fee and type,
+per-category commission, minimum withdrawal amount and withdrawal fee).
 
 ## The Reservation Form
 

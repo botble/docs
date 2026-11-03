@@ -62,6 +62,10 @@ If you start from a preset, the homepage already exists. To build your own:
 
 In the admin panel, go to `Appearance` -> `Theme Options` -> `Page`, and select the page in **Your homepage displays**.
 
+## Page Templates
+
+Pick a template in the **Template** field of the page editor: **Default**, **Homepage**, **Full width**, **Content page**, **Without layout** or **Coming Soon**. The **Coming Soon** template adds three fields to the page: **Coming soon subtitle**, **Countdown date** and **Coming soon banner image**.
+
 ## Page Meta Fields
 
 Each page has these theme fields in the page editor. They apply only to that page.
@@ -73,6 +77,7 @@ Each page has these theme fields in the page editor. They apply only to that pag
 | **Header style** | Use the theme option, Style 1 to Style 5 | Overrides the site-wide header for this page |
 | **Footer style** | Use the theme option, Style 1 to Style 3 | Overrides the site-wide footer for this page |
 | **Body class** | Free text | Adds a CSS class to the `<body>` tag. Some Norio styles depend on it, for example `page-home-3`, `page-projects-1`, `page-projects-4`, `page-services` and `page-404`. Only letters, digits, `-`, `_` and spaces are kept |
+| **Breadcrumb enabled** | No, Yes | Shows the breadcrumb block on this page. Only listed when the breadcrumb is turned on in Theme Options. Default: No |
 
 ::: tip
 Set the **Body class** when you rebuild one of the demo homepages. The Digital Startup layout depends on `page-home-3`, and the Projects layouts depend on the `page-projects-*` classes.

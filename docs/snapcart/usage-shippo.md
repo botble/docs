@@ -10,7 +10,7 @@ Integrate with Shippo for real-time shipping rates, label printing, and tracking
 ## Setup
 
 1. In admin panel, go to `Plugins` -> `Installed Plugins` and activate **Shippo**
-2. Go to `Ecommerce` -> `Settings` -> `Shipping` -> `Shippo`
+2. Go to `Settings` -> `Ecommerce` -> `Shipping` and open the **Shippo** section
 3. Enter your Shippo API key
 4. Configure your sender address (warehouse/store address)
 5. Click `Save`

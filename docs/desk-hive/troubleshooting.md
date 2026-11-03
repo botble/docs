@@ -77,7 +77,7 @@ Common issues and solutions for DeskHive.
 **Problem**: The registration form is not accessible or returns an error.
 
 **Solutions**:
-1. Confirm **Customer registration** is enabled in **Admin → Support Desk → Settings → Customer Portal**
+1. Confirm **Customer registration** is enabled in **Admin → Settings → Support Desk Settings → Customer Portal**
 2. Check that the mail configuration in `.env` is valid if email verification is enabled
 3. Check Laravel logs for validation or mail errors
 
@@ -131,7 +131,7 @@ Common issues and solutions for DeskHive.
 
 **Solutions**:
 1. Verify mail configuration in `.env` (see above)
-2. Check notification toggles in **Admin → Support Desk → Settings → Notifications**
+2. Check notification toggles in **Admin → Settings → Support Desk Settings → Notifications**
 3. Check agent-level notification preferences in **Agent Portal → Settings → Notifications**
 4. Check Laravel logs for mail errors:
    ```bash

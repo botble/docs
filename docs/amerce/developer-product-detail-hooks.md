@@ -11,18 +11,6 @@ Amerce provides hook filters on the product detail page that allow plugins to in
 | `ecommerce_product_detail_before_gallery` | Above the product image gallery | Promo banners, announcements |
 | `ecommerce_product_detail_after_gallery` | Below the gallery, inside the gallery wrapper | 360-degree view button, video overlay |
 
-### Cart Actions Area
-
-| Hook Name | Position | Use Case |
-|-----------|----------|----------|
-| `ecommerce_product_detail_after_cart_actions` | Below the Add to Cart / Buy Now buttons | Trust badges, payment icons, delivery estimates |
-
-### Product Meta Area
-
-| Hook Name | Position | Use Case |
-|-----------|----------|----------|
-| `ecommerce_product_detail_after_meta` | After SKU, categories, and tags | Custom product fields, plugin metadata |
-
 ### Tabs Area
 
 | Hook Name | Position | Use Case |
@@ -34,6 +22,8 @@ Amerce provides hook filters on the product detail page that allow plugins to in
 
 ::: tip
 When using `extra_tab_headers` and `extra_tab_contents`, you must add both a tab header and its corresponding tab content. They work as a pair.
+
+With the **accordion** description style (instead of tabs), only `ecommerce_product_detail_extra_tab_contents` is rendered, after the last accordion item - `extra_tab_headers` is not output.
 :::
 
 ## Usage Example
@@ -43,8 +33,8 @@ In your plugin's service provider, use `add_filter()` to hook into any of these 
 ```php
 use Botble\Ecommerce\Models\Product;
 
-// Add trust badges below Add to Cart button
-add_filter('ecommerce_product_detail_after_cart_actions', function (?string $html, Product $product) {
+// Add trust badges below the product gallery
+add_filter('ecommerce_product_detail_after_gallery', function (?string $html, Product $product) {
     return $html . view('plugins/your-plugin::trust-badges', compact('product'))->render();
 }, 120, 2);
 ```
@@ -54,9 +44,11 @@ add_filter('ecommerce_product_detail_after_cart_actions', function (?string $htm
 ```php
 // Add tab header
 add_filter('ecommerce_product_detail_extra_tab_headers', function (?string $html, Product $product) {
-    return $html . '<button class="nav-link" id="nav-warranty-tab" data-bs-toggle="tab" data-bs-target="#nav-warranty" type="button" role="tab">'
-        . __('Warranty')
-        . '</button>';
+    return $html . '<li class="nav-tab-item" role="presentation">'
+        . '<button class="tf-btn-tab" id="nav-warranty-tab" data-bs-toggle="tab" data-bs-target="#nav-warranty" type="button" role="tab">'
+        . '<span class="h5 fw-medium">' . __('Warranty') . '</span>'
+        . '</button>'
+        . '</li>';
 }, 120, 2);
 
 // Add tab content
@@ -85,9 +77,8 @@ These hooks were already available before the additions above:
 
 | Hook Name | Position |
 |-----------|----------|
-| `ecommerce_before_product_description` | Before product short description |
 | `ecommerce_after_product_description` | After product short description |
-| `ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML` | After product options, before cart actions |
+| `ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML` | After product options, before cart actions (on out-of-stock products it renders only when the Back in Stock plugin is active) |
 | `ads_render` (with `detail_page_before`) | Before product detail section |
 | `ads_render` (with `detail_page_after`) | After product detail section |
 | `BASE_FILTER_PUBLIC_COMMENT_AREA` | Inside the Description tab |

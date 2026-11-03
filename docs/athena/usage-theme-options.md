@@ -43,7 +43,7 @@ The **Styles** tab within the theme options empowers you to personalize the visu
 
 ### Header
 
-There are 3 header templates, you can choose the appropriate header template for your website.
+There are 2 header templates, you can choose the appropriate header template for your website.
 
 ![Styles Header](./images/theme-options/styles-header.png)
 

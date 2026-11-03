@@ -200,11 +200,13 @@ For real-time payment updates:
 2. Click **Add endpoint**
 3. Enter your webhook URL:
    ```
-   https://yourdomain.com/pos/stripe/terminal/webhook
+   https://yourdomain.com/stripe/terminal/webhook
    ```
 4. Select events:
    - `terminal.reader.action_failed`
    - `terminal.reader.action_succeeded`
+   - `payment_intent.succeeded`
+   - `payment_intent.payment_failed`
 5. Copy the signing secret
 6. Enter it in POS Settings
 

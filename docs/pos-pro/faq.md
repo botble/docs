@@ -9,7 +9,7 @@ POS Pro is a comprehensive Point of Sale system designed for e-commerce stores b
 ### What are the system requirements?
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin
 
 ### Can I use POS Pro on multiple devices?
@@ -108,7 +108,6 @@ Yes, you can:
 - Toggle tax display
 - Toggle cashier name
 - Toggle customer name
-- Add custom footer text
 
 ### Can receipts print automatically?
 

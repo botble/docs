@@ -26,7 +26,7 @@ If wholesale customers can't see discounted prices:
 
 ## Wrong Discount Applied
 
-1. **Multiple groups:** If the customer is in multiple groups, the [discount resolution strategy](/wholesale/configuration#discount-resolution-strategy) determines which discount applies. Check: **Wholesale > Settings > Discount Resolution Strategy**.
+1. **Multiple groups:** If the customer is in multiple groups, they always get the largest group discount (see [Discount Resolution](/wholesale/configuration#discount-resolution)).
 
 2. **Pricing rule overrides:** A pricing rule may give a different discount than the group discount. The system picks the better deal for the customer. Check: edit the product, look at the **Wholesale** section for pricing rules.
 

@@ -47,10 +47,10 @@ t("compare.emptySubtitle", "Add up to {{count}} jobs from search results to comp
 
 Keys are dot-separated and nested (e.g. `home.title`, `compare.emptySubtitle`).
 
-## The app name (`{{appName}}`): white-labeling
+## The app name (<code v-pre>{{appName}}</code>): white-labeling
 
 The app name is never written literally in a translation. Every string that shows it
-uses the `{{appName}}` variable, which is registered globally in `src/i18n/index.ts`
+uses the <code v-pre>{{appName}}</code> variable, which is registered globally in `src/i18n/index.ts`
 from `APP_NAME`:
 
 ```ts
@@ -64,10 +64,10 @@ interpolation: {
 t("auth.loginTitle", "Sign in to {{appName}}");   // → "Sign in to <APP_NAME>"
 ```
 
-So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write `{{appName}}` (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToJobHive`).
+So a buyer rebrands the app name across every screen and every language by setting `APP_NAME` alone. No string edits needed. When you add strings that mention the app name, write <code v-pre>{{appName}}</code> (never the literal name), and keep the app name out of translation **keys** too (use generic keys like `auth.loginTitle`, not `auth.signInToJobHive`).
 
 This is enforced: `npm run i18n:check` (run in CI) fails if the brand literal appears
-in any locale key or value, pointing you to use `{{appName}}`.
+in any locale key or value, pointing you to use <code v-pre>{{appName}}</code>.
 
 ## Extract & verify workflow
 

@@ -128,7 +128,7 @@ FormAbstract::beforeRendering(function (FormAbstract $form): void {
 
 ```php
 use Botble\Base\Forms\FormAbstract;
-use Botble\Base\Forms\FormFront;
+use Botble\Theme\FormFront;
 
 FormAbstract::beforeRendering(function (FormAbstract $form): void {
     if (! CaptchaFacade::isEnabled()) {

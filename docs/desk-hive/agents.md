@@ -152,7 +152,7 @@ Navigate to **Agent Portal → Tickets → {ticket} → Internal Chat** to view 
 ## Assigning Tickets to Agents
 
 - **Manual**: Set the **Assigned To** field on any ticket in the admin panel
-- **Auto-assign**: Enable in **Admin → Support Desk → Settings → General** to automatically assign tickets to agents based on department
+- **Auto-assign**: Enable in **Admin → Settings → Support Desk Settings → General** to automatically assign tickets to agents based on department
 
 ## Ticket Visibility
 
@@ -162,7 +162,7 @@ By default, agents only see tickets that are directly assigned to them.
 
 When enabled, agents see **all tickets** in their assigned departments — not just tickets assigned to them personally. This is useful for teams that share workload.
 
-Enable this in **Admin → Support Desk → Settings → General → Enable department-based ticket visibility** (off by default).
+Enable this in **Admin → Settings → Support Desk Settings → General → Enable department-based ticket visibility** (off by default).
 
 ::: tip
 When department-based visibility is enabled and auto-assign is also enabled, agents see both their personally assigned tickets and all unassigned tickets in their departments.

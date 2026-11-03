@@ -19,8 +19,8 @@ php artisan cms:plugin:activate live-chat
 
 After activation:
 - The floating chat widget appears on your website's frontend
-- **Admin → Live Chat** menu appears with Conversations, Webhooks, and Settings sub-items
-- Database tables `bb_live_chat_conversations`, `bb_live_chat_messages`, and `bb_live_chat_webhooks` are created
+- **Admin → Live Chat** menu appears with Conversations, Agents, Team Snippets, Reports, Webhooks, and Settings sub-items
+- Database tables `bb_live_chat_conversations`, `bb_live_chat_messages`, `bb_live_chat_webhooks`, `bb_live_chat_agents`, `bb_live_chat_conversation_agents`, `bb_live_chat_agent_snippets`, and `bb_live_chat_visitor_presence` are created
 
 ## Seed Sample Data
 

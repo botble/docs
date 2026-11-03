@@ -56,13 +56,14 @@ Newsletter signup section with optional banner image. Drops into the homepage or
 
 ![Newsletter CTA](./images/shortcodes/newsletter-cta.png)
 
-**Styles:** `style-default`, `style-banner`.
+**Styles:** `style-default`, `style-banner`, `style-split` (text and signup form on the left, cover image on the right; stacks on mobile).
 
 | Field | Default | Description |
 |-------|---------|-------------|
 | `heading` | - | Heading. |
 | `subheading` | - | Subheading. |
-| `image` | - | Banner image (style-banner). |
+| `image` | - | Banner image (style-banner) / cover image (style-split). |
+| `target_date` | - | Countdown target (`YYYY-MM-DD HH:MM`), shown above the heading. Split layout only. |
 | `submit_button_text` | `Subscribe` | Submit button label. |
 | `mailchimp_list_id` | - | Optional Mailchimp list ID - falls back to the theme's built-in newsletter handler when empty. |
 | `background_color` | - | Section background color (hex). |

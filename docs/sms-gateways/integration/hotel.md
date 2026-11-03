@@ -20,7 +20,7 @@ Send SMS for hotel and room reservations, check-in reminders, and guest communic
 
 ### Step 1 — Enable hotel SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Hotel** to enable
 3. Click **Save**
 

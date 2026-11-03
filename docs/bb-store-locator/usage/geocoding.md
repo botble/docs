@@ -61,7 +61,7 @@ $schedule->command('cms:store-locator:geocode --limit=200')->daily();
 
 ## Address autocomplete for visitors
 
-**Enable public suggestions** puts autocomplete in the visitor-facing search box. It is convenient, but every keystroke can become a provider request.
+**Enable address autocomplete on the storefront** puts autocomplete in the visitor-facing search box. It is convenient, but every keystroke can become a provider request.
 
 Turn it off if you are on a metered plan and would rather spend the quota on the admin panel. The search box still works - visitors just type the whole town name.
 

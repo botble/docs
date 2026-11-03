@@ -12,19 +12,21 @@ Licenses authorize customers to use your software products. Each license is tied
 |-------|-------------|----------|
 | Product | Select the product | Yes |
 | License Code | Unique license key (auto-generated if empty) | Yes |
-| Type | License type (perpetual, subscription, etc.) | No |
+| License Type | Optional free-text categorization (e.g. Regular, Extended, Trial) | No |
 | Customer ID | Customer identifier (client_id) | No |
 | Email | License holder's email | No |
 | Invoice | Invoice/order reference | No |
+| Total Use Limit | Max number of activations over the license's lifetime (empty = unlimited) | No |
 | Parallel Uses | Max concurrent activations (empty = unlimited) | No |
 | Expires At | License expiration date | No |
+| Expiration Days | Alternative to Expires At: expire this many days after creation | No |
 | Updates Until | Update support end date | No |
 | Support Until | Support end date | No |
 | Domains | Allowed domains (JSON array) | No |
 | IPs | Allowed IP addresses (JSON array) | No |
 | Comments | Internal notes | No |
-| Is Valid | License status (valid/blocked) | Yes |
-| Is Envato | From Envato marketplace | No |
+| Block License | Toggle on to block the license (stored as `is_valid = false`) | No |
+| Is Envato | Set automatically for licenses created from Envato purchases (not a form field) | No |
 
 4. Click **Save**
 
@@ -46,6 +48,10 @@ Common license types:
 | `subscription` | Requires renewal |
 | `trial` | Limited trial period |
 | `lifetime` | Permanent with updates |
+
+The type is free text and does not change how a license is validated — expiry, update and support
+dates do. Envato licenses use `Regular License` / `Extended License`, and the internal
+`POST /api/internal/product-licenses/{id}/type` endpoint accepts only those two values.
 
 ## Parallel Uses
 

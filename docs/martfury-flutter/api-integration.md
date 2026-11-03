@@ -36,19 +36,20 @@ The app calls many endpoints; the most important groups are:
 
 | Group | Examples |
 |---|---|
-| Auth | `POST /api/v1/auth/login`, `POST /api/v1/auth/register`, `POST /api/v1/auth/forgot-password` |
-| Social login | `POST /api/v1/auth/social/google`, `/facebook`, `/apple`, `/twitter` |
-| Products | `GET /api/v1/ecommerce/products`, `/products/{slug}`, `/categories`, `/brands`, `/flash-sales` |
-| Cart | `GET /api/v1/ecommerce/cart`, `POST /api/v1/ecommerce/cart`, `PATCH`, `DELETE` |
-| Orders | `GET /api/v1/ecommerce/orders`, `POST /api/v1/ecommerce/checkout/cart/{id}` |
-| Wishlist | `GET /api/v1/ecommerce/wishlist`, `POST /api/v1/ecommerce/wishlist` |
-| Profile | `GET /api/v1/me`, `PATCH /api/v1/me` |
+| Auth | `POST /api/v1/login`, `POST /api/v1/register`, `POST /api/v1/password/forgot` |
+| Social login | `POST /api/v1/auth/google`, `/auth/facebook`, `/auth/apple`, `/auth/twitter` |
+| Products | `GET /api/v1/ecommerce/products`, `/products/{slug}`, `/product-categories`, `/brands`, `/flash-sales` |
+| Cart | `POST /api/v1/ecommerce/cart`, `GET` / `PUT` / `DELETE /api/v1/ecommerce/cart/{id}`, `POST /cart/sync`, `POST /cart/refresh` |
+| Orders | `GET /api/v1/ecommerce/orders`, `/orders/{id}`, `/order-returns`, `/orders/tracking` |
+| Wishlist | `POST /api/v1/ecommerce/wishlist`, `GET` / `POST` / `DELETE /api/v1/ecommerce/wishlist/{id}` |
+| Profile | `GET /api/v1/me`, `PUT /api/v1/me`, `PUT /api/v1/update/password` |
+| Push | `POST /api/v1/device-tokens`, `DELETE /api/v1/device-tokens/by-token`, `GET /api/v1/notifications` |
 
 For the full list, see the API reference linked above.
 
 ## Checkout
 
-Checkout runs in a WebView. The app calls `POST /api/v1/ecommerce/checkout/cart/{id}` and opens the redirect URL in a WebView so all backend payment gateways and shipping plugins keep working without app changes.
+Checkout runs in a WebView. The app loads `{API_BASE_URL}/api/v1/ecommerce/checkout/cart/{id}` in the WebView (sending the `X-API-KEY`, `X-LANGUAGE`, `X-CURRENCY` and, when signed in, `Authorization` headers), so all backend payment gateways and shipping plugins keep working without app changes.
 
 ## Common errors
 

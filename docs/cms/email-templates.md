@@ -252,7 +252,7 @@ public function addCustomEmailVariables(array $variables, ?string $template): ar
 
 4. **Template-specific logic** - You can add different variables based on the email template being rendered.
 
-5. **Twig syntax** - Email templates use Twig templating engine, so use `{{ variable_name }}` syntax.
+5. **Twig syntax** - Email templates use Twig templating engine, so use <code v-pre>{{ variable_name }}</code> syntax.
 
 6. **Translation support** - Variable descriptions in configuration files should use translation keys for multi-language support.
 

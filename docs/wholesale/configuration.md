@@ -38,8 +38,8 @@ Keep this disabled if your wholesale pricing is confidential.
 
 ### Allow Customers in Multiple Groups
 
-- **Disabled** (default) - Each customer can belong to only one group at a time.
-- **Enabled** - A customer can belong to multiple groups. When groups give different discounts, the [discount resolution strategy](#discount-resolution-strategy) decides which applies.
+- **Enabled** (default) - A customer can belong to multiple groups. When groups give different discounts, the customer gets the largest one (see [Discount Resolution](#discount-resolution)).
+- **Disabled** - Each customer can belong to only one group at a time.
 
 ### Enable Wholesale Pricing for Guests
 
@@ -54,20 +54,12 @@ Select which customer group is used for:
 
 Only published customer groups appear in this dropdown. You need to [create at least one group](/wholesale/usage/customer-groups) first.
 
-### Discount Resolution Strategy
+### Discount Resolution
 
-When a customer belongs to multiple groups with different discounts, this setting determines which discount applies:
-
-| Strategy | What happens |
-|----------|-------------|
-| **Highest** | Customer gets the largest discount. If they're in Gold (20% off) and Silver (15% off), they get 20%. |
-| **Lowest** | Customer gets the smallest discount. Same example, they get 15%. |
-| **Priority** | The group with the lowest priority number wins. Set priority when [creating groups](/wholesale/usage/customer-groups). |
-
-**Default:** Highest
+When a customer belongs to multiple groups with different discounts, they always get the **largest** discount. If they're in Gold (20% off) and Silver (15% off), they get 20%. There is no setting to change this.
 
 ::: tip
-This setting only matters when **Allow Customers in Multiple Groups** is enabled.
+This only matters when **Allow Customers in Multiple Groups** is enabled.
 :::
 
 ### Enable Wholesale in Vendor Dashboard
@@ -82,7 +74,7 @@ These control how the wholesale pricing table looks on product pages.
 
 ### Visual Style
 
-Choose from four styles for the pricing tier table:
+Choose from four styles for the pricing tier table (default: Minimal):
 
 | Style | Description |
 |-------|-------------|
@@ -97,19 +89,26 @@ Customize the pricing table colors to match your theme:
 
 | Setting | What it controls | Default |
 |---------|-----------------|---------|
-| **Primary Color** | Highlights, active tier indicator, accents | `#206bc4` |
+| **Primary Color** | Highlights, active tier indicator, accents | `#3b82f6` |
 | **Header Text Color** | Pricing table header text | `#1e293b` |
-| **Price Color** | Discounted price per unit | `#059669` |
-| **Discount Badge Color** | Discount percentage badges | `#dc2626` |
+| **Price Color** | Discounted price per unit | `#b91c1c` |
+| **Discount Badge Color** | Discount percentage badges | `#3b82f6` |
+| **Savings Text Color** | "Save $X.XX" text in the savings column | `#166534` |
 | **Border Color** | Table borders | `#e5e7eb` |
 
 ## Display Options
+
+### Automatically Display Pricing Box
+
+Shows the wholesale box on product pages even if your theme does not include the product page hook. Turn it off if you place the box manually in your theme.
+
+**Default:** Enabled
 
 ### Show Pricing Table
 
 When enabled, product detail pages show a pricing tier table to wholesale customers. This table lists all quantity tiers and their prices.
 
-**Default:** Disabled
+**Default:** Enabled
 
 When you enable this, additional options appear:
 
@@ -147,8 +146,7 @@ When enabled, adds a "You Save" column to the pricing table showing how much the
 1. **Enable Wholesale** - On
 2. **Require Approval** - On
 3. **Show Prices to Guests** - Off
-4. **Multiple Groups** - On (customers can be in a "Seasonal Promo" group AND their base group)
-5. **Resolution Strategy** - Highest (let customers get the best deal)
+4. **Multiple Groups** - On (customers can be in a "Seasonal Promo" group AND their base group; they get the best discount)
 
 ### For open wholesale (no approval)
 
@@ -171,9 +169,11 @@ Wholesale adds these permissions that you can assign to admin roles at **Admin >
 | `wholesale.pricing-rules.create` | Create new pricing rules |
 | `wholesale.pricing-rules.edit` | Edit existing pricing rules |
 | `wholesale.pricing-rules.destroy` | Delete pricing rules |
+| `wholesale.index` | Access the Wholesale menu |
 | `wholesale.products.index` | View wholesale products list |
 | `wholesale.applications.index` | View wholesale applications |
-| `wholesale.applications.approve` | Approve or reject applications |
+| `wholesale.applications.edit` | Approve or reject applications |
+| `wholesale.applications.destroy` | Delete applications |
 | `wholesale.settings` | Access wholesale settings page |
 
 ### Suggested role setups

@@ -196,7 +196,7 @@ Body:
   "product_id": "PROD-001",
   "license_code": "LICENSE-CODE",
   "client_name": "Customer Name",
-  "verify_type": "non_envato"
+  "verify_type": "direct"
 }
 ```
 

@@ -7,7 +7,7 @@ This guide will walk you through the process of installing the Loyalty Points pl
 Before installing Loyalty Points, ensure your system meets the following requirements:
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - MySQL 5.7+ or MariaDB 10.3+
 - Botble E-commerce plugin (required)
 
@@ -40,7 +40,7 @@ After installing and activating the Loyalty Points plugin:
 
 ### 3. Configure Basic Settings
 
-- Navigate to **Settings** > **Loyalty Points**
+- Navigate to **Loyalty Points** > **Settings**
 - Set up your points exchange rate
 - Configure earning and redemption rates
 - Set up bonus points for activities
@@ -58,8 +58,8 @@ To verify that the plugin has been installed correctly:
 1. Log in to your admin panel
 2. Verify the **Loyalty Points** menu item appears in the main navigation
 3. Click on **Loyalty Points** to access the management interface
-4. Check that all sub-menus are accessible (Customer Points, Transactions, Member Levels, Reports)
-5. Go to **Settings** > **Loyalty Points** and verify settings are accessible
+4. Check that all sub-menus are accessible (Reports, Members, Member Levels, Settings, License Activation)
+5. Go to **Loyalty Points** > **Settings** and verify settings are accessible
 
 ## Need Help?
 

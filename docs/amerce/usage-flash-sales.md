@@ -17,11 +17,11 @@ Flash sale features:
 
 ## Enable Flash Sales
 
-Navigate to `Ecommerce` -> `Settings` -> `Flash Sales`.
+Navigate to `Settings` -> `Ecommerce` -> `Flash Sale`.
 
 ![Flash sales settings](./images/flash-sales-settings.png)
 
-Toggle **Enable flash sales** to activate the feature.
+Toggle **Enable flash sale functionality** to activate the feature. **Display inventory tracker** adds a "X sold out of Y" progress bar to flash-sale products.
 
 ::: tip
 Once enabled, a new "Flash Sales" menu appears under `Ecommerce`.

@@ -44,8 +44,6 @@ ON_PRIMARY_COLOR=FFFFFF
    ```
 3. **`src/config/app.ts`**: Exposes them on `appConfig.primaryColor`, `appConfig.primaryDarkColor`, `appConfig.onPrimaryColor` (falling back to the same defaults if unset).
 4. **`src/lib/theme.ts`**: The light **and** dark palettes read those values directly. `primary`, `primaryDark`, and `primaryForeground` come straight from `.env` (the same brand color is used in both modes), and `primaryLight` (the pale badge tint) is derived from it automatically. Components pick this up through `SettingsContext` (no per-component re-import needed).
-5. **`src/lib/brand-vars.ts`**: The few screens that use Tailwind/NativeWind utility classes (`bg-primary`, `text-primary`) get the same brand color. `brandCssVars` overrides the `--color-primary*` CSS variables at runtime from the `.env` values, applied on the root view in `app/_layout.tsx`.
-
 You do **not** need to edit `src/lib/theme.ts` to rebrand. The three `.env` keys drive the whole app's brand color in both light and dark mode.
 
 ## Light & Dark themes
@@ -85,7 +83,7 @@ Say you want an orange brand (`#f97316`).
    npm start
    ```
 
-That's it. The primary color updates across both light and dark mode and both the `themeColors.*` and `bg-primary`/`text-primary` consumers. You only touch `src/lib/theme.ts` if you want to change the **deeper** tokens (backgrounds, borders, text shades, status colors), which are not part of the `.env` brand set.
+That's it. The primary color updates across both light and dark mode and every component that reads `themeColors.*`. You only touch `src/lib/theme.ts` if you want to change the **deeper** tokens (backgrounds, borders, text shades, status colors), which are not part of the `.env` brand set.
 
 **Important:** environment values are baked into `extra.appConfig` at build/start time. Restart Expo (stop and re-run `npm start`) after editing `.env`. A Fast Refresh will not pick up `.env` changes. For native builds, re-run `npx expo prebuild` and rebuild.
 

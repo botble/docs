@@ -38,8 +38,8 @@ Botble CMS will notify administrators about available updates through the admin 
 
 For minor and patch releases, you can often update directly from your admin dashboard:
 
-1. Go to **Dashboard > Updates**
-2. Click **Update Now** if an update is available
+1. Go to **Admin → Platform Administration → System Updater**
+2. Click **Download & Install Update** if an update is available, then **Click To Confirm!**
 
 ### Manual Updates
 

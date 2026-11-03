@@ -18,6 +18,17 @@ This guide explains how to create and configure forms using the BB Form Builder 
 - **Name**: Internal identifier for the form
 - **Code**: Unique code used in shortcodes (auto-generated if empty)
 - **Status**: Controls whether the form is visible and accepts submissions
+- **Form Title** / **Form Description**: Optional heading and text shown above the form
+- **Submit Button Label**: Custom submit button text (default "Submit")
+- **Custom CSS**: CSS applied to this form, including when it is embedded on external websites
+
+## Export / Import
+
+On the form edit page, **Export / Import** lets you download a form as JSON (**Export to JSON**) and create a form from a JSON file on another site (**Import from JSON**).
+
+## Translating a Form
+
+With several languages active, **Translate Form** lets you translate field labels, placeholders, options, HTML content, step titles, popup properties and submission messages per language. The field structure stays the same for all languages.
 
 ## Using the Form Builder
 

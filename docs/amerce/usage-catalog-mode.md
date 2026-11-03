@@ -4,7 +4,7 @@ Catalog mode turns Amerce into a browsable catalog instead of a shop: products, 
 
 ## Enabling catalog mode
 
-Navigate to `Ecommerce` -> `Settings` -> `Shopping` and turn off **Enable shopping cart**.
+Navigate to `Settings` -> `Ecommerce` -> `Shopping` and turn off **Enable shopping cart**.
 
 That single switch is the whole feature. Its own description says it best: *"If disabled, the cart button will be removed, turning your site into a catalog-only display."*
 
@@ -34,7 +34,7 @@ Catalog mode only removes buying. Everything else on the storefront is untouched
 
 ## Hiding prices
 
-For a "request a quote" catalog, turn on **Hide product price** on the same `Ecommerce` -> `Settings` -> `Shopping` page.
+For a "request a quote" catalog, turn on **Hide product price** on the same `Settings` -> `Ecommerce` -> `Shopping` page.
 
 ::: warning
 **Hide product price** only takes effect while the shopping cart is disabled. On a site with the cart on, the switch does nothing.

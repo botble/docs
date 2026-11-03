@@ -49,7 +49,7 @@ When a customer submits a ticket for a product, DeskHive can require them to ver
 Requires a valid Envato purchase code for the selected product.
 
 **Setup:**
-1. Navigate to **Admin → Support Desk → Settings → Envato**
+1. Navigate to **Admin → Settings → Envato Integration**
 2. Enable **Envato Integration**
 3. Enter your **Envato Personal Token** (generated at [build.envato.com](https://build.envato.com))
 4. Optionally enable **Require purchase code** — customers must enter a purchase code when submitting a ticket for an Envato product
@@ -62,7 +62,7 @@ When a purchase code is submitted, DeskHive calls the Envato API to verify it be
 Requires a valid license code verified against the [Botble License Manager](https://license-manager.botble.com).
 
 **Setup:**
-1. Navigate to **Admin → Support Desk → Settings → License Manager**
+1. Navigate to **Admin → Settings → License Manager**
 2. Enable **License Manager Integration**
 3. Enter the **API URL** of your License Manager instance (e.g., `https://licenses.example.com`)
 4. Enter the **API Key** (an internal API key from your License Manager)

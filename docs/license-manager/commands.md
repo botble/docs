@@ -2,6 +2,12 @@
 
 License Manager provides several Artisan commands for automation and maintenance tasks.
 
+::: tip Scheduling is built in
+The plugin registers its own schedule: `process-expirations` daily at 02:00, `process-auto-blacklist` hourly,
+`activity-log:clear` and `download-log:clear` weekly. You only need the single `schedule:run` cron entry — see
+[Setup cronjob](/license-manager/cronjob). Do not add the same commands again in `routes/console.php`, or they run twice.
+:::
+
 ## Process Expirations
 
 Process license expirations and send notifications.
@@ -36,23 +42,7 @@ Settings that affect this command:
 
 ### Scheduling
 
-Add to your cron or Laravel scheduler:
-
-```php
-// app/Console/Kernel.php
-protected function schedule(Schedule $schedule)
-{
-    $schedule->command('cms:license-manager:process-expirations')
-        ->daily()
-        ->at('08:00');
-}
-```
-
-Or via crontab:
-
-```bash
-0 8 * * * cd /path/to/project && php artisan cms:license-manager:process-expirations >> /dev/null 2>&1
-```
+Runs automatically every day at 02:00 through `schedule:run`.
 
 ## Process Auto-Blacklist
 
@@ -73,8 +63,8 @@ php artisan cms:license-manager:process-auto-blacklist
 
 | Setting | Purpose | Default |
 |---------|---------|---------|
-| `lm_blacklist_domain_after_failed_attempts` | Domain threshold | 0 (disabled) |
-| `lm_blacklist_ip_after_failed_attempts` | IP threshold | 0 (disabled) |
+| `lm_blacklist_domain_after_failed_attempts` | Domain threshold | 0 (disabled) until saved; the API settings form pre-fills `200` |
+| `lm_blacklist_ip_after_failed_attempts` | IP threshold | 0 (disabled) until saved; the API settings form pre-fills `100` |
 
 ### Example
 
@@ -85,10 +75,7 @@ If domain threshold is 10:
 
 ### Scheduling
 
-```php
-$schedule->command('cms:license-manager:process-auto-blacklist')
-    ->hourly();
-```
+Runs automatically every hour through `schedule:run`.
 
 ## Clear Activity Logs
 
@@ -101,7 +88,7 @@ php artisan cms:license-manager:activity-log:clear
 ### What it does
 
 1. Counts existing log entries
-2. Truncates the activity logs table
+2. Truncates the activity logs table (all rows, not only old ones)
 3. Reports number of deleted entries
 
 ### When to use
@@ -112,10 +99,7 @@ php artisan cms:license-manager:activity-log:clear
 
 ### Scheduling
 
-```php
-$schedule->command('cms:license-manager:activity-log:clear')
-    ->monthly();
-```
+Runs automatically **weekly** through `schedule:run`.
 
 ## Clear Download Logs
 
@@ -139,10 +123,7 @@ php artisan cms:license-manager:download-log:clear
 
 ### Scheduling
 
-```php
-$schedule->command('cms:license-manager:download-log:clear')
-    ->quarterly();
-```
+Runs automatically **weekly** through `schedule:run`.
 
 ## Generate a Signing Keypair
 
@@ -200,6 +181,60 @@ php artisan cms:license-manager:versions:backfill-checksums
 Safe to re-run: only rows with no digest are touched, and a version whose archive is missing from
 disk is reported and left null rather than failing the run.
 
+## Generate Licenses
+
+Bulk-generates license keys for a product from the shell (the CLI counterpart of **Bulk Generate**).
+
+```bash
+php artisan cms:license-manager:generate {product?} {quantity?}
+```
+
+`product` is the product reference ID and `quantity` is 2–500; both are prompted for when omitted.
+
+| Option | Purpose |
+|--------|---------|
+| `--type=` | License type |
+| `--uses=` | Number of uses |
+| `--parallel-uses=` | Parallel uses limit |
+| `--expiry-days=` | Days until expiration |
+| `--expires-at=` | Expiration date (`Y-m-d`) |
+| `--updates-until=` | Updates valid until (`Y-m-d`) |
+| `--support-until=` | Support valid until (`Y-m-d`) |
+| `--customer-id=` | Customer ID |
+| `--email=` | Customer email |
+| `--invoice=` | Invoice number |
+| `--comments=` | Comments |
+
+## Send License Details
+
+Emails a customer their license details.
+
+```bash
+php artisan cms:license-manager:send-license-details {email?} {license_code?} [--dry-run]
+```
+
+## Domain Violation Notices
+
+Two commands email customers who use one license on a second domain or switched domains.
+
+```bash
+# One customer, by license/purchase code or customer email
+php artisan cms:license-manager:notify-domain-switch {identifier} [--dry-run] [--force] [--no-confirm] [--locale=]
+
+# Scan the most recent activations and notify every violation found
+php artisan cms:license-manager:scan-domain-violations [--limit=50] [--dry-run] [--force] [--no-confirm] [--locale=]
+```
+
+| Option | Purpose |
+|--------|---------|
+| `--dry-run` | Show what would be sent without sending |
+| `--force` | Resend even if a notice was already sent |
+| `--no-confirm` | Skip the confirmation prompt for each email |
+| `--locale=` | Send the email in a specific locale (e.g. `vi`, `en`) |
+| `--limit=` | (`scan-domain-violations` only) number of recent activations to scan, default 50 |
+
+Neither is scheduled — run them by hand.
+
 ## Running Commands
 
 ### Via Terminal
@@ -217,57 +252,33 @@ php artisan list cms:license-manager
 
 ### Via Scheduler
 
-```php
-// app/Console/Kernel.php
-protected function schedule(Schedule $schedule)
-{
-    // Daily expiration check at 8 AM
-    $schedule->command('cms:license-manager:process-expirations')
-        ->daily()
-        ->at('08:00')
-        ->appendOutputTo(storage_path('logs/license-expirations.log'));
+No scheduler code is needed — the plugin registers its schedule when it boots. Check it with:
 
-    // Hourly auto-blacklist check
-    $schedule->command('cms:license-manager:process-auto-blacklist')
-        ->hourly()
-        ->appendOutputTo(storage_path('logs/license-blacklist.log'));
-
-    // Monthly log cleanup
-    $schedule->command('cms:license-manager:activity-log:clear')
-        ->monthly()
-        ->appendOutputTo(storage_path('logs/license-cleanup.log'));
-}
+```bash
+php artisan schedule:list
 ```
 
 ### Via Admin Panel
 
-Navigate to **License Manager → Manual Cron** to run commands manually:
-
-1. Select command to run
-2. Click **Run**
-3. View output in interface
+Navigate to **License Manager → Run Manual Cron** and click **Run**. It runs the expiration check and the
+auto-blacklist check together and shows the result of each.
 
 ## Complete Cron Setup
 
-### Recommended Schedule
+### Built-in Schedule
 
 | Command | Frequency | Purpose |
 |---------|-----------|---------|
-| `process-expirations` | Daily | Check and notify expirations |
+| `process-expirations` | Daily at 02:00 | Check and notify expirations |
 | `process-auto-blacklist` | Hourly | Block abusive clients |
-| `activity-log:clear` | Monthly | Cleanup old logs |
-| `download-log:clear` | Quarterly | Cleanup download history |
+| `activity-log:clear` | Weekly | Empty the activity log table |
+| `download-log:clear` | Weekly | Empty the update download history |
 
 ### Sample Crontab
 
 ```bash
-# Laravel scheduler (handles all commands)
+# Laravel scheduler (runs every command above on its schedule)
 * * * * * cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1
-
-# Or individual commands
-0 8 * * * cd /var/www/html && php artisan cms:license-manager:process-expirations
-0 * * * * cd /var/www/html && php artisan cms:license-manager:process-auto-blacklist
-0 0 1 * * cd /var/www/html && php artisan cms:license-manager:activity-log:clear
 ```
 
 ### Using Supervisor

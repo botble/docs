@@ -27,8 +27,8 @@ The app appends `/api/v1` to `API_BASE_URL` for API calls. `API_KEY` is sent as 
 import { api } from '@/services/apiClient';
 
 const products = await api.get('/ecommerce/products');
-const result = await api.post('/ecommerce/cart/add', { product_id: 123, quantity: 1 });
-const data = await api.get('/ecommerce/profile', customToken);
+const result = await api.post('/ecommerce/cart', { product_id: 123, qty: 1 });
+const data = await api.get('/me', customToken);
 ```
 
 ## Authentication
@@ -64,12 +64,14 @@ await SecureStore.deleteItemAsync('auth_token');
 
 | Group | Endpoint |
 |---|---|
-| Products | `GET /ecommerce/products`, `/products/{slug}`, `/categories`, `/brands`, `/products?keyword=...` |
-| Cart | `GET /ecommerce/cart`, `POST /cart/add`, `PUT /cart/update`, `DELETE /cart/remove/{rowId}` |
+| Products | `GET /ecommerce/products`, `/products/{slug}`, `/product-categories`, `/brands`, `/flash-sales`, `/filters` |
+| Cart | `POST /ecommerce/cart` (or `/cart/{cartId}`), `PUT` / `DELETE /ecommerce/cart/{rowId}`, `POST /cart/sync`, `POST /cart/refresh` |
 | Coupons | `POST /ecommerce/coupon/apply`, `POST /ecommerce/coupon/remove` (`cart_id` always required) |
 | Wishlist | `GET /ecommerce/wishlist`, `POST /wishlist`, `DELETE /wishlist/{product_id}` |
-| Orders | `GET /ecommerce/orders`, `/orders/{id}`, `POST /orders/{id}/cancel` |
-| Addresses | `GET/POST /addresses`, `PUT/DELETE /addresses/{id}`, `GET /countries` |
+| Orders | `GET /ecommerce/orders`, `/orders/{id}`, `POST /orders/{id}/cancel`, `/orders/{id}/returns`, `/orders/tracking`, `/orders/{id}/proofs` |
+| Addresses | `GET/POST /ecommerce/addresses`, `PUT/DELETE /ecommerce/addresses/{id}`, `GET /ecommerce/countries` |
+| Profile | `GET /me`, `POST /update/avatar`, `PUT /update/password` |
+| Notifications | `POST /device-tokens`, `DELETE /device-tokens/by-token`, `GET /notifications`, `POST /notifications/mark-all-read` |
 
 Product list query params: `page`, `per_page`, `categories[]`, `brands[]`, `min_price`, `max_price`, `sort_by` (`name`/`price`/`created_at`), `order_by` (`asc`/`desc`).
 
@@ -78,8 +80,10 @@ Product list query params: `page`, `per_page`, `categories[]`, `brands[]`, `min_
 WebView-based:
 
 ```
-GET /checkout/cart/{cartId}?token={authToken}
+GET {API_BASE_URL}/api/v1/ecommerce/checkout/cart/{cartId}
 ```
+
+The WebView sends `X-API-KEY` and, when signed in, `Authorization: Bearer <token>` headers (no token in the query string).
 
 This loads the website's checkout in a WebView so all backend payment gateways and shipping plugins work without app changes.
 

@@ -1,6 +1,6 @@
 # Widgets
 
-Infinia provides five pre-made widget areas to help you customize the user interface and organize content strategically.
+Infinia provides ten pre-made widget areas to help you customize the user interface and organize content strategically.
 
 These sidebars offer flexibility in placement and functionality, allowing you to tailor the user experience on different
 sections of your website.

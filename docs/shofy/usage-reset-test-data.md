@@ -57,7 +57,7 @@ If you want product IDs to start from #1 again, you must remove all products fir
 SET FOREIGN_KEY_CHECKS = 0;
 
 TRUNCATE TABLE ec_products;
-TRUNCATE TABLE ec_product_translations;
+TRUNCATE TABLE ec_products_translations;
 TRUNCATE TABLE ec_product_variations;
 TRUNCATE TABLE ec_product_variation_items;
 
@@ -68,4 +68,4 @@ SET FOREIGN_KEY_CHECKS = 1;
 MySQL auto-increment counters only reset when a table is truncated or emptied. You cannot reset the ID sequence while existing products remain in the table.
 :::
 
-After truncating, re-add your products manually or via **Admin → Tools → Import/Export Data**.
+After truncating, re-add your products manually or via **Admin → Tools → Export/Import Data**.

@@ -24,7 +24,10 @@ Manage roles in `Admin` -> `Careers`.
 | **Employment type** | For example `Full-time`. Shown in the role overview |
 | **Posted / closing date** | Date shown as "Posted" in the role overview |
 | **Craft** | Discipline, for example `Design` or `Engineering`. Shown in the role overview grid |
-| **Band / level** | Seniority, for example `Senior` |
+| **Band / level** | Seniority, for example `Senior`. Falls back to the salary field |
+| **Level** | Shown as the Level spec on the role page, for example `Mid`. Falls back to the band |
+| **About the seat** | Short statement under the spec grid on the role page |
+| **Closing date** | Shown as "Close" in the side column, for example `31 Oct 2026` |
 | **Spec rows** | Extra label and value pairs for the overview. The first ones fill the grid, the rest go in the side column |
 
 ## Apply Form

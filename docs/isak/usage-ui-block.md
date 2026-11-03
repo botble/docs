@@ -19,7 +19,7 @@ You can modify it as needed by clicking on that block in the editor and clicking
 
 ## Available Shortcodes
 
-Isak provides 8 main shortcodes for building your portfolio:
+Isak provides 8 main portfolio section shortcodes, plus 4 additional shortcodes (Blog Posts, FAQs, Newsletter, Pricing Plans):
 
 ### 1. Hero Intro
 
@@ -174,6 +174,15 @@ Contact form section with customizable fields.
 | Button Text | Submit button text |
 | Navigation Icon | Sidebar icon (default: `icon-send`) |
 | Navigation Label | Sidebar text (default: "Contact") |
+
+### Additional Shortcodes
+
+| Shortcode | Description |
+|-----------|-------------|
+| Blog Posts (`blog-posts`) | Latest blog posts section |
+| FAQs (`faqs`) | FAQs section (requires FAQ plugin) |
+| Newsletter (`newsletter`) | Newsletter subscription section |
+| Pricing Plans (`pricing-plans`) | Dynamic list of pricing plans |
 
 ## Navigation Icons
 

@@ -61,7 +61,7 @@ Check your spam or junk folder. If the confirmation isn't there, try submitting 
 
 ### The "Notify Me" form isn't showing on the product page
 
-The notification form only appears when a product is genuinely out of stock. If the product shows as available (even in limited quantity), no form will appear. Try refreshing the page or clearing your browser cache.
+The notification form only appears when a product is genuinely out of stock (or on backorder, if the store allows it). If the product shows as available (even in limited quantity), no form will appear. Try refreshing the page or clearing your browser cache.
 
 ### I received the notification but the product is already sold out again
 

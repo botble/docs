@@ -16,7 +16,7 @@ When an event happens (e.g., a new order is placed), the system sends an HTTP **
 
 ## Configuration
 
-Navigate to **Settings** -> **Ecommerce** -> **Webhook** in the admin panel.
+Navigate to **Settings** -> **Ecommerce** -> **Webhooks** in the admin panel.
 
 You will see input fields for each webhook event. Paste a valid HTTPS URL into the field for each event you want to track, then click **Save**.
 

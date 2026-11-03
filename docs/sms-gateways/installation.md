@@ -46,7 +46,7 @@ When you activate the plugin, Botble runs:
    - `smsg_abandoned_cart_sent` — idempotency table for abandoned-cart SMS reminders
 2. **Service provider registration** — registers routes, settings page, permissions, admin menu, FOB coexistence guard, and scheduled commands.
 3. **Translation registration** — loads 42 locale files.
-4. **Scheduler entries** — `sms:purge`, `sms:poll-status`, `sms:recover-abandoned-carts`, and retry dispatcher tick.
+4. **Scheduler entries** — `sms:heartbeat`, `sms:retry`, `sms:status-poll`, `sms:recover-abandoned-carts`, and `sms:purge`.
 
 ::: tip
 Activation is idempotent — you can safely deactivate and re-activate the plugin without data loss. Existing logs, templates, consents, and webhooks survive.
@@ -57,7 +57,7 @@ Activation is idempotent — you can safely deactivate and re-activate the plugi
 After activation you should see:
 
 - A new **SMS Gateways** entry in the admin left sidebar.
-- A new **SMS Gateways** tab in **Admin → Settings → SMS Gateways**.
+- A **Settings** page at **Admin → SMS Gateways → Settings**.
 - A new **SMS Gateways** permission group in **Admin → Settings → Roles & Permissions**.
 
 Run this sanity check from the CLI:
@@ -82,10 +82,11 @@ The plugin registers these permission flags (managed in **Admin → Settings →
 | `sms-gateways.templates.test-send` | Send a template preview to a phone |
 | `sms-gateways.consents.index` | View consent records |
 | `sms-gateways.consents.update` | Override opt-in / opt-out status |
-| `sms-gateways.drivers.configure` | Enter driver credentials |
 | `sms-gateways.country-routes.index` | Manage E.164 routing rules |
+| `sms-gateways.custom-drivers.index` | Manage custom HTTP drivers |
 | `sms-gateways.webhooks.index` | Manage outbound webhooks |
-| `sms-gateways.settings.edit` | Edit plugin-wide settings |
+| `sms-gateways.settings.edit` | Edit plugin-wide settings and driver credentials |
+| `sms-gateways.test-send` | Use the Test SMS tool |
 
 Assign these to admin roles in **Admin → Settings → Roles & Permissions**.
 

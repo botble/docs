@@ -21,7 +21,7 @@ php artisan kyc:cleanup
 |---|---|
 | `--dry-run` | Report what would be deleted without touching the database or disk |
 
-**Scheduled:** Daily at **02:00** (configurable in `src/Providers/KycServiceProvider.php` via the `schedule()` method).
+**Scheduled:** Daily at **00:00** (registered in `src/Providers/KycServiceProvider.php`).
 
 **What it does:**
 1. Pass 1 — delete rejected submission rows and their files where `updated_at < now() - kyc_rejected_retention_days`.
@@ -38,7 +38,7 @@ Flip approved submissions to status `expired` once their `expires_at` timestamp 
 php artisan kyc:expire
 ```
 
-**Scheduled:** Daily at **02:15**.
+**Scheduled:** Daily at **02:00**.
 
 **What it does:**
 Updates `kyc_submissions` rows where `status = approved AND expires_at IS NOT NULL AND expires_at < now()` setting `status = expired`. Subjects whose only approved submission is now expired lose `hasApprovedKyc()` on the next request — any integration gate re-blocks them until they resubmit. Each expired row dispatches a `KycExpired` event which fans out to webhook endpoints subscribed to `kyc.expired`.
@@ -79,8 +79,8 @@ php artisan schedule:list | grep kyc
 Expected output:
 
 ```
-  0 2 * * * php artisan kyc:cleanup   Next Due: YYYY-MM-DD 02:00:00
-  15 2 * * * php artisan kyc:expire   Next Due: YYYY-MM-DD 02:15:00
+  0 0 * * * php artisan kyc:cleanup   Next Due: YYYY-MM-DD 00:00:00
+  0 2 * * * php artisan kyc:expire    Next Due: YYYY-MM-DD 02:00:00
 ```
 
 ## Queue worker

@@ -9,7 +9,7 @@ description: Frequently asked questions about Affiliate Pro.
 
 ### What does Affiliate Pro need to run?
 
-Botble CMS 7.5.0+, PHP 8.3.36+, the E-commerce plugin, and MySQL 5.7+ / MariaDB 10.3+.
+Botble CMS 7.5.0+, PHP 8.3.0+, the E-commerce plugin, and MySQL 5.7+ / MariaDB 10.3+.
 
 ### Is it compatible with the Marketplace plugin?
 

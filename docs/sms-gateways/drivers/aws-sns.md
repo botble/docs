@@ -22,7 +22,7 @@ Send SMS through Amazon SNS with tight integration for AWS-hosted applications.
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **AWS SNS** under **Active Drivers**
 3. Expand the **AWS SNS** section and enter:
    - **Access Key ID**: Your AWS Access Key ID

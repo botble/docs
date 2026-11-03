@@ -12,6 +12,8 @@ The Agent Portal is a dedicated interface for support agents, completely separat
 | `/agent/dashboard` | Dashboard with stats |
 | `/agent/conversations` | Messenger for assigned conversations |
 | `/agent/profile` | Profile and notification settings |
+| `/agent/snippets` | Personal reply snippets |
+| `/agent/live-visitors` | Visitors currently on the site (start a chat when agent-initiated chat is enabled) |
 
 ## Dashboard
 

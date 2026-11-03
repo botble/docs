@@ -24,7 +24,7 @@ The metrics show up on **Projects** shortcode style 4 — used by the **Home 4**
 section. The featured (full-width) card displays metrics 1 and 2 side-by-side; the smaller overlay cards
 beneath it display metric 1 only.
 
-If you're not using style 4, the metric fields are still saved but won't be rendered.
+Projects shortcode styles 7, 11 and 27 (used by later homepage presets) also render metrics. With other styles, the metric fields are still saved but won't be rendered.
 
 ## Format guidelines
 

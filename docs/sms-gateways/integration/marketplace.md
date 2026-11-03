@@ -21,7 +21,7 @@ Send SMS to vendors for new orders, customer inquiries, and OTP verification for
 
 ### Step 1 — Enable marketplace SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Marketplace** to enable
 3. Click **Save**
 
@@ -33,7 +33,7 @@ Send SMS to vendors for new orders, customer inquiries, and OTP verification for
 
 ### Step 3 — Configure OTP
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Set **OTP Code Length**, **TTL**, **Max Attempts**
 3. Click **Save**
 
@@ -151,7 +151,7 @@ See [Outbound Webhooks](../usage/outbound-webhooks.md) for details.
 
 ### Vendor SMS not being sent
 
-1. Check **Admin → Settings → SMS Gateways** → **Subjects** → **Marketplace** is enabled
+1. Check **Admin → SMS Gateways → Settings** → **Subjects** → **Marketplace** is enabled
 2. Verify vendor phone is not opted out (**Admin → SMS Gateways → Consents**)
 3. Check SMS driver is configured and active
 4. Look in **Delivery Logs** for failed SMS

@@ -17,7 +17,7 @@ Key features of the Backup plugin include:
 
 ### Accessing the Backup Manager
 
-To access the Backup Manager, go to **Admin Panel** → **System Administration** → **Backups**.
+To access the Backup Manager, go to **Admin Panel** → **Platform Administration** → **Backup**.
 
 ![Backup management](./images/backup-list.png)
 
@@ -75,16 +75,16 @@ php artisan cms:backup:create "Weekly Backup" --description="Regular weekly back
 ### Restoring a Backup
 
 ```bash
-php artisan cms:backup:restore [backup date]
+php artisan cms:backup:restore --backup=[backup date]
 ```
 
 Parameters:
-- `backup date`: (Optional) The date of the backup to restore in the format "YYYY-MM-DD HH-MM-SS". If not provided, the latest backup will be restored.
+- `--backup`: (Optional) The backup folder name, which is its creation time in the format "YYYY-MM-DD-HH-MM-SS" (run `cms:backup:list` to see them). If not provided, the latest backup will be restored.
 
 Example:
 
 ```bash
-php artisan cms:backup:restore 2023-05-15 10-30-45
+php artisan cms:backup:restore --backup=2023-05-15-10-30-45
 ```
 
 ### Deleting a Backup
@@ -94,12 +94,12 @@ php artisan cms:backup:remove [backup date]
 ```
 
 Parameters:
-- `backup date`: (Required) The date of the backup to delete in the format "YYYY-MM-DD HH-MM-SS".
+- `backup date`: (Required) The backup folder name in the format "YYYY-MM-DD-HH-MM-SS". Add `--force` to skip the confirmation.
 
 Example:
 
 ```bash
-php artisan cms:backup:remove 2023-05-15 10-30-45
+php artisan cms:backup:remove 2023-05-15-10-30-45
 ```
 
 ### Listing All Backups
@@ -116,7 +116,7 @@ This command displays a table with all available backups, including their names,
 php artisan cms:backup:clean
 ```
 
-This command removes all backups from the system. Use with caution!
+This command removes all backups from the system. Add `--force` to skip the confirmation. Use with caution!
 
 ## Setting Up Automated Backups
 

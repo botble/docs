@@ -21,7 +21,7 @@ Global reach, competitive rates for Asia and Europe, alphanumeric sender IDs whe
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **Vonage** under **Active Drivers**
 3. Expand the **Vonage** section and enter:
    - **API Key**: Your API Key

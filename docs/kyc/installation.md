@@ -36,10 +36,10 @@ php artisan cms:plugin:activate kyc
 
 When you activate the plugin, Botble runs:
 
-1. **Database migrations** — creates two tables:
+1. **Database migrations** — creates three tables:
    - `kyc_submissions` — one row per submission (polymorphic on `verifiable_type` + `verifiable_id`)
    - `kyc_subject_states` — tracks lockout state per subject
-   - `kyc_webhooks` — optional outgoing webhook endpoints
+   - `bb_kyc_webhooks` — optional outgoing webhook endpoints
 2. **Service provider registration** — boots the plugin's Eloquent macros on `Customer` (ecommerce) and `Store` (marketplace), registers routes, settings page, permissions, and the panel section.
 3. **Translation registration** — loads the 42 locale files.
 4. **Scheduler entries** — registers `kyc:cleanup` and `kyc:expire` with Laravel's scheduler.

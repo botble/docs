@@ -172,7 +172,7 @@ Amazon Simple Email Service (SES) is ideal for high-volume sending at low cost.
 ## Setting Up Postmark
 
 1. Select **Postmark** as the Mailer
-2. Enter your **Postmark Server Token**
+2. Enter your Postmark server token in the **Token** field
    - Find this in your Postmark server settings under "API Tokens"
 
 ## Setting Up Resend
@@ -319,8 +319,8 @@ You can customize the content and appearance of system emails.
 
 ### Editing Templates
 
-1. Go to **Settings** → **Email**
-2. Scroll down to see available email templates
+1. Go to **Settings** → **Email templates** (or visit `your-domain.com/admin/settings/email/templates`)
+2. Find the template in its module's list (Base, Contact, Newsletter, ...)
 3. Click on a template to edit it
 
 ![Select Email Template](../cms/images/select-email-template-to-edit.png)
@@ -332,9 +332,9 @@ Templates support dynamic variables that are replaced with actual data when emai
 ![Edit Email Template with Variables](../cms/images/edit-email-template-with-variables-and-functions.png)
 
 Click the **Variables** dropdown to see available placeholders for each template. Common variables include:
-- `{{ site_title }}` - Your website name
-- `{{ site_url }}` - Your website URL
-- `{{ date_time }}` - Current date and time
+- <code v-pre>{{ site_title }}</code> - Your website name
+- <code v-pre>{{ site_url }}</code> - Your website URL
+- <code v-pre>{{ date_time }}</code> - Current date and time
 
 ### Enabling/Disabling Templates
 

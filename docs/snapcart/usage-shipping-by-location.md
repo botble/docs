@@ -4,7 +4,7 @@ Configure different shipping rates based on customer location for precise delive
 
 ## Setup
 
-1. In admin panel, go to `Ecommerce` -> `Shipping`
+1. In admin panel, go to `Settings` -> `Ecommerce` -> `Shipping`
 2. Create shipping rules for different zones
 
 ## Creating Location-Based Rules

@@ -5,12 +5,14 @@ The loading screen (also called launch screen or splash screen) is the screen th
 ## Current Implementation
 
 ### Android
-- **Background Color**: `#FFB800` (primary yellow)
-- **Logo**: Uses `@mipmap/logo` image
-- **Files**: 
-  - `android/app/src/main/res/drawable/launch_background.xml`
-  - `android/app/src/main/res/drawable-v21/launch_background.xml`
-  - `android/app/src/main/res/values/colors.xml`
+- **Files**:
+  - `android/app/src/main/res/drawable/launch_background.xml`: `@color/splash_color` background + centered `@mipmap/logo`
+  - `android/app/src/main/res/drawable-v21/launch_background.xml`: the system window background (`?android:colorBackground`), no logo
+  - `android/app/src/main/res/values/colors.xml`: not shipped; create it to define `splash_color`
+
+::: warning Edit `drawable-v21` too
+Android picks `drawable-v21/launch_background.xml` on Android 5.0 and newer, which is every device the app supports. To get a colored launch screen with your logo, copy the layers from `drawable/launch_background.xml` into the `drawable-v21` file as well, and create `values/colors.xml` with your `splash_color`.
+:::
 
 ### iOS
 - **Background Color**: `#FFB800` (primary yellow)
@@ -24,7 +26,7 @@ The loading screen (also called launch screen or splash screen) is the screen th
 ### 1. Changing Background Color
 
 #### Option A: Update the color value
-Edit `android/app/src/main/res/values/colors.xml`:
+Create (or edit) `android/app/src/main/res/values/colors.xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

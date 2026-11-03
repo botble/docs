@@ -21,7 +21,7 @@ DeskHive can poll an IMAP mailbox and automatically convert incoming emails into
 
 ### 1. Configure IMAP Settings
 
-Go to **Admin → Support Desk → Settings → Email Piping** and fill in the fields below.
+Go to **Admin → Settings → Email Piping** and fill in the fields below.
 
 | Setting | Description |
 |---------|-------------|

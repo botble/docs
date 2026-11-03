@@ -35,7 +35,8 @@ Orisa supports the following menu locations:
 | Location | Description |
 |----------|-------------|
 | **Main Navigation** | Primary header menu shown on all pages |
-| **Footer Menu** | Links displayed in the footer area |
+
+Footer link columns are not a menu location: create a menu, then add it to a footer widget area with the `core-simple-menu` widget (`Appearance` -> `Widgets`).
 
 To assign a menu to a location, enable the corresponding checkbox in the **Display location** section of the menu edit page.
 

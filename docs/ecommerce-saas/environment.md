@@ -54,7 +54,8 @@ If both point to db 0, `Clear cache` (via `FLUSHDB`) deletes all queued jobs for
 | Variable | Default | What it does |
 |---|---|---|
 | `TENANCY_DB_PREFIX` | `tenant_` | Prefix for store database names (e.g., `tenant_abc123`, `tenant_def456`) |
-| `TENANCY_DEFAULT_THEME` | `amerce` | Theme preset on signup if none is chosen |
+| `TENANCY_DEFAULT_THEME` | `amerce` | Storefront theme a new store gets if none is chosen |
+| `TENANCY_DEFAULT_PRESET` | `home-fashion` | Theme preset preselected on every store-creation screen (installer, signup, console). A theme without this preset preselects its first one |
 | `TENANCY_MAX_CUSTOM_DOMAINS` | `5` | Max custom domains per store (plan can lower this) |
 | `SESSION_DOMAIN` | (empty) | **MUST stay empty** — a cookie scoped to parent domain leaks sessions between stores |
 | `SESSION_DRIVER` | `file` | Where sessions are stored. Shipped as `file` so the installer works before the database exists; `database` is recommended after install |
@@ -74,6 +75,19 @@ A cookie scoped to `.yourdomain.com` is sent to every store subdomain (`store1.y
 | `TENANCY_PROVISION_SYNC` | `false` | If `true`, provision stores inline during the signup request even when the queue is `database` or `redis`. Use it on a host with no worker. It has no extra effect on a `sync` queue, which already runs provisioning inline |
 
 Note: `provisioning.tries` is hard-coded to 1 in the source; there is no env var for it.
+
+### Preset demo media
+
+The release zip does not carry preset demo images. After a store created from a preset goes
+live, it downloads that preset's images (~3–5 MB, once per server, SHA-256 checked) — this
+needs outbound HTTPS. If it fails or is off, the store still works with placeholder images;
+retry with `php artisan tenancy:install-preset-media`.
+
+| Variable | Default | What it does |
+|---|---|---|
+| `TENANCY_PRESET_MEDIA` | `true` | Download real demo images for preset stores |
+| `TENANCY_PRESET_MEDIA_URL` | `https://botble.com/storage/envato` | Where the preset image archives are fetched from |
+| `TENANCY_PRESET_MEDIA_TIMEOUT` | `120` | Download timeout in seconds |
 
 ## Signup and landing page
 
@@ -140,7 +154,7 @@ Leave these empty to run without Stripe. Stores sign up, trial, and convert with
 |---|---|---|
 | `STRIPE_KEY` | (empty, commented) | Stripe public key (starts with `pk_`) |
 | `STRIPE_SECRET` | (empty, commented) | Stripe secret key (starts with `sk_`) |
-| `STRIPE_WEBHOOK_SECRET` | (empty, commented) | Stripe webhook signing secret (for `/stripe/webhook`) |
+| `STRIPE_WEBHOOK_SECRET` | (empty, commented) | Stripe webhook signing secret (for `/_tenancy/stripe/webhook`) |
 | `CASHIER_CURRENCY` | `usd` | 3-letter currency for Stripe (e.g., `usd`, `eur`, `gbp`) |
 
 See [Billing with Stripe](./usage-billing-stripe.md) for setup instructions.

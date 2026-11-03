@@ -40,7 +40,7 @@ If you want to add more widgets, just drag and drop from the left side to sideba
 
 ![Image](https://live.staticflickr.com/65535/52030598396_b5e0e6a557_b.jpg)
 
-- Go to Admin -> Appearance -> Menus (modify menu Company, Information & Product categories)
+- Go to Admin -> Appearance -> Menus (modify menu Useful Links, Help Center & Business)
 
 ![Image](https://live.staticflickr.com/65535/52030635133_67d67b6eee_b.jpg)
 

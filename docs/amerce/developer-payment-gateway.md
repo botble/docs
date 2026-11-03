@@ -26,7 +26,7 @@ You will need to make the same structure and handle events during checkout to im
 
 - **`src/Providers/HookServiceProvider.php`** - The main integration file. This is where the plugin registers itself with the checkout flow (`PAYMENT_FILTER_AFTER_POST_CHECKOUT` filter), adds the payment method to the enum, renders the settings form, and shows payment details in admin. Start here to understand how everything connects.
 
-- **`src/Forms/StripePaymentMethodForm.php`** - The admin settings form displayed under **Settings → Payment → Payment methods**. Shows how to build the configuration UI for API keys, webhook secrets, etc. using the `PaymentMethodForm` base class.
+- **`src/Forms/StripePaymentMethodForm.php`** - The admin settings form displayed under **Payments → Payment methods**. Shows how to build the configuration UI for API keys, webhook secrets, etc. using the `PaymentMethodForm` base class.
 
 - **`resources/views/methods.blade.php`** - The payment option displayed at the checkout page. Shows how the radio button and payment method description are rendered for the customer to select.
 
@@ -75,7 +75,7 @@ Checkout Form → PAYMENT_FILTER_PAYMENT_DATA → PAYMENT_FILTER_AFTER_POST_CHEC
 ## Prerequisites
 
 - The core **Payment** plugin must be activated (`platform/plugins/payment/`)
-- PHP 8.3.36+, Laravel 13.x
+- PHP 8.3.0+, Laravel 13.x
 - Familiarity with Laravel service providers and Blade views
 
 ## Plugin Directory Structure
@@ -583,6 +583,7 @@ Create `src/Http/Controllers/MyGatewayController.php`:
 namespace Botble\MyGateway\Http\Controllers;
 
 use Botble\Base\Http\Controllers\BaseController;
+use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Models\Payment;
 use Botble\Payment\Supports\PaymentHelper;
@@ -629,7 +630,8 @@ class MyGatewayController extends BaseController
         // Prevent duplicate processing
         $existingPayment = Payment::query()->where('charge_id', $chargeId)->first();
 
-        if ($existingPayment && $existingPayment->status === PaymentStatusEnum::COMPLETED) {
+        // status is cast to a PaymentStatusEnum object, so use loose comparison (==)
+        if ($existingPayment && $existingPayment->status == PaymentStatusEnum::COMPLETED) {
             return;
         }
 
@@ -671,14 +673,24 @@ class MyGatewayController extends BaseController
         }
     }
 
-    public function success(Request $request)
+    public function success(Request $request, BaseHttpResponse $response): BaseHttpResponse
     {
-        return PaymentHelper::handleAfterPaymentSuccess($request);
+        // Verify the transaction with the gateway API here (and fire
+        // PAYMENT_ACTION_PAYMENT_PROCESSED if the webhook has not done it yet)
+        $chargeId = $request->input('transaction_id');
+
+        return $response
+            ->setNextUrl(PaymentHelper::getRedirectURL() . '?charge_id=' . $chargeId)
+            ->setMessage(trans('plugins/payment::payment.checkout_success'));
     }
 
-    public function error(Request $request)
+    public function error(BaseHttpResponse $response): BaseHttpResponse
     {
-        return PaymentHelper::handleAfterPaymentError($request);
+        return $response
+            ->setError()
+            ->setNextUrl(PaymentHelper::getCancelURL())
+            ->withInput()
+            ->setMessage(trans('plugins/my-gateway::my-gateway.payment_failed'));
     }
 }
 ```
@@ -689,27 +701,15 @@ class MyGatewayController extends BaseController
 
 ```blade
 @if (get_payment_setting('status', MY_GATEWAY_PAYMENT_METHOD_NAME) == 1)
-    <li class="list-group-item">
-        <input
-            class="magic-radio js_payment_method"
-            type="radio"
-            name="payment_method"
-            id="payment_{{ MY_GATEWAY_PAYMENT_METHOD_NAME }}"
-            value="{{ MY_GATEWAY_PAYMENT_METHOD_NAME }}"
-            @if ($selecting == MY_GATEWAY_PAYMENT_METHOD_NAME) checked @endif
-        >
-        <label for="payment_{{ MY_GATEWAY_PAYMENT_METHOD_NAME }}">
-            {{ get_payment_setting('name', MY_GATEWAY_PAYMENT_METHOD_NAME, 'My Gateway') }}
-        </label>
-        <div
-            class="payment_{{ MY_GATEWAY_PAYMENT_METHOD_NAME }}_wrap payment_collapse_wrap"
-            style="display: {{ $selecting == MY_GATEWAY_PAYMENT_METHOD_NAME ? 'block' : 'none' }};"
-        >
-            <p>{!! BaseHelper::clean(get_payment_setting('description', MY_GATEWAY_PAYMENT_METHOD_NAME)) !!}</p>
-        </div>
-    </li>
+    <x-plugins-payment::payment-method
+        :name="MY_GATEWAY_PAYMENT_METHOD_NAME"
+        paymentName="My Gateway"
+        :supportedCurrencies="(new Botble\MyGateway\Services\Gateways\MyGatewayPaymentService())->supportedCurrencyCodes()"
+    />
 @endif
 ```
+
+The core `<x-plugins-payment::payment-method>` component renders the radio button, the name/description saved in settings, the payment fee line (including the hidden `payment_fee` input read when the payment is stored), the logo and an unsupported-currency warning. Anything you put inside the component (e.g. hidden inputs for an embedded form) is rendered below the description. All bundled gateways (Stripe, PayPal, Mollie, Razorpay, Paystack, SSLCommerz) use it.
 
 **`resources/views/detail.blade.php`** - Admin payment detail:
 
@@ -756,6 +756,7 @@ return [
     'webhook_secret' => 'Webhook Secret',
     'transaction_id' => 'Transaction ID',
     'status' => 'Status',
+    'payment_failed' => 'Payment failed!',
     'instructions' => [
         'register' => 'Register for an account at <a href="https://mygateway.com" target="_blank">mygateway.com</a>.',
         'get_credentials' => 'Get your API keys from the dashboard.',
@@ -875,16 +876,16 @@ Payment gateways do **not** create their own tables. All data is stored in the c
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `charge_id` | string(60) | Gateway transaction ID |
+| `charge_id` | string(255) | Gateway transaction ID |
 | `payment_channel` | string(60) | Your gateway method name |
 | `amount` | decimal(15) | Payment amount |
 | `payment_fee` | decimal(15) | Fee charged |
 | `currency` | string(120) | Currency code |
-| `status` | string(60) | pending, completed, failed, refunded |
+| `status` | string(60) | pending, completed, refunding, refunded, fraud, failed, canceled |
 | `order_id` | foreignId | Associated order |
 | `customer_id` | foreignId | Customer (polymorphic) |
 | `customer_type` | string | Customer model FQCN |
-| `metadata` | json | Gateway-specific data |
+| `metadata` | mediumText (cast to array) | Gateway-specific data |
 
 ## Testing Checklist
 

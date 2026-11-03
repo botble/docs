@@ -125,7 +125,7 @@ No third-party cookies are set by the plugin itself. Tracking pixels (Meta, GA4,
 
 ## How long is data retained?
 
-- **Visit logs** — controlled by `Visit log retention (days)` setting; auto-purged by `landing-funnel:purge-visits` command. Default 90 days.
+- **Visit logs** — controlled by `Visit log retention (days)` setting; purged by the `landing-funnel:purge-visits` command when you schedule it on cron. Default 90 days.
 - **Order attribution** — kept forever (never auto-purged). Cascades on funnel delete.
 - **Webhook delivery log** — kept forever (no auto-purge).
 - **Attribution cache** — 48 hours.

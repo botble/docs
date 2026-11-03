@@ -16,7 +16,7 @@ The specification system has three components:
 
 Groups organize related specifications together.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Groups` in the admin panel.
+Navigate to `Ecommerce` -> `Product Specification` -> `Groups` in the admin panel.
 
 1. Click **Create**
 2. Enter group details:
@@ -36,7 +36,7 @@ Common specification group examples:
 
 Attributes are the actual specifications within groups.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Attributes`.
+Navigate to `Ecommerce` -> `Product Specification` -> `Attributes`.
 
 1. Click **Create**
 2. Fill in attribute details:
@@ -73,7 +73,7 @@ For `select`, `checkbox`, and `radio` types:
 
 Tables combine multiple groups for easy assignment to products.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Tables`.
+Navigate to `Ecommerce` -> `Product Specification` -> `Tables`.
 
 1. Click **Create**
 2. Enter table details:
@@ -184,7 +184,7 @@ Use cases:
 
 ### Export Specifications
 
-Navigate to `Ecommerce` -> `Products` -> `Export Specifications`:
+Navigate to `Tools` -> `Export/Import Data` -> **Product Specifications** (Export):
 
 1. Select export format
 2. Export includes:
@@ -196,13 +196,14 @@ Navigate to `Ecommerce` -> `Products` -> `Export Specifications`:
 
 ### Import Specifications
 
-Navigate to `Ecommerce` -> `Products` -> `Import Specifications`:
+Navigate to `Tools` -> `Export/Import Data` -> **Import Product Specifications**:
 
 1. Download template
 2. Fill in columns:
-   - `product_id` or `product_name` - Product identifier
-   - `specification_table` - Table name (optional)
-   - `{attribute_name}` - Value for each attribute
+   - `name` - Product name (must match an existing parent product)
+   - `specification_table` - Specification table name (optional)
+   - `specifications` - Values in `Name:Value` format, separated by `|` (e.g. `Screen Size:6.1 inch|Weight:180g`)
+   - `specifications_{locale}` - Translated values per extra language (if multi-language is active)
 3. Upload and import
 
 ::: warning
@@ -231,8 +232,8 @@ If marketplace plugin is active:
 Vendors can create their own specification groups and attributes:
 
 1. Navigate to vendor dashboard
-2. Go to `Products` -> `Specifications`
-3. Create custom groups/attributes
+2. Go to the specification groups / attributes / tables pages in the vendor dashboard
+3. Create custom groups/attributes/tables
 4. These are vendor-specific and don't appear for other vendors
 
 Admin-created specifications are available to all vendors.

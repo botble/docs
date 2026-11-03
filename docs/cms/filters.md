@@ -27,14 +27,18 @@ add_filter(string|array $tag, callable $callback, int $priority = 20, int $accep
 
 ```php
 // In a service provider's boot method or theme functions.php
-add_filter('base_filter_public_single_data', function ($data, $model) {
-    if ($model instanceof \Botble\Blog\Models\Post) {
-        // Modify post data
-        $data['custom_field'] = get_meta_data($model, 'custom_field', true);
+// BASE_FILTER_PUBLIC_SINGLE_DATA receives the resolved result for a public slug
+// (plugins such as Blog return ['view' => ..., 'data' => [...]]).
+add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, function ($result) {
+    $post = is_array($result) ? ($result['data']['post'] ?? null) : null;
+
+    if ($post instanceof \Botble\Blog\Models\Post) {
+        // Pass extra data to the post view
+        $result['data']['custom_field'] = $post->getMetaData('custom_field', true);
     }
 
-    return $data;
-}, 20, 2);
+    return $result;
+}, 120);
 ```
 
 ### Applying a Filter
@@ -79,7 +83,7 @@ remove_filter(string $tag)
 
 ```php
 // Remove all callbacks for a filter
-remove_filter('base_filter_public_single_data');
+remove_filter(BASE_FILTER_PUBLIC_SINGLE_DATA);
 ```
 
 ## Common Filter Hooks

@@ -12,11 +12,12 @@ All side effects (notifications, webhooks, counters) in the plugin are triggered
 | Event | Dispatched when | Payload |
 |---|---|---|
 | `Botble\Kyc\Events\KycSubmitted` | A new submission is POSTed by the subject | `$submission` (KycSubmission) |
-| `Botble\Kyc\Events\KycApproved` | An admin approves a submission | `$submission`, `$reviewer` (admin user), `$note` (string \| null) |
-| `Botble\Kyc\Events\KycRejected` | An admin rejects a submission OR an approved submission is revoked via Unverify | `$submission`, `$reviewer`, `$note`, `$unverified` (bool) |
+| `Botble\Kyc\Events\KycApproved` | An admin approves a submission | `$submission` (reviewer in `reviewed_by`, note in `review_note`) |
+| `Botble\Kyc\Events\KycRejected` | An admin rejects a submission | `$submission` (reason in `review_note`) |
+| `Botble\Kyc\Events\KycUnverified` | An admin revokes an approval via **Unverify** (not sent as a webhook) | `$submission` |
 | `Botble\Kyc\Events\KycExpired` | The nightly `kyc:expire` command flips an approved submission | `$submission` |
 
-All four events implement Laravel's standard `dispatch()` contract and are synchronous by default — the plugin's own listeners run before your request returns.
+All five events implement Laravel's standard `dispatch()` contract and are synchronous by default — the plugin's own listeners run before your request returns.
 
 ## Listening to an event
 
@@ -90,7 +91,7 @@ class NotifySalesTeamListener
                 ':x: KYC rejected for %s (%s). Reason: %s',
                 $event->submission->verifiable?->getAttribute('name') ?? 'Unknown',
                 $event->submission->subject_key,
-                $event->note ?? 'no note',
+                $event->submission->review_note ?? 'no note',
             ),
         ]);
     }
@@ -133,7 +134,7 @@ The plugin's own listeners (webhook dispatcher, admin notification sender) are r
 
 ```php
 $this->app->bind(
-    \Botble\Kyc\Listeners\DispatchKycApprovedWebhookListener::class,
+    \Botble\Kyc\Listeners\DispatchKycWebhookListener::class,
     \App\Listeners\MyCustomKycApprovedWebhookListener::class,
 );
 ```

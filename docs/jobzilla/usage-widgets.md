@@ -29,7 +29,7 @@ If you want to add more widgets, just drag and drop from the left side to sideba
 
 ![Image](./images/menu-7.png)
 
-Go to Admin -> Appearance -> Menus (modify menu Quick Links, Helpful Resources, For Candidates, For Employers)
+Go to Admin -> Appearance -> Menus (modify menu Quick Links, Helpful Resources, For Candidate, For Employers)
 
 ![Image](./images/menu-8.png)
 

@@ -10,6 +10,13 @@ This guide will walk you through the process of configuring the Product Gifts pl
 
 ![Product Gifts Settings](./images/settings.png)
 
+## General Settings
+
+| Setting | Description |
+|---------|-------------|
+| **Enable for Vendors** | Shown when the Marketplace plugin is active. Lets vendors manage their own gift rules from the vendor dashboard. |
+| **Maximum Gifts Per Order** | Limits how many gift tiers a customer can receive per order. Set to 0 for unlimited. Higher-value tiers are prioritized. |
+
 ## Appearance Settings
 
 ### Display Style
@@ -22,6 +29,7 @@ Choose how gift options are displayed to customers:
 | **Classic** | Traditional layout with balanced visual elements |
 | **Modern** | Contemporary design with larger visuals |
 | **Elegant** | Refined presentation with subtle styling |
+| **Playful** | Playful, more decorative presentation |
 
 ### Primary Color
 

@@ -10,7 +10,7 @@ To manage menus, go to `Appearance` -> `Menus` in the admin panel.
 
 ## Bottom Navigation
 
-SnapCart features a mobile-optimized bottom navigation bar with 5 tabs: Home, Categories, Cart, Account, and More.
+SnapCart features a mobile-optimized bottom navigation bar with 5 tabs: Home, Categories, Search, Cart, and Account.
 This navigation is configured through the theme's built-in bottom navigation component.
 
 ## Category Navigation

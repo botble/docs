@@ -124,11 +124,11 @@ echo ThemeSupport::formatDate($post->created_at, 'M d, Y');
 
 ### Customizing Available Formats
 
-Use the `theme_supported_date_formats` filter:
+Use the `theme_date_formats` filter:
 
 ```php
-add_filter('theme_supported_date_formats', function (array $formats): array {
-    $formats[] = 'd/m/Y';
+add_filter('theme_date_formats', function (array $formats): array {
+    $formats[] = 'D, d M Y';
     return $formats;
 }, 120);
 ```

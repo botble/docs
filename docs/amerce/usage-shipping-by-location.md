@@ -14,19 +14,19 @@ Make sure the **Location** plugin is activated. Go to **Admin** -> **Plugins** a
 
 ### Step 2: Import Location Data
 
-Navigate to **Admin** -> **Locations** -> **Bulk Import** and import the country data for the regions you want to support.
+Navigate to **Admin** -> **Locations** -> **Location Importer** and import the country data for the regions you want to support.
 
 This will populate the countries, states, and cities used for shipping zone configuration.
 
 ### Step 3: Enable Location-Based Shipping
 
-Go to **Admin** -> **Settings** -> **Ecommerce** -> **General** and enable **Load countries, states, and cities from the Location plugin**.
+Go to **Admin** -> **Settings** -> **Ecommerce** -> **Checkout** and enable **Load countries, states, cities from plugin location**.
 
 This tells the checkout to use the Location plugin's data (with dropdowns for country/state/city) instead of free text fields.
 
 ### Step 4: Configure Shipping Fees
 
-Go to **Admin** -> **Ecommerce** -> **Shipping** to set up shipping fees by location.
+Go to **Admin** -> **Settings** -> **Ecommerce** -> **Shipping** to set up shipping fees by location.
 
 Here you can:
 

@@ -444,10 +444,10 @@ Run this command in your project folder:
 eas build:configure
 ```
 
-This creates an `eas.json` file in your project and updates `app.json` with the project ID.
+This links the project to your Expo account and gives you a project ID. Because the config is dynamic (`app.config.js`), EAS cannot write the ID for you; add it yourself as shown below.
 
 ::: warning Verify projectId Location
-After running `eas build:configure`, verify that the `projectId` is in the correct location in your `app.json`:
+Add the `projectId` inside `extra.eas` of the object exported by `app.config.js` (next to `extra.appConfig`). Push notifications read it from there. The JSON below shows where it goes:
 
 **Correct** - inside `expo.extra.eas`:
 ```json
@@ -563,12 +563,13 @@ eas credentials --platform android
 eas build:configure
 ```
 
-This creates `eas.json` in your project:
+The project already ships an `eas.json`:
 
 ```json
 {
   "cli": {
-    "version": ">= 5.0.0"
+    "version": ">= 16.28.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -579,6 +580,7 @@ This creates `eas.json` in your project:
       "distribution": "internal"
     },
     "production": {
+      "autoIncrement": true,
       "env": {
         "APP_ENV": "production"
       }
@@ -594,25 +596,29 @@ This creates `eas.json` in your project:
 The `APP_ENV=production` setting is critical - it disables the development-only license check dialog.
 :::
 
-### Step 2: Update app.json
+### Step 2: Update `.env` and `app.config.js`
 
-```json
-{
-  "expo": {
-    "name": "Your Store Name",
-    "slug": "your-store",
-    "version": "1.0.0",
-    "ios": {
-      "bundleIdentifier": "com.yourcompany.yourstore",
-      "buildNumber": "1"
-    },
-    "android": {
-      "package": "com.yourcompany.yourstore",
-      "versionCode": 1
-    }
-  }
-}
+This project uses `app.config.js` (there is no `app.json`).
+
+- App name and version come from `.env`: `APP_NAME`, `APP_VERSION`.
+- Bundle ID / package name, slug and scheme are set directly in `app.config.js`:
+
+```js
+module.exports = ({ config }) => ({
+  ...config,
+  name: process.env.APP_NAME || "Botble Ecommerce",
+  slug: "botble-ecommerce",            // ← your slug
+  version: process.env.APP_VERSION || "1.0.0",
+  ios: {
+    bundleIdentifier: "com.botble.ecommerce",   // ← your bundle ID
+  },
+  android: {
+    package: "com.botble.ecommerce",            // ← your package name
+  },
+});
 ```
+
+Build numbers (`buildNumber` / `versionCode`) are managed by EAS (`appVersionSource: "remote"` + `autoIncrement`), so you do not set them here.
 
 ## Building for iOS
 
@@ -687,24 +693,16 @@ eas build --platform all --profile production
 
 ### Before Each Release
 
-Update in `app.json`:
+Bump `APP_VERSION` in `.env` (or in your EAS environment variables):
 
-```json
-{
-  "expo": {
-    "version": "1.1.0",
-    "ios": {
-      "buildNumber": "2"
-    },
-    "android": {
-      "versionCode": 2
-    }
-  }
-}
+```bash
+APP_VERSION=1.1.0
 ```
 
-- **version**: User-visible version (1.0.0, 1.1.0, etc.)
-- **buildNumber/versionCode**: Internal build number (increment each build)
+- **version** (`APP_VERSION`): User-visible version (1.0.0, 1.1.0, etc.)
+- **buildNumber/versionCode**: Internal build number, auto-incremented by the EAS `production` profile
+
+See [Version Management](09_version_management.md).
 
 ## App Store Listings
 
@@ -771,7 +769,7 @@ Update JavaScript without app store review:
 eas update --branch production --message "Bug fixes"
 ```
 
-Configure in `app.json`:
+Configure in `app.config.js` (shown as JSON; add the same keys to the exported object):
 
 ```json
 {
@@ -791,7 +789,7 @@ Configure in `app.json`:
 ### Build Failed
 
 1. Check build logs on expo.dev
-2. Verify app.json configuration
+2. Verify `app.config.js` and `.env` configuration
 3. Ensure valid credentials
 
 ### Submission Rejected

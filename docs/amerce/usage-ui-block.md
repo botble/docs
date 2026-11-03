@@ -144,12 +144,13 @@ If the bundled shortcodes don't cover your need, you can register a custom one i
 ```php
 use Botble\Shortcode\Compilers\Shortcode;
 use Botble\Shortcode\Facades\Shortcode as ShortcodeFacade;
+use Botble\Theme\Facades\Theme;
 
 ShortcodeFacade::register('my-custom-block', 'My Custom Block', 'Description', function (Shortcode $shortcode) {
-    return view('theme.amerce::shortcodes.my-custom-block', compact('shortcode'))->render();
+    return Theme::partial('shortcodes.my-custom-block.index', compact('shortcode'));
 });
 ```
 
 ::: tip
-Place custom shortcode views under `platform/themes/amerce/views/shortcodes/` and register them in `platform/themes/amerce/functions/shortcodes.php`.
+Place custom shortcode views under `platform/themes/amerce/partials/shortcodes/<name>/` and register them in `platform/themes/amerce/functions/shortcodes.php`.
 :::

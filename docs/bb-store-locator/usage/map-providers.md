@@ -6,7 +6,7 @@ Out of the box the locator uses **Leaflet** with OpenStreetMap tiles. There is n
 
 ## Tile choices
 
-Set under **Settings → Store Locator (Map) → Tile provider**.
+Set under **Settings → Store Locator (Map) → Map tiles**.
 
 | Provider | Character | Key needed |
 |---|---|---|
@@ -37,14 +37,14 @@ This trips people up, so it is worth being explicit:
 
 | Key | Where it goes | Visibility |
 |---|---|---|
-| **Maps JavaScript key** | Map provider section | Public - it is sent to the browser, by design |
-| **Geocoding key** | Geocoding section | Server-side only, never sent to the browser |
+| **Google Maps browser key** | Map provider section | Public - it is sent to the browser, by design |
+| **Google Geocoding key (server-side)** | Geocoding section | Server-side only, never sent to the browser |
 
 Do not paste the same unrestricted key into both. Restrict the JavaScript key by HTTP referrer in the Google Cloud console, and restrict the geocoding key by IP.
 
 ## Clustering
 
-**Enable clustering** groups nearby pins into a numbered circle that splits apart as you zoom in. Both renderers support it.
+**Group nearby markers** groups nearby pins into a numbered circle that splits apart as you zoom in. Both renderers support it.
 
 Turn it on for anything above roughly 30 stores. Without it, a dense city centre becomes a pile of overlapping pins where nothing is clickable.
 

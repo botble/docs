@@ -19,7 +19,7 @@ Send SMS through Plivo with strong coverage in Asia and competitive internationa
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **Plivo** under **Active Drivers**
 3. Expand the **Plivo** section and enter:
    - **Auth ID**: Your Auth ID

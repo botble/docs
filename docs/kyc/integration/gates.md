@@ -114,7 +114,7 @@ When the gate fails, the middleware flashes an error and redirects to:
 - **Customer scope** → `route('kyc.submission.index', ['subjectKey' => 'customer'])`
 - **Vendor scope** → `route('kyc.submission.index', ['subjectKey' => 'vendor'])`
 
-Customise the redirect target by overriding the `KycRequiredMiddleware` class in your `AppServiceProvider`.
+Customise the redirect target by overriding the `EnsureKycRequired` middleware class in your `AppServiceProvider`.
 
 ## Custom gate contexts
 

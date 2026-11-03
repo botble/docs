@@ -2,7 +2,7 @@
 
 Bulk import and export data to efficiently manage large catalogs, update inventory, sync with external systems, or migrate from other platforms.
 
-Navigate to `Tools` -> `Import/Export Data` to access all import and export operations.
+Navigate to `Tools` -> `Export/Import Data` to access all import and export operations.
 
 ## Overview
 
@@ -23,7 +23,7 @@ Available import/export operations:
 
 ## Exporting Products
 
-Navigate to `Tools` -> `Import/Export Data` -> `Export Products`.
+Navigate to `Tools` -> `Export/Import Data` -> `Export Products`.
 
 ### Export Options
 
@@ -62,7 +62,7 @@ Variations reference parent product by `name` or `slug`. Leave parent product fi
 
 ## Importing Products
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Products`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Products`.
 
 ### Import Process
 
@@ -190,7 +190,7 @@ Size:Large|Color:Red|Material:Cotton
 Format: `AttributeSet:Value|AttributeSet:Value`
 
 ::: warning
-Attribute sets and values must exist before import. Create them in `Ecommerce` -> `Attributes`.
+Attribute sets and values must exist before import. Create them in `Ecommerce` -> `Product Attributes`.
 :::
 
 ## Handling Images
@@ -228,7 +228,7 @@ For large imports with images, upload images to `storage/app/public/products/` f
 ### Step-by-Step Process
 
 1. **Prepare parent products** - Import parent products first
-2. **Create attribute sets** - Ensure attributes exist in `Ecommerce` -> `Attributes`
+2. **Create attribute sets** - Ensure attributes exist in `Ecommerce` -> `Product Attributes`
 3. **Prepare variation rows** - Format variation data
 4. **Import** - Upload CSV with variations
 
@@ -262,7 +262,7 @@ Result: `TSHIRT-001-SMALL-RED`
 
 ## Importing Prices Only
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Prices`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Prices`.
 
 ### Price Import Format
 
@@ -283,7 +283,7 @@ Use price import for quick price updates without modifying other product data.
 
 ## Importing Inventory Only
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Inventory`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Inventory`.
 
 ### Inventory Import Format
 
@@ -301,7 +301,7 @@ SKU-VAR-1,Variation Name,50,in_stock,1
 
 ## Importing Categories
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Categories`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Categories`.
 
 ### Category Import Format
 
@@ -318,7 +318,7 @@ Categories must exist before import.
 
 ## Importing Specifications
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Specifications`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Specifications`.
 
 ### Specification Import Format
 
@@ -439,7 +439,7 @@ php artisan queue:work
 
 ## Importing/Exporting Customers
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Customers` or `Export Customers`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Customers` or `Export Customers`.
 
 ### Customer Export Columns
 
@@ -474,7 +474,7 @@ John Doe,john@example.com,+1234567890,1990-01-15,activated,secret123
 
 ## Exporting Orders
 
-Navigate to `Tools` -> `Import/Export Data` -> `Export Orders`.
+Navigate to `Tools` -> `Export/Import Data` -> `Export Orders`.
 
 Orders can only be exported (no import). Export includes filters:
 

@@ -6,7 +6,7 @@ The app supports customizable theme colors through CSS variables. Colors use RGB
 
 ## Theme Configuration
 
-Theme colors are defined in `global.css` in the root directory.
+Theme colors are defined in `global.css` in the root directory (Tailwind / NativeWind classes) and mirrored in `src/lib/theme.ts` (`themeColors` used by inline styles and icons).
 
 ## Color Format
 
@@ -140,7 +140,7 @@ The app uses two parallel color systems:
 1. **CSS variables in `global.css`** — Used by NativeWind/Tailwind classes (`className="bg-primary"`)
 2. **`themeColors` from `useSettings()` context** — Used in inline styles and third-party components that don't support className
 
-Both systems read from the same CSS variables, so they stay in sync. Use Tailwind classes when possible; use `themeColors` for dynamic styles, icons, and native components.
+The two are **separate**: `themeColors` comes from the hex values in `lightColors` / `darkColors` in `src/lib/theme.ts`, not from `global.css`. When you change a brand color, update it in both `global.css` (RGB) and `src/lib/theme.ts` (hex) so Tailwind-styled and inline-styled parts match. Use Tailwind classes when possible; use `themeColors` for dynamic styles, icons, and native components.
 
 ## Using Theme Colors in Components
 

@@ -78,7 +78,7 @@ Android only. Allow installs from unknown sources when your device prompts. The 
 - TypeScript (strict)
 - Expo Router v6 (file-based routing)
 - React Query + Context API
-- NativeWind (Tailwind for React Native)
+- React Native StyleSheet + `theme.ts` design system
 - react-i18next + RTL support
 - MapLibre + OpenStreetMap (default map engine, free & no-key); optional react-native-maps (Apple/Google)
 - expo-secure-store

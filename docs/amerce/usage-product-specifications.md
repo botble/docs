@@ -16,7 +16,7 @@ The specification system has three components:
 
 Groups organize related specifications together.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Groups` in the admin panel.
+Navigate to `Ecommerce` -> `Product Specification` -> `Groups` in the admin panel.
 
 1. Click **Create**
 2. Enter group details:
@@ -36,7 +36,7 @@ Common specification group examples:
 
 Attributes are the actual specifications within groups.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Attributes`.
+Navigate to `Ecommerce` -> `Product Specification` -> `Attributes`.
 
 1. Click **Create**
 2. Fill in attribute details:
@@ -73,7 +73,7 @@ For `select`, `checkbox`, and `radio` types:
 
 Tables combine multiple groups for easy assignment to products.
 
-Navigate to `Ecommerce` -> `Specifications` -> `Tables`.
+Navigate to `Ecommerce` -> `Product Specification` -> `Tables`.
 
 1. Click **Create**
 2. Enter table details:
@@ -184,25 +184,26 @@ Use cases:
 
 ### Export Specifications
 
-Navigate to `Ecommerce` -> `Products` -> `Export Specifications`:
+Navigate to `Tools` -> `Export/Import Data` and pick **Product Specifications** under **Export**:
 
 1. Select export format
-2. Export includes:
-   - Product ID
-   - Product Name
-   - Specification Table
-   - All attribute values
+2. Export includes one row per product:
+   - `name` - Product name
+   - `specification_table` - Specification table name
+   - `specifications` - All values as `Name:Value` pairs separated by `|`
+   - `specifications_{locale}` - Translated values (one column per extra language)
 3. Download file
 
 ### Import Specifications
 
-Navigate to `Ecommerce` -> `Products` -> `Import Specifications`:
+Navigate to `Tools` -> `Export/Import Data` and pick **Product Specifications** under **Import**:
 
-1. Download template
+1. Download the example file
 2. Fill in columns:
-   - `product_id` or `product_name` - Product identifier
-   - `specification_table` - Table name (optional)
-   - `{attribute_name}` - Value for each attribute
+   - `name` - Product name (must match an existing parent product)
+   - `specification_table` - Table name (optional, must match an existing table)
+   - `specifications` - Values in `Name:Value` format, separated by `|` (e.g. `Weight:1.2 kg|Color:Black`)
+   - `specifications_{locale}` - Optional translated values
 3. Upload and import
 
 ::: warning

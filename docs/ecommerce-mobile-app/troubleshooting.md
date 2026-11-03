@@ -47,7 +47,7 @@ To check current account: `eas whoami`.
 
 ## EAS init: "Cannot read properties of undefined (reading 'projectId')"
 
-The `eas` block is in the wrong place in `app.json`. It must be inside `extra`:
+The `eas` block is in the wrong place. In `app.config.js` it must be inside `extra` (next to `appConfig`):
 
 ```json
 {

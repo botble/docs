@@ -1,5 +1,20 @@
 # Release Notes
 
+## 1.1.2
+
+**Added**
+- Support for Botble marketplace (direct purchase) license codes alongside Envato purchase codes
+  in the development license check.
+
+**Fixed**
+- The app closing on Android when opening the sign-in screen without Facebook login set up.
+
+## 1.1.1
+
+**Fixed**
+- Signing out now also signs out of the native Google / Facebook SDKs.
+- Facebook Login plugin is configured with the required App ID, client token, and scheme.
+
 ## 1.1.0
 
 **Added**

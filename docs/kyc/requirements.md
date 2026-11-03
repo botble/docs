@@ -31,7 +31,7 @@ The plugin works with any Botble script:
 
 | Component | Minimum version |
 |---|---|
-| PHP | **8.3.36** (PHP 8.4 is supported) |
+| PHP | **8.3.0** (PHP 8.4 is supported) |
 | Extensions | `openssl`, `fileinfo`, `gd` or `imagick`, `pdo`, `mbstring` |
 | Database | MySQL 5.7+, MariaDB 10.3+, or PostgreSQL 10+ |
 | Writable | `storage/app/private/` (where KYC documents are stored) |

@@ -12,7 +12,7 @@ In `app.config.js`, the Expo `version` is driven by the `APP_VERSION`
 environment variable:
 
 ```js
-version: process.env.APP_VERSION || "1.0.0",
+version: process.env.APP_VERSION || "1.1.2",
 ```
 
 So to change the public version, set it in your `.env`:

@@ -29,7 +29,7 @@ Second, below the Popular items is the Menu Footer
 
 ![](/transp/images/widgets/6.png)
 
-You can also modify it in **Footer menu** like Popular items.
+You can also modify it in **Footer sidebar** like Popular items.
 
 ![](/transp/images/widgets/7.png)
 
@@ -37,7 +37,7 @@ Second, below the Popular items is the Galleries
 
 ![](/transp/images/widgets/8.png)
 
-You can also modify it in **Footer menu** like Popular items.
+You can also modify it in **Footer sidebar** like Popular items.
 
 ![](/transp/images/widgets/9.png)
 
@@ -45,7 +45,7 @@ Second, below the Popular items is the App Downloads
 
 ![](/transp/images/widgets/10.png)
 
-You can also modify it in **Footer menu** like Popular items.
+You can also modify it in **Footer sidebar** like Popular items.
 
 ![](/transp/images/widgets/11.png)
 

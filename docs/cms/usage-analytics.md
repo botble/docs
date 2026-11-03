@@ -16,15 +16,16 @@ Navigate to `Settings` -> `Others` -> `Google Analytics` to find instructions fo
 
 ![Instructions](../cms/images/analytics-instruction.png)
 
-* Google tag ID: Follow [this link](https://support.google.com/analytics/answer/9539598#find-G-ID) to find your Google
-  Tag ID.
-* Property ID: Visit [this link](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id) to
+* Property ID for GA4: Visit [this link](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id) to
   find your Property ID.
 * Service Account Credentials: Follow the
   instructions [here](https://github.com/akki-io/laravel-google-analytics/wiki/2.-Configure-Google-Service-Account-&-Google-Analytics)
   to set up Service Account Credentials.
 
-After obtaining the JSON credential file, open it and copy its content to the "Service Account Credential" field.
+After obtaining the JSON credential file, open it and copy its content to the "Service Account Credentials" field. Turn on **Enable Dashboard Widgets**, save, then use
+**Test Connection** to confirm the credentials and property are valid.
+
+The Google tag ID (`G-...`) is not entered here — it belongs in **Settings → Website Tracking**.
 
 ![Demo settings](../cms/images/analytics-demo-settings.png)
 

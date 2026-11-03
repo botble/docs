@@ -35,7 +35,7 @@ Push notifications in this app work through Firebase Cloud Messaging (FCM):
 
 1. In Firebase Console, click **"Add app"** → **"Android"**
 2. Enter your Android package name
-   - Find it in `app.json` under `android.package` (e.g., `com.yourcompany.app`)
+   - Find it in `app.config.js` under `android.package` (default `com.botble.ecommerce`)
 3. (Optional) Add app nickname and SHA-1 certificate
 4. Click **"Register app"**
 
@@ -46,19 +46,12 @@ Push notifications in this app work through Firebase Cloud Messaging (FCM):
 
 ### 2.3 Add to Your Expo Project
 
-Place the `google-services.json` file in your project root directory (same level as `app.json`).
+Place the `google-services.json` file in your project root directory (same level as `app.config.js`).
 
-Then update your `app.json` to reference it:
+Then point `.env` at it (`app.config.js` passes it to `android.googleServicesFile`):
 
-```json
-{
-  "expo": {
-    "android": {
-      "package": "com.yourcompany.app",
-      "googleServicesFile": "./google-services.json"
-    }
-  }
-}
+```bash
+GOOGLE_SERVICES_FILE=./google-services.json
 ```
 
 For detailed instructions, visit: [Firebase Android Setup Guide](https://firebase.google.com/docs/android/setup)
@@ -69,7 +62,7 @@ For detailed instructions, visit: [Firebase Android Setup Guide](https://firebas
 
 1. In Firebase Console, click **"Add app"** → **"iOS"**
 2. Enter your iOS bundle ID
-   - Find it in `app.json` under `ios.bundleIdentifier` (e.g., `com.yourcompany.app`)
+   - Find it in `app.config.js` under `ios.bundleIdentifier` (default `com.botble.ecommerce`)
 3. (Optional) Add app nickname
 4. Click **"Register app"**
 
@@ -80,19 +73,12 @@ For detailed instructions, visit: [Firebase Android Setup Guide](https://firebas
 
 ### 3.3 Add to Your Expo Project
 
-Place the `GoogleService-Info.plist` file in your project root directory (same level as `app.json`).
+Place the `GoogleService-Info.plist` file in your project root directory (same level as `app.config.js`).
 
-Then update your `app.json` to reference it:
+Then point `.env` at it (`app.config.js` passes it to `ios.googleServicesFile`). Only set this once the file exists, otherwise the iOS prebuild fails:
 
-```json
-{
-  "expo": {
-    "ios": {
-      "bundleIdentifier": "com.yourcompany.app",
-      "googleServicesFile": "./GoogleService-Info.plist"
-    }
-  }
-}
+```bash
+GOOGLE_SERVICES_FILE_IOS=./GoogleService-Info.plist
 ```
 
 ### 3.4 Enable Push Notifications Capability
@@ -188,7 +174,7 @@ eas build --platform all
 
 - **Use a real device** - Simulators/emulators often don't support push notifications
 - **Check Firebase configuration** - Ensure files are in the correct locations
-- **Verify app.json** - Make sure `googleServicesFile` paths are correct
+- **Verify `.env`** - Make sure `GOOGLE_SERVICES_FILE` / `GOOGLE_SERVICES_FILE_IOS` paths are correct
 - **Check device token** - Verify tokens are being registered in Botble admin (Settings → API Settings → Active Device Tokens)
 
 ### iOS notifications not working
@@ -205,8 +191,8 @@ eas build --platform all
 
 ### Where to find package name/bundle ID
 
-- **Android package**: Check `app.json` under `expo.android.package`
-- **iOS bundle ID**: Check `app.json` under `expo.ios.bundleIdentifier`
+- **Android package**: Check `app.config.js` under `android.package`
+- **iOS bundle ID**: Check `app.config.js` under `ios.bundleIdentifier`
 
 ### No device tokens in Botble admin
 
@@ -247,19 +233,19 @@ interface NotificationData {
   orderId?: string;    // Links to order detail screen
   productId?: string;  // Links to product detail screen
   url?: string;        // Custom URL (internal or external)
-  action_url?: string; // URL from API notification (validated against SITE_URL domain)
+  action_url?: string; // URL from API notification (validated against the API_BASE_URL host)
   icon?: string;       // Image URL for notification
 }
 ```
 
-The `action_url` field is validated against `SITE_URL` domain for security — external URLs from untrusted domains are rejected.
+The `action_url` field is validated against the `API_BASE_URL` host for security — external URLs from untrusted domains are rejected.
 
 ## Device Token Lifecycle
 
 1. **Permission request** — User grants notification permission
 2. **Token generation** — Expo push token obtained via `getExpoPushTokenAsync()`
 3. **Server registration** — Token sent to backend via `POST /api/v1/device-tokens`
-4. **On logout** — Token unregistered from backend via `DELETE /api/v1/device-tokens/{token}`
+4. **On logout** — Token unregistered from backend via `DELETE /api/v1/device-tokens/by-token`
 5. **Token refresh** — Re-registered on each app launch when user is authenticated
 
 ## Need More Help?

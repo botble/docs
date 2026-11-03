@@ -12,13 +12,12 @@ To add a widget to a sidebar area, drag and drop it from the left panel to the t
 
 ## Available Widgets
 
-Orisa includes 9 widgets:
+Orisa includes 8 widgets:
 
 | Widget | Description |
 |--------|-------------|
 | **site-logo** | Displays the site logo (light/dark variants) |
 | **main-menu** | Renders the assigned main navigation menu |
-| **header-controls** | Dark mode toggle, search, and other header action icons |
 | **site-information** | Brand text, address, phone, email, and social links |
 | **core-simple-menu** | A lightweight link list for footer column menus |
 | **site-copyright** | Copyright text displayed at the bottom of the footer |
@@ -28,25 +27,21 @@ Orisa includes 9 widgets:
 
 ## Widget Areas
 
-### 1. Footer Primary Sidebar
+| Area | Where it renders | Typical widgets |
+|------|------------------|-----------------|
+| **Footer Primary sidebar** | Main footer section | 1 × `site-information`, 3 × `core-simple-menu` (footer link columns) |
+| **Footer Top sidebar** | Above the main footer | Newsletter / call-to-action content |
+| **Footer Bottom sidebar** | Narrow bar at the very bottom | `site-copyright`, `core-simple-menu` (legal links) |
+| **Header Top Start Sidebar** / **Header Top End Sidebar** | Left / right side of the header top bar | Short text, links |
+| **Blog top sidebar** | Top of the blog listing | Blog widgets |
+| **Service Details Sidebar** | Service detail page | `services`, contact info |
+| **Project Details Sidebar** | Project detail page | Project info |
+| **Team Details Sidebar** | Team member detail page | Contact info |
+| **Product Sidebar** | Product listing (when Ecommerce is active) | Product filters |
 
-Displayed in the main footer section. Typically contains:
-- 1 × `site-information` widget (logo, brand description, socials)
-- 3 × `core-simple-menu` widgets (footer link columns)
-
-
-### 2. Footer Bottom Bar
-
-Displayed in the narrow bar at the very bottom of the page. Typically contains:
-- 1 × `site-copyright` widget
-- 1 × `core-simple-menu` widget (legal/policy links)
-
-### 3. Header Area
-
-Widgets placed here render inside the site header. Typically contains:
-- 1 × `site-logo` widget
-- 1 × `main-menu` widget
-- 1 × `header-controls` widget
+::: tip
+The header logo, main menu and dark mode / search controls are part of the header layout, configured in `Appearance` -> `Theme Options` and `Appearance` -> `Menus`, not in widget areas.
+:::
 
 ## Delete Widgets
 

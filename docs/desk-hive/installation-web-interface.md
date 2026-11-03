@@ -30,7 +30,7 @@ The installer will guide you through:
 
 ## Step 3: Initial Configuration
 
-After installation, configure DeskHive at **Admin → Support Desk → Settings**:
+After installation, configure DeskHive at **Admin → Settings → Support Desk Settings**:
 
 ### General Settings
 
@@ -40,7 +40,9 @@ After installation, configure DeskHive at **Admin → Support Desk → Settings*
 | Default priority | None | Priority automatically assigned to new tickets |
 | Auto close days | 0 | Days of inactivity before a ticket is auto-closed (0 = disabled) |
 | Enable auto-assign | On | Automatically assign tickets to agents |
+| Department-based ticket visibility | Off | Agents only see tickets from their departments |
 | Tickets per page | 20 | Number of tickets shown per page |
+| Ticket ID prefix | SD | Prefix used in ticket reference IDs |
 
 ### Customer Portal Settings
 

@@ -9,7 +9,7 @@ To setup the homepage, you need to create a new page and set it as the homepage 
 
 ## Customize the Homepage
 
-Pages are managed in **Admin** -> **Pages**. You can edit the homepage by editing the page with the name **Front Page**.
+Pages are managed in **Admin** -> **Pages**. You can edit the homepage by editing the page set as homepage (in the sample data: **Wooden Home**, **Fashion Home**, **Furniture Home**, **Cosmetics Home** or **Food Grocery Home**).
 
 ![Edit homepage](./images/usage-homepage-2.png)
 
@@ -35,7 +35,7 @@ To create a new advertisement, you can read the [Usage Ads](./usage-ads.md) docu
 
 ![Featured categories](./images/usage-homepage-6.png)
 
-You can add featured categories to the homepage by editing the **Featured Product Categories** shortcode.
+You can add featured categories to the homepage by editing the **Product Categories** shortcode.
 
 ### Products List
 

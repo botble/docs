@@ -45,7 +45,7 @@ Yes. When you scaffold a plugin, it automatically integrates with:
 - **Admin login** — no need to build a separate login system. Your module's admin pages are accessible to any authenticated admin user.
 - **Permissions** — register custom permissions in your service provider, and the built-in role manager (`Admin → Platform Administration → Roles & Permissions`) handles assignment.
 - **Admin menu** — register menu items via `DashboardMenu::registerItem()` so your modules appear in the sidebar alongside core features.
-- **Settings** — add settings pages via the `cms_settings_pages` filter.
+- **Settings** — add settings pages with a `SettingForm` and register them on the settings panel via `PanelSectionManager`.
 - **Form and table builders** — use `FormAbstract` and `TableAbstract` base classes to get admin UI with validation, pagination, filters, bulk actions, and export, without writing Blade markup.
 - **Media picker** — use the `mediaImage` form field to reuse the core media library for image uploads.
 
@@ -84,52 +84,95 @@ No, as long as your code lives inside your own plugin in `platform/plugins/your-
 
 ### How do I add a settings page for my plugin?
 
-To add a settings page:
+Settings pages are built from a `SettingForm`, saved by a `SettingController`, and listed on the **Admin → Settings** page through a panel section item:
 
-1. Create a controller method to handle the settings form
-2. Register a route for the settings page
-3. Add the settings page to the CMS settings menu
-
-Example controller methods:
+1. Create a settings form (`src/Forms/Settings/FooSettingForm.php`):
 
 ```php
-public function getSettings()
+use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
+use Botble\Base\Forms\Fields\OnOffCheckboxField;
+use Botble\Foo\Http\Requests\Settings\FooSettingRequest;
+use Botble\Setting\Forms\SettingForm;
+
+class FooSettingForm extends SettingForm
 {
-    $this->pageTitle(trans('plugins/foo::foo.settings'));
+    public function setup(): void
+    {
+        parent::setup();
 
-    return view('plugins/foo::settings', [
-        'itemsPerPage' => setting('foo_items_per_page', 10),
-        'displayAuthor' => setting('foo_display_author', true),
-    ]);
-}
-
-public function postSettings(Request $request, BaseHttpResponse $response)
-{
-    setting([
-        'foo_items_per_page' => $request->input('foo_items_per_page'),
-        'foo_display_author' => $request->input('foo_display_author'),
-    ])->save();
-
-    return $response
-        ->setMessage(trans('core/base::notices.update_success_message'));
+        $this
+            ->setSectionTitle(trans('plugins/foo::foo.settings.title'))
+            ->setSectionDescription(trans('plugins/foo::foo.settings.description'))
+            ->setValidatorClass(FooSettingRequest::class)
+            ->add(
+                'foo_display_author',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/foo::foo.settings.display_author'))
+                    ->defaultValue((bool) setting('foo_display_author', true))
+            );
+    }
 }
 ```
 
-Add to settings menu in your service provider:
+2. Create a controller that extends `SettingController` (`src/Http/Controllers/Settings/FooSettingController.php`):
 
 ```php
-if (defined('SETTING_MODULE_SCREEN_NAME')) {
-    add_filter('cms_settings_pages', function ($pages) {
-        return array_merge($pages, [
-            'foo' => [
-                'name' => 'plugins/foo::foo.settings',
-                'icon' => 'ti ti-box',
-                'view' => 'plugins/foo::settings',
-                'route' => 'foo.settings',
-            ],
-        ]);
-    });
+use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Foo\Forms\Settings\FooSettingForm;
+use Botble\Foo\Http\Requests\Settings\FooSettingRequest;
+use Botble\Setting\Http\Controllers\SettingController;
+
+class FooSettingController extends SettingController
+{
+    public function edit()
+    {
+        $this->pageTitle(trans('plugins/foo::foo.settings.title'));
+
+        return FooSettingForm::create()->renderForm();
+    }
+
+    public function update(FooSettingRequest $request): BaseHttpResponse
+    {
+        return $this->performUpdate($request->validated());
+    }
 }
+```
+
+3. Register the routes (inside your admin route group):
+
+```php
+Route::group(['prefix' => 'settings'], function (): void {
+    Route::get('foo', [
+        'as' => 'foo.settings',
+        'uses' => 'Settings\FooSettingController@edit',
+    ]);
+
+    Route::put('foo', [
+        'as' => 'foo.settings.update',
+        'uses' => 'Settings\FooSettingController@update',
+        'permission' => 'foo.settings',
+    ]);
+});
+```
+
+4. Add the page to the settings panel in your service provider's `boot()` method:
+
+```php
+use Botble\Base\Facades\PanelSectionManager;
+use Botble\Base\PanelSections\PanelSectionItem;
+use Botble\Setting\PanelSections\SettingOthersPanelSection;
+
+PanelSectionManager::default()->beforeRendering(function (): void {
+    PanelSectionManager::registerItem(
+        SettingOthersPanelSection::class,
+        fn () => PanelSectionItem::make('foo')
+            ->setTitle(trans('plugins/foo::foo.settings.title'))
+            ->withIcon('ti ti-box')
+            ->withDescription(trans('plugins/foo::foo.settings.description'))
+            ->withRoute('foo.settings')
+    );
+});
 ```
 
 ### How do I add custom validation rules?
@@ -476,13 +519,14 @@ To add a custom widget area:
 Example widget area registration:
 
 ```php
-if (is_plugin_active('widget')) {
-    app(WidgetInterface::class)->registerSidebar([
+// The widget system is a core package, so no is_plugin_active() check is needed
+app()->booted(function (): void {
+    register_sidebar([
         'id' => 'foo_sidebar',
         'name' => trans('plugins/foo::foo.widgets.sidebar_name'),
         'description' => trans('plugins/foo::foo.widgets.sidebar_description'),
     ]);
-}
+});
 ```
 
 To display the widget area in your theme:

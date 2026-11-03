@@ -74,7 +74,7 @@ The file has no `external_id` column, so the importer matched on name, and a ren
 ## Opening hours look wrong
 
 - **A late-night venue shows as closed.** It should not - a slot from `22:00` to `02:00` is understood as overnight. Check the slot is actually saved that way round.
-- **Wrong for some branches.** Enable **Multi timezone** and set each store's timezone. Without it every store uses the site timezone.
+- **Wrong for some branches.** Enable **Stores are in different timezones** and set each store's timezone. Without it every store uses the site timezone.
 - **Nothing shows at all.** No hours are recorded. That is distinct from *closed*: an empty week deliberately renders nothing rather than claiming the store is shut.
 
 ## Layout is cramped

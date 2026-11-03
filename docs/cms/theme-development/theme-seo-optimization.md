@@ -23,7 +23,10 @@ SeoHelper::setDescription('Page description goes here. Keep it under 160 charact
 #### Setting Canonical URL
 
 ```php
-SeoHelper::setCanonicalUrl(url()->current());
+SeoHelper::meta()->setUrl(url()->current());
+
+// Or adjust the generated canonical URL globally
+add_filter('core_seo_canonical', fn (string $url) => $url);
 ```
 
 #### Setting Open Graph Data
@@ -215,44 +218,35 @@ Botble CMS automatically generates XML sitemaps for your content. You can custom
 
 #### Enabling Sitemaps
 
-Sitemaps are enabled by default. You can check the setting in the admin panel under Settings > General.
+Sitemaps are enabled by default. You can check the setting in the admin panel under **Settings → Sitemap** (see [Sitemap](../sitemap.md)).
 
 #### Customizing Sitemaps
 
-You can customize which content types are included in the sitemap by modifying the `SiteMapManager` in a service provider:
+You can add custom URLs to the sitemap by listening for `RenderingSiteMapEvent` and calling the `SiteMapManager` facade:
 
 ```php
-use Botble\Sitemap\Sitemap;
-use Botble\Sitemap\SitemapManager;
+use Botble\Theme\Events\RenderingSiteMapEvent;
+use Botble\Theme\Facades\SiteMapManager;
 
-app()->booted(function () {
-    // Get the sitemap manager
-    $sitemapManager = app(SitemapManager::class);
-    
-    // Add custom sitemap
-    $sitemapManager->add(function (Sitemap $sitemap) {
-        $sitemap->add(route('custom.route'), '2023-01-01', '0.8', 'daily');
-    });
+app('events')->listen(RenderingSiteMapEvent::class, function (RenderingSiteMapEvent $event): void {
+    SiteMapManager::add(route('custom.route'), '2023-01-01', '0.8', 'daily');
 });
 ```
 
 ### Robots.txt
 
-Botble CMS allows you to customize the robots.txt file through the admin panel under Appearance > Robots.txt.
+Botble CMS allows you to customize the robots.txt file through the admin panel under **Appearance → Robots.txt Editor** (hidden when `CMS_THEME_ENABLE_ROBOTS_TXT_EDITOR=false`).
 
 To control AI crawlers specifically, use **Admin → Settings → Sitemap → AI crawler policy** instead of writing the
 rules by hand — see [AI crawlers](../sitemap.md#ai-crawlers). Both that policy and this editor write the same
 `public/robots.txt` file; the policy owns only the block between its `# BEGIN/# END Botble AI crawler policy` markers,
 so rules you add here outside those markers are kept.
 
-You can also programmatically modify the robots.txt content:
+There is no filter for the robots.txt content itself; it is a static `public/robots.txt` file. You can change which file the editor and the AI crawler policy read and write (useful for multi-tenant setups):
 
 ```php
-// In your theme's service provider
-app()->booted(function () {
-    add_filter(BASE_FILTER_ROBOTS_TXT, function ($content) {
-        return $content . PHP_EOL . 'Disallow: /private-section/';
-    });
+add_filter(FILTER_ROBOTS_TXT_PATH, function (string $path): string {
+    return storage_path('app/robots/' . request()->getHost() . '.txt');
 });
 ```
 

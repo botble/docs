@@ -5,7 +5,7 @@ description: Affiliate Pro email templates and the weekly performance digest.
 
 # Email Notifications
 
-Affiliate Pro sends emails for every important event. Edit them in **Settings → Email templates**, section **Affiliate Pro Emails**. You can change the subject and content, use variables such as `{{ customer_name }}` or `{{ commission_amount }}`, or turn a template off to stop sending that email.
+Affiliate Pro sends emails for every important event. Edit them in **Settings → Email templates**, section **Affiliate Pro Emails**. You can change the subject and content, use variables such as <code v-pre>{{ customer_name }}</code> or <code v-pre>{{ commission_amount }}</code>, or turn a template off to stop sending that email.
 
 ## Templates
 

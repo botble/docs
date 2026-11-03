@@ -123,11 +123,10 @@ Deletes rows from `smsg_delivery_logs`, `smsg_otps`, and `smsg_consents` matchin
 Retire logs older than the configured retention window:
 
 ```bash
-php artisan sms:purge --days=90   # default
-php artisan sms:purge --days=30   # stricter
+php artisan sms:purge
 ```
 
-Schedule in `app/Console/Kernel.php` for automatic nightly enforcement — see [Artisan Commands](./commands.md).
+The retention window comes from the `smsg_log_retention_days` setting (default 30 days); the command has no `--days` option. The plugin schedules it daily at 03:00 — see [Artisan Commands](./commands.md).
 
 ## Customer account widget
 

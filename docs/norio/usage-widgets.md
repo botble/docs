@@ -20,6 +20,7 @@ To add a widget to an area, drag it from the left panel to the area on the right
 | **Newsletter** | Newsletter sign-up form |
 | **Core Simple Menu** | Simple link list from a menu |
 | **Site Copyright** | Copyright text |
+| **Text** | Free text or HTML (core widget) |
 
 ## Widget Areas
 
@@ -32,5 +33,5 @@ On the front end of this release, one widget area is displayed:
 | **Team Details Sidebar** | Below the content of each team member page |
 
 ::: warning
-The admin panel also lists the Blog top, Service Details and Project Details sidebars. This release does not display them, so widgets placed there will not show on the site.
+The admin panel also lists the core **Primary sidebar**. Norio does not display it, so widgets placed there will not show on the site.
 :::

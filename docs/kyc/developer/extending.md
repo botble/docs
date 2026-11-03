@@ -176,7 +176,7 @@ If you override a view, you own it — future plugin upgrades won't touch your c
 
 ## Custom approval logic
 
-To reject submissions automatically when they fail a third-party check (e.g. IDNow, Onfido), listen to `KycSubmitted` and throw a domain exception:
+To reject submissions automatically when they fail a third-party check (e.g. IDNow, Onfido), listen to `KycSubmitted` and reject the submission yourself (the plugin has no review service class):
 
 ```php
 use Botble\Kyc\Events\KycSubmitted;
@@ -186,11 +186,13 @@ public function handle(KycSubmitted $event): void
     $result = app(OnfidoClient::class)->verify($event->submission);
 
     if ($result->isRejected()) {
-        app(KycReviewService::class)->reject(
-            $event->submission,
-            reviewer: null, // System-triggered
-            note: 'Auto-rejected by Onfido: ' . $result->reason,
-        );
+        $event->submission->forceFill([
+            'status' => \Botble\Kyc\Enums\KycStatusEnum::REJECTED,
+            'reviewed_at' => now(),
+            'review_note' => 'Auto-rejected by Onfido: ' . $result->reason,
+        ])->save();
+
+        event(new \Botble\Kyc\Events\KycRejected($event->submission));
     }
 }
 ```

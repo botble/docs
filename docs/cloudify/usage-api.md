@@ -48,11 +48,14 @@ curl -X POST "https://your-domain.com/api/v1/media/files" \
 | `/media/folders` | GET | List folders (use `folder_id` for subfolders, `include_files=true` for files) |
 | `/media/folders` | POST | Create new folder |
 | `/media/folders/{id}` | GET | Get folder details with paginated files |
+| `/media/folders/{id}` | PATCH | Update folder (`name`, `color`) |
 | `/media/folders/{id}/trash` | PATCH | Move folder to trash |
 | `/media/folders/{id}` | DELETE | Delete folder permanently |
 | `/media/folders/deletes` | POST | Bulk delete folders |
 | `/media/files` | GET | List files in folder (paginated) |
 | `/media/files` | POST | Upload new file |
+| `/media/files/{id}` | GET | Get file details |
+| `/media/files/{id}` | PATCH | Update file (`name`, `alt`, `folder_id`) |
 | `/media/files/{id}/trash` | PATCH | Move file to trash |
 | `/media/files/{id}` | DELETE | Delete file permanently |
 | `/media/files/deletes` | POST | Bulk delete files |
@@ -61,7 +64,7 @@ For complete API documentation including all parameters and responses, see the [
 
 ## Create API Token
 
-To use the available APIs for interacting with Media Files or Media Folders such as retrieving lists, creating, or deleting, you need an authentication token. To generate this token, you access the page `Settings` -> `API Tokens` -> `Create`.
+To use the available APIs for interacting with Media Files or Media Folders such as retrieving lists, creating, or deleting, you need an authentication token. To generate this token, you access the page `Settings` -> `Cloudify` -> `API Keys` -> `Create`.
 
 The **Token** field is automatically generated, but you can change it if needed
 

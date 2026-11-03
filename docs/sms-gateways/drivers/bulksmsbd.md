@@ -30,7 +30,7 @@ Without a registered sender ID, SMS may be delayed or rejected.
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **BulkSMSBD** under **Active Drivers**
 3. Expand the **BulkSMSBD** section and enter:
    - **API Token**: Your API Token

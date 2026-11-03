@@ -12,6 +12,7 @@ To display ad in page/post/product... Just need to copy `shortcode` and paste to
 The ad images should NOT contain `ads`, `advert`... in the name. It may be blocked by Adblock extension.
 :::
 
-It's just supported banner ad images for now. It doesn't support Google Adsense.
+Google AdSense is also supported:
 
-For Google Adsense, you need to put JS code for Adsense in Admin -> Appearance -> Custom JS.
+- **Auto Ads**: go to **Admin** -> **Ads** -> **Ads Settings**, set **Google AdSense Mode** to **Auto Ads** and paste the Auto Ads snippet.
+- **Unit Ads**: set **Google AdSense Mode** to **Unit Ads** and enter your client ID, then create an ad with **Ads Type** = **Google AdSense** and enter its **Google AdSense Slot ID**.

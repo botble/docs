@@ -6,29 +6,21 @@ The app uses `react-i18next` for internationalization with support for multiple 
 
 ## Supported Languages
 
-| Language | Code | Direction |
-|----------|------|-----------|
-| English | `en` | LTR |
-| Vietnamese | `vi` | LTR |
-| Chinese | `zh` | LTR |
-| Spanish | `es` | LTR |
-| French | `fr` | LTR |
-| German | `de` | LTR |
-| Japanese | `ja` | LTR |
-| Arabic | `ar` | RTL |
+30 locale files ship in `src/i18n/locales/`:
+
+`ar`, `bn`, `cs`, `de`, `el`, `en`, `es`, `fa`, `fi`, `fr`, `he`, `hi`, `id`, `it`, `ja`, `ko`, `ms`, `nl`, `pl`, `pt`, `pt_BR`, `ru`, `sq`, `sv`, `th`, `tr`, `uk`, `vi`, `zh`, `zh_CN`
+
+The language picker lists the languages returned by your backend (`GET /api/v1/languages`), and RTL is taken from each language's RTL flag in Botble admin (for example Arabic, Persian, Hebrew).
 
 ## Translation Files Location
 
 ```
 src/i18n/locales/
+├── index.ts   # locale registry (one export per language)
 ├── en.json    # English
 ├── vi.json    # Vietnamese
-├── zh.json    # Chinese
-├── es.json    # Spanish
-├── fr.json    # French
-├── de.json    # German
-├── ja.json    # Japanese
-└── ar.json    # Arabic
+├── ar.json    # Arabic
+└── ...        # one JSON file per language
 ```
 
 ## Translation File Structure
@@ -74,7 +66,7 @@ Edit `src/i18n/locales/en.json` (or other language):
 
 ### Step 2: Update All Languages
 
-Make sure to update all 8 locale files with the same keys.
+Make sure to update every locale file in `src/i18n/locales/` with the same keys.
 
 ### Step 3: Use in Components
 
@@ -96,33 +88,28 @@ function MyComponent() {
 
 ### Step 1: Create Locale File
 
-Create `src/i18n/locales/ko.json` (Korean example):
+Create `src/i18n/locales/sw.json` (Swahili example), easiest by copying `en.json` and translating the values:
 
 ```json
 {
   "common": {
-    "cancel": "취소",
-    "save": "저장"
+    "cancel": "Ghairi",
+    "save": "Hifadhi"
   }
 }
 ```
 
 ### Step 2: Register the Language
 
-Update `src/i18n/index.ts`:
+Add an export to the locale registry `src/i18n/locales/index.ts` (keep it alphabetical). `src/i18n/index.ts` builds its resources from every export automatically:
 
 ```typescript
-import ko from './locales/ko.json';
-
-const resources = {
-  // ... existing languages
-  ko: { translation: ko },
-};
+export { default as sw } from "./sw.json";
 ```
 
-### Step 3: Add to Settings
+### Step 3: Enable it on the backend
 
-Update the language selector in settings to include the new language.
+The language selector shows the languages returned by `GET /api/v1/languages`, so also add the language in Botble admin (**Settings → Languages**).
 
 ## RTL (Right-to-Left) Support
 

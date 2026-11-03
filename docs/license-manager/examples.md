@@ -29,31 +29,25 @@ Standalone PHP scripts using cURL with no framework dependencies. Includes both 
 - Product and license management (Internal API)
 - Works with any PHP 7.4+ application
 
-**External API usage (client applications):**
+**External API usage (client applications)** — `sample-app.php`:
 
 ```php
-require_once 'LicenseManagerExternalAPI.php';
+$config = [
+    'api_url'      => 'https://your-license-server.com',
+    'api_key'      => 'your-external-api-key',
+    'product_id'   => 'ABC12345',
+    'license_code' => 'XXXX-XXXX-XXXX-XXXX',
+    'client_name'  => 'John Doe',
+];
 
-$client = new LicenseManagerExternalAPI(
-    apiKey: 'your-api-key',
-    apiUrl: 'https://license.yoursite.com',
-    productId: 'your-product-id'
-);
-
-// Activate
-$result = $client->activate($licenseCode);
-
-// Verify
-$result = $client->verify($licenseData);
-
-// Deactivate
-$result = $client->deactivate($licenseData);
-
-// Check for updates
-$result = $client->checkUpdate($currentVersion);
+// Operations: check connection, activate, verify, deactivate
 ```
 
-**Internal API usage (server-to-server):**
+```bash
+php sample-app.php
+```
+
+**Internal API usage (server-to-server)** — `sample-app-internal.php`:
 
 ```php
 $config = [

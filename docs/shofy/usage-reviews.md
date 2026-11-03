@@ -18,7 +18,7 @@ When enabled, the review system:
 
 Navigate to `Ecommerce` -> `Settings` -> `Product Reviews` in the admin panel.
 
-Toggle **Enable review** to activate the feature.
+Toggle **Enable product reviews** to activate the feature.
 
 ## Configuration Options
 
@@ -26,21 +26,22 @@ Toggle **Enable review** to activate the feature.
 
 | Setting | Description |
 |---------|-------------|
-| **Enable review** | Master switch to turn the review system on/off |
-| **Only allow customers who purchased to review** | Restrict reviews to verified purchasers only |
-| **Review need to be approved** | Manually approve reviews before they appear publicly |
+| **Enable product reviews** | Master switch to turn the review system on/off |
+| **Only customers who have purchased the product can review** | Restrict reviews to verified purchasers only |
+| **Review need to be approved before showing on the product page** | Manually approve reviews before they appear publicly |
 | **Show customer full name** | Display full names or mask them (e.g., "John D***") |
-| **Hide rating when no reviews** | Don't show star rating if product has no reviews yet |
+| **Hide rating when there are no reviews** |
+| **Require review comment** | Require customers to write a comment, not just a star rating | Don't show star rating if product has no reviews yet |
 
 ### Image Upload Settings
 
-When **Allow customer upload image in review** is enabled:
+When **Allow customers to upload images in reviews** is enabled:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| **Max file size** | 2 MB | Maximum size per image (1-1024 MB) |
-| **Max file number** | 6 | Maximum number of images per review (1-100) |
-| **Display uploaded images list** | ON | Show customer review images in a gallery |
+| **Review max file size (MB)** | 2 MB | Maximum size per image (1-1024 MB) |
+| **Review max file number** | 6 | Maximum number of images per review (1-100) |
+| **Display "Images from customers" section** | ON | Show customer review images in a gallery |
 
 ::: tip
 Review images help build trust. Consider allowing at least 3-6 images per review to let customers showcase products from different angles.
@@ -252,7 +253,7 @@ Yes. Images must be:
 
 ## Best Practices
 
-1. **Use verified purchaser mode** - Enable "Only allow customers who purchased to review" for authentic feedback
+1. **Use verified purchaser mode** - Enable "Only customers who have purchased the product can review" for authentic feedback
 
 2. **Moderate initially** - Enable review approval when launching to prevent spam, then disable if quality is good
 

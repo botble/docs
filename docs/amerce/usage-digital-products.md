@@ -9,12 +9,11 @@ Digital product features:
 1. **Downloadable Files** - PDF, audio, video, software, etc.
 2. **License Codes** - Unique keys for software activation
 3. **Auto-Delivery** - Instant access after payment
-4. **Download Limits** - Control number of downloads
-5. **Expiry Settings** - Time-limited access
+4. **Auto-Complete** - Optionally complete digital-only orders once paid
 
 ## Enable Digital Products
 
-Navigate to `Ecommerce` -> `Settings` -> `Digital Products`.
+Navigate to `Settings` -> `Ecommerce` -> `Digital Products`.
 
 ![Digital products settings](./images/digital-products-settings.png)
 
@@ -22,9 +21,12 @@ Navigate to `Ecommerce` -> `Settings` -> `Digital Products`.
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| **Enable support for digital products** | Turn on/off digital product features | Off |
-| **Allow guest checkout** | Let guests purchase without account | Off |
-| **Enable license code system** | Use license key generation | Off |
+| **Is it enabled to support digital products** | Turn on/off digital product features | Off |
+| **Allow guest checkout for digital products** | Let guests purchase without account (download links sent by email) | Off |
+| **Disable physical product** | Sell digital products only; physical options are hidden | Off |
+| **Enable license codes for digital products** | Show license code features in product forms | Off |
+| **Hide used license codes in product form** | Keep the product's license code table clean | Off |
+| **Auto-complete digital orders after payment** | Mark digital-only orders completed once paid | Off |
 
 Click **Save** after configuration.
 
@@ -36,19 +38,18 @@ Digital products require a properly configured email system. Customers receive d
 
 ### Step 1: Create Product
 
-Navigate to `Ecommerce` -> `Products` -> `Create`.
+Navigate to `Ecommerce` -> `Products`, open the **Create** dropdown and choose **Digital**.
 
 1. Enter product details (name, description, price)
-2. In **General** section, set **Product Type** = `Digital`
-3. Configure pricing and settings
-4. Click **Save**
+2. Configure pricing and settings
+3. Click **Save**
 
 ### Step 2: Upload Digital Files
 
 In the product edit page:
 
-1. Scroll to **Digital Product Files** section
-2. Click **Add File**
+1. Scroll to **Digital attachments** section
+2. Click **Add Attachment** (or **Add external link**)
 3. Choose upload method:
 
 **Option 1: Upload File**
@@ -57,9 +58,8 @@ In the product edit page:
 - System uploads and stores securely
 
 **Option 2: External Link**
-- Enter direct download URL
+- Click **Add external link** and enter the download URL
 - For files hosted elsewhere (Google Drive, Dropbox, etc.)
-- Check **Is external link**
 
 4. Configure file settings:
    - **File Name** - Display name for customer
@@ -94,42 +94,38 @@ For software and activation-based products.
 
 ### Enable License Codes
 
-1. Navigate to `Ecommerce` -> `Settings` -> `Digital Products`
-2. Enable **Enable license code system**
+1. Navigate to `Settings` -> `Ecommerce` -> `Digital Products`
+2. Enable **Enable license codes for digital products**
 3. Click **Save**
 
 ### Adding License Codes to Products
 
-**Method 1: Auto-Generate**
+Edit the digital product, enable **Enable license code assignment for this product**, then pick a **License Code Assignment Method**:
 
-1. Edit digital product
-2. Check **Generate license code automatically**
-3. Set **License code quantity** (number to generate)
-4. System generates codes on purchase
+**Method 1: Auto Generate**
 
-**Method 2: Manual Entry**
+- **Auto Generate (System generates codes automatically)** - a code is generated for each purchase
 
-Navigate to `Ecommerce` -> `License Codes`:
+**Method 2: Pick from List**
 
-1. Click **Create**
-2. Select **Product**
-3. Enter **License Code**
-4. Set **Status** = `Available`
-5. Click **Save**
-6. Repeat for all codes
+- **Pick from List (Use pre-entered codes)** - in the product's **License Codes** section:
+  1. Click **Add License Code** to enter codes one by one, or
+  2. Click **Generate License Codes** and set **Quantity** and **Format** (or a **Custom Pattern**: `#` digit, `A` uppercase, `a` lowercase)
+
+If the list runs out, customers receive auto-generated codes.
 
 **Method 3: Bulk Import**
 
-Navigate to `Ecommerce` -> `License Codes` -> `Import`:
+From the product's **Manage License Codes** page, open the actions dropdown and choose **Import** (opens **Import Product License Codes**):
 
-1. Download template
+1. Download the example file
 2. Fill in columns:
    ```csv
-   product_id,product_sku,license_code,status
-   123,PROD-001,XXXX-XXXX-XXXX-XXXX,available
-   123,PROD-001,YYYY-YYYY-YYYY-YYYY,available
+   product_id,license_code
+   123,XXXX-XXXX-XXXX-XXXX
+   123,YYYY-YYYY-YYYY-YYYY
    ```
-3. Upload CSV
+3. Upload the file
 4. Click **Import**
 
 ### License Code Status
@@ -145,30 +141,7 @@ Generate more license codes than expected sales. System automatically assigns av
 
 ## Download Settings
 
-Configure download behavior per product.
-
-### Download Limits
-
-In product edit page, **Digital Product Settings** section:
-
-| Setting | Description | Recommended |
-|---------|-------------|-------------|
-| **Maximum downloads** | Number of times customer can download | 3-5 |
-| **Download expiry (days)** | Days until download link expires | 7-30 |
-
-**Unlimited Downloads:**
-- Set **Maximum downloads** = `0`
-
-**No Expiry:**
-- Set **Download expiry** = `0`
-
-### Access Control
-
-| Option | Use Case |
-|--------|----------|
-| **Limit downloads** | Prevent abuse, ensure compliance |
-| **Set expiry** | Time-limited promotions |
-| **Unlimited** | Lifetime access for premium products |
+There are no per-product download limit or download expiry settings. Customers can download purchased files from their account for as long as the order exists.
 
 ## Customer Download Process
 
@@ -206,16 +179,18 @@ Download links are:
 Customize the download email:
 
 1. Navigate to `Settings` -> `Email`
-2. Find **Order Completed (Digital Product)**
+2. Find **Download digital products** (or **Digital product license codes** for license code emails)
 3. Edit template variables:
 
 | Variable | Description |
 |----------|-------------|
 | `customer_name` | Customer's name |
+| `customer_phone`, `customer_address` | Customer contact |
+| `payment_method` | Payment method |
+| `order_note` | Order note |
 | `order_id` | Order reference number |
-| `download_links` | HTML list of file links |
-| `license_codes` | HTML list of codes |
-| `expiry_date` | Download expiration date |
+| `digital_product_list` | HTML list of purchased digital products with download links |
+| `digital_products` | Digital products data (for custom loops) |
 
 4. Click **Save**
 
@@ -228,25 +203,18 @@ Customize the download email:
 
 ## Managing License Codes
 
-Navigate to `Ecommerce` -> `License Codes`.
-
-### View License Codes
-
-Filter by:
-- **Product** - View codes for specific product
-- **Status** - Available or Used
-- **Assigned Order** - Track which order used code
+License codes are managed per product: edit the product and use its **License Codes** section or the **Manage License Codes** page (there is no separate License Codes menu).
 
 ### License Code Actions
 
 | Action | Description |
 |--------|-------------|
-| **Edit** | Modify code or status |
-| **Delete** | Remove code from system |
-| **Mark as Available** | Reset used code |
+| **Add / Generate** | Add codes manually or generate them in bulk |
+| **Edit** | Modify an available code |
+| **Delete / Bulk delete** | Remove codes from the product |
 
 ::: warning
-Marking used code as available may cause conflicts if customer already activated software.
+Used license codes cannot be edited or deleted.
 :::
 
 ## Digital Product Variations
@@ -292,10 +260,7 @@ When refunding digital product:
 
 1. Navigate to order
 2. Issue refund
-3. System automatically:
-   - Disables download links
-   - Marks license codes as revoked
-   - Removes from customer downloads
+3. License codes have only **Available** and **Used** statuses; there is no automatic revoke. Handle access revocation manually (e.g., deactivate the key in your licensing system).
 
 ## Security Best Practices
 

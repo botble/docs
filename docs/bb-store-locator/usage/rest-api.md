@@ -2,7 +2,7 @@
 
 A read-only JSON API for building your own front end, a mobile app, or feeding another system.
 
-Controlled by **Settings → Store Locator (Map) → Enable API**, which is on by default. Turn it off to close the endpoints entirely.
+Controlled by **Settings → Store Locator (Map) → Enable the REST API**, which is on by default. Turn it off to close the endpoints entirely.
 
 ::: tip Your site's API switch matters too
 Botble has a global API toggle. If every endpoint answers `503 API is currently disabled`, that is the site-wide setting, not this plugin.

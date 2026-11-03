@@ -59,6 +59,48 @@ PRODUCT_IMAGE_THUMBNAIL_SIZE=small       # small | medium | large | thumb
 
 `AD_KEYS` corresponds to ad keys configured in Botble admin → **Ads → Ads** (the "Key" column).
 
+## Localization & theme
+
+```bash
+DEFAULT_LANGUAGE=en                # default language code
+DEFAULT_LANGUAGE_DIRECTION=ltr     # ltr | rtl
+DEFAULT_THEME_MODE=system          # light | dark | system
+```
+
+## Header
+
+```bash
+HEADER_STYLE=greeting    # greeting (avatar + greeting text) | logo (store logo)
+HEADER_LOGO_URL=         # used when HEADER_STYLE=logo; full URL or path relative to API_BASE_URL
+```
+
+## Social login
+
+`GOOGLE_WEB_CLIENT_ID`, `GOOGLE_IOS_CLIENT_ID`, `GOOGLE_IOS_URL_SCHEME`, `FACEBOOK_APP_ID`, `FACEBOOK_CLIENT_TOKEN`, `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET` and the `ENABLE_GOOGLE_SIGN_IN` / `ENABLE_APPLE_SIGN_IN` / `ENABLE_FACEBOOK_SIGN_IN` / `ENABLE_TWITTER_SIGN_IN` toggles are covered in [Social Login Setup](11_social_login_setup.md).
+
+## Firebase config files
+
+```bash
+GOOGLE_SERVICES_FILE=./google-services.json           # Android
+GOOGLE_SERVICES_FILE_IOS=./GoogleService-Info.plist   # iOS, set only once the file exists
+```
+
+See [Push Notifications](14_push_notifications.md).
+
+## License & demo account
+
+```bash
+LICENSE_CODE=          # Envato purchase code or license.botble.com code; checked only when APP_ENV=development
+TEST_EMAIL=            # pre-fills the login form
+TEST_PASSWORD=
+```
+
+::: warning
+`TEST_EMAIL` / `TEST_PASSWORD` pre-fill the login form in every build, including production. `.env.example` ships with the demo account, so clear both before building for the stores.
+:::
+
+See [License Activation](13_license_activation.md).
+
 ## Common follow-ups
 
 - App name: [03_app_name.md](03_app_name.md)

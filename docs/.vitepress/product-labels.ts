@@ -11,7 +11,6 @@ export const PRODUCT_LABELS: Record<string, string> = {
   'pos-pro': 'POS Pro',
   'ecommerce-back-in-stock': 'Back in Stock',
   kyc: 'KYC Verification',
-  'sms-gateway': 'SMS Gateway',
   'sms-gateways': 'SMS Gateways',
   snapcart: 'SnapCart',
   'e-wallet': 'E-Wallet',

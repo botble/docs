@@ -13,7 +13,7 @@ When enabled, the system:
 
 ## Enable Abandoned Cart Tracking
 
-Navigate to `Ecommerce` -> `Settings` -> `Abandoned Carts` in the admin panel.
+Navigate to `Settings` -> `Ecommerce` -> `Abandoned Carts` in the admin panel.
 
 Toggle **Enable abandoned cart tracking** to activate the feature.
 
@@ -25,7 +25,7 @@ This feature requires a properly configured cronjob to work. Ensure your cronjob
 
 ### Email Reminders
 
-When **Send email reminders** is enabled, the system sends up to 3 automated emails:
+When **Send recovery emails** is enabled, the system sends up to 3 automated emails:
 
 | Email | Default Delay | Purpose |
 |-------|---------------|---------|
@@ -35,12 +35,12 @@ When **Send email reminders** is enabled, the system sends up to 3 automated ema
 
 You can configure:
 
-- **Maximum reminder emails** (1-3) - How many emails to send per abandoned cart
-- **Email timing** - Hours after abandonment for each email
+- **Number of reminder emails** (1-3) - How many emails to send per abandoned cart
+- **Send after (hours)** - Hours after abandonment for each email
 
 ### Cleanup Settings
 
-- **Cleanup old carts after** - Days to keep abandoned cart records (default: 30 days)
+- **Cleanup after (days)** - Days to keep abandoned cart records (default: 30 days)
 
 ## Email Templates
 

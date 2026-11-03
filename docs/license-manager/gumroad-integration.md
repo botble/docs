@@ -12,6 +12,7 @@ If you've integrated Envato licenses, the Gumroad flow is identical. Only the `v
 2. **License keys enabled** on the product — toggle **Generate a unique license key per sale** in the Gumroad product editor (under *Content → Customize the buyer's experience*).
 3. The **Gumroad Product ID** for that product. Find it in Gumroad → *Products → your product → Share → API*. It's a short alphanumeric string (e.g. `WJ3xqLN8aPbnaTRsSrU8oA==`).
 4. A **License Manager server** with an external API key configured.
+5. The **License Manager - Gumroad** companion plugin active (**Admin → Plugins**). It ships with and is active on a fresh install; if it is deactivated, `verify_type: gumroad` activations fail with a missing-companion error.
 
 ::: warning Pre-2023-01-09 products
 For products created before 9 January 2023, Gumroad originally used `product_permalink`. The newer `product_id` is now displayed in the dashboard for all products and is what this integration uses. If you can't find a `product_id`, contact Gumroad support.

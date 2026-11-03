@@ -8,7 +8,7 @@ description: Install, activate and license BB Popup, then build your first popup
 ## Requirements
 
 - Botble CMS 7.5.0 or higher
-- PHP 8.3.36 or higher
+- PHP 8.3.0 or higher
 
 No other plugin is required.
 

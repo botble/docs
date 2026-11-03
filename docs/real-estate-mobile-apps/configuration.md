@@ -12,7 +12,7 @@ All app configuration lives in the `.env` file at the project root. `app.config.
 API_BASE_URL=http://homzen.test        # backend site root (/api/v1 appended automatically)
 API_KEY=                                # only if an API key is configured in Botble admin
 APP_NAME=Real Estate
-LICENSE_CODE=                           # your Envato purchase code (development-only license check)
+LICENSE_CODE=                           # Envato purchase code or direct-purchase license code (dev-only check)
 ```
 
 See [API URL & key](06_api_base_url.md) for `API_BASE_URL` and `API_KEY` details.
@@ -25,16 +25,20 @@ Every key below is read by `app.config.js`. Keys not listed there have no effect
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `APP_NAME` | text | `Flex Home` | Display name on the home screen and in the app |
-| `APP_VERSION` | semver | `1.0.0` | Marketing version (see [Version management](10_version_management.md)) |
+| `APP_NAME` | text | `Real Estate` | Display name on the home screen and in the app |
+| `APP_BUNDLE_ID` | reverse-DNS | `com.realestate.mobile` | iOS bundle identifier / Android package name |
+| `APP_SCHEME` | text | `realestate` | Deep-link URI scheme (`scheme://…`) |
+| `APP_SLUG` | text | `realestate-mobile` | EAS project identifier |
+| `APP_LINK_DOMAIN` | domain | *(empty)* | Optional universal / app-link domain (your website) so shared `https://<domain>/property/...` links open the app |
+| `APP_VERSION` | semver | `1.0.1` | Marketing version (see [Version management](10_version_management.md)) |
 | `APP_ENV` | `development` / `staging` / `production` | `development` | Runtime environment. Enables the dev-only license check and test-account prefill outside production |
-| `LICENSE_CODE` | Envato purchase code | *(empty)* | Checked only when `APP_ENV=development`; leave blank in production |
+| `LICENSE_CODE` | Envato purchase code or license.botble.com license code | *(empty)* | Checked only when `APP_ENV=development`; leave blank in production |
 
 ### Backend API
 
 | Key | Values | Default | Description |
 |---|---|---|---|
-| `API_BASE_URL` | URL | `http://homzen.test` | Backend site root **without** `/api/v1` (appended automatically) |
+| `API_BASE_URL` | URL | `https://homzen.botble.com` | Backend site root **without** `/api/v1` (appended automatically) |
 | `API_KEY` | text | *(empty)* | Sent as `X-API-KEY` only if configured in Botble admin → Settings → API |
 
 ### Localization & theme
@@ -62,8 +66,8 @@ Family per role; must match a family registered in `src/lib/fonts.ts` (bundled:
 
 | Key | Default | Description |
 |---|---|---|
-| `APP_FONT_BODY` | `Inter` | Body-text font family |
-| `APP_FONT_HEADING` | `InstrumentSans` | Display / heading font family |
+| `APP_FONT_BODY` | `DMSans` | Body-text font family |
+| `APP_FONT_HEADING` | `JosefinSans` | Display / heading font family |
 
 ### Contact & social
 

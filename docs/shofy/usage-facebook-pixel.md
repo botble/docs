@@ -8,11 +8,11 @@ Facebook Pixel (Meta Pixel) allows you to track visitor actions on your website 
 
 2. In your admin panel, go to **Admin** -> **Settings** -> **Ecommerce** -> **Tracking**.
 
-3. Enable **Facebook Pixel (Meta Pixel)**.
+3. Enable **Enable Facebook Pixel (Meta Pixel)**.
 
 4. Paste your Pixel ID in the **Facebook Pixel ID** field.
 
-5. Optionally enable **Facebook Pixel debug mode** to log events in the browser console for troubleshooting.
+5. Optionally enable **Enable Facebook Pixel Debug Mode** to log events in the browser console for troubleshooting.
 
 6. Click **Save**.
 

@@ -24,8 +24,8 @@ Navigate to `Marketplace` -> `Settings`
 
 | Setting | Description |
 |---------|-------------|
-| **Fee withdrawal amount** | Fee charged per withdrawal (amount or percentage) |
-| **Withdrawal fee type** | Fixed amount or Percentage of withdrawal |
+| **Fee withdrawal** | Fee charged per withdrawal (amount or percentage) |
+| **Fee withdrawal type** | Fixed amount or Percentage of withdrawal |
 
 **Fixed Fee Example:**
 - Fee: $5
@@ -49,7 +49,7 @@ Withdrawal fees cover transaction costs and processing overhead. Typical marketp
 
 | Setting | Description |
 |---------|-------------|
-| **Minimum withdrawal amount** | Minimum balance required to request withdrawal |
+| **Minimum withdrawal amount (Fixed)** | Minimum balance required to request withdrawal |
 
 **Example:**
 - Minimum: $50

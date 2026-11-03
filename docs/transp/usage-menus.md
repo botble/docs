@@ -16,6 +16,6 @@ Main menu is the menu bar on the header. You can manage menu items from `Admin` 
 
 ![](/transp/images/menu/4.png)
 
-Footer menu located on the bottom of the page. You can manage these items from `Admin` -> `Appearance` -> `Menus` -> click **Edit** button on the `Footer bottom menu` row.
+Footer menu located on the bottom of the page. You can manage these items from `Admin` -> `Appearance` -> `Menus` -> click **Edit** button on the `Footer menu` row.
 
 ![](/transp/images/menu/5.png)

@@ -296,7 +296,7 @@ capi "$API/stores?status=ready&per_page=2&include=usage"
 {
   "data": [{
     "id": "acme", "name": "Acme Supply", "status": "ready",
-    "access_state": "serving", "theme": "amerce", "preset": "fashion",
+    "access_state": "serving", "theme": "amerce", "preset": "home-fashion",
     "owner_email": "owner@acme.test", "root_url": "https://acme.example.com",
     "provisioned_at": "2026-07-04T12:00:03+00:00",
     "created_at": "2026-07-04T12:00:00+00:00",
@@ -326,7 +326,7 @@ capi -X POST $API/stores -H 'Content-Type: application/json' -d '{
   "owner_email": "owner@acme.test",
   "password": "correct horse battery staple",
   "theme": "amerce",
-  "preset": "fashion",
+  "preset": "home-fashion",
   "plan": "pro",
   "trial_days": 14
 }'
@@ -393,8 +393,10 @@ resources:
 **`GET /stores/{id}/usage`** · scope `read` — the cached central snapshot (refreshed by
 `tenancy:collect-usage`).
 
-`?refresh=1` opens the store's own database for a live count. It is opt-in because it
-costs a connection per call, and it answers **`409 usage_unavailable`** rather than a
+`?refresh=1` (or the equivalent **`POST /stores/{id}/usage/refresh`**) opens the store's
+own database for a live count. A live count is an operator action, so it needs the
+**`write`** scope either way — a `read`-only key gets `403 insufficient_scope`. It is
+opt-in because it costs a connection per call, and it answers **`409 usage_unavailable`** rather than a
 `500` when the count cannot be trusted: the store has never been provisioned
 (`provisioned_at` is `null`), or the connection or query fails.
 

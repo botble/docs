@@ -106,7 +106,7 @@ Investigate significant variances. Common causes include:
 
 ### Viewing Past Shifts
 
-1. Go to **POS** > **Registers**
+1. Go to **POS** > **Register History**
 2. View list of all closed shifts
 3. Each record shows:
    - User who worked the shift

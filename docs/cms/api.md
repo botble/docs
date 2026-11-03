@@ -16,8 +16,8 @@ Go to **Admin > Settings > API** and toggle **Enable API**. When disabled, all `
 
 API key protection adds a second layer of security on top of Sanctum tokens. When enabled, every request must include an `X-API-KEY` header.
 
-1. In **Admin > Settings > API**, enable **API Key Protection**.
-2. Copy the generated key (or click **Generate** to create a new one).
+1. In **Admin > Settings > API**, enter a value in the **API Key** field (or click **Generate Random Key**). Leave the field empty to disable API key protection.
+2. Save the settings and copy the key (**Copy to Clipboard**).
 3. Add the header to all requests:
 
 ```bash
@@ -48,7 +48,7 @@ Think of the API key as a gate key for your entire app, while the Sanctum token 
 
 ### Sanctum Token Management
 
-Admins can create and manage server-side API tokens at **Admin > Settings > API > API Tokens**. These tokens are useful for server-to-server integration (e.g., syncing data from an ERP).
+Admins can create and manage server-side API tokens in the **Sanctum Token** table at the bottom of **Admin > Settings > API** (shown only when the API is enabled). These tokens are useful for server-to-server integration (e.g., syncing data from an ERP).
 
 - Click **Create** to generate a named token. The plain-text token is shown **only once** — copy it immediately.
 - Tokens can be deleted individually from the table.
@@ -73,12 +73,7 @@ Content-Type: application/json
 {
   "error": false,
   "data": {
-    "token": "1|abc123...",
-    "user": {
-      "id": 1,
-      "name": "John Doe",
-      "email": "user@example.com"
-    }
+    "token": "1|abc123..."
   },
   "message": null
 }
@@ -125,15 +120,13 @@ This revokes all tokens for the authenticated user.
 # Request reset link
 POST /api/v1/password/forgot
 { "email": "user@example.com" }
-
-# Reset password (using token from email)
-POST /api/v1/password/reset
-{ "email": "user@example.com", "token": "reset-token", "password": "new-password", "password_confirmation": "new-password" }
 ```
+
+The user completes the reset by opening the link in the email. There is no API endpoint for setting the new password.
 
 ### Email Verification
 
-If email verification is enabled in the API config, unverified users can request a new verification email:
+If email verification is enabled in the API config (`verify_email`), unverified users cannot log in (the login returns `422`) and can request a new verification email:
 
 ```bash
 POST /api/v1/resend-verify-account-email
@@ -216,12 +209,14 @@ POST /api/v1/resend-verify-account-email
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/v1/posts` | List blog posts |
-| GET | `/api/v1/posts/{id}` | Get a blog post |
+| GET | `/api/v1/posts` | List published blog posts |
+| GET | `/api/v1/posts/filters` | Filter posts (see [Filtering](#filtering)) |
+| GET | `/api/v1/posts/{slug}` | Get a blog post by slug |
+| GET | `/api/v1/search?q=keyword` | Search posts |
 | GET | `/api/v1/categories` | List blog categories |
-| GET | `/api/v1/categories/{id}` | Get a blog category |
+| GET | `/api/v1/categories/filters` | Filter categories |
+| GET | `/api/v1/categories/{slug}` | Get a blog category by slug |
 | GET | `/api/v1/tags` | List blog tags |
-| GET | `/api/v1/tags/{id}` | Get a blog tag |
 
 ### Page Endpoints
 
@@ -232,12 +227,15 @@ POST /api/v1/resend-verify-account-email
 
 ### Plugin Endpoints
 
-Depending on installed plugins, additional endpoints may be available for:
+Depending on installed plugins, additional endpoints may be available, for example:
 
-- E-commerce (products, orders, customers, carts, wishlists)
-- Galleries
-- Contact forms
-- And more
+| Plugin | Endpoints |
+|--------|-----------|
+| Contact | `POST /api/v1/contacts` (rate limited to 5 requests per minute) |
+| Language | `GET /api/v1/languages`, `GET /api/v1/languages/current` |
+| Simple Slider | `GET /api/v1/simple-sliders` |
+| Social Login | `POST /api/v1/auth/{apple,google,facebook,x}` |
+| E-commerce (ecommerce products only) | Products, orders, customers, carts, wishlists, and more |
 
 ## Request Parameters
 
@@ -248,25 +246,29 @@ GET /api/v1/posts?page=2&per_page=15
 ```
 
 - `page` — Page number (default: 1)
-- `per_page` — Items per page (default: 10, max: 100)
+- `per_page` — Items per page (default: 10)
+
+List endpoints only return published items. `/api/v1/posts` always includes the `categories`, `tags`, and `author` relations.
 
 ### Filtering
 
-```
-GET /api/v1/posts?status=published&category_id=5
-```
-
-### Sorting
+Use `/api/v1/posts/filters` to filter and sort posts:
 
 ```
-GET /api/v1/posts?sort_by=created_at&order=desc
+GET /api/v1/posts/filters?categories=5&order_by=created_at&order=desc
 ```
 
-### Including Relations
-
-```
-GET /api/v1/posts?include=categories,tags,author
-```
+| Parameter | Description |
+|-----------|-------------|
+| `search` | Match a search string |
+| `categories` / `categories_exclude` | Include / exclude category IDs |
+| `tags` / `tags_exclude` | Include / exclude tag IDs |
+| `author` / `author_exclude` | Include / exclude author IDs |
+| `include` / `exclude` | Include / exclude specific post IDs |
+| `after` / `before` | Published after / before an ISO 8601 date |
+| `featured` | Only featured posts |
+| `order_by` | `author`, `created_at`, `updated_at`, `id`, `title`, `views` (default: `updated_at`) |
+| `order` | `asc` or `desc` (default: `desc`) |
 
 ## Response Format
 
@@ -287,6 +289,8 @@ GET /api/v1/posts?include=categories,tags,author
 
 ```json
 {
+  "error": false,
+  "message": null,
   "data": [...],
   "meta": {
     "current_page": 1,
@@ -410,13 +414,13 @@ Users can retrieve their notifications via the `/api/v1/notifications` endpoints
 
 ### Scheduled Notifications
 
-Notifications can be scheduled for future delivery. A command processes due notifications:
+Notifications can be scheduled for future delivery (`--schedule` option). Due notifications are sent by this command:
 
 ```bash
-php artisan schedule:run
+php artisan cms:push-notification:process-scheduled
 ```
 
-Ensure your [cronjob](/cms/cronjob) is configured for scheduled notifications to work.
+Options: `--limit` (default 50) and `--dry-run`. The command is not added to the Laravel scheduler automatically, so run it from your own cron entry (for example, every minute) or register it in your application's scheduler alongside the [cronjob](/cms/cronjob).
 
 ## Custom API Endpoints
 
@@ -429,26 +433,32 @@ You can add custom endpoints in your plugin:
 
 namespace Botble\YourPlugin\Http\Controllers\API;
 
-use Botble\Api\Http\Controllers\ApiController;
+use Botble\Api\Http\Controllers\BaseApiController;
 use Botble\YourPlugin\Models\YourModel;
 use Botble\YourPlugin\Http\Resources\YourModelResource;
 use Illuminate\Http\Request;
 
-class YourModelController extends ApiController
+class YourModelController extends BaseApiController
 {
     public function index(Request $request)
     {
         $data = YourModel::query()
-            ->paginate($request->input('per_page', 10));
+            ->paginate($request->integer('per_page', 10));
 
-        return $this->respondWithData(YourModelResource::collection($data));
+        return $this
+            ->httpResponse()
+            ->setData(YourModelResource::collection($data))
+            ->toApiResponse();
     }
 
     public function show(int|string $id)
     {
         $item = YourModel::query()->findOrFail($id);
 
-        return $this->respondWithData(new YourModelResource($item));
+        return $this
+            ->httpResponse()
+            ->setData(new YourModelResource($item))
+            ->toApiResponse();
     }
 }
 ```

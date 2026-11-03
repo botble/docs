@@ -202,7 +202,7 @@ Bulk manage customers using CSV import/export.
 
 ### Export Customers
 
-1. Navigate to `Tools` -> `Data Synchronize` (or `Import/Export`)
+1. Navigate to `Tools` -> `Export/Import Data`
 2. Select **Export**
 3. Choose **Customers** from the list
 4. Click **Export**
@@ -220,7 +220,7 @@ Bulk manage customers using CSV import/export.
 
 ### Import Customers
 
-1. Navigate to `Tools` -> `Data Synchronize`
+1. Navigate to `Tools` -> `Export/Import Data`
 2. Select **Import**
 3. Choose **Customers**
 4. Download the example CSV to see required format
@@ -291,12 +291,12 @@ Customers can request account deletion for privacy compliance (GDPR, CCPA).
 
 ### Viewing Deletion Requests
 
-Navigate to `Ecommerce` -> `Customers` -> **Deletion Requests** tab.
+There is no admin screen for deletion requests; they are stored in the `ec_customer_deletion_requests` table.
 
 **Request statuses:**
-- **Waiting for Confirmation** - Email sent, awaiting customer confirmation
-- **Confirmed** - Customer confirmed, deletion in progress
-- **Completed** - Account deleted successfully
+- **Waiting for confirmation** - Email sent, awaiting customer confirmation
+- **Confirmed** - Customer confirmed, account deleted
+- **Canceled** - Request expired without confirmation (cancelled by the scheduled `cms:ecommerce:cancel-expired-deletion-requests` command)
 
 **Deletion request data:**
 - Customer name
@@ -352,18 +352,18 @@ Navigate to `Ecommerce` -> `Settings` -> `Customers`.
 | Setting | Description |
 |---------|-------------|
 | **Enable customer registration** | Allow new customer signups |
-| **Verify customer email** | Require email verification before full access |
-| **Verification expire minutes** | Minutes before verification link expires (default: 60) |
-| **Enabled phone field in registration form** | Show phone number field on registration |
+| **Verify customer's email** | Require email verification before full access |
+| **Verification link expiration time** | Minutes before verification link expires (default: 60) |
+| **Enable phone field in registration form** | Show phone number field on registration |
 | **Make customer phone number required** | Require phone number during registration |
 | **Login option** | Email, phone, or either for login |
 | **Keep email field in registration form** | Show email field when phone login is primary |
-| **Enabled customer DOB field** | Show date of birth field in registration/profile |
-| **Customer default avatar** | Default profile picture for customers without avatars |
+| **Enable customer date of birth field** | Show date of birth field in registration/profile |
+| **Default avatar** | Default profile picture for customers without avatars |
 
 ### Email Verification Settings
 
-When **Verify customer email** is enabled:
+When **Verify customer's email** is enabled:
 
 **Customer experience:**
 1. Customer registers account
@@ -391,9 +391,9 @@ Three login methods supported:
 
 | Option | Login Field | Registration Requires |
 |--------|-------------|----------------------|
-| **Email only** | Email address | Email (required) |
-| **Phone only** | Phone number | Phone (required), Email (optional) |
-| **Email or Phone** | Either field | Email and Phone (both required) |
+| **Login with email** | Email address | Email (required) |
+| **Login with phone** | Phone number | Phone (required), Email (optional) |
+| **Login with email or phone** | Either field | Email and Phone (both required) |
 
 **Phone login considerations:**
 - Phone numbers must be unique

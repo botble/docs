@@ -18,6 +18,7 @@ The **Logo** section allows you to configure your site's branding:
 
 - **Logo**: The main site logo displayed in the header.
 - **Logo Dark**: Alternative logo for dark mode.
+- **Logo Light**: Alternative logo for light backgrounds.
 - **Favicon**: The small icon displayed in browser tabs.
 - **Logo Height**: Control the height of the logo in the header.
 
@@ -25,9 +26,11 @@ The **Logo** section allows you to configure your site's branding:
 
 The **Header** tab allows you to customize the header appearance:
 
+- **Header Style**: Choose from 5 styles: Style 1 (Simple), Style 2 (Search + Contact), Style 3 (Contained Top Bar), Style 4 (Contact Top Bar), Style 5 (Dark Centered Logo).
 - **Display Header Top**: Show or hide the top bar above the main header.
 - **Header Top Text Color**: Color of text in the top bar.
 - **Header Top Background Color**: Background color of the top bar.
+- **Header Top Announcement**, **Header Phone Number** (and Phone Number 2), **Header Email**, **Header Address**, **Header Address Map URL**: Contact details shown in header styles that display them.
 - **Header Transparent**: When enabled, the header will have a transparent background and float on top of the page content.
 - **Sticky Header**: When enabled, the header will remain fixed at the top when scrolling.
 
@@ -81,7 +84,7 @@ The **Car Manager** tab provides options specific to car listings:
 
 - **Car Detail Style**: Choose from 6 different car detail page layouts with visual previews.
 - **Car Listing Layout**: Choose the default listing layout:
-    - `default` - Standard grid layout
+    - `default` - Off-canvas filter
     - `sidebar-left` - Listing with left sidebar filters
     - `sidebar-right` - Listing with right sidebar filters
     - `top-map` - Map displayed above listings

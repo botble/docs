@@ -371,7 +371,7 @@ php artisan migrate
 
 ## Site Breaks After Upgrading PHP
 
-After switching your hosting to PHP 8.3 or 8.4, the site returns a fatal error naming a vendor package — for example
+After switching your hosting to PHP 8.3, 8.4, or 8.5, the site returns a fatal error naming a vendor package — for example
 `Declaration of Maatwebsite\Excel\... must be compatible with ...`.
 
 ### Cause
@@ -391,7 +391,7 @@ composer install
 Without SSH, use **Admin → Platform Administration → System Updater → Re-install the latest version**, which ships an
 updated `vendor` folder.
 
-Do not downgrade PHP as a workaround — current versions require PHP 8.3.36 or higher, and the updater will keep refusing
+Do not downgrade PHP as a workaround — current versions require PHP 8.3.0 or higher, and the updater will keep refusing
 to run.
 
 ## Update Fails with a Generic "Update error"

@@ -4,7 +4,7 @@ Theme options control the look and behaviour of the whole site: header and foote
 
 Go to `Appearance` -> `Theme Options` in the admin panel.
 
-## Pages
+## Page
 
 | Field | Purpose |
 |-------|---------|
@@ -47,7 +47,7 @@ The footer links come from the **Footer menu** and **Footer secondary menu** loc
 | Field | Purpose |
 |-------|---------|
 | **Default preview image** | Shown beside the overlay menu when no link is hovered, and for links without their own image |
-| **Hide language switcher in header** | Hides the language list shown at the top of the overlay menu. Off by default; the list only appears when the Language plugin is active with more than one language. See [Multi-language](./usage-multi-language.md#language-switcher) |
+| **Hide language switcher in header** | Hides the language list shown at the top of the overlay menu. Off by default; the list only appears when the Language plugin is active with more than one language. See [Multi-language](./usage-language-switcher.md) |
 
 ## Page Not Found (404)
 

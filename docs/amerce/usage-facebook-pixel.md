@@ -108,5 +108,5 @@ The pixel automatically uses your store's active currency. For zero-decimal curr
 | No events in Events Manager | Verify the Pixel ID is correct and the toggle is enabled. Clear your site cache. |
 | Events not firing | Check browser console for JavaScript errors. Ensure no ad blocker is active. |
 | Duplicate events | This is normal - some events fire both on page load and on user interaction for redundancy. Facebook deduplicates them automatically. |
-| Wrong currency or values | Check your store's active currency in **Admin** -> **Ecommerce** -> **Currencies**. |
+| Wrong currency or values | Check your store's active currency in **Admin** -> **Settings** -> **Ecommerce** -> **Currencies**. |
 | Pixel Helper shows warning | Warnings about "non-standard parameters" are safe to ignore for custom events. |

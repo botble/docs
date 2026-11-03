@@ -8,7 +8,7 @@ All app configuration lives in the `.env` file at the project root. Hot reload d
 API_BASE_URL=https://your-domain.com
 API_KEY=<from Admin → Settings → API Settings>
 APP_NAME=Your Store Name
-LICENSE_CODE=<your Envato purchase code>
+LICENSE_CODE=<your Envato purchase code or license.botble.com license code>
 ```
 
 See [API Configuration](06_api_base_url.md) for `API_BASE_URL` and `API_KEY`, and [License activation](license-activation.md) for `LICENSE_CODE`.
@@ -18,13 +18,15 @@ See [API Configuration](06_api_base_url.md) for `API_BASE_URL` and `API_KEY`, an
 | Key | Values | Default | Description |
 |---|---|---|---|
 | `USE_LOCAL_HELP` | `true` / `false` | `false` | Use bundled help content instead of loading the help URL in a WebView |
-| `PRODUCT_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `medium` | Thumbnail size for product images |
+| `PRODUCT_IMAGE_THUMBNAIL_SIZE` | `small` / `medium` / `large` | `small` | Thumbnail size for product images |
 | `HOMEPAGE_PRODUCTS_PER_CATEGORY` | integer | `10` | Products shown per category on the home screen |
 | `ENABLE_ORDER_UPLOAD_PROOF` | `true` / `false` | `true` | Allow customers to upload a payment proof image |
 | `ENABLE_GUEST_CHECKOUT` | `true` / `false` | `false` | Allow checkout without an account |
+| `ENABLE_ORDER_RETURN` | `true` / `false` | `true` | Show the order return option (set `false` to hide it) |
 | `DEFAULT_LANGUAGE` | language code | `en` | Default language (e.g. `en`, `ar`, `vi`, `fr`) |
 | `DEFAULT_LANGUAGE_DIRECTION` | `ltr` / `rtl` | `ltr` | Layout direction |
 | `DEFAULT_THEME_MODE` | `light` / `dark` / `system` | `system` | Default theme |
+| `TEST_EMAIL` / `TEST_PASSWORD` | text | *(empty)* | Pre-fill the login form; only used when `APP_ENV=development` |
 
 ## Common follow-ups
 

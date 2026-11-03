@@ -63,12 +63,16 @@ Without a webhook secret, anyone who discovers your webhook URL could send fake 
 
 ## When Are Webhooks Triggered?
 
-Webhooks are dispatched during the daily cron job that processes license expirations. They are **not** triggered in real-time when a license is created or modified in the admin panel.
+Webhooks come from two sources:
 
-**Trigger flow:**
-1. The cronjob runs: `php artisan cms:license-manager:process-expirations`
-2. It checks for licenses that are expiring soon, already expired, or have expired update support
-3. For each matching license, a webhook is sent to your configured URL
+1. **Real-time license events** — `license.created`, `license.blocked`, `license.unblocked`,
+   `license.activated` and `license.deactivated` fire as soon as the change happens, from every code path
+   (admin panel, internal/external API, bulk actions, Envato and Gumroad sales). Delivery is handed to a
+   **queued job**, so with `QUEUE_CONNECTION` set to anything other than `sync` you need a running queue worker
+   (`php artisan queue:work`), or these webhooks are never sent.
+2. **Expiration events** — `license.expiring`, `license.expired` and `license.update_support_expired` are sent by
+   the daily `php artisan cms:license-manager:process-expirations` run, for each license that is expiring soon,
+   already expired, or has expired update support.
 
 ::: tip
 You can also trigger the command manually to test webhooks. See [Testing Webhooks](#testing-webhooks) below.
@@ -80,6 +84,11 @@ You can also trigger the command manually to test webhooks. See [Testing Webhook
 
 | Event | Description |
 |-------|-------------|
+| `license.created` | A license was created (any source) |
+| `license.blocked` | A license was blocked (`is_valid` changed to false) |
+| `license.unblocked` | A license was unblocked (`is_valid` changed to true) |
+| `license.activated` | A license was activated on a client |
+| `license.deactivated` | An activation of the license was deactivated |
 | `license.expiring` | License approaching expiration (based on configured warning days) |
 | `license.expired` | License has expired |
 | `license.update_support_expired` | Update support period ended |
@@ -116,7 +125,7 @@ All webhooks send a JSON payload with this structure:
 | `payload.customer` | int | The customer ID |
 | `payload.email` | string | The customer's email address |
 | `payload.expires_at` | string | License expiration date (YYYY-MM-DD format) |
-| `payload.is_valid` | boolean | Whether the license is currently valid (on `expired` and `update_support_expired` events) |
+| `payload.is_valid` | boolean | Whether the license is currently valid (on every event except `expiring`) |
 | `payload.days_until_expiry` | int | Days until license expires (only on `expiring` events) |
 
 ::: tip

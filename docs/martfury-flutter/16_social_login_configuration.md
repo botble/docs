@@ -121,11 +121,10 @@ To test different configurations:
 
 ## Configuration Priority
 
-The app supports two configuration sources and checks them in this order:
-1. `.env` file variables (highest priority)
-2. `assets/config/social_sign_in.json` (fallback)
+The app supports two configuration sources, `.env` and `assets/config/social_sign_in.json`:
 
-`.env` variables always win. If you set `ENABLE_GOOGLE_SIGN_IN=false` in `.env`, it overrides any setting in `social_sign_in.json`.
+- **Enable flags** (`ENABLE_*_SIGN_IN`): `.env` wins. If you set `ENABLE_GOOGLE_SIGN_IN=false` in `.env`, it overrides the `enabled` value in `social_sign_in.json`; the JSON value is used only when the `.env` key is missing.
+- **Credentials** (client IDs, app ID, client token, service/team ID, consumer key/secret): a non-empty value in `social_sign_in.json` wins; the `.env` value is used when the JSON field is empty. The shipped JSON has empty credentials, so `.env` is used unless you fill the JSON in. The Android build (`android/app/build.gradle.kts`) resolves the Facebook App ID and client token the same way.
 
 ### JSON Configuration File
 

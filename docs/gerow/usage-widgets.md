@@ -146,7 +146,7 @@ You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Footer sidebar st
 
 ### Site Copyright
 
-You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Bottom footer**
+You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Footer Bottom**
 
 ![](./images/widgets/21.png)
 
@@ -156,7 +156,7 @@ You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Bottom footer**
 
 ![](./images/widgets/22.png)
 
-You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Bottom footer**
+You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Footer Bottom**
 
 ![](./images/widgets/23.png)
 
@@ -164,6 +164,6 @@ You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Bottom footer**
 
 ![](./images/widgets/24.png)
 
-You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Bottom footer style 1**
+You can modify it in `Admin` -> `Appearance` -> `Widgets` -> **Footer bottom style 1**
 
 ![](./images/widgets/25.png)

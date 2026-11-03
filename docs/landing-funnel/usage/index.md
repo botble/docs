@@ -13,9 +13,12 @@ Landing Funnel adds a new **Landing Funnels** group to your admin sidebar (under
 |---|---|
 | **All Funnels** | List, create, edit, duplicate, delete funnels |
 | **Orders** | View orders attributed to each funnel |
+| **Leads** | Contacts captured when a visitor starts the funnel checkout; marked converted once they place the order (follow up on the rest) |
 | **Reports** | Cross-funnel analytics — visits, conversions, revenue, conversion rate |
 | **Webhooks** | Webhook delivery log with retry from UI |
 | **Settings** | Plugin-wide defaults, branding, tracking pixels |
+
+With the Marketplace plugin active, vendors also get a **Landing Funnels** section in the vendor dashboard (their own funnels, leads, reports and per-funnel insights).
 
 ## Typical Workflow
 

@@ -15,22 +15,17 @@ Re-dispatch delivery logs stuck in `failed` that are eligible for retry (based o
 php artisan sms:retry
 ```
 
-Runs on a scheduled tick automatically — manual invocation is only needed for ad-hoc catch-up.
+Runs every 5 minutes on the scheduler automatically — manual invocation is only needed for ad-hoc catch-up.
 
 ## `sms:purge`
 
 Delete delivery logs older than a retention window.
 
 ```bash
-php artisan sms:purge --days=90   # default window
-php artisan sms:purge --days=30   # stricter window
+php artisan sms:purge
 ```
 
-Schedule nightly in `app/Console/Kernel.php`:
-
-```php
-$schedule->command('sms:purge', ['--days=90'])->daily();
-```
+The retention window comes from the `smsg_log_retention_days` setting (default 30 days); the command has no `--days` option. The plugin schedules it daily at 03:00 — no kernel edits required.
 
 ## `sms:purge-subject`
 
@@ -63,7 +58,7 @@ Poll drivers without push delivery receipts (e.g. BulkSMSBD) for the latest stat
 php artisan sms:status-poll
 ```
 
-Scheduled automatically every few minutes while rows remain in `sent`.
+Scheduled automatically every 15 minutes.
 
 ## `sms:recover-abandoned-carts`
 
@@ -80,8 +75,8 @@ Scheduled every 15 minutes by default.
 Send a synthetic test SMS through a configured driver and print the provider response.
 
 ```bash
-php artisan sms:verify-driver twilio --to=+12025550001
-php artisan sms:verify-driver msg91  --to=+919876543210
+php artisan sms:verify-driver twilio --phone=+12025550001
+php artisan sms:verify-driver msg91  --phone=+919876543210
 ```
 
 Useful for smoke-testing credentials after rotating API keys.

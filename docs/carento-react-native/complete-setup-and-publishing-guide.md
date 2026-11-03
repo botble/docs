@@ -38,7 +38,7 @@ If you're on a budget, start with Google Play ($25 one-time). Apple requires a y
 - Cars, dealers, and content already added in admin
 - The **API enabled** in your Botble admin at **Settings → API**
 - An **API key** if you configured one in admin (sent as the `X-API-KEY` header; note this is **not** your Envato purchase code)
-- Your **Envato purchase code** (from CodeCanyon; used only for the development license check)
+- Your **Envato purchase code** (from CodeCanyon) or, for a direct purchase, your license code from license.botble.com (used only for the development license check)
 - Your **brand assets**: app icon (1024×1024 PNG), splash icon, adaptive icon, brand colors
 
 ---
@@ -105,7 +105,7 @@ LICENSE_CODE=<your Envato purchase code>
 
 - `API_BASE_URL` should use `https://` in production and must **not** end with `/api/v1` (the app appends it).
 - `API_KEY` is sent as the `X-API-KEY` header and is only needed if you configured one in admin.
-- `LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`). It is used for the development-only license check. **Never** put it in `API_KEY`.
+- `LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`) or your direct-purchase license code from license.botble.com. It is used for the development-only license check. **Never** put it in `API_KEY`.
 
 See [Configuration](configuration.md) for the full env-key reference.
 

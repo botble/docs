@@ -1,5 +1,11 @@
 # Release Notes
 
+## Version 1.0.4 (July 2026)
+
+- Added **Disable Cash on Delivery for pre-order carts** setting
+- Order views show the full product price for deposit pre-orders
+- Fixed the add-to-cart button not switching to the pre-order label on Nest and other themes
+
 ## Version 1.0.0 (March 2026)
 
 Initial release.

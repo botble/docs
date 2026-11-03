@@ -9,6 +9,8 @@ The app checks your Envato purchase code **only while you develop**. There is no
 3. Click **Download → License certificate & purchase code (text)**
 4. Copy the **Item Purchase Code** (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
 
+Bought directly from Botble (not on CodeCanyon)? Use the license code you received from license.botble.com instead. The same `LICENSE_CODE` key accepts both.
+
 ## 2. Add it to `.env`
 
 In the Flutter project root, open `.env` and set:

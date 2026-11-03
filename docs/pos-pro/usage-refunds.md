@@ -33,7 +33,6 @@ Before processing refunds, configure the refund settings:
 1. Go to **POS** > **Orders**
 2. Find the order to refund
 3. Click the **Refund** button
-4. Or go directly to **POS** > **Refunds**
 
 ## Looking Up an Order
 

@@ -21,9 +21,11 @@ Step-by-step cPanel configuration for SMS Gateways.
 
 This runs Laravel's scheduler every minute, which executes:
 
-- `sms:purge` — Delete logs older than 90 days (nightly at 2 AM)
-- `sms:retry` — Retry failed SMS (every 30 minutes)
-- `otp:cleanup` — Remove expired OTP codes (nightly at 3 AM)
+- `sms:heartbeat` — Scheduler health ping (every minute)
+- `sms:retry` — Retry failed SMS (every 5 minutes)
+- `sms:status-poll` — Poll delivery status for drivers without push receipts (every 15 minutes)
+- `sms:recover-abandoned-carts` — Abandoned-cart SMS (every 15 minutes)
+- `sms:purge` — Delete logs older than the retention window, default 30 days (daily at 03:00)
 
 ## Enable HTTPS (SSL)
 
@@ -38,7 +40,7 @@ Most shared hosts offer **free Let's Encrypt SSL**. Enable it to ensure SMS prov
 ## Verify installation
 
 1. Log in to your Botble admin panel
-2. Go to **Admin → Settings → SMS Gateways**
+2. Go to **Admin → SMS Gateways → Settings**
 3. Enter SMS driver credentials (Twilio, Vonage, etc.)
 4. Click **Send test SMS**
 5. You should receive an SMS within 10 seconds
@@ -48,7 +50,7 @@ Most shared hosts offer **free Let's Encrypt SSL**. Enable it to ensure SMS prov
 If SMS tests fail, verify your PHP version:
 
 1. Go to **Home → Select PHP Version** (or **Software → PHP Selector** in newer cPanel)
-2. Ensure you're running **PHP 8.3.36 or higher**
+2. Ensure you're running **PHP 8.3.0 or higher**
 3. Verify these extensions are enabled:
    - `openssl`
    - `curl`
@@ -90,7 +92,7 @@ SMS Gateways uses your existing Botble database. No additional setup needed.
 
 1. Manually purge via cPanel File Manager:
    - You can delete `storage/logs/` files older than 90 days
-2. Or use the command: `php artisan sms:purge --days=90`
+2. Or use the command: `php artisan sms:purge` (deletes logs older than the retention window, default 30 days)
 3. Set up the cron job (see above) to auto-purge nightly
 
 ## Next step

@@ -62,7 +62,7 @@ Yes. Upload them under **Store Locator → Map markers** and assign per store or
 
 ## Does "open now" handle a store open past midnight?
 
-Yes. A slot from `22:00` to `02:00` is understood as running overnight, so a late bar is not wrongly shown as closed at 1am. With **Multi timezone** enabled, each store is evaluated in its own timezone.
+Yes. A slot from `22:00` to `02:00` is understood as running overnight, so a late bar is not wrongly shown as closed at 1am. With **Stores are in different timezones** enabled, each store is evaluated in its own timezone.
 
 ## Is there an API?
 

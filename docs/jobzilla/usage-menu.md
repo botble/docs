@@ -20,7 +20,7 @@ To translate menu
 
 ![Image](./images/menu-7.png)
 
-Go to Admin -> Appearance -> Menus (modify menu Company, For Jobs, For Candidates, Support)
+Go to Admin -> Appearance -> Menus (modify menu Quick Links, Helpful Resources, For Candidate, For Employers)
 
 ![Image](./images/menu-8.png)
 

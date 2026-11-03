@@ -5,6 +5,27 @@ description: Version history and feature releases.
 
 # Release Notes
 
+## Version 1.0.2 - October 2026
+
+### Added
+
+- **Console → System update** — install a release from the browser. Runs the download / extract / central-migration / publish steps plus `tenancy:activate-plugins`, every store database (`tenancy:migrate-tenants`), theme assets and `queue:restart`. See [Upgrade guide](./upgrade.md)
+- **Add-on plugin contract** — POS Pro, Affiliate Pro, E-Wallet, Loyalty Points, Live Chat and SMS Gateways now behave per store; add-on scheduled tasks run per store through `tenancy:schedule`. See [Add-ons](./addons-overview.md)
+- **Console → Add-ons** — installed add-ons with version and licence status; activate or deactivate each add-on's licence once for every store
+- **Pay a plan through PayPal, Razorpay, Paystack or Mollie** — plan orders can be paid through a Botble payment gateway and are approved automatically once the payment is verified; `order.*` webhooks carry a `gateway` field. See [Payment gateways](./payment-gateways.md)
+- **Console → Plan billing gateways** — enable each gateway for plan payments and enter its keys
+- **Pay with a gateway on the Billing screen** — a *Pay with …* button per enabled gateway
+
+### Changed
+
+- `tenancy:migrate-tenants` exits non-zero when a store is `PARTIAL` (unresolved migrations), not only when it is `FAILED`
+
+### Fixed
+
+- Store payments through Mollie, Razorpay, SSLCommerz and Stripe / Paystack webhooks now identify the store instead of running against the central database
+- Paystack accepted an abandoned or failed transaction as paid; checkout amounts with cents are rounded instead of truncated
+- Spanish and Korean operator strings for "stores"
+
 ## Version 1.0.1 - September 2026
 
 ### Added

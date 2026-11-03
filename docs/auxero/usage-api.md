@@ -116,16 +116,28 @@ Authorization: Bearer 1|abc123...
 
 ## Bookings
 
-Bookings are accessible to both guest and authenticated users.
+Creating a booking and looking one up work for guests. All other booking endpoints require `Authorization: Bearer {token}` and are scoped to the authenticated customer.
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| `POST` | `/bookings` | Optional | Create a booking (guest or authenticated checkout) |
+| `GET` | `/bookings/lookup` | No | Guest lookup (requires `booking_number` and `email`) |
+| `POST` | `/bookings/{id}/payment` | No | Pay for a booking |
+| `GET` | `/bookings` | Yes | List bookings |
+| `GET` | `/bookings/{id}` | Yes | Get booking details |
+| `PUT` | `/bookings/{id}` | Yes | Update a booking |
+| `POST` | `/bookings/{id}/cancel` | Yes | Cancel a booking |
+| `DELETE` | `/bookings/{id}` | Yes | Delete a booking |
+| `GET` | `/bookings/{id}/invoice` | Yes | Get booking invoice (returns a signed download URL) |
+
+### Other Public Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/bookings` | List bookings |
-| `POST` | `/bookings` | Create a booking |
-| `GET` | `/bookings/{id}` | Get booking details |
-| `PUT` | `/bookings/{id}` | Update a booking |
-| `POST` | `/bookings/{id}/cancel` | Cancel a booking |
-| `GET` | `/bookings/{id}/invoice` | Get booking invoice |
+| `GET` | `/currencies` | List currencies |
+| `GET` | `/settings` | Get public settings |
+| `GET` | `/services` | List booking service add-ons |
+| `GET` | `/payment-methods` | List available payment methods |
 
 ## Authenticated Endpoints
 
@@ -139,6 +151,11 @@ All endpoints below require `Authorization: Bearer {token}`.
 | `PUT` | `/profile` | Update profile |
 | `POST` | `/profile/avatar` | Upload avatar |
 | `POST` | `/profile/change-password` | Change password |
+| `DELETE` | `/profile` | Delete account |
+| `GET` | `/profile/driver-license` | Get driver license |
+| `POST` | `/profile/driver-license` | Update driver license |
+| `GET` | `/referral` | Referral info |
+| `GET` | `/referral/credits` | Referral credits |
 
 ### Reviews (write)
 

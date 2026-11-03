@@ -5,7 +5,7 @@ This guide will walk you through the process of configuring the Loyalty Points p
 ## Accessing Loyalty Points Settings
 
 1. Log in to your admin panel
-2. Navigate to **Settings** > **Loyalty Points**
+2. Navigate to **Loyalty Points** > **Settings**
 3. You will see the Loyalty Points configuration page
 
 ![Loyalty Points Settings](https://botble.com/storage/envato/loyalty-points/loyalty-points-settings-page.png)
@@ -156,16 +156,17 @@ Loyalty Points includes comprehensive permissions that can be assigned to user r
 
 ### Core Permissions
 
-- **loyalty-points.index**: View customer points and overview
-- **loyalty-points.adjust**: Adjust customer points manually
-- **loyalty-points.transactions**: View transaction history
+- **loyalty-points.index**: View loyalty points reports and overview
+- **loyalty-points.create** / **loyalty-points.edit** / **loyalty-points.destroy**: Manage loyalty points records
+- **loyalty-points.members.index**: View members and their transaction history
+- **loyalty-points.members.adjust**: Adjust customer points manually
 
 ### Member Level Permissions
 
-- **loyalty-points.member-levels.index**: View member levels
-- **loyalty-points.member-levels.create**: Create new member levels
-- **loyalty-points.member-levels.edit**: Edit member levels
-- **loyalty-points.member-levels.destroy**: Delete member levels
+- **loyalty-points.levels.index**: View member levels
+- **loyalty-points.levels.create**: Create new member levels
+- **loyalty-points.levels.edit**: Edit member levels
+- **loyalty-points.levels.destroy**: Delete member levels
 
 ### Settings Permission
 

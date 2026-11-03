@@ -23,29 +23,31 @@ Format: `MAJOR.MINOR.PATCH` (e.g., 1.2.3)
 | 1.1.0 | Minor | New feature added |
 | 2.0.0 | Major | Complete redesign |
 
-## Configuration in app.json
+## Where the version is set
 
-```json
-{
-  "expo": {
-    "version": "1.2.0",
-    "ios": {
-      "buildNumber": "15"
-    },
-    "android": {
-      "versionCode": 15
-    }
-  }
-}
+This project uses `app.config.js` (there is no `app.json`). The public version comes from the `APP_VERSION` key in `.env`:
+
+```js
+// app.config.js
+version: process.env.APP_VERSION || "1.0.0",
 ```
+
+```bash
+# .env
+APP_VERSION=1.2.0
+```
+
+Build numbers are managed by EAS. `eas.json` sets `cli.appVersionSource: "remote"` and `autoIncrement: true` on the `production` profile, so EAS stores the iOS `buildNumber` / Android `versionCode` on its servers and bumps it by 1 for every `eas build --profile production`. You do not edit them by hand.
+
+If you prefer to manage build numbers yourself, set `appVersionSource` to `local` in `eas.json` and add `ios.buildNumber` (string) and `android.versionCode` (integer) to `app.config.js`.
 
 ### Version Fields
 
 | Field | Platform | Purpose |
 |-------|----------|---------|
-| `version` | Both | User-visible version |
-| `buildNumber` | iOS | Internal build number (string) |
-| `versionCode` | Android | Internal build number (integer) |
+| `version` (`APP_VERSION`) | Both | User-visible version |
+| `buildNumber` | iOS | Internal build number (string), auto-incremented by EAS |
+| `versionCode` | Android | Internal build number (integer), auto-incremented by EAS |
 
 ## Version Update Rules
 
@@ -61,15 +63,7 @@ Format: `MAJOR.MINOR.PATCH` (e.g., 1.2.3)
 
 ### Best Practice
 
-Always increment both when releasing:
-
-```json
-{
-  "version": "1.2.0",
-  "ios": { "buildNumber": "16" },
-  "android": { "versionCode": 16 }
-}
-```
+Bump `APP_VERSION` for every public release; let the EAS `production` profile increment the build number.
 
 ## Update Workflow
 
@@ -79,15 +73,14 @@ Always increment both when releasing:
 - New feature → Minor (1.0.0 → 1.1.0)
 - Major changes → Major (1.0.0 → 2.0.0)
 
-### Step 2: Update app.json
+### Step 2: Update `APP_VERSION`
 
-```json
-{
-  "version": "1.1.0",
-  "ios": { "buildNumber": "10" },
-  "android": { "versionCode": 10 }
-}
+```bash
+# .env
+APP_VERSION=1.1.0
 ```
+
+Restart Metro after changing `.env`. The build number is incremented automatically by EAS.
 
 ### Step 3: Create Build
 

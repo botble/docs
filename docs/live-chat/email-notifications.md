@@ -34,18 +34,18 @@ Go to **Admin → Settings → Email** and find the **Live Chat** section. You c
 - Edit the subject line
 - Customize the email body
 
-Visitor details and messages are escaped in the emails, and line breaks in messages are kept. If you customised a Live Chat template before version 1.0.15, reset it (or add the `|e` filter to visitor variables, e.g. `{{ visitor_name|e }}`) so it gets the same protection.
+Visitor details and messages are escaped in the emails, and line breaks in messages are kept. If you customised a Live Chat template before version 1.0.15, reset it (or add the `|e` filter to visitor variables, e.g. <code v-pre>{{ visitor_name|e }}</code>) so it gets the same protection.
 
 Available template variables:
 
 | Variable | Description |
 |----------|-------------|
-| `{{ visitor_name }}` | Visitor's name |
-| `{{ visitor_email }}` | Visitor's email address |
-| `{{ visitor_phone }}` | Visitor's phone number |
-| `{{ visitor_ip }}` | Visitor's IP address |
-| `{{ current_page }}` | URL of the page where chat started |
-| `{{ conversation_url }}` | Direct admin link to the conversation |
+| <code v-pre>{{ visitor_name }}</code> | Visitor's name |
+| <code v-pre>{{ visitor_email }}</code> | Visitor's email address |
+| <code v-pre>{{ visitor_phone }}</code> | Visitor's phone number |
+| <code v-pre>{{ visitor_ip }}</code> | Visitor's IP address |
+| <code v-pre>{{ current_page }}</code> | URL of the page where chat started |
+| <code v-pre>{{ conversation_url }}</code> | Direct admin link to the conversation |
 
 ## When Emails Are Sent
 

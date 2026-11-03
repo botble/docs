@@ -10,16 +10,20 @@ Carento Mobile is a React Native (Expo) app for car rental and car dealer busine
 - Booking flow: 4-step process (dates → extras → details → review) with live price calculation and coupons
 - Hosted checkout (WebView): payment is completed on the backend's hosted page, so every Botble payment gateway works without a native SDK
 - Guest booking: book without creating an account (toggleable)
+- Pick-up and return times, paid add-on services, and a security deposit shown in the price breakdown
+- Driver's licence: customers upload their licence (number, region, expiry, front/back photos) under Account; when the backend enforces it, only customers with an approved licence can book
+- Pay now or later: choose a payment method for a booking, including offline methods
 - Dealers: dealer directory and dealer detail (cars by vendor)
 - Blog: posts, categories, and search from the Botble blog plugin
 - Favorites: server-backed wishlist with optimistic toggle
 - Notifications inbox: in-app inbox with unread badges and mark-all-read; tapping a push notification deep-links to the booking, car, or blog post it refers to
-- Profile & account: profile edit, change password, avatar upload, notifications, help
+- Profile & account: profile edit, change password, avatar upload, notifications, help, account deletion
+- Refer & earn: referral card with the customer's code
 - Customer reviews: rate a car 1-5 stars and leave a comment from the booking detail screen, for confirmed or completed bookings
 - Localization: 4 languages (English, Vietnamese, Arabic, French) with full RTL support
 - Dark mode: light / dark / system theme
 - Auth: email/password and social login (Google, Apple, Facebook), biometric unlock
-- License check: development-only Envato purchase-code validation
+- License check: development-only validation of your Envato purchase code or direct-purchase license code
 
 ## Tech stack
 

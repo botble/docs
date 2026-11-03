@@ -36,7 +36,7 @@ A React Native (Expo) mobile e-commerce app that connects to a [Botble e-commerc
 
 ## Social login
 
-- [Setup guide](11_social_login_setup.md) (Google, Apple, Facebook)
+- [Setup guide](11_social_login_setup.md) (Google, Apple, Facebook, X)
 
 ## Push notifications
 

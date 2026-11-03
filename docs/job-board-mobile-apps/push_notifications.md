@@ -102,12 +102,14 @@ arrive.
 
 ## Step 4: Configure the backend sender
 
-Your Botble backend needs credentials to call FCM. In the admin panel, under the API
-settings, set:
+Your Botble backend needs credentials to call FCM. In the admin panel, go to
+**Settings → API**, find the **Push Notifications (FCM v1 API)** section, and set:
 
-- `fcm_project_id`: the project ID from your Firebase project.
-- `fcm_service_account_path`: path to the service-account JSON you generate under
-  **Project settings → Service accounts → Generate new private key**.
+- **Enable Push Notifications**: turn it on.
+- **Firebase Project ID**: the project ID from your Firebase project (stored as `fcm_project_id`).
+- **Service Account JSON File**: upload the service-account JSON you generate under
+  **Project settings → Service accounts → Generate new private key** (stored as
+  `fcm_service_account_path`).
 
 Without these the backend stores device tokens but never sends anything.
 
@@ -123,9 +125,10 @@ npm run ios          # and / or: npm run android
 ## Step 6: Test
 
 1. Run the app on a real device and sign in, so the token gets registered.
-2. Confirm the token reached your backend. It is stored against the customer, and you can see
-   it in the admin panel's device-token list.
-3. Send a notification from the Botble admin panel to that customer.
+2. Confirm the token reached your backend. It is stored against the customer, and the
+   **Active Device Tokens** count on **Settings → API** goes up.
+3. Send a notification from **Settings → API → Send Custom Notification** (target
+   **Customer Devices Only**, or all / Android / iOS devices).
 4. Check that it arrives, that tapping it opens the right screen, and that it shows up in the
    in-app inbox.
 

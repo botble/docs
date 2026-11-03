@@ -167,7 +167,7 @@ These decide whether an activation is allowed. Return a boolean.
 |--------|-----------|---------|
 | `lm_is_domain_allowed` | `bool $allowed, ?string $clientDomain, array $domains, Product $product, ProductLicense $license` | Override domain matching - useful when the identifier is not really a domain, e.g. a hardware fingerprint |
 | `lm_is_ip_allowed` | `bool $allowed, ?string $clientIp, array $ips, Product $product, ProductLicense $license` | Override IP matching |
-| `lm_activation_license_resolvers` | `array $resolvers` | Register a `verify_type => callable` resolver that turns a request into a `ProductLicense`. This is how the Envato, Gumroad and Lemon Squeezy companion plugins attach |
+| `lm_activation_license_resolvers` | `array $resolvers` | Register a `verify_type => callable` resolver that turns a request into a `ProductLicense`. This is how the Envato and Gumroad companion plugins attach (Lemon Squeezy only generates licenses from its sales webhook and registers no resolver) |
 | `lm_verify_types` | `array $types` | Add a `verify_type` value accepted by validation. Register the matching resolver above, or activation will fail with a missing-companion error |
 | `lm_verify_purchase_code` | `mixed $data, string $purchaseCode` | Resolve a purchase code through your own provider |
 

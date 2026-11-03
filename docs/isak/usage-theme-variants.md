@@ -62,7 +62,7 @@ Theme variants and background settings are configured individually for each page
 
 1. Go to `Pages` and edit the desired page
 2. In the page editor, find the **Theme Settings** meta box
-3. Select your preferred variant (V1, V2, or V3)
+3. Select your preferred **Theme Variant** (Variant 1, 2, or 3)
 4. Save the page
 
 This allows you to use different variants for different pages on your site.
@@ -74,11 +74,10 @@ Each page can have its own background configuration:
 | Option | Description |
 |--------|-------------|
 | Background Type | Choose between `Video` or `Image` background |
-| Video Variant | Select video variant (V1 or V2) when using video background |
 | Background Image | Upload custom background image when using image background |
 
 **Video Background (Default)**
-- Two built-in video variants with animated overlay effects
+- Built-in video background with animated overlay effect
 - Automatically plays, loops, and is muted for performance
 
 **Image Background**

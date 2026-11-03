@@ -7,7 +7,7 @@ description: System requirements for SMS Gateways plugin.
 
 ## Server
 
-- **PHP**: 8.3.36 or higher
+- **PHP**: 8.3.0 or higher
 - **Laravel**: 10 or higher (via Botble 7.3+)
 - **Botble CMS**: 7.3 or higher
 - **MySQL/MariaDB**: 5.7 or higher
@@ -55,7 +55,7 @@ See [Drivers](./drivers/twilio.md) for per-provider signup and credential setup.
 For production, run a queue worker to process SMS in the background:
 
 ```bash
-php artisan queue:work --queue=sms
+php artisan queue:work --queue=sms-gateways,default
 ```
 
 On shared hosting without queue support, SMS sends synchronously (add 2–5 seconds latency per SMS).

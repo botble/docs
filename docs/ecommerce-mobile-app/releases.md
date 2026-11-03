@@ -2,6 +2,13 @@
 
 ## Version History
 
+### v1.0.5
+
+- Added Google Sign-In on iOS without extra configuration files (`GOOGLE_IOS_CLIENT_ID` / `GOOGLE_IOS_URL_SCHEME`)
+- Fixed the checkout page loading in the wrong language
+- Fixed Facebook login failing to start
+- Fixed Android builds running out of memory
+
 ### v1.0.0 (January 2026)
 
 **Initial Release**
@@ -46,19 +53,11 @@
 
 ## Upcoming Releases
 
-### v1.1.0 (Planned)
-
-- Push notifications support
 - Improved performance
 - Additional payment integrations
 - Enhanced search functionality
 
-### v1.2.0 (Planned)
-
-- Social login (Google, Apple, Facebook)
-- Product reviews submission
-- Enhanced order tracking
-- Biometric authentication
+Push notifications, social login (Google, Apple, Facebook, X), product review submission, order tracking, and biometric unlock are already included.
 
 ---
 

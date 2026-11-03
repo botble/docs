@@ -13,7 +13,7 @@ Yes! Product Gifts works with all Botble e-commerce themes available on CodeCany
 ### What are the requirements?
 
 - Botble CMS version 7.6.4 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin (required dependency)
 - MySQL 5.7+ or MariaDB 10.3+
 

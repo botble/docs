@@ -32,11 +32,11 @@ When enabled, each new conversation is assigned a random name from your list ins
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| Primary Color | Main widget color (button, header) | #5A5EB9 |
-| Hover Color | Button hover color | #4a4ea0 |
+| Primary Color | Main widget color (button, header) | #82b541 |
+| Hover Color | Button hover color | #6a9a35 |
 | Avatar Image | Custom image for chat header | Default icon |
 | Position | Widget placement on screen | Bottom Right |
-| Offset X/Y | Pixel offset from screen edge | 20px |
+| Offset X/Y | Pixel offset from screen edge | 40px |
 | Display on Mobile | Show always or hide on mobile | Always show |
 | Full-screen on mobile | Chat window covers full viewport on mobile (≤480px) | Off |
 
@@ -60,6 +60,14 @@ The plugin registers these permissions under **Admin → Settings → Roles & Pe
 | `live-chat.conversations.show` | View individual conversations |
 | `live-chat.conversations.reply` | Reply to and close conversations |
 | `live-chat.conversations.destroy` | Delete conversations |
+| `live-chat.agents.index` | View agents list |
+| `live-chat.agents.create` | Create agents |
+| `live-chat.agents.edit` | Edit agents |
+| `live-chat.agents.destroy` | Delete agents |
+| `live-chat.snippets.index` | View team snippets |
+| `live-chat.snippets.create` | Create team snippets |
+| `live-chat.snippets.edit` | Edit team snippets |
+| `live-chat.snippets.destroy` | Delete team snippets |
 | `live-chat.webhooks.index` | View webhooks list |
 | `live-chat.webhooks.create` | Create webhooks |
 | `live-chat.webhooks.edit` | Edit and test webhooks |

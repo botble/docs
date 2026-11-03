@@ -107,7 +107,7 @@ Recipients cannot modify shared wishlists. They can only view products and add t
 
 ### How It Works
 
-Customers can compare up to **10 products** side-by-side to evaluate:
+Customers can compare up to **4 products** side-by-side to evaluate:
 - Product specifications
 - Prices
 - Attributes
@@ -127,7 +127,7 @@ Customers can add products by:
 - Products are added to compare list
 - Compare count badge updates in header
 - Duplicate products cannot be added (shows error message)
-- Limit: 10 products maximum
+- Limit: 4 products maximum
 
 ::: tip
 If a customer adds a product variant, the system automatically uses the parent product instead. Variants are not compared individually.
@@ -168,7 +168,7 @@ The compare table shows attribute sets that exist across the selected products:
 - Missing attributes show as empty cells
 
 ::: tip
-To maximize comparison usefulness, ensure product attributes are properly configured in `Ecommerce` -> `Attributes`.
+To maximize comparison usefulness, ensure product attributes are properly configured in `Ecommerce` -> `Product Attributes`.
 :::
 
 ### Managing Comparison
@@ -202,17 +202,18 @@ Guest wishlists are stored in browser sessions and will be **lost** if the custo
 
 ### Wishlist Settings
 
-Navigate to `Ecommerce` -> `Settings` to configure:
+Navigate to `Ecommerce` -> `Settings` -> `Shopping` to configure:
 
 | Setting | Description |
 |---------|-------------|
+| **Enable wishlist** | Show/hide the wishlist feature on the site |
 | **Enable wishlist sharing** | Allow customers to generate public wishlist links |
-| **Shared wishlist lifetime** | Days before shared wishlist links expire (default: varies) |
+| **Shared wishlist lifetime (days)** | Days before shared wishlist links expire |
 
 ### Compare Settings
 
 Compare attributes are automatically detected from:
-- Product attribute sets configured in `Ecommerce` -> `Attributes`
+- Product attribute sets configured in `Ecommerce` -> `Product Attributes`
 - Product specifications (if using product specification plugin)
 
 **No additional configuration required** - the compare feature works out-of-the-box once products have attributes assigned.
@@ -306,7 +307,7 @@ Yes. Simply don't display compare buttons in your theme. The backend supports bo
 
 ### How do I customize compare attributes shown?
 
-Attributes are auto-detected from product attribute sets. Configure these in `Ecommerce` -> `Attributes` and assign them to products.
+Attributes are auto-detected from product attribute sets. Configure these in `Ecommerce` -> `Product Attributes` and assign them to products.
 
 ## Best Practices
 
@@ -314,7 +315,7 @@ Attributes are auto-detected from product attribute sets. Configure these in `Ec
 
 2. **Wishlist reminders** - Consider setting up email reminders for items left in wishlists (requires custom development)
 
-3. **Compare limits** - The 10-product limit prevents overwhelming customers with too many options
+3. **Compare limits** - The 4-product limit prevents overwhelming customers with too many options
 
 4. **Stock alerts** - Integrate wishlist with inventory notifications to alert customers when items are back in stock
 

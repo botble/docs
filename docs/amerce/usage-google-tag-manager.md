@@ -10,7 +10,7 @@ Then you need to [create a web data stream](https://support.google.com/analytics
 
 ![Web Data Stream](./images/google-analytics-web-data-stream.png)
 
-After you've set up your web data stream, you will have a Google Tag Manager code snippet. Go to `Admin` -> `Settings` -> `Ecommerce` -> `Tracking`, enable `Enable Google Tag Manager` field and paste your Google Tag Manager code snippet in the `Google Tag Manager code` field.
+After you've set up your web data stream, go to `Admin` -> `Settings` -> `Ecommerce` -> `Tracking` (this opens the **Website Tracking** settings page). Choose a tracking type - **Google Tag Manager (Recommended)** with your `GTM Container ID` (e.g. `GTM-XXXXXXX`), or **Google Analytics Only** with your GA4 Measurement ID (e.g. `G-123ABC4567`) - then turn on `Enable Google Tag Manager Tracking Events` so ecommerce events are sent. Optionally set a `Google Ads Conversion ID` to track purchase conversions on the thank-you page.
 
 ![Admin Settings](./images/google-analytics-admin-settings.png)
 
@@ -90,6 +90,8 @@ After 24 hours, your ecommerce data will be available in your Google Analytics a
 ## Debugging
 
 Google Analytics provides a [debug mode](https://developers.google.com/analytics/devguides/collection/ga4/set-up-ecommerce#verify-data) to help you verify that your ecommerce tracking is working correctly.
+
+If you use the **Google Tag Manager** tracking type, you can also turn on **Enable GTM Debug Mode** in the same Website Tracking settings to log events to the browser console.
 
 You can add `, { debug_mode: true }` after your `gtag('config', 'G-XXXXXXXXXXX');` code snippet to enable debug mode.
 

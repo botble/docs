@@ -9,11 +9,13 @@ Widgets are customized in **Admin** -> **Appearance** -> **Widgets**.
 The left side is the list of available widgets. The right side is the list of widget areas. The widget areas are defined
 by the theme.
 
-There are have four widget areas in Ninico:
+There are six widget areas in Ninico:
 
 - **Blog sidebar** - the sidebar of the blog page
+- **Products listing sidebar** - the sidebar of the products listing page
 - **Product detail sidebar** - the sidebar of the product detail page
 - **Footer sidebar** - the footer sidebar
+- **Footer middle sidebar** - the middle row of the footer
 - **Footer bottom sidebar** - the bottom of the footer
 
 ## Available widgets

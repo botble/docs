@@ -55,7 +55,7 @@ The `SendBackInStockNotifications` listener is registered for the stock change e
 
 1. The listener queries all subscriptions for that product with status **Pending**
 2. For each pending subscription, it dispatches a `SendBackInStockNotificationJob` to the queue
-3. Each job sends the notification email using the `back_in_stock_notification` template
+3. Each job sends the notification email using the **Customer back-in-stock notification** template
 4. After sending, the subscription status is updated to **Notified** and `notified_at` is set to the current timestamp
 
 ### Queue processing
@@ -79,6 +79,6 @@ After restocking a product, filter the subscriptions table by that product and c
 If subscriptions remain Pending after restocking, check:
 
 1. Your queue worker is running (`php artisan queue:work`)
-2. The `back_in_stock_notification` email template is configured correctly
+2. The **Customer back-in-stock notification** email template is configured correctly
 3. Your mail driver settings in `.env` are correct
 4. Server logs for errors: `storage/logs/laravel.log`

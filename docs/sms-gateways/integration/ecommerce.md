@@ -22,7 +22,7 @@ Send OTP codes for customer registration and SMS notifications for orders.
 
 ### Step 1 — Enable ecommerce SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Ecommerce** to enable
 3. Click **Save**
 
@@ -36,7 +36,7 @@ Send OTP codes for customer registration and SMS notifications for orders.
 
 If using customer phone verification:
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Set **OTP Code Length** (default: 6)
 3. Set **OTP TTL** (default: 300 seconds / 5 minutes)
 4. Set **Max OTP Attempts** (default: 3)
@@ -179,7 +179,7 @@ See [Outbound Webhooks](../usage/outbound-webhooks.md) for verification and exam
 
 ### SMS not being sent to customers
 
-1. Check **Admin → Settings → SMS Gateways** → **Subjects** → **Ecommerce** is checked
+1. Check **Admin → SMS Gateways → Settings** → **Subjects** → **Ecommerce** is checked
 2. Verify SMS driver is configured and active
 3. Check customer phone is not opted out (**Admin → SMS Gateways → Consents**)
 4. Look in **Delivery Logs** for failed SMS (may show error reason)

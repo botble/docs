@@ -18,14 +18,14 @@ Withdrawal workflow:
 
 ## Withdrawal Settings
 
-Navigate to `Marketplace` -> `Settings`
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace`
 
 ### Withdrawal Fees
 
 | Setting | Description |
 |---------|-------------|
-| **Fee withdrawal amount** | Fee charged per withdrawal (amount or percentage) |
-| **Withdrawal fee type** | Fixed amount or Percentage of withdrawal |
+| **Fee withdrawal** | Fee charged per withdrawal (amount or percentage) |
+| **Fee withdrawal type** | Fixed amount or Percentage of withdrawal |
 
 **Fixed Fee Example:**
 - Fee: $5
@@ -49,7 +49,7 @@ Withdrawal fees cover transaction costs and processing overhead. Typical marketp
 
 | Setting | Description |
 |---------|-------------|
-| **Minimum withdrawal amount** | Minimum balance required to request withdrawal |
+| **Minimum withdrawal amount (Fixed)** | Minimum balance required to request withdrawal |
 
 **Example:**
 - Minimum: $50
@@ -86,6 +86,8 @@ Configure available payout methods for vendors:
 - Contact name
 - Contact phone
 
+**Stripe** is added as an extra payout method when the **Stripe Connect** plugin is active and Stripe is configured. With the **PayPal Payout** plugin active, PayPal withdrawals show an automatic payout option on the admin withdrawal page.
+
 ::: tip
 Enable only the payout methods your business can actually process. Disable unused methods to avoid confusion.
 :::
@@ -96,7 +98,7 @@ Before vendors can request withdrawals, they must configure their payout informa
 
 ### Vendor Side
 
-Vendors set up payout info at: `Vendor Dashboard` -> `Settings` -> `Payout Information`
+Vendors set up payout info at: `Vendor Dashboard` -> `Settings` -> `Payout info`
 
 1. **Select payout method** (bank transfer, PayPal, or cash)
 2. **Fill required fields** based on selected method
@@ -383,7 +385,7 @@ Navigate to `Marketplace` -> `Withdrawals`
 **Check:**
 1. Review revenue records for the vendor
 2. Look for corresponding refund entry
-3. Check vendor's current balance in `Stores` -> `Edit` -> Vendor balance
+3. Check vendor's current balance in `Marketplace` -> `Stores` -> view the store
 
 **If balance is still incorrect:**
 - Check system logs for errors

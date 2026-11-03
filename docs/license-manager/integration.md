@@ -69,13 +69,13 @@ class LicenseManagerClient
         $this->productId = $productId;
     }
 
-    public function activate(string $licenseCode, string $clientName = ''): array
+    public function activate(string $licenseCode, string $clientName): array
     {
         return $this->request('POST', '/license/activate', [
             'product_id' => $this->productId,
             'license_code' => $licenseCode,
-            'client_name' => $clientName,
-            'verify_type' => 'non_envato',
+            'client_name' => $clientName, // required
+            'verify_type' => 'direct',
         ]);
     }
 
@@ -138,12 +138,12 @@ class LicenseManagerClient {
         this.productId = productId;
     }
 
-    async activate(licenseCode, clientName = '') {
+    async activate(licenseCode, clientName) {
         return this.request('POST', '/license/activate', {
             product_id: this.productId,
             license_code: licenseCode,
-            client_name: clientName,
-            verify_type: 'non_envato',
+            client_name: clientName, // required
+            verify_type: 'direct',
         });
     }
 
@@ -192,7 +192,7 @@ $client = new LicenseManagerClient(
 
 // When user submits the license form
 if ($_POST['action'] === 'activate') {
-    $result = $client->activate($_POST['license_code'], $_POST['client_name'] ?? '');
+    $result = $client->activate($_POST['license_code'], $_POST['client_name']);
 
     if ($result['is_active']) {
         // SUCCESS: Save the encrypted license data locally
@@ -355,7 +355,7 @@ $action = $_POST['action'] ?? '';
 
 // Handle activation
 if ($action === 'activate' && !empty($_POST['license_code'])) {
-    $result = $client->activate($_POST['license_code']);
+    $result = $client->activate($_POST['license_code'], $_POST['client_name']);
 
     if ($result['is_active']) {
         file_put_contents($licenseFile, $result['lic_response']);
@@ -399,6 +399,7 @@ if (file_exists($licenseFile)) {
     <form method="post">
         <input type="hidden" name="action" value="activate">
         <input type="text" name="license_code" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+        <input type="text" name="client_name" placeholder="Your name" required>
         <button type="submit">Activate</button>
     </form>
 <?php endif; ?>

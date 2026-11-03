@@ -202,7 +202,7 @@ Bulk manage customers using CSV import/export.
 
 ### Export Customers
 
-1. Navigate to `Tools` -> `Data Synchronize` (or `Import/Export`)
+1. Navigate to `Tools` -> `Export/Import Data`
 2. Select **Export**
 3. Choose **Customers** from the list
 4. Click **Export**
@@ -220,7 +220,7 @@ Bulk manage customers using CSV import/export.
 
 ### Import Customers
 
-1. Navigate to `Tools` -> `Data Synchronize`
+1. Navigate to `Tools` -> `Export/Import Data`
 2. Select **Import**
 3. Choose **Customers**
 4. Download the example CSV to see required format
@@ -291,12 +291,12 @@ Customers can request account deletion for privacy compliance (GDPR, CCPA).
 
 ### Viewing Deletion Requests
 
-Navigate to `Ecommerce` -> `Customers` -> **Deletion Requests** tab.
+There is no admin screen for deletion requests; requests are handled automatically.
 
 **Request statuses:**
 - **Waiting for Confirmation** - Email sent, awaiting customer confirmation
-- **Confirmed** - Customer confirmed, deletion in progress
-- **Completed** - Account deleted successfully
+- **Confirmed** - Customer confirmed, account deletion job queued
+- **Canceled** - Not confirmed in time; expired requests are canceled by the scheduled `cms:ecommerce:cancel-expired-deletion-requests` command
 
 **Deletion request data:**
 - Customer name
@@ -332,7 +332,7 @@ Account deletion is **irreversible**. Ensure customers understand their order hi
 
 ### Enable/Disable Account Deletion
 
-Navigate to `Ecommerce` -> `Settings` -> `Customers`.
+Navigate to `Settings` -> `Ecommerce` -> `Customers`.
 
 Toggle **Enable customer account deletion** to allow or prevent deletion requests.
 
@@ -345,21 +345,22 @@ Toggle **Enable customer account deletion** to allow or prevent deletion request
 
 Configure how customers register for accounts.
 
-Navigate to `Ecommerce` -> `Settings` -> `Customers`.
+Navigate to `Settings` -> `Ecommerce` -> `Customers`.
 
 ### Registration Options
 
 | Setting | Description |
 |---------|-------------|
 | **Enable customer registration** | Allow new customer signups |
-| **Verify customer email** | Require email verification before full access |
-| **Verification expire minutes** | Minutes before verification link expires (default: 60) |
-| **Enabled phone field in registration form** | Show phone number field on registration |
+| **Verify customer's email** | Require email verification before full access |
+| **Verification link expiration time** | Minutes before verification link expires (default: 60) |
+| **Enable phone field in registration form** | Show phone number field on registration |
 | **Make customer phone number required** | Require phone number during registration |
-| **Login option** | Email, phone, or either for login |
+| **Login option** | Login with email, Login with phone, or Login with email or phone |
 | **Keep email field in registration form** | Show email field when phone login is primary |
-| **Enabled customer DOB field** | Show date of birth field in registration/profile |
-| **Customer default avatar** | Default profile picture for customers without avatars |
+| **Enable customer date of birth field** | Show date of birth field in account settings |
+| **Enable customer account deletion** | Let customers delete their account from Account settings |
+| **Default avatar** | Default profile picture for customers without avatars |
 
 ### Email Verification Settings
 
@@ -438,7 +439,6 @@ Admin users need appropriate permissions to manage customers:
 | `customers.create` | Create new customers |
 | `customers.edit` | Edit customer details |
 | `customers.destroy` | Delete customers |
-| `customers.view` | View customer profile details |
 
 Configure permissions in `Users` -> `Roles`.
 

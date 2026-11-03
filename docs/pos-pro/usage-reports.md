@@ -181,7 +181,7 @@ Compare performance across time periods:
 
 View cash register shift history:
 
-1. Go to **POS** > **Registers**
+1. Go to **POS** > **Register History**
 2. See all closed shifts with:
    - User name
    - Shift duration

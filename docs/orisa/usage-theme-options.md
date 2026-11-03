@@ -12,6 +12,11 @@ The **General** tab configures fundamental settings: site name, description, pre
 
 ## Header
 
+### Header Style
+
+- **Header style** — 6 styles (transparent overlay, rounded card with topbar, narrow centered card, inline hamburger menu, pill navigation, rounded card with meta strip).
+- **Header CTA button label / URL** and toggles to hide the cart, account, search and language switcher icons.
+
 ### Sticky Header
 - Enable/disable sticky header — the header remains visible as the user scrolls.
 
@@ -25,6 +30,10 @@ The **General** tab configures fundamental settings: site name, description, pre
 
 
 ## Footer
+
+### Footer Style
+
+- **Footer style** — 15 styles, one matching each homepage demo.
 
 ### Color Options
 - **Background color** — footer background.

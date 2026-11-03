@@ -16,7 +16,7 @@ platform/plugins/kyc/
 │   ├── kyc.php            # Subject registry, storage, retention
 │   └── permissions.php    # Admin permission flags
 ├── database/
-│   ├── migrations/        # kyc_submissions, kyc_subject_states, kyc_webhooks
+│   ├── migrations/        # kyc_submissions, kyc_subject_states, bb_kyc_webhooks
 │   └── seeders/           # Demo seeder support
 ├── resources/
 │   ├── lang/en/*.php      # Source translations
@@ -32,7 +32,7 @@ platform/plugins/kyc/
 │   ├── Forms/             # Admin settings form (Botble form-builder)
 │   ├── Http/
 │   │   ├── Controllers/   # Admin + customer + file + webhook + settings
-│   │   ├── Middleware/    # EnsureKycEnabled, KycRequiredMiddleware
+│   │   ├── Middleware/    # EnsureKycEnabled, EnsureKycRequired
 │   │   └── Requests/      # Form request validators
 │   ├── Jobs/              # Async webhook dispatch
 │   ├── Listeners/         # Wire events to notifications + webhooks
@@ -44,7 +44,7 @@ platform/plugins/kyc/
 │   ├── Supports/          # SubjectRegistry, KycMacroRegistrar
 │   └── Tables/            # DataTable for the admin review queue
 ├── tests/
-│   └── Feature/           # 51 PHPUnit feature tests
+│   └── Feature/           # PHPUnit feature tests
 └── plugin.json
 ```
 

@@ -17,7 +17,7 @@ $this->add(
 ```
 
 ::: info
-This editor field is using CkEditor or TinyMCE editor. You can configure it in Settings -> General.
+This editor field is using CkEditor or TinyMCE editor. You can choose the editor in **Settings → Admin appearance → Rich Editor**.
 
 If you need Trix editor, you can install it on https://marketplace.botble.com/products/FriendsOfBotble/fob-trix-editor
 :::

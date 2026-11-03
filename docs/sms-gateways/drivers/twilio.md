@@ -20,7 +20,7 @@ Send SMS through Twilio's REST API with worldwide coverage and reliable delivery
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **Twilio** under **Active Drivers**
 3. Expand the **Twilio** section and enter:
    - **Account SID**: Your Account SID

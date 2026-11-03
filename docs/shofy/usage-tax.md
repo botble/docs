@@ -31,21 +31,19 @@ Once enabled, you'll see a link to **Go to Taxes** to manage tax classes and rat
 
 After enabling tax, configure these settings:
 
-### Display Product Price Including Taxes
+### Add Tax to Displayed Prices
 
 **When ON:**
-- Product prices shown include tax
-- Cart/checkout shows "including tax" label
-- Tax is **backed out** from displayed price for calculation
+- Tax is added to the product prices shown on the storefront
+- Example: a $100 product with 10% tax displays as $110
 
 **When OFF:**
-- Product prices shown exclude tax
-- Tax is **added** to price at checkout
-- More common in US/Canada
+- Product prices are shown without tax
+- Tax is added at checkout
 
-Example: Product price $100, 10% tax
-- Including taxes: Shows $100 (price is $90.91 + $9.09 tax)
-- Excluding taxes: Shows $100 + $10 tax = $110 total
+::: tip
+Not needed for products that already have **Price includes tax** enabled (see below).
+:::
 
 ### Display Company Invoice Information Fields at Checkout
 
@@ -60,15 +58,13 @@ Example: Product price $100, 10% tax
 - Only standard customer fields shown
 - Simpler checkout for B2C stores
 
-### Display Checkout Tax Information
+### Display Tax Information Under Each Item at Checkout
 
 **When ON:**
-- Shows tax breakdown in checkout summary
-- Example: "Tax (10%): $10.00"
+- Shows the tax breakdown text (e.g., "VAT 10%") next to each item on the checkout page
 
 **When OFF:**
-- Hides detailed tax info
-- Only shows final total
+- Hides the per-item tax text
 
 ### Display Item Tax at Checkout
 
@@ -80,17 +76,21 @@ Example: Product price $100, 10% tax
 - Shows only subtotal and total tax
 - Cleaner checkout display
 
-### Display Tax Description
+### Display Included Tax for Tax-Inclusive Items
 
-**When ON:**
-- Shows tax rate name/description (e.g., "VAT 20%")
+For products with **Price includes tax** enabled, shows the tax already included in each item price (e.g., "Incl. tax: $16.67") on the cart and checkout pages. Useful for VAT-inclusive pricing in the EU.
 
-**When OFF:**
-- Shows only "Tax" label
+### Apply Tax on Shipping Fee
+
+When enabled, the default tax rate is applied to shipping fees. Make sure a default tax rate is set in `Ecommerce` -> `Taxes`.
+
+### Display Tax Information on Product Price
+
+Shows text like "(Including X% GST)" or "(Excluding X% GST)" next to product prices on the product detail page.
 
 ## Creating Tax Classes
 
-Navigate to `Ecommerce` -> `Taxes` -> `Tax Classes` -> `Create`.
+Navigate to `Ecommerce` -> `Taxes` -> `Create`.
 
 ### Tax Class Fields
 
@@ -114,9 +114,7 @@ Use descriptive titles like "Standard VAT (20%)" or "Reduced Rate (5%)" for clar
 
 ### Setting Default Tax Rate
 
-Navigate to `Ecommerce` -> `Settings` -> `Tax`.
-
-After creating tax classes, select a **Default tax rate** from the dropdown.
+Navigate to `Ecommerce` -> `Taxes` and click **Set as default** on the tax you want to use as default.
 
 This tax applies to products without a specific tax class assigned.
 
@@ -124,7 +122,7 @@ This tax applies to products without a specific tax class assigned.
 
 Tax rules define location-based tax rates. One tax class can have multiple rules for different locations.
 
-Navigate to `Ecommerce` -> `Taxes` -> `Tax Rules` -> `Create`.
+Navigate to `Ecommerce` -> `Taxes`, edit a tax, then add rules in its **Tax Rules** section.
 
 ### Tax Rule Fields
 
@@ -173,6 +171,10 @@ Rules:
 - Country: France, Percentage: 20%
 - Country: Spain, Percentage: 21%
 
+::: tip
+Run `php artisan cms:ecommerce:seed-eu-vat` to create an **EU VAT** tax (0% base) with a rule for the standard VAT rate of every EU member state.
+:::
+
 **City-Specific Tax:**
 
 Tax Class: Local Tax (5%)
@@ -196,14 +198,13 @@ Products can be assigned a tax classification that determines how tax is applied
 
 Navigate to `Products` -> `Create` or `Edit` -> **Pricing** section.
 
-1. Select **Tax class** from dropdown (Standard, Reduced, Zero Rated, Exempt)
-2. Select applicable **Taxes** via checkboxes (e.g., VAT 10%, Import Tax 15%)
-3. Check **Price includes tax** if the entered price already has tax included
+1. Select applicable **Taxes** via checkboxes (e.g., VAT 10%, Import Tax 15%)
+2. Check **Price includes tax** if the entered price already has tax included
 
-If no tax class is selected, the default tax rate applies.
+If no tax is selected, the default tax applies.
 
-::: tip
-Use bulk actions to assign tax classes to multiple products at once from the products table.
+::: info
+The product tax class (`tax_class` column, default `standard`) is read by the tax engine, but there is currently no field for it in the product form. Use the **Taxes** checkboxes to control which rates apply.
 :::
 
 ### Price Includes Tax (Per Product)
@@ -231,9 +232,7 @@ Customers can be classified for different tax treatment:
 | **Tax Exempt** | No tax charged (e.g., government, non-profit) |
 | **Reseller** | Tax exemption for resale purchases |
 
-Configure customer tax class at `Customers` -> `Edit Customer` -> **Tax Class** dropdown.
-
-Customers can also enter their **Tax ID** (VAT/GST number) which is stored encrypted for compliance.
+The customer tax class (`tax_class` column, default `regular`) and **Tax ID** (stored encrypted) are read by the tax engine, but there is currently no field for them in the admin customer form — they can only be set programmatically.
 
 ::: tip
 The system checks customer tax class during checkout. Tax-exempt customers see zero tax automatically.
@@ -276,15 +275,15 @@ Shipping can be taxed based on:
 - **Destination** location
 - Custom rules per shipping method
 
-Configure in `Ecommerce` -> `Settings` -> `Shipping`.
+Enable **Apply tax on shipping fee** in `Ecommerce` -> `Settings` -> `Tax` to apply the default tax rate to shipping fees.
 
 ## Tax Display Examples
 
 ### Example 1: US Store (Tax Excluded)
 
 Settings:
-- Display product price including taxes: OFF
-- Display checkout tax information: ON
+- Add tax to displayed prices: OFF
+- Display tax information under each item at checkout: ON
 
 Customer sees:
 - Product page: $100
@@ -294,8 +293,8 @@ Customer sees:
 ### Example 2: EU Store (Tax Included)
 
 Settings:
-- Display product price including taxes: ON
-- Display checkout tax information: ON
+- Price includes tax (on products): ON
+- Display included tax for tax-inclusive items: ON
 
 Customer sees:
 - Product page: $120 (includes $20 tax)
@@ -317,7 +316,7 @@ Customer sees:
 
 ### Editing Tax Classes
 
-Navigate to `Ecommerce` -> `Taxes` -> `Tax Classes`.
+Navigate to `Ecommerce` -> `Taxes`.
 
 Click **Edit** on any tax class to modify:
 - Title
@@ -331,7 +330,7 @@ Changing tax percentage affects all products using that tax class immediately.
 
 ### Editing Tax Rules
 
-Navigate to `Ecommerce` -> `Taxes` -> `Tax Rules`.
+Navigate to `Ecommerce` -> `Taxes` and edit the tax that owns the rule.
 
 Click **Edit** to modify location rules or rates.
 
@@ -357,7 +356,7 @@ Changes apply to all future orders immediately.
 Setup:
 1. Create tax class: "Standard Sales Tax" (0% default)
 2. Create rules for each state with nexus
-3. Set "Display including taxes" to OFF
+3. Set "Add tax to displayed prices" to OFF
 
 ### Scenario 2: EU VAT with Reverse Charge
 
@@ -419,25 +418,15 @@ Vendor tax location data is used by the tax engine when calculating taxes for se
 
 To view tax collected:
 
-Navigate to `Ecommerce` -> `Reports` -> `Tax`.
+When tax is enabled, the **Tax Collection** widget (total tax collected from orders) is shown on `Ecommerce` -> `Reports` for the selected date range.
 
-Reports show:
-- Total tax collected by period
-- Tax breakdown by rate
-- Tax by location
-- Tax by product
-
-Export to CSV for accounting software integration.
-
-::: tip
-The **Tax Collection Summary Card** widget on the dashboard shows quick tax stats.
-:::
+There is no dedicated tax report or CSV export; use the order export for accounting.
 
 ## Troubleshooting
 
 ### Tax not calculating at checkout
 
-1. **Tax system enabled?** - Check `Settings` -> `Tax`
+1. **Tax system enabled?** - Check `Ecommerce` -> `Settings` -> `Tax`
 2. **Tax rule exists?** - Create rule matching customer location
 3. **Tax class assigned?** - Product needs tax class or default rate set
 4. **Customer location?** - Verify billing/shipping address is complete
@@ -456,7 +445,7 @@ The **Tax Collection Summary Card** widget on the dashboard shows quick tax stat
 
 ### Prices look wrong
 
-1. **Check "Display including taxes"** setting
+1. **Check "Add tax to displayed prices"** setting and the product's **Price includes tax** checkbox
 2. **Verify tax percentage** - Decimal vs percentage (20 = 20%, not 0.20)
 3. **Check discount interaction** - Tax calculates after discount
 
@@ -486,7 +475,7 @@ Yes, create multiple tax classes and assign both to the product. The system calc
 
 ### Do I need to charge tax on shipping?
 
-Depends on local laws. Configure in `Settings` -> `Shipping` to tax shipping fees.
+Depends on local laws. Enable **Apply tax on shipping fee** in `Ecommerce` -> `Settings` -> `Tax`.
 
 ### How do I handle tax-exempt customers?
 
@@ -510,7 +499,7 @@ Yes, assign them to a "Zero Rate" tax class with 0% rate.
 
 ### How do I export tax data for accounting?
 
-Use `Ecommerce` -> `Reports` -> `Tax` and export to CSV.
+There is no dedicated tax export. Use the **Tax Collection** widget on `Ecommerce` -> `Reports` for totals, or export orders.
 
 ### What's the difference between tax class and tax rule?
 

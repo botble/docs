@@ -1,5 +1,14 @@
 # Release Notes
 
+## Version 1.0.3 (June 2026)
+
+Changes in 1.0.1 – 1.0.3:
+
+- Added **Eligible Stock Statuses** setting: also let customers subscribe to products **On Backorder**
+- Improved the subscriptions list (sorting, duplicate handling)
+- Fixed variation restocks not notifying subscribers of the parent product
+- Fixed a validation error when saving settings with stock statuses selected
+
 ## Version 1.0.0 (March 2026)
 
 Initial release.

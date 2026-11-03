@@ -18,7 +18,7 @@ Yes. Ecommerce Preorder works with all Botble e-commerce themes including Shofy,
 ### What are the system requirements?
 
 - Botble CMS 7.6.0+
-- PHP 8.3.36+
+- PHP 8.3.0+
 - Active E-commerce plugin
 - MySQL 5.7+ or MariaDB 10.3+
 

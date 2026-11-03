@@ -229,25 +229,33 @@ The following shows the order events fire during a typical page request:
 
 Filters allow you to modify data at specific points in the theme rendering process.
 
-### BASE_FILTER_THEME_HEADER
+### THEME_FRONT_HEADER
 
-This filter allows you to modify the theme header content:
+This filter allows you to append HTML to the theme `<head>` (output by `Theme::header()`):
 
 ```php
-add_filter(BASE_FILTER_THEME_HEADER, function ($header) {
-    // Modify the header content
-    return $header . '<meta name="custom-meta" content="value">';
+add_filter(THEME_FRONT_HEADER, function (?string $html): string {
+    return $html . '<meta name="custom-meta" content="value">';
 }, 120);
 ```
 
-### BASE_FILTER_THEME_FOOTER
+### THEME_FRONT_FOOTER
 
-This filter allows you to modify the theme footer content:
+This filter allows you to append HTML before `</body>` (output by `Theme::footer()`):
 
 ```php
-add_filter(BASE_FILTER_THEME_FOOTER, function ($footer) {
-    // Modify the footer content
-    return $footer . '<script>console.log("Custom footer script");</script>';
+add_filter(THEME_FRONT_FOOTER, function (?string $html): string {
+    return $html . '<script>console.log("Custom footer script");</script>';
+}, 120);
+```
+
+### THEME_FRONT_BODY
+
+This filter allows you to inject HTML right after the opening `<body>` tag:
+
+```php
+add_filter(THEME_FRONT_BODY, function (?string $html): string {
+    return $html . '<div id="top-banner"></div>';
 }, 120);
 ```
 
@@ -294,15 +302,17 @@ add_filter(BASE_FILTER_GROUP_PUBLIC_ROUTE, function ($attributes) {
 ```php
 // In your theme's functions/functions.php
 app()->booted(function (): void {
-    add_action('theme_header', function () {
+    add_filter(THEME_FRONT_HEADER, function (?string $html): ?string {
         // Check if current page is the contact page
-        if (Route::currentRouteName() == 'public.contact' || request()->segment(1) == 'contact') {
-            echo '<style>
+        if (request()->segment(1) == 'contact') {
+            $html .= '<style>
                 .contact-form { background-color: #f5f5f5; padding: 20px; border-radius: 5px; }
                 .contact-form input, .contact-form textarea { width: 100%; margin-bottom: 10px; }
             </style>';
         }
-    });
+
+        return $html;
+    }, 120);
 });
 ```
 
@@ -311,18 +321,19 @@ app()->booted(function (): void {
 Here are different ways to check the current page type in Botble CMS:
 
 ```php
-// Check if current page is a blog post
-if (in_array(Route::currentRouteName(), ['public.single', 'public.post']) && $post = get_object_instance()) {
-    // This is a blog post page
-}
+// Check the content type of a slug-based page (post, category, page...)
+app('events')->listen(\Botble\Theme\Events\RenderingSingleEvent::class, function ($event): void {
+    if ($event->slug->reference_type === \Botble\Blog\Models\Post::class) {
+        // This is a blog post page
+    }
 
-// Check if current page is a category page
-if (Route::currentRouteName() == 'public.category' && $category = get_object_instance()) {
-    // This is a category page
-}
+    if ($event->slug->reference_type === \Botble\Blog\Models\Category::class) {
+        // This is a category page
+    }
+});
 
 // Check if current page is the homepage
-if (Route::currentRouteName() == 'public.index') {
+if (Route::currentRouteName() == 'public.index' || BaseHelper::isHomepage()) {
     // This is the homepage
 }
 
@@ -334,18 +345,11 @@ if (request()->segment(1) == 'products') {
 
 ### Modifying the Breadcrumb
 
-```php
-// In your theme's functions/functions.php
-app()->booted(function (): void {
-    add_filter('theme_breadcrumb_template', function ($template) {
-        // Return a custom breadcrumb template
-        return '<nav aria-label="breadcrumb">
-            <ol class="breadcrumb custom-breadcrumb">
-                {!! $crumbs !!}
-            </ol>
-        </nav>';
-    });
-});
+There is no breadcrumb filter. Render the crumbs with your own view instead (see [Breadcrumb](theme-breadcrumb.md)):
+
+```blade
+{{-- Uses packages/theme::partials.breadcrumb by default --}}
+{!! Theme::breadcrumb()->render(Theme::getThemeNamespace('partials.breadcrumbs')) !!}
 ```
 
 ## Best Practices

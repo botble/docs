@@ -23,6 +23,10 @@ Control the colors of the footer area.
 - **Footer Text Color**: Footer body text
 - **Footer Link Color** and **Footer Link Hover Color**: Footer links
 - **Footer Muted Text Color**: Secondary/muted footer text
+- **Footer Heading Color**: Footer widget headings
+- **Footer Layout**: `Default` (widget columns with newsletter) or `Compact` (centered logo above a light contact card)
+- **Footer Logo**: Logo for the compact layout (falls back to the site logo)
+- **Footer Background Image**: Optional footer background
 
 ## Blog
 
@@ -41,6 +45,12 @@ Customize the visual appearance of your website.
 - **Link Color** and **Link Hover Color**: Hyperlink colors
 - **Button Background / Text / Hover Colors**: Button styling
 - **Border Color**: Borders and dividers
+- **Body Background Color**: Page background (transparent keeps the pattern texture)
+
+### Section Headings
+- **Section Subtitle Style**: `Leaf ornaments` (spa homepages) or `Brand pill` (beauty & nail homepages)
+- **Section Heading (h2) Font Size**: Size in px
+- **Uppercase Section Headings**: Toggle uppercase headings
 
 ![Styles Settings](./images/theme-options/styles.png)
 
@@ -60,6 +70,10 @@ Control fonts and text styling throughout your website. Velura ships with an ele
 - **H1 - H6**: Heading sizes
 
 ![Typography Settings](./images/theme-options/typography.png)
+
+## General
+
+Business details used in the header, footer and contact sections: **Site Title**, **Spa Address**, **Email Address**, **Opening Hours**, **Booking Phone**, and **Book Appointment URL**.
 
 ## Breadcrumbs
 

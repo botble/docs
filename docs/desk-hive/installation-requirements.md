@@ -5,7 +5,7 @@
 DeskHive is a **standalone Laravel application**. Before installing, ensure your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.3.36 or higher
+- PHP >= 8.3.0 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -18,6 +18,7 @@ DeskHive is a **standalone Laravel application**. Before installing, ensure your
 - `Tokenizer` PHP extension
 - `cURL` PHP extension
 - `zip` PHP extension
+- `GD` PHP extension
 - `iconv` PHP extension
 - Ensure the `mod_rewrite` Apache module is enabled
 

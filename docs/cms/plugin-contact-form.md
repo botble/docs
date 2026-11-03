@@ -87,25 +87,23 @@ When a contact form is submitted, email notifications are sent to:
 1. **Admin**: The site administrator receives a notification with all the form data
 2. **Sender**: The person who submitted the form receives a confirmation email
 
-You can configure these email templates in **Settings** → **Email** → **Templates** → **Contact**.
+You can configure these email templates in **Settings** → **Email templates** → **Contact**.
 
 ### Configuring Recipients
 
 To configure who receives contact form submissions:
 
 1. Go to **Settings** → **Contact**
-2. Add email addresses to the **Recipient emails** field
+2. Add email addresses to the **Receiver emails** field (leave it blank to send to admin email addresses)
 3. Save changes
 
 ### Spam Protection
 
 The Contact Form plugin includes several spam protection features:
 
-1. **Blacklist Keywords**: You can add keywords to block in form submissions
-2. **Blacklist Email Domains**: You can block submissions from specific email domains
-3. **CAPTCHA Integration**: If the CAPTCHA plugin is active, you can enable CAPTCHA for contact forms
-
-Configure these settings in **Settings** → **Contact**.
+1. **Blacklisted keywords**: You can add keywords to block in form submissions (**Settings** → **Contact**)
+2. **Blacklisted Email Domains**: You can block submissions from specific email domains (**Settings** → **Email rules**, applies to all forms that validate email)
+3. **CAPTCHA Integration**: If the CAPTCHA plugin is active, you can enable CAPTCHA for contact forms (**Settings** → **Captcha**)
 
 ## Advanced Usage
 

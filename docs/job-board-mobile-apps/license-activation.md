@@ -13,13 +13,17 @@ Your Envato purchase code can be found in your CodeCanyon account:
 
 The purchase code looks like: `a1b2c3d4-e5f6-7890-abcd-ef1234567890`
 
+### Bought directly from Botble?
+
+If you purchased directly (not on CodeCanyon), use the license code you received from license.botble.com instead. Both code types are accepted by the same `LICENSE_CODE` key.
+
 ## Configure License
 
 Add your purchase code to the `.env` file:
 
 ```bash
 # License Validation (Development Only)
-LICENSE_CODE=your-envato-purchase-code
+LICENSE_CODE=your-envato-purchase-code-or-license-code
 ```
 
 ### Example
@@ -49,7 +53,7 @@ After adding your license code:
 npm start
 ```
 
-The license is tied to your Envato purchase. You can use it on any device or team member's computer.
+The license is tied to your purchase (Envato or direct). You can use it on any device or team member's computer.
 
 ## Troubleshooting
 

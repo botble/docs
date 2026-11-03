@@ -17,7 +17,7 @@ The variation system consists of:
 
 Before adding variations, create reusable attribute sets.
 
-Navigate to `Ecommerce` -> `Attributes` in the admin panel.
+Navigate to `Ecommerce` -> `Product Attributes` in the admin panel.
 
 1. Click **Create**
 2. Enter attribute set details:
@@ -27,10 +27,10 @@ Navigate to `Ecommerce` -> `Attributes` in the admin panel.
    - **Display Layout** - How attributes display on product pages
    - **Order** - Display priority
 3. Configure options:
-   - **Is searchable** - Allow filtering by this attribute
-   - **Is comparable** - Include in product comparison
-   - **Use in product listing** - Show in category/search filters
-   - **Use image from variation** - Display variation images for this attribute
+   - **Searchable** - Allow filtering by this attribute
+   - **Comparable** - Include in product comparison
+   - **Used in product listing** - Show in category/search filters
+   - **Use image from product variation (for Visual Swatch only)** - Display variation images for this attribute
 4. Click **Save**
 
 ## Adding Attribute Values
@@ -94,12 +94,12 @@ After assigning attribute sets:
 7. Repeat for all combinations
 
 ::: tip
-Use the **Generate all variations** button to automatically create variations for all attribute combinations. You can then edit individual variations.
+Use the **Generate variations** button to automatically create variations for all attribute combinations. You can then edit individual variations.
 :::
 
 ## Auto-Generating SKUs
 
-When creating variations, enable **Auto-generate SKU** to create SKUs automatically:
+When creating variations, enable **Auto generate SKU?** to create SKUs automatically:
 
 Format: `{parent_sku}-{attribute1_slug}-{attribute2_slug}`
 
@@ -110,7 +110,7 @@ Example: `TSHIRT-RED-SMALL`
 Each variation can have its own images:
 
 1. **Individual variation images** - Upload images per variation
-2. **Attribute-based images** - Enable "Use image from variation" in attribute set settings, then the system displays the appropriate variation image when that attribute is selected
+2. **Attribute-based images** - Enable "Use image from product variation" in attribute set settings, then the system displays the appropriate variation image when that attribute is selected
 
 ## Managing Variation Inventory
 
@@ -118,10 +118,10 @@ Each variation can have its own images:
 
 Each variation tracks its own inventory:
 
-- **Enable storehouse management** for the variation
+- Select **With storehouse management** for the variation
 - Set **Quantity** for each variation
 - System automatically updates stock on orders
-- Configure **Allow checkout when out of stock** per variation
+- Configure **Allow customer checkout when this product out of stock** per variation
 
 ### Default Variation
 
@@ -161,7 +161,7 @@ Variations must reference an existing parent product. Import parent products fir
 
 You can limit which attribute sets are available for specific product categories:
 
-1. Navigate to `Ecommerce` -> `Attributes`
+1. Navigate to `Ecommerce` -> `Product Attributes`
 2. Open an attribute set
 3. Scroll to **Categories** section
 4. Select categories where this attribute applies
@@ -178,7 +178,7 @@ When editing products in those categories, only relevant attribute sets appear.
 3. **Check variation status** - Variations inherit parent product status
 4. **Clear cache** - Run `php artisan cache:clear`
 
-### "Generate all variations" button not working
+### "Generate variations" button not working
 
 1. **Verify attribute sets** - Product must have at least one attribute set assigned
 2. **Check for existing variations** - Button only generates missing combinations
@@ -187,7 +187,7 @@ When editing products in those categories, only relevant attribute sets appear.
 ### Images not showing for variations
 
 1. **Upload variation images** - Each variation needs its own images
-2. **Check "Use image from variation"** - Enable in attribute set if using attribute-based images
+2. **Check "Use image from product variation"** - Enable in attribute set if using attribute-based images
 3. **Set default variation** - Ensure one variation is marked as default
 
 ## Best Practices

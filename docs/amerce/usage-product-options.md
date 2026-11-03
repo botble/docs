@@ -19,18 +19,20 @@ Product options allow customers to customize products beyond variations. While v
 
 | Type | Description | Use Case |
 |------|-------------|----------|
-| **Text** | Single-line text input | Custom text (engraving, name) |
-| **Textarea** | Multi-line text input | Long messages, instructions |
+| **Text** (Field) | Single-line text input | Custom text (engraving, name, gift message) |
 | **Dropdown** | Select one option | Single choice (warranty plans) |
 | **Checkbox** | Select multiple | Multiple add-ons (gift wrap, card) |
 | **Radio** | Select one option | Exclusive choices (size upgrades) |
-| **File Upload** | Customer uploads file | Custom designs, logos |
+
+::: info
+These are the only four option types (`GlobalOptionEnum`). There is no textarea or file-upload option type.
+:::
 
 ## Creating Global Options
 
 Global options are reusable across multiple products.
 
-Navigate to `Ecommerce` -> `Product Options` -> `Global Options`.
+Navigate to `Ecommerce` -> `Product Options`.
 
 1. Click **Create**
 2. Fill in option details:
@@ -146,24 +148,12 @@ Values:
 
 Customer selects one plan, percentage based on product price.
 
-### Example 4: Custom Design Upload
+### Example 4: Gift Message
 
-**Option Type:** File
-```
-Name: Upload Your Design
-Type: File
-Required: Yes
-Affect Price: $0.00
-```
-
-Customer uploads file, required for order processing.
-
-### Example 5: Gift Message
-
-**Option Type:** Textarea
+**Option Type:** Text
 ```
 Name: Gift Message
-Type: Textarea
+Type: Text
 Required: No
 Affect Price: $0.00
 ```
@@ -190,30 +180,11 @@ Control option sequence on product pages:
 3. Lower numbers display first
 4. Update and save
 
-## File Upload Options
-
-For file type options:
-
-**Settings:**
-- Accepts common file formats (images, PDFs, etc.)
-- Maximum file size controlled by server settings
-- Files stored in `storage/app/uploads`
-
-**Use Cases:**
-- Custom logo design
-- Artwork for printing
-- Measurement photos
-- Assembly instructions
-
-::: warning
-Configure server `upload_max_filesize` and `post_max_size` in `php.ini` for large file uploads.
-:::
-
 ## Managing Global Options
 
 ### Editing Global Options
 
-1. Navigate to `Ecommerce` -> `Product Options` -> `Global Options`
+1. Navigate to `Ecommerce` -> `Product Options`
 2. Click option name
 3. Modify settings
 4. Changes apply to all products using this option
@@ -260,7 +231,6 @@ Options appear in order items with selected values and price adjustments.
 - Add-ons and customizations
 - Price adjustments
 - Text input from customers
-- File uploads
 - Same base product with extras
 
 **Can Combine Both:**
@@ -307,13 +277,6 @@ If language plugin is active:
 2. **Clear browser cache** - Frontend may cache old form
 3. **Check JavaScript** - Ensure no JS errors in browser console
 
-### File upload not working
-
-1. **Check file size** - Verify server upload limits
-2. **Check permissions** - Ensure `storage/app` is writable
-3. **Review allowed types** - System may block certain file types
-4. **Check error logs** - Review Laravel logs for upload errors
-
 ### Global option changes not reflecting on products
 
 1. **Clear cache** - Run `php artisan cache:clear`
@@ -329,7 +292,7 @@ If language plugin is active:
 5. **Show price impact** - Display price changes clearly
 6. **Group related options** - Use similar order numbers
 7. **Test checkout flow** - Verify options work in cart and checkout
-8. **Consider mobile users** - Keep file upload sizes reasonable
+8. **Consider mobile users** - Keep option lists short on small screens
 9. **Validate required fields** - Ensure critical options are required
 10. **Document for staff** - Create guides for custom options handling
 

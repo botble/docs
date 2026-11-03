@@ -51,7 +51,7 @@ We're excited to announce the first release of Velura - Spa, Beauty & Nail Salon
 - Backup system
 
 ### 📋 Requirements
-- PHP >= 8.3.36
+- PHP >= 8.3.0
 - MySQL 5.7+ or MariaDB 10.3+
 - Apache, Nginx, or compatible web server
 - SSL certificate recommended
@@ -105,7 +105,7 @@ Always backup your database and files before performing any updates.
 
 ### Compatibility Notes
 
-- **PHP Version**: Requires PHP 8.3.36 or higher
+- **PHP Version**: Requires PHP 8.3.0 or higher
 - **Laravel Version**: Built on Laravel 13.x
 - **Botble CMS**: Compatible with latest Botble CMS version
 - **Browser Support**: Chrome, Firefox, Safari, Edge (latest versions)

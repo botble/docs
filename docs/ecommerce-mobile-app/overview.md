@@ -10,10 +10,12 @@ Botble Ecommerce Mobile App is a React Native (Expo) mobile e-commerce app that 
 ## Features
 
 - Product browse, search, categories, brands, flash sales
-- Authentication (email/password)
-- Cart, coupons, wishlist (synced via API)
-- WebView-based checkout (compatible with all backend payment gateways and shipping plugins)
-- Order history and tracking
+- Authentication: email/password with email verification, social login (Google, Apple, Facebook, X), biometric unlock
+- Cart, coupons, wishlist (synced via API), product compare
+- WebView-based checkout (compatible with all backend payment gateways and shipping plugins), guest checkout
+- Order history and tracking, invoices, order cancellation and returns, payment-proof upload
+- Product reviews, marketplace store directory and store pages
+- Push notifications (Firebase) with an in-app notification inbox
 - 30 built-in languages (en, vi, zh, es, fr, de, ja, ar and more), with RTL support
 - Light / dark / system theme
 

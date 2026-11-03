@@ -18,7 +18,7 @@ Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/ap
 
 ## Bengali font
 
-To render Bengali text in invoices, use the **FreeSerif** font.
+To render Bengali text in invoices, first try `Settings` -> `Ecommerce` -> `Invoices` -> **Add language support** -> **Bengali**. If that does not fit your template, use the **FreeSerif** font.
 
 - Download `FreeSerif.ttf` from https://github.com/byrongibson/fonts/blob/master/backup/truetype.original/freefont/FreeSerif.ttf.
 - Upload `FreeSerif.ttf` to `/public`.
@@ -41,7 +41,7 @@ To render Bengali text in invoices, use the **FreeSerif** font.
 
 ## Japanese font
 
-- **Option 1:** Select font `M Plus Rounded 1c` for the invoice font in `Admin` -> `Ecommerce` -> `Settings`.
+- **Option 1:** In `Settings` -> `Ecommerce` -> `Invoices`, enable **Using custom font for invoice** and select `M Plus Rounded 1c` as **Invoice font family**. You can also try **Add language support** -> **Chinese**.
 
 - **Option 2:** Customize the invoice template:
 

@@ -37,7 +37,7 @@ For the default currency, the exchange rate must be 1.
 
 ## Auto-detect Visitor Currency
 
-The built-in **Auto-detect visitor currency** option in `Settings` -> `Ecommerce` -> `Currencies` is a lightweight
+The built-in **Enable auto-detect visitor currency** option in `Settings` -> `Ecommerce` -> `Currencies` is a lightweight
 fallback that tries to pick a currency based on the visitor's browser settings.
 
 ### How it works
@@ -80,7 +80,7 @@ sets the correct currency and language.
 
 1. Go to `Admin` -> `Plugins` -> `Add new plugin`, search for **FOB Geo Data Detector**, then install and
    activate it.
-2. In `Settings` -> `Ecommerce` -> `Currencies`, disable **Auto-detect visitor currency** (the built-in
+2. In `Settings` -> `Ecommerce` -> `Currencies`, disable **Enable auto-detect visitor currency** (the built-in
    option).
 3. Configure the FOB plugin in its settings page and map your target countries to currencies.
 4. Clear cache at `Platform administration` -> `Cache management` and test in a fresh incognito window.

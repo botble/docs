@@ -12,7 +12,7 @@ No. Ticket submission requires a customer account. Customers can browse the know
 
 ### Can I disable customer self-registration?
 
-Yes. Go to **Admin → Support Desk → Settings → Customer Portal** and turn off **Customer registration**. When disabled, only admin-created customer accounts can log in.
+Yes. Go to **Admin → Settings → Support Desk Settings → Customer Portal** and turn off **Customer registration**. When disabled, only admin-created customer accounts can log in.
 
 ### What is the difference between agents and admin users?
 
@@ -68,7 +68,7 @@ No. Each article belongs to exactly one category. If you need an article to appe
 
 ### Can I hide the knowledge base from customers?
 
-Yes. Go to **Admin → Support Desk → Settings → Customer Portal** and disable **Show Knowledge Base**. When hidden, all KB navigation, search, and routes are removed from the customer portal.
+Yes. Go to **Admin → Settings → Support Desk Settings → Customer Portal** and disable **Show Knowledge Base**. When hidden, all KB navigation, search, and routes are removed from the customer portal.
 
 ## Envato Integration
 
@@ -102,7 +102,7 @@ No. DeskHive bundles the `webklex/php-imap` library, so the native PHP `ext-imap
 
 ### Is Email-to-Ticket enabled by default?
 
-No. The feature is off by default. Enable it in **Admin → Support Desk → Settings → Email Piping** after configuring your IMAP credentials.
+No. The feature is off by default. Enable it in **Admin → Settings → Email Piping** after configuring your IMAP credentials.
 
 ### Can I use Gmail with Email-to-Ticket?
 
@@ -130,7 +130,7 @@ No. DeskHive records each processed message by its Message-ID in the `sd_process
 
 ### Can I override the sender email address?
 
-Set the **Notification email** field in **Admin → Support Desk → Settings → Notifications** to override the default `FROM` address for outgoing notifications. If left empty, the system default mail address from your `.env` configuration is used.
+Set the **Notification email** field in **Admin → Settings → Support Desk Settings → Notifications** to override the default `FROM` address for outgoing notifications. If left empty, the system default mail address from your `.env` configuration is used.
 
 ## Social Login
 

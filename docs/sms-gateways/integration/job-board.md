@@ -20,7 +20,7 @@ Send SMS to candidates for application updates and to employers for new applicat
 
 ### Step 1 — Enable job board SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Job Board** to enable
 3. Click **Save**
 
@@ -88,7 +88,7 @@ When candidates sign up or verify their phone:
 3. Candidate enters 6-digit code
 4. If correct, phone is verified
 
-Same OTP settings as ecommerce (configure in **Admin → Settings → SMS Gateways**).
+Same OTP settings as ecommerce (configure in **Admin → SMS Gateways → Settings**).
 
 ## Consent & Opt-out
 

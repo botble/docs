@@ -48,7 +48,7 @@ There are two layers of discounting:
 
 **Layer 2: Pricing Rules** - You can create additional quantity-based tiers for specific products. These can give bigger discounts for larger quantities.
 
-When both apply, the system picks the price that gives the customer the **best deal** (unless you've configured the [discount resolution strategy](/wholesale/configuration#discount-resolution-strategy) differently).
+When both apply, the system picks the price that gives the customer the **best deal**.
 
 ### Example
 

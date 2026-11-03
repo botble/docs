@@ -10,7 +10,9 @@ Then you need to [create a web data stream](https://support.google.com/analytics
 
 ![Web Data Stream](./images/google-analytics-web-data-stream.png)
 
-After you've set up your web data stream, you will have a Google Tag Manager code snippet. Go to `Admin` -> `Settings` -> `Ecommerce` -> `Tracking`, enable `Enable Google Tag Manager` field and paste your Google Tag Manager code snippet in the `Google Tag Manager code` field.
+After you've set up your web data stream, go to `Admin` -> `Settings` -> `Website Tracking` and choose **Google Tag Manager (Recommended)** (enter your **GTM Container ID**, e.g. `GTM-XXXXXXX`) or **Google Analytics Only** (enter your GA4 Measurement ID, e.g. `G-123ABC4567`).
+
+Then go to `Admin` -> `Settings` -> `Ecommerce` -> `Tracking` and enable **Enable Google Tag Manager Tracking Events** to send the ecommerce events below.
 
 ![Admin Settings](./images/google-analytics-admin-settings.png)
 

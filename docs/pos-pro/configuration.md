@@ -47,7 +47,6 @@ Configure how receipts are generated and printed.
 | **Show VAT** | Display tax breakdown on receipts. |
 | **Show Cashier** | Display the cashier name who processed the order. |
 | **Show Customer** | Display customer name on receipts. |
-| **Receipt Footer Text** | Custom message displayed at the bottom of receipts. |
 
 For detailed printer setup instructions, see the [Printer Setup](usage-printer-setup.md) guide.
 

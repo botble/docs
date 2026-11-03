@@ -12,7 +12,7 @@ All app configuration lives in the `.env` file at the project root. `app.config.
 API_BASE_URL=http://carento.test        # backend site root (/api/v1 appended automatically)
 API_KEY=                                # only if an API key is configured in Botble admin
 APP_NAME=Carento
-LICENSE_CODE=                           # your Envato purchase code (development-only license check)
+LICENSE_CODE=                           # Envato purchase code or direct-purchase license code (dev-only check)
 ```
 
 See [API URL & key](06_api_base_url.md) for `API_BASE_URL` and `API_KEY` details.
@@ -26,9 +26,9 @@ Every key below is read by `app.config.js`. Keys not listed there have no effect
 | Key | Values | Default | Description |
 |---|---|---|---|
 | `APP_NAME` | text | `Carento` | Display name on the home screen and in the app |
-| `APP_VERSION` | semver | `1.0.0` | Marketing version (see [Version management](10_version_management.md)) |
+| `APP_VERSION` | semver | `1.1.2` | Marketing version (see [Version management](10_version_management.md)) |
 | `APP_ENV` | `development` / `staging` / `production` | `development` | Runtime environment. Enables the dev-only license check and test-account prefill outside production |
-| `LICENSE_CODE` | Envato purchase code | *(empty)* | Checked only when `APP_ENV=development`; leave blank in production |
+| `LICENSE_CODE` | Envato purchase code or license.botble.com license code | *(empty)* | Checked only when `APP_ENV=development`; leave blank in production |
 
 ### Backend API
 
@@ -121,6 +121,7 @@ Leave a provider's credentials blank to disable it. Full setup: [Social login co
 | `ENABLE_GOOGLE_SIGN_IN` | `true` / `false` | `true` | Enable Google (also requires `GOOGLE_WEB_CLIENT_ID`) |
 | `GOOGLE_WEB_CLIENT_ID` | client id | *(empty)* | Google Web Client ID ([Google setup](14_google_login_setup.md)) |
 | `GOOGLE_SERVICES_FILE` | file path | *(empty)* | Path to `google-services.json` (Android push / Google services) |
+| `GOOGLE_SERVICES_PLIST` | file path | *(empty)* | Path to `GoogleService-Info.plist` (iOS push). See [Push notifications](push_notifications.md) |
 | `ENABLE_APPLE_SIGN_IN` | `true` / `false` | `true` | Enable Apple Sign-In (iOS) ([Apple setup](13_apple_login_setup.md)) |
 | `ENABLE_FACEBOOK_SIGN_IN` | `true` / `false` | `true` | Enable Facebook (also requires `FACEBOOK_APP_ID`) |
 | `FACEBOOK_APP_ID` | app id | *(empty)* | Facebook App ID ([Facebook setup](15_facebook_login_setup.md)) |

@@ -9,7 +9,7 @@ This guide will help you resolve common issues that may arise when using the Loy
 If points are not being awarded for orders:
 
 1. **Check Program Status**:
-   - Go to **Settings** > **Loyalty Points**
+   - Go to **Loyalty Points** > **Settings**
    - Ensure the loyalty program is enabled
    - Verify earning rate is configured (not 0)
 
@@ -236,7 +236,7 @@ For checkout and dashboard issues:
 
 If points were incorrectly deducted or lost:
 
-1. Navigate to **Loyalty Points** > **Customer Points**
+1. Navigate to **Loyalty Points** > **Members**
 2. Find the affected customer
 3. Click **Adjust Points**
 4. Select "Add Points"

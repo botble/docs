@@ -105,7 +105,7 @@ X-API-IP: 192.168.1.100
   "product_id": "PROD-001",
   "license_code": "LICENSE-CODE-HERE",
   "client_name": "Customer Name",
-  "verify_type": "non_envato"
+  "verify_type": "direct"
 }
 ```
 
@@ -113,8 +113,8 @@ X-API-IP: 192.168.1.100
 |-------|-------------|----------|
 | `product_id` | Product reference ID | Yes |
 | `license_code` | License code to activate | Yes |
-| `client_name` | Customer/buyer name | No |
-| `verify_type` | `non_envato`, `envato`, or `gumroad` | No |
+| `client_name` | Customer/buyer name | Yes |
+| `verify_type` | `direct` (default — look the license up on this server), `non_envato` (legacy alias of `direct`), `envato` (needs the Envato companion plugin) or `gumroad` (needs the Gumroad companion plugin) | No |
 
 **Response (Success):**
 ```json
@@ -609,9 +609,7 @@ GET /api/internal/product-licenses
 ```
 
 **Query Parameters:**
-- `search`: Search term
-- `product_reference_id`: Filter by product
-- `customer_id`: Filter by customer
+- `keyword` (required): matched against the license code and invoice number (partial match)
 
 #### Get License
 
@@ -630,24 +628,40 @@ POST /api/internal/product-licenses
 {
   "product_reference_id": "PROD-001",
   "license_code": "LIC-ABC-123",
-  "type": "perpetual",
+  "license_type": "Regular License",
   "customer_id": "CUST-001",
   "email": "customer@example.com",
   "parallel_uses": 3,
   "expires_at": "2025-12-31",
   "updates_until": "2025-12-31",
   "domains": ["example.com", "*.example.com"],
-  "ips": ["192.168.1.100"],
-  "is_valid": true,
-  "is_envato": false
+  "ips": ["192.168.1.100"]
 }
 ```
+
+`license_code` is generated when omitted. Other accepted fields: `invoice`, `uses`, `expiry_days`,
+`support_until`, `comments`. The license type is sent as **`license_type`** (a `type` field is ignored).
+
+::: warning `is_valid` is inverted
+This endpoint shares the admin form's "block" toggle, so sending `"is_valid": true` creates the license
+**blocked**. Omit `is_valid` to create a valid license, and use the block/unblock endpoints below to change it.
+:::
 
 #### Update License
 
 ```http
 PUT /api/internal/product-licenses/{id}
 ```
+
+#### Change License Type
+
+```http
+POST /api/internal/product-licenses/{id}/type
+```
+
+Changes **only** the license type, leaving every other field untouched (unlike `PUT`, which
+re-applies the whole payload). Body: `{"license_type": "Extended License"}` — `Regular License` or
+`Extended License`. Idempotent.
 
 #### Block/Unblock License
 
@@ -658,17 +672,40 @@ DELETE /api/internal/blocked-product-licenses/{id}
 
 ### Activations
 
-#### Create Activation
+#### Re-activate an Activation
 
 ```http
 POST /api/internal/activated-product-activations/{id}
 ```
 
-#### Delete Activation
+Sets an existing activation back to active.
+
+#### Deactivate an Activation
 
 ```http
 DELETE /api/internal/activated-product-activations/{id}
 ```
+
+Marks the activation inactive (the row is kept).
+
+### Customers
+
+```http
+GET /api/internal/customers
+POST /api/internal/customers
+GET /api/internal/customers/{id}
+PUT /api/internal/customers/{id}
+```
+
+`name` and `email` are required when creating; `client_id` is optional.
+
+### Internal Connection Check
+
+```http
+GET /api/internal/connection-check
+```
+
+Confirms an internal API key works.
 
 ## Error Responses
 

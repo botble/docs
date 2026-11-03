@@ -31,7 +31,7 @@ Fast2SMS provides templates, but you must register them with TRAI first.
 
 ## Configure in Botble
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Check **Fast2SMS** under **Active Drivers**
 3. Expand the **Fast2SMS** section and enter:
    - **Authorization Token**: Your API token

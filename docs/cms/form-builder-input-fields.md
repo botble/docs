@@ -31,7 +31,7 @@ $this
             ->label('Name') // Field label
             ->append('append') // Append text/HTML
             ->prepend('prepend') // Prepend text/HTML
-            ->helpText('Helper text') // Instruction for user
+            ->helperText('Helper text') // Instruction for user
             ->placeholder('Enter your name') // Placeholder text
             ->value('John Doe') // Default value
             ->labelAttributes(['class' => 'control-label']) // Label attributes

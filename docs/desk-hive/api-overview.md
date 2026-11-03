@@ -28,7 +28,7 @@ curl -H "X-API-KEY: your-api-key" https://your-domain.com/api/v1/internal/ticket
 
 ### Creating API Keys
 
-API keys are managed in **Admin Panel > Support Desk > Settings > API Keys**, or via the [Internal API Keys endpoint](api-internal#api-keys).
+API keys are managed in the agent portal under **Settings → API** (`/support/agent/settings?section=api`), or via the [Internal API Keys endpoint](api-internal#api-keys).
 
 When a key is created, the raw key is returned **once** — store it securely.
 

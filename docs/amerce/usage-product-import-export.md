@@ -2,7 +2,7 @@
 
 Bulk import and export data to efficiently manage large catalogs, update inventory, sync with external systems, or migrate from other platforms.
 
-Navigate to `Tools` -> `Import/Export Data` to access all import and export operations.
+Navigate to `Tools` -> `Export/Import Data` to access all import and export operations.
 
 ## Overview
 
@@ -13,24 +13,22 @@ Available import/export operations:
 | **Products** | ✅ | ✅ | Full product data including variations |
 | **Prices** | ✅ | ✅ | Bulk price updates |
 | **Inventory** | ✅ | ✅ | Stock levels and quantities |
-| **Categories** | ✅ | ✅ | Product category assignments |
+| **Categories** | ✅ | ✅ | Product categories (name, slug, parent, image, ...) |
 | **Specifications** | ✅ | ✅ | Product specifications |
 | **Customers** | ✅ | ✅ | Customer accounts and data |
 | **Orders** | ❌ | ✅ | Export order data with filters |
-| **License Codes** | ✅ | ❌ | Digital product license codes |
+| **License Codes** | ✅ | ❌ | Digital product license codes (opened from a product's **Manage License Codes** page) |
 
 ![Import products](./images/import-products.png)
 
 ## Exporting Products
 
-Navigate to `Tools` -> `Import/Export Data` -> `Export Products`.
+Navigate to `Tools` -> `Export/Import Data` -> `Export Products`.
 
 ### Export Options
 
-1. **Export Type:**
-   - All products
-   - Selected products only
-   - Filter by category, brand, status
+1. **Columns:**
+   - Choose which columns to export (all products are exported; there are no category/brand/status filters)
 
 2. **Export Format:**
    - CSV (Recommended for Excel)
@@ -40,14 +38,16 @@ Navigate to `Tools` -> `Import/Export Data` -> `Export Products`.
    - Check to export product variations
    - Uncheck for parent products only
 
-4. Click **Export**
+4. **Large exports (optional):** chunked export, memory optimization, streaming and multi-file export (records per file)
+
+5. Click **Export**
 
 ### Export File Structure
 
 **Product Row** (`import_type` = `product`):
 ```csv
 id,name,description,slug,sku,categories,status,is_featured,brand,price,...
-123,Product Name,Description,product-slug,SKU123,Category1,publish,1,BrandName,99.99,...
+123,Product Name,Description,product-slug,SKU123,Category1,published,1,BrandName,99.99,...
 ```
 
 **Variation Row** (`import_type` = `variation`):
@@ -62,7 +62,7 @@ Variations reference parent product by `name` or `slug`. Leave parent product fi
 
 ## Importing Products
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Products`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Products`.
 
 ### Import Process
 
@@ -90,16 +90,17 @@ Navigate to `Tools` -> `Import/Export Data` -> `Import Products`.
 
 | Option | Description |
 |--------|-------------|
-| **Update existing products** | Update products with matching SKU or ID |
-| **Skip existing products** | Only import new products (default) |
-| **Generate SKU automatically** | Auto-create SKUs if missing |
+| **Import type** | All, Products only, or Variations only |
+| **Update existing products** | Update products matching ID or SKU; rows for products that do not exist are ignored. When off (default), rows are treated as new products |
+
+To auto-create SKUs, use the `auto_generate_sku` column (`1`).
 
 ### Required Columns
 
 **For Products:**
 - `name` - Product name (required)
-- `status` - `publish`, `draft`, `pending`
-- `stock_status` - `in_stock`, `out_of_stock`
+- `status` - `published`, `draft`, `pending`
+- `stock_status` - `in_stock`, `out_of_stock`, `on_backorder`
 
 **For Variations:**
 - `name` or `slug` - Parent product identifier
@@ -190,7 +191,7 @@ Size:Large|Color:Red|Material:Cotton
 Format: `AttributeSet:Value|AttributeSet:Value`
 
 ::: warning
-Attribute sets and values must exist before import. Create them in `Ecommerce` -> `Attributes`.
+Attribute sets and values must exist before import. Create them in `Ecommerce` -> `Product attributes`.
 :::
 
 ## Handling Images
@@ -228,7 +229,7 @@ For large imports with images, upload images to `storage/app/public/products/` f
 ### Step-by-Step Process
 
 1. **Prepare parent products** - Import parent products first
-2. **Create attribute sets** - Ensure attributes exist in `Ecommerce` -> `Attributes`
+2. **Create attribute sets** - Ensure attributes exist in `Ecommerce` -> `Product attributes`
 3. **Prepare variation rows** - Format variation data
 4. **Import** - Upload CSV with variations
 
@@ -262,18 +263,19 @@ Result: `TSHIRT-001-SMALL-RED`
 
 ## Importing Prices Only
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Prices`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Prices`.
 
 ### Price Import Format
 
 ```csv
-id,sku,name,price,sale_price
-123,SKU-123,Product Name,99.99,79.99
-,SKU-VAR-1,,109.99,89.99
+id,name,sku,cost_per_item,price,sale_price
+123,Product Name,SKU-123,50.00,99.99,79.99
+,,SKU-VAR-1,,109.99,89.99
 ```
 
 **Columns:**
 - `id` or `sku` or `name` - Product identifier (at least one required)
+- `cost_per_item` - Cost per item (optional)
 - `price` - New base price
 - `sale_price` - New sale price (optional)
 
@@ -283,54 +285,55 @@ Use price import for quick price updates without modifying other product data.
 
 ## Importing Inventory Only
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Inventory`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Inventory`.
 
 ### Inventory Import Format
 
 ```csv
-sku,name,quantity,stock_status,with_storehouse_management
-SKU-123,Product Name,100,in_stock,1
-SKU-VAR-1,Variation Name,50,in_stock,1
+id,name,sku,with_storehouse_management,quantity,stock_status
+123,Product Name,SKU-123,1,100,in_stock
+,Variation Name,SKU-VAR-1,1,50,in_stock
 ```
 
 **Columns:**
-- `sku` or `name` - Product identifier
+- `id`, `sku` or `name` - Product identifier
 - `quantity` - New stock level
-- `stock_status` - `in_stock` or `out_of_stock`
+- `stock_status` - `in_stock`, `out_of_stock` or `on_backorder`
 - `with_storehouse_management` - Enable/disable inventory tracking
 
 ## Importing Categories
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Categories`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Categories`.
 
 ### Category Import Format
 
+This importer creates/updates the categories themselves (to assign products to categories, use the `categories` column of the product import).
+
 ```csv
-product_id,product_sku,product_name,categories
-123,SKU-123,Product Name,Electronics|Smartphones|Samsung
+name,slug,parent,description,status,order,image,is_featured,icon,icon_image
+Smartphones,smartphones,Electronics,Phones and accessories,published,0,categories/phones.jpg,1,ti ti-device-mobile,
 ```
 
-**Categories:**
-- Pipe-separated: `Category1|Category2|Category3`
-- Or comma-separated: `Category1,Category2,Category3`
-
-Categories must exist before import.
+**Columns:**
+- `name` - Category name (required)
+- `parent` - Parent category name (optional)
+- `status` - `published`, `draft` or `pending`
 
 ## Importing Specifications
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Product Specifications`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Product Specifications`.
 
 ### Specification Import Format
 
 ```csv
-product_id,specification_table,Screen Size,Resolution,Processor
-123,Smartphone Specs,6.1 inches,2532x1170,A15 Bionic
+name,specification_table,specifications
+Smartphone X Pro,General Specification,Height:2cm|Width:30cm|Weight:1.5kg
 ```
 
 **Columns:**
-- `product_id` or `product_name` - Product identifier
-- `specification_table` - Specification table name (optional)
-- Dynamic columns for each specification attribute
+- `name` - Existing parent product name
+- `specification_table` - Existing specification table name
+- `specifications` - `Name:Value` pairs separated by `|` (plus `specifications_{locale}` columns for translations)
 
 ## Common Import Errors
 
@@ -339,7 +342,7 @@ product_id,specification_table,Screen Size,Resolution,Processor
 - Check for empty rows
 
 ### "Invalid status value"
-- Status must be: `publish`, `draft`, or `pending`
+- Status must be: `published`, `draft`, or `pending`
 - Check spelling
 
 ### "SKU already exists"
@@ -439,7 +442,7 @@ php artisan queue:work
 
 ## Importing/Exporting Customers
 
-Navigate to `Tools` -> `Import/Export Data` -> `Import Customers` or `Export Customers`.
+Navigate to `Tools` -> `Export/Import Data` -> `Import Customers` or `Export Customers`.
 
 ### Customer Export Columns
 
@@ -474,7 +477,7 @@ John Doe,john@example.com,+1234567890,1990-01-15,activated,secret123
 
 ## Exporting Orders
 
-Navigate to `Tools` -> `Import/Export Data` -> `Export Orders`.
+Navigate to `Tools` -> `Export/Import Data` -> `Export Orders`.
 
 Orders can only be exported (no import). Export includes filters:
 

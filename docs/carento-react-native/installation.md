@@ -41,7 +41,7 @@ Open `.env` and set at least:
 API_BASE_URL=http://carento.test        # your Botble backend, no trailing /api/v1
 API_KEY=                                # only if configured in Botble admin
 APP_NAME=Carento
-LICENSE_CODE=                           # your Envato purchase code (dev only)
+LICENSE_CODE=                           # Envato purchase code or direct-purchase license code (dev only)
 ```
 
 `.env` is read at build/start time through `app.config.js` (`extra.appConfig`). See [Configuration](configuration.md) and [API URL & key](06_api_base_url.md) for the full reference.

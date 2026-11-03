@@ -7,7 +7,7 @@ The Shippo integration plugin provides multi-carrier shipping rates and address 
 ## Features
 
 - **Multi-carrier shipping rates**: Get real-time rates from 50+ carriers
-- **Address validation**: Validate shipping addresses before processing
+- **Address checks**: Required origin/destination address fields are checked before requesting rates
 - **Label generation**: Create shipping labels directly from the admin panel
 - **Package tracking**: Track shipments with automatic status updates via webhooks
 - **Sandbox/Production modes**: Test integration before going live
@@ -26,15 +26,20 @@ The Shippo integration plugin provides multi-carrier shipping rates and address 
 
 1. **API Keys Setup**:
    - Get your API keys from Shippo dashboard
-   - Navigate to Admin → Plugins → Ecommerce → Shipping → Shippo
-   - Enter your Test API Key and Production API Key
-   - Enable/disable Sandbox mode
+   - Navigate to Admin → Settings → Ecommerce → Shipping, find **Shippo** and click **Edit**
+   - Enter your **Test API Token** and **Live API Token**
+   - Enable/disable **Test mode** (sandbox)
 
 2. **Basic Settings**:
-   - Enable Shippo shipping method
-   - Configure logging (recommended for debugging)
-   - Enable response caching for better performance
-   - Configure webhook settings
+   - **Activate** the Shippo shipping method
+   - **Logging?** (recommended for debugging)
+   - **Cache response?** for better performance
+   - **Webhooks?** to accept Shippo tracking/transaction webhooks
+   - **Check validate token?** to verify the API token when saving
+
+::: warning
+Shippo options are not shown at checkout when the selected payment method is COD.
+:::
 
 3. **Store Address**:
    - Ensure your store's origin address is properly configured
@@ -74,16 +79,16 @@ class Shippo
     protected LoggerInterface $logger;
     
     // Core methods
-    public function getRates(array $params): array
+    public function getRates(array $params, bool $suggest = true): array
     public function createTransaction(string $rateId): array
-    public function validateAddress(array $address): array
+    public function validate(): array // validates the active API token
 }
 ```
 
 **Key Methods**:
 - `getRates()`: Fetches shipping rates from Shippo API
 - `createTransaction()`: Creates shipping labels
-- `validateAddress()`: Validates shipping addresses
+- `validate()`: Validates the configured API token
 - `retrieveRate()`: Gets detailed rate information
 
 #### 2. Controllers
@@ -256,8 +261,7 @@ The plugin doesn't create custom tables but uses existing Botble ecommerce table
 
 **Address Management**:
 - Uses Location plugin for country/state/city data
-- Address validation integration
-- Geocoding support
+- Required address fields are checked before rates are requested
 
 **Store Configuration**:
 - Origin address from store locator
@@ -267,9 +271,9 @@ The plugin doesn't create custom tables but uses existing Botble ecommerce table
 
 **Vendor Support**:
 - Shippo uses a **single API token** configured by the admin - vendors cannot connect their own Shippo accounts
-- Shipping rates and carrier selection are managed by the admin only
-- Vendors can update shipping status (e.g., delivering, delivered) but cannot configure shipping rates or API connections
-- The store's origin address (configured by the admin) is used for all rate calculations
+- Vendors cannot configure Shippo settings or API connections
+- From the vendor dashboard order page, vendors can view Shippo rates, change the selected rate and create the shipping label (transaction)
+- When **Charge shipping per vendor** is enabled, each vendor store's address is used as the origin for its items; otherwise the store's origin address (configured by the admin) is used
 
 ## Events & Hooks
 
@@ -317,6 +321,7 @@ The plugin doesn't define custom events but responds to:
 - `shipping_shippo_logging`: Enable logging
 - `shipping_shippo_cache_response`: Enable rate caching
 - `shipping_shippo_webhooks`: Enable webhook processing
+- `shipping_shippo_validate`: Validate the API token when saving settings
 
 ### Package Types & Service Levels
 
@@ -385,18 +390,14 @@ if ($transaction['status'] === 'SUCCESS') {
 }
 ```
 
-### Address Validation
+### Validate API Token
 
 ```php
-$address = [
-    'street1' => '1 Market St',
-    'city' => 'San Francisco',
-    'state' => 'CA',
-    'zip' => '94105',
-    'country' => 'US'
-];
+$errors = $shippo->validate();
 
-$validation = $shippo->validateAddress($address);
+if (empty($errors)) {
+    // Active (test or live) API token is valid
+}
 ```
 
 ## Troubleshooting
@@ -485,13 +486,10 @@ Creates a shipping transaction and generates label.
 
 **Returns**: Transaction details including label URL and tracking info
 
-#### `validateAddress(array $address): array`
-Validates a shipping address.
+#### `validate(): array`
+Validates the active API token (test token in test mode, live token otherwise).
 
-**Parameters**:
-- `$address`: Address to validate
-
-**Returns**: Validation results and corrected address
+**Returns**: Array of error messages (empty when the token is valid)
 
 ### Webhook Events
 

@@ -5,7 +5,7 @@
 License Manager is a **standalone application** - it does not require Botble CMS. Before installing, ensure your server meets the following requirements:
 
 - Apache, nginx, or another compatible web server
-- PHP >= 8.3.36 or higher
+- PHP >= 8.3.0 or higher
 - MySQL Database server
 - `PDO` PHP extension
 - `OpenSSL` PHP extension
@@ -18,6 +18,7 @@ License Manager is a **standalone application** - it does not require Botble CMS
 - `Tokenizer` PHP extension
 - `cURL` PHP extension
 - `zip` PHP extension
+- `GD` PHP extension
 - `iconv` PHP extension
 - Ensure the `mod_rewrite` Apache module is enabled
 

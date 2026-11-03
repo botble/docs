@@ -8,12 +8,12 @@ Invoices are automatically generated for each completed order. Go to `Ecommerce`
 
 ## Invoice Template
 
-Customize the invoice template in `Ecommerce` -> `Settings` -> `Invoice`. You can modify:
+Configure invoice details in `Settings` -> `Ecommerce` -> `Invoices`. You can modify:
 
 - Company information (name, address, phone, email)
 - Logo
 - Tax information
-- Footer text
+- Invoice code prefix
 
 See [Invoice Template](./invoice-template.md) for advanced customization.
 

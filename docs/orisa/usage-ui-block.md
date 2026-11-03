@@ -10,51 +10,51 @@ To edit an existing block, click on it in the editor and click the pencil icon.
 
 ## Available Shortcodes
 
-Orisa ships with **21+ shortcodes and 57+ style variants**. Each shortcode is fully configurable from the admin panel — no code editing required.
+Orisa ships with **29+ shortcodes and 170+ style variants**. Each shortcode is fully configurable from the admin panel — no code editing required.
 
-### hero-banner (5 styles)
+### hero-banner (16 styles)
 
 Main hero section: video bg, split, image right, centered, full-screen.
 
 ![Hero Banner](./images/ui-blocks/hero-banner.png)
 
-### about-us-information (5 styles)
+### about-us-information (20 styles)
 
 About / introduction section with feature tabs and experience counter.
 
 ![About Us Information](./images/ui-blocks/about-us-information.png)
 
-### services (5 styles)
+### services (14 styles)
 
 Services grid (requires Portfolio plugin).
 
 ![Services](./images/ui-blocks/services.png)
 
-### projects (5 styles)
+### projects (15 styles)
 
 Portfolio / project showcase (requires Portfolio plugin).
 
 ![Projects](./images/ui-blocks/projects.png)
 
-### testimonials (3+ styles)
+### testimonials (14 styles)
 
 Customer testimonials carousel and grid layouts.
 
 ![Testimonials](./images/ui-blocks/testimonials.png)
 
-### content-block (7 styles)
+### content-block (22 styles)
 
 Flexible content section for features, process steps, custom layouts.
 
 ![Content Block](./images/ui-blocks/content-block.png)
 
-### partners (4 styles)
+### partners (7 styles)
 
 Ticker, inline, grid, carousel with reviews.
 
 ![Partners](./images/ui-blocks/partners.png)
 
-### call-to-action (3 styles)
+### call-to-action (10 styles)
 
 Full banner, compact, dark with image.
 
@@ -66,25 +66,25 @@ Pricing tables with monthly/yearly toggle.
 
 ![Pricing Plans](./images/ui-blocks/pricing-plans.png)
 
-### site-statistics (2 styles)
+### site-statistics (6 styles)
 
 Animated counter statistics.
 
 ![Site Statistics](./images/ui-blocks/site-statistics.png)
 
-### teams (1 style)
+### teams (9 styles)
 
 Team member grid (requires Team plugin).
 
 ![Teams](./images/ui-blocks/teams.png)
 
-### faqs (1 style)
+### faqs (5 styles)
 
 FAQ accordion (requires FAQ plugin).
 
 ![FAQs](./images/ui-blocks/faqs.png)
 
-### blog-posts (1 style)
+### blog-posts (7 styles)
 
 Recent blog posts grid (requires Blog plugin).
 
@@ -102,19 +102,19 @@ Scrolling skills / technology tags strip.
 
 ![Skills Carousel](./images/ui-blocks/skills-carousel.png)
 
-### awards (1 style)
+### awards (5 styles)
 
 Awards timeline.
 
 ![Awards](./images/ui-blocks/awards.png)
 
-### image-gallery (1 style)
+### image-gallery (6 styles)
 
 Image carousel.
 
 ![Image Gallery](./images/ui-blocks/image-gallery.png)
 
-### video-showreel (1 style)
+### video-showreel (2 styles)
 
 Video player with poster.
 
@@ -126,15 +126,19 @@ Newsletter subscription (dark banner / light box).
 
 ![Newsletter](./images/ui-blocks/newsletter.png)
 
-### contact-form (2 styles)
+### contact-form (4 styles)
 
 Contact form with map or info panel.
 
 ![Contact Form](./images/ui-blocks/contact-form.png)
 
+### Other shortcodes
+
+Also available: `careers` (requires Career plugin), `content-checklist`, `content-features`, `ecommerce-products-carousel`, `galleries` (requires Gallery plugin), `image-mosaic`, `keyword-ticker`, `our-journey`, `service-cards` and `skill-cards`.
+
 ### Per-homepage style variants
 
-Each of the 5 homepage demos uses different shortcode style variants. For example:
+Each of the 15 homepage demos uses different shortcode style variants. For example (first 5 demos):
 
 - **Home 1 – Creative Agency** uses `hero-banner` style 1, `content-block` style 1, `partners` ticker
 - **Home 2 – Digital Agency** uses `hero-banner` style 2, `about-us-information` style 2, vertical services panels

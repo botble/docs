@@ -117,7 +117,7 @@ From: 1000g  To: -      Cost: $12.00
 - Tiered shipping by package size
 
 ::: tip Weight Unit
-The weight unit is configured at `Ecommerce` -> `Settings` -> `Standard & Formats`. Common units: grams, kg, oz, lbs.
+The weight unit is configured at `Ecommerce` -> `Settings` -> `Standard & Format`. Common units: grams, kg, oz, lbs.
 :::
 
 #### 3. Based on Zipcode
@@ -303,10 +303,10 @@ From $150 to - -> Free
 
 ### Coupon-Based Free Shipping
 
-Configure free shipping coupons at `Ecommerce` -> `Promotions` -> `Coupons`:
+Configure free shipping coupons at `Ecommerce` -> `Discounts`:
 
 1. Create new coupon
-2. Select **Free shipping**
+2. Select discount type **Free shipping**
 3. Set minimum order (optional)
 4. Save coupon
 
@@ -369,10 +369,10 @@ Link shipments to physical store locations for:
 - Regional warehouses
 - Fulfillment centers
 
-Configure at `Ecommerce` -> `Store Locators`:
+Configure at `Ecommerce` -> `Settings` -> `Store locators`:
 
 1. Create store locations
-2. Enable **Is shipping location**
+2. Enable **Is shipping location?**
 3. When creating shipments, select store location
 
 Benefits:
@@ -388,15 +388,15 @@ You can apply tax to shipping fees in addition to product taxes.
 
 Navigate to `Ecommerce` -> `Settings` -> `Tax`.
 
-Toggle **Tax on shipping fee** to ON.
+Toggle **Apply tax on shipping fee** to ON.
 
 When enabled:
-- Shipping costs are taxed using the same tax rules as products
+- Shipping costs are taxed using the **default tax rate** (set in `Ecommerce` -> `Taxes`), not location-based tax rules
 - Tax amount on shipping appears separately in the order summary
 - Both product tax and shipping tax are tracked individually
 
 ::: tip
-Shipping tax is calculated based on the customer's location, using the same tax rules configured for product taxes.
+Set a default tax in `Ecommerce` -> `Taxes`. If none is set, the rate of the first taxed item in the cart is used.
 :::
 
 ## Shipment Tracking
@@ -443,8 +443,8 @@ Navigate to `Marketplace` -> `Settings`:
 
 | Setting | Description |
 |---------|-------------|
-| **Allow vendor manage shipping** | Vendors can update shipment status from their dashboard |
-| **Charge shipping per vendor** | Calculate and charge shipping separately for each vendor in the cart |
+| **Allow vendor manage shipping?** | Vendors can update shipment status from their dashboard |
+| **Charge shipping per vendor?** | Calculate and charge shipping separately for each vendor in the cart |
 
 ### How Per-Vendor Shipping Works
 

@@ -26,7 +26,7 @@ You will need to make the same structure and handle events during checkout to im
 
 - **`src/Providers/HookServiceProvider.php`** - The main integration file. This is where the plugin hooks into the checkout rate calculation (`handle_shipping_fee` filter), registers the shipping method enum, and adds the settings UI. Start here to understand how everything connects.
 
-- **`resources/views/settings.blade.php`** - The admin settings form displayed under **Ecommerce → Settings → Shipping**. Shows how to build the configuration UI for API keys, sandbox mode, etc.
+- **`resources/views/settings.blade.php`** - The admin settings form displayed under **Settings → Ecommerce → Shipping**. Shows how to build the configuration UI for API keys, sandbox mode, etc.
 
 - **`resources/views/rate.blade.php`** - The shipping option displayed at the checkout page. Shows how individual rates are rendered for the customer to select.
 
@@ -66,7 +66,7 @@ When a customer enters their shipping address at checkout, the core `HandleShipp
 ## Prerequisites
 
 - The **Ecommerce** plugin must be activated
-- PHP 8.3.36+, Laravel 13.x
+- PHP 8.3.0+, Laravel 13.x
 - An account with your shipping provider and API credentials
 
 ## Plugin Directory Structure
@@ -567,18 +567,19 @@ class MyShippingWebhookController extends BaseController
         $statusMap = [
             'in_transit' => ShippingStatusEnum::DELIVERING,
             'delivered' => ShippingStatusEnum::DELIVERED,
-            'returned' => ShippingStatusEnum::RETURNED,
             'exception' => ShippingStatusEnum::NOT_DELIVERED,
+            'cancelled' => ShippingStatusEnum::CANCELED,
         ];
 
         $newStatus = $statusMap[$data['status']] ?? null;
 
-        if ($newStatus && $shipment->status !== $newStatus) {
+        // $shipment->status is cast to a ShippingStatusEnum object, so compare its raw value
+        if ($newStatus && $shipment->status->getValue() !== $newStatus) {
             $shipment->update(['status' => $newStatus]);
 
             ShipmentHistory::query()->create([
                 'action' => 'update_status',
-                'description' => "Status updated to {$newStatus->label()} via webhook",
+                'description' => 'Status updated to ' . ShippingStatusEnum::getLabel($newStatus) . ' via webhook',
                 'shipment_id' => $shipment->id,
                 'order_id' => $shipment->order_id,
             ]);
@@ -637,7 +638,7 @@ php artisan cms:publish:assets
 php artisan cms:plugin:activate my-shipping
 ```
 
-After activation, go to **Ecommerce** → **Settings** → **Shipping** to configure your API keys.
+After activation, go to **Settings** → **Ecommerce** → **Shipping** to configure your API keys.
 
 ## Hooks Reference
 
@@ -645,7 +646,7 @@ After activation, go to **Ecommerce** → **Settings** → **Shipping** to confi
 
 | Hook | Purpose | Args |
 |------|---------|------|
-| `handle_shipping_fee` | Add your rates to checkout calculation | `$result`, `$data` |
+| `handle_shipping_fee` | Add your rates to checkout calculation | `$result`, `$data`, `$option` (3rd arg optional) |
 | `SHIPPING_METHODS_SETTINGS_PAGE` | Add settings UI to shipping config page | `$settings` |
 | `BASE_FILTER_ENUM_ARRAY` | Add value to `ShippingMethodEnum` | `$values`, `$class` |
 | `BASE_FILTER_ENUM_LABEL` | Set display label for enum value | `$value`, `$class` |
@@ -734,8 +735,8 @@ Shipping plugins typically do **not** create their own tables. All shipment data
 | `status` | string | ShippingStatusEnum value |
 | `tracking_id` | string | Tracking number |
 | `tracking_link` | string | Provider tracking URL |
-| `label_url` | string | Downloadable label URL |
-| `metadata` | json | Provider-specific data |
+| `label_url` | text | Downloadable label URL |
+| `metadata` | mediumText (cast to JSON) | Provider-specific data |
 | `note` | text | Admin notes |
 
 ### `ec_shipment_histories` Table
@@ -751,15 +752,20 @@ Shipping plugins typically do **not** create their own tables. All shipment data
 ### Shipping Status Values
 
 ```php
+ShippingStatusEnum::NOT_APPROVED
+ShippingStatusEnum::APPROVED
 ShippingStatusEnum::PENDING
+ShippingStatusEnum::ARRANGE_SHIPMENT
 ShippingStatusEnum::READY_TO_BE_SHIPPED_OUT
+ShippingStatusEnum::PICKING
+ShippingStatusEnum::DELAY_PICKING
+ShippingStatusEnum::PICKED
+ShippingStatusEnum::NOT_PICKED
 ShippingStatusEnum::DELIVERING
 ShippingStatusEnum::DELIVERED
-ShippingStatusEnum::CANCELED
 ShippingStatusEnum::NOT_DELIVERED
-ShippingStatusEnum::RETURNING
-ShippingStatusEnum::RETURNED
-ShippingStatusEnum::EXCEPTION
+ShippingStatusEnum::AUDITED
+ShippingStatusEnum::CANCELED
 ```
 
 ## Testing Checklist

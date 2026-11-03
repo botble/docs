@@ -61,7 +61,7 @@ Place the widget at one of four screen positions:
 
 ### Offset
 
-Adjust horizontal (X) and vertical (Y) pixel offset from the screen edge. Default is 20px for both.
+Adjust horizontal (X) and vertical (Y) pixel offset from the screen edge. Default is 40px for both.
 
 ### Mobile Display
 

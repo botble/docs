@@ -27,7 +27,7 @@ To configure the delivery time picker, go to `Appearance` -> `Theme Options` -> 
 
 ## Enable/Disable
 
-Toggle the delivery time picker in `Appearance` -> `Theme Options` -> `Features` -> **Delivery Time Picker**.
+Toggle the delivery time picker in `Appearance` -> `Theme Options` -> `Features` -> **Enable delivery time picker**.
 
 ::: tip
 Setting a free shipping threshold encourages larger orders. A common strategy is to set it slightly above your

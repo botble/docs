@@ -192,7 +192,7 @@ The factory receives the Laravel container. Return an instance of your driver ke
 ## Test your driver
 
 1. Rebuild autoload (`composer dump-autoload`) if you added a new namespace.
-2. Visit **Admin → Settings → SMS Gateways** — your driver appears in the driver tabs.
+2. Visit **Admin → SMS Gateways → Settings** — your driver appears in the driver tabs.
 3. Enter credentials via the form and click **Save**.
 4. Open the **Test SMS** tab, pick your driver, and send a test.
 5. Inspect the result in **Admin → SMS Gateways → Delivery Logs**.

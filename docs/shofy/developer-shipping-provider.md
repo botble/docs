@@ -66,7 +66,7 @@ When a customer enters their shipping address at checkout, the core `HandleShipp
 ## Prerequisites
 
 - The **Ecommerce** plugin must be activated
-- PHP 8.3.36+, Laravel 13.x
+- PHP 8.3.0+, Laravel 13.x
 - An account with your shipping provider and API credentials
 
 ## Plugin Directory Structure
@@ -567,7 +567,7 @@ class MyShippingWebhookController extends BaseController
         $statusMap = [
             'in_transit' => ShippingStatusEnum::DELIVERING,
             'delivered' => ShippingStatusEnum::DELIVERED,
-            'returned' => ShippingStatusEnum::RETURNED,
+            'returned' => ShippingStatusEnum::NOT_DELIVERED,
             'exception' => ShippingStatusEnum::NOT_DELIVERED,
         ];
 
@@ -751,15 +751,20 @@ Shipping plugins typically do **not** create their own tables. All shipment data
 ### Shipping Status Values
 
 ```php
+ShippingStatusEnum::NOT_APPROVED
+ShippingStatusEnum::APPROVED
 ShippingStatusEnum::PENDING
+ShippingStatusEnum::ARRANGE_SHIPMENT
 ShippingStatusEnum::READY_TO_BE_SHIPPED_OUT
+ShippingStatusEnum::PICKING
+ShippingStatusEnum::DELAY_PICKING
+ShippingStatusEnum::PICKED
+ShippingStatusEnum::NOT_PICKED
 ShippingStatusEnum::DELIVERING
 ShippingStatusEnum::DELIVERED
-ShippingStatusEnum::CANCELED
 ShippingStatusEnum::NOT_DELIVERED
-ShippingStatusEnum::RETURNING
-ShippingStatusEnum::RETURNED
-ShippingStatusEnum::EXCEPTION
+ShippingStatusEnum::AUDITED
+ShippingStatusEnum::CANCELED
 ```
 
 ## Testing Checklist

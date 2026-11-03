@@ -22,12 +22,12 @@ The password field provides a masked input for password entry.
 
 ```php
 use Botble\Base\Forms\Fields\PasswordField;
-use Botble\Base\Forms\FieldOptions\PasswordFieldOption;
+use Botble\Base\Forms\FieldOptions\TextFieldOption;
 
 $this->add(
     'password', 
     PasswordField::class, 
-    PasswordFieldOption::make()
+    TextFieldOption::make()
         ->label(__('Password'))
 );
 ```

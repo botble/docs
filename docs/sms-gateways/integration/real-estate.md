@@ -20,7 +20,7 @@ Send SMS to agents for property inquiries and customer OTP verification.
 
 ### Step 1 — Enable real estate SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Real Estate** to enable
 3. Click **Save**
 
@@ -91,7 +91,7 @@ When customers sign up or verify their phone:
 3. Customer enters 6-digit code
 4. If correct, phone is marked verified
 
-Configure OTP in **Admin → Settings → SMS Gateways** (same as ecommerce).
+Configure OTP in **Admin → SMS Gateways → Settings** (same as ecommerce).
 
 ## Agent Consent
 

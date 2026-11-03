@@ -95,10 +95,7 @@ When customers submit wholesale applications:
 
 When multiple groups is enabled, customers can belong to several groups:
 
-**Conflict Resolution:**
-- **Priority Strategy** - Uses group with highest priority number
-- **Highest Discount** - Applies best discount for customer
-- **Lowest Discount** - Applies lowest discount
+**Conflict Resolution:** the customer always gets the largest discount among their groups.
 
 ## Pricing Rules
 

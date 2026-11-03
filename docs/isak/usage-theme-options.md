@@ -15,10 +15,15 @@ Configure your personal information displayed in the sidebar.
 | User Name | Your name displayed in the sidebar |
 | User Title | Your professional title (e.g., "Full Stack Developer") |
 | User Introduction | Short bio text |
+| Hero Greeting | Greeting text shown in the hero section |
+| Hero Name Line 1 / Hero Name Line 2 | Name lines displayed in the hero section |
+| Hero Tagline | Tagline under the hero name |
+| Sidebar Rotating Words | Words rotated in the sidebar |
 | User Avatar | Profile photo for the sidebar |
 | Available for Work | Toggle to show "Available for Work" badge |
 | CV File (PDF) | URL or path to downloadable CV/Resume PDF |
 | Contact Email | Email address for contact |
+| Enable Sidebar Backdrop | Show a backdrop behind the sidebar |
 | Show Social Links | Toggle to show/hide social media links in sidebar. If enabled, add links in `Appearance` → `Theme Options` → `Social Links` |
 
 ## Theme Styles
@@ -31,6 +36,7 @@ Customize the visual appearance of your theme.
 |--------|-------------|
 | Default Theme Mode | Choose between Dark or Light mode |
 | Primary Color | Override the default primary/accent color |
+| Button Text Color | Text color for buttons using the primary color |
 | Hide Theme Mode Switcher | Hide the dark/light mode toggle button in the sidebar |
 
 ::: tip
@@ -59,6 +65,10 @@ Configure the footer section of your website.
 | Footer Quote Author | Author of the quote |
 | Footer Background Color | Custom background color for footer section |
 | Footer Background Image | Background image for footer section |
+| Show Center Logo | Show a large logo in the center of the footer |
+| Center Logo (Large) / Center Logo (Large) - Dark Mode | Large footer logo for light and dark mode |
+| Show Bottom Logo | Show a logo in the copyright section |
+| Bottom Logo (Copyright Section) / Bottom Logo (Copyright Section) - Dark Mode | Copyright-section logo for light and dark mode |
 
 ![Footer Preview](./images/footer.png)
 

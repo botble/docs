@@ -20,7 +20,7 @@ Send SMS for car rental bookings, test drive requests, and sale confirmations.
 
 ### Step 1 — Enable car manager SMS
 
-1. Go to **Admin → Settings → SMS Gateways**
+1. Go to **Admin → SMS Gateways → Settings**
 2. Under **Subjects**, check **Car Manager** to enable
 3. Click **Save**
 

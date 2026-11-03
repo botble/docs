@@ -95,6 +95,10 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 | `PUT /car-manager/profile` | `updateProfile(payload, token?)` | `src/services/profile.ts` |
 | `POST /car-manager/profile/change-password` | `changePassword(payload, token?)` | `src/services/profile.ts` |
 | `POST /car-manager/profile/avatar` (multipart) | `uploadAvatar(imageUri, token?)` | `src/services/profile.ts` |
+| `DELETE /car-manager/profile` | `deleteAccount(confirmation, token?)` | `src/services/account.ts` |
+| `GET /car-manager/profile/driver-license` | `fetchDriverLicense(token?)` | `src/services/driver-license.ts` |
+| `POST /car-manager/profile/driver-license` (multipart) | `submitDriverLicense(input, token?)` | `src/services/driver-license.ts` |
+| `GET /car-manager/referral` | `fetchReferral(token?)` | `src/services/referral.ts` |
 
 ### Cars & search
 
@@ -123,6 +127,9 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 | `GET /car-manager/bookings/{id}/invoice` | `fetchBookingInvoice(id, token?)` | `src/services/bookings.ts` |
 | `POST /car-manager/calculate-price` | `calculatePrice(payload)` | `src/services/pricing.ts` |
 | `POST /car-manager/coupons/validate` | `validateCoupon(code, totalAmount, carId?)` | `src/services/pricing.ts` |
+| `GET /car-manager/settings` | `fetchBookingSettings()` | `src/services/settings.ts` |
+| `GET /car-manager/payment-methods` | `fetchPaymentMethods()` | `src/services/payment.ts` |
+| `POST /car-manager/bookings/{id}/payment` | `payBooking(bookingId, input, token?)` | `src/services/payment.ts` |
 
 **Guest booking lookup:** the `/car-manager/bookings/{id}` route is auth-scoped (a signed-in customer can only see their own bookings). Guests who just checked out resolve their booking with `lookupGuestBooking()`, which requires **both** the booking number and the email; the id alone is rejected. `getBookingForViewer()` picks the authed path when a token is present and the guest path otherwise.
 
@@ -144,6 +151,7 @@ Base path for car-manager endpoints: `/car-manager` (relative to `{API_BASE_URL}
 | `GET /car-manager/car-transmissions` | `fetchCarTransmissions()` | `src/services/taxonomy.ts` |
 | `GET /car-manager/car-fuels` | `fetchCarFuels()` | `src/services/taxonomy.ts` |
 | `GET /car-manager/car-amenities` | `fetchCarAmenities()` | `src/services/taxonomy.ts` |
+| `GET /car-manager/services` | `fetchServices()` | `src/services/taxonomy.ts` |
 | `GET /car-manager/locations` | `fetchLocations()` | `src/services/taxonomy.ts` |
 | `GET /car-manager/locations/search` | `searchLocations(query)` | `src/services/taxonomy.ts` |
 
@@ -165,6 +173,12 @@ There is intentionally **no** public `/car-manager/vendors` (dealer-list) endpoi
 | `POST /car-manager/inquiries` | `submitInquiry(payload)` | `src/services/misc.ts` |
 | `POST /contacts` | `submitContact(payload)` | `src/services/misc.ts` |
 | `POST /device-tokens` | `registerDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
+| `DELETE /device-tokens/by-token` | `unregisterDeviceToken(token, deviceToken, platform)` | `src/services/misc.ts` |
+| `GET /notifications` | `fetchNotifications(...)` | `src/services/notifications.ts` |
+| `GET /notifications/stats` | `fetchNotificationStats(token?)` | `src/services/notifications.ts` |
+| `POST /notifications/mark-all-read` | `markAllNotificationsRead(token?)` | `src/services/notifications.ts` |
+| `POST /notifications/{id}/read` | `markNotificationRead(id, token?)` | `src/services/notifications.ts` |
+| `POST /notifications/{id}/clicked` | `markNotificationClicked(id, token?)` | `src/services/notifications.ts` |
 
 Languages come from `GET /languages` and currencies from `GET /car-manager/currencies` (the currency picker). The active currency is sent as `X-CURRENCY` (default `USD`), and the API converts prices to it server-side. Both drive the localization headers described above.
 

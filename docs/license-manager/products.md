@@ -12,13 +12,19 @@ Products represent the software items you're licensing. Each product can have mu
 |-------|-------------|----------|
 | Name | Display name of the product | Yes |
 | Reference ID | Unique identifier for API (auto-generated if empty) | Yes |
-| Envato ID | Envato marketplace item ID (for Envato integration) | No |
+| Envato ID | Envato marketplace item ID — shown when the **License Manager - Envato** plugin is active | No |
+| Gumroad Product ID | Gumroad product ID — shown when the **License Manager - Gumroad** plugin is active | No |
+| Lemon Squeezy Variant ID | Lemon Squeezy variant ID — shown when the **License Manager - Lemon Squeezy** plugin is active | No |
 | Description | Product description | No |
 | Enable Updates | Allow serving software updates | No |
 | Serve Latest | Automatically serve latest version | No |
 | Status | Active or Inactive | Yes |
 
-4. Click **Save**
+4. Optionally fill **License Defaults** — values applied when bulk-generating licenses for this product
+   (**Bulk Generate** or `cms:license-manager:generate`): Default License Type, Default Uses,
+   Default Parallel Uses, Default Expiry Days, Default Updates Until (Days), Default Support Until (Days)
+   and Default Comments.
+5. Click **Save**
 
 ## Product Reference ID
 

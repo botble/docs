@@ -5,23 +5,24 @@ description: Run the marketplace in subscription mode — vendors buy a plan to 
 
 # Vendor Subscriptions
 
-The marketplace can run in one of two mutually exclusive modes:
+The marketplace can run in one of three modes:
 
 | Mode | How the platform earns | Vendor pays |
 |------|------------------------|-------------|
 | **Commission based** (default) | A percentage or fixed fee on every order | Per sale |
 | **Subscription based** | Vendors buy a recurring plan to publish listings | Per billing period |
+| **Subscription + commission** (hybrid) | Vendors buy a plan **and** a commission is taken on every order | Per billing period + per sale |
 
-In subscription mode **no commission is taken** — the vendor keeps 100% of every order, and refunds carry no commission reversal either. The admin earns from plan sales instead.
+In **Subscription based** mode **no commission is taken** — the vendor keeps 100% of every order, and refunds carry no commission reversal either. The admin earns from plan sales instead.
 
 ::: warning
-The two modes cannot run at the same time. Switching mode does not delete anything: commission settings and subscription settings are both stored, so you can switch back and forth without losing configuration.
+Only one mode can be active at a time. Switching mode does not delete anything: commission settings and subscription settings are both stored, so you can switch back and forth without losing configuration.
 :::
 
 ## Switching to Subscription Mode
 
 1. Go to `Marketplace` -> `Settings`.
-2. Set **Marketplace mode** to **Subscription based**.
+2. Set **Marketplace mode** to **Subscription based** (or **Subscription + commission** to also charge a commission on each order — useful where surcharging buyers for gateway fees is not allowed).
 3. The **Vendor subscriptions** section appears immediately (no save needed) — configure it, then save.
 
 Once saved, two new menu items appear under `Marketplace`:
@@ -75,6 +76,7 @@ Go to `Marketplace` -> `Subscription Plans` -> **Create**.
 | **Allow digital products** | On/Off | Gates digital product creation. |
 | **Allow creating coupons** | On/Off | Gates the vendor's `Coupons` section. |
 | **Allow importing products** | On/Off | Gates the vendor's product import screen. |
+| **Commission override** — **Commission (%)** / **Fixed commission (per order)** | Number | Hybrid mode only. Commission this plan's vendors pay per order. `-1` inherits the global fee, `0` means no commission. Category-specific commission rates still take precedence. Changes apply from the vendor's next renewal. |
 
 ::: info
 **Maximum featured products** and **Listing priority** are stored on the plan and shown to vendors as part of "What your plan includes", but the core plugin does not enforce or sort by them. Use them as marketing values, or read them from `$subscription->option('listing_priority')` in a theme customization.
@@ -264,4 +266,4 @@ Grant these under `Settings` -> `Roles` when giving staff partial access:
 - **No proration.** Changing plan starts a fresh full period; the remainder of the old plan is not credited.
 - **No refunds.** Cancelling — by the vendor or an admin — ends access immediately with no refund flow.
 - **Auto-renew is balance-only.** The plugin does not store gateway payment tokens, so automatic renewal works only from the vendor's marketplace balance.
-- **Commission settings are ignored** while in subscription mode, including category-based commission and per-vendor overrides.
+- **Commission settings are ignored** while in **Subscription based** mode, including category-based commission and per-vendor overrides. In **Subscription + commission** mode the commission settings apply, optionally overridden per plan.

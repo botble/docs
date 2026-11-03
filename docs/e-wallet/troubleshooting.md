@@ -32,7 +32,7 @@ If the E-Wallet plugin doesn't show in the admin panel:
 If customers can't see the wallet payment option:
 
 1. **Check Program Status**:
-   - Go to **Settings** > **E-Wallet**
+   - Go to **E-Wallet** > **Settings**
    - Ensure "Enable E-Wallet" is checked
 
 2. **Check Payment Method**:
@@ -57,7 +57,7 @@ If customers can't see the wallet payment option:
 #### Top-up Form Not Showing
 
 1. **Verify Top-up Enabled**:
-   - **Settings** > **E-Wallet**
+   - **E-Wallet** > **Settings**
    - Check "Enable Top-up"
 
 2. **Customer Authentication**:
@@ -75,7 +75,7 @@ If customers can't see the wallet payment option:
    - Enable at least one gateway (Stripe, PayPal, etc.)
 
 2. **Check Allowed Methods**:
-   - **Settings** > **E-Wallet** > **Top-up Settings**
+   - **E-Wallet** > **Settings** > **Top-up Settings**
    - Verify "Allowed Payment Methods" includes your gateways
 
 3. **Verify Gateway Configuration**:
@@ -158,7 +158,7 @@ If payment is successful but wallet not credited:
 #### Withdrawal Form Not Showing
 
 1. **Verify Withdrawal Enabled**:
-   - **Settings** > **E-Wallet**
+   - **E-Wallet** > **Settings**
    - Check "Enable Withdrawal"
 
 2. **Check Customer Balance**:
@@ -221,7 +221,7 @@ If payment is successful but wallet not credited:
 #### Negative Balance When Not Allowed
 
 1. **Check Setting**:
-   - **Settings** > **E-Wallet**
+   - **E-Wallet** > **Settings**
    - Ensure "Allow Negative Balance" is unchecked
 
 2. **Review Transactions**:
@@ -358,7 +358,7 @@ For checkout and dashboard issues:
 
 **Cause**: Plugin is disabled in settings
 
-**Solution**: Go to **Settings** > **E-Wallet** and enable it
+**Solution**: Go to **E-Wallet** > **Settings** and enable it
 
 ### "Customer account required for wallet payment"
 

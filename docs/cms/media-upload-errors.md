@@ -71,7 +71,7 @@ echo '</pre>';
    ```
    Save.
 
-3. **Restart PHP-FPM**. Ask your hosting provider to restart the domain's PHP-FPM pool so the new settings take effect. Keep the domain on PHP 8.3.36 or higher.
+3. **Restart PHP-FPM**. Ask your hosting provider to restart the domain's PHP-FPM pool so the new settings take effect. Keep the domain on PHP 8.3.0 or higher.
 
 4. **Re-run the diagnostic**. If `upload_tmp_dir (ini)` is still `(empty)` after the restart, your hosting is using PHP-FPM in a way that ignores the per-domain INI. `upload_tmp_dir` is a `PHP_INI_SYSTEM` directive — it can only be set in the master `php.ini` or the FPM pool config, not in `.user.ini` or `.htaccess`. In that case go to step 5.
 

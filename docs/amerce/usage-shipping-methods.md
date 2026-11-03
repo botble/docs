@@ -15,9 +15,18 @@ Amerce's shipping system includes:
 
 ## Accessing Shipping Settings
 
-Navigate to `Ecommerce` -> `Settings` -> `Shipping` in the admin panel.
+Navigate to `Settings` -> `Ecommerce` -> `Shipping` in the admin panel.
 
 ![Shipping settings](./images/shipping-settings.png)
+
+The **Shipping settings** section on the same page also has:
+
+| Setting | Description |
+|---------|-------------|
+| **Hide other shipping options if it has free shipping in the list** | Show only the free option when one is available |
+| **Sort shipping options direction** | Price lower to higher, or higher to lower |
+| **Disable shipping options** | Remove shipping options from checkout entirely |
+| **Volumetric weight divisor** | `0` disables. When set, billable weight is the greater of actual and dimensional weight (cm³/kg, e.g. 5000) |
 
 ## Default Shipping Setup
 
@@ -117,7 +126,7 @@ From: 1000g  To: -      Cost: $12.00
 - Tiered shipping by package size
 
 ::: tip Weight Unit
-The weight unit is configured at `Ecommerce` -> `Settings` -> `Standard & Formats`. Common units: grams, kg, oz, lbs.
+The weight unit is configured at `Settings` -> `Ecommerce` -> `Standard & Format`. Common units: grams, kg, oz, lbs.
 :::
 
 #### 3. Based on Zipcode
@@ -358,7 +367,7 @@ Digital products (downloads) don't require shipping:
 - Mixed orders (physical + digital) charge shipping only for physical items
 
 ::: tip
-Enable digital products at `Ecommerce` -> `Settings` -> `Digital Products`.
+Enable digital products at `Settings` -> `Ecommerce` -> `Digital Products`.
 :::
 
 ## Store Locations
@@ -369,10 +378,10 @@ Link shipments to physical store locations for:
 - Regional warehouses
 - Fulfillment centers
 
-Configure at `Ecommerce` -> `Store Locators`:
+Configure at `Settings` -> `Ecommerce` -> `Store locators`:
 
 1. Create store locations
-2. Enable **Is shipping location**
+2. Enable **Is shipping location?**
 3. When creating shipments, select store location
 
 Benefits:
@@ -386,17 +395,17 @@ You can apply tax to shipping fees in addition to product taxes.
 
 ### Enabling Shipping Tax
 
-Navigate to `Ecommerce` -> `Settings` -> `Tax`.
+Navigate to `Settings` -> `Ecommerce` -> `Tax`.
 
-Toggle **Tax on shipping fee** to ON.
+Toggle **Apply tax on shipping fee** to ON.
 
 When enabled:
-- Shipping costs are taxed using the same tax rules as products
+- Shipping costs are taxed at the **default tax rate** set in `Ecommerce` -> `Taxes`
 - Tax amount on shipping appears separately in the order summary
 - Both product tax and shipping tax are tracked individually
 
 ::: tip
-Shipping tax is calculated based on the customer's location, using the same tax rules configured for product taxes.
+If no default tax rate is set, the rate of the first taxed item in the cart is used. Location-based tax rules are not applied to shipping.
 :::
 
 ## Shipment Tracking
@@ -439,7 +448,7 @@ The marketplace plugin provides shipping management options for vendors.
 
 ### Admin Shipping Settings for Marketplace
 
-Navigate to `Marketplace` -> `Settings`:
+Navigate to `Settings` -> `Ecommerce` -> `Marketplace`:
 
 | Setting | Description |
 |---------|-------------|
@@ -484,7 +493,7 @@ For most marketplaces, keep vendor shipping management OFF and handle fulfillmen
 
 ### Vendor Shipping Rules
 
-When **Allow vendor manage shipping** is enabled, vendors can also create their own shipping rules from their vendor dashboard, following the same rule types (price-based, weight-based, etc.) as the admin.
+Vendors cannot create shipping rules. Shipping rules are managed by the admin only; **Allow vendor manage shipping** only controls shipment status updates.
 
 ## Advanced Shipping Methods
 
@@ -591,7 +600,7 @@ You can restrict delivery to only certain areas (cities, states, or zip code ran
 
 ### Using Location-Based Rules
 
-1. Go to `Ecommerce` -> `Shipping`
+1. Go to `Settings` -> `Ecommerce` -> `Shipping`
 2. Create or select a **country-specific shipping region** (e.g., "Sri Lanka")
 3. Add a shipping rule with type **"Based on Location"**
 4. Set the base shipping price
@@ -602,13 +611,13 @@ You can restrict delivery to only certain areas (cities, states, or zip code ran
 
 ::: warning Requirements
 - The **Location** plugin must be active
-- **Load countries, states, and cities from the Location plugin** must be enabled in `Ecommerce` -> `Settings` -> `General`
-- Countries, states, and cities must be imported via `Locations` -> `Bulk Import`
+- **Load countries, states, cities from plugin location** must be enabled in `Settings` -> `Ecommerce` -> `Checkout`
+- Countries, states, and cities must be imported via `Locations` -> `Location Importer` (or `Tools` -> `Export/Import Data`)
 :::
 
 ### Using Zip Code-Based Rules
 
-1. Enable zip codes in `Ecommerce` -> `Settings` -> `General`
+1. Enable **Enable zipcode** in `Settings` -> `Ecommerce` -> `Checkout`
 2. Create a shipping rule with type **"Based on Zip Code"** or **"Based on Zip Code and Weight"**
 3. Add rule items with **zip code ranges** (`Zip code from` to `Zip code to`) for deliverable areas
 4. Optionally give each rule item a **Name** for easy identification (e.g., "Sao Paulo Metro Area")
@@ -724,7 +733,7 @@ Place test orders with different amounts/weights, use different addresses, check
 
 ### Can vendors create their own shipping rules?
 
-Only if "Allow vendor manage shipping" is enabled in `Marketplace` -> `Settings`. When enabled, vendors can create shipping rules from their vendor dashboard.
+No. Shipping rules are managed by the admin only. "Allow vendor manage shipping" in `Settings` -> `Ecommerce` -> `Marketplace` only lets vendors update shipment status.
 
 ### Is shipping charged separately for each vendor?
 
@@ -732,7 +741,7 @@ Yes, if "Charge shipping per vendor" is enabled. Each vendor's products calculat
 
 ### Can I add tax to shipping fees?
 
-Yes. Enable "Tax on shipping fee" in `Ecommerce` -> `Settings` -> `Tax`. The shipping fee will be taxed using the same location-based tax rules as products.
+Yes. Enable "Apply tax on shipping fee" in `Settings` -> `Ecommerce` -> `Tax`. The shipping fee is taxed at the default tax rate set in `Ecommerce` -> `Taxes`.
 
 ### How do zip code ranges work for shipping?
 

@@ -31,13 +31,15 @@ sets the cache driver — that is `CACHE_STORE` in `.env`.
 | Cache front menu | `On` | Cache the frontend navigation tree. Leave on — rebuilding a large menu on every request is expensive. |
 | Cache user avatar | `On` | Cache resolved avatar URLs. |
 | Cache shortcodes (UI blocks) | `Off` | Cache rendered shortcode output. Big win on page-builder pages. |
-| Shortcode cache time | `1800` | TTL in seconds for shortcode output. |
-| Cache widgets | `On`/`Off` per install | Cache rendered widget output for sidebars and footers. |
-| Widget cache time | `1800` | TTL in seconds for widget output. |
-| Plugin cache | `On` | Cache the activated-plugin list. Leave on. |
+| Cache duration (seconds) | `1800` | TTL in seconds for shortcode output (shown when shortcode caching is on). |
+| Cache widgets | `Off` | Cache rendered widget output for sidebars and footers. |
+| Cache duration (seconds) | `1800` | TTL in seconds for widget output (shown when widget caching is on). |
+| Cache installed plugins | `On` | Cache the activated-plugin list. Leave on. |
 | Cache sitemap | `On` | Cache generated sitemap XML. Shown only when the sitemap is enabled. |
-| Sitemap cache time | `60` | Sitemap cache duration in minutes. |
-| Page cache (server-side) - Beta | `Off` | Store whole pages for guests and serve them without rendering. See [Page Cache](./usage-page-cache.md). |
+| Sitemap cache timeout (in minutes) | `60` | Sitemap cache duration in minutes. |
+| Public cache headers (CDN / reverse proxy) | `Off` | Send public `Cache-Control` headers so a CDN or reverse proxy can cache pages. |
+| Public cache duration (seconds) | `600` | `max-age` sent with public cache headers. |
+| Page cache (server-side) - Beta | `Off` | `Off`, `Test (shadow)` or `On`. Store whole pages for guests and serve them without rendering. See [Page Cache](./usage-page-cache.md). |
 
 ::: warning Shortcode and widget caching hold stale output
 Once enabled, an edit to a shortcode or widget does not show on the frontend until its TTL expires or you clear the

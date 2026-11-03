@@ -89,6 +89,8 @@ All paths are relative to `/api/v1/tour-manager`. **Optional** auth means the en
 | GET | `/locations/search` | - | Search locations |
 | GET | `/tours/{tour_id}/reviews` | - | Get tour reviews |
 | POST | `/coupons/validate` | - | Validate a coupon code |
+| POST | `/coupons/apply` | Bearer | Apply a coupon |
+| POST | `/coupons/remove` | Bearer | Remove an applied coupon |
 | GET | `/bookings` | Optional | List bookings (customer's own with a token; guests pass booking_code + email) |
 | POST | `/bookings` | Optional | Create a new booking (supports both guest and authenticated users) |
 | GET | `/bookings/{id}` | Optional | Get booking details |
@@ -144,5 +146,6 @@ All paths are relative to `/api/v1/tour-manager`. **Optional** auth means the en
 | POST | `/vendor/bookings/{id}/complete` | Bearer | Complete booking |
 | GET | `/vendor/dashboard` | Bearer | Get vendor dashboard data |
 | GET | `/vendor/reviews` | Bearer | List vendor reviews |
+| POST | `/vendor/reviews/{id}/reply` | Bearer | Reply to a review |
 | GET | `/vendor/earnings` | Bearer | Get vendor earnings list |
 

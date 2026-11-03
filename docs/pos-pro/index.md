@@ -133,7 +133,7 @@ When used with the Marketplace plugin:
 ## Requirements
 
 - Botble CMS version 7.5.0 or higher
-- PHP version 8.3.36 or higher
+- PHP version 8.3.0 or higher
 - Active E-commerce plugin
 
 ### Optional Integrations

@@ -28,6 +28,10 @@ Manage projects in `Admin` -> `Portfolio` -> `Projects`.
 |-------|---------|
 | **Project link (Live Demo)** | External URL. When set, a **Live Demo** row with the link shows in the project details. Only `http` and `https` links are accepted |
 | **Category label** | Short category text on cards and filters, for example `Brand system` |
+| **Status** | Second chip under the photo on project cards, for example `Completed`. Falls back to the place |
+| **Portrait image** | Portrait crop (about 4:5) for the numbered list and the WebGL layouts (styles 2, 5, 6 and 7). Falls back to the featured image |
+| **Compact card title**, **Compact card category** | Short title and category on the grid cards. Fall back to the project name and category label |
+| **Compact card summary** | One-line summary beside the pinned stage (style 3). Falls back to the description |
 | **Tags** | Comma-separated tags, for example `Identity, Web, Motion` |
 | **Year** | Shown in filters and the detail hero. Falls back to the start date year |
 | **Showcase tone** | Background tone (1 to 6) for the full-screen showcase layout |
@@ -43,7 +47,7 @@ Leave both fields of a metric empty to hide it.
 
 ### Project Pages
 
-Each project has a detail page at `/projects/{slug}`. Use the **Projects** UI block to list them on any page. See [UI Blocks](./usage-ui-block.md#projects-styles) for the eight layouts.
+Each project has a detail page at `/projects/{slug}`. Use the **Projects** UI block to list them on any page. See [UI Blocks](./usage-ui-block.md#projects-styles) for the nine layouts.
 
 ![Project detail page](./images/pages/project-detail.webp)
 
@@ -68,12 +72,15 @@ Manage services in `Admin` -> `Portfolio` -> `Services`.
 
 | Field | Purpose |
 |-------|---------|
-| **Service items** | Items for the Services UI block, style 2 |
-| **Tags** | Comma-separated tags for the service |
-| **Included list** | One item per line. Shown as the "Included" list |
+| **Tags** | Comma-separated tags shown on the service card (Services UI block, style 2) |
+| **Included list** | One item per line. Shown as the "Included" list (style 4) |
 | **Hover preview images** | Two images shown when a service is hovered in the list |
 | **Hover backdrop image** | Background image for the hover preview |
-| **Card button label** | Button text on the service card |
+| **Card button label** | Button text on the service card (style 4) |
+| **Card text** | Text on the service card (style 4). Falls back to the description |
+| **List image** | Wide image (about 5:3) on the stacked cards (style 2). Falls back to the service image |
+| **Card image** | Portrait image on the service card (style 4). Falls back to the service image |
+| **What we hold** | Short statement under the spec grid on the service page hero |
 | **Spec rows** | Label and value pairs for the service page hero. The first six fill the grid, the rest go in the side card |
 
 Service detail pages are at `/services/{slug}`. Service categories are at `/service-categories/{slug}`.

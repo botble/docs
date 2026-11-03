@@ -35,7 +35,7 @@ Password: `12345678`
 - Page, blog, menu, contact, real estate.. modules are provided with the use of components to avoid boilerplate code.
 - RSS feeds for posts and properties properties
 - Agency panel with credit system to post their properties.
-- Support payment methods: PayPal, Stripe, Razorpay, and Paystack to buy credits.
+- Support payment methods: PayPal, Stripe, Razorpay, Paystack, Mollie, and SSLCommerz to buy credits.
 - Powerful media system, also support Amazon S3, DigitalOcean Spaces
 - SEO & sitemap support: access sitemap.xml to see more.
 - RESTful API using Laravel Sanctum.

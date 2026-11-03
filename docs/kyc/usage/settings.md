@@ -30,20 +30,37 @@ All settings live under **Admin → KYC Verification → Settings**. They are st
 | `kyc_rejected_retention_days` | int | `7` | 1–365 | Days after which a **rejected** submission's row AND files are deleted. |
 | `kyc_approved_file_retention_days` | int | `7` | 1–365 | Days after which an **approved** submission's files are deleted (the row stays as an audit trail). |
 | `kyc_max_rejections_before_lock` | int | `3` | 1–10 | Number of rejections that triggers auto-lock for the subject. |
+| `kyc_approved_validity_days` | int | `0` | 0–3650 | Days an approval stays valid before `kyc:expire` flips it to expired. `0` = never (only the document's own expiry date applies). |
 
 ## Notifications
 
 | Key | Type | Default | Description |
 |---|---|---|---|
 | `kyc_contact_email` | string (email) | — | Email that receives "New KYC submission" notifications. If blank, the system admin email is used. |
+| `kyc_contact_email_secondary` | string (email) | — | Optional second address that also receives KYC notifications. |
 | `kyc_dashboard_link_url` | string (URL) | — | URL to the customer/vendor account dashboard. Used as the CTA link in approval/rejection emails. |
 
 ## Form appearance
 
 | Key | Type | Default | Values | Description |
 |---|---|---|---|---|
-| `kyc_use_multi_step_form` | bool | `false` | 0/1 | Toggle 3-step wizard vs single-page form. |
+| `kyc_form_layout` | string | `single` | `single`, `multi_step`, `two_column` | Submission form layout. Two-column puts Personal Info and Documents side by side. Replaces the legacy `kyc_use_multi_step_form` toggle (still read as fallback). |
 | `kyc_form_style` | string | `classic` | `classic`, `emerald`, `violet`, `sunset`, `minimal`, `midnight` | Visual preset applied to the customer-facing layout. |
+
+## Other settings
+
+| Key | Default | Description |
+|---|---|---|
+| `kyc_customer_require_all` | `false` | Require every new customer to verify before their first order (ignores the spending limit). |
+| `kyc_customer_grace_amount` | `0` | Unverified spending limit before the checkout gate applies. |
+| `kyc_vendor_grace_listings` | `0` | Listings a vendor can publish before verification is required. |
+| `kyc_realestate_enabled` / `kyc_realestate_required_for_publishing` / `kyc_realestate_grace_listings` | `false` / `false` / `0` | Real-estate agent scope - see [Real Estate](../integration/real-estate.md). |
+| `kyc_jobboard_company_enabled` / `kyc_jobboard_candidate_enabled` | `false` | Job-board employer / candidate scopes - see [Job Board](../integration/job-board.md). |
+| `kyc_jobboard_required_for_posting` / `kyc_jobboard_required_for_applying` | `false` | Job-board gates. Grace counts: `kyc_jobboard_grace_postings`, `kyc_jobboard_grace_applications` (default `0`). |
+| `kyc_business_categories` | empty | Optional business categories offered to vendors / employers / agents. |
+| `kyc_field_*` | on (selfie, additional document: off) | Show/hide form fields: full legal name, date of birth, country, business address, document number, expiry date, selfie image, additional document. |
+| `kyc_selfie_use_camera` | `true` | Capture the selfie with the device camera. |
+| `kyc_banner_*` | built-in text | Override the dashboard banner texts (titles, button labels, counters). |
 
 ## Webhooks
 

@@ -34,7 +34,7 @@ Support covers questions and bug fixes. For custom features, theme changes, serv
   - Video Hero
   - Category Hero
   - Rolling Images Hero
-* **5 Menu Layout Styles** to showcase your culinary offerings beautifully
+* **6 Menu Layout Styles** to showcase your culinary offerings beautifully
 * **3 Reservation Form Styles** for flexible online table booking
 * **Chef Portfolio Pages** to highlight your culinary team
 * **Gallery Sections** for showcasing ambiance and dishes

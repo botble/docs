@@ -9,7 +9,7 @@ Integrate license validation into your software in 5 minutes. License Manager us
 $client = new LicenseClient('YOUR_API_KEY', 'https://license.yoursite.com', 'PRODUCT_ID');
 
 // 2. Activate (user enters license code once)
-$result = $client->activate($licenseCode);
+$result = $client->activate($licenseCode, $clientName);
 file_put_contents('license.dat', $result['lic_response']);
 
 // 3. Verify (on every app start)
@@ -43,11 +43,12 @@ class LicenseClient {
         $this->productId = $productId;
     }
 
-    public function activate($code) {
+    public function activate($code, $clientName) {
         return $this->call('POST', '/license/activate', [
             'product_id' => $this->productId,
             'license_code' => $code,
-            'verify_type' => 'non_envato',
+            'client_name' => $clientName,
+            'verify_type' => 'direct',
         ]);
     }
 
@@ -74,8 +75,8 @@ class LicenseClient {
             CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
                 'X-API-KEY: ' . $this->apiKey,
-                'X-URL: ' . ($_SERVER['HTTP_HOST'] ?? ''),
-                'X-IP: ' . ($_SERVER['REMOTE_ADDR'] ?? ''),
+                'X-API-URL: ' . ($_SERVER['HTTP_HOST'] ?? ''),
+                'X-API-IP: ' . ($_SERVER['REMOTE_ADDR'] ?? ''),
             ],
         ]);
         $response = curl_exec($ch);
@@ -93,11 +94,12 @@ class LicenseClient {
         this.productId = productId;
     }
 
-    async activate(code) {
+    async activate(code, clientName) {
         return this.call('POST', '/license/activate', {
             product_id: this.productId,
             license_code: code,
-            verify_type: 'non_envato',
+            client_name: clientName,
+            verify_type: 'direct',
         });
     }
 
@@ -138,11 +140,12 @@ class LicenseClient:
         self.base_url = base_url.rstrip('/')
         self.product_id = product_id
 
-    def activate(self, code):
+    def activate(self, code, client_name):
         return self._call('/license/activate', {
             'product_id': self.product_id,
             'license_code': code,
-            'verify_type': 'non_envato',
+            'client_name': client_name,
+            'verify_type': 'direct',
         })
 
     def verify(self, license_data):
@@ -177,7 +180,7 @@ Show a license form to users. On submit:
 ```php
 $client = new LicenseClient('YOUR_API_KEY', 'https://license.yoursite.com', 'PRODUCT_ID');
 
-$result = $client->activate($_POST['license_code']);
+$result = $client->activate($_POST['license_code'], $_POST['client_name']);
 
 if ($result['is_active']) {
     // Save this! Required for verify/deactivate

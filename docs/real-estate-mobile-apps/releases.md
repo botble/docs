@@ -1,5 +1,15 @@
 # Release Notes
 
+## 1.0.1
+
+**Added**
+- Support for Botble marketplace (direct purchase) license codes alongside Envato purchase codes in the development license check.
+
+**Fixed**
+- The app closing on Android when opening the sign-in screen without Facebook login set up.
+- Map pins not responding to taps on Android.
+- Price sliders and calculators showing `$` instead of the store's default currency.
+
 ## 1.0.0
 
 Initial release. Flex Home is a real-estate mobile app built with Expo SDK 54 / React Native 0.81, connecting to a Botble backend running the real-estate plugin API. One codebase builds both iOS and Android.
