@@ -44,6 +44,7 @@ export default [
       { text: 'Backup', link: '/norio/plugin-backup' },
       { text: 'Translation', link: '/norio/plugin-translation' },
       { text: 'Multi-language', link: '/norio/usage-multi-language' },
+      { text: 'Language Switcher', link: '/norio/usage-language-switcher' },
       { text: 'Custom CSS/JS', link: '/norio/usage-custom-css-js' },
       { text: 'Google Analytics', link: '/norio/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/norio/usage-media-s3' },

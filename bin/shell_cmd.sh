@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 # CRITICAL: ecommerce-saas must NEVER be added to this array. That product has hand-written
 # documentation in docs/ecommerce-saas/, and adding it here would destroy it by syncing
 # over generic docs from the cms folder.
-projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "travlla" "infinia" "isak" "qore" "orisa" "amerce" "velura" "auxero" "jobzilla" "restoria")
+projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "travlla" "infinia" "isak" "qore" "orisa" "amerce" "velura" "auxero" "jobzilla" "restoria" "norio" "snapcart")
 
 function sync_doc_files() {
   files_to_sync=(
@@ -39,7 +39,7 @@ function sync_doc_files() {
   )
 
   ecommerce_files=("invoice-template.md" "usage-currencies.md" "usage-location.md")
-  ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "orisa")
+  ecommerce_projects=("hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "orisa" "snapcart")
 
   # Validate every source before replacing any destination file.
   for source in "${files_to_sync[@]}"; do
