@@ -5,6 +5,7 @@ export default [
   {
     text: 'Prologue',
     items: [
+      { text: 'Release Notes', link: '/martfury/releases' },
       { text: 'Upgrade Guide', link: '/martfury/upgrade' },
     ],
   },
@@ -27,6 +28,9 @@ export default [
   {
     text: 'Usage',
     items: [
+      { text: 'Homepage demos', link: '/martfury/usage-homepage' },
+      { text: 'Theme options', link: '/martfury/usage-theme-options' },
+      { text: 'UI Blocks', link: '/martfury/usage-ui-block' },
       { text: 'Custom CSS/JS', link: '/martfury/usage-custom-css-js' },
       { text: 'Translation', link: '/martfury/plugin-translation' },
       { text: 'Multi-language', link: '/martfury/usage-multi-language' },
