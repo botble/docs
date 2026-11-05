@@ -51,6 +51,7 @@ export default [
         collapsed: false,
         items: [
           { text: 'Media Overview', link: '/cms/media' },
+      { text: 'Media & Mail Connections', link: '/cms/media-and-mail-connections' },
           { text: 'Amazon S3', link: '/cms/usage-media-s3' },
           { text: 'Wasabi', link: '/cms/usage-media-wasabi' },
           { text: 'BunnyCDN', link: '/cms/usage-media-bunnycdn' },

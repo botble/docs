@@ -10,6 +10,10 @@ This guide will help you configure email sending for your website. Email is esse
 
 ![Email Settings](../cms/images/email-settings.png)
 
+::: tip
+Mailers are connections: connect one first under **Settings → Email → Mail connections**, then select it as the Mailer. See [Media & Mail Connections](media-and-mail-connections.md).
+:::
+
 ## Choosing the Right Mailer
 
 The system supports multiple email services. Here's a guide to help you choose:
@@ -37,7 +41,7 @@ SMTP is the most common method and works with most email providers.
 
 ### General SMTP Settings
 
-1. Select **SMTP** as the Mailer
+1. Under **Mail connections**, click **Connect** next to **SMTP** (then select it as the Mailer after saving)
 2. Fill in the following fields:
    - **Host**: Your email provider's SMTP server address
    - **Port**: Usually 587 (TLS) or 465 (SSL)
@@ -134,7 +138,7 @@ SendGrid is a popular email service with excellent deliverability and analytics 
 
 The system natively supports the SendGrid Web API, which is faster and more reliable than SMTP.
 
-1. Select **SendGrid** as the Mailer
+1. Under **Mail connections**, click **Connect** next to **SendGrid** (then select it as the Mailer after saving)
 2. Enter your **API Key**
    - Get it from the [SendGrid Dashboard](https://app.sendgrid.com/settings/api_keys)
    - Create a key with **Mail Send** permissions
@@ -158,7 +162,7 @@ If you prefer SMTP over the API:
 
 Amazon Simple Email Service (SES) is ideal for high-volume sending at low cost.
 
-1. Select **SES** as the Mailer
+1. Under **Mail connections**, click **Connect** next to **SES** (then select it as the Mailer after saving)
 2. Enter your AWS credentials:
    - **Key**: Your AWS Access Key ID
    - **Secret**: Your AWS Secret Access Key
@@ -171,7 +175,7 @@ Amazon Simple Email Service (SES) is ideal for high-volume sending at low cost.
 
 ## Setting Up Postmark
 
-1. Select **Postmark** as the Mailer
+1. Under **Mail connections**, click **Connect** next to **Postmark** (then select it as the Mailer after saving)
 2. Enter your Postmark server token in the **Token** field
    - Find this in your Postmark server settings under "API Tokens"
 
@@ -179,7 +183,7 @@ Amazon Simple Email Service (SES) is ideal for high-volume sending at low cost.
 
 Resend is a modern email API service with a clean interface.
 
-1. Select **Resend** as the Mailer
+1. Under **Mail connections**, click **Connect** next to **Resend** (then select it as the Mailer after saving)
 2. Enter your **API Key**
    - Get it from the [Resend Dashboard](https://resend.com/api-keys)
 

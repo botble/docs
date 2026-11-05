@@ -229,15 +229,15 @@ php artisan cms:media:insert-watermark
 
 ## Cloud Storage Integration
 
-Botble CMS supports multiple cloud storage providers for media files:
+Botble CMS supports multiple cloud storage providers for media files. Each provider is a **connection**: connect it once under **Settings** → **Media** → **Storage connections**, then select it as the driver. See [Media & Mail Connections](media-and-mail-connections.md), including how to copy existing files when switching drivers.
 
 ### Amazon S3
 
 To configure Amazon S3:
 
 1. Go to **Admin** → **Settings** → **Media**
-2. Select `s3` as the driver
-3. Enter your AWS credentials, bucket name, and region
+2. Click **Connect** next to Amazon S3 and enter your AWS credentials, bucket name, and region
+3. Click **Save & connect**, then select **Amazon S3** as the driver and save
 
 For detailed setup instructions, see [Setting Up Amazon S3 for Storage](usage-media-s3.md).
 
@@ -246,8 +246,8 @@ For detailed setup instructions, see [Setting Up Amazon S3 for Storage](usage-me
 To configure BunnyCDN:
 
 1. Go to **Admin** → **Settings** → **Media**
-2. Select `bunnycdn` as the driver
-3. Enter your BunnyCDN storage zone name, API key, region, and pull zone URL
+2. Click **Connect** next to BunnyCDN and enter your storage zone name, API key, region, and pull zone URL
+3. Click **Save & connect**, then select **BunnyCDN** as the driver and save
 
 For detailed setup instructions, see [Media - Setup BunnyCDN](usage-media-bunnycdn.md).
 
@@ -256,8 +256,8 @@ For detailed setup instructions, see [Media - Setup BunnyCDN](usage-media-bunnyc
 To configure Wasabi:
 
 1. Go to **Admin** → **Settings** → **Media**
-2. Select `wasabi` as the driver
-3. Enter your Wasabi access key, secret key, bucket name, and region
+2. Click **Connect** next to Wasabi and enter your access key, secret key, bucket name, and region
+3. Click **Save & connect**, then select **Wasabi** as the driver and save
 
 For detailed setup instructions, see [Media - Setup Wasabi](usage-media-wasabi.md).
 
