@@ -161,8 +161,10 @@ return [
 Then register it in your service provider:
 
 ```php
+$this->setNamespace('plugins/my-plugin')->loadAndPublishConfigurations(['email']);
+
 $this->app->booted(function (): void {
-    EmailHandler::addTemplateSettings('my-plugin', config('my-plugin.email', []));
+    EmailHandler::addTemplateSettings('my-plugin', config('plugins.my-plugin.email', []));
 });
 ```
 

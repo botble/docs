@@ -28,6 +28,9 @@ use Botble\Table\Columns\StatusColumn;
 use Botble\Table\Actions\EditAction;
 use Botble\Table\Actions\DeleteAction;
 use Botble\Table\BulkActions\DeleteBulkAction;
+use Botble\Table\BulkChanges\NameBulkChange;
+use Botble\Table\BulkChanges\StatusBulkChange;
+use Botble\Table\BulkChanges\CreatedAtBulkChange;
 use Botble\Table\HeaderActions\CreateHeaderAction;
 use YourPlugin\Models\YourModel;
 use Illuminate\Database\Eloquent\Builder;
@@ -83,8 +86,10 @@ $this->model(YourModel::class)
 You can set the default sorting column and direction:
 
 ```php
-$this->defaultSortColumnName = 'created_at';
-$this->defaultSortDirection = 'desc';
+$this->defaultSortingUsing(function (TableAbstract $table): array {
+    // DataTables column index, including any selection column.
+    return [[2, 'asc']];
+});
 ```
 
 ## Columns
@@ -284,8 +289,8 @@ $column
     ->alignStart() // Align content to start (left in LTR)
     ->alignCenter() // Align content to center
     ->alignEnd() // Align content to end (right in LTR)
-    ->withColor('success') // Apply color (success, danger, warning, info, etc.)
-    ->withIcon('ti ti-check') // Add an icon
+    ->color('success') // Apply color (success, danger, warning, info, etc.)
+    ->icon('ti ti-check') // Add an icon
 ```
 
 #### Special Features
@@ -295,8 +300,8 @@ $column
     ->withEmptyState('N/A') // Show placeholder when empty
     ->limit(50) // Limit text length
     ->copyable() // Make content copyable
-    ->mask('***-**-####') // Apply a mask pattern
-    ->blur() // Blur sensitive content
+    ->mask('*', 0, 5) // Replace the first five characters with *
+    ->blurry() // Blur sensitive content
 ```
 
 #### FormattedColumn Specific Methods
@@ -343,21 +348,21 @@ FormattedColumn::make('api_key')
 ```
 
 #### Maskable Trait
-Apply a mask/pattern to column content to hide sensitive information.
+Mask characters in column content with `mask($character, $index, $length, $encoding)`. This delegates to Laravel `Str::mask()`; it does not accept a formatting pattern.
 
 ```php
 EmailColumn::make()
     ->title('Email')
-    ->mask('***-**-####') // Mask pattern
+    ->mask('*', 0, 5) // Replace the first five characters with *
 ```
 
 #### Blurrable Trait
-Blur sensitive content with a toggle to show/hide.
+Blur sensitive content with a CSS filter.
 
 ```php
 FormattedColumn::make('phone')
     ->title('Phone Number')
-    ->blur() // Content will be blurred by default
+    ->blurry() // Content will be blurred by default
 ```
 
 These traits can be combined for enhanced column functionality:
@@ -366,7 +371,7 @@ These traits can be combined for enhanced column functionality:
 FormattedColumn::make('sensitive_field')
     ->title('Sensitive Data')
     ->copyable()
-    ->blur()
+    ->blurry()
     ->withEmptyState('N/A')
 ```
 

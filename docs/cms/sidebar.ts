@@ -79,6 +79,7 @@ export default [
       { text: 'Roles & Permissions', link: '/cms/role-permission' },
       { text: 'API', link: '/cms/api' },
       { text: 'Email Templates', link: '/cms/email-templates' },
+      { text: 'Settings Storage API', link: '/cms/settings-api' },
       { text: 'Filters', link: '/cms/filters' },
       { text: 'Actions', link: '/cms/actions' },
       { text: 'Shortcode', link: '/cms/shortcode' },
@@ -94,6 +95,8 @@ export default [
     text: 'Admin Panel',
     items: [
       { text: 'Dashboard Widgets', link: '/cms/dashboard-widgets' },
+      { text: 'JavaScript Events', link: '/cms/javascript-events' },
+      { text: 'Blade Components', link: '/cms/blade-components' },
       { text: 'Dashboard Menu', link: '/cms/dashboard-menu' },
       { text: 'Panel Sections', link: '/cms/panel-section' },
       { text: 'Table Builder', link: '/cms/table-builder' },

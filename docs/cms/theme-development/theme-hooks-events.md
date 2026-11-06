@@ -359,3 +359,77 @@ There is no breadcrumb filter. Render the crumbs with your own view instead (see
 3. **Consider performance**: Heavy operations in event handlers can slow down your site. Use caching when appropriate.
 4. **Organize your code**: Keep related event handlers together in your theme's files.
 5. **Document your events**: If you create custom events, document them for future reference.
+
+## Public Rendering Filters
+
+Register these with `add_filter()` in your theme functions file or a service provider's `boot()` method. Filters execute from lower to higher priority (default `20`); each callback must return the filtered value.
+
+### HTML and Body Attributes
+
+`theme_body_attributes` and `theme_html_attributes` each receive **one serialized HTML attribute string**, not an array, and return a string. The body attributes already include RTL direction and the configured body class; the HTML attributes already include the locale's `lang` value.
+
+```php
+add_filter('theme_body_attributes', function (string $attributes): string {
+    return $attributes . ' data-site="main"';
+}, 20, 1);
+
+add_filter('theme_html_attributes', function (string $attributes): string {
+    return $attributes . ' data-ui="default"';
+}, 20, 1);
+```
+
+For dynamic attributes, prefer the structured APIs so values are escaped during serialization:
+
+```php
+use Botble\Theme\Facades\Theme;
+
+Theme::addBodyAttributes(['data-section' => 'news']);
+Theme::addHtmlAttributes(['data-brand' => 'main']);
+```
+
+The layout must render the attribute helpers for these filters to affect the page:
+
+```blade
+<html {!! Theme::htmlAttributes() !!}>
+<body {!! Theme::bodyAttributes() !!}>
+```
+
+### Branding
+
+Each branding filter receives one nullable option value and returns a nullable string. No logo key or model is supplied as a second argument.
+
+| Filter | Called by | Value |
+| --- | --- | --- |
+| `theme_logo` | `Theme::getLogo($logoKey)` | The selected logo option's media path |
+| `theme_favicon` | `Theme::getFavicon()` | The favicon media path |
+| `theme_site_title` | `Theme::getSiteTitle()` | The site title |
+
+```php
+add_filter('theme_logo', function (?string $logo): ?string {
+    return $logo ?: 'branding/logo.png'; // Existing media file.
+}, 20, 1);
+
+add_filter('theme_favicon', function (?string $favicon): ?string {
+    return $favicon ?: 'branding/favicon.png';
+}, 20, 1);
+
+add_filter('theme_site_title', function (?string $title): ?string {
+    return $title ?: config('app.name');
+}, 20, 1);
+```
+
+These hooks affect calls to the corresponding `Theme` helpers. A direct `theme_option('logo')` read does not invoke `theme_logo`.
+
+### Custom CSS Integration Path
+
+`FILTER_THEME_STYLE_INTEGRATION_PATH` receives the absolute filesystem path to the published theme's `css/style.integration.css` and returns an absolute path. It is not an asset URL. Keep the file in the same CSS directory: the public link is built using the returned basename within that directory.
+
+```php
+add_filter(FILTER_THEME_STYLE_INTEGRATION_PATH, function (string $path): string {
+    return dirname($path) . '/site-custom.css';
+}, 20, 1);
+```
+
+The file may be renamed, but moving it outside the theme's published CSS folder would make the generated public URL point at the wrong location.
+
+For slug lookup and menu URL extensions, see [Slug Field](../slug-field.md#customizing-slug-lookup) and [Menu](./menu.md#filtering-custom-node-urls).

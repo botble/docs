@@ -91,3 +91,65 @@ Output depending on state:
 | `php artisan cms:cache:clear-expired` | Remove only expired cache files. Runs daily on its own if the scheduler is configured. |
 | `php artisan cache:clear` | Flush all framework cache entries (Laravel built-in). |
 | `php artisan optimize:clear` | Clear every Laravel cache (config, routes, views, events, compiled). |
+
+## Developer APIs for Shortcode and Widget Caches
+
+Shortcode and widget output caches are controlled independently by `shortcode_cache_enabled` and `widget_cache_enabled`. Their TTL settings are `shortcode_cache_ttl` and `widget_cache_ttl` (default `1800` seconds). These APIs extend fragment caching; they do not change full-page cache rules.
+
+### Cache Key Context
+
+Both filters receive an array of extra key parts (initially `[]`) and a string identifier. Return an array of serializable values. Filters run from lower to higher priority.
+
+| Filter | Second argument | Existing key dimensions |
+| --- | --- | --- |
+| `shortcode_cache_key_parts` | Registered shortcode name | Name, application URL, shortcode attributes/content, locale, logged-in versus anonymous state |
+| `widget_cache_key_parts` | Widget's full class name (`getId()`) | Class, sidebar, position, application URL, theme, locale, logged-in state, serializable configuration |
+
+For example, content whose output changes with a setting can include that setting's value:
+
+```php
+add_filter('shortcode_cache_key_parts', function (array $parts, string $name): array {
+    if ($name === 'featured-posts') {
+        $parts['display_mode'] = setting('my_plugin_display_mode', 'grid');
+    }
+
+    return $parts;
+}, 20, 2);
+
+add_filter('widget_cache_key_parts', function (array $parts, string $widgetClass): array {
+    $parts['display_mode'] = setting('my_plugin_display_mode', 'grid');
+
+    return $parts;
+}, 20, 2);
+```
+
+Authentication state distinguishes logged-in visitors from guests, **not individual users**. If output is personal, bypass caching or add the required bounded context. Avoid using the current URL as a key dimension: it creates one cache entry per URL. Query-string requests already bypass both caches.
+
+### Bypass Caching
+
+Register cache exclusions during application boot, before the affected fragment renders:
+
+```php
+use Botble\Shortcode\Compilers\ShortcodeCompiler;
+use Botble\Widget\AbstractWidget;
+
+ShortcodeCompiler::ignoreCaches(['account-summary']);
+AbstractWidget::ignoreCaches([\Theme\YourTheme\Widgets\AccountSummary::class]);
+```
+
+Replace those names/classes with your registered shortcode and widget. `ignoreCaches(array $identifiers)` appends to each exclusion list. Both also honor the fragment's `enable_caching='no'` configuration. Shortcodes bypass cache for JSON requests, visual-builder requests, query strings, and excluded form shortcodes. Widgets bypass AJAX and query-string requests; rendered form content is not written to cache.
+
+For a widget whose view depends on the current request (such as a menu's active link), mark it during rendering:
+
+```php
+use Botble\Widget\AbstractWidget;
+
+// In the widget's rendering/data code, before returning its output.
+AbstractWidget::markRenderAsRequestDependent();
+```
+
+The marker increments a render counter. A widget that observes the counter change while rendering does not write its result to cache; this also protects surrounding widget renders. It does not prevent reads of an existing cache entry. If an old entry exists, clear it when introducing the marker. Use `ignoreCaches()` before lookup when a widget must always render freshly.
+
+### Behavior on Cache Hits
+
+A cache hit returns stored HTML without invoking the shortcode callback or widget content rendering again. Do not depend on those callbacks for per-request side effects. Current cache entries also store assets added during rendering and restore them on a hit; legacy string-only entries return their HTML without asset restoration. Key-part filters still run before lookup when caching is eligible.

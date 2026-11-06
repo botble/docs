@@ -19,7 +19,7 @@ $this->add(
             'update' => __('Update'),
             'delete' => __('Delete'),
         ])
-        ->value(['read', 'update']) // Default selected values
+        ->selected(['read', 'update']) // Default selected values
 );
 ```
 

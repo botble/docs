@@ -88,7 +88,6 @@ Open Graph tags help control how your content appears when shared on social medi
 SeoHelper::openGraph()
     ->setTitle('Your Open Graph Title')
     ->setDescription('Your Open Graph description')
-    ->setUrl(url()->current())
     ->setType('article')
     ->setImage(RvMedia::getImageUrl('path/to/image.jpg'));
 ```
@@ -111,7 +110,6 @@ use Botble\SeoHelper\SeoOpenGraph;
 $openGraph = new SeoOpenGraph();
 $openGraph->setTitle('Custom Open Graph Title')
     ->setDescription('Custom Open Graph Description')
-    ->setUrl(url()->current())
     ->setType('website')
     ->setImage('path/to/image.jpg');
 
@@ -128,7 +126,6 @@ Twitter Cards provide a rich media experience when your content is shared on Twi
 SeoHelper::twitter()
     ->setTitle('Your Twitter Card Title')
     ->setDescription('Your Twitter Card Description')
-    ->setUrl(url()->current())
     ->setType('summary_large_image')
     ->addImage(RvMedia::getImageUrl('path/to/image.jpg'));
 ```
@@ -138,7 +135,7 @@ SeoHelper::twitter()
 ```php
 SeoHelper::twitter()
     ->setSite('@YourTwitterHandle')
-    ->setCreator('@AuthorTwitterHandle');
+    ->addMeta('creator', '@AuthorTwitterHandle');
 ```
 
 ## Integration with Themes

@@ -62,9 +62,9 @@ This generates a plugin skeleton at `platform/plugins/patient-management/` with 
 You can also scaffold individual components inside an existing plugin:
 
 ```bash
-php artisan cms:make:model Patient --plugin=patient-management
-php artisan cms:make:form PatientForm --plugin=patient-management
-php artisan cms:make:table PatientTable --plugin=patient-management
+php artisan cms:make:model Patient plugins/patient-management
+php artisan cms:make:form Patient plugins/patient-management
+php artisan cms:make:table Patient plugins/patient-management
 ```
 
 ### What are the best reference plugins to study when building custom modules?

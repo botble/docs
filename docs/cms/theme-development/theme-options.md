@@ -126,8 +126,9 @@ if (theme_option('option_name')) {
 You can programmatically set theme options:
 
 ```php
-Theme::setOption('option_name', 'option_value');
-Theme::saveOptions(); // Save to database
+use Botble\Theme\Facades\ThemeOption;
+
+ThemeOption::setOption('option_name', 'option_value')->saveOptions();
 ```
 
 ### Conditional Fields (show / hide)
@@ -135,8 +136,10 @@ Theme::saveOptions(); // Save to database
 A field can be shown only while another option has a given value. In the admin it is hidden on page load when the condition fails, and it shows or hides immediately as the controlling field changes, before saving. A hidden field keeps its saved value; hiding only affects the screen.
 
 ```php
-// Object-oriented
-NumberFieldOption::make()
+use Botble\Theme\ThemeOption\Fields\NumberField;
+
+// Object-oriented theme-option field
+NumberField::make()
     ->name('lazy_load_skip_first')
     ->label('Load first N listing images immediately')
     ->showWhen('lazy_load_images', '1');
@@ -402,12 +405,13 @@ SelectField::make()
     'type' => 'customSelect',
     'label' => __('Field label'),
     'attributes' => [
-        'values' => [
-            ['field_name[]', 'option1', __('Option 1')],
-            ['field_name[]', 'option2', __('Option 2')],
-            ['field_name[]', 'option3', __('Option 3')],
-        ],
         'name' => 'field_name',
+        'choices' => [
+            'option1' => __('Option 1'),
+            'option2' => __('Option 2'),
+            'option3' => __('Option 3'),
+        ],
+        'value' => 'option1',
     ],
     'helper' => __('Helper for this field (optional)'),
 ]);

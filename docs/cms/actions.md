@@ -13,15 +13,15 @@ Actions are used throughout Botble CMS to allow plugins and themes to interact w
 To hook into an action, use the `add_action()` function:
 
 ```php
-add_action(string|array $tag, callable $callback, int $priority = 20, int $accepted_args = 1)
+function add_action(string|array|null $hook, string|array|Closure $callback, int $priority = 20, int $arguments = 1): void
 ```
 
 #### Parameters
 
-- **$tag**: (string|array) The name of the action(s) to hook into. Can be a single action name or an array of action names.
-- **$callback**: (callable) The function or method to be called when the action is fired.
-- **$priority**: (int) Optional. Used to specify the order in which callbacks are executed. Lower numbers = earlier execution. Default is 20.
-- **$accepted_args**: (int) Optional. The number of arguments your callback accepts. Default is 1.
+- **$hook**: (string|array|null) The name of the action(s) to hook into. Can be a single action name or an array of action names.
+- **$callback**: (string|array|Closure) The function or method to be called when the action is fired.
+- **$priority**: (int) Optional. Used to specify the order in which callbacks are executed. Higher numbers = earlier execution (filters run in the opposite order). Default is 20.
+- **$arguments**: (int) Optional. The number of arguments your callback accepts. Default is 1.
 
 #### Example
 
@@ -65,17 +65,17 @@ public function show($id)
 
 ### Removing an Action
 
-To remove a previously added action, use the `remove_action()` function:
+Use the Action facade to remove **all listeners** registered for a hook. There is no `remove_action()` helper:
 
 ```php
-remove_action(string $tag)
+\Botble\Base\Facades\Action::removeListener('my_hook');
 ```
 
 #### Example
 
 ```php
 // Remove all callbacks for an action
-remove_action('base_action_public_render_single');
+\Botble\Base\Facades\Action::removeListener(BASE_ACTION_PUBLIC_RENDER_SINGLE);
 ```
 
 ## Common Action Hooks
@@ -123,14 +123,14 @@ Botble CMS provides many action hooks that you can use in your plugins and theme
 
 - **BASE_ACTION_FORM_ACTIONS**: Fired when rendering form actions.
   ```php
-  add_action(BASE_ACTION_FORM_ACTIONS, function ($form, $model) {
-      // Add custom form actions
-  }, 20, 2);
+  add_action(BASE_ACTION_FORM_ACTIONS, function (string $context) {
+      // The form-buttons partial supplies 'default'.
+  }, 20, 1);
   ```
 
-- **BASE_ACTION_FORM_ACTIONS_TITLE**: Fired when rendering form action titles.
+- **BASE_ACTION_FORM_ACTIONS_TITLE**: A filter for the form action title, despite its name.
   ```php
-  add_action(BASE_ACTION_FORM_ACTIONS_TITLE, function ($title) {
+  add_filter(BASE_ACTION_FORM_ACTIONS_TITLE, function ($title) {
       // Modify form action title
       return $title . ' - Custom';
   }, 20, 1);
@@ -157,23 +157,23 @@ Botble CMS provides many action hooks that you can use in your plugins and theme
 
 - **USER_ACTION_AFTER_UPDATE_PROFILE**: Fired after a user updates their profile.
   ```php
-  add_action(USER_ACTION_AFTER_UPDATE_PROFILE, function ($user) {
+  add_action(USER_ACTION_AFTER_UPDATE_PROFILE, function ($screen, $request, $user) {
       // Do something after user updates profile
-  }, 20, 1);
+  }, 20, 3);
   ```
 
 - **USER_ACTION_AFTER_UPDATE_PASSWORD**: Fired after a user updates their password.
   ```php
-  add_action(USER_ACTION_AFTER_UPDATE_PASSWORD, function ($user) {
+  add_action(USER_ACTION_AFTER_UPDATE_PASSWORD, function ($screen, $request, $user) {
       // Do something after user updates password
-  }, 20, 1);
+  }, 20, 3);
   ```
 
-- **AUTH_ACTION_AFTER_LOGOUT_SYSTEM**: Fired after a user logs out.
+- **AUTH_ACTION_AFTER_LOGOUT_SYSTEM**: Fired at the start of logout, while the user is still available.
   ```php
-  add_action(AUTH_ACTION_AFTER_LOGOUT_SYSTEM, function ($user) {
-      // Do something after user logs out
-  }, 20, 1);
+  add_action(AUTH_ACTION_AFTER_LOGOUT_SYSTEM, function ($request, $user) {
+      // Runs before the guard logs out and the session is invalidated.
+  }, 20, 2);
   ```
 
 ### Dashboard Actions
@@ -216,7 +216,7 @@ Botble CMS provides many action hooks that you can use in your plugins and theme
 
 ## Best Practices
 
-1. **Use Appropriate Priority**: Choose a priority that makes sense for your action. Lower numbers run earlier.
+1. **Use Appropriate Priority**: Choose a priority that makes sense for your action. Higher numbers run earlier; filters run from lower to higher priority.
 
 2. **Accept Only Needed Arguments**: Only specify the number of arguments your callback actually needs.
 

@@ -12,7 +12,7 @@ The form builder system provides several hooks that you can use to modify forms:
 
 1. **extend**: Add or modify fields in a form
 2. **beforeRendering**: Modify a form before it is rendered
-3. **afterRendering**: Modify the rendered output of a form
+3. **afterRendering**: Observe the rendered output or perform side effects
 4. **beforeSaving**: Perform actions before a form is saved
 5. **afterSaving**: Perform actions after a form is saved
 
@@ -37,7 +37,7 @@ FormAbstract::extend(function (FormAbstract $form): void {
     
     // Add a new field
     $form->add('custom_field', TextField::class, TextFieldOption::make()->label('Custom Field'));
-}, 120); // Priority (lower numbers run first)
+}, 120); // Priority (higher numbers run first)
 ```
 
 ### Adding Fields After or Before Existing Fields
@@ -155,17 +155,17 @@ FormAbstract::beforeRendering(function (FormAbstract $form): void {
 
 ## Using the `afterRendering` Hook
 
-The `afterRendering` hook allows you to modify the rendered output of a form. This is useful for adding custom HTML or JavaScript after the form has been rendered.
-
-### Basic Usage
+The `afterRendering` hook receives the form and its rendered HTML. It is an action: returning a string does not change the output. Use it for logging or other side effects. Add markup through fields, a rendering template, or `beforeRendering()` instead.
 
 ```php
 use Botble\Base\Forms\FormAbstract;
 
-FormAbstract::afterRendering(function (FormAbstract $form, string $rendered): string {
-    // Modify the rendered output
-    return $rendered . '<div class="custom-footer">Custom footer content</div>';
-}, 120); // Priority
+FormAbstract::afterRendering(function (FormAbstract $form, string $rendered): void {
+    logger()->debug('Form rendered', [
+        'form' => $form::class,
+        'bytes' => strlen($rendered),
+    ]);
+}, 120);
 ```
 
 ## Using the `beforeSaving` Hook
@@ -276,7 +276,7 @@ PostForm::afterSaving(function (PostForm $form): void {
 
 1. **Check Form Type**: Always check the form type or model type before making changes to ensure you're only modifying the intended forms.
 
-2. **Use Appropriate Priority**: Choose a priority that makes sense for your hook. Lower numbers run earlier.
+2. **Use Appropriate Priority**: Choose a priority that makes sense for your hook. Higher numbers run earlier. These lifecycle methods register actions, while filters run from lower to higher priority.
 
 3. **Keep Hooks Focused**: Each hook should perform a specific task. Don't try to do too much in a single hook.
 
@@ -284,7 +284,7 @@ PostForm::afterSaving(function (PostForm $form): void {
 
 5. **Use Type Hints**: Use type hints in your closures to make your code more readable and maintainable.
 
-6. **Return the Form**: When modifying a form in a hook, remember to return the form if required by the hook.
+6. **Mutate the Form**: Lifecycle callbacks are actions. Change the supplied form directly; return values are discarded.
 
 ## Conclusion
 

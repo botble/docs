@@ -253,7 +253,8 @@ In your shortcode callback, you can retrieve the tabs data:
 Shortcode::register('tabs-shortcode', 'Tabs', 'Create tabs content', function ($shortcode) {
     $tabs = shortcode()->fields()->getTabsData(['title', 'content'], $shortcode);
 
-    return view('theme.shortcodes.tabs', compact('shortcode', 'tabs'));
+    // File: platform/themes/your-theme/partials/shortcodes/tabs.blade.php
+    return Theme::partial('shortcodes.tabs', compact('shortcode', 'tabs'));
 });
 ```
 

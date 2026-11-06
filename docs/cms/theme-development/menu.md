@@ -253,3 +253,21 @@ If menu items are not linking to the correct pages:
 1. Check the URLs in the menu editor
 2. For content-referenced menu items, ensure the content exists and is published
 3. Verify that your custom menu view is correctly generating URLs
+
+## Filtering Custom Node URLs
+
+`MENU_FILTER_NODE_URL` receives one URL string and must return a string. It runs when a menu node has an explicit, nonempty custom URL, after that URL is cleaned and HTML entities are decoded. It is not invoked for the URL resolved through a referenced page/post model or for the `/` fallback. The node itself is not supplied.
+
+Register this in a service provider's `boot()` method or theme functions file. Like other filters, lower priorities execute first; the default is `20`.
+
+```php
+add_filter(MENU_FILTER_NODE_URL, function (string $url): string {
+    if ($url === '/support') {
+        return url('/contact');
+    }
+
+    return $url;
+}, 20, 1);
+```
+
+Use this for a shared URL rewrite. For node-specific behavior, configure that node's custom URL or its referenced content instead.

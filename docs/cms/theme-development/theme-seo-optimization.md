@@ -68,7 +68,7 @@ The blog plugin already emits these on single post pages, so you only need this 
 ```php
 SeoHelper::twitter()->setTitle('Twitter Card Title');
 SeoHelper::twitter()->setDescription('Twitter Card description.');
-SeoHelper::twitter()->setImage(RvMedia::getImageUrl($post->image));
+SeoHelper::twitter()->addImage(RvMedia::getImageUrl($post->image));
 ```
 
 ### Implementing SEO in Theme Views

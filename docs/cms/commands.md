@@ -246,15 +246,17 @@ Copies theme assets to the public directory to make them accessible.
 php artisan cms:theme:assets:publish [theme]
 ```
 
-If no theme name is provided, it publishes assets for the currently active theme.
+If no theme name is provided, it publishes assets for all themes.
 
 ### Remove Theme Assets
 
 Deletes published theme assets from the public directory.
 
 ```bash
-php artisan cms:theme:assets:remove [theme]
+php artisan cms:theme:assets:remove <theme>
 ```
+
+The theme name is required. In an interactive terminal, Laravel can prompt for the missing name; provide it explicitly in scripts.
 
 ### Clear Theme Cache
 
@@ -266,9 +268,11 @@ php artisan cms:theme:clear-cache
 
 ### Clean Up Shared Theme Options
 
-Removes orphaned shared theme-option rows left behind after languages or options are removed.
+Finds currently registered shared theme-option fields and removes stale locale-specific copies of those fields. It does not generally discover deleted option definitions. Use `--dry-run` to preview the rows before deleting them.
 
 ```bash
+php artisan cms:theme:options:cleanup-shared --dry-run
+# Remove the previewed localized copies
 php artisan cms:theme:options:cleanup-shared
 ```
 
@@ -308,13 +312,15 @@ php artisan cms:widget:remove <widget>
 
 ### Export Database
 
-Exports the database to an SQL file.
+Exports MySQL to SQL text or PostgreSQL to a custom-format dump.
 
 ```bash
 php artisan cms:db:export [output]
 ```
 
-By default, the database is exported to `database.sql` in the root directory. You can specify a different output path as an argument.
+**MySQL:** defaults to `database.sql`; the optional `output` argument selects another path.
+
+**PostgreSQL:** always writes `database.pgsql.dump` in the project root and ignores `output`. It uses `pg_dump -Fc`, so this is a custom-format dump for `pg_restore`, not SQL text.
 
 ### Import Database
 

@@ -239,3 +239,24 @@ Users can:
 4. **Handle Redirects**: When slugs change, consider implementing redirects from old URLs to new ones to maintain SEO value.
 
 5. **Validate Slugs**: Add validation rules for slugs to ensure they meet your requirements.
+
+## Customizing Slug Lookup
+
+`slug_helper_get_slug_query` filters the Eloquent query immediately before `SlugHelper::getSlug()` calls `first()`. It receives the query, condition array, requested key (string), prefix (string), and optional model class (`?string`). The query already includes the conditions, such as `key`, `prefix`, `reference_type`, and `reference_id` when supplied. Missing key/prefix values are cast to empty strings for the callback. The filter dispatcher omits null extra arguments, so the optional model parameter needs a default.
+
+```php
+use Illuminate\Database\Eloquent\Builder;
+
+add_filter('slug_helper_get_slug_query', function (
+    Builder $query,
+    array $conditions,
+    string $key,
+    string $prefix,
+    ?string $model = null
+): Builder {
+    // Example: explicitly choose the newest match if duplicate slug rows exist.
+    return $query->orderByDesc('id');
+}, 20, 5);
+```
+
+Return the query, not a resolved model. Filter priorities run from lower to higher; the default is `20`. `BASE_FILTER_BEFORE_GET_BY_SLUG` is defined for compatibility but has no dispatch in the current platform. See also [Filters](./filters.md#content-filters).

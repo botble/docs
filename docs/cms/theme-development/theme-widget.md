@@ -288,8 +288,8 @@ When creating your widget's admin configuration form using the `settingForm()` m
     ])
 )
 
-// Checkbox field
-->add('features', CheckboxField::class, CheckboxFieldOption::make()
+// Multiple checkbox choices
+->add('features', \Botble\Base\Forms\Fields\MultiCheckListField::class, \Botble\Base\Forms\FieldOptions\MultiChecklistFieldOption::make()
     ->label(__('Features'))
     ->choices([
         'feature-1' => __('Feature 1'),
