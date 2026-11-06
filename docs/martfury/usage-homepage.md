@@ -45,9 +45,9 @@ Martfury ships with **12 homepage demos**. Each demo is a complete store: catalo
 
 ## Choose a Demo in the Installer
 
-The demo is selected **during installation**, on the theme presets step of the [web installer](./installation-web-interface.md). The installer lists all 12 demos with a preview image.
+The demo is selected **during installation**, on the theme presets step of the [web installer](./installation-web-interface.md). The installer lists all 12 demos with a preview image. Its names differ from the table for three demos: Home 1 is listed as **Default**, Marketplace 1 as **Marketplace** and Auto parts as **Auto Parts**.
 
-Each demo is a database dump. The installer imports `database/sample/database-martfury-<preset id>.sql` for the demo you pick (for example `database/sample/database-martfury-organic.sql`). The default demo uses `database.sql`.
+Each demo is a database dump. The installer imports `database/sample/database-martfury-<preset id>.sql` for the demo you pick (for example `database/sample/database-martfury-organic.sql`). The default demo uses `database.sql`. The `database/sample/` folder is part of the downloaded package, not of the source repository.
 
 ::: warning
 Importing a demo replaces **all** existing content in the database, including the admin account. Use a fresh database or back up first.
@@ -59,14 +59,14 @@ Demo images are used for the demo only and are not part of the download. The dem
 
 ## Switch the Look of an Existing Site
 
-You can change the look of a site that is already installed without reimporting any data:
+You can change the look of a site that is already installed without reimporting any data. Each demo uses its own footer colors and texts, and the header and footer settings of a demo are stored per preset, so switching the style alone does not copy them:
 
-1. Go to `Appearance` -> `Theme options` -> `Layout`.
-2. Set **Header style**, **Footer style** and **Site style** to the values of the demo you like (see the table above).
-3. Go to `Appearance` -> `Theme options` -> `Style` and set **Primary color**.
+1. Go to `Appearance` -> `Theme options` -> `Colors and typography`. Set **Homepage style** to the demo's name (**Default** for Home 1) and **Primary color** to the demo's color (see [Primary color](./usage-theme-options.md#colors-and-typography)).
+2. Go to `Header`. Set **Header style** to the demo's header style. Leave the header colors empty to use the colors of that style, or copy the header texts you want (**Header top text**, **Header search keywords**, promotion strip).
+3. Go to `Footer`. Set **Footer style**, then set **Footer newsletter text**, **Footer social links text** and the footer colors. Footer colors do not follow the footer style, so set them to match the demo.
 4. Save, then rebuild the homepage content with [UI blocks](./usage-ui-block.md).
 
-See [Theme options](./usage-theme-options.md) for every field of the Layout section.
+If you work from the source code, the values of each demo are in `database/seeders/Themes/<Demo>/ThemeOptionSeeder.php`. See [Theme options](./usage-theme-options.md) for every field.
 
 ::: tip
 The homepage sections of a demo are normal shortcodes inside the **Home** page. Open the page in the editor to see which blocks and styles the demo uses, then copy them to your own homepage.
@@ -94,6 +94,12 @@ If you work from the source code, you can seed a demo with Artisan instead of th
 ::: danger
 Seeding **wipes the existing data** (products, categories, pages, menus, settings and more) before it creates the demo content. Never run it on a live site. Seed presets one at a time, not in parallel.
 :::
+
+To drop all tables and seed a demo in one step, use `migrate:fresh` with the same class name (this is what the release packaging does):
+
+```bash
+php artisan migrate:fresh --seeder="Database\Seeders\Themes\HomeMarketplace\DatabaseSeeder"
+```
 
 ### Seeder Namespace Change
 

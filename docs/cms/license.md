@@ -143,7 +143,7 @@ Envato allows a license to be transferred to another person or company:
 2. Once transferred, the new owner will receive the purchase code and can activate the license
 3. The previous owner must deactivate and stop using the product
 
-For more information on license transfers, please refer to [Envato's License FAQ](https://help.market.envato.com/hc/en-us/articles/202501064-License-FAQ).
+For more information on license transfers, please refer to [Envato's Market help center](https://help.market.envato.com/hc/en-us).
 
 ## Troubleshooting License Activation
 

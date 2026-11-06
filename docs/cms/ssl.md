@@ -9,7 +9,7 @@ for example **Let's Encrypt**.
 
 1. Change the following code in `.env` file from `APP_URL=http://domain.com` to `APP_URL=https://domain.com`.
 
-2. There have 3 options:
+2. There are 3 options:
 
 - Option 1: Add `ENABLE_HTTPS_SUPPORT=true` to `.env` file
 - Option 2: Add to `.env` file following code:

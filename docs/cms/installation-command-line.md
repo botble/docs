@@ -1,4 +1,4 @@
-# Install using command line.
+# Install using command line
 
 - Extract the purchased source package and open a terminal in the project root. If the `vendor/` directory is missing, run `composer install` first.
 

@@ -18,9 +18,8 @@ Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `stora
 
 To display Bangladesh text in invoice, need to use font **FreeSerif**.
 
-- Download `FreeSerif.tff` font
-  from https://github.com/byrongibson/fonts/blob/master/backup/truetype.original/freefont/FreeSerif.ttf.
-- Upload `FreeSerif.tff` to folder `/public`.
+- Download `FreeSerif.ttf` from the GNU FreeFont archive: https://ftp.gnu.org/gnu/freefont/freefont-ttf-20120503.zip (file `freefont-20120503/FreeSerif.ttf`).
+- Upload `FreeSerif.ttf` to folder `/public`.
 - Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
   to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
 - Change in CSS:
@@ -29,7 +28,7 @@ To display Bangladesh text in invoice, need to use font **FreeSerif**.
 <style>
     @font-face {
         font-family: FreeSerif;
-        src: url('{{ url(' FreeSerif.ttf ') }}');
+        src: url('{{ url('FreeSerif.ttf') }}');
     }
     
     body {
@@ -90,8 +89,8 @@ body {
 
 ## Sinhala font
 
-- Download font **kaputaunicode** from http://www.kaputa.com/slword/kaputaunicode.htm.
-- Upload `kaputaunicode.tff` to folder `/public`.
+- Get a Sinhala Unicode TTF font and name the file `kaputaunicode.ttf`. The original download page (http://www.kaputa.com/slword/kaputaunicode.htm) did not respond when this page was last checked.
+- Upload `kaputaunicode.ttf` to folder `/public`.
 - Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
   to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
 - Change in CSS:
@@ -100,7 +99,7 @@ body {
 <style>
     @font-face {
         font-family: kaputaunicode;
-        src: url('{{ url(' kaputaunicode.ttf ') }}');
+        src: url('{{ url('kaputaunicode.ttf') }}');
     }
     
     body {

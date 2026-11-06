@@ -49,6 +49,7 @@ When you switch back to **Commission based**, products that were unpublished bec
 | **Charge tax on subscription payments** | Off | Applies the store's default tax rate and its zone rules to plan prices. Requires tax to be enabled in ecommerce settings. |
 | **Subscription invoice prefix** | `SUB-` | Subscription invoices are numbered in their own series, separate from order invoices. |
 | **Payment methods available for subscriptions** | *(empty)* | Restrict which gateways a vendor may use. Leave empty to allow every enabled payment method. |
+| **Show subscription plans publicly** | Off | Publishes the plans on the public `/vendor-plans` page. See [Public Subscription Plans](#public-subscription-plans) |
 
 ## Creating Subscription Plans
 
@@ -97,6 +98,12 @@ When a vendor hits the limit they get: *"You have reached the maximum number of 
 Mark one free plan as **Default plan** to give every vendor a baseline. The first time a vendor without a subscription touches a gated screen, that plan is activated for them silently — no checkout, no invoice.
 
 If there is no default plan, a vendor without a subscription is blocked from products, exports, imports and coupons until they buy one.
+
+## Public Subscription Plans
+
+To show the plans to visitors, turn on **Show subscription plans publicly** in `Marketplace` -> `Settings` -> **Vendor subscriptions**. The page is then available at `/vendor-plans` and lists the plans with their prices and a call to action.
+
+You can also show the plans on any page with the **Vendor subscription plans** [UI block](./usage-ui-block.md). It works even when the public page is off. Its fields are **Title**, **Description** and **Number of plans to show**.
 
 ## The Vendor Experience
 

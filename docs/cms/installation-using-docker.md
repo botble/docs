@@ -1,4 +1,4 @@
-# Install using Docker.
+# Install using Docker
 
 _Docker installation for development only, do not use it on production environment._
 

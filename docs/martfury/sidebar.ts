@@ -31,8 +31,11 @@ export default [
       { text: 'Homepage demos', link: '/martfury/usage-homepage' },
       { text: 'Theme options', link: '/martfury/usage-theme-options' },
       { text: 'UI Blocks', link: '/martfury/usage-ui-block' },
+      { text: 'Menus', link: '/martfury/usage-menus' },
+      { text: 'Widgets', link: '/martfury/usage-widgets' },
       { text: 'Custom CSS/JS', link: '/martfury/usage-custom-css-js' },
       { text: 'Translation', link: '/martfury/plugin-translation' },
+      { text: 'RTL and theme translation', link: '/martfury/usage-rtl-and-theme-translation' },
       { text: 'Multi-language', link: '/martfury/usage-multi-language' },
       { text: 'Google Analytics', link: '/martfury/usage-analytics' },
       { text: 'Media - Setup Amazon S3', link: '/martfury/usage-media-s3' },
@@ -45,6 +48,7 @@ export default [
       { text: 'Invoice template', link: '/martfury/invoice-template' },
       { text: 'Setup cronjob', link: '/martfury/cronjob' },
       { text: 'Newsletter', link: '/martfury/usage-newsletter' },
+      { text: 'Backup', link: '/martfury/plugin-backup' },
     ],
   },
   {
@@ -56,6 +60,7 @@ export default [
   {
     text: 'Development',
     items: [
+      { text: 'API', link: '/martfury/api' },
       { text: 'Rename theme', link: '/martfury/theme-rename' },
     ]
   }

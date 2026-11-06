@@ -10,8 +10,10 @@ This guide will help you configure email sending for your website. Email is esse
 
 ![Email Settings](../cms/images/email-settings.png)
 
-::: tip
-Mailers are connections: connect one first under **Settings → Email → Mail connections**, then select it as the Mailer. See [Media & Mail Connections](media-and-mail-connections.md).
+::: warning Version note
+Newer releases list mailers as connections: connect one first under **Settings → Email → Mail connections**, then select it as the Mailer. See [Media & Mail Connections](/cms/media-and-mail-connections).
+
+Older releases have no **Mail connections** list. There, pick the mailer in the **Mailer** select on the same **Email** page and fill in its credential fields directly. The credential fields are the same.
 :::
 
 ## Choosing the Right Mailer

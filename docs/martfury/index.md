@@ -11,8 +11,7 @@ By: [Botble Technologies](https://botble.com)
 Email: [contact@botble.com](mailto:contact@botble.com)
 
 Thank you for purchasing this product. If you have any questions that are beyond the scope of this help file,
-please feel free to email via my user page contact form [here](https://codecanyon.net/user/botble) for quickly
-support. Thank you so much!
+contact us via [Botble Support](https://botble.ticksy.com) for quick support. Thank you so much!
 
 Support covers questions and bug fixes. For custom features, theme changes, server setup, migrations or upgrades, [hire the Botble team](https://marketplace.botble.com/customize?from=docs&utm_source=docs&utm_medium=index&utm_content=martfury) - quick fixes from $99, fixed quote within 1 business day.
 
@@ -53,10 +52,7 @@ Password: `12345678`
 
 ## Why choose us
 
-Coding Standard: All code follow coding standards PSR-2 and best practices. Validated
-by [Codeship](https://codeship.com)
-
-![Coding standard](https://botble.com/storage/envato/codeship.png)
+Coding Standard: All code follows PSR-12 and best practices, checked with [Laravel Pint](https://laravel.com/docs/pint).
 
 Fully Responsive: Compatible with all screen resolutions
 

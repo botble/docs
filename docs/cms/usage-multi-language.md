@@ -10,8 +10,7 @@ Navigate to admin panel and click to `Settings` -> `Languages`.
 
 ### Adding a New Language
 
-To change the default language, you first need to add the desired language. In this example, we will add **Tiếng Việt
-** (Vietnamese) language.
+To change the default language, you first need to add the desired language. In this example, we will add **Tiếng Việt** (Vietnamese) language.
 
 ![Adding a New Language](../cms/images/multi-language-2.png)
 
