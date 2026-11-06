@@ -334,6 +334,30 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   }, 20, 1);
   ```
 
+### Admin Appearance Filters
+
+- **BASE_FILTER_ADMIN_APPEARANCE_LAYOUTS**: Register extra admin panel layouts (shown in **Settings → Admin Appearance → Layout**, next to Vertical and Horizontal).
+  ```php
+  add_filter(BASE_FILTER_ADMIN_APPEARANCE_LAYOUTS, function (array $layouts) {
+      $layouts['compact'] = trans('plugins/my-plugin::my-plugin.compact_layout');
+
+      return $layouts;
+  });
+  ```
+  A layout `compact` must provide the views `core/base::layouts.compact.partials.before-content` and `core/base::layouts.compact.partials.after-content`. Ship them from your plugin with `View::prependNamespace('core/base', __DIR__ . '/../../resources/views/overrides/core/base')`. If the plugin is deactivated while its layout is selected, the admin panel falls back to the first available layout.
+
+### Visual Builder Filters
+
+The page Visual Builder has its own HTML shell, so `BASE_FILTER_HEAD_LAYOUT_TEMPLATE` and `BASE_FILTER_FOOTER_LAYOUT_TEMPLATE` are not applied there. Use these filters instead:
+
+- **page_visual_builder_head**: Add styles or meta tags before `</head>` of the Visual Builder.
+- **page_visual_builder_footer**: Add scripts before `</body>` of the Visual Builder.
+  ```php
+  add_filter('page_visual_builder_head', function (?string $html, $page) {
+      return $html . Html::style('vendor/core/plugins/my-plugin/css/visual-builder.css');
+  }, 20, 2);
+  ```
+
 ### Menu Filters
 
 - **BASE_FILTER_MENU_ITEMS_COUNT**: Add badge counts to menu items.
