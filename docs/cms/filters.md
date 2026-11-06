@@ -346,6 +346,10 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   ```
   A layout `compact` must provide the views `core/base::layouts.compact.partials.before-content` and `core/base::layouts.compact.partials.after-content`. Ship them from your plugin with `View::prependNamespace('core/base', __DIR__ . '/../../resources/views/overrides/core/base')`. If the plugin is deactivated while its layout is selected, the admin panel falls back to the first available layout.
 
+  ::: warning
+  The core `vertical` and `horizontal` partials include their sub-partials dynamically (`'core/base::layouts.' . AdminAppearance::getCurrentLayout() . '.partials.header'`). If you copy them as a starting point, either ship those sub-partials (`header`, `aside`, `navbar`, …) for your layout too, or change the includes to fixed paths such as `core/base::layouts.vertical.partials.aside`. `AdminAppearance::isVerticalLayout()` and `isHorizontalLayout()` both return `false` for a custom layout.
+  :::
+
 ### Visual Builder Filters
 
 The page Visual Builder has its own HTML shell, so `BASE_FILTER_HEAD_LAYOUT_TEMPLATE` and `BASE_FILTER_FOOTER_LAYOUT_TEMPLATE` are not applied there. Use these filters instead:
@@ -353,6 +357,8 @@ The page Visual Builder has its own HTML shell, so `BASE_FILTER_HEAD_LAYOUT_TEMP
 - **page_visual_builder_head**: Add styles or meta tags before `</head>` of the Visual Builder.
 - **page_visual_builder_footer**: Add scripts before `</body>` of the Visual Builder.
   ```php
+  use Botble\Base\Facades\Html;
+
   add_filter('page_visual_builder_head', function (?string $html, $page) {
       return $html . Html::style('vendor/core/plugins/my-plugin/css/visual-builder.css');
   }, 20, 2);
