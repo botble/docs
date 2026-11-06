@@ -18,11 +18,11 @@ Theme::asset()->add('core-style', 'css/style.css');
 Theme::asset()->container('footer')->add('core-script', 'js/script.js');
 
 // Add a CSS file from the current theme's assets directory with a dependency
-// Path: public/themes/[current theme]/assets/css/custom.css
+// Path: public/themes/[current theme]/css/custom.css
 Theme::asset()->usePath()->add('custom', 'css/custom.css', ['core-style']);
 
 // Add a JavaScript file from the current theme's assets directory with a dependency
-// Path: public/themes/[current theme]/assets/js/custom.js
+// Path: public/themes/[current theme]/js/custom.js
 Theme::asset()->container('footer')->usePath()->add('custom', 'js/custom.js', ['core-script']);
 ```
 
@@ -53,15 +53,15 @@ Theme::asset()->add('mobile-css', 'css/mobile.css', [], ['media' => 'screen and 
 The `usePath()` method tells the asset manager to look in the current theme's assets directory:
 
 ```php
-// Look in public/themes/[current theme]/assets/css/
+// Look in public/themes/[current theme]/css/
 Theme::asset()->usePath()->add('theme-style', 'css/style.css');
 ```
 
-You can also specify a different theme to look in:
+`usePath(bool $use = true)` toggles lookup relative to the current theme. To load an asset published by another theme, use an explicit URL:
 
 ```php
-// Look in public/themes/default/assets/css/
-Theme::asset()->usePath('default')->add('default-style', 'css/style.css');
+// File: public/themes/default/css/style.css
+Theme::asset()->usePath(false)->add('default-style', asset('themes/default/css/style.css'));
 ```
 
 ### Shorthand Methods

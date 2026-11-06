@@ -60,7 +60,7 @@ $this->add(
     'custom_html', 
     HtmlField::class, 
     HtmlFieldOption::make()
-        ->html('<div class="alert alert-info">This is a custom HTML content</div>')
+        ->content('<div class="alert alert-info">This is a custom HTML content</div>')
 );
 ```
 

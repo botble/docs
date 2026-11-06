@@ -113,13 +113,13 @@ When `renderForm()` is called, the system automatically:
 ### In Blade Templates
 
 ```blade
-{!! app(Theme\YourTheme\Forms\ContactForm::class)->renderForm() !!}
+{!! \Theme\YourTheme\Forms\ContactForm::create()->renderForm() !!}
 ```
 
 ### With Custom Rendering Options
 
 ```php
-$form = app(ContactForm::class);
+$form = ContactForm::create();
 
 // Render only fields (no form tags)
 echo $form->renderForm(showStart: false, showEnd: false);

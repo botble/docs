@@ -48,9 +48,9 @@ Result:
 ```php
 use Botble\Todo\Forms\TodoForm;
 
-public function create(TodoForm $form)
+public function create()
 {
-    return $form->renderForm();
+    return TodoForm::create()->renderForm();
 }
 ```
 
@@ -335,7 +335,7 @@ use Botble\Base\Forms\Fields\CodeEditorField;
 
 ->add('css_code', CodeEditorField::class, [
     'label' => 'Custom CSS',
-    'mode' => 'css', // css, javascript, html, php, etc.
+    'attr' => ['mode' => 'css'], // css, javascript, html, php, etc.
 ])
 ```
 
@@ -481,9 +481,14 @@ Hierarchical category selector for tree structures.
 ```php
 use Botble\Base\Forms\Fields\TreeCategoryField;
 
-->add('parent_category', TreeCategoryField::class, [
-    'label' => 'Parent Category',
-    'class' => 'Botble\Blog\Models\Category',
+->add('categories[]', TreeCategoryField::class, [
+    'label' => 'Categories',
+    'choices' => \Botble\Blog\Models\Category::query()
+        ->wherePublished()
+        ->with('activeChildren')
+        ->where('parent_id', 0)
+        ->get(),
+    'selected' => [], // Selected category IDs
 ])
 ```
 
@@ -506,13 +511,14 @@ Autocomplete field with suggestions from a data source.
 
 ```php
 use Botble\Base\Forms\Fields\AutocompleteField;
+use Botble\Base\Forms\FieldOptions\AutocompleteFieldOption;
 
-->add('author', AutocompleteField::class, [
-    'label' => 'Author',
-    'minimum_input' => 2,
-    'saving_key' => 'id',
-    'url' => route('api.users.search'),
-])
+// The Blog plugin provides the categories.search endpoint.
+->add('category_id', AutocompleteField::class, AutocompleteFieldOption::make()
+    ->label('Category')
+    ->ajaxUrl(route('categories.search'))
+    ->minimumInputLength(2)
+)
 ```
 
 #### RepeaterField
@@ -520,18 +526,19 @@ Field for creating repeating groups of fields.
 
 ```php
 use Botble\Base\Forms\Fields\RepeaterField;
-use Botble\Base\Forms\Fields\TextField;
 
 ->add('benefits', RepeaterField::class, [
     'label' => 'Benefits',
     'fields' => [
         'title' => [
-            'type' => TextField::class,
+            'type' => 'text',
             'label' => 'Benefit Title',
+            'attributes' => ['name' => 'title', 'value' => null, 'options' => ['class' => 'form-control']],
         ],
         'description' => [
-            'type' => TextareaField::class,
+            'type' => 'textarea',
             'label' => 'Benefit Description',
+            'attributes' => ['name' => 'description', 'value' => null, 'options' => ['class' => 'form-control', 'rows' => 3]],
         ],
     ],
 ])
@@ -605,7 +612,7 @@ use Botble\Base\Forms\Fields\AlertField;
 
 ->add('alert', AlertField::class, [
     'label' => 'Information',
-    'content' => 'This is important information for users',
+    'html' => 'This is important information for users',
     'type' => 'info', // info, success, warning, danger
 ])
 ```
@@ -673,16 +680,16 @@ use Botble\Base\Forms\FieldOptions\StatusFieldOption;
 )
 ```
 
-All FieldOption classes support these common methods:
+The base `FormFieldOptions` class supports these common methods:
 
 - `make()`: Static factory method to create an instance
 - `label(string $label)`: Set field label
-- `placeholder(string $placeholder)`: Set placeholder text
 - `required(bool $required = true)`: Mark field as required
-- `helpBlock(string $help)`: Add help text below field
+- `helperText(?string $helperText, array $attributes = [])`: Add help text below field
 - `attributes(array $attributes)`: Add HTML attributes
-- `value(mixed $value)`: Set default value
 - `colspan(int $cols)`: Set column span in form layout
+
+Field-specific setters depend on the option class: input options provide `placeholder()` and `value()`, while select and multi-checklist options use `choices()` and `selected()`. Build forms with `::create()` or `::createFromModel()` so the factory injects dependencies and builds the fields before rendering.
 
 
 ## Add more columns into existed form

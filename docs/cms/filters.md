@@ -13,15 +13,15 @@ Filters are used throughout Botble CMS to allow plugins and themes to modify con
 To hook into a filter, use the `add_filter()` function:
 
 ```php
-add_filter(string|array $tag, callable $callback, int $priority = 20, int $accepted_args = 1)
+function add_filter(string|array|null $hook, string|array|Closure $callback, int $priority = 20, int $arguments = 1): void
 ```
 
 #### Parameters
 
-- **$tag**: (string|array) The name of the filter(s) to hook into. Can be a single filter name or an array of filter names.
-- **$callback**: (callable) The function or method to be called when the filter is applied.
+- **$hook**: (string|array|null) The name of the filter(s) to hook into. Can be a single filter name or an array of filter names.
+- **$callback**: (string|array|Closure) The function or method to be called when the filter is applied.
 - **$priority**: (int) Optional. Used to specify the order in which callbacks are executed. Lower numbers = earlier execution. Default is 20.
-- **$accepted_args**: (int) Optional. The number of arguments your callback accepts. Default is 1.
+- **$arguments**: (int) Optional. The number of arguments your callback accepts. Default is 1.
 
 #### Example
 
@@ -94,10 +94,13 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
 
 - **BASE_FILTER_PUBLIC_SINGLE_DATA**: Modify data for a single item on the front end.
   ```php
-  add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, function ($data, $model) {
-      // Modify single item data
-      return $data;
-  }, 20, 2);
+  add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, function ($result) {
+      // Initially a Slug; plugin resolvers can replace it with a result array.
+      if (is_array($result)) {
+          $result['data']['custom_message'] = 'Welcome';
+      }
+      return $result;
+  }, 120, 1);
   ```
 
 - **BASE_FILTER_BEFORE_GET_SINGLE**: Modify query before getting a single item.
@@ -108,12 +111,12 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   }, 20, 2);
   ```
 
-- **BASE_FILTER_BEFORE_GET_BY_SLUG**: Modify query before getting an item by slug.
+- **slug_helper_get_slug_query**: Modify the active slug lookup query. `BASE_FILTER_BEFORE_GET_BY_SLUG` is defined but is not dispatched by the platform.
   ```php
-  add_filter(BASE_FILTER_BEFORE_GET_BY_SLUG, function ($query, $model, $slug) {
-      // Modify query
+  add_filter('slug_helper_get_slug_query', function ($query, $conditions, $key, $prefix, $model = null) {
+      // Return the Eloquent slug query; $model may be null.
       return $query;
-  }, 20, 3);
+  }, 20, 5);
   ```
 
 ### Form Filters
@@ -136,11 +139,9 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
 
 - **BASE_FILTER_FORM_EDITOR_BUTTONS**: Modify editor buttons.
   ```php
-  add_filter(BASE_FILTER_FORM_EDITOR_BUTTONS, function ($buttons) {
-      // Add or remove buttons
-      $buttons[] = 'myCustomButton';
-      return $buttons;
-  }, 20, 1);
+  add_filter(BASE_FILTER_FORM_EDITOR_BUTTONS, function (?string $html, array $attributes, string $id) {
+      return $html . '<button type="button" data-editor="' . e($id) . '">Custom tool</button>';
+  }, 20, 3);
   ```
 
 ### Dashboard Filters
@@ -165,15 +166,15 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
 
 - **BASE_FILTER_TABLE_HEADINGS**: Modify table headings.
   ```php
-  add_filter(BASE_FILTER_TABLE_HEADINGS, function ($headings, $table) {
+  add_filter(BASE_FILTER_TABLE_HEADINGS, function ($headings, $model, $table) {
       // Modify table headings
       return $headings;
-  }, 20, 2);
+  }, 20, 3);
   ```
 
 - **BASE_FILTER_TABLE_BUTTONS**: Modify table buttons.
   ```php
-  add_filter(BASE_FILTER_TABLE_BUTTONS, function ($buttons, $table) {
+  add_filter(BASE_FILTER_TABLE_BUTTONS, function ($buttons, $modelClass) {
       // Add or modify table buttons
       return $buttons;
   }, 20, 2);
@@ -222,55 +223,39 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
 
 - **BASE_FILTER_ENUM_LABEL**: Modify enum labels.
   ```php
-  add_filter(BASE_FILTER_ENUM_LABEL, function ($label, $class, $value) {
-      if ($class === \Botble\Base\Enums\BaseStatusEnum::class && $value === 'pending') {
+  add_filter(BASE_FILTER_ENUM_LABEL, function ($label, $class) {
+      if ($class === \Botble\Base\Enums\BaseStatusEnum::class && $label === 'Pending') {
           return 'Waiting for approval';
       }
       return $label;
-  }, 20, 3);
-  ```
-
-### Form Builder Filters
-
-- **BASE_FILTER_EXTENDED_FORM**: Extend form with additional fields or functionality.
-  ```php
-  add_filter(BASE_FILTER_EXTENDED_FORM, function ($form, $model) {
-      // Add or modify form fields
-      return $form;
   }, 20, 2);
   ```
 
-- **BASE_FILTER_BEFORE_RENDER_FORM**: Modify form before rendering.
-  ```php
-  add_filter(BASE_FILTER_BEFORE_RENDER_FORM, function ($form, $data) {
-      // Customize form appearance or fields
-      return $form;
-  }, 20, 2);
-  ```
+### Form Builder Hooks
 
-- **BASE_FILTER_AFTER_RENDER_FORM**: Modify rendered form HTML.
-  ```php
-  add_filter(BASE_FILTER_AFTER_RENDER_FORM, function ($html, $form) {
-      // Modify form HTML after rendering
-      return $html;
-  }, 20, 2);
-  ```
+The extended-form and saving hooks use the action registry despite their `BASE_FILTER_*` names. Prefer the lifecycle methods; each callback receives one form and its return value is ignored. Actions run from higher to lower priority.
 
-- **BASE_FILTER_BEFORE_SAVE_FORM**: Modify data before saving form.
-  ```php
-  add_filter(BASE_FILTER_BEFORE_SAVE_FORM, function ($data, $form) {
-      // Transform or validate data before save
-      return $data;
-  }, 20, 2);
-  ```
+```php
+use Botble\Base\Forms\FormAbstract;
+use Botble\Base\Forms\Fields\TextField;
+use Botble\Base\Forms\FieldOptions\TextFieldOption;
+use Botble\Blog\Forms\PostForm;
 
-- **BASE_FILTER_AFTER_SAVE_FORM**: Process data after form is saved.
-  ```php
-  add_filter(BASE_FILTER_AFTER_SAVE_FORM, function ($data, $form) {
-      // Do post-save operations
-      return $data;
-  }, 20, 2);
-  ```
+PostForm::extend(function (FormAbstract $form): void {
+    $form->add('subtitle', TextField::class, TextFieldOption::make()->label('Subtitle')->metadata());
+}, 120);
+
+PostForm::beforeSaving(function (FormAbstract $form): void {
+    $request = $form->getRequest();
+    $request->merge(['subtitle' => trim((string) $request->input('subtitle'))]);
+}, 120);
+
+PostForm::afterSaving(function (FormAbstract $form): void {
+    logger()->debug('Post saved', ['id' => $form->getModel()->getKey()]);
+}, 120);
+```
+
+`BASE_FILTER_BEFORE_RENDER_FORM` is applied as a filter with `(FormAbstract $form, $model)` only when the model is a `BaseModel`; its return value is ignored, so customize the form object itself. The same hook name is also fired as an action with `($form)` just before rendering. `BASE_FILTER_AFTER_RENDER_FORM` behaves differently depending on how you listen: registered with `add_filter()` it receives `(FormAbstract $form, $model)` **before** rendering and its return value is discarded; registered with `add_action()` (which is what `afterRendering()` does) it receives `($form, $rendered)` with the completed HTML, which you can observe but not replace. See [Form Hooks](./form-builder-hooks.md).
 
 ### Table Query Filters
 
@@ -282,19 +267,19 @@ Botble CMS provides many filter hooks that you can use in your plugins and theme
   }, 20, 2);
   ```
 
-- **BASE_FILTER_TABLE_BEFORE_RENDER**: Modify table before rendering.
+- **BASE_FILTER_TABLE_BEFORE_RENDER**: Insert HTML before the table markup. Callbacks receive an empty string `''` (the view passes `null`, which the filter dispatcher converts), followed by the table instance.
   ```php
   add_filter(BASE_FILTER_TABLE_BEFORE_RENDER, function ($html, $table) {
-      // Modify table HTML before display
-      return $html;
+      // Insert content before the table, not a replacement for its HTML.
+      return $html . '<p>Table results</p>';
   }, 20, 2);
   ```
 
-- **BASE_FILTER_TABLE_AFTER_RENDER**: Modify table after rendering.
+- **BASE_FILTER_TABLE_AFTER_RENDER**: Insert HTML after the table markup. Callbacks receive an empty string `''` (the view passes `null`, which the filter dispatcher converts), followed by the table instance.
   ```php
   add_filter(BASE_FILTER_TABLE_AFTER_RENDER, function ($html, $table) {
-      // Modify rendered table HTML
-      return $html;
+      // Insert content after the table.
+      return $html . '<p>End of results</p>';
   }, 20, 2);
   ```
 

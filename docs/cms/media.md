@@ -85,7 +85,7 @@ Usually the theme now defines different thumbnail dimensions. Triage in this ord
 
 ### Option 1: Override media config
 
-Copy `platform/core/media/config/media.php` to `config/media.php` and change the media sizes.
+Copy `platform/core/media/config/media.php` to `config/core/media/media.php` and change the media sizes.
 
 ```php
 <?php
@@ -101,6 +101,8 @@ return [
 ];
 
 ```
+
+Read these settings with the `core.media.media` namespace, for example `config('core.media.media.sizes')`.
 
 ### Option 2: Modify it from your theme, media sizes will depend on your theme.
 

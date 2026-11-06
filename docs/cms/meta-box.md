@@ -99,7 +99,7 @@ Create a view file to render the meta box content:
 ```
 
 ::: tip
-You can place the view in your theme's partials directory or in your plugin's views directory. If using a plugin view, replace `Theme::partial('post-fields')` with `view('plugins.your-plugin.partials.post-fields')`.
+You can place the view in your theme's partials directory or in your plugin's views directory. If using a plugin view, replace `Theme::partial('post-fields')` with `view('plugins/your-plugin::partials.post-fields')`.
 :::
 
 ## Saving Meta Box Data
@@ -225,34 +225,9 @@ $value = $model->getMetaData('custom_field', true);
 
 ### Creating Complex Meta Boxes
 
-For more complex meta boxes, you can use closures as callbacks:
+A callback can render a plugin view with the data it needs. For example, a view at `platform/plugins/your-plugin/resources/views/partials/post-fields.blade.php` uses the namespace `plugins/your-plugin::partials.post-fields` after the provider calls `loadAndPublishViews()`.
 
-```php
-MetaBox::addMetaBox(
-    'seo_wrap',
-    __('SEO Configuration'),
-    function () {
-        $args = func_get_args();
-        $model = $args[0];
-
-        $meta = [
-            'seo_title' => null,
-            'seo_description' => null,
-            'seo_image' => null,
-        ];
-
-        if ($model->id) {
-            $metadata = MetaBox::getMetaData($model, 'seo_meta', true);
-            if ($metadata && is_array($metadata)) {
-                $meta = array_merge($meta, $metadata);
-            }
-        }
-
-        return view('plugins.seo.meta-box', compact('meta', 'model'))->render();
-    },
-    get_class($model)
-);
-```
+For the built-in SEO interface, register the model through `SeoHelper` as shown below rather than rendering its internal view manually.
 
 ## Real-World Examples
 
@@ -274,7 +249,7 @@ public function galleryMetaField($object)
 {
     $value = gallery_meta_data($object);
 
-    return view('plugins.gallery.gallery-box', compact('value', 'object'))->render();
+    return view('plugins/gallery::gallery-box', compact('value', 'object'))->render();
 }
 
 // Saving the data
@@ -287,48 +262,16 @@ add_action(BASE_ACTION_AFTER_CREATE_CONTENT, function ($type, $request, $object)
 
 ### SEO Meta Box
 
-The SEO Helper package uses meta boxes to store SEO configuration:
+Register your model in a service provider's `boot()` method. The SEO Helper package adds its meta box and handles saving the SEO metadata.
 
 ```php
-MetaBox::addMetaBox(
-    'seo_wrap',
-    __('SEO Configuration'),
-    [$this, 'seoMetaBox'],
-    $object::class,
-    'advanced',
-    'low'
-);
+use Botble\SeoHelper\Facades\SeoHelper;
+use YourPlugin\Models\YourModel;
 
-// Callback method
-public function seoMetaBox()
-{
-    $args = func_get_args();
-    $object = $args[0];
-
-    $meta = [
-        'seo_title' => null,
-        'seo_description' => null,
-        'seo_image' => null,
-    ];
-
-    if ($object->id) {
-        $metadata = MetaBox::getMetaData($object, 'seo_meta', true);
-        if ($metadata && is_array($metadata)) {
-            $meta = array_merge($meta, $metadata);
-        }
-    }
-
-    return view('packages.seo-helper.meta-box', compact('meta', 'object'))->render();
-}
-
-// Saving the data
-public function saveMetaData($screen, $request, $object)
-{
-    if (in_array(get_class($object), config('packages.seo-helper.general.supported', []))) {
-        MetaBox::saveMetaBoxData($object, 'seo_meta', $request->input('seo_meta', []));
-    }
-}
+SeoHelper::registerModule(YourModel::class);
 ```
+
+The internal view is `packages/seo-helper::meta-box`. Its contract includes the object, metadata (including `index`), and a rendered `SeoForm`. Using `registerModule()` keeps those implementation details in the package.
 
 ## Best Practices
 

@@ -83,8 +83,10 @@ Typography fields are automatically added to the theme options admin panel. Admi
 - Font sizes (number input with pixel units)
 
 The theme option keys follow the pattern:
-- Font families: `{name}_font` (e.g., `primary_font`)
-- Font sizes: `{name}_font_size` (e.g., `h1_font_size`)
+- Font families: `tp_{name}_font` (e.g., `tp_primary_font`)
+- Font sizes: `tp_{name}_size` (e.g., `tp_h1_size`)
+
+Font-family rendering falls back to the legacy `{name}_font` key when the current key is empty. New integrations should use the `tp_` keys.
 
 ## Using CSS Variables in Your Theme
 

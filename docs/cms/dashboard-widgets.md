@@ -171,17 +171,26 @@ public function registerDashboardWidgets(array $widgets, Collection $widgetSetti
 And the corresponding controller method:
 
 ```php
-public function getRequestErrors(Request $request, BaseHttpResponse $response)
+public function getWidgetRequestErrors()
 {
-    $limit = $request->integer('limit', 10);
-    $limit = $limit > 0 ? $limit : 10;
-
-    $requests = RequestLog::query()
-        ->orderBy('created_at', 'desc')
-        ->limit($limit)
+    // Donut chart: number of distinct error URLs per status code
+    $statusCodes = RequestLog::query()
+        ->selectRaw('status_code, COUNT(*) as total')
+        ->groupBy('status_code')
+        ->orderByDesc('total')
         ->get();
 
-    return $response->setData(view('plugins/request-log::widgets.request-errors', compact('requests', 'limit'))->render());
+    // List under the chart: the URLs that fail most often
+    $topRequests = RequestLog::query()
+        ->select(['id', 'url', 'status_code', 'count', 'updated_at'])
+        ->orderByDesc('count')
+        ->latest('updated_at')
+        ->limit(5)
+        ->get();
+
+    return $this
+        ->httpResponse()
+        ->setData(view('plugins/request-log::widgets.request-errors', compact('statusCodes', 'topRequests'))->render());
 }
 ```
 

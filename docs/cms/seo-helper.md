@@ -128,7 +128,6 @@ Twitter Cards provide a rich media experience when your content is shared on Twi
 SeoHelper::twitter()
     ->setTitle('Your Twitter Card Title')
     ->setDescription('Your Twitter Card Description')
-    ->setUrl(url()->current())
     ->setType('summary_large_image')
     ->addImage(RvMedia::getImageUrl('path/to/image.jpg'));
 ```
@@ -138,7 +137,7 @@ SeoHelper::twitter()
 ```php
 SeoHelper::twitter()
     ->setSite('@YourTwitterHandle')
-    ->setCreator('@AuthorTwitterHandle');
+    ->addMeta('creator', '@AuthorTwitterHandle');
 ```
 
 ## Integration with Themes

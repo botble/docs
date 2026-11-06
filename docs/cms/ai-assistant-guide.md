@@ -269,7 +269,7 @@ $this->model(MyModel::class)
 ### FormattedColumn vs Column
 
 ::: danger CRITICAL
-`Column::make()` **silently ignores** `getValueUsing()` and `renderUsing()`. You MUST use `FormattedColumn::make()` for custom render logic. Type-hints in closures must match the actual column class.
+`Column::make()` **silently ignores** `getValueUsing()` and `renderUsing()`. You MUST use `FormattedColumn::make()` for custom render logic. A parent `Column` type hint is valid for `ImageColumn`; using the specific column type makes the callback clearer.
 :::
 
 ```php
@@ -278,13 +278,13 @@ Column::make('price')->renderUsing(function (Column $col, $value) { ... });
 
 // ✅ CORRECT
 FormattedColumn::make('price')
-    ->formatted(fn ($value) => format_price($value));
+    ->renderUsing(fn (FormattedColumn $column, $value) => format_price($value));
 
-// ❌ WRONG type-hint — TypeError
-ImageColumn::make('image')->getValueUsing(fn (Column $col) => ...);
+// Valid parent type hint: ImageColumn extends FormattedColumn, which extends Column.
+ImageColumn::make('image')->getValueUsing(fn (Column $col) => $col->getItem()->image);
 
-// ✅ CORRECT type-hint
-ImageColumn::make('image')->getValueUsing(fn (ImageColumn $col) => ...);
+// Specific type hint for clarity
+ImageColumn::make('image')->getValueUsing(fn (ImageColumn $col) => $col->getItem()->image);
 ```
 
 ### Product Image Eager Loading
@@ -317,11 +317,11 @@ $column
     ->renderUsing(fn ($col, $value) => ...)
     ->append(fn ($col) => '<span>...</span>')
     ->alignStart() / ->alignCenter() / ->alignEnd()
-    ->withColor('success')
-    ->withIcon('ti ti-check')
+    ->color('success')
+    ->icon('ti ti-check')
     ->withEmptyState('N/A')
     ->copyable()
-    ->blur()
+    ->blurry()
 ```
 
 ### Disabling the Operations Column
@@ -1364,7 +1364,7 @@ StatusFieldOption::make()            // Status select
 
 // Tables
 FormattedColumn::make('col')         // For custom render
-    ->formatted(fn ($v) => ...)
+    ->renderUsing(fn (FormattedColumn $column, $value) => e($value))
 
 // Security
 BaseHelper::clean($html)             // Sanitize HTML

@@ -351,7 +351,7 @@ Example (`resources/views/create.blade.php`):
 
                     <div class="form-group mb-3">
                         <label for="content">{{ trans('core/base::forms.content') }}</label>
-                        {!! Form::customEditor('content', old('content')) !!}
+                        {!! Form::editor('content', old('content')) !!}
                     </div>
                 </div>
             </div>
@@ -1060,12 +1060,12 @@ class HookServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Register action hooks
-        add_action('BASE_ACTION_ENQUEUE_SCRIPTS', function () {
+        add_action(BASE_ACTION_ENQUEUE_SCRIPTS, function () {
             // Register plugin scripts
         });
 
         // Register filter hooks
-        add_filter('BASE_FILTER_DASHBOARD_MENU', function ($menu) {
+        add_filter(BASE_FILTER_DASHBOARD_MENU, function ($menu) {
             // Modify dashboard menu
             return $menu;
         });
