@@ -53,7 +53,7 @@ setting()->forceSet('theme', 'your-theme')->save();
 
 ## Settings Controllers
 
-The `InteractsWithSettings` trait provides `performUpdate()` and a protected `saveSettings()` method. Pass validated fields and a prefix, as in a settings controller extending the CMS base controller:
+The `InteractsWithSettings` trait provides the protected `performUpdate()` and `saveSettings()` methods. Pass validated fields and a prefix, as in a settings controller extending the CMS base controller:
 
 ```php
 use Botble\Base\Http\Controllers\BaseController;

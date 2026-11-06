@@ -88,6 +88,7 @@ Open Graph tags help control how your content appears when shared on social medi
 SeoHelper::openGraph()
     ->setTitle('Your Open Graph Title')
     ->setDescription('Your Open Graph description')
+    ->setUrl(url()->current())
     ->setType('article')
     ->setImage(RvMedia::getImageUrl('path/to/image.jpg'));
 ```
@@ -110,6 +111,7 @@ use Botble\SeoHelper\SeoOpenGraph;
 $openGraph = new SeoOpenGraph();
 $openGraph->setTitle('Custom Open Graph Title')
     ->setDescription('Custom Open Graph Description')
+    ->setUrl(url()->current())
     ->setType('website')
     ->setImage('path/to/image.jpg');
 

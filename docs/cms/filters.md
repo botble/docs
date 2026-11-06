@@ -255,7 +255,7 @@ PostForm::afterSaving(function (FormAbstract $form): void {
 }, 120);
 ```
 
-`BASE_FILTER_BEFORE_RENDER_FORM` receives the form and model and can customize the form before rendering. The compatibility filter `BASE_FILTER_AFTER_RENDER_FORM` also receives `(FormAbstract $form, $model)` **before** the underlying render; its return value is discarded. It does not receive HTML. Use `afterRendering()` to observe completed HTML; it cannot replace the output either. See [Form Hooks](./form-builder-hooks.md).
+`BASE_FILTER_BEFORE_RENDER_FORM` is applied as a filter with `(FormAbstract $form, $model)` only when the model is a `BaseModel`; its return value is ignored, so customize the form object itself. The same hook name is also fired as an action with `($form)` just before rendering. `BASE_FILTER_AFTER_RENDER_FORM` behaves differently depending on how you listen: registered with `add_filter()` it receives `(FormAbstract $form, $model)` **before** rendering and its return value is discarded; registered with `add_action()` (which is what `afterRendering()` does) it receives `($form, $rendered)` with the completed HTML, which you can observe but not replace. See [Form Hooks](./form-builder-hooks.md).
 
 ### Table Query Filters
 
@@ -267,7 +267,7 @@ PostForm::afterSaving(function (FormAbstract $form): void {
   }, 20, 2);
   ```
 
-- **BASE_FILTER_TABLE_BEFORE_RENDER**: Insert HTML before the table markup. The initial value is `null`, followed by the table instance.
+- **BASE_FILTER_TABLE_BEFORE_RENDER**: Insert HTML before the table markup. Callbacks receive an empty string `''` (the view passes `null`, which the filter dispatcher converts), followed by the table instance.
   ```php
   add_filter(BASE_FILTER_TABLE_BEFORE_RENDER, function ($html, $table) {
       // Insert content before the table, not a replacement for its HTML.
@@ -275,7 +275,7 @@ PostForm::afterSaving(function (FormAbstract $form): void {
   }, 20, 2);
   ```
 
-- **BASE_FILTER_TABLE_AFTER_RENDER**: Insert HTML after the table markup. The initial value is `null`, followed by the table instance.
+- **BASE_FILTER_TABLE_AFTER_RENDER**: Insert HTML after the table markup. Callbacks receive an empty string `''` (the view passes `null`, which the filter dispatcher converts), followed by the table instance.
   ```php
   add_filter(BASE_FILTER_TABLE_AFTER_RENDER, function ($html, $table) {
       // Insert content after the table.
