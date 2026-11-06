@@ -38,7 +38,7 @@ setting()->delete(['my_plugin_sections', 'my_plugin_limit']);
 setting()->load(true);
 ```
 
-`delete(array|string $keys = [], array $except = [], bool $force = false)` deletes matching database rows immediately. With only `except`, it deletes every row except those keys; with neither argument it returns `false`. Use an explicit list of your plugin's keys for routine cleanup.
+`delete(array|string $keys = [], array $except = [], bool $force = false)` deletes matching database rows immediately. With only `except`, it deletes every row except those keys and the guarded keys; with neither argument it returns `false`. Use an explicit list of your plugin's keys for routine cleanup.
 
 ## Guarded Keys
 
@@ -49,7 +49,7 @@ The store guards keys including `theme`, `activated_plugins`, `licensed_to`, `me
 setting()->forceSet('theme', 'your-theme')->save();
 ```
 
-`forceDelete()` bypasses the deletion guard. In the current database store, do not rely on the normal `delete()` guard to protect a numeric list of keys: its guard loop checks array indexes. Keep deletion lists limited to keys your plugin owns.
+Normal `delete()` skips guarded keys, both when you pass a list of keys and when you pass only `except`. `forceDelete()` bypasses the deletion guard. Keep deletion lists limited to keys your plugin owns.
 
 ## Settings Controllers
 

@@ -73,17 +73,19 @@ public function getData($id)
 
 ### Removing a Filter
 
-To remove a previously added filter, use the `remove_filter()` function:
+`remove_filter()` removes **every** callback registered on a hook, including the ones added by core and other plugins. It cannot remove a single callback:
 
 ```php
-remove_filter(string $tag)
+remove_filter(string $hook)
 ```
+
+Only use it on hooks your own plugin or theme owns. Removing a shared core hook such as `BASE_FILTER_PUBLIC_SINGLE_DATA` would also remove the page, blog and gallery resolvers and make every slug URL return 404.
 
 #### Example
 
 ```php
-// Remove all callbacks for a filter
-remove_filter(BASE_FILTER_PUBLIC_SINGLE_DATA);
+// Remove all callbacks for a hook your plugin defines
+remove_filter('my_plugin_filter_item_data');
 ```
 
 ## Common Filter Hooks
@@ -255,7 +257,7 @@ PostForm::afterSaving(function (FormAbstract $form): void {
 }, 120);
 ```
 
-`BASE_FILTER_BEFORE_RENDER_FORM` is applied as a filter with `(FormAbstract $form, $model)` only when the model is a `BaseModel`; its return value is ignored, so customize the form object itself. The same hook name is also fired as an action with `($form)` just before rendering. `BASE_FILTER_AFTER_RENDER_FORM` behaves differently depending on how you listen: registered with `add_filter()` it receives `(FormAbstract $form, $model)` **before** rendering and its return value is discarded; registered with `add_action()` (which is what `afterRendering()` does) it receives `($form, $rendered)` with the completed HTML, which you can observe but not replace. See [Form Hooks](./form-builder-hooks.md).
+`BASE_FILTER_BEFORE_RENDER_FORM` is applied as a filter with `(FormAbstract $form, $model)` only when the model is a `BaseModel`; its return value is ignored, so customize the form object itself. The same hook name is also fired as an action with `($form)` just before rendering. `BASE_FILTER_AFTER_RENDER_FORM` behaves differently depending on how you listen: registered with `add_filter()` it receives `(FormAbstract $form, $model)` **before** rendering and its return value is discarded; registered with `add_action()` (which is what `FormAbstract::afterRendering()` does; a subclass such as `PostForm::afterRendering()` uses its own per-form hook with the same arguments) it receives `($form, $rendered)` with the completed HTML, which you can observe but not replace. See [Form Hooks](./form-builder-hooks.md).
 
 ### Table Query Filters
 
