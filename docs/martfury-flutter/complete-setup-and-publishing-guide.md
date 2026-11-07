@@ -266,8 +266,11 @@ If you use Firebase, the Android package name you register there must match `app
 1. Select the **Runner** target
 2. Go to **General** → **Identity**
 3. Change **Bundle Identifier** to `com.yourcompany.yourstore`
+4. Go to **Signing & Capabilities** and select your own Apple Developer **Team**
 
 Or edit `ios/Runner.xcodeproj/project.pbxproj` and replace all instances of `com.example.martfury` with your identifier.
+
+The project ships without a development team, so you must pick yours before you can sign an iOS build. If you build on Codemagic or another CI service instead of your own Mac, set up code signing there (for Codemagic: add an App Store Connect API key under **Team settings → Integrations → Developer Portal**, then choose **Automatic** under **Distribution → iOS code signing** in your workflow). A build without your team and a matching provisioning profile fails with `No profiles for 'com.example.martfury' were found`.
 
 ::: warning Important
 - `applicationId` (Android) and `Bundle Identifier` (iOS) must be **unique** — they cannot be changed after publishing
