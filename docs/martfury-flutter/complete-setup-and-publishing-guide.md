@@ -114,6 +114,10 @@ LICENSE_CODE=<your Envato purchase code or license.botble.com license code>
 
 `LICENSE_CODE` is your Envato purchase code (format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`). It is used for development license validation only. **Never put it in `API_KEY`.**
 
+::: tip Building in the cloud?
+`.env` is git-ignored, so cloud build services such as Codemagic cannot see it. See the FAQ entry *Building on Codemagic or another cloud service fails* at the end of this guide before your first cloud build.
+:::
+
 ### Step 6: Test the Connection
 
 Before running the app, verify your API works:
@@ -718,12 +722,57 @@ Both apps connect to the same Botble backend API.
 ### Do I need a Mac to publish on both stores?
 
 - **Google Play**: No — you can build Android on any OS
-- **Apple App Store**: **Yes** — you need a Mac with Xcode to build and archive iOS apps
+- **Apple App Store**: **Yes** — you need a Mac with Xcode to build and archive iOS apps, or a cloud macOS build service such as Codemagic (see the `.env` note below)
 
 ### How long does app review take?
 
 - **Google Play**: 1-3 days (new apps may take up to 7 days)
 - **Apple App Store**: 1-3 days (new apps may take up to 7 days)
+
+### Building on Codemagic or another cloud service fails with `No file or variants found for asset: .env`
+
+Cloud build services (Codemagic, Bitrise, GitHub Actions, etc.) build from your Git repository, not from your computer. `.env` is listed in the root `.gitignore`, so it never reaches the repository and the build stops with:
+
+```
+No file or variants found for asset: .env.
+Target release_ios_bundle_flutter_assets failed: Exception: Failed to bundle asset files.
+```
+
+Use **one** of these fixes:
+
+**Option 1 — commit `.env` to a private repository (simplest).** Deleting the line from `.gitignore` does not upload the file on its own. Add it explicitly:
+
+```bash
+git add -f .env
+git commit -m "Add .env"
+git push
+```
+
+Then open the repository on GitHub and check that `.env` is listed in the root, next to `pubspec.yaml`. The values in `.env` are bundled inside the app, so they are not secret from app users anyway, but keep the repository **private** — the license does not allow the source code to be public.
+
+**Option 2 — keep `.env` out of Git and recreate it during the build.** Encode the file, store the result as a secure environment variable (for example `ENV_FILE`), and write it back with a pre-build script.
+
+Encode it in the project folder and paste the **output** (a long string of letters), not the command itself, as the variable value:
+
+```powershell
+# Windows PowerShell — copies the result to the clipboard
+[Convert]::ToBase64String([IO.File]::ReadAllBytes(".env")) | Set-Clipboard
+```
+
+```bash
+# macOS / Linux
+base64 < .env | tr -d '\n'
+```
+
+Then add a pre-build script that runs before `flutter build`:
+
+```bash
+echo "$ENV_FILE" | base64 --decode > "$CM_BUILD_DIR/.env"
+```
+
+`$CM_BUILD_DIR` is Codemagic's clone folder; on other services, write the file to the repository root. The variable alone does nothing without this script.
+
+Either way, never commit `android/key.properties` or your `.jks` keystore.
 
 ### My app shows a blank/white screen after building
 
