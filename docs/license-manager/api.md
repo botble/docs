@@ -616,7 +616,7 @@ All parameters are optional and can be combined. With none, every license is lis
 - `email`: the license email (exact match)
 - `customer_id`: the license owner's customer ID (exact match)
 - `product_reference_id`: licenses of one product
-- `include_activations`: `1` adds an `activations` array to each license
+- `include_activations`: `1` adds an `activations` array to each license. Scoped keys also need `activations:list`, or the request returns `403`
 - `per_page`: results per page, 1 to 100 (default 15)
 
 Results are newest first and paginated (`meta`, `links`).
@@ -747,7 +747,8 @@ optional and can be combined.
 }
 ```
 
-Newest first. Requires the `activations:list` scope for scoped keys.
+Newest first. Scoped keys need `activations:list`, and the nested `license` object is only
+returned when the key also has `licenses:read` (it is left out otherwise).
 
 #### Domain Matching
 
