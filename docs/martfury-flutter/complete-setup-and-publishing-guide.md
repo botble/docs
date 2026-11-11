@@ -568,6 +568,14 @@ In App Store Connect → **App Privacy**:
 
 ### Step 6: Build for iOS
 
+::: warning Check these before your first iOS upload
+Each of these can make the upload fail or leave a feature not working, even when the build itself succeeds:
+
+1. **Your own `GoogleService-Info.plist`** (needed for push notifications and analytics). In the Firebase Console, open **Project settings → Your apps**, add an iOS app with your Bundle ID, download `GoogleService-Info.plist` and save it as `ios/Runner/GoogleService-Info.plist`. If the file is missing or still has the placeholder values from `GoogleService-Info.plist.example`, the build skips it with a warning and the app runs without Firebase. Older versions of the app shipped that placeholder file, which made the app close on launch, so replace it if your project still has it. To use Google login, enable Google under **Authentication → Sign-in method** *before* downloading, so the file includes `REVERSED_CLIENT_ID`.
+2. **Social login URL schemes in `ios/Runner/Info.plist`.** If you enable Facebook or Google login, add `fb` + your Facebook App ID and your `REVERSED_CLIENT_ID` to `CFBundleURLSchemes` (see the comment in that file). Never upload with placeholder values such as `fbYOUR_FACEBOOK_APP_ID`: App Store Connect rejects them with error 90158.
+3. **The app exists in App Store Connect** (Step 2). Registering the Bundle ID in the Apple Developer portal is not enough; without the app record, the upload fails with `Cannot determine the Apple ID from Bundle ID`.
+:::
+
 Make sure your `.env` file has `APP_ENV=production`:
 
 ```bash
@@ -594,6 +602,8 @@ flutter build ipa --release
 ```
 
 Then upload using **Transporter** app (free from Mac App Store) or `xcrun altool`.
+
+The file is named after `name` in `pubspec.yaml`, and only you see it. App Store users see the name you set in App Store Connect, and the home screen shows `CFBundleDisplayName` from `ios/Runner/Info.plist`. Do not rename the project in `pubspec.yaml`: every Dart file imports the app as `package:martfury/...`.
 
 ### Step 8: Submit for Review in App Store Connect
 
@@ -773,6 +783,22 @@ echo "$ENV_FILE" | base64 --decode > "$CM_BUILD_DIR/.env"
 `$CM_BUILD_DIR` is Codemagic's clone folder; on other services, write the file to the repository root. The variable alone does nothing without this script.
 
 Either way, never commit `android/key.properties` or your `.jks` keystore.
+
+### iOS upload fails with `Cannot determine the Apple ID from Bundle ID`
+
+The build worked, but App Store Connect has no app for that Bundle ID yet. Create it once under **Apps → + → New App** and pick your Bundle ID (see [Step 2](#step-2-create-your-app-in-app-store-connect)), wait a few minutes, then upload again. On Codemagic, also turn on publishing under **Distribution → App Store Connect** with the same API key you use for code signing; each successful build then appears under **TestFlight** after Apple processes it (about 10-30 minutes).
+
+### iOS upload fails with error 90158 (`URL schemes ... are not in the correct format`)
+
+`ios/Runner/Info.plist` contains a placeholder URL scheme such as `fbYOUR_FACEBOOK_APP_ID` or `YOUR_GOOGLE_CLIENT_ID`. Underscores are not allowed in URL schemes, so Apple rejects the upload. In `CFBundleURLSchemes`, either replace each placeholder with the real value (`fb` + your Facebook App ID; the `REVERSED_CLIENT_ID` from your `GoogleService-Info.plist`) or delete the line if you do not use that login on iOS. Then rebuild and upload.
+
+### GitHub Actions fails at `flutter analyze` after I push the project
+
+Older versions of the app included `.github/workflows/test.yml`, our own code check. It does not build or publish the app, and Codemagic does not use it. It fails because `flutter analyze` treats warnings as errors, and editing the code (for example removing a widget that is still declared) easily adds a warning. Delete the `.github` folder, or change the command in that file to `flutter analyze --no-fatal-infos --no-fatal-warnings`.
+
+### Meta asks for a Class Name when I add the Android platform for Facebook login
+
+Use your `applicationId` as the **Package Name** and `com.example.martfury.MainActivity` as the **Class Name**. The class stays in the `com.example.martfury` package because `namespace` is left unchanged (see [Update App Identifiers](#update-app-identifiers)). If Meta says the package is not found on Google Play, choose **Use this package name**.
 
 ### My app shows a blank/white screen after building
 

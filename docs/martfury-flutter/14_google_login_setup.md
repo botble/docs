@@ -107,6 +107,10 @@ Update your `ios/Runner/Info.plist` to include the **reversed client ID** as a U
 The reversed client ID is provided in Google Cloud Console when you create the iOS OAuth client. It looks like: `com.googleusercontent.apps.123456789-abcdefg`
 :::
 
+::: warning
+`Info.plist` already has a `CFBundleURLTypes` block. Add the line to its existing `CFBundleURLSchemes` array instead of creating a second block. App Store Connect rejects placeholder schemes such as `YOUR_GOOGLE_CLIENT_ID` with error 90158, so never upload before replacing them.
+:::
+
 ### Android Configuration
 
 The `google_sign_in` Flutter package handles Android configuration automatically. Ensure you have:

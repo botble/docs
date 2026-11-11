@@ -53,7 +53,7 @@ The Client Token is different from the App Secret. Make sure you copy the **Clie
 
 1. In the **Android** section (or click **Add Platform** → **Android**)
 2. Enter your **Package Name** (e.g., `com.yourcompany.martfury`)
-3. Enter **Class Name**: `com.yourcompany.martfury.MainActivity`
+3. Enter **Class Name**: `com.example.martfury.MainActivity` (keep this even after you change `applicationId`: the class stays in the `com.example.martfury` package because `namespace` is not changed)
 4. Add **Key Hashes**:
    ```bash
    # For debug keystore (Mac/Linux)
@@ -121,6 +121,10 @@ Update your `ios/Runner/Info.plist` with your Facebook credentials:
 - `YOUR_APP_ID` → Your Facebook App ID
 - `YOUR_CLIENT_TOKEN` → Your Facebook Client Token
 - `Your App Name` → Your app's display name
+
+::: warning
+`Info.plist` already has a `CFBundleURLTypes` block. Add the `fb...` line to its existing `CFBundleURLSchemes` array instead of creating a second block. App Store Connect rejects placeholder schemes such as `fbYOUR_APP_ID` with error 90158, so never upload before replacing them.
+:::
 
 ### Android Configuration
 
