@@ -608,8 +608,26 @@ Version files are stored and served **byte for byte**. License Manager never unz
 GET /api/internal/product-licenses
 ```
 
+All parameters are optional and can be combined. With none, every license is listed.
+
 **Query Parameters:**
-- `keyword` (required): matched against the license code and invoice number (partial match)
+- `keyword`: matched against the license code and invoice number (partial match)
+- `domain`: licenses activated on this domain, or listing it in their allowed domains (see [domain matching](#domain-matching))
+- `email`: the license email (exact match)
+- `customer_id`: the license owner's customer ID (exact match)
+- `product_reference_id`: licenses of one product
+- `include_activations`: `1` adds an `activations` array to each license
+- `per_page`: results per page, 1 to 100 (default 15)
+
+Results are newest first and paginated (`meta`, `links`).
+
+```http
+GET /api/internal/product-licenses?email=customer@example.com&include_activations=1
+```
+
+::: info Since 1.1.12
+`keyword` used to be required, and the other filters did not exist.
+:::
 
 #### Get License
 
@@ -671,6 +689,72 @@ DELETE /api/internal/blocked-product-licenses/{id}
 ```
 
 ### Activations
+
+#### List Activations
+
+```http
+GET /api/internal/product-activations
+```
+
+Finds which license runs on a domain, or every site a license is installed on. All parameters are
+optional and can be combined.
+
+**Query Parameters:**
+- `domain`: activations on this domain (see [domain matching](#domain-matching))
+- `license_code`: activations of one license
+- `product_reference_id`: activations of one product
+- `customer_id`: activations owned by this customer, directly or through their license
+- `email`: activations of licenses sold to this email (exact match)
+- `is_active`: `1` for sites currently holding a slot, `0` for released ones
+- `per_page`: results per page, 1 to 100 (default 15)
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": 812,
+      "product_reference_id": "PROD-001",
+      "product_name": "My Product",
+      "license_code": "LIC-ABC-123",
+      "customer_id": "CUST-001",
+      "url": "https://shop.example.com",
+      "domain": "shop.example.com",
+      "ip_address": "203.0.113.10",
+      "user_agent": "GuzzleHttp/7",
+      "is_valid": true,
+      "is_active": true,
+      "activated_at": "2026-11-02T08:15:00.000000Z",
+      "created_at": "2026-11-02T08:15:00.000000Z",
+      "updated_at": "2026-11-02T08:15:00.000000Z",
+      "license": {
+        "id": 301,
+        "type": "Regular License",
+        "provider": null,
+        "customer_id": "CUST-001",
+        "email": "customer@example.com",
+        "invoice": "INV-1001",
+        "parallel_uses": 1,
+        "is_valid": true,
+        "expires_at": null,
+        "support_until": "2027-05-02T00:00:00.000000Z",
+        "updates_until": null
+      }
+    }
+  ],
+  "links": { "first": "...", "last": "...", "prev": null, "next": null },
+  "meta": { "current_page": 1, "per_page": 15, "total": 1 }
+}
+```
+
+Newest first. Requires the `activations:list` scope for scoped keys.
+
+#### Domain Matching
+
+The `domain` filter ignores the scheme, a leading `www.`, a port, any path, and letter case, then
+matches anywhere in the site URL. A value with no host left (such as `https://`) returns no results. `example.com` finds `https://www.example.com/shop` and also
+`https://shop.example.com`. Because it is a partial match, check each result's `url` before
+acting on it.
 
 #### Re-activate an Activation
 
