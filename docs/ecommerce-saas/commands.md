@@ -123,7 +123,7 @@ php artisan tenancy:billing-maintenance [--dry-run]
 
 Suspends stores past their grace period and purges cancelled stores past retention.
 `--dry-run` reports what a run would suspend or drop without changing anything. Cron it
-daily. With `TENANCY_AUTO_PURGE=false` it still suspends but never purges, and the header
+daily. From 1.0.4, with `TENANCY_AUTO_PURGE=false` it still suspends but never purges, and the header
 reads "auto-purge off".
 
 ## `tenancy:send-lifecycle-emails`

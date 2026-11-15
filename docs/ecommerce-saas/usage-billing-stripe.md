@@ -115,7 +115,7 @@ A cancelled subscription keeps the store's data for `TENANCY_RETENTION_DAYS` (de
 
 ### Turning off automatic purging
 
-Set `TENANCY_AUTO_PURGE=false` to keep cancelled stores until you delete them yourself:
+From 1.0.4, set `TENANCY_AUTO_PURGE=false` to keep cancelled stores until you delete them yourself:
 
 ```dotenv
 TENANCY_AUTO_PURGE=false

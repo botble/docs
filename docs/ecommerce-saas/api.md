@@ -480,7 +480,7 @@ API caller does not have.
 | `POST /stores/{id}/subscription/change-plan` | `{"plan":"starter"}` | `write` | `422 plan_too_small` when the store exceeds the target's limits; `409 same_plan` |
 | `POST /stores/{id}/subscription/extend` | `{"days":30}` | `write` | `1..3650` |
 | `POST /stores/{id}/subscription/reactivate` | — | `write` | after a cancel, within retention |
-| `POST /stores/{id}/subscription/cancel` | — | `write` | store enters retention, then is purged (kept instead when `auto_purge` is `false`) |
+| `POST /stores/{id}/subscription/cancel` | — | `write` | store enters retention, then is purged (kept instead when `auto_purge` is `false`, 1.0.4+) |
 
 All five answer the subscription resource. A Stripe-managed subscription refuses every
 one with `409 stripe_managed` — change it in Stripe.

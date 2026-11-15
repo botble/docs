@@ -59,7 +59,7 @@ stored anywhere you can read back later.
 | `store.theme_changed` | The storefront theme was switched | `theme{from,to}` |
 | `store.suspended` | The store was taken offline | `subscription?`, `meta.log` |
 | `store.resumed` | The store was brought back online | `subscription?`, `meta.log` |
-| `store.cancelled` | The subscription was cancelled; retention starts | `subscription`, `retention_days`, `auto_purge` |
+| `store.cancelled` | The subscription was cancelled; retention starts | `subscription`, `retention_days`, `auto_purge` (1.0.4+) |
 | `store.deleted` | The store and its database were dropped | `subscription?`, `meta.reason` |
 | `subscription.assigned` | A plan was attached to a store with none | `subscription`, `meta.log` |
 | `subscription.plan_changed` | Upgrade or downgrade | `subscription`, `meta.log` |
