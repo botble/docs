@@ -71,7 +71,9 @@ user id.
 
 Closing a store offers **Cancel** first: it is the recoverable path. A cancelled store
 keeps its data for the retention window (`TENANCY_RETENTION_DAYS`, default 30 days) —
-a store that cancels and resubscribes inside that window reopens automatically.
+a store that cancels and resubscribes inside that window reopens automatically. With
+`TENANCY_AUTO_PURGE=false` it is kept until you delete it (see
+[Turning off automatic purging](./usage-billing-stripe.md#turning-off-automatic-purging)).
 
 Permanent deletion is a second, separate step that requires typing the store's address,
 checked server-side, so a scripted or mistargeted request cannot delete the wrong

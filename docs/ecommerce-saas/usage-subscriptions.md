@@ -29,7 +29,7 @@ current list price.
 | `active` | yes | Paying (or admin-assigned with no billing) |
 | `past_due` | yes | A Stripe payment failed; serves for `TENANCY_BILLING_GRACE_DAYS` (default 14) before suspension |
 | `suspended` | no (402 parked page) | Grace period expired, trial expired, or a manual suspend |
-| `cancelled` | no (402 parked page) | Subscription cancelled; data kept for `TENANCY_RETENTION_DAYS` (default 30) |
+| `cancelled` | no (402 parked page) | Subscription cancelled; data kept for `TENANCY_RETENTION_DAYS` (default 30), or until deleted when `TENANCY_AUTO_PURGE=false` |
 
 A store that cancels and resubscribes inside the retention window reopens
 automatically. The admin panel itself stays reachable for suspended stores on purpose

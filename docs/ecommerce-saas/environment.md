@@ -111,6 +111,7 @@ retry with `php artisan tenancy:install-preset-media`.
 | `TENANCY_BILLING_GRACE_DAYS` | `14` | Days of grace after a payment fails before the store is suspended |
 | `TENANCY_RETENTION_DAYS` | `30` | Days to retain a cancelled store before deleting it and its database |
 | `TENANCY_RETENTION_WARNING_DAYS` | `7` | Days before retention expires to send a final warning |
+| `TENANCY_AUTO_PURGE` | `true` | `false` keeps cancelled stores until an operator deletes them. Suspensions and the other billing tasks keep running, and no deletion warnings are sent. See [Cancellation, retention and purge](./usage-billing-stripe.md#cancellation-retention-and-purge) |
 | `TENANCY_TRIAL_REMINDER_DAYS` | `7,3,1` | Days before trial ends to send reminder emails (comma-separated) |
 | `TENANCY_ALLOW_PROMOTION_CODES` | `true` | Allow store owners to apply coupon/promotion codes |
 | `TENANCY_COUPONS_ENABLED` | `true` | Enable the coupons feature in the operator console |

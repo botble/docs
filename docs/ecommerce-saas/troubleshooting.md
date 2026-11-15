@@ -264,10 +264,28 @@ upgrade — patch 1 (settings load order) and patch 2 (mail config guard) exist
 specifically to stop state from one tenant surviving into the next request.
 
 **Fix:** run the isolation regression suite — it fails loudly if either patch
-regressed:
+regressed. The suite ships in the release zip (`platform/packages/tenancy/tests` and
+`phpunit.xml`); PHPUnit itself is a dev dependency and is not included.
+
+::: danger Never run the suite on production
+The tests create and drop their own store databases and write and delete test rows in
+the central database `DB_DATABASE` points at. Without a `.env.testing`, Laravel falls
+back to `.env`, which on a live server is your real database. Run it only on a staging
+copy of the site.
+:::
+
+On the staging copy, create a `.env.testing` (a copy of `.env`) that points at a
+throwaway database and namespaces the test stores:
+
+```dotenv
+DB_DATABASE=saas_testing
+TENANCY_DB_PREFIX=testtenant
+```
+
+Then:
 
 ```bash
-composer install    # release zips ship without dev dependencies or tests/
+composer install    # adds PHPUnit and the other dev dependencies
 vendor/bin/phpunit -c platform/packages/tenancy/phpunit.xml
 ```
 

@@ -26,7 +26,7 @@ The **Operator console** (`/admin/operator` on the central domain) is where you 
 | Feature | Purpose |
 |---|---|
 | **Stores** | Create, suspend, resume, cancel, delete stores; impersonate owners; view usage |
-| **Plans** | Design subscription tiers with limits (products, orders/month, storage, staff users; orders and storage are tracked, not enforced) and custom-domain access |
+| **Plans** | Design subscription tiers with limits (products, orders/month, storage, staff users; orders are tracked, not enforced) and custom-domain access |
 | **Subscriptions** | Assign, change, extend, cancel and reactivate subscriptions; each has an audit log |
 | **Plan orders / Bank transfer** | Approve or reject plan orders (bank transfer; gateway orders approve themselves and show *Needs review* when a payment cannot be confirmed); set the transfer instructions. Stripe billing uses Stripe Checkout and the Billing Portal |
 | **Plan billing gateways** | From 1.0.2: let store owners pay a plan period with PayPal, Razorpay, Paystack or Mollie |

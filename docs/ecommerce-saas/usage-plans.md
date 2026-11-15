@@ -25,7 +25,7 @@ Open **Plans → Create plan** or edit an existing one:
 | Trial days | Days a new subscriber gets before the first charge |
 | Max products | `-1` = unlimited |
 | Max orders/month | `-1` = unlimited; collected for the dashboard, not enforced |
-| Max storage (MB) | `-1` = unlimited; collected for the dashboard, not enforced |
+| Max storage (MB) | `-1` = unlimited; enforced at upload |
 | Max staff users | `-1` = unlimited |
 | Allows custom domain | Gates the store owner's **Domains** screen |
 | Features | Checkboxes for registered plan feature flags (e.g. `remove_branding`) |
@@ -35,9 +35,9 @@ Open **Plans → Create plan** or edit an existing one:
 ![New-plan form with price, interval, trial and limits](./images/operator-plan-create.png)
 
 Limits use `-1` for unlimited, never `NULL` — a quota check never has to special-case
-null. Only **products** and **staff users** are actually enforced (on model creation,
-so the API and imports are covered too, not just the UI); orders and storage are
-dashboard numbers only.
+null. **Products** and **staff users** are enforced on model creation, so the API and
+imports are covered too, not just the UI. **Storage** is enforced at upload. **Orders**
+are a dashboard number only.
 
 ## Apps and themes on a plan
 
@@ -62,8 +62,18 @@ its current limits rather than losing them. See
 
 Quotas are enforced on model creation, not in the UI — a store owner also has API and
 import access. Hitting the products or staff-users ceiling refuses the create with an
-explanation; existing rows are untouched. Orders and storage limits are shown on the
-dashboard but block nothing.
+explanation; existing rows are untouched.
+
+Storage is checked before a file is written. When an upload would take a store past
+its plan's storage, it is refused with a message and nothing is stored. That covers
+every upload that goes through the media library: the media manager, product images,
+theme uploads, the REST API and image URLs in product CSV imports. Existing files are
+never deleted, and orders, checkout and editing keep working. Files a plugin writes
+straight to disk, outside the media library, are not checked when written, but they
+still count toward the store's total. Usage is measured on the local disk, so the limit
+does not apply when media is stored on S3 or another cloud disk.
+
+The orders limit is shown on the dashboard but blocks nothing.
 
 ## What a downgrade does
 
@@ -75,11 +85,13 @@ fits:
   upgrading brings them straight back.
 - **Products or staff users** over the new ceiling are kept as-is; the store simply
   cannot create more until it's back under the limit.
+- **Storage** over the new ceiling is kept as-is; the store cannot upload more until
+  it's back under the limit.
 
 A downgrade is **blocked**, not silently allowed, when a store has more products or
 staff users than the target plan permits — the customer's own Billing screen refuses
-the switch and names the number that's the problem, because those are the only two
-quotas actually enforced. An **operator** moving a store down from the console is
+the switch and names the number that's the problem. Storage does not block a downgrade:
+the files stay and only new uploads are refused. An **operator** moving a store down from the console is
 warned instead of blocked — usually the resolution to a billing dispute — and the
 store keeps what it has.
 

@@ -113,6 +113,36 @@ A cancelled subscription keeps the store's data for `TENANCY_RETENTION_DAYS` (de
 30). Resubscribing inside that window reopens the store automatically.
 `tenancy:billing-maintenance` purges stores past retention.
 
+### Turning off automatic purging
+
+Set `TENANCY_AUTO_PURGE=false` to keep cancelled stores until you delete them yourself:
+
+```dotenv
+TENANCY_AUTO_PURGE=false
+```
+
+With it off:
+
+- `tenancy:billing-maintenance` still suspends expired trials and past-due stores and
+  still records the MRR history, but never drops a store's database.
+- No "your data will be deleted" emails go out, neither at cancellation nor before
+  the old purge date.
+- The cancel dialogs, the cancel message and the pricing FAQ say the data is kept
+  until the store is deleted, instead of naming a number of days.
+- An owner can still sign in and resubscribe at any time.
+- You can still delete a store by hand from the console or the API.
+- The Terms of Service template's retention sentence follows the switch. A Terms page
+  you already published keeps its own text, so edit it by hand.
+
+If your config is cached, run `php artisan config:cache` after changing it.
+
+::: warning Turning it back on
+Retention is counted from the cancellation date. Switching `TENANCY_AUTO_PURGE` back to
+`true` drops every store cancelled more than `TENANCY_RETENTION_DAYS` ago on the next
+nightly run, with no warning email. Run
+`php artisan tenancy:billing-maintenance --dry-run` first to see which stores that is.
+:::
+
 ## Lifecycle emails
 
 Sent to the store's `owner_email` via the **central** mail configuration (never the
@@ -124,7 +154,7 @@ store's own SMTP settings):
 | Trial ending | `TENANCY_TRIAL_REMINDER_DAYS` (default `7,3,1`) days before trial end |
 | Payment failed | Once per failed Stripe invoice |
 | Suspension | From `tenancy:billing-maintenance` |
-| Cancellation / deletion warning | Ahead of the retention purge |
+| Cancellation / deletion warning | Ahead of the retention purge (not sent when `TENANCY_AUTO_PURGE=false`) |
 
 Time-based ones (trial ending, cancellation warning) are sent by
 `tenancy:send-lifecycle-emails` — cron it daily. Every send is claimed first in a

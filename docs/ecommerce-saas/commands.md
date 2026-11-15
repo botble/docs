@@ -123,7 +123,8 @@ php artisan tenancy:billing-maintenance [--dry-run]
 
 Suspends stores past their grace period and purges cancelled stores past retention.
 `--dry-run` reports what a run would suspend or drop without changing anything. Cron it
-daily.
+daily. With `TENANCY_AUTO_PURGE=false` it still suspends but never purges, and the header
+reads "auto-purge off".
 
 ## `tenancy:send-lifecycle-emails`
 
@@ -131,7 +132,8 @@ daily.
 php artisan tenancy:send-lifecycle-emails [--dry-run]
 ```
 
-Sends trial-ending reminders and pre-purge retention warnings. `--dry-run` lists who
+Sends trial-ending reminders and pre-purge retention warnings (the retention warnings are
+skipped when `TENANCY_AUTO_PURGE=false`). `--dry-run` lists who
 would be emailed without sending. Every send is recorded in central
 `tenant_notifications` (unique per tenant+type+key), so re-runs never double-send.
 
