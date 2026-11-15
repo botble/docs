@@ -55,24 +55,24 @@ We have **zero tested installs** on aaPanel, CloudPanel, cPanel-WHM, DirectAdmin
 
 Stores are independent. One store's spike in traffic does not affect another. But if your server runs out of disk or RAM, *all* stores slow down or fail together. Monitor free disk and plan for growth.
 
-## Managed platforms
+## Where to run it
 
-If you do not want to operate a VPS yourself, use a managed host that offers the checklist above and has zero restrictions on databases, Redis, and system processes.
+Run it on a plain Linux VPS or dedicated server where you have root. Our own Ecommerce SaaS demo runs this way, on a Vultr VPS — that is the only provider we have tested.
 
-**Recommended for production:**
-- **DigitalOcean App Platform** — not Droplets; Droplets require you to manage everything, which works but adds overhead
-- **Railway.app** — simpler UX, generous free tier, works well for staging
-- **Fly.io** — global edge, ideal if your customers are distributed
+Any provider whose servers pass the checklist above should work the same way, because the platform needs nothing beyond root, MySQL, PHP and a process manager: for example DigitalOcean Droplets, Hetzner Cloud, Linode or AWS EC2. We have not tested these ourselves, so run the checklist before you commit. Choose on price, region and how quickly their support answers.
 
-**Tested and works but requires more setup:**
-- **AWS (EC2 + RDS)** — full control, steep learning curve
-- **Linode** — cheaper than DigitalOcean, same hands-on requirement
-- **Hetzner** — budget option, Europe-focused
+**Less server administration:** a *managed VPS* — the host patches the OS, monitors the server and takes snapshots, while you keep root — removes most of the day-to-day work and still fits the checklist. Ask the host to confirm root access and global database grants first.
 
-Every managed platform requires you to configure secrets (database credentials, Redis auth, API keys) and webhooks yourself. That setup is the same across all of them.
+::: warning Platform-as-a-service hosting is not supported
+App platforms such as DigitalOcean App Platform, Railway, Fly.io or Heroku-style hosts are untested and a poor fit:
 
-::: tip DNS and TLS are still your job
-Even on a managed platform, you own your domain, DNS provider, and certificate. We do not manage either. Wildcard TLS via DNS-01 is your responsibility.
+- Each store's uploads are written to the server's local disk (`storage/tenants/`). On these platforms the filesystem is usually reset on every deploy unless you attach a persistent volume.
+- The queue worker has to run permanently next to the app, as its own long-lived process.
+- The database user needs `CREATE DATABASE` and `DROP DATABASE` on `*.*`. Some managed database services restrict this — test it first.
+:::
+
+::: tip DNS and TLS are your job
+Wherever you host, you own your domain, DNS provider and certificate. Wildcard TLS via DNS-01 is your responsibility.
 :::
 
 ## What the docs assume about your server
@@ -84,5 +84,4 @@ From this point forward, all documentation assumes:
 - You can run `systemctl` commands to manage services
 - You can point DNS records at the server and issue certificates
 
-If you are using a managed platform (Fly, Railway, DigitalOcean App Platform), adapt the instructions for that platform's deploy model.
 
