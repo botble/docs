@@ -46,7 +46,6 @@ export default [
       { text: 'Media - Setup Wasabi', link: '/orisa/usage-media-wasabi' },
       { text: 'Setup email', link: '/orisa/usage-email' },
       { text: 'Currencies', link: '/orisa/usage-currencies' },
-      { text: 'Setup social login', link: '/orisa/usage-social-login' },
       { text: 'Location', link: '/orisa/usage-location' },
       { text: 'Invoice template', link: '/orisa/invoice-template' },
       { text: 'Setup cronjob', link: '/orisa/cronjob' },

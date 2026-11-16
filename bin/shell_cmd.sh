@@ -8,6 +8,28 @@ cd "$(dirname "$0")/.."
 # over generic docs from the cms folder.
 projects=("cms" "flex-home" "lara-mag" "miranda" "stories" "jobcy" "farmart" "transp" "gerow" "hasa" "shopwise" "martfury" "wowy" "nest" "ninico" "shofy" "athena" "homzen" "zelio" "carento" "travlla" "infinia" "isak" "qore" "orisa" "amerce" "velura" "auxero" "jobzilla" "restoria" "norio" "snapcart")
 
+# Synced pages a product must NOT get, because it does not ship that plugin. Checked against
+# each product's platform/plugins (2026-11-16). Update this when a product adds or drops a plugin.
+# A case statement, not an associative array: macOS /bin/bash is 3.2.
+function is_excluded() {
+  local project="$1" file="$2"
+
+  case "$file" in
+    usage-social-login.md)
+      case "$project" in
+        lara-mag|stories|transp|gerow|zelio|infinia|isak|qore|orisa|velura|restoria|norio) return 0 ;;
+      esac
+      ;;
+    usage-newsletter.md)
+      case "$project" in
+        lara-mag) return 0 ;;
+      esac
+      ;;
+  esac
+
+  return 1
+}
+
 function sync_doc_files() {
   files_to_sync=(
     "installation-command-line.md"
@@ -61,6 +83,12 @@ function sync_doc_files() {
     mkdir -p ./docs/"$i"/images
 
     for j in "${files_to_sync[@]}"; do
+      if is_excluded "$i" "$j"; then
+        # Remove a copy left by an earlier sync, so the page is not built or searchable.
+        rm -f ./docs/"$i"/"$j"
+        continue
+      fi
+
       cp ./docs/cms/"$j" ./docs/"$i"/"$j"
     done
 
