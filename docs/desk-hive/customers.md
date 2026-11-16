@@ -59,9 +59,9 @@ The customer portal is accessible at `/support`. Customers can log in, register,
 | Page | Path | Description |
 |------|------|-------------|
 | Homepage | `/support` | Public support homepage |
-| Login | `/login` | Customer login |
-| Register | `/register` | Customer registration |
-| Forgot Password | `/forgot-password` | Password reset request |
+| Login | `/support/login` | Customer login |
+| Register | `/support/register` | Customer registration |
+| Forgot Password | `/support/forgot-password` | Password reset request |
 | Dashboard | `/support/dashboard` | Customer dashboard |
 | Tickets | `/support/tickets` | Ticket list and submission |
 | Knowledge Base | `/support/knowledge-base` | Article browser |
@@ -69,7 +69,7 @@ The customer portal is accessible at `/support`. Customers can log in, register,
 
 ### Registration
 
-If **Customer registration** is enabled in settings, customers can self-register at `/register`. To disable self-registration and require admin-created accounts, turn off **Customer registration** in **Admin → Settings → Support Desk Settings → Customer Portal**.
+If **Customer registration** is enabled in settings, customers can self-register at `/support/register`. To disable self-registration and require admin-created accounts, turn off **Customer registration** in **Admin → Settings → Support Desk Settings → Customer Portal**.
 
 ### Portal Pages
 
@@ -100,7 +100,7 @@ Customers can update their profile at `/support/settings`:
 
 ### Login
 
-Customers log in at `/login` with email and password.
+Customers log in at `/support/login` with email and password. The old `/login`, `/register` and `/forgot-password` URLs redirect to their `/support/...` equivalents when the DeskHive theme is active.
 
 ### Social Login
 

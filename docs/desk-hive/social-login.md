@@ -103,4 +103,4 @@ Customers who register via social login do not have a password set. They can set
 
 ## Customer Experience
 
-Social login buttons appear on the login (`/login`) and registration (`/register`) pages. Only providers that are enabled and configured in the Social Login settings are shown.
+Social login buttons appear on the login (`/support/login`) and registration (`/support/register`) pages. Only providers that are enabled and configured in the Social Login settings are shown.

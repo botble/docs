@@ -52,7 +52,7 @@ Common issues and solutions for DeskHive.
 
 ### Login Page Not Found (404)
 
-**Problem**: Accessing `/login` or `/support` returns a 404.
+**Problem**: Accessing `/support/login` or `/support` returns a 404.
 
 **Solutions**:
 1. Clear the route cache:
