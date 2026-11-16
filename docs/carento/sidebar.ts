@@ -40,8 +40,17 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/carento/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/carento/usage-media-wasabi' },
             { text: 'Setup email', link: '/carento/usage-email' },
+            { text: 'Setup social login', link: '/carento/usage-social-login' },
+            { text: 'Backup', link: '/carento/plugin-backup' },
             { text: 'Setup cronjob', link: '/carento/cronjob' },
             { text: 'Newsletter', link: '/carento/usage-newsletter' },
+        ],
+    },
+    {
+        text: 'Development',
+        items: [
+            { text: 'API', link: '/carento/api' },
+            { text: 'Rename theme', link: '/carento/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

@@ -41,8 +41,17 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/homzen/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/homzen/usage-media-wasabi' },
             { text: 'Setup email', link: '/homzen/usage-email' },
+            { text: 'Newsletter', link: '/homzen/usage-newsletter' },
+            { text: 'Backup', link: '/homzen/plugin-backup' },
             { text: 'Setup social login', link: '/homzen/usage-social-login' },
             { text: 'Setup cronjob', link: '/homzen/cronjob' },
+        ],
+    },
+    {
+        text: 'Development',
+        items: [
+            { text: 'API', link: '/homzen/api' },
+            { text: 'Rename theme', link: '/homzen/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

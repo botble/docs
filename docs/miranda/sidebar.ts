@@ -35,6 +35,8 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/miranda/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/miranda/usage-media-wasabi' },
       { text: 'Setup email', link: '/miranda/usage-email' },
+      { text: 'Setup social login', link: '/miranda/usage-social-login' },
+      { text: 'Backup', link: '/miranda/plugin-backup' },
       { text: 'Setup cronjob', link: '/miranda/cronjob' },
       { text: 'Newsletter', link: '/miranda/usage-newsletter' },
     ],
@@ -43,6 +45,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/miranda/theme-rename' },
+      { text: 'API', link: '/miranda/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[];

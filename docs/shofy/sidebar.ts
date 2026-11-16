@@ -44,6 +44,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/shofy/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/shofy/usage-media-wasabi' },
             { text: 'Setup email', link: '/shofy/usage-email' },
+            { text: 'Backup', link: '/shofy/plugin-backup' },
             { text: 'Currencies', link: '/shofy/usage-currencies' },
             { text: 'Setup social login', link: '/shofy/usage-social-login' },
             { text: 'Location', link: '/shofy/usage-location' },
@@ -113,6 +114,7 @@ export default [
             { text: 'Product Detail Hooks', link: '/shofy/developer-product-detail-hooks' },
             { text: 'Payment Gateway Integration', link: '/shofy/developer-payment-gateway' },
             { text: 'Shipping Provider Integration', link: '/shofy/developer-shipping-provider' },
+            { text: 'Rename theme', link: '/shofy/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

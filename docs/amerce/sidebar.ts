@@ -57,6 +57,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/amerce/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/amerce/usage-media-wasabi' },
             { text: 'Setup email', link: '/amerce/usage-email' },
+            { text: 'Backup', link: '/amerce/plugin-backup' },
             { text: 'Currencies', link: '/amerce/usage-currencies' },
             { text: 'Setup social login', link: '/amerce/usage-social-login' },
             { text: 'Location', link: '/amerce/usage-location' },
@@ -127,6 +128,7 @@ export default [
             { text: 'Product Detail Hooks', link: '/amerce/developer-product-detail-hooks' },
             { text: 'Payment Gateway Integration', link: '/amerce/developer-payment-gateway' },
             { text: 'Shipping Provider Integration', link: '/amerce/developer-shipping-provider' },
+            { text: 'Rename theme', link: '/amerce/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

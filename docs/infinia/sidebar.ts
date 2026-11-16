@@ -40,7 +40,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/infinia/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/infinia/usage-media-wasabi' },
       { text: 'Setup email', link: '/infinia/usage-email' },
+      { text: 'Setup cronjob', link: '/infinia/cronjob' },
+      { text: 'Newsletter', link: '/infinia/usage-newsletter' },
       { text: 'Backup', link: '/infinia/plugin-backup' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/infinia/api' },
+      { text: 'Rename theme', link: '/infinia/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

@@ -43,6 +43,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/snapcart/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/snapcart/usage-media-wasabi' },
             { text: 'Setup email', link: '/snapcart/usage-email' },
+            { text: 'Backup', link: '/snapcart/plugin-backup' },
             { text: 'Currencies', link: '/snapcart/usage-currencies' },
             { text: 'Setup social login', link: '/snapcart/usage-social-login' },
             { text: 'Location', link: '/snapcart/usage-location' },
@@ -94,6 +95,12 @@ export default [
             { text: 'Reviews', link: '/snapcart/usage-reviews' },
             { text: 'Wishlist & Compare', link: '/snapcart/usage-wishlist-compare' },
             { text: 'Customer Management', link: '/snapcart/usage-customer-management' },
+        ],
+    },
+    {
+        text: 'Development',
+        items: [
+            { text: 'Rename theme', link: '/snapcart/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

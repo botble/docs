@@ -40,6 +40,8 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/auxero/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/auxero/usage-media-wasabi' },
             { text: 'Setup email', link: '/auxero/usage-email' },
+            { text: 'Setup social login', link: '/auxero/usage-social-login' },
+            { text: 'Backup', link: '/auxero/plugin-backup' },
             { text: 'Setup cronjob', link: '/auxero/cronjob' },
             { text: 'Newsletter', link: '/auxero/usage-newsletter' },
         ],
@@ -58,6 +60,13 @@ export default [
         text: 'API',
         items: [
             { text: 'REST API', link: '/auxero/usage-api' },
+        ],
+    },
+    {
+        text: 'Development',
+        items: [
+            { text: 'API', link: '/auxero/api' },
+            { text: 'Rename theme', link: '/auxero/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]

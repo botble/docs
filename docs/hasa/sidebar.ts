@@ -36,6 +36,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/hasa/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/hasa/usage-media-wasabi' },
             { text: 'Setup email', link: '/hasa/usage-email' },
+            { text: 'Backup', link: '/hasa/plugin-backup' },
             { text: 'Setup social login', link: '/hasa/usage-social-login' },
             { text: 'Location', link: '/hasa/usage-location' },
             { text: 'Invoice template', link: '/hasa/invoice-template' },
@@ -47,6 +48,7 @@ export default [
         text: 'Development',
         items: [
             { text: 'Rename theme', link: '/hasa/theme-rename' },
+            { text: 'API', link: '/hasa/api' },
         ]
     }
 ] satisfies DefaultTheme.SidebarItem[];

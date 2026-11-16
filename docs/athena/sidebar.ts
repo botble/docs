@@ -40,8 +40,17 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/athena/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/athena/usage-media-wasabi' },
       { text: 'Setup email', link: '/athena/usage-email' },
+      { text: 'Setup cronjob', link: '/athena/cronjob' },
+      { text: 'Setup social login', link: '/athena/usage-social-login' },
       { text: 'Backup', link: '/athena/plugin-backup' },
       { text: 'Newsletter', link: '/athena/usage-newsletter' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/athena/api' },
+      { text: 'Rename theme', link: '/athena/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

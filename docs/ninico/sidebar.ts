@@ -39,6 +39,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/ninico/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/ninico/usage-media-wasabi' },
       { text: 'Setup email', link: '/ninico/usage-email' },
+      { text: 'Backup', link: '/ninico/plugin-backup' },
       { text: 'Currencies', link: '/ninico/usage-currencies' },
       { text: 'Setup social login', link: '/ninico/usage-social-login' },
       { text: 'Location', link: '/ninico/usage-location' },
@@ -52,6 +53,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/ninico/theme-rename' },
+      { text: 'API', link: '/ninico/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[]

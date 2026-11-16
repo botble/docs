@@ -35,6 +35,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/stories/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/stories/usage-media-wasabi' },
       { text: 'Setup email', link: '/stories/usage-email' },
+      { text: 'Backup', link: '/stories/plugin-backup' },
       { text: 'Setup cronjob', link: '/stories/cronjob' },
       { text: 'Newsletter', link: '/stories/usage-newsletter' },
     ],
@@ -43,6 +44,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/stories/theme-rename' },
+      { text: 'API', link: '/stories/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[];

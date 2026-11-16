@@ -40,6 +40,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/wowy/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/wowy/usage-media-wasabi' },
       { text: 'Setup email', link: '/wowy/usage-email' },
+      { text: 'Backup', link: '/wowy/plugin-backup' },
       { text: 'Newsletter', link: '/wowy/usage-newsletter' },
       { text: 'Currencies', link: '/wowy/usage-currencies' },
       { text: 'Setup social login', link: '/wowy/usage-social-login' },
@@ -53,6 +54,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/wowy/theme-rename' },
+      { text: 'API', link: '/wowy/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[]

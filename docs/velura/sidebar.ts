@@ -43,7 +43,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/velura/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/velura/usage-media-wasabi' },
       { text: 'Setup email', link: '/velura/usage-email' },
+      { text: 'Setup cronjob', link: '/velura/cronjob' },
+      { text: 'Newsletter', link: '/velura/usage-newsletter' },
       { text: 'Backup', link: '/velura/plugin-backup' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/velura/api' },
+      { text: 'Rename theme', link: '/velura/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

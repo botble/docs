@@ -39,6 +39,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/gerow/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/gerow/usage-media-wasabi' },
             { text: 'Setup email', link: '/gerow/usage-email' },
+            { text: 'Backup', link: '/gerow/plugin-backup' },
             { text: 'Setup cronjob', link: '/gerow/cronjob' },
             { text: 'Newsletter', link: '/gerow/usage-newsletter' },
         ],
@@ -47,6 +48,7 @@ export default [
         text: 'Development',
         items: [
             { text: 'Rename theme', link: '/gerow/theme-rename' },
+            { text: 'API', link: '/gerow/api' },
         ]
     }
 ] satisfies DefaultTheme.SidebarItem[]

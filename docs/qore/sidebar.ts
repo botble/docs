@@ -42,7 +42,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/qore/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/qore/usage-media-wasabi' },
       { text: 'Setup email', link: '/qore/usage-email' },
+      { text: 'Setup cronjob', link: '/qore/cronjob' },
+      { text: 'Newsletter', link: '/qore/usage-newsletter' },
       { text: 'Backup', link: '/qore/plugin-backup' },
+    ],
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/qore/api' },
+      { text: 'Rename theme', link: '/qore/theme-rename' },
     ],
   },
 ] satisfies DefaultTheme.SidebarItem[]

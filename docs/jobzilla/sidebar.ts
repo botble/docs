@@ -51,6 +51,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/jobzilla/theme-rename' },
+      { text: 'API', link: '/jobzilla/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[];

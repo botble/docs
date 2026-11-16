@@ -36,6 +36,7 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/lara-mag/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/lara-mag/usage-media-wasabi' },
             { text: 'Setup email', link: '/lara-mag/usage-email' },
+            { text: 'Backup', link: '/lara-mag/plugin-backup' },
             { text: 'Setup cronjob', link: '/lara-mag/cronjob' },
         ],
     },
@@ -43,6 +44,7 @@ export default [
         text: 'Development',
         items: [
             { text: 'Rename theme', link: '/lara-mag/theme-rename' },
+            { text: 'API', link: '/lara-mag/api' },
         ]
     }
 ] satisfies DefaultTheme.SidebarItem[];

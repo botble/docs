@@ -40,6 +40,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/farmart/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/farmart/usage-media-wasabi' },
       { text: 'Setup email', link: '/farmart/usage-email' },
+      { text: 'Backup', link: '/farmart/plugin-backup' },
       { text: 'Currencies', link: '/farmart/usage-currencies' },
       { text: 'Setup social login', link: '/farmart/usage-social-login' },
       { text: 'Location', link: '/farmart/usage-location' },
@@ -58,6 +59,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/farmart/theme-rename' },
+      { text: 'API', link: '/farmart/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[];

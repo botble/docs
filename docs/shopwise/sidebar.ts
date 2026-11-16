@@ -35,6 +35,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/shopwise/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/shopwise/usage-media-wasabi' },
       { text: 'Setup email', link: '/shopwise/usage-email' },
+      { text: 'Backup', link: '/shopwise/plugin-backup' },
       { text: 'Currencies', link: '/shopwise/usage-currencies' },
       { text: 'Setup social login', link: '/shopwise/usage-social-login' },
       { text: 'Location', link: '/shopwise/usage-location' },
@@ -47,6 +48,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/shopwise/theme-rename' },
+      { text: 'API', link: '/shopwise/api' },
     ]
   }
 ] satisfies DefaultTheme.SidebarItem[];

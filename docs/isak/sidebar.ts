@@ -43,7 +43,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/isak/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/isak/usage-media-wasabi' },
       { text: 'Setup email', link: '/isak/usage-email' },
+      { text: 'Setup cronjob', link: '/isak/cronjob' },
+      { text: 'Newsletter', link: '/isak/usage-newsletter' },
       { text: 'Backup', link: '/isak/plugin-backup' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/isak/api' },
+      { text: 'Rename theme', link: '/isak/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

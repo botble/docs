@@ -45,6 +45,7 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/orisa/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/orisa/usage-media-wasabi' },
       { text: 'Setup email', link: '/orisa/usage-email' },
+      { text: 'Backup', link: '/orisa/plugin-backup' },
       { text: 'Currencies', link: '/orisa/usage-currencies' },
       { text: 'Location', link: '/orisa/usage-location' },
       { text: 'Invoice template', link: '/orisa/invoice-template' },
@@ -62,6 +63,7 @@ export default [
     text: 'Development',
     items: [
       { text: 'Rename theme', link: '/orisa/theme-rename' },
+      { text: 'API', link: '/orisa/api' },
     ],
   },
 ] satisfies DefaultTheme.SidebarItem[]

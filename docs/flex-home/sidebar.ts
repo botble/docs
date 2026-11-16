@@ -37,6 +37,8 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/flex-home/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/flex-home/usage-media-wasabi' },
             { text: 'Setup email', link: '/flex-home/usage-email' },
+            { text: 'Newsletter', link: '/flex-home/usage-newsletter' },
+            { text: 'Backup', link: '/flex-home/plugin-backup' },
             { text: 'Setup social login', link: '/flex-home/usage-social-login' },
             { text: 'Setup cronjob', link: '/flex-home/cronjob' },
         ],
@@ -45,6 +47,7 @@ export default [
         text: 'Development',
         items: [
             { text: 'Rename theme', link: '/flex-home/theme-rename' },
+            { text: 'API', link: '/flex-home/api' },
         ]
     }
 ] satisfies DefaultTheme.SidebarItem[]

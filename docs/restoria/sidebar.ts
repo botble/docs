@@ -42,7 +42,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/restoria/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/restoria/usage-media-wasabi' },
       { text: 'Setup email', link: '/restoria/usage-email' },
+      { text: 'Setup cronjob', link: '/restoria/cronjob' },
+      { text: 'Newsletter', link: '/restoria/usage-newsletter' },
       { text: 'Backup', link: '/restoria/plugin-backup' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/restoria/api' },
+      { text: 'Rename theme', link: '/restoria/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

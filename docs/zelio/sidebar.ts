@@ -40,7 +40,16 @@ export default [
       { text: 'Media - Setup BunnyCDN', link: '/zelio/usage-media-bunnycdn' },
       { text: 'Media - Setup Wasabi', link: '/zelio/usage-media-wasabi' },
       { text: 'Setup email', link: '/zelio/usage-email' },
+      { text: 'Setup cronjob', link: '/zelio/cronjob' },
+      { text: 'Newsletter', link: '/zelio/usage-newsletter' },
       { text: 'Backup', link: '/zelio/plugin-backup' },
     ],
-  }
+  },
+  {
+    text: 'Development',
+    items: [
+      { text: 'API', link: '/zelio/api' },
+      { text: 'Rename theme', link: '/zelio/theme-rename' },
+    ],
+  },
 ] satisfies DefaultTheme.SidebarItem[]

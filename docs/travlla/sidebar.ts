@@ -41,6 +41,8 @@ export default [
             { text: 'Media - Setup BunnyCDN', link: '/travlla/usage-media-bunnycdn' },
             { text: 'Media - Setup Wasabi', link: '/travlla/usage-media-wasabi' },
             { text: 'Setup email', link: '/travlla/usage-email' },
+            { text: 'Setup social login', link: '/travlla/usage-social-login' },
+            { text: 'Backup', link: '/travlla/plugin-backup' },
             { text: 'Setup cronjob', link: '/travlla/cronjob' },
             { text: 'Newsletter', link: '/travlla/usage-newsletter' },
         ],
@@ -50,6 +52,7 @@ export default [
         items: [
             { text: 'API', link: '/travlla/api' },
             { text: 'API Reference', link: '/travlla/api-reference' },
+            { text: 'Rename theme', link: '/travlla/theme-rename' },
         ],
     },
 ] satisfies DefaultTheme.SidebarItem[]
