@@ -53,12 +53,13 @@ The logic lives in `platform/plugins/ecommerce/src/Supports/CurrencySupport.php`
 
 When resolving the currency for each request, the system uses this priority:
 
-1. **Session currency** (set when the visitor manually clicks the currency switcher) - highest priority
-2. **Auto-detect from Accept-Language** (only if enabled and no session currency exists)
+1. **Selected currency** (set when the visitor clicks the currency switcher) - highest priority. It is stored in
+   the session and in a cookie that lasts one year, so the choice survives later visits.
+2. **Auto-detect from Accept-Language** (only if enabled and the visitor has not selected a currency)
 3. **Default currency** (fallback if nothing matches)
 
-This means manual switching always overrides auto-detect. Once a visitor selects a currency, their session
-takes priority on all subsequent pages.
+This means manual switching always overrides auto-detect. Once a visitor selects a currency, that choice
+takes priority on all subsequent pages and visits.
 
 ### Limitations
 

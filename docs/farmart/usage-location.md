@@ -1,28 +1,27 @@
 # Location
 
-It is used to change city & state field in the checkout page to dropdown list.
+The Location plugin converts the **City** and **State** fields on the checkout page into structured dropdown lists, replacing free-text inputs with curated country/state/city data.
 
 ![Shipping information](../farmart/images/location-1.png)
 
-## Active plugin
+## Activate the plugin
 
-In admin panel, go to `Plugins` -> `Installed` find the **Location** plugin, and click **Activate**.
+In the admin panel, go to `Plugins` -> `Installed`, find the **Location** plugin, and click **Activate**.
 
 ![Plugin](../farmart/images/location-2.png)
 
-## Add countries, states, cities
+## Add countries, states, and cities
 
-You can add manually from `Admin` -> `Locations`.
+Add locations manually from `Admin` -> `Locations`.
 
 ![Manually create location](../farmart/images/location-3.png)
 
-Or you can import from file CSV
+Or import them in bulk from a CSV file.
 
 ![Import locations](../farmart/images/location-4.png)
 
-## Enable location in checkout page
+## Enable location in the checkout page
 
-In admin panel, go to `Settings` -> `Ecommerce` -> `Checkout` and enable **Load countries, states, cities from plugin
-location**.
+In the admin panel, go to `Settings` -> `Ecommerce` -> `Checkout` and enable **Load countries, states, cities from plugin location**.
 
 ![Checkout settings](../farmart/images/location-5.png)

@@ -1,28 +1,33 @@
 # Invoice Template
 
+This page covers how to customize the invoice template and how to render non-Latin scripts (Bengali, Japanese,
+Sinhala) in PDF invoices.
+
 ## Customize the template
 
-There are two options to customize the invoice template:
+There are two ways to customize the invoice template:
 
-### Customize in admin panel (recommended)
+### Customize in the admin panel (recommended)
 
-Go to `Settings` -> `Ecommerce` -> `Invoice Template` to customize the invoice template.
+Go to `Settings` -> `Ecommerce` -> `Invoice Template` to edit the active template directly from the admin UI.
 
 ![Invoice Template](../farmart/images/invoice-template.png)
 
-### Customize directly file
+### Customize the template file
 
-Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl` to start customizing it.
+Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl` and
+edit the copy. The storage version is used when present.
 
-## Bangladesh font
+## Bengali font
 
-To display Bangladesh text in invoice, need to use font **FreeSerif**.
+To render Bengali text in invoices, first try `Settings` -> `Ecommerce` -> `Invoices` -> **Add language support** ->
+**Bengali**. If that does not fit your template, use the **FreeSerif** font.
 
-- Download `FreeSerif.ttf` from the GNU FreeFont archive: https://ftp.gnu.org/gnu/freefont/freefont-ttf-20120503.zip (file `freefont-20120503/FreeSerif.ttf`).
-- Upload `FreeSerif.ttf` to folder `/public`.
-- Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
-  to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
-- Change in CSS:
+- Download `FreeSerif.ttf` from the GNU FreeFont archive: https://ftp.gnu.org/gnu/freefont/freefont-ttf-20120503.zip
+  (file `freefont-20120503/FreeSerif.ttf`).
+- Upload `FreeSerif.ttf` to `/public`.
+- Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl`.
+- Update the CSS:
 
 ```blade
 <style>
@@ -30,7 +35,7 @@ To display Bangladesh text in invoice, need to use font **FreeSerif**.
         font-family: FreeSerif;
         src: url('{{ url('FreeSerif.ttf') }}');
     }
-    
+
     body {
         font-size: 15px;
         font-family: FreeSerif, Arial, sans-serif !important;
@@ -40,9 +45,10 @@ To display Bangladesh text in invoice, need to use font **FreeSerif**.
 
 ## Japanese font
 
-- Option 1: Go to `Settings` -> `Ecommerce` -> `Invoices`, enable **Using custom font for invoice** and select `M PLUS Rounded 1c` in **Invoice font family**.
+- **Option 1:** In `Settings` -> `Ecommerce` -> `Invoices`, enable **Using custom font for invoice** and select
+  `M PLUS Rounded 1c` as **Invoice font family**. You can also try **Add language support** -> **Chinese**.
 
-- Option 2: Customize invoice template like this:
+- **Option 2:** Customize the invoice template:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,32 +56,25 @@ To display Bangladesh text in invoice, need to use font **FreeSerif**.
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 
 <style>
-
     body {
         font-size: 15px;
         font-family: 'M PLUS Rounded 1c', 'DejaVu Sans', Arial, sans-serif !important;
     }
 
-    ...
     .bold, strong {
         font-weight: normal;
     }
 
-    ...
     .total {
         color: #fb7578;
-        font-weight: normal
+        font-weight: normal;
     }
-
-    ...
 </style>
 ```
 
-- Option 3: Using font **CyberCJK**.
+- **Option 3:** Use the **CyberCJK** font:
 
-Customize template like this:
-
-```CSS
+```css
 @font-face {
     font-family: CyberCJK;
     src: url("http://eclecticgeek.com/dompdf/fonts/cjk/Cybercjk.ttf") format("truetype");
@@ -89,11 +88,11 @@ body {
 
 ## Sinhala font
 
-- Get a Sinhala Unicode TTF font and name the file `kaputaunicode.ttf`. The original download page (http://www.kaputa.com/slword/kaputaunicode.htm) did not respond when this page was last checked.
-- Upload `kaputaunicode.ttf` to folder `/public`.
-- Copy file `platform/plugins/ecommerce/resources/templates/invoice.tpl`
-  to `storage/app/templates/ecommerce/invoice.tpl` to start customize.
-- Change in CSS:
+- Get a Sinhala Unicode TTF font and name the file `kaputaunicode.ttf`. The original download page
+  (http://www.kaputa.com/slword/kaputaunicode.htm) did not respond when this page was last checked.
+- Upload `kaputaunicode.ttf` to `/public`.
+- Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl`.
+- Update the CSS:
 
 ```blade
 <style>
@@ -101,10 +100,14 @@ body {
         font-family: kaputaunicode;
         src: url('{{ url('kaputaunicode.ttf') }}');
     }
-    
+
     body {
         font-size: 15px;
         font-family: kaputaunicode, Arial, sans-serif !important;
     }
 </style>
 ```
+
+## Related
+
+- [Currencies](./usage-currencies.md) - currency formatting on invoices

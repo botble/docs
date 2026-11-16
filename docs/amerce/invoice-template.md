@@ -20,7 +20,8 @@ Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/ap
 
 To render Bengali text in invoices, first try `Settings` -> `Ecommerce` -> `Invoices` -> **Add language support** -> **Bengali**. If that does not fit your template, use the **FreeSerif** font.
 
-- Download `FreeSerif.ttf` from https://github.com/byrongibson/fonts/blob/master/backup/truetype.original/freefont/FreeSerif.ttf.
+- Download `FreeSerif.ttf` from the GNU FreeFont archive: https://ftp.gnu.org/gnu/freefont/freefont-ttf-20120503.zip
+  (file `freefont-20120503/FreeSerif.ttf`).
 - Upload `FreeSerif.ttf` to `/public`.
 - Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl`.
 - Update the CSS:
@@ -41,7 +42,7 @@ To render Bengali text in invoices, first try `Settings` -> `Ecommerce` -> `Invo
 
 ## Japanese font
 
-- **Option 1:** In `Settings` -> `Ecommerce` -> `Invoices`, enable **Using custom font for invoice** and select `M Plus Rounded 1c` as **Invoice font family**. You can also try **Add language support** -> **Chinese**.
+- **Option 1:** In `Settings` -> `Ecommerce` -> `Invoices`, enable **Using custom font for invoice** and select `M PLUS Rounded 1c` as **Invoice font family**. You can also try **Add language support** -> **Chinese**.
 
 - **Option 2:** Customize the invoice template:
 
@@ -83,7 +84,8 @@ body {
 
 ## Sinhala font
 
-- Download font **kaputaunicode** from http://www.kaputa.com/slword/kaputaunicode.htm.
+- Get a Sinhala Unicode TTF font and name the file `kaputaunicode.ttf`. The original download page
+  (http://www.kaputa.com/slword/kaputaunicode.htm) did not respond when this page was last checked.
 - Upload `kaputaunicode.ttf` to `/public`.
 - Copy `platform/plugins/ecommerce/resources/templates/invoice.tpl` to `storage/app/templates/ecommerce/invoice.tpl`.
 - Update the CSS:
