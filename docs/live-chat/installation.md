@@ -2,9 +2,9 @@
 
 ## Via Admin Panel
 
-1. Download the `live-chat` plugin zip file
-2. Go to **Admin → Plugins**
-3. Click **Upload Plugin** and select the zip
+1. Download the `live-chat` plugin zip file and extract it
+2. Upload the `live-chat` folder to `platform/plugins/` on your server (hosting File Manager or FTP)
+3. Go to **Admin → Plugins → Installed Plugins**
 4. Click **Activate** on the Live Chat plugin
 
 ## Via Command Line

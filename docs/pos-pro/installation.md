@@ -40,15 +40,12 @@ For additional features:
    php artisan cms:publish:assets
    ```
 
-### Method 2: Admin Panel Installation
+### Method 2: Without SSH (File Manager)
 
 1. Download the plugin from [CodeCanyon downloads page](https://codecanyon.net/downloads)
-2. Log in to your admin panel
-3. Navigate to **Plugins** > **Add New**
-4. Click **Upload Plugin**
-5. Select the downloaded zip file
-6. Click **Install Now**
-7. After installation, activate the plugin
+2. Extract the zip and upload the `pos-pro` folder to `platform/plugins/` with your hosting File Manager or FTP
+3. Log in to your admin panel and go to **Plugins** > **Installed Plugins**
+4. Click **Activate** on POS Pro. Activating the plugin runs its database migrations
 
 ## Post-Installation Setup
 
