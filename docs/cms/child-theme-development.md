@@ -14,18 +14,30 @@ A child theme inherits all functionality, assets, and views from its parent them
 
 ## Creating a Child Theme
 
-### Step 1: Copy Parent Theme
+### Step 1: Create the Child Theme Folder
 
-The simplest way to create a child theme is to copy the parent theme folder:
+Create a new folder next to the parent theme. Start with only the files below and add more as you need them:
 
-```bash
-# Copy the parent theme to a new folder
-cp -r platform/themes/shofy platform/themes/shofy-custom
+```
+platform/themes/shofy-custom/
+├── config.php            # Required - with 'inherit' setting
+├── theme.json            # Required - theme metadata
+├── public/               # Your own CSS/JS/images (e.g. public/css/custom.css)
+├── partials/             # Only partials you want to override
+├── views/                # Only views you want to override
+└── screenshot.png        # Theme screenshot for admin (optional)
 ```
 
-### Step 2: Update theme.json
+::: warning Do not copy the whole parent theme
+The parent theme's `functions/`, `src/`, `routes/` and `widgets/` are already loaded for a child theme (see
+[What a Child Theme Inherits](#what-a-child-theme-inherits)). If you copy those folders into the child theme, the same
+code is loaded twice, which can register things twice or fail with a `Cannot redeclare function` error. Copy only
+the individual files you want to change.
+:::
 
-Edit `platform/themes/shofy-custom/theme.json`:
+### Step 2: Create theme.json
+
+Create `platform/themes/shofy-custom/theme.json`:
 
 ```json
 {
@@ -48,7 +60,7 @@ Edit `platform/themes/shofy-custom/theme.json`:
 
 ### Step 3: Configure Inheritance
 
-Edit `platform/themes/shofy-custom/config.php`:
+Create `platform/themes/shofy-custom/config.php`:
 
 ```php
 <?php
@@ -60,29 +72,17 @@ return [
 
     'events' => [
         'beforeRenderTheme' => function (Theme $theme): void {
-            // Add your custom assets
-            $theme->asset()->usePath()->add('custom-theme', 'css/theme.css');
+            // Add your custom assets (files in platform/themes/shofy-custom/public/)
+            $theme->asset()->usePath()->add('custom-theme', 'css/custom.css');
         },
     ],
 ];
 ```
 
-### Step 4: Clean Up (Optional but Recommended)
+The parent theme's events run first, so the parent's CSS and JS still load. Your `events` only need to add or change
+what is different.
 
-For a minimal child theme, you can remove most files and keep only:
-
-```
-platform/themes/shofy-custom/
-├── assets/               # Your custom assets (if any)
-├── config.php            # Required - with 'inherit' setting
-├── partials/             # Only partials you want to override
-├── views/                # Only views you want to override
-├── public/               # Compiled public assets
-├── screenshot.png        # Theme screenshot for admin
-└── theme.json            # Required - theme metadata
-```
-
-### Step 5: Activate the Theme
+### Step 4: Activate the Theme
 
 1. Go to **Admin → Appearance → Themes**
 2. Find your child theme
@@ -94,6 +94,15 @@ Or use the command line:
 php artisan cms:theme:activate shofy-custom
 ```
 
+When you switch from the parent theme to the child theme, your current **Theme Options** and **widgets** are copied to
+the child theme automatically.
+
+::: tip Custom CSS is saved per theme
+The CSS from **Admin → Appearance → Custom CSS** is stored in a file inside the active theme's public folder
+(`public/themes/{theme}/css/style.integration.css`), so it is not carried over. Copy it before you switch themes and
+paste it again after activating the child theme.
+:::
+
 ## Theme Inheritance Mechanism
 
 When a theme has `'inherit' => 'parent-theme'` in its config, Botble CMS:
@@ -101,6 +110,8 @@ When a theme has `'inherit' => 'parent-theme'` in its config, Botble CMS:
 1. First looks for views/partials in the child theme
 2. Falls back to the parent theme if not found
 3. Applies parent theme's events before child theme's events
+
+See [What a Child Theme Inherits](#what-a-child-theme-inherits) for everything else that is loaded from the parent.
 
 ```php
 // In Theme.php - simplified view lookup
@@ -201,14 +212,14 @@ Here's a complete minimal child theme structure:
 ```
 platform/themes/shofy-beauty/
 ├── assets/
-│   └── css/
-│       └── theme.css           # Custom styles
+│   └── sass/
+│       └── custom.scss         # Custom styles (source)
 ├── partials/
 │   ├── footer.blade.php        # Overridden footer
 │   └── section-title.blade.php # Overridden section title
 ├── public/
 │   └── css/
-│       └── theme.css           # Compiled CSS
+│       └── custom.css          # Compiled CSS
 ├── config.php                  # Theme configuration
 ├── screenshot.png              # 1200x900px recommended
 ├── theme.json                  # Theme metadata
@@ -228,7 +239,7 @@ return [
 
     'events' => [
         'beforeRenderTheme' => function (Theme $theme): void {
-            $theme->asset()->usePath()->add('shofy-theme', 'css/theme.css');
+            $theme->asset()->usePath()->add('shofy-beauty', 'css/custom.css');
 
             $theme->partialComposer('header.*', function (View $view): void {
                 $headerTopBackgroundColor = theme_option('header_top_background_color', '#fff');
@@ -283,8 +294,8 @@ If your child theme has custom SCSS/JS, ship a **`vite.build.mjs`** inside the t
 
 ```js
 export default {
-    js:   [{ src: 'assets/js/theme.js',     out: 'theme.js' }],
-    sass: [{ src: 'assets/sass/theme.scss', out: 'theme.css' }],
+    js:   [{ src: 'assets/js/custom.js',     out: 'custom.js' }],
+    sass: [{ src: 'assets/sass/custom.scss', out: 'custom.css' }],
 }
 ```
 
@@ -300,20 +311,33 @@ npm run production
 
 For the full descriptor spec, SFC Vue support, RTL CSS variants, and migrating from the old Laravel Mix setup, see [Asset Compilation (Vite)](/cms/asset-compilation).
 
-## Current Limitations
+## What a Child Theme Inherits
 
-::: warning
-The theme package currently supports view file inheritance only. These are **not** inherited:
-- PHP class files (functions, helpers)
-- Language files
-- Widget configurations
-- Some asset paths
+A child theme loads all of the parent theme's code and adds its own on top. You only add the files you want to change.
+
+| Part of the theme | How it works in a child theme |
+|---|---|
+| `views/`, `partials/`, `layouts/` | The child's file is used first. If it does not exist, the parent's file is used. Page templates from both themes are listed in the page editor. |
+| `functions/*.php` | The parent's files load first, then the child's. Shortcodes, theme options and hooks registered by the parent keep working. |
+| `src/` classes | The parent's namespace (from its `theme.json`) stays registered, and the child's namespace is added for the child's own `src/` folder. |
+| `routes/web.php` | Routes from both themes are loaded. |
+| `widgets/` | Widgets from both themes are registered. |
+| `lang/*.json` | Translations from both themes are loaded. The child's strings override the parent's. |
+| `config.php` events | The parent's events run first, then the child's. |
+| `public/` assets | On publish, the parent's public files are copied into `public/themes/{child}/`, then the child's own files are added. If an asset is missing from the child folder, the parent's file is used. |
+| Theme Options and widget content | Copied from the previously active theme when you activate the child theme. |
+| Custom CSS (Appearance → Custom CSS) | Not copied. It is saved per theme, so paste it again after switching. |
+
+::: warning Use unique names for your own asset files
+When assets are published, a file in the child's `public/` folder does **not** replace a parent file with the same path.
+If your child theme ships `css/theme.css` and the parent also has `css/theme.css`, the parent's version is the one
+served. Name your files differently, for example `css/custom.css` and `js/custom.js`.
 :::
 
-For complex customizations beyond view overrides, consider:
-- Registering custom functions in your child theme's `functions/functions.php`
-- Using hooks and filters to modify behavior
-- Creating custom plugins for major functionality
+For customizations beyond views and assets, you can:
+- Register your own functions, shortcodes and hooks in your child theme's `functions/` folder
+- Use hooks and filters to modify behavior
+- Create a custom plugin for major functionality
 
 ## Troubleshooting
 
@@ -337,7 +361,9 @@ For complex customizations beyond view overrides, consider:
 
 ### Parent Theme Updates
 
-After updating the parent theme:
+Updating the parent theme does not touch the child theme folder. The System Updater republishes the assets of every
+theme, so your child theme's public folder receives the parent's new CSS and JS automatically. After updating the parent
+theme:
 
 1. Check for breaking changes in views you've overridden
 2. Compare your overridden files with new parent versions
