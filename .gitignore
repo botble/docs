@@ -85,3 +85,8 @@ docs/*/images/social-login-settings.png
 !docs/ecommerce-saas/installation-requirements.md
 !docs/ecommerce-saas/license.md
 !docs/ecommerce-saas/upgrade.md
+
+# Internal notes and machine config stay local
+plans/
+.claude/
+bin/deploy.env

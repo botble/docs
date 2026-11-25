@@ -19,8 +19,14 @@
 
 set -euo pipefail
 
-HOST="root@108.160.138.161"
-PORT=2504
+# Server address lives outside git: bin/deploy.env (gitignored), see bin/deploy.env.example.
+ENV_FILE="$(dirname "$0")/deploy.env"
+[ -f "$ENV_FILE" ] || { echo "Missing $ENV_FILE (copy bin/deploy.env.example and fill it in)" >&2; exit 1; }
+# shellcheck disable=SC1090
+. "$ENV_FILE"
+: "${DEPLOY_HOST:?DEPLOY_HOST not set in bin/deploy.env}" "${DEPLOY_PORT:?DEPLOY_PORT not set in bin/deploy.env}"
+HOST="$DEPLOY_HOST"
+PORT="$DEPLOY_PORT"
 SITE="/home/nginx/domains/docs.botble.com"
 KEEP=3
 DIST="docs/.vitepress/dist"
