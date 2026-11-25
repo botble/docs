@@ -4,6 +4,7 @@
 export const PRODUCT_LABELS: Record<string, string> = {
   cms: 'Botble',
   hasa: 'HASA',
+  'ai-kit': 'AI Kit',
   'lara-mag': 'LaraMag',
   'bb-form-builder': 'BB Form Builder',
   'bb-popup': 'BB Popup',
