@@ -9,6 +9,12 @@ The platform ships with **Amerce**. This is how you add another one — Shofy, F
 Hasa, or any Botble-published ecommerce theme — so customers can pick it at signup and get that
 theme's demo content.
 
+::: warning Needs 1.0.4 or later
+Before 1.0.4 the platform loaded only the main theme's code (the theme set on the central
+site: its shortcodes, theme options and fonts). A store on any other theme rendered with the
+wrong code and its homepage could fail. Update to 1.0.4 before selling a second theme.
+:::
+
 A theme is one self-contained directory. Its storefront, screenshots and demo data all
 live under `platform/themes/{slug}`:
 
