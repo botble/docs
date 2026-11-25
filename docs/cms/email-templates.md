@@ -243,6 +243,18 @@ public function addCustomEmailVariables(array $variables, ?string $template): ar
 1. **cms_email_variable_values** - Main filter for adding custom variables to all email templates
 2. **ecommerce_order_email_variables** - Specific filter for order-related emails
 3. **email_variable_value** - Action hook that fires when processing email variables
+4. **core_email_template_site_title** - The name behind <code v-pre>{{ site_title }}</code> (see below)
+5. **core_email_template_site_logo** - The logo behind <code v-pre>{{ site_logo }}</code>
+
+### Where `site_title` comes from
+
+<code v-pre>{{ site_title }}</code> is resolved in this order:
+
+1. **Admin title** (Settings > Admin Appearance), unless it is empty or only repeats `APP_NAME`
+2. The `core_email_template_site_title` filter - the theme package returns the theme's **Site title** (Appearance > Theme Options)
+3. `APP_NAME` from `.env`
+
+If emails show a placeholder name such as "Your App", set the Admin title or the theme's Site title. Do not change `APP_NAME` on a live site just for this: Laravel uses it for the session cookie name and the cache prefix, so changing it logs every user out.
 
 ## Key Points to Remember
 

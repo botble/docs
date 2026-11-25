@@ -338,7 +338,7 @@ Templates support dynamic variables that are replaced with actual data when emai
 ![Edit Email Template with Variables](../cms/images/edit-email-template-with-variables-and-functions.png)
 
 Click the **Variables** dropdown to see available placeholders for each template. Common variables include:
-- <code v-pre>{{ site_title }}</code> - Your website name
+- <code v-pre>{{ site_title }}</code> - Your website name: the Admin title (Settings > Admin Appearance), or the Site title in Appearance > Theme Options when the Admin title is empty
 - <code v-pre>{{ site_url }}</code> - Your website URL
 - <code v-pre>{{ date_time }}</code> - Current date and time
 

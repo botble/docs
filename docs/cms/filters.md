@@ -424,6 +424,13 @@ The final email body is sanitized before sending. Email templates are HTML-by-de
   add_filter('cms_email_sanitize_output_strict', fn () => true, 20, 1);
   ```
 
+- **core_email_template_site_title**: The site name used for <code v-pre>{{ site_title }}</code> in every email. It receives the **Admin title** setting (empty when not set, or when it only repeats `APP_NAME`); return a name to use when it is empty. The theme package already returns the theme's **Site title** (Theme Options), and `APP_NAME` is only used when nothing else gives a name.
+  ```php
+  add_filter('core_email_template_site_title', fn ($title) => $title ?: 'My Store', 20, 1);
+  ```
+
+- **core_email_template_site_logo**: The logo used for <code v-pre>{{ site_logo }}</code>. It receives the email logo setting; the theme package falls back to the theme logo.
+
 ## Best Practices
 
 1. **Always Return a Value**: Filters must always return a value, even if you don't modify it.
