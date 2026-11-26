@@ -1,6 +1,6 @@
 ---
 title: Botble AI Kit
-description: Skills and agents that teach Claude Code, Codex and Gemini / Antigravity how Botble CMS works, so they plan, build, debug and review Botble plugins, themes and ecommerce features the Botble way.
+description: Skills and agents that teach Claude Code, Codex and Gemini / Antigravity how Botble CMS works, so they plan, build, debug and review Botble plugins, themes, complete scripts and ecommerce features the Botble way.
 ---
 
 # Botble AI Kit
@@ -9,7 +9,7 @@ Skills and agents that teach your AI coding assistant how Botble CMS actually wo
 
 AI coding assistants know Laravel well, but Botble has its own way of doing things: Form Builder and Table Builder, hooks, permissions, settings pages, idempotent plugin migrations, theme shortcodes, asset publishing, Envato rules. Without that knowledge an assistant guesses, and the code it writes often runs but does not fit the CMS.
 
-The **Botble AI Kit** gives the assistant that knowledge. It plans, builds, debugs and reviews Botble plugins, themes and ecommerce features the way the Botble team does.
+The **Botble AI Kit** gives the assistant that knowledge. It plans, builds, debugs and reviews Botble plugins, themes and ecommerce features the way the Botble team does, and can put them together into a complete script on Botble CMS, including for a niche Botble does not sell a script for yet.
 
 [Buy the Botble AI Kit](https://marketplace.botble.com/ai-kit)
 
