@@ -280,8 +280,12 @@ The homepage opens on the new domain, but clicking any menu item or link goes ba
 
 ### Images Not Showing
 
-- Check that the `storage/app/public` folder was uploaded correctly
-- In **File Manager**, check if `public/storage` exists and points to `storage/app/public`. If not, ask your hosting provider to create a **symbolic link** (symlink).
+Uploaded images are stored **directly in the `public/storage` folder** on a default install (it is a real folder, not a symlink). See [Where Files Are Stored](media.md#where-files-are-stored).
+
+- In **File Manager**, open `public/storage` on the new server and check that your upload folders (for example `products`, `brands`, `banners`) and their image files are there. If the folder is empty or missing, copy `public/storage` again from the old server.
+- Only if `public/storage` was a **symlink** on the old server are the files kept in `storage/app/public` instead - copy that folder, then ask your hosting provider to recreate the `public/storage` symlink.
+- If you enabled **Customize upload path** in **Admin → Settings → Media**, copy that custom folder inside `public/` too.
+- If the originals load but resized versions are missing, go to **Admin → Media** and use **Generate thumbnails**.
 
 ### 500 Internal Server Error
 

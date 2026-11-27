@@ -202,7 +202,7 @@ Attribute sets and values must exist before import. Create them in `Ecommerce` -
 image
 products/phone.jpg
 ```
-File must exist in `storage/app/public/products/`
+The path is relative to your upload folder, so the file must exist in `public/storage/products/` (the default upload folder, see [Where Files Are Stored](/cms/media#where-files-are-stored)). It is saved as-is, not copied.
 
 **Option 2: Full URLs**
 ```csv
@@ -220,7 +220,7 @@ products/image1.jpg,products/image2.jpg,https://example.com/image3.jpg
 ```
 
 ::: tip
-For large imports with images, upload images to `storage/app/public/products/` first, then use relative paths in CSV.
+For large imports with images, upload images to `public/storage/products/` first (via **Admin → Media** or FTP), then use relative paths in CSV.
 :::
 
 ## Importing Variations

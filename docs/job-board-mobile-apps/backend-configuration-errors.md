@@ -144,19 +144,21 @@ A `403` here with a Cloudflare or ModSecurity HTML body confirms the diagnosis. 
 
 ---
 
-## 6. Missing storage symlink: images `404`
+## 6. Uploaded files missing on the server: images `404`
 
 **Symptom in the app:** image URLs look correct and use the right domain, but still fail to load. Opening one in a browser returns `404`.
 
-**Cause:** uploaded media lives in `storage/app/public` and is served through a `public/storage` symlink that does not exist on the server. This is common after moving hosts, restoring a backup, or deploying over FTP, which does not preserve symlinks.
+**Cause:** the image files are not on the server, even though the database still lists them. On a default install uploads are stored **directly in `public/storage`** (a real folder, not a symlink), so this usually means that folder was not copied when moving hosts, restoring a backup, or deploying a fresh copy of the code. See [Where Files Are Stored](/cms/media#where-files-are-stored).
 
-**Fix:** recreate the link on the backend:
+**Fix:** check what `public/storage` is on the backend:
 
 ```bash
-php artisan storage:link
+ls -la public/storage
 ```
 
-If your host blocks symlinks entirely, switch the media driver to a public disk or an S3-compatible bucket under **Admin → Settings → Media**.
+- **A real folder:** copy `public/storage` from the old server or your backup. Do not run `php artisan storage:link` here - the symlink theory does not apply.
+- **A symlink:** files live in `storage/app/public`. Copy that folder, and recreate the link with `php artisan storage:link` if it is missing (FTP does not preserve symlinks).
+- **Originals load but resized versions `404`:** regenerate them in **Admin → Media → Generate thumbnails**.
 
 ---
 

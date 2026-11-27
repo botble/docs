@@ -91,8 +91,8 @@ If file uploads are not working:
 
 3. **Directory Permissions**:
    - Ensure storage directory is writable
-   - Check `storage/app/public` permissions
-   - Verify symbolic link exists: `php artisan storage:link`
+   - Check that `public/storage` is writable (it is the default upload folder - a real folder, not a symlink)
+   - Only if `public/storage` is a symlink: check `storage/app/public` permissions and that the link is not broken
 
 4. **File Validation**:
    - Check if file passes security validation
