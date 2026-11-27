@@ -47,7 +47,7 @@ No. You may not share, resell, publish or redistribute the kit or any part of it
 Download the new zip from your account on [marketplace.botble.com](https://marketplace.botble.com), or, if you use the private GitHub repository `botble/ai-kit`, pull the latest version. Then follow the **Updating** steps for your assistant in [Installation](./installation.md).
 
 ### How do I get access to the GitHub repository?
-Send us your GitHub username and we add you to the private repository `botble/ai-kit`. Accept the invitation from GitHub, then install from the repository as described in [Installation](./installation.md#install-from-github-instead).
+Your receipt email has a link to your access page. Add your GitHub username there (one per developer; Team has 5 seats) and GitHub invites you to the private repository `botble/ai-kit` right away. Accept the invitation (it expires after 7 days; the same page sends a new one), then install from the repository as described in [Installation](./installation.md#install-from-github-instead).
 
 ### What changed in each version?
 See the [Changelog](./changelog.md).

@@ -11,7 +11,7 @@ You can get the kit in two ways.
 
 **Zip file.** Download `botble-ai-kit-1.0.0.zip` from the link in your purchase email or from your account dashboard on [marketplace.botble.com](https://marketplace.botble.com). Unzip it somewhere permanent, for example `~/botble-ai-kit/`. Do not leave it in your Downloads folder if you clean that folder often: updates and the Gemini workflows read from it.
 
-**Private GitHub repository.** Send us your GitHub username and we add you to the private repository `botble/ai-kit`. Cloning it gives you the same files as the zip, and updating is a `git pull`:
+**Private GitHub repository.** Add your GitHub username on the access page linked in your receipt email and GitHub invites you to the private repository `botble/ai-kit`. Cloning it gives you the same files as the zip, and updating is a `git pull`:
 
 ```bash
 git clone https://github.com/botble/ai-kit.git ~/botble-ai-kit
